@@ -1,0 +1,32 @@
+{
+  "name": "CharuAutos | Manual del Conductor Inteligente",
+  "short_name": "CharuAutos",
+  "description": "Asistente y guía interactiva de mantenimiento preventivo, diagnóstico y telemetría automotriz.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080b11",
+  "theme_color": "#080b11",
+  "orientation": "portrait-primary",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/charuautos_logo_icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["utilities", "education", "lifestyle"]
+}

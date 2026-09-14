@@ -1,0 +1,19 @@
+# Entornos virtuales y temporales de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Temporales del sistema y pruebas
+*.tmp
+ebook/test.pdf
+ebook/manual.pdf
+ebook/page_*.png
+ebook/page_fixed_*.png
+ebook/page_perfect_*.png
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes de Neón y Titanio -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="crimsonAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="titaniumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    
+    <!-- Filtro de Resplandor Neón -->
+    <filter id="neonFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo Escudo Geométrico Hexagonal Biselado -->
+  <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+           fill="url(#shieldBg)" 
+           stroke="url(#cyanGlow)" 
+           stroke-width="3" 
+           stroke-opacity="0.5"/>
+
+  <!-- Línea Interna de Telemetría -->
+  <polygon points="250,42 418,122 418,348 250,450 82,348 82,122" 
+           fill="none" 
+           stroke="#00f2fe" 
+           stroke-width="1.5" 
+           stroke-opacity="0.2" 
+           stroke-dasharray="8,6"/>
+
+  <!-- Símbolo Monograma Central CA -->
+  <g id="monogramCA">
+    <!-- Letra C: Brazo Superior y Curva Aerodinámica -->
+    <path d="M 230,125 
+             L 160,125 
+             Q 110,125 110,175 
+             L 110,325 
+             Q 110,375 160,375 
+             L 230,375 
+             L 210,335 
+             L 165,335 
+             Q 145,335 145,315 
+             L 145,185 
+             Q 145,165 165,165 
+             L 210,165 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Aleta de Flujo Neón de la C -->
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#cyanGlow)" filter="url(#neonFilter)"/>
+
+    <!-- Letra A: Silueta Angular Stealth / Splitter -->
+    <!-- Ala Izquierda de la A con Neón -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#cyanGlow)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Ala Derecha en Titanio Cepillado -->
+    <path d="M 298,125 
+             L 340,125 
+             L 410,375 
+             L 368,375 
+             L 348,300 
+             L 300,300 
+             L 306,260 
+             L 338,260 
+             L 315,175 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Barra de Rendimiento (Racing Red Slash) -->
+    <polygon points="200,270 325,270 315,290 190,290" 
+             fill="url(#crimsonAccent)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Marcador de Vértice / Apex Telemetry Point -->
+    <circle cx="250" cy="80" r="4" fill="#00f2fe" filter="url(#neonFilter)"/>
+    <line x1="250" y1="88" x2="250" y2="105" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+  </g>
+</svg>

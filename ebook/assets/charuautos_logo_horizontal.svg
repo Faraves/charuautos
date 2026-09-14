@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="hCyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="hCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="hTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="hShieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#060913"/>
+    </linearGradient>
+
+    <!-- Filtro Neón -->
+    <filter id="hNeon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .brand-charu {
+      font-family: 'Montserrat', 'Syne', 'Orbitron', 'Eurostile', sans-serif;
+      font-weight: 900;
+      font-size: 100px;
+      letter-spacing: 4px;
+      fill: url(#hTitanium);
+    }
+    .brand-autos {
+      font-family: 'Montserrat', 'Syne', 'Rajdhani', sans-serif;
+      font-weight: 800;
+      font-size: 100px;
+      letter-spacing: 10px;
+      fill: url(#hCyanGlow);
+      filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.45));
+    }
+    .brand-tagline {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 5.5px;
+      fill: #cbd5e1;
+      text-transform: uppercase;
+    }
+    .brand-handle {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 2px;
+      fill: #00f2fe;
+    }
+    .brand-subtag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 3px;
+      fill: #94a3b8;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- ISOTIPO IZQUIERDA (Escudo Hexagonal con Monograma CA) -->
+  <g transform="translate(40, 20) scale(0.56)">
+    <!-- Fondo Escudo -->
+    <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+             fill="url(#hShieldBg)" 
+             stroke="url(#hCyanGlow)" 
+             stroke-width="4" 
+             stroke-opacity="0.6"/>
+
+    <!-- Línea de Telemetría -->
+    <polygon points="250,45 415,125 415,345 250,445 85,345 85,125" 
+             fill="none" 
+             stroke="#00f2fe" 
+             stroke-width="2" 
+             stroke-opacity="0.3" 
+             stroke-dasharray="10,6"/>
+
+    <!-- Letra C -->
+    <path d="M 230,125 L 160,125 Q 110,125 110,175 L 110,325 Q 110,375 160,375 L 230,375 L 210,335 L 165,335 Q 145,335 145,315 L 145,185 Q 145,165 165,165 L 210,165 Z" 
+          fill="url(#hTitanium)"/>
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#hCyanGlow)" filter="url(#hNeon)"/>
+
+    <!-- Letra A -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#hCyanGlow)" 
+             filter="url(#hNeon)"/>
+    <path d="M 298,125 L 340,125 L 410,375 L 368,375 L 348,300 L 300,300 L 306,260 L 338,260 L 315,175 Z" 
+          fill="url(#hTitanium)"/>
+
+    <!-- Slash Rojo Rendimiento -->
+    <polygon points="200,270 325,270 315,290 190,290" fill="url(#hCrimson)" filter="url(#hNeon)"/>
+  </g>
+
+  <!-- LÍNEA SEPARADORA VERTICAL DE TELEMETRÍA -->
+  <line x1="340" y1="65" x2="340" y2="255" stroke="#1e293b" stroke-width="2"/>
+  <line x1="340" y1="120" x2="340" y2="200" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+
+  <!-- LOGOTIPO TIPOGRÁFICO -->
+  <g transform="translate(380, 0)">
+    <!-- Fila 1: Texto CHARU AUTOS -->
+    <text x="0" y="155" class="brand-charu">CHARU<tspan class="brand-autos">AUTOS</tspan></text>
+    
+    <!-- Fila 2: Línea Acento Decorativa -->
+    <path d="M 0,185 L 450,185 L 475,193 L 740,193" fill="none" stroke="#1e293b" stroke-width="2"/>
+    <rect x="0" y="183" width="130" height="4" fill="url(#hCyanGlow)"/>
+    <rect x="140" y="183" width="22" height="4" fill="#ff2a5f"/>
+
+    <!-- Fila 3: Subtítulo / Tagline Oficial (Completamente legible y sin colisiones) -->
+    <text x="4" y="228" class="brand-tagline">DOMINIO MECÁNICO &amp; CULTURA AUTOMOTRIZ</text>
+
+    <!-- Fila 4: Barra de Telemetría y Handle @CHARUAUTOPICS en su propia fila inferior -->
+    <g transform="translate(4, 252)">
+      <!-- Cápsula Neón para el Handle -->
+      <rect x="0" y="0" width="220" height="34" rx="8" fill="#0a101d" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.5"/>
+      <!-- Icono de Cámara / Social -->
+      <rect x="12" y="9" width="16" height="16" rx="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="20" cy="17" r="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="24.5" cy="12.5" r="1" fill="#00f2fe"/>
+      <!-- Texto del Handle -->
+      <text x="36" y="22" class="brand-handle">@CHARUAUTOPICS</text>
+
+      <!-- Indicador Separador y Sub-etiqueta -->
+      <g transform="translate(240, 22)">
+        <circle cx="0" cy="-5" r="3" fill="#ff2a5f"/>
+        <text x="12" y="0" class="brand-subtag">COMUNIDAD &amp; ASESORÍA AUTOMOTRIZ</text>
+      </g>
+    </g>
+  </g>
+</svg>

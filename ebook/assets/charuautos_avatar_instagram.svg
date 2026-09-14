@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="cirCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="cirCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="cirTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <radialGradient id="carbonCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141c2e"/>
+      <stop offset="70%" stop-color="#090d15"/>
+      <stop offset="100%" stop-color="#030508"/>
+    </radialGradient>
+
+    <!-- Filtro de Resplandor Neón -->
+    <filter id="glowCirc" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .circ-text {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 9px;
+      fill: #cbd5e1;
+    }
+  </style>
+
+  <!-- Fondo Circular Exterior -->
+  <circle cx="300" cy="300" r="290" fill="#05070c" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Anillo de Tacómetro / Telemetría -->
+  <circle cx="300" cy="300" r="268" fill="none" stroke="#1e293b" stroke-width="6"/>
+  <circle cx="300" cy="300" r="268" fill="none" stroke="url(#cirCyan)" stroke-width="6" 
+          stroke-dasharray="850 1200" stroke-linecap="round" filter="url(#glowCirc)"/>
+  
+  <!-- Marcador Zona Roja (Redline) -->
+  <circle cx="300" cy="300" r="268" fill="none" stroke="url(#cirCrimson)" stroke-width="7" 
+          stroke-dasharray="140 1600" stroke-dashoffset="-730" stroke-linecap="round" filter="url(#glowCirc)"/>
+
+  <!-- Ticks del tacómetro -->
+  <g stroke="#334155" stroke-width="2">
+    <line x1="300" y1="40" x2="300" y2="52"/>
+    <line x1="484" y1="116" x2="475" y2="124"/>
+    <line x1="560" y1="300" x2="548" y2="300"/>
+    <line x1="484" y1="484" x2="475" y2="475"/>
+    <line x1="300" y1="560" x2="300" y2="548"/>
+    <line x1="116" y1="484" x2="124" y2="475"/>
+    <line x1="40" y1="300" x2="52" y2="300"/>
+    <line x1="116" y1="116" x2="124" y2="124"/>
+  </g>
+
+  <!-- Fondo Interior de Núcleo Radial -->
+  <circle cx="300" cy="300" r="236" fill="url(#carbonCenter)" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Línea de Guía Circular Decorativa -->
+  <circle cx="300" cy="300" r="215" fill="none" stroke="#00f2fe" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="6,8"/>
+
+  <!-- MONOGRAMA CA EN EL CENTRO (Escalado y centrado) -->
+  <g transform="translate(140, 115) scale(0.64)">
+    <!-- Letra C -->
+    <path d="M 230,125 L 160,125 Q 110,125 110,175 L 110,325 Q 110,375 160,375 L 230,375 L 210,335 L 165,335 Q 145,335 145,315 L 145,185 Q 145,165 165,165 L 210,165 Z" 
+          fill="url(#cirTitanium)"/>
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#cirCyan)" filter="url(#glowCirc)"/>
+
+    <!-- Letra A -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#cirCyan)" filter="url(#glowCirc)"/>
+    <path d="M 298,125 L 340,125 L 410,375 L 368,375 L 348,300 L 300,300 L 306,260 L 338,260 L 315,175 Z" 
+          fill="url(#cirTitanium)"/>
+
+    <!-- Barra de Rendimiento Roja -->
+    <polygon points="200,270 325,270 315,290 190,290" fill="url(#cirCrimson)" filter="url(#glowCirc)"/>
+  </g>
+
+  <!-- TEXTO INFERIOR: @CHARUAUTOPICS -->
+  <g transform="translate(300, 480)">
+    <text text-anchor="middle" class="circ-text">@CHARUAUTOPICS</text>
+  </g>
+</svg>
