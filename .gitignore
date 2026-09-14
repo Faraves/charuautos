@@ -12,6 +12,7 @@ ebook/manual.pdf
 ebook/page_*.png
 ebook/page_fixed_*.png
 ebook/page_perfect_*.png
+ebook/*screenshot*.png
 
 # Archivos de sistema operativo
 .DS_Store

@@ -831,6 +831,240 @@
       color: #fff;
     }
 
+    
+    
+    
+    
+    /* Mobile First & Responsive Design Rules */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .table-responsive {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      margin: 20px 0 !important;
+      border-radius: 14px !important;
+      border: 1px solid var(--border-metallic) !important;
+      background: rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .table-responsive table {
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      width: 100% !important;
+      min-width: 520px !important;
+    }
+
+    img, svg {
+      max-width: 100% !important;
+      height: auto;
+    }
+
+    .btn-text-desktop {
+      display: inline;
+    }
+    .btn-text-mobile {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile HUD Bar */
+      header.hud-bar {
+        padding: 8px 10px !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        justify-content: space-between !important;
+      }
+
+      .brand-hud {
+        gap: 6px !important;
+      }
+
+      .brand-text {
+        font-size: 0.92rem !important;
+        letter-spacing: 0.03em !important;
+      }
+
+      .logo-svg {
+        width: 26px !important;
+        height: 26px !important;
+      }
+
+      .ig-badge {
+        display: none !important;
+      }
+
+      .hud-actions {
+        gap: 4px !important;
+      }
+
+      .btn-hud {
+        padding: 5px 8px !important;
+        font-size: 0.72rem !important;
+      }
+
+      .btn-text-desktop {
+        display: none !important;
+      }
+      .btn-text-mobile {
+        display: inline !important;
+      }
+
+      .btn-print {
+        display: none !important;
+      }
+
+      /* Mobile Main Container */
+      .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 10px 70px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Hero Showroom */
+      .hero-showroom {
+        padding: 20px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .hero-brand-logo {
+        max-width: 290px !important;
+        width: 95% !important;
+      }
+
+      .hero-showroom h1 {
+        font-size: 1.35rem !important;
+        line-height: 1.22 !important;
+        margin: 8px 0 10px !important;
+      }
+
+      .hero-showroom p {
+        font-size: 0.88rem !important;
+        margin-bottom: 14px !important;
+        line-height: 1.45 !important;
+      }
+
+      .spec-header-tag {
+        font-size: 0.62rem !important;
+        letter-spacing: 0.06em !important;
+        padding: 3px 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .hero-slogans {
+        gap: 6px !important;
+      }
+
+      .slogan-pill {
+        font-size: 0.7rem !important;
+        padding: 4px 8px !important;
+      }
+
+      /* Disclaimer Card */
+      .disclaimer-hud {
+        padding: 16px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .disclaimer-hud h3 {
+        font-size: 0.88rem !important;
+      }
+
+      .disclaimer-pillars {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+      }
+
+      .pillar-item {
+        padding: 8px 10px !important;
+        font-size: 0.8rem !important;
+      }
+
+      /* TOC Grid */
+      #indice {
+        padding: 16px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .toc-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      .toc-card {
+        padding: 10px 12px !important;
+        font-size: 0.84rem !important;
+      }
+
+      /* Module Cards */
+      .module-card {
+        padding: 18px 12px !important;
+        border-radius: 16px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .module-header h2 {
+        font-size: 1.25rem !important;
+        line-height: 1.22 !important;
+      }
+
+      .module-quote {
+        padding: 8px 12px !important;
+        font-size: 0.84rem !important;
+      }
+
+      /* Search Box */
+      .search-box input {
+        font-size: 0.84rem !important;
+        padding: 9px 12px 9px 34px !important;
+      }
+
+      /* Floating Button */
+      .fab-hud {
+        right: 10px !important;
+        bottom: 10px !important;
+        padding: 6px 12px !important;
+        font-size: 0.72rem !important;
+      }
+
+      /* Data Graph Box */
+      .data-graph-box {
+        padding: 14px 10px !important;
+        border-radius: 12px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand-text {
+        font-size: 0.82rem !important;
+        letter-spacing: 0.02em !important;
+      }
+      .logo-svg {
+        width: 22px !important;
+        height: 22px !important;
+      }
+      .btn-hud {
+        padding: 4px 6px !important;
+        font-size: 0.68rem !important;
+      }
+      .hero-showroom h1 {
+        font-size: 1.2rem !important;
+      }
+    }
+
     /* Print & PDF Export Styles (Preserves Full Dark Theme, Showroom Palette & Hyperlinks) */
     @media print {
       * {
@@ -1119,7 +1353,103 @@
   <header class="hud-bar">
     <a href="#indice" class="brand-hud">
       <!-- CharuAutos Official Logo Icon -->
-      <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Logo" class="logo-svg" style="width: 38px; height: 38px; object-fit: contain;">
+      <svg class="logo-svg" style="width:30px; height:30px; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes de Neón y Titanio -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="crimsonAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="titaniumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    
+    <!-- Filtro de Resplandor Neón -->
+    <filter id="neonFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo Escudo Geométrico Hexagonal Biselado -->
+  <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+           fill="url(#shieldBg)" 
+           stroke="url(#cyanGlow)" 
+           stroke-width="3" 
+           stroke-opacity="0.5"/>
+
+  <!-- Línea Interna de Telemetría -->
+  <polygon points="250,42 418,122 418,348 250,450 82,348 82,122" 
+           fill="none" 
+           stroke="#00f2fe" 
+           stroke-width="1.5" 
+           stroke-opacity="0.2" 
+           stroke-dasharray="8,6"/>
+
+  <!-- Símbolo Monograma Central CA -->
+  <g id="monogramCA">
+    <!-- Letra C: Brazo Superior y Curva Aerodinámica -->
+    <path d="M 230,125 
+             L 160,125 
+             Q 110,125 110,175 
+             L 110,325 
+             Q 110,375 160,375 
+             L 230,375 
+             L 210,335 
+             L 165,335 
+             Q 145,335 145,315 
+             L 145,185 
+             Q 145,165 165,165 
+             L 210,165 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Aleta de Flujo Neón de la C -->
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#cyanGlow)" filter="url(#neonFilter)"/>
+
+    <!-- Letra A: Silueta Angular Stealth / Splitter -->
+    <!-- Ala Izquierda de la A con Neón -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#cyanGlow)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Ala Derecha en Titanio Cepillado -->
+    <path d="M 298,125 
+             L 340,125 
+             L 410,375 
+             L 368,375 
+             L 348,300 
+             L 300,300 
+             L 306,260 
+             L 338,260 
+             L 315,175 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Barra de Rendimiento (Racing Red Slash) -->
+    <polygon points="200,270 325,270 315,290 190,290" 
+             fill="url(#crimsonAccent)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Marcador de Vértice / Apex Telemetry Point -->
+    <circle cx="250" cy="80" r="4" fill="#00f2fe" filter="url(#neonFilter)"/>
+    <line x1="250" y1="88" x2="250" y2="105" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+  </g>
+</svg>
       <div class="brand-text">CHARU<span>AUTOS</span></div>
     </a>
 
@@ -1129,7 +1459,7 @@
 
     <div class="hud-actions">
       <a href="#indice" class="btn-hud">📑 ÍNDICE</a>
-      <button id="btn-pwa-install" onclick="handleInstallClick()" class="btn-hud" style="background: rgba(0, 240, 255, 0.12); border-color: #00f0ff; color: #00f0ff; display: inline-flex; align-items: center; gap: 4px;">📲 INSTALAR APP</button>
+      <button id="btn-pwa-install" onclick="handleInstallClick()" class="btn-hud" style="background: rgba(0, 240, 255, 0.12); border-color: #00f0ff; color: #00f0ff; display: inline-flex; align-items: center; gap: 4px;"><span class="btn-icon">📲</span> <span class="btn-text-desktop">INSTALAR APP</span><span class="btn-text-mobile" style="display:none;">APP</span></button>
       <button onclick="window.print()" class="btn-hud btn-print">🖨️ EXPORTAR PDF</button>
     </div>
   </header>
@@ -1142,7 +1472,148 @@
     <!-- Hero Showroom Banner -->
     <div class="hero-showroom">
       <div style="text-align: center; margin-bottom: 20px;">
-        <img src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos Official Brand" style="max-width: 360px; width: 85%; height: auto; filter: drop-shadow(0 4px 20px rgba(0, 240, 255, 0.3));">
+        <svg class="hero-brand-logo" style="width: 100%; max-width: 320px; height: auto; filter: drop-shadow(0 4px 18px rgba(0, 240, 255, 0.35));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 320" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="hCyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="hCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="hTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="hShieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#060913"/>
+    </linearGradient>
+
+    <!-- Filtro Neón -->
+    <filter id="hNeon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .brand-charu {
+      font-family: 'Montserrat', 'Syne', 'Orbitron', 'Eurostile', sans-serif;
+      font-weight: 900;
+      font-size: 96px;
+      letter-spacing: 3px;
+      fill: url(#hTitanium);
+    }
+    .brand-autos {
+      font-family: 'Montserrat', 'Syne', 'Rajdhani', sans-serif;
+      font-weight: 800;
+      font-size: 96px;
+      letter-spacing: 8px;
+      fill: url(#hCyanGlow);
+      filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.45));
+    }
+    .brand-tagline {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 5px;
+      fill: #cbd5e1;
+      text-transform: uppercase;
+    }
+    .brand-handle {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 2px;
+      fill: #00f2fe;
+    }
+    .brand-subtag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 3px;
+      fill: #94a3b8;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- ISOTIPO IZQUIERDA (Escudo Hexagonal con Monograma CA) -->
+  <g transform="translate(30, 20) scale(0.56)">
+    <!-- Fondo Escudo -->
+    <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+             fill="url(#hShieldBg)" 
+             stroke="url(#hCyanGlow)" 
+             stroke-width="4" 
+             stroke-opacity="0.6"/>
+
+    <!-- Línea de Telemetría -->
+    <polygon points="250,45 415,125 415,345 250,445 85,345 85,125" 
+             fill="none" 
+             stroke="#00f2fe" 
+             stroke-width="2" 
+             stroke-opacity="0.3" 
+             stroke-dasharray="10,6"/>
+
+    <!-- Letra C -->
+    <path d="M 230,125 L 160,125 Q 110,125 110,175 L 110,325 Q 110,375 160,375 L 230,375 L 210,335 L 165,335 Q 145,335 145,315 L 145,185 Q 145,165 165,165 L 210,165 Z" 
+          fill="url(#hTitanium)"/>
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#hCyanGlow)" filter="url(#hNeon)"/>
+
+    <!-- Letra A -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#hCyanGlow)" 
+             filter="url(#hNeon)"/>
+    <path d="M 298,125 L 340,125 L 410,375 L 368,375 L 348,300 L 300,300 L 306,260 L 338,260 L 315,175 Z" 
+          fill="url(#hTitanium)"/>
+
+    <!-- Slash Rojo Rendimiento -->
+    <polygon points="200,270 325,270 315,290 190,290" fill="url(#hCrimson)" filter="url(#hNeon)"/>
+  </g>
+
+  <!-- LÍNEA SEPARADORA VERTICAL DE TELEMETRÍA -->
+  <line x1="330" y1="65" x2="330" y2="255" stroke="#1e293b" stroke-width="2"/>
+  <line x1="330" y1="120" x2="330" y2="200" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+
+  <!-- LOGOTIPO TIPOGRÁFICO -->
+  <g transform="translate(370, 0)">
+    <!-- Fila 1: Texto CHARU AUTOS -->
+    <text x="0" y="155" class="brand-charu">CHARU<tspan class="brand-autos">AUTOS</tspan></text>
+    
+    <!-- Fila 2: Línea Acento Decorativa -->
+    <path d="M 0,185 L 450,185 L 475,193 L 780,193" fill="none" stroke="#1e293b" stroke-width="2"/>
+    <rect x="0" y="183" width="130" height="4" fill="url(#hCyanGlow)"/>
+    <rect x="140" y="183" width="22" height="4" fill="#ff2a5f"/>
+
+    <!-- Fila 3: Subtítulo / Tagline Oficial -->
+    <text x="4" y="228" class="brand-tagline">DOMINIO MECÁNICO &amp; CULTURA AUTOMOTRIZ</text>
+
+    <!-- Fila 4: Barra de Telemetría y Handle @CHARUAUTOPICS -->
+    <g transform="translate(4, 252)">
+      <!-- Cápsula Neón para el Handle -->
+      <rect x="0" y="0" width="220" height="34" rx="8" fill="#0a101d" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.5"/>
+      <!-- Icono de Cámara / Social -->
+      <rect x="12" y="9" width="16" height="16" rx="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="20" cy="17" r="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="24.5" cy="12.5" r="1" fill="#00f2fe"/>
+      <!-- Texto del Handle -->
+      <text x="36" y="22" class="brand-handle">@CHARUAUTOPICS</text>
+
+      <!-- Indicador Separador y Sub-etiqueta -->
+      <g transform="translate(240, 22)">
+        <circle cx="0" cy="-5" r="3" fill="#ff2a5f"/>
+        <text x="12" y="0" class="brand-subtag">COMUNIDAD &amp; ASESORÍA AUTOMOTRIZ</text>
+      </g>
+    </g>
+  </g>
+</svg>
       </div>
       <div class="spec-header-tag">⚡ CHARUAUTOS • THE SMART DRIVER MANUAL</div>
       <h1>MANUAL DEL CONDUCTOR INTELIGENTE</h1>
@@ -1214,7 +1685,8 @@
 
       <h3>1. Glosario Maestro Latinoamericano (México 🇲🇽, Venezuela 🇻🇪, Chile 🇨🇱, Neutro 🌎)</h3>
       <p>En América Latina usamos distintas palabras para referirnos a los mismos componentes. Para que leas esta guía con total comodidad sin importar tu país, ten a mano esta tabla de equivalencias:</p>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Término Neutro / Internacional</th>
@@ -1241,6 +1713,7 @@
           <tr><td><strong>Tienda de repuestos</strong></td><td>Refaccionaria</td><td>Venta de repuestos</td><td>Repuestera / Local</td></tr>
         </tbody>
       </table>
+</div>
 
       <h3>2. La Filosofía del Conductor Inteligente (DIY Seguro + Criterio en Taller)</h3>
       <p>Comprar y mantener un vehículo suele generar dos temores principales: quedarse accidentado en una ruta solitaria o ser engañado en el taller mecánico.</p>
@@ -1253,7 +1726,8 @@
       </div>
 
       <h3>3. La Analogía del Cuerpo Humano: Tu Auto en Términos Sencillos</h3>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Parte del Vehículo</th>
@@ -1272,6 +1746,7 @@
           <tr><td><strong>Frenos y Suspensión</strong></td><td><strong>Piernas, Rodillas y Reflejos</strong></td><td>Dan estabilidad en las curvas, absorben baches y detienen el auto con seguridad.</td></tr>
         </tbody>
       </table>
+</div>
 
       <h3>4. El Semáforo del Tablero y los Testigos Clave</h3>
       <p>Al encender el contacto, todos los testigos se iluminan para autodiagnóstico. Al arrancar el motor, deben apagarse en 2 a 3 segundos. Si alguno permanece encendido, consulta la siguiente infografía de referencia:</p>
@@ -1404,7 +1879,8 @@
       </ul>
 
       <h4>Tipos de Aceite: Mineral vs Semisintético vs 100% Sintético</h4>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Tipo de Aceite</th>
@@ -1419,6 +1895,7 @@
           <tr><td><strong>100% Sintético</strong></td><td>Moléculas idénticas creadas en laboratorio con aditivos prémium.</td><td>10.000 a 15.000 km o 1 año</td><td><strong>La mejor opción para el 95% de los autos modernos</strong>. Máxima protección y menor consumo.</td></tr>
         </tbody>
       </table>
+</div>
 
       <div class="callout callout-danger">
         <strong>⚠️ EL MITO DEL ACEITE GRUESO PARA AUTO VIEJO:</strong>
@@ -1537,7 +2014,8 @@
       </ul>
 
       <h3>4. Síntomas de un Turbo Dañado: Diagnóstico Temprano</h3>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Síntoma Detectado</th>
@@ -1563,6 +2041,7 @@
           </tr>
         </tbody>
       </table>
+</div>
 
       <h3>5. El Intercooler: El Compañero del Turbo</h3>
       <p>El aire comprimido por el turbo se calienta a más de 120°C. El <strong>Intercooler</strong> (radiador frontal de aire) enfría este aire antes de meterlo a los cilindros para asegurar máxima potencia y evitar detonación.</p>
@@ -1658,7 +2137,8 @@
       </ol>
 
       <h3>5. Diagnóstico Rápido de Ruidos</h3>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Ruido Detectado</th>
@@ -1684,6 +2164,7 @@
           </tr>
         </tbody>
       </table>
+</div>
 
       <!-- Gráfica Módulo 3: Curva Térmica ATRA -->
       <div class="data-graph-box">
@@ -2047,7 +2528,8 @@
       </ul>
 
       <h3>2. Calendario Maestro de Mantenimiento por Kilometraje</h3>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Intervalo de Kilometraje</th>
@@ -2077,9 +2559,11 @@
           </tr>
         </tbody>
       </table>
+</div>
 
       <h3>3. Bitácora de Registro para la Guantera (Imprimible)</h3>
-      <table>
+      <div class="table-responsive">
+<table>
         <thead>
           <tr>
             <th>Fecha</th>
@@ -2097,6 +2581,7 @@
           <tr><td>___/___/___</td><td>________ km</td><td>___________________________________</td><td>_______________</td><td>$ ______</td></tr>
         </tbody>
       </table>
+</div>
 
       <h3>4. Checklist Rápido de 10 Minutos antes de Salir a Carretera</h3>
       <pre>
@@ -2165,7 +2650,148 @@
     <!-- Official Brand Footer -->
     <footer style="margin-top: 60px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
       <div style="margin-bottom: 16px;">
-        <img src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos" style="max-width: 260px; height: auto; opacity: 0.9;">
+        <svg style="width: 100%; max-width: 250px; height: auto; opacity: 0.9;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="hCyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="hCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="hTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="hShieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#060913"/>
+    </linearGradient>
+
+    <!-- Filtro Neón -->
+    <filter id="hNeon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .brand-charu {
+      font-family: 'Montserrat', 'Syne', 'Orbitron', 'Eurostile', sans-serif;
+      font-weight: 900;
+      font-size: 100px;
+      letter-spacing: 4px;
+      fill: url(#hTitanium);
+    }
+    .brand-autos {
+      font-family: 'Montserrat', 'Syne', 'Rajdhani', sans-serif;
+      font-weight: 800;
+      font-size: 100px;
+      letter-spacing: 10px;
+      fill: url(#hCyanGlow);
+      filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.45));
+    }
+    .brand-tagline {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 5.5px;
+      fill: #cbd5e1;
+      text-transform: uppercase;
+    }
+    .brand-handle {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 2px;
+      fill: #00f2fe;
+    }
+    .brand-subtag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 3px;
+      fill: #94a3b8;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- ISOTIPO IZQUIERDA (Escudo Hexagonal con Monograma CA) -->
+  <g transform="translate(40, 20) scale(0.56)">
+    <!-- Fondo Escudo -->
+    <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+             fill="url(#hShieldBg)" 
+             stroke="url(#hCyanGlow)" 
+             stroke-width="4" 
+             stroke-opacity="0.6"/>
+
+    <!-- Línea de Telemetría -->
+    <polygon points="250,45 415,125 415,345 250,445 85,345 85,125" 
+             fill="none" 
+             stroke="#00f2fe" 
+             stroke-width="2" 
+             stroke-opacity="0.3" 
+             stroke-dasharray="10,6"/>
+
+    <!-- Letra C -->
+    <path d="M 230,125 L 160,125 Q 110,125 110,175 L 110,325 Q 110,375 160,375 L 230,375 L 210,335 L 165,335 Q 145,335 145,315 L 145,185 Q 145,165 165,165 L 210,165 Z" 
+          fill="url(#hTitanium)"/>
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#hCyanGlow)" filter="url(#hNeon)"/>
+
+    <!-- Letra A -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#hCyanGlow)" 
+             filter="url(#hNeon)"/>
+    <path d="M 298,125 L 340,125 L 410,375 L 368,375 L 348,300 L 300,300 L 306,260 L 338,260 L 315,175 Z" 
+          fill="url(#hTitanium)"/>
+
+    <!-- Slash Rojo Rendimiento -->
+    <polygon points="200,270 325,270 315,290 190,290" fill="url(#hCrimson)" filter="url(#hNeon)"/>
+  </g>
+
+  <!-- LÍNEA SEPARADORA VERTICAL DE TELEMETRÍA -->
+  <line x1="340" y1="65" x2="340" y2="255" stroke="#1e293b" stroke-width="2"/>
+  <line x1="340" y1="120" x2="340" y2="200" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+
+  <!-- LOGOTIPO TIPOGRÁFICO -->
+  <g transform="translate(380, 0)">
+    <!-- Fila 1: Texto CHARU AUTOS -->
+    <text x="0" y="155" class="brand-charu">CHARU<tspan class="brand-autos">AUTOS</tspan></text>
+    
+    <!-- Fila 2: Línea Acento Decorativa -->
+    <path d="M 0,185 L 450,185 L 475,193 L 740,193" fill="none" stroke="#1e293b" stroke-width="2"/>
+    <rect x="0" y="183" width="130" height="4" fill="url(#hCyanGlow)"/>
+    <rect x="140" y="183" width="22" height="4" fill="#ff2a5f"/>
+
+    <!-- Fila 3: Subtítulo / Tagline Oficial (Completamente legible y sin colisiones) -->
+    <text x="4" y="228" class="brand-tagline">DOMINIO MECÁNICO &amp; CULTURA AUTOMOTRIZ</text>
+
+    <!-- Fila 4: Barra de Telemetría y Handle @CHARUAUTOPICS en su propia fila inferior -->
+    <g transform="translate(4, 252)">
+      <!-- Cápsula Neón para el Handle -->
+      <rect x="0" y="0" width="220" height="34" rx="8" fill="#0a101d" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.5"/>
+      <!-- Icono de Cámara / Social -->
+      <rect x="12" y="9" width="16" height="16" rx="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="20" cy="17" r="4" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+      <circle cx="24.5" cy="12.5" r="1" fill="#00f2fe"/>
+      <!-- Texto del Handle -->
+      <text x="36" y="22" class="brand-handle">@CHARUAUTOPICS</text>
+
+      <!-- Indicador Separador y Sub-etiqueta -->
+      <g transform="translate(240, 22)">
+        <circle cx="0" cy="-5" r="3" fill="#ff2a5f"/>
+        <text x="12" y="0" class="brand-subtag">COMUNIDAD &amp; ASESORÍA AUTOMOTRIZ</text>
+      </g>
+    </g>
+  </g>
+</svg>
       </div>
       <p style="color: var(--slate-muted); font-size: 0.9rem; margin-bottom: 8px;">
         © 2026 <strong>CharuAutos</strong> • Dominio Mecánico &amp; Cultura Automotriz
@@ -2180,7 +2806,103 @@
   <!-- Modal de Instalación PWA para iOS y otros navegadores -->
   <div id="pwa-install-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
     <div style="background: #0f1422; border: 1px solid #00f0ff; border-radius: 20px; max-width: 440px; width: 100%; padding: 28px; text-align: center; box-shadow: 0 15px 40px rgba(0, 240, 255, 0.3);">
-      <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos" style="width: 60px; height: 60px; margin-bottom: 16px;">
+      <svg class="logo-svg" style="width:30px; height:30px; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradientes de Neón y Titanio -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#00c0fa"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="crimsonAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a5f"/>
+      <stop offset="100%" stop-color="#c90035"/>
+    </linearGradient>
+    <linearGradient id="titaniumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    
+    <!-- Filtro de Resplandor Neón -->
+    <filter id="neonFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo Escudo Geométrico Hexagonal Biselado -->
+  <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
+           fill="url(#shieldBg)" 
+           stroke="url(#cyanGlow)" 
+           stroke-width="3" 
+           stroke-opacity="0.5"/>
+
+  <!-- Línea Interna de Telemetría -->
+  <polygon points="250,42 418,122 418,348 250,450 82,348 82,122" 
+           fill="none" 
+           stroke="#00f2fe" 
+           stroke-width="1.5" 
+           stroke-opacity="0.2" 
+           stroke-dasharray="8,6"/>
+
+  <!-- Símbolo Monograma Central CA -->
+  <g id="monogramCA">
+    <!-- Letra C: Brazo Superior y Curva Aerodinámica -->
+    <path d="M 230,125 
+             L 160,125 
+             Q 110,125 110,175 
+             L 110,325 
+             Q 110,375 160,375 
+             L 230,375 
+             L 210,335 
+             L 165,335 
+             Q 145,335 145,315 
+             L 145,185 
+             Q 145,165 165,165 
+             L 210,165 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Aleta de Flujo Neón de la C -->
+    <polygon points="215,125 255,125 225,165 185,165" fill="url(#cyanGlow)" filter="url(#neonFilter)"/>
+
+    <!-- Letra A: Silueta Angular Stealth / Splitter -->
+    <!-- Ala Izquierda de la A con Neón -->
+    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
+             fill="url(#cyanGlow)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Ala Derecha en Titanio Cepillado -->
+    <path d="M 298,125 
+             L 340,125 
+             L 410,375 
+             L 368,375 
+             L 348,300 
+             L 300,300 
+             L 306,260 
+             L 338,260 
+             L 315,175 
+             Z" 
+          fill="url(#titaniumGrad)"/>
+
+    <!-- Barra de Rendimiento (Racing Red Slash) -->
+    <polygon points="200,270 325,270 315,290 190,290" 
+             fill="url(#crimsonAccent)" 
+             filter="url(#neonFilter)"/>
+
+    <!-- Marcador de Vértice / Apex Telemetry Point -->
+    <circle cx="250" cy="80" r="4" fill="#00f2fe" filter="url(#neonFilter)"/>
+    <line x1="250" y1="88" x2="250" y2="105" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
+  </g>
+</svg>
       <h3 style="color: #fff; margin: 0 0 10px; font-size: 1.3rem;">Instala CharuAutos en tu Teléfono</h3>
       <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
         Accede instantáneamente desde tu pantalla de inicio, disfruta de lectura fluida a pantalla completa y consulta guías sin gastar datos móviles:
