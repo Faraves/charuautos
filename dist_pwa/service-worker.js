@@ -1,18 +1,21 @@
 // Service Worker para CharuAutos PWA
-const CACHE_NAME = 'charuautos-pwa-v6';
+const CACHE_NAME = 'charuautos-pwa-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './ebook_interactivo.html',
   './manifest.json',
-  './assets/icon-192.png?v=5',
-  './assets/icon-512.png?v=5',
-  './assets/apple-touch-icon.png?v=5',
-  './assets/favicon.png?v=5',
+  './favicon.ico?v=7',
+  './assets/favicon-16x16.png?v=7',
+  './assets/favicon-32x32.png?v=7',
+  './assets/favicon.png?v=7',
+  './assets/apple-touch-icon.png?v=7',
+  './assets/icon-192.png?v=7',
+  './assets/icon-512.png?v=7',
+  './assets/charuautos_logo_icon.svg?v=7',
+  './assets/charuautos_logo_horizontal.svg',
   './assets/charu_avatar.png?v=5',
   './assets/charuautos_emblema_mascota.png?v=5',
-  './assets/charuautos_logo_horizontal.svg',
-  './assets/charuautos_logo_icon.svg',
   './assets/tablero_testigos_espanol.jpg?v=4',
   './assets/vano_motor_real_espanol.jpg?v=4',
   './assets/turbo_mantenimiento_espanol.jpg?v=4',
@@ -24,7 +27,6 @@ const ASSETS_TO_CACHE = [
   './assets/car_emergency_kit.jpg?v=4'
 ];
 
-// Instalación y pre-cacheado de recursos
 self.addEventListener('install', (event) => {
   console.log('[CharuAutos SW] Instalando versión ' + CACHE_NAME);
   self.skipWaiting();
@@ -36,7 +38,6 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activación y purga estricta de cachés antiguas
 self.addEventListener('activate', (event) => {
   console.log('[CharuAutos SW] Activando versión ' + CACHE_NAME);
   event.waitUntil(
@@ -53,7 +54,6 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Estrategia de solicitud inteligente: Network-First para navegación, Cache-First para estáticos
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.startsWith('http')) return;
 
@@ -82,7 +82,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-While-Revalidate para el resto de recursos (imágenes, fuentes, css)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
