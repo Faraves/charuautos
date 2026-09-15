@@ -14,10 +14,17 @@ Antes de ensuciarte las manos, familiarízate con los cuatro depósitos e indica
 
 ![Inspección Visual del Motor Real Bajo el Capó](assets/vano_motor_real_espanol.jpg)
 
-1. **#1. Engine Oil Dipstick (Varilla de Medición de Aceite):** Anilla o tirador de color amarillo/naranja con la que se comprueba el nivel real del cárter.
-2. **#2. Engine Oil Filler Cap (Tapón de Llenado de Aceite):** Tapa con el icono de la aceitera por donde se agrega aceite nuevo en caso de requerir relleno.
-3. **#3. Coolant Reservoir Tank (Depósito de Refrigerante / Coolant):** Envase traslúcido con líquido rosado/verde que indica el nivel en frío (marcas MIN y FULL/MAX).
-4. **#4. Brake Fluid Reservoir (Depósito de Líquido de Frenos):** Recipiente transparente ubicado cerca de la pared de fuego con las marcas de nivel de seguridad.
+1. **#1. Varilla de Aceite de Motor (Tirador AMARILLO / Naranja):** Anilla ubicada en el bloque motor para comprobar el nivel del cárter. **Regla de oro:** Se mide siempre con el motor **apagado**, en plano y tras reposar de 5 a 10 minutos para que el aceite baje.
+2. **#2. Tapón de Llenado de Aceite (Engine Oil Filler Cap):** Tapa con el icono de la aceitera por donde se agrega aceite nuevo en caso de requerir relleno.
+3. **#3. Depósito de Refrigerante / Coolant:** Envase traslúcido con líquido rosado/verde que indica el nivel en frío (marcas MIN y FULL/MAX).
+4. **#4. Depósito de Líquido de Frenos:** Recipiente transparente ubicado cerca de la pared de fuego con las marcas de nivel de seguridad.
+5. **#5. Varilla de Transmisión / Caja Automática (Tirador ROJO - ATF):** Presente en vehículos con transmisión automática que cuentan con varilla de inspección. **Diferencia crítica:** A diferencia del motor, el fluido de caja automática (ATF) se mide habitualmente con el **motor encendido en ralentí, la palanca en Parking ("P") o Neutro ("N") y a temperatura normal de operación** (revisa siempre el manual del fabricante). *Nota: Las cajas manuales y muchas automáticas modernas son unidades selladas y no llevan varilla bajo el capó.*
+
+> [!IMPORTANT]
+> **Varilla Amarilla vs. Varilla Roja: Código de Colores OEM**
+> - **AMARILLO / NARANJA = Motor:** Medir con motor **apagado y frío/reposado**.
+> - **ROJO / VINOTINTO = Transmisión Automática (ATF):** Medir con motor **encendido en ralentí y en Parking**.
+> - *Jamás viertas aceite de motor en el tubo de la transmisión ni fluido ATF en el cárter del motor.*
 
 ---
 

@@ -172,10 +172,14 @@ Según las inspecciones masivas de la campaña *Be Car Care Aware* del **Car Car
 
 ![Inspección Visual del Motor Real Bajo el Capó](assets/vano_motor_real_espanol.jpg)
 
-1. **#1. Varilla Medidora de Aceite:** Varilla con detalle de marcas de nivel MIN y MAX.
+1. **#1. Varilla de Aceite de Motor (Tirador AMARILLO):** Varilla para comprobar el nivel del cárter (medir siempre con motor **apagado y reposado**).
 2. **#2. Tapón de Llenado de Aceite:** Tapa para rellenar aceite de motor.
-3. **#3. Depósito de Refrigerante:** Envase traslúcido con marcas de nivel en frío.
-4. **#4. Líquido de Frenos:** Depósito transparente cercano al servofreno.
+3. **#3. Depósito de Refrigerante:** Envase traslúcido con marcas de nivel en frío (MIN/MAX).
+4. **#4. Líquido de Frenos:** Depósito transparente cercano al servofreno con marcas de seguridad.
+5. **#5. Varilla de Transmisión / Caja Automática (Tirador ROJO - ATF):** En vehículos automáticos con varilla de servicio. Se mide con el **motor encendido en ralentí y palanca en Parking ("P")**. *(Nota: Las cajas manuales no poseen varilla bajo el capó)*.
+
+> [!IMPORTANT]
+> **Código de Colores OEM:** Varilla **Amarilla** = Aceite de Motor (revisar apagado). Varilla **Roja** = Fluido ATF de Transmisión (revisar encendido en P).
 
 <a name="aceite-motor"></a>
 ### 2. El Aceite de Motor y Viscosidades (Norma SAE J300)
