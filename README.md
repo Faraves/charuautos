@@ -47,9 +47,10 @@ CharuAutos/
 │   └── assets/                                     # Infografías HD e iconografía oficial
 │
 ├── branding/                                       # IDENTIDAD VISUAL Y DIRECTRICES DE MARCA
+│   ├── BRANDBOOK.md                                # Brandbook Maestro Oficial (Estrategia, Sistema Dual y Activos)
 │   ├── MANUAL_DE_MARCA.md                          # Manual de lineamientos en Markdown
 │   ├── manual_identidad.html                       # Showroom web interactivo con probador y copiado HEX
-│   └── assets/                                     # Vectores SVG nativos (Logos, Avatar, Watermark)
+│   └── assets/                                     # Vectores SVG nativos, PNGs HD y Favicons
 │
 ├── ebook/                                          # PRODUCTO DIGITAL (EBOOK COMERCIAL)
 │   ├── 00_introduccion_y_tablero.md                # Capítulos individuales en Markdown

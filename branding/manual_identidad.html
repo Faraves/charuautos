@@ -642,7 +642,8 @@
           <div class="toolbar-group">
             <span class="toolbar-label">Variante:</span>
             <button class="btn-stage active" onclick="setVariant('horizontal', this)">Horizontal</button>
-            <button class="btn-stage" onclick="setVariant('icon', this)">Isotipo (CA)</button>
+            <button class="btn-stage" onclick="setVariant('icon', this)">Isotipo Mascota</button>
+            <button class="btn-stage" onclick="setVariant('emblem', this)">Emblema Heráldico</button>
             <button class="btn-stage" onclick="setVariant('avatar', this)">Avatar Instagram</button>
             <button class="btn-stage" onclick="setVariant('watermark', this)">Marca de Agua</button>
           </div>
@@ -670,17 +671,31 @@
           </a>
         </div>
 
-        <!-- VARIANTE 2: ISOTIPO -->
+        <!-- VARIANTE 2: ISOTIPO SQUIRCLE MASCOTA -->
         <div class="variant-card">
           <div class="variant-preview">
-            <img src="assets/charuautos_logo_icon.svg" alt="Isotipo CA">
+            <img src="assets/charuautos_logo_icon.svg" alt="Isotipo Mascota Charu">
           </div>
-          <h3 class="variant-title">Isotipo Monograma (CA)</h3>
+          <h3 class="variant-title">Isotipo Oficial Mascota</h3>
           <p class="variant-desc">
-            Fusión aerodinámica de las iniciales C y A. Se utiliza como favicon, app icon, calcomanías y emblemas físicos.
+            Retrato en squircle de Charu con fondo de fibra de carbono y halo neón cian. Se utiliza como PWA App Icon, favicon y accesos móviles.
           </p>
           <a href="assets/charuautos_logo_icon.svg" download="charuautos_logo_icon.svg" class="btn-download-asset">
             ⬇ Descargar SVG Isotipo
+          </a>
+        </div>
+
+        <!-- VARIANTE 3: EMBLEMA HERÁLDICO DE TITANIO -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_emblema_mascota.png" alt="Emblema Heráldico Charu">
+          </div>
+          <h3 class="variant-title">Emblema Heráldico Mascota</h3>
+          <p class="variant-desc">
+            Escudo de titanio automotriz con Charu, cámara fotográfica, camioneta y herramientas en taller. Sello de calidad editorial para portadas.
+          </p>
+          <a href="assets/charuautos_emblema_mascota.png" download="charuautos_emblema_mascota.png" class="btn-download-asset">
+            ⬇ Descargar Emblema HD (PNG)
           </a>
         </div>
 
@@ -940,7 +955,7 @@
     <!-- FOOTER -->
     <footer class="brand-footer">
       <p>© 2026 <strong>CharuAutos</strong> (@charuautopics). Todos los derechos reservados.</p>
-      <p style="margin-top: 6px;">Manual de Identidad Visual versión 1.0 • Sistema de Marca Vectorial</p>
+      <p style="margin-top: 6px;">Brandbook Oficial versión 2.0 • Sistema de Marca Dual & Mascota Charu</p>
     </footer>
 
   </div>
@@ -949,6 +964,7 @@
     const variants = {
       horizontal: 'assets/charuautos_logo_horizontal.svg',
       icon: 'assets/charuautos_logo_icon.svg',
+      emblem: 'assets/charuautos_emblema_mascota.png',
       avatar: 'assets/charuautos_avatar_instagram.svg',
       watermark: 'assets/charuautos_watermark.svg'
     };
