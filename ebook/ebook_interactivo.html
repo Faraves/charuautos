@@ -1519,7 +1519,11 @@
 
     <div class="hud-actions">
       <a href="#indice" class="btn-hud">📑 ÍNDICE</a>
-      <button id="btn-pwa-install" onclick="handleInstallClick()" class="btn-hud" style="background: rgba(0, 240, 255, 0.12); border-color: #00f0ff; color: #00f0ff; display: inline-flex; align-items: center; gap: 4px;"><span class="btn-icon">📲</span> <span class="btn-text-desktop">INSTALAR APP</span><span class="btn-text-mobile" style="display:none;">APP</span></button>
+      <button id="btn-force-update" onclick="forceAppUpdate()" title="Haz clic para forzar la carga de la última versión y limpiar caché" style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,240,255,0.12); border:1px solid #00f0ff; color:#00f0ff; padding:6px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s ease;">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span>
+          v4.0 ACTUALIZADA • 🔄 RECARGAR
+        </button>
+        <button id="btn-pwa-install" onclick="handleInstallClick()" class="btn-hud" style="background: rgba(0, 240, 255, 0.12); border-color: #00f0ff; color: #00f0ff; display: inline-flex; align-items: center; gap: 4px;"><span class="btn-icon">📲</span> <span class="btn-text-desktop">INSTALAR APP</span><span class="btn-text-mobile" style="display:none;">APP</span></button>
       <button onclick="window.print()" class="btn-hud btn-print">🖨️ EXPORTAR PDF</button>
     </div>
   </header>
@@ -1814,7 +1818,7 @@
       <p>Al encender el contacto, todos los testigos se iluminan para autodiagnóstico. Al arrancar el motor, deben apagarse en 2 a 3 segundos. Si alguno permanece encendido, consulta la siguiente infografía de referencia:</p>
       
       <div class="ebook-img-box">
-        <img src="assets/tablero_testigos_espanol.jpg" alt="Cuadro de Instrumentos y Advertencias Automotrices">
+        <img src="assets/tablero_testigos_espanol.jpg?v=4" alt="Cuadro de Instrumentos y Advertencias Automotrices">
         <div class="img-hud-caption">
           <span>FIGURA 0.1 • CUADRO DE INSTRUMENTOS Y TESTIGOS CLAVE</span>
           <span class="tag">INFOGRAFÍA EN ESPAÑOL</span>
@@ -1903,7 +1907,7 @@
       <p>Antes de ensuciarte las manos, familiarízate con los cuatro depósitos e indicadores clave que todo conductor debe ubicar sin dudar:</p>
       
       <div class="ebook-img-box">
-        <img src="assets/vano_motor_real_espanol.jpg" alt="Inspección Visual del Motor Real Bajo el Capó">
+        <img src="assets/vano_motor_real_espanol.jpg?v=4" alt="Inspección Visual del Motor Real Bajo el Capó">
         <div class="img-hud-caption">
           <span>FIGURA 1.1 • PUNTOS CLAVE DE INSPECCIÓN VISUAL EN MOTOR REAL</span>
           <span class="tag">FOTOGRAFÍA REAL TALLER</span>
@@ -2052,7 +2056,7 @@
       <p>Conoce la arquitectura interna del turbocompresor y por qué su lubricación es crítica:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/turbo_mantenimiento_espanol.jpg" alt="Funcionamiento y Mantenimiento del Turbocompresor en Español">
+        <img src="assets/turbo_mantenimiento_espanol.jpg?v=4" alt="Funcionamiento y Mantenimiento del Turbocompresor en Español">
         <div class="img-hud-caption">
           <span>FIGURA 2.1 • ARQUITECTURA DEL TURBO Y REGLA DE LOS 60 SEGUNDOS</span>
           <span class="tag">INFOGRAFÍA TÉCNICA</span>
@@ -2172,7 +2176,7 @@
       <p>Aprende a reconocer las piezas que trabajan detrás de cada una de tus ruedas:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/frenos_suspension_espanol.jpg" alt="Componentes de Frenos y Suspensión en Español">
+        <img src="assets/frenos_suspension_espanol.jpg?v=4" alt="Componentes de Frenos y Suspensión en Español">
         <div class="img-hud-caption">
           <span>FIGURA 3.1 • DESPIECE DEL SISTEMA DE FRENOS Y SUSPENSIÓN</span>
           <span class="tag">DIAGRAMA TÉCNICO</span>
@@ -2296,7 +2300,7 @@
       <p>Aprende a leer la ficha técnica estampada en el caucho y cómo evitar desgastes prematuros:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/tire_guide_and_dot_code.jpg" alt="Guía Técnica de Neumáticos y Código DOT">
+        <img src="assets/tire_guide_and_dot_code.jpg?v=4" alt="Guía Técnica de Neumáticos y Código DOT">
         <div class="img-hud-caption">
           <span>FIGURA 4.1 • ESPECIFICACIONES DE NEUMÁTICO & CÓDIGO DOT</span>
           <span class="tag">ESTÁNDAR NHTSA / DOT</span>
@@ -2385,7 +2389,7 @@
       <p>El 85% de los autos tienen este filtro ubicado directamente detrás de la guantera del copiloto. Puedes cambiarlo tú mismo sin herramientas, ahorrándote entre $20 y $35 USD de mano de obra:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/cabin_filter_replacement.jpg" alt="Paso a paso cambio filtro de cabina">
+        <img src="assets/cabin_filter_replacement.jpg?v=4" alt="Paso a paso cambio filtro de cabina">
         <div class="img-hud-caption">
           <span>FIGURA 5.1 • PROCEDIMIENTO FOTOGRÁFICO PASO A PASO</span>
           <span class="tag">TUTORIAL DIY EN CASA</span>
@@ -2430,7 +2434,7 @@
       <p>Conoce la diferencia entre las opciones del mercado y aprende a identificar productos falsificados:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/repuestos_calidad_espanol.jpg" alt="Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español">
+        <img src="assets/repuestos_calidad_espanol.jpg?v=4" alt="Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español">
         <div class="img-hud-caption">
           <span>FIGURA 6.1 • OEM VS TIER 1 & ESCÁNER ANTIFALSIFICACIÓN</span>
           <span class="tag">AHORRO HASTA 50%</span>
@@ -2498,7 +2502,7 @@
       <p>Aplica este protocolo visual cada vez que lleves tu vehículo a servicio técnico:</p>
 
       <div class="ebook-img-box">
-        <img src="assets/taller_mecanico_espanol.jpg" alt="Pasos del Conductor en el Taller Mecánico">
+        <img src="assets/taller_mecanico_espanol.jpg?v=4" alt="Pasos del Conductor en el Taller Mecánico">
         <div class="img-hud-caption">
           <span>FIGURA 7.1 • PROTOCOLO DE 4 PASOS EN EL TALLER MECÁNICO</span>
           <span class="tag">ESCUDO ANTIFRAUDE</span>
@@ -2586,7 +2590,7 @@
 
       <h3>1. El Kit Esencial de Emergencia en la Cajuela</h3>
       <div class="ebook-img-box">
-        <img src="assets/car_emergency_kit.jpg" alt="Kit de Emergencia en la Cajuela">
+        <img src="assets/car_emergency_kit.jpg?v=4" alt="Kit de Emergencia en la Cajuela">
         <div class="img-hud-caption">
           <span>FIGURA 8.1 • EQUIPAMIENTO OBLIGATORIO DE VIAJE EN LA CAJUELA</span>
           <span class="tag">KIT DE SUPERVIVENCIA</span>
@@ -3019,9 +3023,42 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./service-worker.js')
-          .then(reg => console.log('CharuAutos PWA Service Worker activo:', reg.scope))
+          .then(reg => {
+            console.log('CharuAutos PWA Service Worker activo:', reg.scope);
+            // Forzar verificación de nueva versión
+            reg.update();
+          })
           .catch(err => console.log('Error al registrar Service Worker:', err));
       });
+
+      // Recarga automática limpia si un nuevo Service Worker toma el control
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          console.log('[CharuAutos] Nueva versión detectada, recargando...');
+          window.location.reload();
+        }
+      });
+    }
+
+    // Función global para forzar actualización y purgar caché al 100%
+    async function forceAppUpdate() {
+      const btn = document.getElementById('btn-force-update');
+      if (btn) btn.innerHTML = '🔄 Actualizando...';
+      try {
+        if ('caches' in window) {
+          const names = await caches.keys();
+          await Promise.all(names.map(name => caches.delete(name)));
+        }
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(reg => reg.unregister()));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      window.location.reload(true);
     }
 
     // PWA Installation Handlers

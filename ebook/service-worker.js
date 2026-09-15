@@ -1,5 +1,5 @@
 // Service Worker para CharuAutos PWA
-const CACHE_NAME = 'charuautos-pwa-v3';
+const CACHE_NAME = 'charuautos-pwa-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -10,35 +10,38 @@ const ASSETS_TO_CACHE = [
   './assets/charuautos_avatar_instagram.svg',
   './assets/icon-192.png',
   './assets/icon-512.png',
-  './assets/tablero_testigos_espanol.jpg',
-  './assets/vano_motor_real_espanol.jpg',
-  './assets/turbo_mantenimiento_espanol.jpg',
-  './assets/frenos_suspension_espanol.jpg',
-  './assets/tire_guide_and_dot_code.jpg',
-  './assets/cabin_filter_replacement.jpg',
-  './assets/repuestos_calidad_espanol.jpg',
-  './assets/taller_mecanico_espanol.jpg',
-  './assets/car_emergency_kit.jpg'
+  './assets/tablero_testigos_espanol.jpg?v=4',
+  './assets/vano_motor_real_espanol.jpg?v=4',
+  './assets/turbo_mantenimiento_espanol.jpg?v=4',
+  './assets/frenos_suspension_espanol.jpg?v=4',
+  './assets/tire_guide_and_dot_code.jpg?v=4',
+  './assets/cabin_filter_replacement.jpg?v=4',
+  './assets/repuestos_calidad_espanol.jpg?v=4',
+  './assets/taller_mecanico_espanol.jpg?v=4',
+  './assets/car_emergency_kit.jpg?v=4'
 ];
 
-// Instalación y pre-cacheados de recursos
+// Instalación y pre-cacheado de recursos
 self.addEventListener('install', (event) => {
+  console.log('[CharuAutos SW] Instalando versión ' + CACHE_NAME);
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[CharuAutos Service Worker] Pre-cacheando recursos para uso offline...');
+      console.log('[CharuAutos SW] Pre-cacheando recursos para offline...');
       return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
-// Activación y limpieza de caches antiguos
+// Activación y purga estricta de cachés antiguas
 self.addEventListener('activate', (event) => {
+  console.log('[CharuAutos SW] Activando versión ' + CACHE_NAME);
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            console.log('[CharuAutos Service Worker] Eliminando cache obsoleto:', cache);
+            console.log('[CharuAutos SW] Purgando caché obsoleta:', cache);
             return caches.delete(cache);
           }
         })
@@ -47,43 +50,50 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Intercepción de solicitudes: Estrategia Stale-While-Revalidate / Cache First
+// Estrategia de solicitud inteligente:
+// 1. Para HTML y navegación: Network First (si hay internet, siempre busca la versión más reciente)
+// 2. Para imágenes y estáticos: Cache First con fallback a Network
 self.addEventListener('fetch', (event) => {
-  // Ignorar esquemas no HTTP/HTTPS (extensiones, etc.)
   if (!event.request.url.startsWith('http')) return;
 
+  const requestUrl = new URL(event.request.url);
+  const isHtml = event.request.mode === 'navigate' || 
+                 event.request.headers.get('accept')?.includes('text/html') ||
+                 requestUrl.pathname.endsWith('.html') || 
+                 requestUrl.pathname.endsWith('/');
+
+  if (isHtml) {
+    // Network First para HTML para asegurar que siempre se carguen las actualizaciones más recientes
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match(event.request).then((cached) => {
+            return cached || caches.match('./index.html') || caches.match('./ebook_interactivo.html');
+          });
+        })
+    );
+    return;
+  }
+
+  // Stale-While-Revalidate para el resto de recursos (imágenes, fuentes, css)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Devolver recurso en cache inmediatamente y actualizar en segundo plano
-        fetch(event.request).then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
-          }
-        }).catch(() => {
-          // Si no hay red, la respuesta en cache ya fue enviada
-        });
-        return cachedResponse;
-      }
-
-      // Si no está en cache, solicitar a la red
-      return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
+      const fetchPromise = fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
         }
-
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-
         return networkResponse;
-      }).catch(() => {
-        // Fallback offline si el recurso no está disponible
-        if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('./index.html') || caches.match('./ebook_interactivo.html');
-        }
-      });
+      }).catch(() => null);
+
+      return cachedResponse || fetchPromise;
     })
   );
 });
