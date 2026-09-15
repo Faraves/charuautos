@@ -22,6 +22,13 @@
 - **Lema Comercial / Audiencias Jóvenes:** *"Conoce, Cuida y Domina tu Vehículo"*
 - **Lema Editorial (Ebook):** *"Menos Taller, Más Potencia • Domina tu Máquina, Protege tu Inversión"*
 
+### 1.4. El Alma de la Marca: La Mascota Oficial "Charu"
+**CharuAutos** nace del vínculo emocional e incondicional con **Charu**, la mascota del fundador, complementada con una genuina pasión por los motores y la fotografía automotriz (`@charuautopics`).
+- **Valores Asociados a Charu:** Lealtad inquebrantable, confiabilidad, vigilancia atenta y nobleza. Así como un perro fiel nunca te abandona en el camino, CharuAutos entrega al conductor la protección y el conocimiento para jamás quedar varado.
+- **Estrategia de Identidad Dual:**
+  1. **Icono Oficial de Aplicación Móvil (Squircle PWA):** Retrato frontal de Charu sobre fibra de carbono, resplandor neón cian (#00F0FF), collar mecánico con engranajes y dije de cámara réflex. Optimizado para lectura instantánea en pantallas de inicio de iOS y Android.
+  2. **Emblema Heráldico del Ebook (Shield Insignia):** Escudo de titanio con Charu en primer plano, cámara fotográfica, frontal de camioneta y herramientas de taller con el letrero `CHARU AUTOS`. Utilizado como sello de calidad editorial, portada del manual y bienvenida de la plataforma.
+
 ---
 
 ## 2. Arquitectura de Identidad Visual

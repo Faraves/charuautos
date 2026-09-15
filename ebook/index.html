@@ -11,7 +11,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CharuAutos">
-  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=5">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png?v=5">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png?v=5">
   <link rel="icon" type="image/svg+xml" href="assets/charuautos_logo_icon.svg">
   <style>
     :root {
@@ -1411,105 +1413,8 @@
 
   <!-- Showroom Header -->
   <header class="hud-bar">
-    <a href="#indice" class="brand-hud">
-      <!-- CharuAutos Official Logo Icon -->
-      <svg class="logo-svg" style="width:30px; height:30px; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
-  <defs>
-    <!-- Gradientes de Neón y Titanio -->
-    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe"/>
-      <stop offset="50%" stop-color="#00c0fa"/>
-      <stop offset="100%" stop-color="#0066ff"/>
-    </linearGradient>
-    <linearGradient id="crimsonAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff2a5f"/>
-      <stop offset="100%" stop-color="#c90035"/>
-    </linearGradient>
-    <linearGradient id="titaniumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="50%" stop-color="#94a3b8"/>
-      <stop offset="100%" stop-color="#334155"/>
-    </linearGradient>
-    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#050811"/>
-    </linearGradient>
-    
-    <!-- Filtro de Resplandor Neón -->
-    <filter id="neonFilter" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-
-  <!-- Fondo Escudo Geométrico Hexagonal Biselado -->
-  <polygon points="250,20 440,110 440,360 250,475 60,360 60,110" 
-           fill="url(#shieldBg)" 
-           stroke="url(#cyanGlow)" 
-           stroke-width="3" 
-           stroke-opacity="0.5"/>
-
-  <!-- Línea Interna de Telemetría -->
-  <polygon points="250,42 418,122 418,348 250,450 82,348 82,122" 
-           fill="none" 
-           stroke="#00f2fe" 
-           stroke-width="1.5" 
-           stroke-opacity="0.2" 
-           stroke-dasharray="8,6"/>
-
-  <!-- Símbolo Monograma Central CA -->
-  <g id="monogramCA">
-    <!-- Letra C: Brazo Superior y Curva Aerodinámica -->
-    <path d="M 230,125 
-             L 160,125 
-             Q 110,125 110,175 
-             L 110,325 
-             Q 110,375 160,375 
-             L 230,375 
-             L 210,335 
-             L 165,335 
-             Q 145,335 145,315 
-             L 145,185 
-             Q 145,165 165,165 
-             L 210,165 
-             Z" 
-          fill="url(#titaniumGrad)"/>
-
-    <!-- Aleta de Flujo Neón de la C -->
-    <polygon points="215,125 255,125 225,165 185,165" fill="url(#cyanGlow)" filter="url(#neonFilter)"/>
-
-    <!-- Letra A: Silueta Angular Stealth / Splitter -->
-    <!-- Ala Izquierda de la A con Neón -->
-    <polygon points="270,125 310,125 380,375 340,375 320,295 270,295 285,240 305,240 295,195" 
-             fill="url(#cyanGlow)" 
-             filter="url(#neonFilter)"/>
-
-    <!-- Ala Derecha en Titanio Cepillado -->
-    <path d="M 298,125 
-             L 340,125 
-             L 410,375 
-             L 368,375 
-             L 348,300 
-             L 300,300 
-             L 306,260 
-             L 338,260 
-             L 315,175 
-             Z" 
-          fill="url(#titaniumGrad)"/>
-
-    <!-- Barra de Rendimiento (Racing Red Slash) -->
-    <polygon points="200,270 325,270 315,290 190,290" 
-             fill="url(#crimsonAccent)" 
-             filter="url(#neonFilter)"/>
-
-    <!-- Marcador de Vértice / Apex Telemetry Point -->
-    <circle cx="250" cy="80" r="4" fill="#00f2fe" filter="url(#neonFilter)"/>
-    <line x1="250" y1="88" x2="250" y2="105" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.8"/>
-  </g>
-</svg>
+    <a href="#indice" class="brand-hud" style="display:inline-flex; align-items:center; gap:10px; text-decoration:none;">
+      <img src="assets/charu_avatar.png?v=5" alt="Charu Mascota Oficial" style="width:34px; height:34px; border-radius:50%; border:1.5px solid #00f0ff; box-shadow:0 0 10px rgba(0,240,255,0.5); object-fit:cover; flex-shrink:0;">
       <div class="brand-text">CHARU<span>AUTOS</span></div>
     </a>
 
@@ -1521,7 +1426,7 @@
       <a href="#indice" class="btn-hud">📑 ÍNDICE</a>
       <button id="btn-force-update" onclick="forceAppUpdate()" title="Haz clic para forzar la carga de la última versión y limpiar caché" style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,240,255,0.12); border:1px solid #00f0ff; color:#00f0ff; padding:6px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s ease;">
           <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span>
-          v4.0 ACTUALIZADA • 🔄 RECARGAR
+          v5.0 CON MASCOTA CHARU • 🔄 RECARGAR
         </button>
         <button id="btn-pwa-install" onclick="handleInstallClick()" class="btn-hud" style="background: rgba(0, 240, 255, 0.12); border-color: #00f0ff; color: #00f0ff; display: inline-flex; align-items: center; gap: 4px;"><span class="btn-icon">📲</span> <span class="btn-text-desktop">INSTALAR APP</span><span class="btn-text-mobile" style="display:none;">APP</span></button>
       <button onclick="window.print()" class="btn-hud btn-print">🖨️ EXPORTAR PDF</button>
@@ -1535,6 +1440,12 @@
 
     <!-- Hero Showroom Banner -->
     <div class="hero-showroom">
+      <div style="text-align: center; margin-bottom: 22px;">
+        <img src="assets/charuautos_emblema_mascota.png?v=5" alt="CharuAutos Emblema Oficial" style="width: 220px; max-width: 80%; height: auto; border-radius: 20px; filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.4));">
+        <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 10px; font-weight: 600; letter-spacing: 1.5px;">
+          🐾 INSPIRADO EN CHARU • PASIÓN AUTOMOTRIZ &amp; FOTOGRAFÍA
+        </div>
+      </div>
       <div style="text-align: center; margin-bottom: 20px;">
         <svg class="hero-brand-logo" style="width: 100%; max-width: 320px; height: auto; filter: drop-shadow(0 4px 18px rgba(0, 240, 255, 0.35));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 320" width="100%" height="100%">
   <defs>
@@ -1741,6 +1652,17 @@
       <div class="module-header">
         <h2>Módulo 0: Conoce tu Auto sin Miedo, Glosario Latino y Descifra tu Tablero</h2>
         <div class="subtitle">Equivalencias técnicas cotidianas, regla DIY segura, analogía biológica y lectura del semáforo de advertencia.</div>
+      </div>
+
+            <!-- Dedicatoria & Alma de Marca Charu -->
+      <div class="callout" style="border-left-color: #00f0ff; background: rgba(0, 240, 255, 0.05); margin: 28px 0; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <img src="assets/charuautos_emblema_mascota.png?v=5" alt="CharuAutos Mascota" style="width: 120px; height: auto; border-radius: 14px; box-shadow: 0 0 16px rgba(0, 240, 255, 0.35); flex-shrink: 0;">
+        <div style="flex: 1; min-width: 250px;">
+          <h4 style="margin: 0 0 8px; color: #00f0ff; font-size: 1.15rem;">🐾 El Alma de CharuAutos: Lealtad Mecánica</h4>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.65; color: #cbd5e1;">
+            <strong>CharuAutos</strong> nace de la nobleza e incondicionalidad de mi mascota <strong>Charu</strong>, fusionada con una profunda pasión por la mecánica automotriz y la fotografía (<em>@charuautopics</em>). Así como un compañero leal jamás te abandona en la carretera, este manual fue forjado para brindarte la máxima confianza, protección y autonomía técnica detrás del volante.
+          </p>
+        </div>
       </div>
 
       <div class="module-quote">

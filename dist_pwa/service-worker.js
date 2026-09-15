@@ -1,15 +1,18 @@
 // Service Worker para CharuAutos PWA
-const CACHE_NAME = 'charuautos-pwa-v4';
+const CACHE_NAME = 'charuautos-pwa-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './ebook_interactivo.html',
   './manifest.json',
+  './assets/icon-192.png?v=5',
+  './assets/icon-512.png?v=5',
+  './assets/apple-touch-icon.png?v=5',
+  './assets/favicon.png?v=5',
+  './assets/charu_avatar.png?v=5',
+  './assets/charuautos_emblema_mascota.png?v=5',
   './assets/charuautos_logo_horizontal.svg',
   './assets/charuautos_logo_icon.svg',
-  './assets/charuautos_avatar_instagram.svg',
-  './assets/icon-192.png',
-  './assets/icon-512.png',
   './assets/tablero_testigos_espanol.jpg?v=4',
   './assets/vano_motor_real_espanol.jpg?v=4',
   './assets/turbo_mantenimiento_espanol.jpg?v=4',
@@ -50,9 +53,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Estrategia de solicitud inteligente:
-// 1. Para HTML y navegación: Network First (si hay internet, siempre busca la versión más reciente)
-// 2. Para imágenes y estáticos: Cache First con fallback a Network
+// Estrategia de solicitud inteligente: Network-First para navegación, Cache-First para estáticos
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.startsWith('http')) return;
 
@@ -63,7 +64,6 @@ self.addEventListener('fetch', (event) => {
                  requestUrl.pathname.endsWith('/');
 
   if (isHtml) {
-    // Network First para HTML para asegurar que siempre se carguen las actualizaciones más recientes
     event.respondWith(
       fetch(event.request)
         .then((networkResponse) => {
