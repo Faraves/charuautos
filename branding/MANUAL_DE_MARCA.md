@@ -19,6 +19,7 @@
 
 ### 1.3. Eslóganes Oficiales
 - **Lema Institucional:** *"Dominio Mecánico & Cultura Automotriz"*
+- **Lema de la Comunidad / Emblema:** *"Pasión Automotriz al Alcance de tus Manos"*
 - **Lema Comercial / Audiencias Jóvenes:** *"Conoce, Cuida y Domina tu Vehículo"*
 - **Lema Editorial (Ebook):** *"Menos Taller, Más Potencia • Domina tu Máquina, Protege tu Inversión"*
 
