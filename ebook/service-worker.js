@@ -1,5 +1,5 @@
 // Service Worker para CharuAutos PWA
-const CACHE_NAME = 'charuautos-pwa-v5';
+const CACHE_NAME = 'charuautos-pwa-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
