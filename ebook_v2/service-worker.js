@@ -1,5 +1,5 @@
-// Service Worker para CharuAutos PWA Versión 2.0 (Build 2026-09-15-v9)
-const CACHE_NAME = 'charuautos-pwa-v2-20260915-v9';
+// Service Worker para CharuAutos PWA Versión 2.0 (Build 2026-09-15-v10)
+const CACHE_NAME = 'charuautos-pwa-v2-20260915-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

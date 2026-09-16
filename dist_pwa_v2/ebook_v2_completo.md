@@ -996,8 +996,8 @@ Huye si notas cualquiera de estos comportamientos:
 
 ---
 
-![Checklist Inteligente de Taller y Mantenimiento](assets/workshop_smart_checklist.jpg)
-*Cuadro Rápido de Verificaciones de Seguridad para Conducir con Confianza*
+![Mentalidad del Conductor Inteligente y Conducción Feliz](assets/workshop_smart_checklist.jpg)
+*Mentalidad Preventiva: Pensar en los Componentes Clave es el Secreto de una Conducción Segura, Económica y Feliz*
 
 ## ✅ 2. Checklists Imprimibles de Mantenimiento
 
