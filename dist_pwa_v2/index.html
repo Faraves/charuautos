@@ -22,7 +22,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -47,7 +47,7 @@
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-display: 'Montserrat', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --font-badge: 'Syne', sans-serif;
+      --font-badge: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     /* RESET & BASE */
@@ -492,6 +492,7 @@
     }
 
     /* CHAPTER MODULE CARDS */
+        /* CHAPTER MODULE CARDS (REDESIGNED PREMIUM AUTOMOTIVE BADGE) */
     .module-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -501,6 +502,7 @@
       position: relative;
       overflow: hidden;
       width: 100%;
+      transition: border-color 0.25s ease;
     }
     @media (min-width: 768px) {
       .module-card {
@@ -512,31 +514,66 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .module-pill-group {
-      display: flex;
+    .module-header-badge {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      background: linear-gradient(90deg, rgba(0, 242, 254, 0.12) 0%, rgba(14, 20, 32, 0.85) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.32);
+      padding: 5px 14px 5px 6px;
+      border-radius: 999px;
+      box-shadow: 0 0 14px rgba(0, 242, 254, 0.12);
+      max-width: calc(100% - 90px);
+      transition: all 0.25s ease;
     }
-    .module-brand-icon {
-      width: 22px;
-      height: 22px;
-      opacity: 0.85;
+    .module-card:hover .module-header-badge {
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 18px rgba(0, 242, 254, 0.22);
+    }
+    .badge-charu-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--cyan-neon);
+      box-shadow: 0 0 8px var(--cyan-glow);
+      object-fit: cover;
       flex-shrink: 0;
     }
-    .module-number-pill {
-      font-family: var(--font-badge);
-      font-size: 0.72rem;
+    .badge-mod-num {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--cyan-neon);
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 3px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .badge-mod-sep {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+    .badge-mod-title {
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 640px) {
+      .badge-mod-title, .badge-mod-sep {
+        display: none;
+      }
     }
     .module-actions {
       display: flex;
@@ -1236,9 +1273,11 @@
       <!-- Módulo 01: Seguridad Primero & Advertencia Legal -->
       <section class="module-card" id="seguridad">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 01</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 01</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">SEGURIDAD PRIMERO & ADVERTENCIA LEGAL</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#seguridad'); alert('Enlace del Módulo 01 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1302,9 +1341,11 @@
       <!-- Módulo 02: Cómo Funciona un Auto (Sin Jerga) -->
       <section class="module-card" id="motor">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 02</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 02</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">CÓMO FUNCIONA UN AUTO (SIN JERGA)</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#motor'); alert('Enlace del Módulo 02 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1402,9 +1443,11 @@
       <!-- Módulo 03: Herramientas Básicas y Kit de Emergencia -->
       <section class="module-card" id="herramientas">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 03</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 03</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">HERRAMIENTAS BÁSICAS Y KIT DE EMERGENCIA</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#herramientas'); alert('Enlace del Módulo 03 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1483,9 +1526,11 @@
       <!-- Módulo 04: Rutinas de Inspección Preventiva -->
       <section class="module-card" id="inspeccion">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 04</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 04</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">RUTINAS DE INSPECCIÓN PREVENTIVA</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#inspeccion'); alert('Enlace del Módulo 04 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1571,9 +1616,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 05: Fluidos Vitales y Detección de Fugas -->
       <section class="module-card" id="fluidos">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 05</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 05</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">FLUIDOS VITALES Y DETECCIÓN DE FUGAS</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#fluidos'); alert('Enlace del Módulo 05 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1671,9 +1718,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 06: Neumáticos, Frenos y Seguridad Activa -->
       <section class="module-card" id="neumaticos">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 06</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 06</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">NEUMÁTICOS, FRENOS Y SEGURIDAD ACTIVA</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#neumaticos'); alert('Enlace del Módulo 06 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1761,9 +1810,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 07: Batería, Fusibles y Luces -->
       <section class="module-card" id="electricidad">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 07</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 07</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">BATERÍA, FUSIBLES Y LUCES</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#electricidad'); alert('Enlace del Módulo 07 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1870,9 +1921,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 08: Filtros, Bujías, Correas y Escobillas -->
       <section class="module-card" id="filtros">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 08</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 08</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">FILTROS, BUJÍAS, CORREAS Y ESCOBILLAS</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#filtros'); alert('Enlace del Módulo 08 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -1960,9 +2013,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 09: Cuidado y Mantenimiento del Turbo -->
       <section class="module-card" id="turbo">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 09</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 09</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">CUIDADO Y MANTENIMIENTO DEL TURBO</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#turbo'); alert('Enlace del Módulo 09 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -2038,9 +2093,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 10: Testigos del Tablero y Escáner OBD-II -->
       <section class="module-card" id="obd2">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 10</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 10</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">TESTIGOS DEL TABLERO Y ESCÁNER OBD-II</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#obd2'); alert('Enlace del Módulo 10 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -2131,9 +2188,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 11: Mantenimiento por Kilometraje y Costos -->
       <section class="module-card" id="kilometraje">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 11</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 11</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">MANTENIMIENTO POR KILOMETRAJE Y COSTOS</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#kilometraje'); alert('Enlace del Módulo 11 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -2178,9 +2237,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 12: Protocolo de Emergencias y Cambio Llanta -->
       <section class="module-card" id="emergencias">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 12</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 12</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">PROTOCOLO DE EMERGENCIAS Y CAMBIO LLANTA</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#emergencias'); alert('Enlace del Módulo 12 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -2259,9 +2320,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 13: Guía de Taller Anti-Estafas -->
       <section class="module-card" id="taller">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 13</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 13</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">GUÍA DE TALLER ANTI-ESTAFAS</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#taller'); alert('Enlace del Módulo 13 copiado al portapapeles');" title="Copiar enlace">🔗</button>
@@ -2342,9 +2405,11 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 14: Apéndices, Checklists y Bitácora -->
       <section class="module-card" id="checklists">
         <div class="module-card-header">
-          <div class="module-pill-group">
-            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
-            <span class="module-number-pill">MÓDULO 14</span>
+          <div class="module-header-badge">
+            <img src="assets/charu_avatar.png" alt="Charu" class="badge-charu-avatar">
+            <span class="badge-mod-num">MÓDULO 14</span>
+            <span class="badge-mod-sep">•</span>
+            <span class="badge-mod-title">APÉNDICES, CHECKLISTS Y BITÁCORA</span>
           </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#checklists'); alert('Enlace del Módulo 14 copiado al portapapeles');" title="Copiar enlace">🔗</button>
