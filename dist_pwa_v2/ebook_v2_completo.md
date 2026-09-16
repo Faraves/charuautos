@@ -8,7 +8,6 @@
 ---
 
 ![CharuAutos Emblema Oficial](assets/charuautos_emblema_mascota.png)
-![CharuAutos Logo Horizontal](assets/charuautos_logo_horizontal.svg)
 
 ---
 
