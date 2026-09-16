@@ -29,8 +29,8 @@ El aceite lubrica las piezas metálicas que se mueven a miles de revoluciones po
 4. **Segunda inserción:** Introduce la varilla hasta el fondo firmemente, espera 3 segundos y extráela con cuidado manteniéndola vertical con la punta hacia abajo.
 5. **Lectura visual:** Observa dónde se sitúa la película brillante de aceite.
 
-![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_varilla_aceite.svg)
-*Ilustración técnica: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
+![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_lectura_varilla_aceite.jpg)
+*Fotografía e Ilustración: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
 
 > [!WARNING]
 > ### ⚠️ El Error del Sobrellenado
@@ -75,9 +75,6 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 ## 🕵️‍♂️ 5. Guía de Detección de Fugas en el Suelo (Tabla del Detective)
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
-
-![Mapa Visual de Detección de Fugas por Color](assets/ilustracion_guia_colores_fluidos.svg)
-*Ilustración técnica: Identificación inmediata de fugas bajo el vehículo por color, viscosidad y nivel de urgencia.*
 
 | Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
 | :--- | :--- | :--- | :--- |

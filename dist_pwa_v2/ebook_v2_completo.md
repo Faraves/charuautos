@@ -105,9 +105,6 @@ Este compendio tiene como propósito la educación preventiva y el empoderamient
 
 Para entender tu vehículo sin necesidad de estudiar ingeniería, imagínalo como un organismo vivo:
 
-![Analogía Vital: El Auto y el Cuerpo Humano](assets/ilustracion_cuerpo_humano_auto.svg)
-*Ilustración técnica: Correspondencia anatómica directa entre los subsistemas del vehículo y los órganos vitales humanos.*
-
 | Componente del Auto | Equivalente Humano | Función Vital |
 | :--- | :--- | :--- |
 | **Motor** | El Corazón | Bombea energía mecánica y potencia |
@@ -129,6 +126,8 @@ El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiemp
 3. **Explosión / Combustión:** La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. **De aquí sale toda la fuerza del auto**.
 4. **Escape:** Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.
 
+![El Ciclo de 4 Tiempos del Motor a Combustión](assets/ilustracion_ciclo_motor_4_tiempos.jpg)
+*Fotografía e Ilustración: Las 4 fases continuas de funcionamiento (Admisión, Compresión, Explosión y Escape) que dan vida al motor.*
 > **¿Por qué te importa saber esto?**  
 > Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita **3 cosas que jamás pueden faltar**:
 > - **Aire limpio** (a través del filtro de aire).
@@ -207,8 +206,8 @@ Para que nunca más sientas miedo al abrir el capó, esta infografía resume la 
 
 No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:
 
-![El Kit Básico de Herramientas Recomendado](assets/ilustracion_herramientas_esenciales.svg)
-*Ilustración técnica: Las 6 herramientas y accesorios de prevención que todo conductor novato debe llevar en su vehículo.*
+![Kit de Herramientas y Seguridad en la Cajuela](assets/ilustracion_kit_herramientas_emergencia.jpg)
+*Fotografía e Ilustración: Equipamiento indispensable de seguridad y rescate que todo conductor debe llevar.*
 
 | Herramienta Recomendada | Costo Estimado | Utilidad Clave en Ruta |
 | :--- | :---: | :--- |
@@ -251,7 +250,7 @@ En la mayoría de los países de habla hispana, estos elementos son obligatorios
 
 ## 🎒 Resumen Visual: El Kit de Emergencia Completo en tu Cajuela
 
-![Kit de Emergencia y Herramientas en la Cajuela](assets/car_emergency_kit.jpg)
+![Kit de Emergencia y Herramientas en la Cajuela](assets/ilustracion_kit_herramientas_emergencia.jpg)
 *Elementos Reglamentarios y Esenciales para Conducir con Tranquilidad en Ciudad y Carretera*
 
 
@@ -275,8 +274,8 @@ Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de 
 
 Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:
 
-![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360.svg)
-*Ilustración técnica: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
+![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360_auto.jpg)
+*Fotografía e Ilustración: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
 
 - **Paso 1: Suelo bajo el motor.** ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojizos (caja)? *(Nota: agua clara e inodora es condensación normal del A/C).*
 - **Paso 2: Las 4 ruedas.** Comprueba visualmente que ninguna llanta se vea visiblemente aplastada o desinflada.
@@ -349,8 +348,8 @@ El aceite lubrica las piezas metálicas que se mueven a miles de revoluciones po
 4. **Segunda inserción:** Introduce la varilla hasta el fondo firmemente, espera 3 segundos y extráela con cuidado manteniéndola vertical con la punta hacia abajo.
 5. **Lectura visual:** Observa dónde se sitúa la película brillante de aceite.
 
-![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_varilla_aceite.svg)
-*Ilustración técnica: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
+![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_lectura_varilla_aceite.jpg)
+*Fotografía e Ilustración: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
 
 > [!WARNING]
 > ### ⚠️ El Error del Sobrellenado
@@ -396,9 +395,6 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
 
-![Mapa Visual de Detección de Fugas por Color](assets/ilustracion_guia_colores_fluidos.svg)
-*Ilustración técnica: Identificación inmediata de fugas bajo el vehículo por color, viscosidad y nivel de urgencia.*
-
 | Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
 | :--- | :--- | :--- | :--- |
 | **Transparente** | Acuosa, inodora | Condensación de Aire Acondicionado | 🟢 **NORMAL:** No es una fuga de fluido |
@@ -429,16 +425,13 @@ El error más común es leer la presión máxima grabada en el flanco del neumá
 ### Dónde está la etiqueta oficial de tu auto:
 Abre la puerta del conductor y mira el **pilar B** (el marco metálico donde traba la puerta). Allí encontrarás una placa metálica o pegatina con la presión exacta para tu modelo (expresada en PSI y BAR), distinguiendo entre carga normal y carga completa con equipaje.
 
-![Etiqueta Oficial de Presión de Neumáticos en Pilar B](assets/ilustracion_etiqueta_presion_pilar.svg)
-*Ilustración técnica: Ejemplo real de la placa de inflado del fabricante ubicada en el marco de la puerta del conductor.*
-
 ### ¿Qué significa medir "en frío"?:
 Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado estacionado durante al menos **2 horas**. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.
 
 ---
 
-![Guía Técnica de Neumáticos y Código DOT](assets/tire_guide_and_dot_code.jpg)
-*Infografía: Decodificación del Código DOT, Presión en Frío y Banda de Rodadura*
+![Guía de Seguridad del Neumático: Código DOT y Profundidad de Huella](assets/ilustracion_profundidad_neumatico_seguridad.jpg)
+*Fotografía e Ilustración: Interpretación del código DOT de antigüedad, prueba de la moneda y prevención de aquaplaning.*
 
 ## 🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT
 
@@ -448,9 +441,6 @@ El límite legal mínimo en la mayoría de países es de **1.6 mm** de profundid
 1. Toma una moneda con borde visible (por ejemplo, una moneda de 1 Euro, de 10 pesos mexicanos o una moneda de 1 cuarto de dólar americano con la cabeza de Washington hacia abajo).
 2. Introdúcela en las ranuras centrales de la banda de rodadura.
 3. Si puedes ver la parte superior de la corona o el borde exterior completo sin que el surco lo cubra, el neumático ha perdido sus canales de evacuación hidrodinámica: **el riesgo de aquaplaning en lluvia es inminente**.
-
-![Evaluación de Profundidad de Huella y Aquaplaning](assets/ilustracion_neumatico_desgaste_profundidad.svg)
-*Ilustración técnica: Comparativa de canal de evacuación de agua entre neumático en buen estado (>3 mm) y desgastado (<1.6 mm).*
 
 ### B. El Código DOT: La Fecha de Caducidad de la Goma:
 Los neumáticos caducan por envejecimiento natural de los polímeros del caucho (se cristalizan y se vuelven rígidos como plástico), aunque nunca se hayan usado y tengan el dibujo intacto.
@@ -519,8 +509,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-![Protocolo Seguro de 4 Pasos para Pasar Corriente](assets/ilustracion_paso_corriente_bateria.svg)
-*Ilustración técnica: Secuencia obligatoria 1-2-3-4 para arrancar una batería agotada sin provocar chispas ni dañar la centralita.*
+![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/ilustracion_puente_bateria_fusibles.jpg)
+*Fotografía e Ilustración: Secuencia de cables 1-2-3-4 paso a paso y diagnóstico visual de fusibles sano vs fundido.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.
@@ -546,9 +536,6 @@ Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a 
 Si de repente dejan de funcionar los limpiaparabrisas, la toma de 12V del mechero o una luz interior, el 90% de las veces no hay una avería grave: simplemente se ha "volado" (fundido) un fusible de $0.50 USD.
 
 ### La Anatomía de un Fusible de Cuchilla:
-![Diagnóstico Visual: Fusible Bueno vs. Fusible Fundido](assets/ilustracion_fusible_bueno_quemado.svg)
-*Ilustración técnica: Comprobación a contraluz de filamento continuo en 'U' vs. filamento cortado o quemado por sobrecarga.*
-
 ### Tabla de Códigos de Color Estándar DIN:
 | Color del Fusible | Amperaje (A) | Circuitos Típicos Protegidos |
 | :--- | :---: | :--- |
@@ -625,8 +612,8 @@ En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 
 
 Muchos conductores confunden las dos correas del motor. Conocer la diferencia te evitará perder miles de dólares:
 
-![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correa_accesorios_vs_distribucion.svg)
-*Ilustración técnica: Diferencias morfológicas y consecuencias de rotura entre correa Poly-V de accesorios y correa dentada de distribución.*
+![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correas_motor_distribucion.jpg)
+*Fotografía e Ilustración: Diferencias morfológicas, funcionamiento y el grave riesgo de rotura de la correa de distribución.*
 
 | Característica | Correa de Accesorios (Poly-V) | Correa de Distribución (Timing Belt) |
 | :--- | :--- | :--- |
@@ -674,9 +661,6 @@ Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es 
 ### La Explicación sin Jerga:
 Imagina un **molino de viento diminuto de altísima precisión**. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que **inyecta mucho más aire a presión dentro de los cilindros**. 
 - **El resultado:** Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.
-
-![Circuito del Turbocompresor y la Regla de los 60 Segundos](assets/ilustracion_turbo_ciclo_60segundos.svg)
-*Ilustración técnica: Flujo de gases a 950 °C, eje flotante a 200.000 RPM y el protocolo de ralentí preventivo.*
 
 ---
 
@@ -739,9 +723,6 @@ Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del 
 
 Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmediatamente según el código internacional de colores ISO 2575:
 
-![Semáforo de Prioridad de Testigos del Tablero](assets/ilustracion_semaforo_testigos.svg)
-*Ilustración técnica: Regla mnemotécnica de los colores del cuadro de instrumentos y protocolo de acción inmediata.*
-
 ---
 
 ## ⚠️ 2. Los 7 Testigos Críticos que Jamás Debes Ignorar
@@ -766,9 +747,6 @@ Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmedia
 ## 📱 3. El Escáner OBD-II para Principiantes: Diagnóstico por $15 USD
 
 Desde 1996 en EE.UU. y 2001 en Europa, todos los automóviles cuentan por ley con un puerto estándar llamado **OBD-II (On-Board Diagnostics de 16 pines)**.
-
-![Anatomía del Puerto OBD-II de 16 Pines](assets/ilustracion_conector_obd2.svg)
-*Ilustración técnica: Puerto hembra trapezoidal situado bajo el volante del conductor y asignación de pines de comunicación.*
 
 ### ¿Qué necesitas para leer tu auto tú mismo?
 1. **Un adaptador Bluetooth/Wi-Fi mini ELM327:** Cuesta entre $8 y $15 USD en Amazon o tiendas online.
@@ -813,6 +791,10 @@ El mantenimiento automotriz no es un gasto caprichoso: es una póliza de seguro 
 ---
 
 ## 📊 2. Tabla Maestra de Mantenimiento Preventivo
+
+![Cronograma de Mantenimiento Preventivo por Kilometraje](assets/ilustracion_cronograma_kilometraje.jpg)
+*Fotografía e Ilustración: Hoja de ruta preventiva de 10.000 a 100.000 kilómetros para cuidar tu vehículo e inversión.*
+
 
 A continuación, los intervalos recomendados por la industria automotriz global con costos aproximados de repuestos (precios orientativos en USD de marcas Tier 1 de calidad) y tiempos de mano de obra en taller:
 
@@ -867,9 +849,8 @@ Aplica la regla internacional **PAS**:
 
 Cambiar una rueda ponchada parece intimidante, pero siguiendo esta secuencia lógica de 10 pasos no tendrás ningún contratiempo:
 
-![Protocolo de 6 Pasos para Cambiar una Llanta Ponchada](assets/ilustracion_cambio_llanta_pasos.svg)
-*Ilustración técnica: Guía secuencial paso a paso para sustituir una rueda pinchada con máxima seguridad en carretera.*
-
+![Secuencia del Cambio de Llanta Ponchada en Ruta](assets/ilustracion_cambio_llanta_secuencia.jpg)
+*Fotografía e Ilustración: Secuencia de 4 fases para sustituir una rueda ponchada con máxima seguridad en carretera.*
 
 ### Los 10 Pasos Detallados:
 1. **Inmovilización Absoluta:** Terreno plano. Pon el freno de mano al máximo. Si es transmisión manual, coloca **1ª marcha** (o marcha atrás); si es automático, posición **"P" (Park)**.
@@ -923,9 +904,6 @@ Este módulo te enseña las técnicas exactas de comunicación, documentación y
 ### La Regla de Oro: Describe Síntomas Sensoriales, JAMÁS des Diagnósticos.
 Cuando un conductor llega al taller diciendo: *"Creo que se rompió la transmisión automática"*, el mecánico deshonesto escucha: *"Esta persona está dispuesta a gastar $1.500 USD en una caja de cambios aunque solo sea un taco de motor de $40 USD"*.
 
-![Guía de Comunicación en el Taller Mecánico](assets/ilustracion_guia_taller_comunicacion.svg)
-*Ilustración técnica: Lo que nunca debes decir vs. la manera asertiva de reportar síntomas para evitar sobrecostos.*
-
 | ❌ Lo que NUNCA debes decir | ✅ La Manera Correcta y Precisa |
 | :--- | :--- |
 | "Creo que la suspensión trasera está rota" | "Escucho un golpe metálico en la rueda trasera derecha al pasar por badenes a 30 km/h" |
@@ -957,9 +935,6 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 
 ![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
 *Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
-![Pirámide de Calidad: OEM vs. OES Tier 1 vs. Genérico](assets/ilustracion_repuestos_oem_aftermarket.svg)
-*Ilustración técnica: Niveles de recambios, calidad real de fábrica y la oportunidad de ahorrar hasta un 50% con piezas OES.*
-
 | Tipo de Repuesto | Qué es en Realidad | Recomendación CharuAutos |
 | :--- | :--- | :--- |
 | **OEM (Original de Fábrica)** | Caja oficial con el logo de la marca del auto | Calidad máxima pero con sobreprecio del 40-60% |

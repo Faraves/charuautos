@@ -12,6 +12,10 @@ El mantenimiento automotriz no es un gasto caprichoso: es una póliza de seguro 
 
 ## 📊 2. Tabla Maestra de Mantenimiento Preventivo
 
+![Cronograma de Mantenimiento Preventivo por Kilometraje](assets/ilustracion_cronograma_kilometraje.jpg)
+*Fotografía e Ilustración: Hoja de ruta preventiva de 10.000 a 100.000 kilómetros para cuidar tu vehículo e inversión.*
+
+
 A continuación, los intervalos recomendados por la industria automotriz global con costos aproximados de repuestos (precios orientativos en USD de marcas Tier 1 de calidad) y tiempos de mano de obra en taller:
 
 | Operación de Mantenimiento | Intervalo Típico | Costo Estimado Pieza | Mano de Obra | Nivel Dificultad |

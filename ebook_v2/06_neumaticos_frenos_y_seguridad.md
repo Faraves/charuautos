@@ -17,16 +17,13 @@ El error más común es leer la presión máxima grabada en el flanco del neumá
 ### Dónde está la etiqueta oficial de tu auto:
 Abre la puerta del conductor y mira el **pilar B** (el marco metálico donde traba la puerta). Allí encontrarás una placa metálica o pegatina con la presión exacta para tu modelo (expresada en PSI y BAR), distinguiendo entre carga normal y carga completa con equipaje.
 
-![Etiqueta Oficial de Presión de Neumáticos en Pilar B](assets/ilustracion_etiqueta_presion_pilar.svg)
-*Ilustración técnica: Ejemplo real de la placa de inflado del fabricante ubicada en el marco de la puerta del conductor.*
-
 ### ¿Qué significa medir "en frío"?:
 Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado estacionado durante al menos **2 horas**. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.
 
 ---
 
-![Guía Técnica de Neumáticos y Código DOT](assets/tire_guide_and_dot_code.jpg)
-*Infografía: Decodificación del Código DOT, Presión en Frío y Banda de Rodadura*
+![Guía de Seguridad del Neumático: Código DOT y Profundidad de Huella](assets/ilustracion_profundidad_neumatico_seguridad.jpg)
+*Fotografía e Ilustración: Interpretación del código DOT de antigüedad, prueba de la moneda y prevención de aquaplaning.*
 
 ## 🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT
 
@@ -36,9 +33,6 @@ El límite legal mínimo en la mayoría de países es de **1.6 mm** de profundid
 1. Toma una moneda con borde visible (por ejemplo, una moneda de 1 Euro, de 10 pesos mexicanos o una moneda de 1 cuarto de dólar americano con la cabeza de Washington hacia abajo).
 2. Introdúcela en las ranuras centrales de la banda de rodadura.
 3. Si puedes ver la parte superior de la corona o el borde exterior completo sin que el surco lo cubra, el neumático ha perdido sus canales de evacuación hidrodinámica: **el riesgo de aquaplaning en lluvia es inminente**.
-
-![Evaluación de Profundidad de Huella y Aquaplaning](assets/ilustracion_neumatico_desgaste_profundidad.svg)
-*Ilustración técnica: Comparativa de canal de evacuación de agua entre neumático en buen estado (>3 mm) y desgastado (<1.6 mm).*
 
 ### B. El Código DOT: La Fecha de Caducidad de la Goma:
 Los neumáticos caducan por envejecimiento natural de los polímeros del caucho (se cristalizan y se vuelven rígidos como plástico), aunque nunca se hayan usado y tengan el dibujo intacto.

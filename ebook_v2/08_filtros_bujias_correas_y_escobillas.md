@@ -50,8 +50,8 @@ En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 
 
 Muchos conductores confunden las dos correas del motor. Conocer la diferencia te evitará perder miles de dólares:
 
-![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correa_accesorios_vs_distribucion.svg)
-*Ilustración técnica: Diferencias morfológicas y consecuencias de rotura entre correa Poly-V de accesorios y correa dentada de distribución.*
+![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correas_motor_distribucion.jpg)
+*Fotografía e Ilustración: Diferencias morfológicas, funcionamiento y el grave riesgo de rotura de la correa de distribución.*
 
 | Característica | Correa de Accesorios (Poly-V) | Correa de Distribución (Timing Belt) |
 | :--- | :--- | :--- |

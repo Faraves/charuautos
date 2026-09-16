@@ -8,8 +8,8 @@
 
 No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:
 
-![El Kit Básico de Herramientas Recomendado](assets/ilustracion_herramientas_esenciales.svg)
-*Ilustración técnica: Las 6 herramientas y accesorios de prevención que todo conductor novato debe llevar en su vehículo.*
+![Kit de Herramientas y Seguridad en la Cajuela](assets/ilustracion_kit_herramientas_emergencia.jpg)
+*Fotografía e Ilustración: Equipamiento indispensable de seguridad y rescate que todo conductor debe llevar.*
 
 | Herramienta Recomendada | Costo Estimado | Utilidad Clave en Ruta |
 | :--- | :---: | :--- |
@@ -52,5 +52,5 @@ En la mayoría de los países de habla hispana, estos elementos son obligatorios
 
 ## 🎒 Resumen Visual: El Kit de Emergencia Completo en tu Cajuela
 
-![Kit de Emergencia y Herramientas en la Cajuela](assets/car_emergency_kit.jpg)
+![Kit de Emergencia y Herramientas en la Cajuela](assets/ilustracion_kit_herramientas_emergencia.jpg)
 *Elementos Reglamentarios y Esenciales para Conducir con Tranquilidad en Ciudad y Carretera*

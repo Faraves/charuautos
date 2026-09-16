@@ -17,9 +17,6 @@ Este módulo te enseña las técnicas exactas de comunicación, documentación y
 ### La Regla de Oro: Describe Síntomas Sensoriales, JAMÁS des Diagnósticos.
 Cuando un conductor llega al taller diciendo: *"Creo que se rompió la transmisión automática"*, el mecánico deshonesto escucha: *"Esta persona está dispuesta a gastar $1.500 USD en una caja de cambios aunque solo sea un taco de motor de $40 USD"*.
 
-![Guía de Comunicación en el Taller Mecánico](assets/ilustracion_guia_taller_comunicacion.svg)
-*Ilustración técnica: Lo que nunca debes decir vs. la manera asertiva de reportar síntomas para evitar sobrecostos.*
-
 | ❌ Lo que NUNCA debes decir | ✅ La Manera Correcta y Precisa |
 | :--- | :--- |
 | "Creo que la suspensión trasera está rota" | "Escucho un golpe metálico en la rueda trasera derecha al pasar por badenes a 30 km/h" |
@@ -51,9 +48,6 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 
 ![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
 *Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
-![Pirámide de Calidad: OEM vs. OES Tier 1 vs. Genérico](assets/ilustracion_repuestos_oem_aftermarket.svg)
-*Ilustración técnica: Niveles de recambios, calidad real de fábrica y la oportunidad de ahorrar hasta un 50% con piezas OES.*
-
 | Tipo de Repuesto | Qué es en Realidad | Recomendación CharuAutos |
 | :--- | :--- | :--- |
 | **OEM (Original de Fábrica)** | Caja oficial con el logo de la marca del auto | Calidad máxima pero con sobreprecio del 40-60% |

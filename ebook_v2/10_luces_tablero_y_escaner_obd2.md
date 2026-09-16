@@ -15,9 +15,6 @@ Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del 
 
 Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmediatamente según el código internacional de colores ISO 2575:
 
-![Semáforo de Prioridad de Testigos del Tablero](assets/ilustracion_semaforo_testigos.svg)
-*Ilustración técnica: Regla mnemotécnica de los colores del cuadro de instrumentos y protocolo de acción inmediata.*
-
 ---
 
 ## ⚠️ 2. Los 7 Testigos Críticos que Jamás Debes Ignorar
@@ -42,9 +39,6 @@ Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmedia
 ## 📱 3. El Escáner OBD-II para Principiantes: Diagnóstico por $15 USD
 
 Desde 1996 en EE.UU. y 2001 en Europa, todos los automóviles cuentan por ley con un puerto estándar llamado **OBD-II (On-Board Diagnostics de 16 pines)**.
-
-![Anatomía del Puerto OBD-II de 16 Pines](assets/ilustracion_conector_obd2.svg)
-*Ilustración técnica: Puerto hembra trapezoidal situado bajo el volante del conductor y asignación de pines de comunicación.*
 
 ### ¿Qué necesitas para leer tu auto tú mismo?
 1. **Un adaptador Bluetooth/Wi-Fi mini ELM327:** Cuesta entre $8 y $15 USD en Amazon o tiendas online.

@@ -17,9 +17,6 @@ Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es 
 Imagina un **molino de viento diminuto de altísima precisión**. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que **inyecta mucho más aire a presión dentro de los cilindros**. 
 - **El resultado:** Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.
 
-![Circuito del Turbocompresor y la Regla de los 60 Segundos](assets/ilustracion_turbo_ciclo_60segundos.svg)
-*Ilustración técnica: Flujo de gases a 950 °C, eje flotante a 200.000 RPM y el protocolo de ralentí preventivo.*
-
 ---
 
 ## ⏱️ 2. La Regla de Oro: Los 60 Segundos que Salvan Miles de Dólares

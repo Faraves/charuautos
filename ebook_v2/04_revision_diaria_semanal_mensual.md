@@ -16,8 +16,8 @@ Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de 
 
 Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:
 
-![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360.svg)
-*Ilustración técnica: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
+![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360_auto.jpg)
+*Fotografía e Ilustración: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
 
 - **Paso 1: Suelo bajo el motor.** ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojizos (caja)? *(Nota: agua clara e inodora es condensación normal del A/C).*
 - **Paso 2: Las 4 ruedas.** Comprueba visualmente que ninguna llanta se vea visiblemente aplastada o desinflada.

@@ -23,9 +23,8 @@ Aplica la regla internacional **PAS**:
 
 Cambiar una rueda ponchada parece intimidante, pero siguiendo esta secuencia lógica de 10 pasos no tendrás ningún contratiempo:
 
-![Protocolo de 6 Pasos para Cambiar una Llanta Ponchada](assets/ilustracion_cambio_llanta_pasos.svg)
-*Ilustración técnica: Guía secuencial paso a paso para sustituir una rueda pinchada con máxima seguridad en carretera.*
-
+![Secuencia del Cambio de Llanta Ponchada en Ruta](assets/ilustracion_cambio_llanta_secuencia.jpg)
+*Fotografía e Ilustración: Secuencia de 4 fases para sustituir una rueda ponchada con máxima seguridad en carretera.*
 
 ### Los 10 Pasos Detallados:
 1. **Inmovilización Absoluta:** Terreno plano. Pon el freno de mano al máximo. Si es transmisión manual, coloca **1ª marcha** (o marcha atrás); si es automático, posición **"P" (Park)**.

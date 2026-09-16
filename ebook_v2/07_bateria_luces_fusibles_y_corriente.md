@@ -21,8 +21,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-![Protocolo Seguro de 4 Pasos para Pasar Corriente](assets/ilustracion_paso_corriente_bateria.svg)
-*Ilustración técnica: Secuencia obligatoria 1-2-3-4 para arrancar una batería agotada sin provocar chispas ni dañar la centralita.*
+![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/ilustracion_puente_bateria_fusibles.jpg)
+*Fotografía e Ilustración: Secuencia de cables 1-2-3-4 paso a paso y diagnóstico visual de fusibles sano vs fundido.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.
@@ -48,9 +48,6 @@ Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a 
 Si de repente dejan de funcionar los limpiaparabrisas, la toma de 12V del mechero o una luz interior, el 90% de las veces no hay una avería grave: simplemente se ha "volado" (fundido) un fusible de $0.50 USD.
 
 ### La Anatomía de un Fusible de Cuchilla:
-![Diagnóstico Visual: Fusible Bueno vs. Fusible Fundido](assets/ilustracion_fusible_bueno_quemado.svg)
-*Ilustración técnica: Comprobación a contraluz de filamento continuo en 'U' vs. filamento cortado o quemado por sobrecarga.*
-
 ### Tabla de Códigos de Color Estándar DIN:
 | Color del Fusible | Amperaje (A) | Circuitos Típicos Protegidos |
 | :--- | :---: | :--- |

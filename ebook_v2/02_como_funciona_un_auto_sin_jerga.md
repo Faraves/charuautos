@@ -8,9 +8,6 @@
 
 Para entender tu vehículo sin necesidad de estudiar ingeniería, imagínalo como un organismo vivo:
 
-![Analogía Vital: El Auto y el Cuerpo Humano](assets/ilustracion_cuerpo_humano_auto.svg)
-*Ilustración técnica: Correspondencia anatómica directa entre los subsistemas del vehículo y los órganos vitales humanos.*
-
 | Componente del Auto | Equivalente Humano | Función Vital |
 | :--- | :--- | :--- |
 | **Motor** | El Corazón | Bombea energía mecánica y potencia |
@@ -32,6 +29,8 @@ El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiemp
 3. **Explosión / Combustión:** La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. **De aquí sale toda la fuerza del auto**.
 4. **Escape:** Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.
 
+![El Ciclo de 4 Tiempos del Motor a Combustión](assets/ilustracion_ciclo_motor_4_tiempos.jpg)
+*Fotografía e Ilustración: Las 4 fases continuas de funcionamiento (Admisión, Compresión, Explosión y Escape) que dan vida al motor.*
 > **¿Por qué te importa saber esto?**  
 > Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita **3 cosas que jamás pueden faltar**:
 > - **Aire limpio** (a través del filtro de aire).
