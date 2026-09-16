@@ -17,19 +17,8 @@ Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es 
 Imagina un **molino de viento diminuto de altísima precisión**. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que **inyecta mucho más aire a presión dentro de los cilindros**. 
 - **El resultado:** Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.
 
-```text
-       CÓMO FUNCIONA EL TURBOCOMPRESOR EN UN MINUTO
-┌─────────────────────────┐                 ┌─────────────────────────┐
-│ GASES DE ESCAPE         │                 │ AIRE FRESCO EXTERIOR    │
-│ Salen calientes a 900°C │                 │ Entra por el filtro     │
-└───────────┬─────────────┘                 └───────────┬─────────────┘
-            │                                           │
-            ▼                                           ▼
-┌─────────────────────────┐   EJE DE ACERO  ┌─────────────────────────┐
-│ TURBINA DE ESCAPE       │═════════════════│ COMPRESOR DE ADMISIÓN   │
-│ Gira a 200.000+ RPM     │  Bañado en óleo │ Comprime el aire al mot.│
-└─────────────────────────┘                 └─────────────────────────┘
-```
+![Circuito del Turbocompresor y la Regla de los 60 Segundos](assets/ilustracion_turbo_ciclo_60segundos.svg)
+*Ilustración técnica: Flujo de gases a 950 °C, eje flotante a 200.000 RPM y el protocolo de ralentí preventivo.*
 
 ---
 
@@ -66,17 +55,8 @@ Los motores turboalimentados no perdonan el uso de aceites baratos o minerales:
 
 Aprende a identificar las señales de fatiga antes de una rotura catastrófica:
 
-```text
-┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
-│ SÍNTOMA SENSORIAL       │ QUÉ ESTÁ OCURRIENDO       │ ACCIÓN RECOMENDADA             │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 🚓 Silbido como sirena  │ Holgura en el eje flotante│ Acudir al taller de inmediato; │
-│ de policía al acelerar  │ y rozamiento de álabes    │ el turbo está por desarmarse   │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 💨 Humo azulado/blanco  │ Sellos desgastados dejan  │ Revisar nivel de aceite diario;│
-│ denso por el escape     │ pasar aceite a la turbina │ sustituir cartucho (CHRA)      │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 🐌 Pérdida súbita de    │ Fuga en manguera interco. │ Inspeccionar abrazaderas o     │
-│ aceleración ("Limp Mode")│ o válvula wastegate trab.│ válvula de descarga            │
-└─────────────────────────┴───────────────────────────┴────────────────────────────────┘
-```
+| Síntoma Sensorial | Qué está Ocurriendo en el Turbo | Acción Recomendada |
+| :--- | :--- | :--- |
+| **🚓 Silbido como sirena de policía** al acelerar | Holgura excesiva en el eje flotante y roce de álabes | Acudir de inmediato al taller; el turbo está por romperse |
+| **💨 Humo denso azulado o blanquecino** por el escape | Retenes de aceite quemados dejan filtrar fluido | Revisar nivel de aceite a diario y cambiar cartucho (CHRA) |
+| **🐌 Pérdida súbita de aceleración ("Limp Mode")** | Manguera de intercooler rajada o válvula wastegate trabada | Inspeccionar abrazaderas, manguitos o válvula de descarga |

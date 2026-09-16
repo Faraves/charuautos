@@ -8,19 +8,18 @@
 
 Para entender tu vehículo sin necesidad de estudiar ingeniería, imagínalo como un organismo vivo:
 
-```text
-┌───────────────────────────┬───────────────────────────┬───────────────────────────┐
-│ COMPONENTE DEL AUTO       │ EQUIVALENTE HUMANO        │ FUNCIÓN VITAL             │
-├───────────────────────────┼───────────────────────────┼───────────────────────────┤
-│ Motor                     │ El Corazón                │ Bombea energía y potencia │
-│ Gasolina / Diésel         │ El Alimento               │ La energía química cruda  │
-│ Aceite de Motor           │ La Sangre que Lubrica     │ Evita fricción y desgaste │
-│ Sistema de Refrigeración  │ El Sudor / Termostato     │ Mantiene la temp. estable │
-│ Sistema Eléctrico         │ El Sistema Nervioso       │ Da chispa y controla todo │
-│ Frenos                    │ Los Músculos de Detención │ Frenan la inercia         │
-│ Suspensión y Neumáticos   │ Las Piernas y Calzado     │ Absorben impactos y guían │
-└───────────────────────────┴───────────────────────────┴───────────────────────────┘
-```
+![Analogía Vital: El Auto y el Cuerpo Humano](assets/ilustracion_cuerpo_humano_auto.svg)
+*Ilustración técnica: Correspondencia anatómica directa entre los subsistemas del vehículo y los órganos vitales humanos.*
+
+| Componente del Auto | Equivalente Humano | Función Vital |
+| :--- | :--- | :--- |
+| **Motor** | El Corazón | Bombea energía mecánica y potencia |
+| **Gasolina / Diésel** | El Alimento | La energía química cruda que alimenta el ciclo |
+| **Aceite de Motor** | La Sangre que Lubrica | Evita fricción destructiva metal contra metal |
+| **Sistema de Refrigeración** | El Sudor / Termostato | Mantiene la temperatura constante en 90 °C |
+| **Sistema Eléctrico** | El Sistema Nervioso | Genera la chispa, sensores y controla la ECU |
+| **Frenos** | Músculos de Detención | Disipan la inercia convirtiéndola en calor |
+| **Suspensión y Neumáticos**| Las Piernas y Calzado | Absorben impactos y mantienen el agarre |
 
 ---
 

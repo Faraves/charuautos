@@ -105,19 +105,18 @@ Este compendio tiene como propósito la educación preventiva y el empoderamient
 
 Para entender tu vehículo sin necesidad de estudiar ingeniería, imagínalo como un organismo vivo:
 
-```text
-┌───────────────────────────┬───────────────────────────┬───────────────────────────┐
-│ COMPONENTE DEL AUTO       │ EQUIVALENTE HUMANO        │ FUNCIÓN VITAL             │
-├───────────────────────────┼───────────────────────────┼───────────────────────────┤
-│ Motor                     │ El Corazón                │ Bombea energía y potencia │
-│ Gasolina / Diésel         │ El Alimento               │ La energía química cruda  │
-│ Aceite de Motor           │ La Sangre que Lubrica     │ Evita fricción y desgaste │
-│ Sistema de Refrigeración  │ El Sudor / Termostato     │ Mantiene la temp. estable │
-│ Sistema Eléctrico         │ El Sistema Nervioso       │ Da chispa y controla todo │
-│ Frenos                    │ Los Músculos de Detención │ Frenan la inercia         │
-│ Suspensión y Neumáticos   │ Las Piernas y Calzado     │ Absorben impactos y guían │
-└───────────────────────────┴───────────────────────────┴───────────────────────────┘
-```
+![Analogía Vital: El Auto y el Cuerpo Humano](assets/ilustracion_cuerpo_humano_auto.svg)
+*Ilustración técnica: Correspondencia anatómica directa entre los subsistemas del vehículo y los órganos vitales humanos.*
+
+| Componente del Auto | Equivalente Humano | Función Vital |
+| :--- | :--- | :--- |
+| **Motor** | El Corazón | Bombea energía mecánica y potencia |
+| **Gasolina / Diésel** | El Alimento | La energía química cruda que alimenta el ciclo |
+| **Aceite de Motor** | La Sangre que Lubrica | Evita fricción destructiva metal contra metal |
+| **Sistema de Refrigeración** | El Sudor / Termostato | Mantiene la temperatura constante en 90 °C |
+| **Sistema Eléctrico** | El Sistema Nervioso | Genera la chispa, sensores y controla la ECU |
+| **Frenos** | Músculos de Detención | Disipan la inercia convirtiéndola en calor |
+| **Suspensión y Neumáticos**| Las Piernas y Calzado | Absorben impactos y mantienen el agarre |
 
 ---
 
@@ -208,18 +207,17 @@ Para que nunca más sientas miedo al abrir el capó, esta infografía resume la 
 
 No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:
 
-```text
-┌──────────────────────────────────────┬───────────────┬───────────────────────────┐
-│ HERRAMIENTA RECOMENDADA              │ COSTO ESTIMADO│ UTILIDAD CLAVE            │
-├──────────────────────────────────────┼───────────────┼───────────────────────────┤
-│ 1. Calibrador Digital de Neumáticos  │ $8 - $12 USD  │ Medir presión en frío     │
-│ 2. Linterna Frontal LED (manos libres)│ $7 - $10 USD │ Iluminar sin ocupar manos │
-│ 3. Juego de Cables de Puente (4 AWG) │ $15 - $22 USD │ Arrancar batería muerta   │
-│ 4. Guantes de Trabajo Nitrilo / Piel │ $4 - $6 USD   │ Proteger de calor y grasa │
-│ 5. Paño de Microfibra y Toallitas    │ $3 - $5 USD   │ Limpiar varilla y manos   │
-│ 6. Llave Telescópica para Ruedas     │ $12 - $16 USD │ Palanca extra p/ tuercas  │
-└──────────────────────────────────────┴───────────────┴───────────────────────────┘
-```
+![El Kit Básico de Herramientas Recomendado](assets/ilustracion_herramientas_esenciales.svg)
+*Ilustración técnica: Las 6 herramientas y accesorios de prevención que todo conductor novato debe llevar en su vehículo.*
+
+| Herramienta Recomendada | Costo Estimado | Utilidad Clave en Ruta |
+| :--- | :---: | :--- |
+| **1. Calibrador Digital de Neumáticos** | $8 - $12 USD | Medir presión exacta en frío (PSI/Bar) |
+| **2. Linterna Frontal LED (Manos Libres)** | $7 - $10 USD | Iluminar vano motor o rueda sin ocupar manos |
+| **3. Juego de Cables de Puente (4 AWG)** | $15 - $22 USD | Rescate seguro de batería descargada |
+| **4. Guantes de Trabajo Nitrilo / Piel** | $4 - $6 USD | Protección contra calor, filos y grasa |
+| **5. Paños de Microfibra y Toallitas** | $3 - $5 USD | Limpieza de varilla de aceite y manos |
+| **6. Llave Telescópica Extensible** | $12 - $16 USD | Palanca adicional para aflojar tuercas apretadas |
 
 > [!TIP]
 > **El Secreto de la Llave Telescópica:** La llave pequeña en forma de "L" que traen los autos de fábrica es corta y requiere que hagas una fuerza sobrehumana para aflojar tuercas apretadas con pistola neumática en talleres. Una llave telescópica extensible duplica tu brazo de palanca: **con la mitad de esfuerzo aflojas cualquier tuerca fácilmente**.
@@ -277,17 +275,13 @@ Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de 
 
 Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:
 
-```text
-Paso 1: Mira el suelo debajo del motor
-└─ ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojos (caja)?
-   (Nota: Si usaste el A/C ayer, ver un charquito de agua pura es normal).
+![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360.svg)
+*Ilustración técnica: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
 
-Paso 2: Mirada perimétrica a los 4 neumáticos
-└─ ¿Alguna llanta se ve visiblemente más aplastada o "panzona" que las demás?
-
-Paso 3: Vidrios, espejos y luces limpias
-└─ ¿Parabrisas libre de hojas, ramas o suciedad que reste visibilidad?
-```
+- **Paso 1: Suelo bajo el motor.** ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojizos (caja)? *(Nota: agua clara e inodora es condensación normal del A/C).*
+- **Paso 2: Las 4 ruedas.** Comprueba visualmente que ninguna llanta se vea visiblemente aplastada o desinflada.
+- **Paso 3: Vidrios y retrovisores.** Parabrisas libre de excrementos de aves, nieve, ramas o suciedad que reste visibilidad.
+- **Paso 4: Entorno y carrocería.** Asegúrate de que no haya mascotas, juguetes o pilotes ocultos detrás de la trayectoria de salida.
 
 ---
 
@@ -334,17 +328,13 @@ Con el auto estacionado en un lugar plano y el motor **frío y apagado**:
 
 Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:
 
-```text
-┌─────────────────────────┬──────────────────────┬────────────────────────┬──────────────────────┐
-│ FLUIDO                  │ COLOR SALUDABLE      │ CUÁNDO REVISAR         │ CONSECUENCIA DE FALLA│
-├─────────────────────────┼──────────────────────┼────────────────────────┼──────────────────────┤
-│ Aceite de Motor         │ Miel dorado a ámbar  │ Cada 1.000 km o 15 días│ Fundición de motor   │
-│ Líquido Refrigerante    │ Rosa, Verde o Azul   │ Cada mes (en frío)     │ Sobrecalentamiento   │
-│ Líquido de Frenos       │ Amarillo claro/Ámbar │ Cada 2 a 3 meses       │ Pérdida de frenada   │
-│ Dirección Asistida/ATF  │ Rojo grosella / Rosa │ Cada 3 meses           │ Dirección dura/falla │
-│ Limpiaparabrisas        │ Azul o verde claro   │ Cada semana            │ Cero visibilidad     │
-└─────────────────────────┴──────────────────────┴────────────────────────┴──────────────────────┘
-```
+| Fluido Vital | Color Saludable | Cuándo Revisar | Consecuencia de Falla |
+| :--- | :--- | :--- | :--- |
+| **Aceite de Motor** | Miel dorado a ámbar traslúcido | Cada 1.000 km o 15 días | Fundición completa del motor |
+| **Líquido Refrigerante** | Rosa fosforito, verde neón o azul | Mensualmente (siempre en frío) | Sobrecalentamiento y junta de culata |
+| **Líquido de Frenos** | Amarillo pálido a ámbar claro | Cada 2 a 3 meses | Pérdida total de capacidad de frenado |
+| **Dirección Asistida / ATF** | Rojo grosella brillante o rosa | Cada 3 meses | Dirección pesada y desgaste de bomba |
+| **Limpiaparabrisas** | Azul o verde traslúcido | Semanalmente | Visibilidad nula ante barro o lluvia |
 
 ---
 
@@ -359,17 +349,8 @@ El aceite lubrica las piezas metálicas que se mueven a miles de revoluciones po
 4. **Segunda inserción:** Introduce la varilla hasta el fondo firmemente, espera 3 segundos y extráela con cuidado manteniéndola vertical con la punta hacia abajo.
 5. **Lectura visual:** Observa dónde se sitúa la película brillante de aceite.
 
-```text
-               NIVEL CORRECTO: Entre MIN y MAX (Zona rayada)
-  ┌───────────────────────────────────────────────────────────────┐
-══╡ (MIN) • • • • • • • • • • • • • • • • • • • • • • • • • (MAX) ╞══► Hacia el mango
-  └───────────────────────────────────────────────────────────────┘
-    ▲                             ▲                          ▲
-    │                             │                          │
-  PELIGRO CRÍTICO            ZONA IDEAL                  SOBRELLENADO
-  Añadir 0.8 a 1.0 L        Perfecto estado           ¡Peligro de sobrepresión!
-  de inmediato               No tocar nada             Espuma y rotura de retenes
-```
+![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_varilla_aceite.svg)
+*Ilustración técnica: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
 
 > [!WARNING]
 > ### ⚠️ El Error del Sobrellenado
@@ -415,17 +396,16 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
 
-```text
-┌─────────────────┬──────────────────────┬────────────────────────┬──────────────────────────────────┐
-│ COLOR DEL CHARCO│ TEXTURA / OLOR       │ ORIGEN PROBABLE        │ NIVEL DE URGENCIA                │
-├─────────────────┼──────────────────────┼────────────────────────┼──────────────────────────────────┤
-│ Transparente    │ Acuosa, inodora      │ Condensación de Aire A.│ 🟢 NORMAL: No es una fuga        │
-│ Marrón oscuro   │ Oleosa, resbaladiza  │ Aceite de motor        │ 🟡 MODERADO: Revisar nivel motor │
-│ Rosa / Verde    │ Acuosa, olor dulce   │ Líquido Refrigerante   │ 🔴 ALTO: Peligro de recalentón   │
-│ Rojo brillante  │ Aceitosa, fluido     │ ATF (Caja automática)  │ 🔴 ALTO: Acudir a taller         │
-│ Ámbar claro     │ Muy resbalosa        │ Líquido de Frenos      │ ⛔ CRÍTICO: NO CONDUCIR          │
-└─────────────────┴──────────────────────┴────────────────────────┴──────────────────────────────────┘
-```
+![Mapa Visual de Detección de Fugas por Color](assets/ilustracion_guia_colores_fluidos.svg)
+*Ilustración técnica: Identificación inmediata de fugas bajo el vehículo por color, viscosidad y nivel de urgencia.*
+
+| Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
+| :--- | :--- | :--- | :--- |
+| **Transparente** | Acuosa, inodora | Condensación de Aire Acondicionado | 🟢 **NORMAL:** No es una fuga de fluido |
+| **Marrón oscuro** | Oleosa, resbaladiza | Aceite lubricante de motor | 🟡 **MODERADO:** Revisar nivel en varilla |
+| **Rosa / Verde** | Acuosa, olor dulce | Líquido Refrigerante / Anticongelante | 🔴 **ALTO:** Peligro de sobrecalentamiento |
+| **Rojo brillante** | Aceitosa, fluido fino | ATF (Caja automática o servodirección) | 🔴 **ALTO:** Acudir a taller especializado |
+| **Ámbar claro** | Muy resbalosa al tacto | Líquido de Frenos | ⛔ **CRÍTICO: ¡NO CONDUCIR EL AUTO!** |
 
 
 ---
@@ -449,17 +429,8 @@ El error más común es leer la presión máxima grabada en el flanco del neumá
 ### Dónde está la etiqueta oficial de tu auto:
 Abre la puerta del conductor y mira el **pilar B** (el marco metálico donde traba la puerta). Allí encontrarás una placa metálica o pegatina con la presión exacta para tu modelo (expresada en PSI y BAR), distinguiendo entre carga normal y carga completa con equipaje.
 
-```text
-       PEGATINA TÍPICA EN EL MARCO DE LA PUERTA (PILAR B)
-┌─────────────────────────────────────────────────────────────┐
-│  TIRE AND LOADING INFORMATION / INFORMACIÓN DE NEUMÁTICOS   │
-├───────────────────┬─────────────────────┬───────────────────┤
-│  DIMENSIÓN RUEDA  │  DELANTERA (FRONT)  │  TRASERA (REAR)   │
-├───────────────────┼─────────────────────┼───────────────────┤
-│  205/55 R16 91V   │  32 PSI (2.2 BAR)   │  30 PSI (2.1 BAR) │
-│  Con carga plena  │  35 PSI (2.4 BAR)   │  36 PSI (2.5 BAR) │
-└───────────────────┴─────────────────────┴───────────────────┘
-```
+![Etiqueta Oficial de Presión de Neumáticos en Pilar B](assets/ilustracion_etiqueta_presion_pilar.svg)
+*Ilustración técnica: Ejemplo real de la placa de inflado del fabricante ubicada en el marco de la puerta del conductor.*
 
 ### ¿Qué significa medir "en frío"?:
 Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado estacionado durante al menos **2 horas**. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.
@@ -478,13 +449,8 @@ El límite legal mínimo en la mayoría de países es de **1.6 mm** de profundid
 2. Introdúcela en las ranuras centrales de la banda de rodadura.
 3. Si puedes ver la parte superior de la corona o el borde exterior completo sin que el surco lo cubra, el neumático ha perdido sus canales de evacuación hidrodinámica: **el riesgo de aquaplaning en lluvia es inminente**.
 
-```text
-     NEUMÁTICO SANO (> 3mm)            NEUMÁTICO PELIGROSO (< 1.6mm)
-   ┌───┐    ┌───┐    ┌───┐            ┌───┐    ┌───┐    ┌───┐
-   │   │    │   │    │   │            │   │    │   │    │   │
-───┘   └────┘   └────┘   └───      ───┘   └────┘   └────┘   └───
-  [ Surco Profundo: Desaloja ]       [ Surco Raso: Desliza en agua ]
-```
+![Evaluación de Profundidad de Huella y Aquaplaning](assets/ilustracion_neumatico_desgaste_profundidad.svg)
+*Ilustración técnica: Comparativa de canal de evacuación de agua entre neumático en buen estado (>3 mm) y desgastado (<1.6 mm).*
 
 ### B. El Código DOT: La Fecha de Caducidad de la Goma:
 Los neumáticos caducan por envejecimiento natural de los polímeros del caucho (se cristalizan y se vuelven rígidos como plástico), aunque nunca se hayan usado y tengan el dibujo intacto.
@@ -508,16 +474,12 @@ Los neumáticos caducan por envejecimiento natural de los polímeros del caucho 
 
 No necesitas desarmar la rueda para tener una estimación del estado de tus frenos en la mayoría de rines de aleación:
 
-```text
-┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
-│ ELEMENTO                │ CONDICIÓN SALUDABLE       │ SEÑAL DE REEMPLAZO URGENTE     │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ Grosor de Pastilla      │ 8 mm a 12 mm de material  │ Menos de 3 mm (Acudir a taller)│
-│ Disco de Freno          │ Superficie lisa y pulida  │ Surcos profundos o reborde alto│
-│ Sonido al Frenar        │ Silencio o leve fricción  │ Chirrido metálico chillón      │
-│ Tacto en el Pedal       │ Firme y progresivo        │ Esponjoso o vibra fuertemente  │
-└─────────────────────────┴───────────────────────────┴────────────────────────────────┘
-```
+| Elemento de Freno | Condición Saludable | Señal de Reemplazo Urgente |
+| :--- | :--- | :--- |
+| **Grosor de Pastilla** | 8 mm a 12 mm de material | Menos de 3 mm (Acudir de inmediato al taller) |
+| **Disco de Freno** | Superficie lisa y pulida | Surcos profundos, reborde alto o alabeo |
+| **Sonido al Frenar** | Silencio o leve fricción suave | Chirrido metálico chillón continuo |
+| **Tacto en el Pedal** | Firme, directo y progresivo | Esponjoso, se va al fondo o vibra con fuerza |
 
 > [!NOTE]
 > ### 🎵 El Famoso "Chirrido de Chivato"
@@ -557,22 +519,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-```text
-                    DIAGRAMA DE CONEXIÓN DE CABLES
-   AUTO AUXILIADOR (DONANTE)               AUTO VARADO (BATERÍA AGOTADA)
-   ┌───────────────────────┐               ┌──────────────────────────┐
-   │       BATERÍA         │               │         BATERÍA          │
-   │  [ + ]         [ - ]  │               │    [ + ]         [ - ]   │
-   └───┬──────────────┬────┘               └─────┬────────────────────┘
-       │              │                          │            NO CONECTAR
-       │ (1)          │ (3)                      │ (2)        AQUÍ AL BORNE
-       │ CABLE ROJO   │ CABLE NEGRO              │ CABLE ROJO
-       └──────────────┼──────────────────────────┘
-                      │
-                      └──────────────────────────────► (4) A MASA METÁLICA:
-                                                        Bloque del motor sin
-                                                        pintar o tornillo de chasis
-```
+![Protocolo Seguro de 4 Pasos para Pasar Corriente](assets/ilustracion_paso_corriente_bateria.svg)
+*Ilustración técnica: Secuencia obligatoria 1-2-3-4 para arrancar una batería agotada sin provocar chispas ni dañar la centralita.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.
@@ -598,29 +546,18 @@ Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a 
 Si de repente dejan de funcionar los limpiaparabrisas, la toma de 12V del mechero o una luz interior, el 90% de las veces no hay una avería grave: simplemente se ha "volado" (fundido) un fusible de $0.50 USD.
 
 ### La Anatomía de un Fusible de Cuchilla:
-```text
-      FUSIBLE BUENO                      FUSIBLE FUNDIDO / QUEMADO
-     ┌─────────────┐                          ┌─────────────┐
-     │   [ 15A ]   │                          │   [ 15A ]   │
-     │    ┌───┐    │                          │    ┌   ┐    │
-     │    │ ∩ │    │ <── Filamento en         │    │   │    │ <── Filamento roto
-     └────┴─┬─┴────┘     "U" intacto          └────┴─┬─┴────┘     o carbonizado
-           │ │                                      │ │
-```
+![Diagnóstico Visual: Fusible Bueno vs. Fusible Fundido](assets/ilustracion_fusible_bueno_quemado.svg)
+*Ilustración técnica: Comprobación a contraluz de filamento continuo en 'U' vs. filamento cortado o quemado por sobrecarga.*
 
 ### Tabla de Códigos de Color Estándar DIN:
-```text
-┌───────────────┬────────────────┬───────────────────────────────────────┐
-│ COLOR         │ AMPERAJE (A)   │ CIRCUITOS TÍPICOS PROTEGIDOS          │
-├───────────────┼────────────────┼───────────────────────────────────────┤
-│ Naranja / Beige│ 5 Amperios     │ Módulos de confort, sensores del cuadro│
-│ Rojo          │ 10 Amperios    │ Luces de posición, radio, airbag      │
-│ Azul          │ 15 Amperios    │ Tomas de mechero 12V, bomba limpiapar.│
-│ Amarillo      │ 20 Amperios    │ Faros principales, limpiaparabrisas   │
-│ Blanco / Claro│ 25 Amperios    │ Luneta térmica trasera, ventilador A/C│
-│ Verde         │ 30 Amperios    │ Elevalunas eléctricos, motor calefacc.│
-└───────────────┴────────────────┴───────────────────────────────────────┘
-```
+| Color del Fusible | Amperaje (A) | Circuitos Típicos Protegidos |
+| :--- | :---: | :--- |
+| **Naranja / Beige** | 5A | Módulos de confort, sensores del cuadro |
+| **Rojo** | 10A | Luces de posición, radio, airbag |
+| **Azul** | 15A | Tomas de mechero 12V, bomba limpiaparabrisas |
+| **Amarillo** | 20A | Faros principales, limpiaparabrisas |
+| **Blanco / Claro** | 25A | Luneta térmica trasera, ventilador A/C |
+| **Verde** | 30A | Elevalunas eléctricos, motor de calefacción |
 
 > [!CAUTION]
 > ### 🚫 LA REGLA SAGRADA DE LOS FUSIBLES
@@ -670,15 +607,11 @@ Purifica el aire que tú y tu familia respiran por las rejillas del aire acondic
 
 En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.
 
-```text
-┌─────────────────────────┬──────────────────────┬────────────────────────┬─────────────────────┐
-│ TIPO DE BUJÍA           │ MATERIAL ELECTRODO   │ INTERVALO DE REEMPLAZO │ RENDIMIENTO         │
-├─────────────────────────┼──────────────────────┼────────────────────────┼─────────────────────┤
-│ Cobre / Estándar        │ Núcleo de cobre      │ 20.000 a 30.000 km     │ Tradicional, barato │
-│ Platino (Single/Double) │ Pastilla de platino  │ 60.000 a 80.000 km     │ Alta durabilidad    │
-│ Iridio (Iridium)        │ Punta fina de iridio │ 100.000 a 120.000 km   │ Máxima eficiencia   │
-└─────────────────────────┴──────────────────────┴────────────────────────┴─────────────────────┘
-```
+| Tipo de Bujía | Material del Electrodo | Intervalo Típico de Reemplazo | Rendimiento |
+| :--- | :--- | :---: | :--- |
+| **Cobre / Estándar** | Núcleo de cobre tradicional | 20.000 a 30.000 km | Tradicional, económico |
+| **Platino (Single/Double)** | Pastilla de platino soldado | 60.000 a 80.000 km | Alta durabilidad y estabilidad |
+| **Iridio (Iridium)** | Punta extrafina de iridio | 100.000 a 120.000 km | Máxima eficiencia de chispa |
 
 ### Lectura Rápida del Electrodo al Retirarlas:
 - **Color café claro / gris tostado:** Combustión perfecta y motor en óptima salud.
@@ -692,18 +625,16 @@ En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 
 
 Muchos conductores confunden las dos correas del motor. Conocer la diferencia te evitará perder miles de dólares:
 
-```text
-┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
-│ CORREA DE ACCESORIOS (SERPENTINA / POLY-V)    │ CORREA DE DISTRIBUCIÓN (TIMING BELT)          │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ • Se ve a simple vista en el lateral motor    │ • Oculta bajo tapas plásticas herméticas      │
-│ • Es ranurada longitudinalmente               │ • Es dentada transversalmente (dientes duros) │
-│ • Mueve el alternador, bomba agua y compresor │ • Sincroniza el cigüeñal con el árbol levas   │
-│ • Si se rompe: Se apaga alternador/batería    │ • Si se rompe en motor de interferencia:      │
-│   y la dirección se endurece. Te detienes.    │   ¡LAS VÁLVULAS CHOCAN CONTRA LOS PISTONES    │
-│   Costo de reparación: $40 - $90 USD          │   Y EL MOTOR QUEDA DESTRUIDO! ($1.500+ USD)   │
-└───────────────────────────────────────────────┴───────────────────────────────────────────────┘
-```
+![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correa_accesorios_vs_distribucion.svg)
+*Ilustración técnica: Diferencias morfológicas y consecuencias de rotura entre correa Poly-V de accesorios y correa dentada de distribución.*
+
+| Característica | Correa de Accesorios (Poly-V) | Correa de Distribución (Timing Belt) |
+| :--- | :--- | :--- |
+| **Visibilidad** | Visible a simple vista al lateral del motor | Oculta bajo tapas plásticas herméticas |
+| **Morfología** | Ranuras longitudinales paralelas | Dientes de caucho transversales reforzados |
+| **Función** | Mueve alternador, compresor A/C y bomba | Sincroniza el giro del cigüeñal con el árbol de levas |
+| **Si se rompe** | Se apaga el alternador y se endurece la dirección | ¡Las válvulas chocan contra los pistones y destrozan el motor! |
+| **Costo reparación** | $40 - $90 USD (cambio sencillo) | $1.500 - $3.000+ USD en rectificado y motor nuevo |
 
 > [!CAUTION]
 > ### 🛑 ¿Tu Auto Tiene Correa o Cadena de Distribución?
@@ -744,19 +675,8 @@ Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es 
 Imagina un **molino de viento diminuto de altísima precisión**. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que **inyecta mucho más aire a presión dentro de los cilindros**. 
 - **El resultado:** Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.
 
-```text
-       CÓMO FUNCIONA EL TURBOCOMPRESOR EN UN MINUTO
-┌─────────────────────────┐                 ┌─────────────────────────┐
-│ GASES DE ESCAPE         │                 │ AIRE FRESCO EXTERIOR    │
-│ Salen calientes a 900°C │                 │ Entra por el filtro     │
-└───────────┬─────────────┘                 └───────────┬─────────────┘
-            │                                           │
-            ▼                                           ▼
-┌─────────────────────────┐   EJE DE ACERO  ┌─────────────────────────┐
-│ TURBINA DE ESCAPE       │═════════════════│ COMPRESOR DE ADMISIÓN   │
-│ Gira a 200.000+ RPM     │  Bañado en óleo │ Comprime el aire al mot.│
-└─────────────────────────┘                 └─────────────────────────┘
-```
+![Circuito del Turbocompresor y la Regla de los 60 Segundos](assets/ilustracion_turbo_ciclo_60segundos.svg)
+*Ilustración técnica: Flujo de gases a 950 °C, eje flotante a 200.000 RPM y el protocolo de ralentí preventivo.*
 
 ---
 
@@ -793,20 +713,11 @@ Los motores turboalimentados no perdonan el uso de aceites baratos o minerales:
 
 Aprende a identificar las señales de fatiga antes de una rotura catastrófica:
 
-```text
-┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
-│ SÍNTOMA SENSORIAL       │ QUÉ ESTÁ OCURRIENDO       │ ACCIÓN RECOMENDADA             │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 🚓 Silbido como sirena  │ Holgura en el eje flotante│ Acudir al taller de inmediato; │
-│ de policía al acelerar  │ y rozamiento de álabes    │ el turbo está por desarmarse   │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 💨 Humo azulado/blanco  │ Sellos desgastados dejan  │ Revisar nivel de aceite diario;│
-│ denso por el escape     │ pasar aceite a la turbina │ sustituir cartucho (CHRA)      │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ 🐌 Pérdida súbita de    │ Fuga en manguera interco. │ Inspeccionar abrazaderas o     │
-│ aceleración ("Limp Mode")│ o válvula wastegate trab.│ válvula de descarga            │
-└─────────────────────────┴───────────────────────────┴────────────────────────────────┘
-```
+| Síntoma Sensorial | Qué está Ocurriendo en el Turbo | Acción Recomendada |
+| :--- | :--- | :--- |
+| **🚓 Silbido como sirena de policía** al acelerar | Holgura excesiva en el eje flotante y roce de álabes | Acudir de inmediato al taller; el turbo está por romperse |
+| **💨 Humo denso azulado o blanquecino** por el escape | Retenes de aceite quemados dejan filtrar fluido | Revisar nivel de aceite a diario y cambiar cartucho (CHRA) |
+| **🐌 Pérdida súbita de aceleración ("Limp Mode")** | Manguera de intercooler rajada o válvula wastegate trabada | Inspeccionar abrazaderas, manguitos o válvula de descarga |
 
 
 ---
@@ -828,33 +739,22 @@ Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del 
 
 Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmediatamente según el código internacional de colores ISO 2575:
 
-```text
-┌─────────────────┬──────────────────────┬────────────────────────────────────────────────────────┐
-│ CÓDIGO DE COLOR │ SIGNIFICADO          │ ACCIÓN INMEDIATA REQUERIDA                             │
-├─────────────────┼──────────────────────┼────────────────────────────────────────────────────────┤
-│ 🔴 ROJO         │ PELIGRO GRAVE        │ Detenerse con seguridad de inmediato. Apagar motor.     │
-│ 🟡 ÁMBAR / AMAR.│ ANOMALÍA O AVISO     │ Conducir con cautela. Llevar a revisión en próximos días│
-│ 🟢 VERDE / AZUL │ INFORMACIÓN ACTIVA   │ Todo normal (luces altas, control de crucero, etc.)    │
-└─────────────────┴──────────────────────┴────────────────────────────────────────────────────────┘
-```
+![Semáforo de Prioridad de Testigos del Tablero](assets/ilustracion_semaforo_testigos.svg)
+*Ilustración técnica: Regla mnemotécnica de los colores del cuadro de instrumentos y protocolo de acción inmediata.*
 
 ---
 
 ## ⚠️ 2. Los 7 Testigos Críticos que Jamás Debes Ignorar
 
-```text
-┌───────────────────────────┬──────────────┬────────────────────────────────────────────────────────┐
-│ ICONO SIMBOLIZADO         │ COLOR        │ QUÉ SIGNIFICA REALMENTE                                │
-├───────────────────────────┼──────────────┼────────────────────────────────────────────────────────┤
-│ 🛢️ Tetera / Aladino       │ 🔴 Rojo      │ PRESIÓN DE ACEITE NULA: El motor se fundirá en segundos │
-│ 🌡️ Termómetro en Líquido  │ 🔴 Rojo      │ TEMPERATURA CRÍTICA: Sobrecalentamiento extremo        │
-│ 🪫 Batería con Polos      │ 🔴 Rojo      │ FALLO DE CARGA: El alternador no alimenta el vehículo  │
-│ 🛑 Círculo con Exclamación│ 🔴 Rojo      │ FRENO DE MANO ACTIVO o Fuga grave de líquido de frenos │
-│ 🏎️ Silueta de Motor       │ 🟡 Amarillo  │ CHECK ENGINE: Sensor defectuoso o fallo en combustión  │
-│ 🛞 Neumático con Rayas (!) │ 🟡 Amarillo  │ TPMS: Presión baja de aire en uno o más neumáticos     │
-│ ⭕ Círculo con siglas ABS  │ 🟡 Amarillo  │ ABS DESACTIVADO: Frenas como auto clásico sin antibloq.│
-└───────────────────────────┴──────────────┴────────────────────────────────────────────────────────┘
-```
+| Icono Simbolizado | Color | Significado Real sin Jerga |
+| :--- | :---: | :--- |
+| **🛢️ Tetera de Aceite** | 🔴 Rojo | **PRESIÓN DE ACEITE NULA:** El motor se fundirá en segundos si no lo apagas |
+| **🌡️ Termómetro en Líquido** | 🔴 Rojo | **TEMPERATURA CRÍTICA:** Sobrecalentamiento extremo del motor |
+| **🪫 Batería con Polos** | 🔴 Rojo | **FALLO DE ALTERNADOR:** El sistema eléctrico se alimenta solo de la batería |
+| **🛑 Círculo con Exclamación (!)** | 🔴 Rojo | **FRENO DE MANO O FUGA:** Nivel crítico en depósito de frenos |
+| **🏎️ Silueta de Motor (Check Engine)**| 🟡 Amarillo | **FALLO DE SISTEMA:** Sensor averiado o combustión imperfecta (escanear) |
+| **🛞 Neumático con Rayas (!)** | 🟡 Amarillo | **TPMS:** Presión baja de aire en uno o más neumáticos |
+| **⭕ Círculo con letras ABS** | 🟡 Amarillo | **ABS INACTIVO:** El auto frena pero sin antibloqueo en piso deslizante |
 
 > [!CAUTION]
 > ### 🛑 La Tetera Roja: La Emergencia Más Letal
@@ -867,14 +767,8 @@ Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmedia
 
 Desde 1996 en EE.UU. y 2001 en Europa, todos los automóviles cuentan por ley con un puerto estándar llamado **OBD-II (On-Board Diagnostics de 16 pines)**.
 
-```text
-               EL CONECTOR OBD-II DE 16 PINES
-         ┌───────────────────────────────────────────┐
-         \  1   2   3   4   5   6   7   8            /
-          \ 9  10  11  12  13  14  15  16           /
-           └───────────────────────────────────────┘
-  (Ubicación típica: Bajo el volante o junto a la caja de fusibles)
-```
+![Anatomía del Puerto OBD-II de 16 Pines](assets/ilustracion_conector_obd2.svg)
+*Ilustración técnica: Puerto hembra trapezoidal situado bajo el volante del conductor y asignación de pines de comunicación.*
 
 ### ¿Qué necesitas para leer tu auto tú mismo?
 1. **Un adaptador Bluetooth/Wi-Fi mini ELM327:** Cuesta entre $8 y $15 USD en Amazon o tiendas online.
@@ -892,16 +786,12 @@ La app te devolverá un código de 5 caracteres como `P0300`:
 - **3 (Subsistema):** Sistema de encendido / chispa.
 - **00 (Código específico):** Fallo de encendido aleatorio en los cilindros (Random/Multiple Cylinder Misfire).
 
-```text
-┌─────────────────┬──────────────────────────────────┬──────────────────────────────────────────┐
-│ CÓDIGO COMÚN    │ SIGNIFICADO                      │ CAUSA PROBABLE                           │
-├─────────────────┼──────────────────────────────────┼──────────────────────────────────────────┤
-│ P0301 / P0302   │ Fallo de chispa cilindro 1 o 2   │ Bujía gastada o bobina de encendido mala │
-│ P0420           │ Eficiencia de catalizador baja   │ Sensor de oxígeno sucio o catalizador    │
-│ P0171           │ Sistema demasiado pobre (Banco 1)│ Manguera de vacío rajada o caudalímetro  │
-│ P0442           │ Fuga pequeña en sistema EVAP     │ ¡El tapón de gasolina quedó mal cerrado! │
-└─────────────────┴──────────────────────────────────┴──────────────────────────────────────────┘
-```
+| Código Común OBD-II | Significado sin Jerga | Causa Más Frecuente |
+| :--- | :--- | :--- |
+| **P0301 / P0302 / P0303** | Fallo de encendido (chispa) en cilindro 1, 2 o 3 | Bujía desgastada o bobina de encendido defectuosa |
+| **P0420** | Eficiencia del catalizador por debajo del umbral | Sensor de oxígeno sucio o catalizador fatigado |
+| **P0171** | Sistema demasiado pobre (demasiado aire / poca nafta) | Manguera de vacío rajada o caudalímetro MAF sucio |
+| **P0442** | Fuga pequeña en sistema EVAP de vapores | ¡El tapón del tanque de combustible quedó mal cerrado! |
 
 > [!TIP]
 > ### 💡 Borrar el Código NO Repara la Falla
@@ -926,24 +816,20 @@ El mantenimiento automotriz no es un gasto caprichoso: es una póliza de seguro 
 
 A continuación, los intervalos recomendados por la industria automotriz global con costos aproximados de repuestos (precios orientativos en USD de marcas Tier 1 de calidad) y tiempos de mano de obra en taller:
 
-```text
-┌──────────────────────────────────────┬────────────────┬──────────────┬──────────────┬─────────────┐
-│ OPERACIÓN DE MANTENIMIENTO           │ INTERVALO      │ COSTO PIEZA  │ MANO DE OBRA │ DIFICULTAD  │
-├──────────────────────────────────────┼────────────────┼──────────────┼──────────────┼─────────────┤
-│ Aceite Sintético y Filtro de Aceite  │ 10.000 km / 1a │ $30 - $55    │ 0.5 - 1.0 h  │ DIY Fácil   │
-│ Rotación de los 4 Neumáticos         │ 10.000 km / 1a │ $0 (gratis)  │ 0.5 h        │ DIY Medio   │
-│ Filtro de Aire de Motor              │ 15.000 - 20.000│ $12 - $25    │ 0.2 h        │ DIY Sencillo│
-│ Filtro de Cabina (Antipolen)         │ 15.000 - 20.000│ $10 - $22    │ 0.3 h        │ DIY Sencillo│
-│ Escobillas Limpiaparabrisas          │ 1 año          │ $15 - $30    │ 0.1 h        │ DIY Sencillo│
-│ Líquido de Frenos (Purga completa)   │ 40.000 km / 2a │ $12 - $20    │ 1.0 h        │ Taller      │
-│ Pastillas de Freno Delanteras        │ 35.000 - 50.000│ $35 - $70    │ 1.0 h        │ Taller/Avan.│
-│ Bujías de Iridio (x4)                │ 80.000 - 100.00│ $40 - $75    │ 0.8 h        │ Taller/Medio│
-│ Cambio Líquido Refrigerante          │ 60.000 km / 3a │ $20 - $35    │ 1.0 h        │ Taller/Medio│
-│ Aceite de Transmisión Manual / ATF   │ 60.000 - 80.000│ $45 - $110   │ 1.5 h        │ Taller      │
-│ Kit Correa Distribución + Bomba Agua │ 90.000 - 120.00│ $120 - $250  │ 3.5 - 5.0 h  │ Taller Esp. │
-│ Amortiguadores Delanteros/Traseros   │ 80.000 - 100.00│ $150 - $350  │ 2.5 h        │ Taller Esp. │
-└──────────────────────────────────────┴────────────────┴──────────────┴──────────────┴─────────────┘
-```
+| Operación de Mantenimiento | Intervalo Típico | Costo Estimado Pieza | Mano de Obra | Nivel Dificultad |
+| :--- | :---: | :---: | :---: | :---: |
+| **Aceite Sintético + Filtro de Aceite** | 10.000 km / 1 año | $30 - $55 USD | 0.5 - 1.0 h | DIY Fácil |
+| **Rotación de los 4 Neumáticos** | 10.000 km / 1 año | $0 (gratis) | 0.5 h | DIY Medio |
+| **Filtro de Aire de Motor** | 15.000 - 20.000 km | $12 - $25 USD | 0.2 h | DIY Sencillo |
+| **Filtro de Cabina (Antipolen)** | 15.000 - 20.000 km | $10 - $22 USD | 0.3 h | DIY Sencillo |
+| **Escobillas Limpiaparabrisas** | 1 año | $15 - $30 USD | 0.1 h | DIY Sencillo |
+| **Líquido de Frenos (Purga completa)** | 40.000 km / 2 años | $12 - $20 USD | 1.0 h | Taller |
+| **Pastillas de Freno Delanteras** | 35.000 - 50.000 km | $35 - $70 USD | 1.0 h | Taller / Avanzado |
+| **Bujías de Iridio (x4)** | 80.000 - 100.000 km | $40 - $75 USD | 0.8 h | Taller / Medio |
+| **Cambio Líquido Refrigerante** | 60.000 km / 3 años | $20 - $35 USD | 1.0 h | Taller / Medio |
+| **Aceite de Transmisión Manual / ATF** | 60.000 - 80.000 km | $45 - $110 USD | 1.5 h | Taller Especializado |
+| **Kit Correa Distribución + Bomba Agua** | 90.000 - 120.000 km | $120 - $250 USD | 3.5 - 5.0 h | Taller Especializado |
+| **Amortiguadores Delanteros/Traseros** | 80.000 - 100.000 km | $150 - $350 USD | 2.5 h | Taller Especializado |
 
 ---
 
@@ -981,20 +867,9 @@ Aplica la regla internacional **PAS**:
 
 Cambiar una rueda ponchada parece intimidante, pero siguiendo esta secuencia lógica de 10 pasos no tendrás ningún contratiempo:
 
-```text
-                      SECUENCIA DEL CAMBIO DE LLANTA
- ┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
- │ 1. INMOVILIZ.│──►│ 2. AFLOJAR   │──►│ 3. COLOCAR   │──►│ 4. ELEVAR    │
- │ Freno de mano│   │ 1/2 vuelta en│   │ Gato en punto│   │ Rueda a 3 cm │
- │ y marcha     │   │ el SUELO     │   │ reforzado    │   │ del suelo    │
- └──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘
-                                                                 │
- ┌──────────────┐   ┌──────────────┐   ┌──────────────┐          │
- │ 7. APRIETE   │◄──│ 6. BAJAR     │◄──│ 5. CAMBIAR   │◄─────────┘
- │ FINAL en cruz│   │ auto al suelo│   │ Rueda ponch. │
- │ en el suelo  │   │ y retirar gat│   │ por repuesto │
- └──────────────┘   └──────────────┘   └──────────────┘
-```
+![Protocolo de 6 Pasos para Cambiar una Llanta Ponchada](assets/ilustracion_cambio_llanta_pasos.svg)
+*Ilustración técnica: Guía secuencial paso a paso para sustituir una rueda pinchada con máxima seguridad en carretera.*
+
 
 ### Los 10 Pasos Detallados:
 1. **Inmovilización Absoluta:** Terreno plano. Pon el freno de mano al máximo. Si es transmisión manual, coloca **1ª marcha** (o marcha atrás); si es automático, posición **"P" (Park)**.
@@ -1048,21 +923,14 @@ Este módulo te enseña las técnicas exactas de comunicación, documentación y
 ### La Regla de Oro: Describe Síntomas Sensoriales, JAMÁS des Diagnósticos.
 Cuando un conductor llega al taller diciendo: *"Creo que se rompió la transmisión automática"*, el mecánico deshonesto escucha: *"Esta persona está dispuesta a gastar $1.500 USD en una caja de cambios aunque solo sea un taco de motor de $40 USD"*.
 
-```text
-┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
-│ ❌ LO QUE NUNCA DEBES DECIR                   │ ✅ LA MANERA CORRECTA Y PRECISA               │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Creo que la suspensión trasera está rota"    │ "Escucho un golpe metálico en la rueda trasera│
-│                                               │ derecha al pasar por badenes a 30 km/h"       │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Cámbienme el alternador que la batería murió"│ "Por las mañanas el motor de arranque gira    │
-│                                               │ lento durante 3 segundos antes de encender"   │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Hagan lo que haga falta para que quede bien" │ "Revisen el origen del chirrido al frenar y   │
-│                                               │ llámenme con un presupuesto escrito detallado │
-│                                               │ antes de comprar o cambiar cualquier pieza"   │
-└───────────────────────────────────────────────┴───────────────────────────────────────────────┘
-```
+![Guía de Comunicación en el Taller Mecánico](assets/ilustracion_guia_taller_comunicacion.svg)
+*Ilustración técnica: Lo que nunca debes decir vs. la manera asertiva de reportar síntomas para evitar sobrecostos.*
+
+| ❌ Lo que NUNCA debes decir | ✅ La Manera Correcta y Precisa |
+| :--- | :--- |
+| "Creo que la suspensión trasera está rota" | "Escucho un golpe metálico en la rueda trasera derecha al pasar por badenes a 30 km/h" |
+| "Cámbienme el alternador que la batería murió" | "Por las mañanas el motor de arranque gira lento durante 3 segundos antes de encender" |
+| "Hagan lo que haga falta para que quede bien" | "Revisen el origen del chirrido al frenar y llámenme con un presupuesto escrito detallado antes de comprar o cambiar cualquier pieza" |
 
 ---
 
@@ -1089,17 +957,14 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 
 ![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
 *Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
-```text
-┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
-│ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
-├───────────────────────────┼──────────────────────────────────┼────────────────────────────────┤
-│ OEM (Original / Conces.)  │ Caja de la marca del auto        │ Máxima calidad, pero +50% caro │
-│ OES / Tier 1 Aftermarket  │ El fabricante real del OEM       │ MISMA calidad que OEM, pero a  │
-│ (Bosch, Denso, Mann, etc.)│ (Bosch, Brembo, Valeo, NGK, etc.)│ mitad de precio. ¡LA MEJOR OPC!│
-│ Genérico de Bajo Costo    │ Marcas blancas o copias sin sello│ Aceptable solo en plásticos;   │
-│                           │ de calidad comprobable           │ peligro en frenos y dirección  │
-└───────────────────────────┴──────────────────────────────────┴────────────────────────────────┘
-```
+![Pirámide de Calidad: OEM vs. OES Tier 1 vs. Genérico](assets/ilustracion_repuestos_oem_aftermarket.svg)
+*Ilustración técnica: Niveles de recambios, calidad real de fábrica y la oportunidad de ahorrar hasta un 50% con piezas OES.*
+
+| Tipo de Repuesto | Qué es en Realidad | Recomendación CharuAutos |
+| :--- | :--- | :--- |
+| **OEM (Original de Fábrica)** | Caja oficial con el logo de la marca del auto | Calidad máxima pero con sobreprecio del 40-60% |
+| **OES / Tier 1 (Bosch, Brembo, NGK, Mann)** | El fabricante real que surte las piezas al concesionario | **¡LA COMPRA INTELIGENTE!** Misma pieza que OEM a mitad de precio |
+| **Genérico de Bajo Costo (Marca blanca)** | Copias baratas sin pruebas de fatiga certificadas | ⚠️ Peligro en frenos y suspensión; solo aceptable en plásticos |
 
 ---
 
@@ -1180,21 +1045,16 @@ Huye si notas cualquiera de estos comportamientos:
 
 Imprime esta plantilla o consérvala en la guantera de tu auto junto a las facturas del taller:
 
-```text
-┌────────────┬─────────────┬────────────────────────────────┬──────────────┬──────────────┐
-│ FECHA      │ KILOMETRAJE │ TRABAJO / SERVICIO REALIZADO   │ TALLER / DIY │ COSTO TOTAL  │
-├────────────┼─────────────┼────────────────────────────────┼──────────────┼──────────────┤
-│ 15/03/2026 │ 45.200 km   │ Aceite 5W-30 + Filtro + Rotac. │ DIY en casa  │ $42.50 USD   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-└────────────┴─────────────┴────────────────────────────────┴──────────────┴──────────────┘
-```
+![Modelo Visual de Bitácora de Mantenimiento](assets/ilustracion_bitacora_mantenimiento.svg)
+*Ilustración técnica: Formato recomendado para registrar cada intervención mecánica y duplicar la confianza en la reventa.*
+
+| Fecha | Kilometraje | Servicio o Reparación Realizada | Taller / Proveedor | Costo Total |
+| :---: | :---: | :--- | :--- | :---: |
+| 15/03/2026 | 45.200 km | Aceite 5W-30 API SP + Filtro de Aceite + Rotación | DIY en casa | $42.50 USD |
+| 22/11/2025 | 38.900 km | Pastillas de freno delanteras Brembo (OES Tier 1) | Taller Especializado | $85.00 USD |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |
 
 ---
 

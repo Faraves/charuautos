@@ -8,18 +8,17 @@
 
 No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:
 
-```text
-┌──────────────────────────────────────┬───────────────┬───────────────────────────┐
-│ HERRAMIENTA RECOMENDADA              │ COSTO ESTIMADO│ UTILIDAD CLAVE            │
-├──────────────────────────────────────┼───────────────┼───────────────────────────┤
-│ 1. Calibrador Digital de Neumáticos  │ $8 - $12 USD  │ Medir presión en frío     │
-│ 2. Linterna Frontal LED (manos libres)│ $7 - $10 USD │ Iluminar sin ocupar manos │
-│ 3. Juego de Cables de Puente (4 AWG) │ $15 - $22 USD │ Arrancar batería muerta   │
-│ 4. Guantes de Trabajo Nitrilo / Piel │ $4 - $6 USD   │ Proteger de calor y grasa │
-│ 5. Paño de Microfibra y Toallitas    │ $3 - $5 USD   │ Limpiar varilla y manos   │
-│ 6. Llave Telescópica para Ruedas     │ $12 - $16 USD │ Palanca extra p/ tuercas  │
-└──────────────────────────────────────┴───────────────┴───────────────────────────┘
-```
+![El Kit Básico de Herramientas Recomendado](assets/ilustracion_herramientas_esenciales.svg)
+*Ilustración técnica: Las 6 herramientas y accesorios de prevención que todo conductor novato debe llevar en su vehículo.*
+
+| Herramienta Recomendada | Costo Estimado | Utilidad Clave en Ruta |
+| :--- | :---: | :--- |
+| **1. Calibrador Digital de Neumáticos** | $8 - $12 USD | Medir presión exacta en frío (PSI/Bar) |
+| **2. Linterna Frontal LED (Manos Libres)** | $7 - $10 USD | Iluminar vano motor o rueda sin ocupar manos |
+| **3. Juego de Cables de Puente (4 AWG)** | $15 - $22 USD | Rescate seguro de batería descargada |
+| **4. Guantes de Trabajo Nitrilo / Piel** | $4 - $6 USD | Protección contra calor, filos y grasa |
+| **5. Paños de Microfibra y Toallitas** | $3 - $5 USD | Limpieza de varilla de aceite y manos |
+| **6. Llave Telescópica Extensible** | $12 - $16 USD | Palanca adicional para aflojar tuercas apretadas |
 
 > [!TIP]
 > **El Secreto de la Llave Telescópica:** La llave pequeña en forma de "L" que traen los autos de fábrica es corta y requiere que hagas una fuerza sobrehumana para aflojar tuercas apretadas con pistola neumática en talleres. Una llave telescópica extensible duplica tu brazo de palanca: **con la mitad de esfuerzo aflojas cualquier tuerca fácilmente**.

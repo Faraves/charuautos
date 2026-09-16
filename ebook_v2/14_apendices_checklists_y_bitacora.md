@@ -56,18 +56,13 @@
 
 Imprime esta plantilla o consérvala en la guantera de tu auto junto a las facturas del taller:
 
-```text
-┌────────────┬─────────────┬────────────────────────────────┬──────────────┬──────────────┐
-│ FECHA      │ KILOMETRAJE │ TRABAJO / SERVICIO REALIZADO   │ TALLER / DIY │ COSTO TOTAL  │
-├────────────┼─────────────┼────────────────────────────────┼──────────────┼──────────────┤
-│ 15/03/2026 │ 45.200 km   │ Aceite 5W-30 + Filtro + Rotac. │ DIY en casa  │ $42.50 USD   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-│            │             │                                │              │              │
-│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
-└────────────┴─────────────┴────────────────────────────────┴──────────────┴──────────────┘
-```
+![Modelo Visual de Bitácora de Mantenimiento](assets/ilustracion_bitacora_mantenimiento.svg)
+*Ilustración técnica: Formato recomendado para registrar cada intervención mecánica y duplicar la confianza en la reventa.*
+
+| Fecha | Kilometraje | Servicio o Reparación Realizada | Taller / Proveedor | Costo Total |
+| :---: | :---: | :--- | :--- | :---: |
+| 15/03/2026 | 45.200 km | Aceite 5W-30 API SP + Filtro de Aceite + Rotación | DIY en casa | $42.50 USD |
+| 22/11/2025 | 38.900 km | Pastillas de freno delanteras Brembo (OES Tier 1) | Taller Especializado | $85.00 USD |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |
+| --/--/---- | ------- km | ________________________________________________ | ______________ | $------- |

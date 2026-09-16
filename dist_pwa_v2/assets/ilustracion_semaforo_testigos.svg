@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgDash" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a12"/>
+      <stop offset="100%" stop-color="#121826"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="480" rx="16" fill="url(#bgDash)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 10 • TESTIGOS DEL TABLERO</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">EL SEMÁFORO DE PRIORIDAD DEL TABLERO: CÓMO ACTUAR SEGÚN EL COLOR</text>
+  <text x="890" y="52" text-anchor="end" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">🚦 CRITERIO RÁPIDO</text>
+
+  <!-- Red Priority 1 Column -->
+  <g transform="translate(60, 95)">
+    <rect width="260" height="310" rx="12" fill="#17121b" stroke="#ff2a5f" stroke-width="2"/>
+    <circle cx="130" cy="38" r="20" fill="#ff2a5f"/>
+    <text x="130" y="45" text-anchor="middle" fill="#fff" font-size="18">🛑</text>
+    <text x="130" y="80" text-anchor="middle" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">TESTIGOS ROJOS</text>
+    <text x="130" y="98" text-anchor="middle" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800">PELIGRO CRÍTICO</text>
+    <line x1="20" y1="110" x2="240" y2="110" stroke="#ff2a5f" stroke-opacity="0.3"/>
+    
+    <text x="20" y="135" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🛢️ Presión de Aceite Nula</text>
+    <text x="20" y="160" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🌡️ Temperatura Crítica (&gt;115°C)</text>
+    <text x="20" y="185" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🪫 Fallo Alternador / Batería</text>
+    <text x="20" y="210" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🛑 Fallo de Líquido Frenos</text>
+
+    <rect x="16" y="235" width="228" height="55" rx="6" fill="#2d131f"/>
+    <text x="130" y="255" text-anchor="middle" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900">ACCIÓN OBLIGATORIA:</text>
+    <text x="130" y="275" text-anchor="middle" fill="#fff" font-family="'Inter', sans-serif" font-size="11">Detenerse con seguridad ya</text>
+  </g>
+
+  <!-- Yellow / Amber Priority 2 Column -->
+  <g transform="translate(350, 95)">
+    <rect width="260" height="310" rx="12" fill="#191913" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="130" cy="38" r="20" fill="#f59e0b"/>
+    <text x="130" y="45" text-anchor="middle" fill="#000" font-size="18">⚠️</text>
+    <text x="130" y="80" text-anchor="middle" fill="#f59e0b" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">TESTIGOS ÁMBAR</text>
+    <text x="130" y="98" text-anchor="middle" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800">ADVERTENCIA DEL SISTEMA</text>
+    <line x1="20" y1="110" x2="240" y2="110" stroke="#f59e0b" stroke-opacity="0.3"/>
+
+    <text x="20" y="135" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🏎️ Check Engine (Motor)</text>
+    <text x="20" y="160" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🛞 TPMS (Presión de Neumático)</text>
+    <text x="20" y="185" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">⭕ Fallo Sistema ABS / ESP</text>
+    <text x="20" y="210" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">⛽ Reserva de Combustible</text>
+
+    <rect x="16" y="235" width="228" height="55" rx="6" fill="#2d2613"/>
+    <text x="130" y="255" text-anchor="middle" fill="#f59e0b" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900">ACCIÓN RECOMENDADA:</text>
+    <text x="130" y="275" text-anchor="middle" fill="#fff" font-family="'Inter', sans-serif" font-size="11">Conducir suave y revisar pronto</text>
+  </g>
+
+  <!-- Green / Blue Priority 3 Column -->
+  <g transform="translate(640, 95)">
+    <rect width="260" height="310" rx="12" fill="#101c1c" stroke="#10b981" stroke-width="2"/>
+    <circle cx="130" cy="38" r="20" fill="#10b981"/>
+    <text x="130" y="45" text-anchor="middle" fill="#fff" font-size="18">✓</text>
+    <text x="130" y="80" text-anchor="middle" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">VERDE / AZUL</text>
+    <text x="130" y="98" text-anchor="middle" fill="#38bdf8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800">INFORMATIVO / ACTIVO</text>
+    <line x1="20" y1="110" x2="240" y2="110" stroke="#10b981" stroke-opacity="0.3"/>
+
+    <text x="20" y="135" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">💡 Luces de Posición / Cruce</text>
+    <text x="20" y="160" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🔵 Luces Altas / Carretera</text>
+    <text x="20" y="185" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">🔄 Intermitentes / Warning</text>
+    <text x="20" y="210" fill="#ffffff" font-family="'Inter', sans-serif" font-size="12" font-weight="600">⏱️ Control de Crucero Activo</text>
+
+    <rect x="16" y="235" width="228" height="55" rx="6" fill="#132a22"/>
+    <text x="130" y="255" text-anchor="middle" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900">ESTADO NORMAL:</text>
+    <text x="130" y="275" text-anchor="middle" fill="#fff" font-family="'Inter', sans-serif" font-size="11">Operación 100% segura</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="480" y="445" text-anchor="middle" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="12">
+    💡 <strong>Regla Mnemotécnica:</strong> Si es <strong style="fill:#ff2a5f;">ROJO</strong>, detente como en un semáforo. Si es <strong style="fill:#f59e0b;">AMARILLO</strong>, precaución. Si es <strong style="fill:#10b981;">VERDE</strong>, sigue adelante.
+  </text>
+</svg>

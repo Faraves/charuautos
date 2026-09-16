@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgPillar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#10192a"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" rx="16" fill="url(#bgPillar)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 06 • NEUMÁTICOS Y PRESIÓN</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">CÓMO LEER LA ETIQUETA OFICIAL DE PRESIÓN DEL FABRICANTE (PILAR B)</text>
+  <text x="890" y="52" text-anchor="end" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">🚪 MARCO DE PUERTA</text>
+
+  <!-- Left: Illustrated Door Placard Graphic -->
+  <g transform="translate(60, 95)">
+    <rect width="420" height="230" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Top yellow safety header in placard -->
+    <rect x="0" y="0" width="420" height="38" rx="6" fill="#eab308"/>
+    <text x="210" y="24" text-anchor="middle" fill="#000000" font-family="'Montserrat', sans-serif" font-size="12" font-weight="900">TIRE AND LOADING INFORMATION / INFORMACIÓN DE NEUMÁTICOS</text>
+
+    <!-- Table content inside placard -->
+    <line x1="0" y1="75" x2="420" y2="75" stroke="#94a3b8"/>
+    <line x1="0" y1="120" x2="420" y2="120" stroke="#94a3b8"/>
+    <line x1="0" y1="170" x2="420" y2="170" stroke="#94a3b8"/>
+    <line x1="160" y1="38" x2="160" y2="230" stroke="#94a3b8"/>
+    <line x1="290" y1="38" x2="290" y2="230" stroke="#94a3b8"/>
+
+    <!-- Row 1: Headers -->
+    <text x="80" y="60" text-anchor="middle" fill="#475569" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">DIMENSIÓN</text>
+    <text x="225" y="60" text-anchor="middle" fill="#475569" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">DELANTERA (FRONT)</text>
+    <text x="355" y="60" text-anchor="middle" fill="#475569" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">TRASERA (REAR)</text>
+
+    <!-- Row 2: Normal Load -->
+    <text x="80" y="98" text-anchor="middle" fill="#0f172a" font-family="'Montserrat', sans-serif" font-size="12" font-weight="900">205/55 R16</text>
+    <text x="80" y="112" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">Carga Normal</text>
+
+    <text x="225" y="98" text-anchor="middle" fill="#0284c7" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">32 PSI</text>
+    <text x="225" y="112" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">2.2 BAR</text>
+
+    <text x="355" y="98" text-anchor="middle" fill="#0284c7" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">30 PSI</text>
+    <text x="355" y="112" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">2.1 BAR</text>
+
+    <!-- Row 3: Full Load -->
+    <text x="80" y="148" text-anchor="middle" fill="#0f172a" font-family="'Montserrat', sans-serif" font-size="12" font-weight="900">CARGA PLENA</text>
+    <text x="80" y="162" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">5 ocupantes + equipaje</text>
+
+    <text x="225" y="148" text-anchor="middle" fill="#dc2626" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">35 PSI</text>
+    <text x="225" y="162" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">2.4 BAR</text>
+
+    <text x="355" y="148" text-anchor="middle" fill="#dc2626" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">36 PSI</text>
+    <text x="355" y="162" text-anchor="middle" fill="#64748b" font-family="'Inter', sans-serif" font-size="9">2.5 BAR</text>
+
+    <!-- Row 4: Spare Tire -->
+    <text x="80" y="200" text-anchor="middle" fill="#0f172a" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800">REPUESTO (SPARE)</text>
+    <text x="290" y="202" text-anchor="middle" fill="#ca8a04" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">60 PSI (4.2 BAR) - TIPO T</text>
+  </g>
+
+  <!-- Right: 3 Key Golden Rules -->
+  <g transform="translate(510, 95)">
+    <rect width="390" height="230" rx="10" fill="#111a2d" stroke="#253553" stroke-width="1.5"/>
+    <text x="25" y="28" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">3 REGLAS CLAVE PARA MEDIR LA PRESIÓN</text>
+    
+    <g transform="translate(20, 42)">
+      <circle cx="16" cy="16" r="14" fill="rgba(0,242,254,0.15)" stroke="#00f2fe"/>
+      <text x="16" y="21" text-anchor="middle" fill="#00f2fe" font-weight="900">1</text>
+      <text x="40" y="15" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700">SIEMPRE EN FRÍO:</text>
+      <text x="40" y="30" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">Mide antes de rodar más de 2 km. El calor aumenta +3 a 5 PSI.</text>
+    </g>
+
+    <g transform="translate(20, 95)">
+      <circle cx="16" cy="16" r="14" fill="rgba(245,158,11,0.15)" stroke="#f59e0b"/>
+      <text x="16" y="21" text-anchor="middle" fill="#f59e0b" font-weight="900">2</text>
+      <text x="40" y="15" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700">LA PRESIÓN DE LA RUEDA NO ES LA CORRECTA:</text>
+      <text x="40" y="30" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">El número en el flanco de la goma es el MÁXIMO, no el recomendado.</text>
+    </g>
+
+    <g transform="translate(20, 148)">
+      <circle cx="16" cy="16" r="14" fill="rgba(16,185,129,0.15)" stroke="#10b981"/>
+      <text x="16" y="21" text-anchor="middle" fill="#10b981" font-weight="900">3</text>
+      <text x="40" y="15" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700">REVISA EL REPUESTO CADA 3 MESES:</text>
+      <text x="40" y="30" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">No hay nada peor que pinchar y descubrir que el repuesto está desinflado.</text>
+    </g>
+  </g>
+
+  <!-- Location Hint Bottom -->
+  <text x="480" y="375" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">
+    📍 <strong>¿Dónde está la etiqueta?</strong> Abre la puerta del conductor y mira el marco central (Pilar B) o el reverso de la tapa del depósito de combustible.
+  </text>
+</svg>

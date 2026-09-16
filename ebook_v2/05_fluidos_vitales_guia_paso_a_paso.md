@@ -8,17 +8,13 @@
 
 Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:
 
-```text
-┌─────────────────────────┬──────────────────────┬────────────────────────┬──────────────────────┐
-│ FLUIDO                  │ COLOR SALUDABLE      │ CUÁNDO REVISAR         │ CONSECUENCIA DE FALLA│
-├─────────────────────────┼──────────────────────┼────────────────────────┼──────────────────────┤
-│ Aceite de Motor         │ Miel dorado a ámbar  │ Cada 1.000 km o 15 días│ Fundición de motor   │
-│ Líquido Refrigerante    │ Rosa, Verde o Azul   │ Cada mes (en frío)     │ Sobrecalentamiento   │
-│ Líquido de Frenos       │ Amarillo claro/Ámbar │ Cada 2 a 3 meses       │ Pérdida de frenada   │
-│ Dirección Asistida/ATF  │ Rojo grosella / Rosa │ Cada 3 meses           │ Dirección dura/falla │
-│ Limpiaparabrisas        │ Azul o verde claro   │ Cada semana            │ Cero visibilidad     │
-└─────────────────────────┴──────────────────────┴────────────────────────┴──────────────────────┘
-```
+| Fluido Vital | Color Saludable | Cuándo Revisar | Consecuencia de Falla |
+| :--- | :--- | :--- | :--- |
+| **Aceite de Motor** | Miel dorado a ámbar traslúcido | Cada 1.000 km o 15 días | Fundición completa del motor |
+| **Líquido Refrigerante** | Rosa fosforito, verde neón o azul | Mensualmente (siempre en frío) | Sobrecalentamiento y junta de culata |
+| **Líquido de Frenos** | Amarillo pálido a ámbar claro | Cada 2 a 3 meses | Pérdida total de capacidad de frenado |
+| **Dirección Asistida / ATF** | Rojo grosella brillante o rosa | Cada 3 meses | Dirección pesada y desgaste de bomba |
+| **Limpiaparabrisas** | Azul o verde traslúcido | Semanalmente | Visibilidad nula ante barro o lluvia |
 
 ---
 
@@ -33,17 +29,8 @@ El aceite lubrica las piezas metálicas que se mueven a miles de revoluciones po
 4. **Segunda inserción:** Introduce la varilla hasta el fondo firmemente, espera 3 segundos y extráela con cuidado manteniéndola vertical con la punta hacia abajo.
 5. **Lectura visual:** Observa dónde se sitúa la película brillante de aceite.
 
-```text
-               NIVEL CORRECTO: Entre MIN y MAX (Zona rayada)
-  ┌───────────────────────────────────────────────────────────────┐
-══╡ (MIN) • • • • • • • • • • • • • • • • • • • • • • • • • (MAX) ╞══► Hacia el mango
-  └───────────────────────────────────────────────────────────────┘
-    ▲                             ▲                          ▲
-    │                             │                          │
-  PELIGRO CRÍTICO            ZONA IDEAL                  SOBRELLENADO
-  Añadir 0.8 a 1.0 L        Perfecto estado           ¡Peligro de sobrepresión!
-  de inmediato               No tocar nada             Espuma y rotura de retenes
-```
+![Guía de Lectura de la Varilla de Aceite](assets/ilustracion_varilla_aceite.svg)
+*Ilustración técnica: Interpretación correcta de los niveles de la varilla (MIN, Zona Segura y el peligro grave del sobrellenado).*
 
 > [!WARNING]
 > ### ⚠️ El Error del Sobrellenado
@@ -89,14 +76,13 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
 
-```text
-┌─────────────────┬──────────────────────┬────────────────────────┬──────────────────────────────────┐
-│ COLOR DEL CHARCO│ TEXTURA / OLOR       │ ORIGEN PROBABLE        │ NIVEL DE URGENCIA                │
-├─────────────────┼──────────────────────┼────────────────────────┼──────────────────────────────────┤
-│ Transparente    │ Acuosa, inodora      │ Condensación de Aire A.│ 🟢 NORMAL: No es una fuga        │
-│ Marrón oscuro   │ Oleosa, resbaladiza  │ Aceite de motor        │ 🟡 MODERADO: Revisar nivel motor │
-│ Rosa / Verde    │ Acuosa, olor dulce   │ Líquido Refrigerante   │ 🔴 ALTO: Peligro de recalentón   │
-│ Rojo brillante  │ Aceitosa, fluido     │ ATF (Caja automática)  │ 🔴 ALTO: Acudir a taller         │
-│ Ámbar claro     │ Muy resbalosa        │ Líquido de Frenos      │ ⛔ CRÍTICO: NO CONDUCIR          │
-└─────────────────┴──────────────────────┴────────────────────────┴──────────────────────────────────┘
-```
+![Mapa Visual de Detección de Fugas por Color](assets/ilustracion_guia_colores_fluidos.svg)
+*Ilustración técnica: Identificación inmediata de fugas bajo el vehículo por color, viscosidad y nivel de urgencia.*
+
+| Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
+| :--- | :--- | :--- | :--- |
+| **Transparente** | Acuosa, inodora | Condensación de Aire Acondicionado | 🟢 **NORMAL:** No es una fuga de fluido |
+| **Marrón oscuro** | Oleosa, resbaladiza | Aceite lubricante de motor | 🟡 **MODERADO:** Revisar nivel en varilla |
+| **Rosa / Verde** | Acuosa, olor dulce | Líquido Refrigerante / Anticongelante | 🔴 **ALTO:** Peligro de sobrecalentamiento |
+| **Rojo brillante** | Aceitosa, fluido fino | ATF (Caja automática o servodirección) | 🔴 **ALTO:** Acudir a taller especializado |
+| **Ámbar claro** | Muy resbalosa al tacto | Líquido de Frenos | ⛔ **CRÍTICO: ¡NO CONDUCIR EL AUTO!** |

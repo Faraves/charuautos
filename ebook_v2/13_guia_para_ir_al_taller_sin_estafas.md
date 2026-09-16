@@ -17,21 +17,14 @@ Este módulo te enseña las técnicas exactas de comunicación, documentación y
 ### La Regla de Oro: Describe Síntomas Sensoriales, JAMÁS des Diagnósticos.
 Cuando un conductor llega al taller diciendo: *"Creo que se rompió la transmisión automática"*, el mecánico deshonesto escucha: *"Esta persona está dispuesta a gastar $1.500 USD en una caja de cambios aunque solo sea un taco de motor de $40 USD"*.
 
-```text
-┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
-│ ❌ LO QUE NUNCA DEBES DECIR                   │ ✅ LA MANERA CORRECTA Y PRECISA               │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Creo que la suspensión trasera está rota"    │ "Escucho un golpe metálico en la rueda trasera│
-│                                               │ derecha al pasar por badenes a 30 km/h"       │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Cámbienme el alternador que la batería murió"│ "Por las mañanas el motor de arranque gira    │
-│                                               │ lento durante 3 segundos antes de encender"   │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ "Hagan lo que haga falta para que quede bien" │ "Revisen el origen del chirrido al frenar y   │
-│                                               │ llámenme con un presupuesto escrito detallado │
-│                                               │ antes de comprar o cambiar cualquier pieza"   │
-└───────────────────────────────────────────────┴───────────────────────────────────────────────┘
-```
+![Guía de Comunicación en el Taller Mecánico](assets/ilustracion_guia_taller_comunicacion.svg)
+*Ilustración técnica: Lo que nunca debes decir vs. la manera asertiva de reportar síntomas para evitar sobrecostos.*
+
+| ❌ Lo que NUNCA debes decir | ✅ La Manera Correcta y Precisa |
+| :--- | :--- |
+| "Creo que la suspensión trasera está rota" | "Escucho un golpe metálico en la rueda trasera derecha al pasar por badenes a 30 km/h" |
+| "Cámbienme el alternador que la batería murió" | "Por las mañanas el motor de arranque gira lento durante 3 segundos antes de encender" |
+| "Hagan lo que haga falta para que quede bien" | "Revisen el origen del chirrido al frenar y llámenme con un presupuesto escrito detallado antes de comprar o cambiar cualquier pieza" |
 
 ---
 
@@ -58,17 +51,14 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 
 ![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
 *Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
-```text
-┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
-│ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
-├───────────────────────────┼──────────────────────────────────┼────────────────────────────────┤
-│ OEM (Original / Conces.)  │ Caja de la marca del auto        │ Máxima calidad, pero +50% caro │
-│ OES / Tier 1 Aftermarket  │ El fabricante real del OEM       │ MISMA calidad que OEM, pero a  │
-│ (Bosch, Denso, Mann, etc.)│ (Bosch, Brembo, Valeo, NGK, etc.)│ mitad de precio. ¡LA MEJOR OPC!│
-│ Genérico de Bajo Costo    │ Marcas blancas o copias sin sello│ Aceptable solo en plásticos;   │
-│                           │ de calidad comprobable           │ peligro en frenos y dirección  │
-└───────────────────────────┴──────────────────────────────────┴────────────────────────────────┘
-```
+![Pirámide de Calidad: OEM vs. OES Tier 1 vs. Genérico](assets/ilustracion_repuestos_oem_aftermarket.svg)
+*Ilustración técnica: Niveles de recambios, calidad real de fábrica y la oportunidad de ahorrar hasta un 50% con piezas OES.*
+
+| Tipo de Repuesto | Qué es en Realidad | Recomendación CharuAutos |
+| :--- | :--- | :--- |
+| **OEM (Original de Fábrica)** | Caja oficial con el logo de la marca del auto | Calidad máxima pero con sobreprecio del 40-60% |
+| **OES / Tier 1 (Bosch, Brembo, NGK, Mann)** | El fabricante real que surte las piezas al concesionario | **¡LA COMPRA INTELIGENTE!** Misma pieza que OEM a mitad de precio |
+| **Genérico de Bajo Costo (Marca blanca)** | Copias baratas sin pruebas de fatiga certificadas | ⚠️ Peligro en frenos y suspensión; solo aceptable en plásticos |
 
 ---
 

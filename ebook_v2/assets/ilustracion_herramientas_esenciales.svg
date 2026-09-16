@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgTools" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#10192a"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="520" rx="16" fill="url(#bgTools)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 03 • HERRAMIENTAS Y KIT DE EMERGENCIA</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">EL KIT DE HERRAMIENTAS BÁSICAS RECOMENDADO PARA TODO CONDUCTOR</text>
+  <text x="890" y="52" text-anchor="end" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">🧰 EN TU CAJUELA</text>
+
+  <!-- 6 Grid Cards (2 rows x 3 cols) -->
+  <!-- Tool 1: Manómetro Digital -->
+  <g transform="translate(60, 95)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#00f2fe" font-size="20">🛞</text>
+    <text x="52" y="28" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">1. CALIBRADOR DIGITAL</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $8 - $12 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Mide la presión en frío con precisión.</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• No confíes en el medidor de gasolineras.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#10b981" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Uso: 1 vez al mes en frío (PSI/Bar)</text>
+  </g>
+
+  <!-- Tool 2: Linterna Frontal -->
+  <g transform="translate(350, 95)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#ffb703" font-size="20">🔦</text>
+    <text x="52" y="28" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">2. LINTERNA FRONTAL LED</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $7 - $10 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Se ajusta a tu cabeza (manos libres).</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Cambiar llantas o mirar vano de noche.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#ffb703" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Recargable USB o pilas alcalinas AAA</text>
+  </g>
+
+  <!-- Tool 3: Cables de Puente -->
+  <g transform="translate(640, 95)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#ef4444" font-size="20">⚡</text>
+    <text x="52" y="28" fill="#ef4444" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">3. CABLES DE PUENTE</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $15 - $22 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Calibre grueso (mínimo 4 o 6 AWG).</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Pinzas de cobre macizo con aislamiento.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#00f2fe" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Evita cables finos que se recalientan</text>
+  </g>
+
+  <!-- Tool 4: Guantes de Trabajo -->
+  <g transform="translate(60, 295)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#10b981" font-size="20">🧤</text>
+    <text x="52" y="28" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">4. GUANTES DE TRABAJO</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $4 - $6 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Nitrilo grueso o cuero sintético.</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Protegen de bordes afilados y calor.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#10b981" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Mantienen tus manos limpias de grasa</text>
+  </g>
+
+  <!-- Tool 5: Microfibras y Toallitas -->
+  <g transform="translate(350, 295)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#38bdf8" font-size="20">🧻</text>
+    <text x="52" y="28" fill="#38bdf8" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">5. PAÑOS Y TOALLITAS</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $3 - $5 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Microfibra para limpiar la varilla de aceite.</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Toallitas húmedas desengrasantes.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#38bdf8" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Imprescindible para no ensuciar la cabina</text>
+  </g>
+
+  <!-- Tool 6: Llave Telescópica -->
+  <g transform="translate(640, 295)">
+    <rect width="260" height="180" rx="10" fill="#111c30" stroke="#2a3b5c" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#f59e0b" font-size="20">🔧</text>
+    <text x="52" y="28" fill="#f59e0b" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">6. LLAVE TELESCÓPICA</text>
+    <text x="52" y="44" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Costo estimado: $12 - $16 USD</text>
+    <line x1="20" y1="58" x2="240" y2="58" stroke="#1e293b"/>
+    <text x="20" y="80" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Brazo extensible que duplica el torque.</text>
+    <text x="20" y="100" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Afloja tuercas pegadas sin esfuerzo físico.</text>
+    <rect x="20" y="125" width="220" height="35" rx="4" fill="#16233d"/>
+    <text x="28" y="146" fill="#f59e0b" font-family="'Inter', sans-serif" font-size="10" font-weight="700">Incluye bocas reversibles 17/19 y 21/23 mm</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="480" y="495" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">
+    💡 Con este kit de menos de $60 USD en tu cajuela, estás preparado para resolver el 90% de los imprevistos en ruta.
+  </text>
+</svg>

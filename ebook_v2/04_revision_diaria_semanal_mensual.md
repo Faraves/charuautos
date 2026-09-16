@@ -16,17 +16,13 @@ Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de 
 
 Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:
 
-```text
-Paso 1: Mira el suelo debajo del motor
-└─ ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojos (caja)?
-   (Nota: Si usaste el A/C ayer, ver un charquito de agua pura es normal).
+![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360.svg)
+*Ilustración técnica: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
 
-Paso 2: Mirada perimétrica a los 4 neumáticos
-└─ ¿Alguna llanta se ve visiblemente más aplastada o "panzona" que las demás?
-
-Paso 3: Vidrios, espejos y luces limpias
-└─ ¿Parabrisas libre de hojas, ramas o suciedad que reste visibilidad?
-```
+- **Paso 1: Suelo bajo el motor.** ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojizos (caja)? *(Nota: agua clara e inodora es condensación normal del A/C).*
+- **Paso 2: Las 4 ruedas.** Comprueba visualmente que ninguna llanta se vea visiblemente aplastada o desinflada.
+- **Paso 3: Vidrios y retrovisores.** Parabrisas libre de excrementos de aves, nieve, ramas o suciedad que reste visibilidad.
+- **Paso 4: Entorno y carrocería.** Asegúrate de que no haya mascotas, juguetes o pilotes ocultos detrás de la trayectoria de salida.
 
 ---
 

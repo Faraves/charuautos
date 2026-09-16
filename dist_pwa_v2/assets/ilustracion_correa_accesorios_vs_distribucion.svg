@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgBelt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#121a2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="460" rx="16" fill="url(#bgBelt)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 08 • CORREAS Y DISTRIBUCIÓN</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">COMPARATIVA CRÍTICA: CORREA DE ACCESORIOS VS. CORREA DE DISTRIBUCIÓN</text>
+  <text x="890" y="52" text-anchor="end" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800">⚙️ CUIDA TU MOTOR</text>
+
+  <!-- Left: Correa de Accesorios -->
+  <g transform="translate(60, 95)">
+    <rect width="390" height="260" rx="12" fill="#111c30" stroke="#00f2fe" stroke-width="1.5"/>
+    <text x="195" y="32" text-anchor="middle" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">CORREA DE ACCESORIOS (POLY-V)</text>
+    
+    <!-- Belt Graphic -->
+    <rect x="30" y="50" width="330" height="40" rx="6" fill="#090f1d" stroke="#334155"/>
+    <!-- Longitudinal ribs -->
+    <line x1="40" y1="60" x2="350" y2="60" stroke="#00f2fe" stroke-width="2"/>
+    <line x1="40" y1="70" x2="350" y2="70" stroke="#00f2fe" stroke-width="2"/>
+    <line x1="40" y1="80" x2="350" y2="80" stroke="#00f2fe" stroke-width="2"/>
+    <text x="195" y="105" text-anchor="middle" fill="#94a3b8" font-size="10">Ranuras longitudinales paralelas</text>
+
+    <text x="30" y="135" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="12">• Visible a simple vista al lateral del motor.</text>
+    <text x="30" y="155" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="12">• Mueve el alternador, compresor A/C y bomba.</text>
+    <text x="30" y="175" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="12">• Si rompe: Te quedas sin batería ni dirección.</text>
+
+    <rect x="25" y="195" width="340" height="48" rx="6" fill="#15263d"/>
+    <text x="35" y="215" fill="#00f2fe" font-family="'Inter', sans-serif" font-size="11" font-weight="800">COSTO DE CAMBIO:</text>
+    <text x="35" y="232" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">$30 - $70 USD • Reemplazo sencillo (1 h)</text>
+  </g>
+
+  <!-- Right: Correa de Distribución -->
+  <g transform="translate(510, 95)">
+    <rect width="390" height="260" rx="12" fill="#111c30" stroke="#ff2a5f" stroke-width="1.5"/>
+    <text x="195" y="32" text-anchor="middle" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900">CORREA DE DISTRIBUCIÓN (TIMING BELT)</text>
+    
+    <!-- Belt Graphic with Heavy Teeth -->
+    <rect x="30" y="50" width="330" height="40" rx="6" fill="#090f1d" stroke="#ff2a5f"/>
+    <!-- Transverse Teeth -->
+    <g fill="#ff2a5f">
+      <rect x="50" y="52" width="6" height="15" rx="1"/>
+      <rect x="75" y="52" width="6" height="15" rx="1"/>
+      <rect x="100" y="52" width="6" height="15" rx="1"/>
+      <rect x="125" y="52" width="6" height="15" rx="1"/>
+      <rect x="150" y="52" width="6" height="15" rx="1"/>
+      <rect x="175" y="52" width="6" height="15" rx="1"/>
+      <rect x="200" y="52" width="6" height="15" rx="1"/>
+      <rect x="225" y="52" width="6" height="15" rx="1"/>
+      <rect x="250" y="52" width="6" height="15" rx="1"/>
+      <rect x="275" y="52" width="6" height="15" rx="1"/>
+      <rect x="300" y="52" width="6" height="15" rx="1"/>
+      <rect x="325" y="52" width="6" height="15" rx="1"/>
+    </g>
+    <text x="195" y="105" text-anchor="middle" fill="#ffb703" font-size="10" font-weight="bold">Dientes transversales de sincronización milimétrica</text>
+
+    <text x="30" y="135" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="12">• Oculta bajo tapas protectoras herméticas.</text>
+    <text x="30" y="155" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="12">• Sincroniza válvulas de admisión y pistones.</text>
+    <text x="30" y="175" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="800">• ¡Si rompe en marcha: VÁLVULAS CHOCAN Y MOTOR DESTRUIDO!</text>
+
+    <rect x="25" y="195" width="340" height="48" rx="6" fill="#2d131f"/>
+    <text x="35" y="215" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="800">PREVENCIÓN OBLIGATORIA:</text>
+    <text x="35" y="232" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">Cambiar cada 90.000 - 120.000 km o 5 años ($1.500 si falla)</text>
+  </g>
+
+  <!-- Footnote -->
+  <g transform="translate(60, 375)">
+    <rect width="840" height="60" rx="8" fill="#0d1424" stroke="#1e293b"/>
+    <text x="420" y="35" text-anchor="middle" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="12">
+      ⚠️ <strong style="fill:#ffb703;">Nota Técnica:</strong> Muchos autos modernos usan cadena de distribución metálica en vez de correa de caucho. Consulta el manual para saber cuál lleva tu vehículo.
+    </text>
+  </g>
+</svg>

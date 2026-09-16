@@ -14,24 +14,20 @@ El mantenimiento automotriz no es un gasto caprichoso: es una póliza de seguro 
 
 A continuación, los intervalos recomendados por la industria automotriz global con costos aproximados de repuestos (precios orientativos en USD de marcas Tier 1 de calidad) y tiempos de mano de obra en taller:
 
-```text
-┌──────────────────────────────────────┬────────────────┬──────────────┬──────────────┬─────────────┐
-│ OPERACIÓN DE MANTENIMIENTO           │ INTERVALO      │ COSTO PIEZA  │ MANO DE OBRA │ DIFICULTAD  │
-├──────────────────────────────────────┼────────────────┼──────────────┼──────────────┼─────────────┤
-│ Aceite Sintético y Filtro de Aceite  │ 10.000 km / 1a │ $30 - $55    │ 0.5 - 1.0 h  │ DIY Fácil   │
-│ Rotación de los 4 Neumáticos         │ 10.000 km / 1a │ $0 (gratis)  │ 0.5 h        │ DIY Medio   │
-│ Filtro de Aire de Motor              │ 15.000 - 20.000│ $12 - $25    │ 0.2 h        │ DIY Sencillo│
-│ Filtro de Cabina (Antipolen)         │ 15.000 - 20.000│ $10 - $22    │ 0.3 h        │ DIY Sencillo│
-│ Escobillas Limpiaparabrisas          │ 1 año          │ $15 - $30    │ 0.1 h        │ DIY Sencillo│
-│ Líquido de Frenos (Purga completa)   │ 40.000 km / 2a │ $12 - $20    │ 1.0 h        │ Taller      │
-│ Pastillas de Freno Delanteras        │ 35.000 - 50.000│ $35 - $70    │ 1.0 h        │ Taller/Avan.│
-│ Bujías de Iridio (x4)                │ 80.000 - 100.00│ $40 - $75    │ 0.8 h        │ Taller/Medio│
-│ Cambio Líquido Refrigerante          │ 60.000 km / 3a │ $20 - $35    │ 1.0 h        │ Taller/Medio│
-│ Aceite de Transmisión Manual / ATF   │ 60.000 - 80.000│ $45 - $110   │ 1.5 h        │ Taller      │
-│ Kit Correa Distribución + Bomba Agua │ 90.000 - 120.00│ $120 - $250  │ 3.5 - 5.0 h  │ Taller Esp. │
-│ Amortiguadores Delanteros/Traseros   │ 80.000 - 100.00│ $150 - $350  │ 2.5 h        │ Taller Esp. │
-└──────────────────────────────────────┴────────────────┴──────────────┴──────────────┴─────────────┘
-```
+| Operación de Mantenimiento | Intervalo Típico | Costo Estimado Pieza | Mano de Obra | Nivel Dificultad |
+| :--- | :---: | :---: | :---: | :---: |
+| **Aceite Sintético + Filtro de Aceite** | 10.000 km / 1 año | $30 - $55 USD | 0.5 - 1.0 h | DIY Fácil |
+| **Rotación de los 4 Neumáticos** | 10.000 km / 1 año | $0 (gratis) | 0.5 h | DIY Medio |
+| **Filtro de Aire de Motor** | 15.000 - 20.000 km | $12 - $25 USD | 0.2 h | DIY Sencillo |
+| **Filtro de Cabina (Antipolen)** | 15.000 - 20.000 km | $10 - $22 USD | 0.3 h | DIY Sencillo |
+| **Escobillas Limpiaparabrisas** | 1 año | $15 - $30 USD | 0.1 h | DIY Sencillo |
+| **Líquido de Frenos (Purga completa)** | 40.000 km / 2 años | $12 - $20 USD | 1.0 h | Taller |
+| **Pastillas de Freno Delanteras** | 35.000 - 50.000 km | $35 - $70 USD | 1.0 h | Taller / Avanzado |
+| **Bujías de Iridio (x4)** | 80.000 - 100.000 km | $40 - $75 USD | 0.8 h | Taller / Medio |
+| **Cambio Líquido Refrigerante** | 60.000 km / 3 años | $20 - $35 USD | 1.0 h | Taller / Medio |
+| **Aceite de Transmisión Manual / ATF** | 60.000 - 80.000 km | $45 - $110 USD | 1.5 h | Taller Especializado |
+| **Kit Correa Distribución + Bomba Agua** | 90.000 - 120.000 km | $120 - $250 USD | 3.5 - 5.0 h | Taller Especializado |
+| **Amortiguadores Delanteros/Traseros** | 80.000 - 100.000 km | $150 - $350 USD | 2.5 h | Taller Especializado |
 
 ---
 

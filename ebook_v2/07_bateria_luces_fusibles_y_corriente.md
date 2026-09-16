@@ -21,22 +21,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-```text
-                    DIAGRAMA DE CONEXIÓN DE CABLES
-   AUTO AUXILIADOR (DONANTE)               AUTO VARADO (BATERÍA AGOTADA)
-   ┌───────────────────────┐               ┌──────────────────────────┐
-   │       BATERÍA         │               │         BATERÍA          │
-   │  [ + ]         [ - ]  │               │    [ + ]         [ - ]   │
-   └───┬──────────────┬────┘               └─────┬────────────────────┘
-       │              │                          │            NO CONECTAR
-       │ (1)          │ (3)                      │ (2)        AQUÍ AL BORNE
-       │ CABLE ROJO   │ CABLE NEGRO              │ CABLE ROJO
-       └──────────────┼──────────────────────────┘
-                      │
-                      └──────────────────────────────► (4) A MASA METÁLICA:
-                                                        Bloque del motor sin
-                                                        pintar o tornillo de chasis
-```
+![Protocolo Seguro de 4 Pasos para Pasar Corriente](assets/ilustracion_paso_corriente_bateria.svg)
+*Ilustración técnica: Secuencia obligatoria 1-2-3-4 para arrancar una batería agotada sin provocar chispas ni dañar la centralita.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.
@@ -62,29 +48,18 @@ Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a 
 Si de repente dejan de funcionar los limpiaparabrisas, la toma de 12V del mechero o una luz interior, el 90% de las veces no hay una avería grave: simplemente se ha "volado" (fundido) un fusible de $0.50 USD.
 
 ### La Anatomía de un Fusible de Cuchilla:
-```text
-      FUSIBLE BUENO                      FUSIBLE FUNDIDO / QUEMADO
-     ┌─────────────┐                          ┌─────────────┐
-     │   [ 15A ]   │                          │   [ 15A ]   │
-     │    ┌───┐    │                          │    ┌   ┐    │
-     │    │ ∩ │    │ <── Filamento en         │    │   │    │ <── Filamento roto
-     └────┴─┬─┴────┘     "U" intacto          └────┴─┬─┴────┘     o carbonizado
-           │ │                                      │ │
-```
+![Diagnóstico Visual: Fusible Bueno vs. Fusible Fundido](assets/ilustracion_fusible_bueno_quemado.svg)
+*Ilustración técnica: Comprobación a contraluz de filamento continuo en 'U' vs. filamento cortado o quemado por sobrecarga.*
 
 ### Tabla de Códigos de Color Estándar DIN:
-```text
-┌───────────────┬────────────────┬───────────────────────────────────────┐
-│ COLOR         │ AMPERAJE (A)   │ CIRCUITOS TÍPICOS PROTEGIDOS          │
-├───────────────┼────────────────┼───────────────────────────────────────┤
-│ Naranja / Beige│ 5 Amperios     │ Módulos de confort, sensores del cuadro│
-│ Rojo          │ 10 Amperios    │ Luces de posición, radio, airbag      │
-│ Azul          │ 15 Amperios    │ Tomas de mechero 12V, bomba limpiapar.│
-│ Amarillo      │ 20 Amperios    │ Faros principales, limpiaparabrisas   │
-│ Blanco / Claro│ 25 Amperios    │ Luneta térmica trasera, ventilador A/C│
-│ Verde         │ 30 Amperios    │ Elevalunas eléctricos, motor calefacc.│
-└───────────────┴────────────────┴───────────────────────────────────────┘
-```
+| Color del Fusible | Amperaje (A) | Circuitos Típicos Protegidos |
+| :--- | :---: | :--- |
+| **Naranja / Beige** | 5A | Módulos de confort, sensores del cuadro |
+| **Rojo** | 10A | Luces de posición, radio, airbag |
+| **Azul** | 15A | Tomas de mechero 12V, bomba limpiaparabrisas |
+| **Amarillo** | 20A | Faros principales, limpiaparabrisas |
+| **Blanco / Claro** | 25A | Luneta térmica trasera, ventilador A/C |
+| **Verde** | 30A | Elevalunas eléctricos, motor de calefacción |
 
 > [!CAUTION]
 > ### 🚫 LA REGLA SAGRADA DE LOS FUSIBLES

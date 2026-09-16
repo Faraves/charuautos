@@ -17,17 +17,8 @@ El error más común es leer la presión máxima grabada en el flanco del neumá
 ### Dónde está la etiqueta oficial de tu auto:
 Abre la puerta del conductor y mira el **pilar B** (el marco metálico donde traba la puerta). Allí encontrarás una placa metálica o pegatina con la presión exacta para tu modelo (expresada en PSI y BAR), distinguiendo entre carga normal y carga completa con equipaje.
 
-```text
-       PEGATINA TÍPICA EN EL MARCO DE LA PUERTA (PILAR B)
-┌─────────────────────────────────────────────────────────────┐
-│  TIRE AND LOADING INFORMATION / INFORMACIÓN DE NEUMÁTICOS   │
-├───────────────────┬─────────────────────┬───────────────────┤
-│  DIMENSIÓN RUEDA  │  DELANTERA (FRONT)  │  TRASERA (REAR)   │
-├───────────────────┼─────────────────────┼───────────────────┤
-│  205/55 R16 91V   │  32 PSI (2.2 BAR)   │  30 PSI (2.1 BAR) │
-│  Con carga plena  │  35 PSI (2.4 BAR)   │  36 PSI (2.5 BAR) │
-└───────────────────┴─────────────────────┴───────────────────┘
-```
+![Etiqueta Oficial de Presión de Neumáticos en Pilar B](assets/ilustracion_etiqueta_presion_pilar.svg)
+*Ilustración técnica: Ejemplo real de la placa de inflado del fabricante ubicada en el marco de la puerta del conductor.*
 
 ### ¿Qué significa medir "en frío"?:
 Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado estacionado durante al menos **2 horas**. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.
@@ -46,13 +37,8 @@ El límite legal mínimo en la mayoría de países es de **1.6 mm** de profundid
 2. Introdúcela en las ranuras centrales de la banda de rodadura.
 3. Si puedes ver la parte superior de la corona o el borde exterior completo sin que el surco lo cubra, el neumático ha perdido sus canales de evacuación hidrodinámica: **el riesgo de aquaplaning en lluvia es inminente**.
 
-```text
-     NEUMÁTICO SANO (> 3mm)            NEUMÁTICO PELIGROSO (< 1.6mm)
-   ┌───┐    ┌───┐    ┌───┐            ┌───┐    ┌───┐    ┌───┐
-   │   │    │   │    │   │            │   │    │   │    │   │
-───┘   └────┘   └────┘   └───      ───┘   └────┘   └────┘   └───
-  [ Surco Profundo: Desaloja ]       [ Surco Raso: Desliza en agua ]
-```
+![Evaluación de Profundidad de Huella y Aquaplaning](assets/ilustracion_neumatico_desgaste_profundidad.svg)
+*Ilustración técnica: Comparativa de canal de evacuación de agua entre neumático en buen estado (>3 mm) y desgastado (<1.6 mm).*
 
 ### B. El Código DOT: La Fecha de Caducidad de la Goma:
 Los neumáticos caducan por envejecimiento natural de los polímeros del caucho (se cristalizan y se vuelven rígidos como plástico), aunque nunca se hayan usado y tengan el dibujo intacto.
@@ -76,16 +62,12 @@ Los neumáticos caducan por envejecimiento natural de los polímeros del caucho 
 
 No necesitas desarmar la rueda para tener una estimación del estado de tus frenos en la mayoría de rines de aleación:
 
-```text
-┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
-│ ELEMENTO                │ CONDICIÓN SALUDABLE       │ SEÑAL DE REEMPLAZO URGENTE     │
-├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
-│ Grosor de Pastilla      │ 8 mm a 12 mm de material  │ Menos de 3 mm (Acudir a taller)│
-│ Disco de Freno          │ Superficie lisa y pulida  │ Surcos profundos o reborde alto│
-│ Sonido al Frenar        │ Silencio o leve fricción  │ Chirrido metálico chillón      │
-│ Tacto en el Pedal       │ Firme y progresivo        │ Esponjoso o vibra fuertemente  │
-└─────────────────────────┴───────────────────────────┴────────────────────────────────┘
-```
+| Elemento de Freno | Condición Saludable | Señal de Reemplazo Urgente |
+| :--- | :--- | :--- |
+| **Grosor de Pastilla** | 8 mm a 12 mm de material | Menos de 3 mm (Acudir de inmediato al taller) |
+| **Disco de Freno** | Superficie lisa y pulida | Surcos profundos, reborde alto o alabeo |
+| **Sonido al Frenar** | Silencio o leve fricción suave | Chirrido metálico chillón continuo |
+| **Tacto en el Pedal** | Firme, directo y progresivo | Esponjoso, se va al fondo o vibra con fuerza |
 
 > [!NOTE]
 > ### 🎵 El Famoso "Chirrido de Chivato"

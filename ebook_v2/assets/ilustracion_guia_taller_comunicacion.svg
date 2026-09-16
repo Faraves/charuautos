@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgComm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#10192a"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="480" rx="16" fill="url(#bgComm)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 13 • COMUNICACIÓN EN EL TALLER</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">CÓMO HABLAR CON EL MECÁNICO: LO QUE DEBES DECIR VS. LO QUE NUNCA DEBES DECIR</text>
+  <text x="890" y="52" text-anchor="end" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">🛡️ EVITA COBROS DE MÁS</text>
+
+  <!-- Left: Never Say -->
+  <g transform="translate(60, 95)">
+    <rect width="400" height="320" rx="12" fill="#1a1116" stroke="#ff2a5f" stroke-width="1.5"/>
+    <text x="200" y="32" text-anchor="middle" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">❌ NUNCA DIGAS ESTO EN UN TALLER</text>
+    <line x1="20" y1="46" x2="380" y2="46" stroke="#ff2a5f" stroke-opacity="0.3"/>
+
+    <g transform="translate(20, 60)">
+      <text x="0" y="16" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Creo que la suspensión está rota"</text>
+      <text x="0" y="32" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="10">Efecto: Les das pie para cambiar amortiguadores sanos.</text>
+    </g>
+
+    <g transform="translate(20, 115)">
+      <text x="0" y="16" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Cámbienme el alternador que la batería murió"</text>
+      <text x="0" y="32" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="10">Efecto: Pagarás un alternador nuevo aunque fuera un borne flojo.</text>
+    </g>
+
+    <g transform="translate(20, 170)">
+      <text x="0" y="16" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Hagan lo que haga falta para que quede bien"</text>
+      <text x="0" y="32" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="10" font-weight="bold">¡ERROR FATAL! Es un cheque en blanco para inflar horas.</text>
+    </g>
+
+    <rect x="20" y="235" width="360" height="60" rx="6" fill="#2d131f"/>
+    <text x="32" y="258" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">REGLA PSICOLÓGICA:</text>
+    <text x="32" y="278" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">Nunca intentes adivinar la pieza averiada delante del receptor.</text>
+  </g>
+
+  <!-- Right: Say This -->
+  <g transform="translate(500, 95)">
+    <rect width="400" height="320" rx="12" fill="#11221e" stroke="#10b981" stroke-width="1.5"/>
+    <text x="200" y="32" text-anchor="middle" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">✅ LA MANERA TÉCNICA Y PRECISA</text>
+    <line x1="20" y1="46" x2="380" y2="46" stroke="#10b981" stroke-opacity="0.3"/>
+
+    <g transform="translate(20, 60)">
+      <text x="0" y="16" fill="#10b981" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Escucho un golpe metálico en la rueda derecha"</text>
+      <text x="0" y="32" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">"Ocurre al pasar por baches a 30 km/h con el volante recto".</text>
+    </g>
+
+    <g transform="translate(20, 115)">
+      <text x="0" y="16" fill="#10b981" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Por las mañanas el arranque gira 3 seg antes de prender"</text>
+      <text x="0" y="32" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">Describes el síntoma exacto y dejas que ellos diagnostiquen.</text>
+    </g>
+
+    <g transform="translate(20, 170)">
+      <text x="0" y="16" fill="#10b981" font-family="'Inter', sans-serif" font-size="11" font-weight="700">"Llámenme con presupuesto escrito antes de tocar nada"</text>
+      <text x="0" y="32" fill="#38ef7d" font-family="'Inter', sans-serif" font-size="10" font-weight="bold">"Y por favor guarden las piezas viejas sustituidas en el baúl".</text>
+    </g>
+
+    <rect x="20" y="235" width="360" height="60" rx="6" fill="#132b24"/>
+    <text x="32" y="258" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">EL PODER DEL CLIENTE INFORMADO:</text>
+    <text x="32" y="278" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">Pedir las piezas cambiadas disuade el 99% de cobros falsos.</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="480" y="445" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">
+    📋 Describe siempre el síntoma con tres datos: <strong>Cuándo ocurre</strong>, <strong>dónde suena/se siente</strong> y <strong>a qué velocidad</strong>.
+  </text>
+</svg>

@@ -15,33 +15,22 @@ Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del 
 
 Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmediatamente según el código internacional de colores ISO 2575:
 
-```text
-┌─────────────────┬──────────────────────┬────────────────────────────────────────────────────────┐
-│ CÓDIGO DE COLOR │ SIGNIFICADO          │ ACCIÓN INMEDIATA REQUERIDA                             │
-├─────────────────┼──────────────────────┼────────────────────────────────────────────────────────┤
-│ 🔴 ROJO         │ PELIGRO GRAVE        │ Detenerse con seguridad de inmediato. Apagar motor.     │
-│ 🟡 ÁMBAR / AMAR.│ ANOMALÍA O AVISO     │ Conducir con cautela. Llevar a revisión en próximos días│
-│ 🟢 VERDE / AZUL │ INFORMACIÓN ACTIVA   │ Todo normal (luces altas, control de crucero, etc.)    │
-└─────────────────┴──────────────────────┴────────────────────────────────────────────────────────┘
-```
+![Semáforo de Prioridad de Testigos del Tablero](assets/ilustracion_semaforo_testigos.svg)
+*Ilustración técnica: Regla mnemotécnica de los colores del cuadro de instrumentos y protocolo de acción inmediata.*
 
 ---
 
 ## ⚠️ 2. Los 7 Testigos Críticos que Jamás Debes Ignorar
 
-```text
-┌───────────────────────────┬──────────────┬────────────────────────────────────────────────────────┐
-│ ICONO SIMBOLIZADO         │ COLOR        │ QUÉ SIGNIFICA REALMENTE                                │
-├───────────────────────────┼──────────────┼────────────────────────────────────────────────────────┤
-│ 🛢️ Tetera / Aladino       │ 🔴 Rojo      │ PRESIÓN DE ACEITE NULA: El motor se fundirá en segundos │
-│ 🌡️ Termómetro en Líquido  │ 🔴 Rojo      │ TEMPERATURA CRÍTICA: Sobrecalentamiento extremo        │
-│ 🪫 Batería con Polos      │ 🔴 Rojo      │ FALLO DE CARGA: El alternador no alimenta el vehículo  │
-│ 🛑 Círculo con Exclamación│ 🔴 Rojo      │ FRENO DE MANO ACTIVO o Fuga grave de líquido de frenos │
-│ 🏎️ Silueta de Motor       │ 🟡 Amarillo  │ CHECK ENGINE: Sensor defectuoso o fallo en combustión  │
-│ 🛞 Neumático con Rayas (!) │ 🟡 Amarillo  │ TPMS: Presión baja de aire en uno o más neumáticos     │
-│ ⭕ Círculo con siglas ABS  │ 🟡 Amarillo  │ ABS DESACTIVADO: Frenas como auto clásico sin antibloq.│
-└───────────────────────────┴──────────────┴────────────────────────────────────────────────────────┘
-```
+| Icono Simbolizado | Color | Significado Real sin Jerga |
+| :--- | :---: | :--- |
+| **🛢️ Tetera de Aceite** | 🔴 Rojo | **PRESIÓN DE ACEITE NULA:** El motor se fundirá en segundos si no lo apagas |
+| **🌡️ Termómetro en Líquido** | 🔴 Rojo | **TEMPERATURA CRÍTICA:** Sobrecalentamiento extremo del motor |
+| **🪫 Batería con Polos** | 🔴 Rojo | **FALLO DE ALTERNADOR:** El sistema eléctrico se alimenta solo de la batería |
+| **🛑 Círculo con Exclamación (!)** | 🔴 Rojo | **FRENO DE MANO O FUGA:** Nivel crítico en depósito de frenos |
+| **🏎️ Silueta de Motor (Check Engine)**| 🟡 Amarillo | **FALLO DE SISTEMA:** Sensor averiado o combustión imperfecta (escanear) |
+| **🛞 Neumático con Rayas (!)** | 🟡 Amarillo | **TPMS:** Presión baja de aire en uno o más neumáticos |
+| **⭕ Círculo con letras ABS** | 🟡 Amarillo | **ABS INACTIVO:** El auto frena pero sin antibloqueo en piso deslizante |
 
 > [!CAUTION]
 > ### 🛑 La Tetera Roja: La Emergencia Más Letal
@@ -54,14 +43,8 @@ Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmedia
 
 Desde 1996 en EE.UU. y 2001 en Europa, todos los automóviles cuentan por ley con un puerto estándar llamado **OBD-II (On-Board Diagnostics de 16 pines)**.
 
-```text
-               EL CONECTOR OBD-II DE 16 PINES
-         ┌───────────────────────────────────────────┐
-         \  1   2   3   4   5   6   7   8            /
-          \ 9  10  11  12  13  14  15  16           /
-           └───────────────────────────────────────┘
-  (Ubicación típica: Bajo el volante o junto a la caja de fusibles)
-```
+![Anatomía del Puerto OBD-II de 16 Pines](assets/ilustracion_conector_obd2.svg)
+*Ilustración técnica: Puerto hembra trapezoidal situado bajo el volante del conductor y asignación de pines de comunicación.*
 
 ### ¿Qué necesitas para leer tu auto tú mismo?
 1. **Un adaptador Bluetooth/Wi-Fi mini ELM327:** Cuesta entre $8 y $15 USD en Amazon o tiendas online.
@@ -79,16 +62,12 @@ La app te devolverá un código de 5 caracteres como `P0300`:
 - **3 (Subsistema):** Sistema de encendido / chispa.
 - **00 (Código específico):** Fallo de encendido aleatorio en los cilindros (Random/Multiple Cylinder Misfire).
 
-```text
-┌─────────────────┬──────────────────────────────────┬──────────────────────────────────────────┐
-│ CÓDIGO COMÚN    │ SIGNIFICADO                      │ CAUSA PROBABLE                           │
-├─────────────────┼──────────────────────────────────┼──────────────────────────────────────────┤
-│ P0301 / P0302   │ Fallo de chispa cilindro 1 o 2   │ Bujía gastada o bobina de encendido mala │
-│ P0420           │ Eficiencia de catalizador baja   │ Sensor de oxígeno sucio o catalizador    │
-│ P0171           │ Sistema demasiado pobre (Banco 1)│ Manguera de vacío rajada o caudalímetro  │
-│ P0442           │ Fuga pequeña en sistema EVAP     │ ¡El tapón de gasolina quedó mal cerrado! │
-└─────────────────┴──────────────────────────────────┴──────────────────────────────────────────┘
-```
+| Código Común OBD-II | Significado sin Jerga | Causa Más Frecuente |
+| :--- | :--- | :--- |
+| **P0301 / P0302 / P0303** | Fallo de encendido (chispa) en cilindro 1, 2 o 3 | Bujía desgastada o bobina de encendido defectuosa |
+| **P0420** | Eficiencia del catalizador por debajo del umbral | Sensor de oxígeno sucio o catalizador fatigado |
+| **P0171** | Sistema demasiado pobre (demasiado aire / poca nafta) | Manguera de vacío rajada o caudalímetro MAF sucio |
+| **P0442** | Fuga pequeña en sistema EVAP de vapores | ¡El tapón del tanque de combustible quedó mal cerrado! |
 
 > [!TIP]
 > ### 💡 Borrar el Código NO Repara la Falla

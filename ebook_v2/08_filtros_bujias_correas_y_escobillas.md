@@ -32,15 +32,11 @@ Purifica el aire que tú y tu familia respiran por las rejillas del aire acondic
 
 En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.
 
-```text
-┌─────────────────────────┬──────────────────────┬────────────────────────┬─────────────────────┐
-│ TIPO DE BUJÍA           │ MATERIAL ELECTRODO   │ INTERVALO DE REEMPLAZO │ RENDIMIENTO         │
-├─────────────────────────┼──────────────────────┼────────────────────────┼─────────────────────┤
-│ Cobre / Estándar        │ Núcleo de cobre      │ 20.000 a 30.000 km     │ Tradicional, barato │
-│ Platino (Single/Double) │ Pastilla de platino  │ 60.000 a 80.000 km     │ Alta durabilidad    │
-│ Iridio (Iridium)        │ Punta fina de iridio │ 100.000 a 120.000 km   │ Máxima eficiencia   │
-└─────────────────────────┴──────────────────────┴────────────────────────┴─────────────────────┘
-```
+| Tipo de Bujía | Material del Electrodo | Intervalo Típico de Reemplazo | Rendimiento |
+| :--- | :--- | :---: | :--- |
+| **Cobre / Estándar** | Núcleo de cobre tradicional | 20.000 a 30.000 km | Tradicional, económico |
+| **Platino (Single/Double)** | Pastilla de platino soldado | 60.000 a 80.000 km | Alta durabilidad y estabilidad |
+| **Iridio (Iridium)** | Punta extrafina de iridio | 100.000 a 120.000 km | Máxima eficiencia de chispa |
 
 ### Lectura Rápida del Electrodo al Retirarlas:
 - **Color café claro / gris tostado:** Combustión perfecta y motor en óptima salud.
@@ -54,18 +50,16 @@ En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 
 
 Muchos conductores confunden las dos correas del motor. Conocer la diferencia te evitará perder miles de dólares:
 
-```text
-┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
-│ CORREA DE ACCESORIOS (SERPENTINA / POLY-V)    │ CORREA DE DISTRIBUCIÓN (TIMING BELT)          │
-├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
-│ • Se ve a simple vista en el lateral motor    │ • Oculta bajo tapas plásticas herméticas      │
-│ • Es ranurada longitudinalmente               │ • Es dentada transversalmente (dientes duros) │
-│ • Mueve el alternador, bomba agua y compresor │ • Sincroniza el cigüeñal con el árbol levas   │
-│ • Si se rompe: Se apaga alternador/batería    │ • Si se rompe en motor de interferencia:      │
-│   y la dirección se endurece. Te detienes.    │   ¡LAS VÁLVULAS CHOCAN CONTRA LOS PISTONES    │
-│   Costo de reparación: $40 - $90 USD          │   Y EL MOTOR QUEDA DESTRUIDO! ($1.500+ USD)   │
-└───────────────────────────────────────────────┴───────────────────────────────────────────────┘
-```
+![Comparativa: Correa de Accesorios vs. Correa de Distribución](assets/ilustracion_correa_accesorios_vs_distribucion.svg)
+*Ilustración técnica: Diferencias morfológicas y consecuencias de rotura entre correa Poly-V de accesorios y correa dentada de distribución.*
+
+| Característica | Correa de Accesorios (Poly-V) | Correa de Distribución (Timing Belt) |
+| :--- | :--- | :--- |
+| **Visibilidad** | Visible a simple vista al lateral del motor | Oculta bajo tapas plásticas herméticas |
+| **Morfología** | Ranuras longitudinales paralelas | Dientes de caucho transversales reforzados |
+| **Función** | Mueve alternador, compresor A/C y bomba | Sincroniza el giro del cigüeñal con el árbol de levas |
+| **Si se rompe** | Se apaga el alternador y se endurece la dirección | ¡Las válvulas chocan contra los pistones y destrozan el motor! |
+| **Costo reparación** | $40 - $90 USD (cambio sencillo) | $1.500 - $3.000+ USD en rectificado y motor nuevo |
 
 > [!CAUTION]
 > ### 🛑 ¿Tu Auto Tiene Correa o Cadena de Distribución?
