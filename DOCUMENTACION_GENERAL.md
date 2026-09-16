@@ -1,81 +1,108 @@
 # DOCUMENTACIÓN INTEGRAL DEL PROYECTO: CHARUAUTOS
-## Ecosistema Editorial, Identidad de Marca & Plataforma Automotriz
-*Versión 1.0 — Compilado Oficial 2026*  
-*Autor / Marca: CharuAutos (`@charuautopics`)*
+## Ecosistema Editorial, Identidad de Marca & Plataforma Automotriz PWA
+*Edición Oficial 2026 — Compilado Maestro*  
+*Autor / Marca: CharuAutos (`@charuautopics`) • "Pasión Automotriz al Alcance de tus Manos"*
 
 ---
 
 ## 1. Resumen Ejecutivo y Visión Estratégica
 
-**CharuAutos** es una iniciativa automotriz integral diseñada para empoderar al propietario de vehículos en el mercado hispanohablante (con foco en Latinoamérica: Venezuela, México, Chile, Colombia, entre otros). El proyecto aborda la histórica asimetría de información y desconfianza existente entre conductores y talleres mecánicos, combinando **educación técnica rigurosa**, un **diseño visual de alta gama (*Dark Showroom*)** y herramientas digitales interactivas.
+**CharuAutos** es una iniciativa automotriz integral diseñada para empoderar al propietario de vehículos en el mercado hispanohablante (con foco en Latinoamérica: México, Venezuela, Colombia, Chile, Argentina, entre otros). El proyecto aborda la histórica asimetría de información, el lenguaje excesivamente técnico y la desconfianza generalizada existente entre conductores y talleres mecánicos, combinando **educación técnica rigurosa**, **diseño visual de alta gama (*Dark Showroom*)** y **herramientas digitales interactivas offline**.
 
-### 1.1. Objetivos del Proyecto
-1. **Producto Digital (Ebook Comercial):** Publicación del *"Manual Práctico del Conductor Inteligente: Mantenimiento, Ahorro y Cuidado de tu Auto"*, con lenguaje accesible, analogías claras, protocolos preventivos, descargo legal y sustento estadístico empírico de la industria automotriz.
-2. **Identidad Visual Corporativa:** Creación de la marca *CharuAutos* y su handle `@charuautopics`, incluyendo manual de identidad interactivo, activos vectoriales nativos (SVG) y directrices de aplicación.
-3. **Plataforma Web Editorial & Exportación PDF de Alta Fidelidad:** Desarrollo de una aplicación web interactiva (`ebook_interactivo.html`) con navegación bidireccional, barra de lectura, buscador en vivo y un motor de impresión a PDF que replica al 100% la estética de showroom (*Full Bleed*, fondo obsidiana sin bordes blancos).
-4. **Infraestructura de Marketing y Ventas:** Embudo de conversión con copy de landing page, guiones para TikTok/Reels, carruseles educativos para Instagram y prompts de generación para herramientas de Inteligencia Artificial.
-5. **Fase Futura (Roadmap):** Desarrollo de un Dashboard / Comparador interactivo de fichas técnicas vehiculares en PDF (modelos GWM Haval/Poer, Jetour Dashing/X70, Chery Tiggo, etc.) con motor de recomendación para compradores.
+### 1.1. Pilares Fundamentales del Proyecto
+1. **Dualidad Editorial (Versión 1.0 y Versión 2.0):**
+   - **Versión 2.0 (Producto Insignia):** *"Manual Práctico del Conductor Inteligente: Edición Cero Conocimientos"*, estructurado en 14 módulos ilustrados con 16 infografías HD en español, herramientas interactivas y lenguaje 100% pedagógico sin jerga técnica.
+   - **Versión 1.0 (Edición Clásica):** Documento técnico original de 10 módulos con datos auditados de la industria automotriz y formato PDF comercial *Full Bleed* de 33 páginas listo para su venta.
+2. **Identidad Visual Corporativa:** Marca registrada *CharuAutos* y handle `@charuautopics`, compuesta por un sistema dual de logotipos vectoriales, avatar de tacómetro de altas RPM, la mascota institucional **Charu** y un manual de identidad web interactivo.
+3. **Plataforma Web PWA (Progressive Web App):** Aplicaciones web estáticas de alto rendimiento (`dist_pwa_v2/` y `dist_pwa/`) con drawer táctil móvil, buscador de contenido en tiempo real, widgets diagnósticos interactivos y Service Worker offline resiliente para emergencias en carretera sin cobertura celular.
+4. **Infraestructura Comercial y Embudo de Ventas:** Copywriting persuasivo para landing pages, carruseles educativos para redes sociales y prompts de generación para herramientas de Inteligencia Artificial.
 
 ---
 
-## 2. Estructura y Mapa General de Archivos
+## 2. Mapa Integral de la Arquitectura del Repositorio
+
+El repositorio mantiene una organización modular estricta, separando el código fuente de los artefactos de distribución listos para producción:
 
 ```text
 CharuAutos/
-├── README.md                                       # Visión general y guía rápida del repositorio
+├── index.html                                      # Redirección inmediata y directa a la Versión 2.0 (dist_pwa_v2/)
+├── .nojekyll                                       # Habilitador de archivos estáticos puros para GitHub Pages
+├── .gitignore                                      # Exclusiones de temporales de Python y del sistema operativo
+├── README.md                                       # Guía general de inicio, accesos rápidos y tabla de módulos
 ├── DOCUMENTACION_GENERAL.md                        # Documento maestro técnico y estratégico (este archivo)
+├── CharuAutos_V2_WebApp_PWA.zip                    # Paquete ZIP comprimido con la PWA V2 lista para desplegar
+├── CharuAutos_WebApp_PWA.zip                       # Paquete ZIP comprimido con la PWA V1 clásica
+├── favicon.ico                                     # Favicon corporativo raíz
+│
+├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 EN PRODUCCIÓN (PRODUCTO INSIGNIA)
+│   ├── index.html                                  # Web App interactiva responsiva con drawer móvil y buscador
+│   ├── manifest.json                               # Manifiesto W3C PWA instalable en Android, iOS y Escritorio
+│   ├── service-worker.js                           # Service Worker v10 con estrategia offline resiliente
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado descargable (14 módulos)
+│   ├── favicon.ico                                 # Icono de pestaña
+│   └── assets/                                     # 61 archivos (16 infografías HD, vectores SVG, favicons)
+│
+├── ebook_v2/                                       # CÓDIGO FUENTE EDITORIAL DE LA VERSIÓN 2.0
+│   ├── 01_introduccion_seguridad_legal.md          # 14 módulos modulares en formato Markdown
+│   ├── ...                                         # (Módulos 02 al 13 completos)
+│   ├── 14_apendices_checklists_y_bitacora.md       # Módulo 14 con bitácora imprimible y glosario A-Z
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado consolidado (>1.000 líneas)
+│   ├── ebook_v2_interactivo.html                   # Web App de desarrollo local
+│   ├── index.html                                  # Punto de entrada local
+│   ├── manifest.json                               # Manifiesto PWA local sincronizado
+│   ├── service-worker.js                           # Service Worker local sincronizado
+│   ├── README.md                                   # Documentación interna de la V2 y guía de impresión PDF
+│   └── assets/                                     # Activos maestros de diseño de la V2
+│
+├── dist_pwa/                                       # APLICACIÓN WEB PWA V1 CLÁSICA EN PRODUCCIÓN
+│   ├── index.html                                  # Web App interactiva Dark Showroom V1
+│   ├── manifest.json                               # Manifiesto PWA V1
+│   ├── service-worker.js                           # Service Worker V1 (v4)
+│   └── assets/                                     # Infografías HD e iconografía original
+│
+├── ebook/                                          # CÓDIGO FUENTE EDITORIAL DE LA VERSIÓN 1.0
+│   ├── 00_introduccion_y_tablero.md                # 10 módulos en formato Markdown
+│   ├── ...                                         # Capítulos individuales clásicos
+│   ├── ebook_completo.md                           # Manuscrito unificado V1
+│   ├── ebook_interactivo.html                      # Web App interactiva clásica local
+│   ├── CharuAutos_Manual_del_Conductor_Inteligente.pdf # Documento comercial final listo para venta (33 págs)
+│   └── assets/                                     # Gráficos y vectores originales V1
 │
 ├── branding/                                       # IDENTIDAD VISUAL Y DIRECTRICES DE MARCA
-│   ├── MANUAL_DE_MARCA.md                          # Manual de identidad en formato Markdown
+│   ├── BRANDBOOK.md                                # Brandbook Maestro Oficial
+│   ├── MANUAL_DE_MARCA.md                          # Manual de lineamientos en Markdown
 │   ├── manual_identidad.html                       # Showroom web interactivo con probador y copiado HEX
-│   └── assets/                                     # Activos vectoriales nativos (SVG)
-│       ├── charuautos_logo_horizontal.svg          # Imagotipo principal (Isotipo + Wordmark + @charuautopics)
-│       ├── charuautos_logo_icon.svg                # Isotipo monograma CA (Escudo aerodinámico)
-│       ├── charuautos_avatar_instagram.svg         # Avatar circular para redes con tacómetro / RPM
-│       └── charuautos_watermark.svg                # Marca de agua translúcida para vídeo y posts
+│   └── assets/                                     # Activos vectoriales nativos (SVG) y avatares de redes
 │
-├── ebook/                                          # CONTENIDO EDITORIAL Y PRODUCTO DIGITAL
-│   ├── 00_introduccion_y_tablero.md                # Mod 0: Glosario latino, semáforo y Car Care Council
-│   ├── 01_motor_y_fluidos.md                       # Mod 1: Lubricación, SAE J300 y refrigerante ASTM D3306
-│   ├── 02_turbo_mantenimiento_y_cuidados.md        # Mod 2: Cuidado del turbo, hábito 60s y datos Garrett
-│   ├── 02_transmision_frenos_suspension.md         # Mod 3: Transmisiones ATRA, frenos Brembo y suspensión
-│   ├── 03_carroceria_luces_neumaticos.md           # Mod 4: Neumáticos NHTSA, DOT y detallado exterior
-│   ├── 04_interior_y_climatizacion.md              # Mod 5: Filtro de cabina y prevención de hongos A/C
-│   ├── 05_guia_compra_repuestos.md                 # Mod 6: OEM vs Tier 1, código VIN y combate a piratería
-│   ├── 06_manual_conductor_en_taller.md            # Mod 7: Protocolo de defensa, encuesta AAA y checklist
-│   ├── 07_bitacora_y_checklists.md                 # Mod 8: Bitácora de guantera y cronograma 10k-100k km
-│   ├── 08_bibliografia_y_fuentes_oficiales.md      # Mod 9: Referencias oficiales SAE, API, ISO, OEM, NHTSA
-│   ├── ebook_completo.md                           # Manuscrito unificado en Markdown con enlaces
-│   ├── ebook_interactivo.html                      # Web App interactiva con estilos de lectura y exportación
-│   ├── CharuAutos_Manual_del_Conductor_Inteligente.pdf # Archivo comercial final en PDF (33 páginas, Full Bleed)
-│   └── assets/                                     # 14 infografías en español + SVGs integrados
+├── marketing/                                      # ESTRATEGIA COMERCIAL Y CONVERSIÓN
+│   ├── landing_page_copy.md                        # Copywriting persuasivo para Hotmart / Gumroad ($4.99 USD)
+│   └── prompts_diseno_y_portada.md                 # Prompts de IA para portadas, guiones de video y carruseles
 │
-└── marketing/                                      # ESTRATEGIA COMERCIAL Y MONETIZACIÓN
-    ├── landing_page_copy.md                        # Copywriting persuasivo para Hotmart / Gumroad
-    └── prompts_diseno_y_portada.md                 # Prompts de IA, guiones de video y carruseles
+└── Ajustes/                                        # BANCO DE REFERENCIAS FOTOGRÁFICAS
+    ├── README.md                                   # Documentación y correspondencia de las fotos base
+    └── *.jpg                                       # Fotografías originales de varillas, turbo, frenos y cauchos
 ```
 
 ---
 
 ## 3. Identidad de Marca: CharuAutos (`@charuautopics`)
 
-Inspirada en el lenguaje de diseño automotriz contemporáneo (líneas angulares y aerodinámicas de marcas como Jetour, GWM Haval y Chery), la identidad visual proyecta tecnología, precisión de telemetría y fiabilidad.
+Inspirada en el lenguaje de diseño automotriz contemporáneo (líneas angulares y aerodinámicas de alta tecnología), la identidad visual proyecta tecnología, precisión de telemetría y fiabilidad.
 
-### 3.1. Arquitectura de Logotipos
+### 3.1. Arquitectura de Logotipos y Símbolos
 1. **Isotipo Monograma CA (`charuautos_logo_icon.svg`):**
-   - Escudo hexagonal biselado inspirado en una toma de aire de carreras.
-   - La letra **C** (Charu) en titanio espacial se entrelaza con la letra **A** (Autos) en cuña reflectiva de neón cian.
-   - Atravesado por una aleta deflectora en rojo de competición (*Racing Crimson*) y un punto de calibración de telemetría en el vértice superior.
-2. **Imagotipo Horizontal (`charuautos_logo_horizontal.svg`):**
-   - Diseñado para cabeceras, portadas y banners.
-   - Tipografía principal *CHARU* (titanio) y *AUTOS* (cian con resplandor neón difuso).
-   - En la segunda fila: el lema institucional *"DOMINIO MECÁNICO & CULTURA AUTOMOTRIZ"* con tipografía amplia y sin colisiones de texto.
-   - En la tercera fila: cápsula tecnológica con el handle `@CHARUAUTOPICS` y la etiqueta *"COMUNIDAD & ASESORÍA AUTOMOTRIZ"*.
-3. **Avatar Circular para Redes (`charuautos_avatar_instagram.svg`):**
-   - Optimizado para fotos de perfil en Instagram, TikTok y WhatsApp.
-   - Anillo exterior con escala de tacómetro graduado, zona de corte en rojo (*Redline*) a altas RPM, textura radial de fibra de carbono y monograma central.
-4. **Marca de Agua (`charuautos_watermark.svg`):**
-   - Versión translúcida (70-85% de opacidad) para superponer en material audiovisual y esquinas de documentos.
+   - Escudo hexagonal biselado inspirado en una toma de aire de competición.
+   - La letra **C** (titanio espacial) entrelazada con la **A** (neón cian reflectivo), cruzada por una aleta deflectora en rojo de competición (*Racing Crimson*).
+2. **Imagotipo Horizontal Principal (`charuautos_logo_horizontal.svg`):**
+   - Diseñado para cabeceras y portadas: *CHARU* (titanio) + *AUTOS* (neón cian con resplandor difuso).
+   - Lema secundario: *"DOMINIO MECÁNICO & CULTURA AUTOMOTRIZ"*.
+   - Cápsula tecnológica inferior: `@CHARUAUTOPICS • COMUNIDAD & ASESORÍA AUTOMOTRIZ`.
+3. **Avatar Circular para Redes Sociales (`charuautos_avatar_instagram.svg`):**
+   - Anillo exterior con escala graduada de tacómetro a altas RPM (*Redline*), textura de fibra de carbono radial y monograma central para Instagram, TikTok y WhatsApp.
+4. **Emblema de la Mascota Oficial (`charuautos_emblema_mascota.png` / `.jpg`):**
+   - Representación heráldica de **Charu**, la mascota canina piloto de carreras con casco y gafas aerodinámicas, simbolizando lealtad, entusiasmo y accesibilidad.
+5. **Marca de Agua Oficial (`charuautos_watermark.svg`):**
+   - Vector translúcido al 75% de opacidad para superposición en material audiovisual y cabeceras de documentos.
 
 ### 3.2. Sistema Cromático (*Dark Showroom*)
 - **Obsidian Black (`#070a0f` / `#080b11`):** Fondo de absorción lumínica profunda que genera la atmósfera de un salón de exhibición privado.
@@ -86,113 +113,127 @@ Inspirada en el lenguaje de diseño automotriz contemporáneo (líneas angulares
 - **Brushed Titanium (`#94a3b8` / `#e2e8f0`):** Tipografía secundaria, líneas de retícula y detalles metálicos.
 - **Pure White (`#ffffff` / `#f8fafc`):** Máxima legibilidad en titulares y textos clave.
 
-### 3.3. Manual Interactivo (`branding/manual_identidad.html`)
-- **Probador de Logotipo:** Permite alternar en tiempo real entre fondos oscuros (*Dark Showroom*), claros (*Luz Diurna*) y retículas de ingeniería (*Telemetría*).
-- **Copiado de Paleta en 1 Clic:** Al hacer clic sobre cualquier muestra de color, el código HEX se copia al portapapeles con notificación emergente (*Toast*).
-- **Simulador de Instagram:** Visualización interactiva del perfil de `@charuautopics`, sus estadísticas, biografía e historias destacadas.
-- **Descargas Directas:** Enlaces de descarga inmediata para todos los activos SVG.
+---
+
+## 4. Versión 2.0: Manual del Conductor con Cero Conocimientos (Producto Insignia)
+
+La **Versión 2.0** constituye el eje central del ecosistema actual. Fue concebida como una guía integral para personas que conducen a diario pero carecen de formación mecánica, con un enfoque 100% pedagógico, analogías claras y cero tecnicismos innecesarios.
+
+### 4.1. Desglose Pedagógico de los 14 Módulos
+
+| Módulo | Título | Contenido Pedagógico & Procedimientos Clave | Fuentes / Estándares |
+| :---: | :--- | :--- | :--- |
+| **01** | **Introducción, Seguridad Primero & Advertencia Legal** | Las 5 reglas de oro de seguridad física; prohibición de abrir radiador caliente; uso obligatorio de soportes con el gato; equipo de protección personal (EPP) básico. | Criterios de Seguridad ASE & Protocolos de Taller |
+| **02** | **Cómo Funciona un Auto (Explicado sin Jerga)** | Analogía del cuerpo humano (motor = corazón, aceite = sangre, combustible = comida, escape = respiración); ciclo de 4 tiempos (Admisión, Compresión, Explosión, Escape); componentes del vano motor. | Principios de Termodinámica Básica Automotriz |
+| **03** | **Herramientas Básicas y Kit de Emergencia** | Herramientas caseras que salvan el día; equipamiento obligatorio de cajuela (triángulos reflectantes, chaleco de alta visibilidad, compresor portátil, linterna, kit de mechas). | Normativa Vial Latinoamericana e Internacional |
+| **04** | **Rutinas de Inspección Preventiva** | Rutina de inspección 360° en 3 tiempos: Diaria (caminar alrededor, 30 segundos), Semanal (fluidos y presión, 3 minutos) y Mensual (revisión a fondo, 15 minutos). | Protocolos de Mantenimiento Preventivo Flotas |
+| **05** | **Fluidos Vitales: La Sangre y el Sudor de tu Vehículo** | Medición exacta con varilla de aceite (frío/caliente, marcas MIN/MAX); consecuencias del sobrellenado; refrigerante orgánico (OAT) vs agua de grifo; líquido de frenos higroscópico; ATF. | SAE J300, API SP, ASTM D3306, DOT 3/4 |
+| **06** | **Neumáticos, Frenos y Seguridad Activa** | Desgaste con la prueba de la moneda; descifrado del código DOT (semana y año de fabricación); presión según etiqueta del pilar B de la puerta; inspección visual de pastillas y discos de freno. | NHTSA (DOT HS 811 617) & Brembo Technical Manuals |
+| **07** | **Batería, Sistema Eléctrico, Fusibles y Luces** | Lectura de voltaje (12.6V apagado, 14.2V encendido); procedimiento seguro de puente con cables (Positivo con Positivo, Negativo a masa lejana); comprobación de fusibles quemados. | Normas BCI & Manuales Eléctricos Bosch |
+| **08** | **Filtros, Bujías, Correas y Escobillas** | Procedimiento de 5 minutos para cambiar el filtro de cabina en guantera; inspección de bujías (color café con leche vs carbonizadas); correa de accesorios vs correa de distribución crítica. | Manuales de Servicio OEM & Mann-Filter |
+| **09** | **El Turbocompresor: Cuidados Críticos** | Eje flotante a más de 200.000 RPM sostenido por película de aceite; la **Regla de los 60 Segundos** (enfriamiento al ralentí tras alta exigencia para evitar carbonización del aceite); mitos del turbo. | Garrett Motion & BorgWarner Turbo Systems |
+| **10** | **Testigos del Tablero y Escáner OBD-II** | Semáforo ISO: Rojo (detención inmediata), Ámbar/Amarillo (precaución, acudir a revisión), Verde/Azul (informativo); conector de diagnóstico OBD-II de 16 pines; lectura de códigos DTC estándar. | ISO 2575 & SAE J1979 (OBD-II Diagnostic) |
+| **11** | **Mantenimiento Preventivo por Kilometraje y Costos** | Matriz cronológica de servicios a los 10k, 20k, 50k y 100k kilómetros; desglose de costo de repuestos vs costo de mano de obra; el peligro del mito "aceite de transmisión sellado de por vida". | ATRA & Tablas de Mantenimiento OEM |
+| **12** | **Protocolo de Emergencias en Ruta y Cambio de Llanta** | Secuencia PAS (Proteger, Avisar, Socorrer); procedimiento de 8 pasos seguros para cambiar una llanta ponchada; qué hacer ante calentón de motor o pérdida súbita de frenos. | AAA Road Safety Guidelines & FIA |
+| **13** | **Guía para ir al Taller sin Ser Estafado** | Protocolo de 5 pasos para blindarse: fotografía al odómetro, presupuesto por escrito, exigir devolución de piezas viejas en su caja, inspección previa; diferencias entre repuestos OEM, Tier 1 y Aftermarket. | Reportes de Defensa al Consumidor & AAA |
+| **14** | **Apéndices, Checklists y Bitácora de Guantera** | Mentalidad preventiva del conductor inteligente; bitácora imprimible de mantenimiento para duplicar el valor de reventa; glosario neutral latinoamericano (México, Venezuela, Chile, etc.). | Manual de Buenas Prácticas CharuAutos |
 
 ---
 
-## 4. El Ebook: "Manual del Conductor Inteligente"
+### 4.2. Catálogo Maestro de Ilustraciones e Infografías Técnicas en Español
 
-### 4.1. Marco Técnico y Descargo de Responsabilidad (Disclaimer)
-El manual incluye un riguroso descargo legal y técnico en su portada que certifica:
-- Todo el contenido es una recopilación, síntesis pedagógica y contraste sustentado en **manuales oficiales de fabricantes (OEM)**, normativas internacionales (**SAE, API, ILSAC, ISO, NHTSA**), autopartistas certificados Tier 1 (**Bosch, Garrett Motion, Brembo, ZF, BorgWarner**), estudios de campo (**Car Care Council, AAA, ATRA**) y criterios de mecánicos certificados **ASE**.
-- Empodera al usuario para supervisar y prevenir, aclarando que no deroga el manual de fábrica de cada modelo y que las tareas que comprometan la seguridad activa deben ejecutarse por personal calificado.
+La versión 2.0 sustituyó la totalidad de diagramas técnicos abstractos por ilustraciones e infografías HD especialmente elaboradas, con tipografía uniforme, cero texto en inglés y alineadas al fondo oscuro *Dark Showroom*:
 
-### 4.2. Glosario Maestro Latinoamericano
-Tabla comparativa neutral para evitar confusiones en el vocabulario automotriz:
-- Equivalencias exactas entre términos de **México**, **Venezuela**, **Chile** y el término neutro internacional (ej.: *Cajuela / Maleta / Maletero*, *Cofre / Capó / Capot*, *Balatas / Pastillas*, *Clutch / Croche / Embrague*, *Anticongelante / Refrigerante / Coolant*, *Llanta / Caucho / Neumático*, etc.).
-
-### 4.3. Datos Empíricos Verificados Incorporados por Módulo
-No se utilizaron cifras inventadas; cada argumento técnico está respaldado por investigaciones auditadas:
-
-| Módulo | Tema Central | Fuente Oficial Verificada | Evidencia Estadística / Gráfica Incorporada |
-| :--- | :--- | :--- | :--- |
-| **Módulo 0** | Fundamentos y Tablero | **Car Care Council (Auto Care Association)** | **80% de vehículos inspeccionados presentan fallas latentes:** 29% aceite bajo/sucio, 24% refrigerante bajo, 22% llantas desinfladas, 19% filtro de aire tapado, 17% ATF degradado, 15% humedad en frenos. |
-| **Módulo 1** | Motor y Fluidos | **SAE International (J300) & ASTM D3306** | **75% del desgaste del motor ocurre en los primeros 90 segundos** (arranque en frío). El agua de grifo hierve a 100°C y oxida; el refrigerante 50/50 OAT resiste hasta 128°C y no corroe. |
-| **Módulo 2** | Turbocompresor | **Garrett Motion & BorgWarner Aftermarket** | **92% de las fallas de turbos son por problemas de lubricación** (falta de aceite, suciedad o apagado brusco sin enfriar). Menos del 1% se debe a defectos de fábrica. |
-| **Módulo 3** | Transmisión y Frenos | **ATRA (Automatic Transmission Rebuilders Association)** | **Curva térmica del ATF:** A 79°C dura 160.000 km; cada incremento de 11°C reduce su vida útil al 50%. El "aceite de por vida" es una causa directa de fallas a los 100.000 km. Tolerancias Brembo para discos (DTV < 0.015 mm). |
-| **Módulo 4** | Neumáticos y Carrocería | **NHTSA (U.S. DOT HS 811 617)** | Neumáticos desinflados en 25% o más **triplican el riesgo de siniestro vial**. El 26% de choques relacionados con cauchos involucran surcos desgastados (< 1.6 mm). Interpretación del código DOT. |
-| **Módulo 5** | Interior y Climatización | **Fabricantes OEM / HVAC** | Procedimiento de 3 pasos para cambiar el filtro de cabina en guantera en 5 minutos. El hábito de apagar el A/C 2 minutos antes del destino para prevenir hongos y bacterias. |
-| **Módulo 6** | Repuestos y Calidad | **OCDE & EUIPO (Reportes Antipiratería)** | Matriz de riesgo para piezas críticas vs accesorias. Métodos de verificación de sellos de seguridad en envases de aceite y decodificación del código VIN (dígito 10 = año de modelo). |
-| **Módulo 7** | Manual en Taller Mecánico | **American Automobile Association (AAA)** | **77% de desconfianza en talleres mecánicos:** 76% por servicios innecesarios y 73% por sobreprecios. Protocolo de 4 pasos (foto al odómetro, presupuesto firmado, exigir piezas viejas en caja). |
-| **Módulo 8** | Bitácora y Checklists | **Ingeniería Preventiva** | Hoja imprimible de guantera, cronograma de servicio de 10.000 a 100.000 km, checklist para viajes en carretera y kit de emergencia obligatorio. |
-| **Módulo 9** | Bibliografía Oficial | **Organismos Internacionales** | Compendio exhaustivo de normas SAE, API SP, ILSAC GF-6, ISO 9001/IATF 16949, manuales Bosch, ZF, Aisin, Brembo y Gates. |
+1. **`assets/charuautos_emblema_mascota.png`:** Emblema heráldico oficial de Charu, la mascota piloto.
+2. **`assets/ilustracion_cuerpo_humano_auto.svg`:** Analogía pedagógica visual entre la anatomía humana y los componentes del vehículo (corazón = motor, sangre = aceite, venas = mangueras, pulmones = admisión/filtro).
+3. **`assets/vano_motor_real_espanol.jpg`:** Render 3D fotorrealista del compartimento del motor con señaladores claros en español (depósito de refrigerante, varilla de aceite, tapón de llenado, líquido de frenos, batería y filtro de aire).
+4. **`assets/ilustracion_herramientas_esenciales.svg`:** Kit de herramientas caseras esenciales para emergencias mecánicas.
+5. **`assets/car_emergency_kit.jpg`:** Fotografía de alta resolución y despiece del kit de seguridad obligatorio para la cajuela.
+6. **`assets/infografia_inspeccion_360_auto.jpg` / `assets/ilustracion_inspeccion_360.svg`:** Protocolo visual de caminata perimetral alrededor del auto para detectar luces quemadas, llantas bajas o impactos.
+7. **`assets/ilustracion_varilla_aceite.svg` / `assets/ilustracion_lectura_varilla_aceite.jpg`:** Guía gráfica paso a paso para medir el nivel de aceite con exactitud en la varilla (marcas MIN y MAX).
+8. **`assets/ilustracion_guia_colores_fluidos.svg`:** Tabla visual de colores de manchas en el piso para identificar fugas al instante.
+9. **`assets/tire_guide_and_dot_code.jpg` / `assets/ilustracion_profundidad_neumatico_seguridad.jpg`:** Infografía de lectura del código DOT (fecha de fabricación), surcos de rodamiento y presión de inflado.
+10. **`assets/frenos_suspension_espanol.jpg` / `assets/brake_and_suspension_guide.jpg`:** Esquema técnico en español del conjunto de freno de disco ventilado, cáliper, pastillas y amortiguador.
+11. **`assets/ilustracion_paso_corriente_bateria.svg` / `assets/ilustracion_fusible_bueno_quemado.svg`:** Diagrama seguro para conectar cables pasa-corriente y comprobación visual de filamento de fusible intacto vs fundido.
+12. **`assets/cabin_filter_replacement.jpg`:** Guía fotográfica secuencial en 4 pasos para sustituir el filtro de cabina antipolen ubicado tras la guantera.
+13. **`assets/turbo_mantenimiento_espanol.jpg` / `assets/ilustracion_turbo_ciclo_60segundos.svg`:** Despiece del turbocompresor (caracola de escape, caracola de admisión, eje de titanio a 200.000 RPM) y el protocolo de los 60 segundos de enfriamiento al ralentí.
+14. **`assets/dashboard_warning_lights.jpg` / `assets/ilustracion_conector_obd2.svg`:** Tablero de instrumentos con el código semafórico de colores ISO y ubicación del puerto OBD-II de 16 pines.
+15. **`assets/ilustracion_cambio_llanta_secuencia.jpg` / `assets/ilustracion_cambio_llanta_pasos.svg`:** Infografía secuencial en 8 pasos seguros para cambiar un neumático desinflado en carretera.
+16. **`assets/taller_mecanico_espanol.jpg` / `assets/repuestos_calidad_espanol.jpg`:** Infografías de interacción en taller y comparativa visual entre repuestos OEM, Tier 1 y Aftermarket.
+17. **`assets/workshop_smart_checklist.jpg`:** Nueva ilustración exclusiva: El conductor pensando en los componentes de mantenimiento preventivo (fluidos, bujías, frenos, neumáticos) y disfrutando de una conducción feliz y segura en carretera panorámica.
+18. **`assets/ilustracion_bitacora_mantenimiento.svg`:** Modelo visual de la bitácora de servicio de guantera con insignias doradas legibles y sin colisiones de texto.
 
 ---
 
-## 5. Ingeniería de la Web App Editorial (`ebook_interactivo.html`)
+### 4.3. Herramientas Interactivas Exclusivas de la Web App V2
 
-El documento web fue concebido como una plataforma editorial reactiva que une interactividad digital y fidelidad de impresión profesional:
-
-1. **Barra Superior HUD Sticky:**
-   - Barra fija con desenfoque de fondo (*backdrop-filter: blur*), isotipo de CharuAutos, botón de acceso rápido al índice general, botón de instalación PWA `📲 INSTALAR APP` y botón de exportación instantánea `🖨️ EXPORTAR PDF`.
-2. **Barra de Progreso de Lectura:**
-   - Línea superior reactiva con gradiente cian/carmesí que calcula dinámicamente el porcentaje de desplazamiento del lector (`window.onscroll`).
-3. **Buscador Dinámico en Tiempo Real:**
-   - Campo de filtrado instantáneo que busca términos mecánicos, códigos de falla o componentes y resalta u oculta los módulos en pantalla.
-4. **Widgets Gráficos de Telemetría (`.data-graph-box`):**
-   - Barras de progreso horizontales con diseño Dark Tech que visualizan gráficamente las estadísticas de fallas y estudios de campo.
-5. **Navegación Bidireccional:**
-   - Cada tarjeta del índice salta al módulo correspondiente mediante anclajes semánticos (`#mod0`, `#mod1`, etc.).
-   - Cada módulo y elemento flotante cuenta con el botón interactivo **`↑ Volver al Índice General`** enlazado a `#indice`.
-6. **Arquitectura Progressive Web App (PWA) & Modo Offline:**
-   - **`manifest.json`:** Define la identidad de la aplicación para smartphones (`standalone`, orientación `portrait-primary`, color de barra `#080b11`, iconos de alta resolución de 192x192 y 512x512 px).
-   - **`service-worker.js`:** Implementa una estrategia de cache avanzada (*Stale-While-Revalidate*) que pre-almacena el HTML, ilustraciones y hojas de estilo, permitiendo que la aplicación funcione al 100% en zonas remotas o autopistas sin cobertura celular.
-   - **Instalador Inteligente:** Detecta el navegador del usuario y ejecuta el prompt nativo de Android/Chrome o despliega un modal estilizado con instrucciones específicas para Safari en iOS (*Compartir -> Agregar a la pantalla de inicio*).
-   - **Punto de Entrada Universal (`index.html`):** Permite el despliegue automático e instantáneo en cualquier proveedor de hosting estático (Vercel, Netlify, Cloudflare Pages o GitHub Pages).
+En la aplicación interactiva (`dist_pwa_v2/index.html`):
+1. **Detector Interactivo de Fugas por Color de Mancha:**  
+   Al seleccionar el color observado debajo del auto, el sistema entrega diagnóstico inmediato:
+   - *Dorado / Ámbar traslúcido:* Aceite de motor nuevo o en buen estado.
+   - *Marrón oscuro o negro espeso:* Aceite de motor degradado con carbón.
+   - *Verde o rosa fosforescente:* Fuga de refrigerante / anticongelante (¡riesgo de sobrecalentamiento!).
+   - *Rojo transparente:* Fuga de aceite de transmisión automática (ATF) o líquido de dirección asistida.
+   - *Agua clara inodora:* Condensación normal del aire acondicionado (no es avería).
+2. **Buscador Rápido de Códigos de Falla OBD-II (Check Engine):**  
+   Permite al usuario ingresar códigos de diagnóstico estándar (ej. `P0300`, `P0301`, `P0420`, `P0171`, `P0172`, `P0442`, `P0115`) y obtener la causa raíz y solución en lenguaje comprensible sin términos oscuros.
+3. **Checklists de Mantenimiento con Persistencia LocalStorage:**  
+   Listas de verificación interactiva para inspecciones semanales, mensuales y previajes. Los estados marcados se guardan automáticamente en la memoria del navegador del usuario sin requerir bases de datos remotas ni cuentas de usuario.
+4. **Navegación Móvil Avanzada (Drawer Táctil):**  
+   Menú deslizante optimizado para pulgares en pantallas móviles, buscador de módulos en tiempo real y barra horizontal superior de progreso de lectura.
 
 ---
 
-## 6. Motor de Exportación a PDF de Alta Fidelidad
+## 5. Versión 1.0: Edición Clásica Original
 
-Para garantizar que el PDF generado sea idéntico a la experiencia web y no sufra los problemas típicos de impresión de los navegadores, se implementó una arquitectura CSS `@media print` especializada:
-
-- **Sangrado Completo Oscuro (*Full Bleed*):**
-  - Configuración `@page { size: A4 portrait; margin: 0; }` que elimina los márgenes blancos perimetrales.
-  - El fondo obsidiana (`#080b11`) y la cuadrícula cubren el 100% de la hoja de papel de borde a borde.
-  - Se eliminan automáticamente las cabeceras/pies de página predeterminados del navegador (fechas, URLs y numeración huérfana).
-- **Portada Editorial en Página 1:**
-  - El banner principal (*Hero Showroom*) y el cuadro legal (*Disclaimer*) fueron calibrados para coexistir perfectamente en la primera página, formando una portada ejecutiva sin divisiones de texto.
-  - Salto de página controlado posterior (`page-break-after: always;`) para que el Índice comience limpio en la Página 2.
-- **Flujo Continuo sin Huecos Vacíos:**
-  - Se removieron los cortes forzados entre módulos, logrando que el texto fluya de forma continua tal como en la versión web.
-  - Las tablas admiten división fila por fila (`table { break-inside: auto; } tr { break-inside: avoid; }`), repitiendo los encabezados (`thead { display: table-header-group; }`).
-  - La compresión y balance editorial redujo el documento de **39 páginas rotas** a **33 páginas continuas y densas**.
-- **Documento Maestro Generado:**
-  - Archivo compilado: **`ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf`**, listo para ser comercializado y distribuido a los clientes.
+La **Versión 1.0** se mantiene intacta en el repositorio en las carpetas `ebook/` y `dist_pwa/`:
+- **10 Capítulos Técnicos:** Módulo 0 (Glosario y tablero), Módulo 1 (Motor y lubricación), Módulo 2 (Turbo), Módulo 3 (Transmisión y frenos), Módulo 4 (Neumáticos y carrocería), Módulo 5 (A/C e interior), Módulo 6 (Repuestos), Módulo 7 (Taller), Módulo 8 (Bitácora) y Módulo 9 (Bibliografía oficial).
+- **Evidencia Estadística Auditada:** Respaldada por investigaciones de campo del *Car Care Council* (80% de vehículos inspeccionados tienen fallas latentes), *SAE International*, *ASTM D3306*, *ATRA* (curva térmica de degradación del ATF), *NHTSA* y *AAA*.
+- **Documento PDF Comercial de Alta Resolución:** Archivo compilado de 33 páginas *Full Bleed* sin bordes blancos: `ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf`, listo para ser comercializado y entregado a compradores.
 
 ---
 
-## 7. Estrategia de Marketing, Venta y Redes Sociales
+## 6. Arquitectura de Software, Despliegue y PWA
+
+### 6.1. Configuración en GitHub Pages y Redirección Raíz
+- **URL Base:** `https://faraves.github.io/charuautos/`
+- **Comportamiento Raíz (`index.html`):**  
+  El archivo raíz ejecuta una redirección automática e instantánea hacia `dist_pwa_v2/?v=10` preservando cualquier query string o hash de anclaje, permitiendo que cualquier visitante que ingrese al enlace principal acceda de forma inmediata al Ebook V2 ilustrado.
+- **Acceso Directo V1:** Los usuarios que deseen consultar la edición clásica original pueden acceder mediante `https://faraves.github.io/charuautos/dist_pwa/`.
+- **Archivo `.nojekyll`:** Presente en la raíz para evitar que el motor Jekyll de GitHub omita carpetas con guiones bajos o archivos estáticos.
+
+### 6.2. Estrategia del Service Worker (v10) y Modo Offline
+El Service Worker (`service-worker.js`) implementa una política agresiva y moderna de dos niveles:
+1. **Navegación HTML (Network-First):** Las solicitudes de documentos HTML intentan obtener siempre la versión más reciente del servidor (`cache: 'no-cache'`). Si el usuario se encuentra en carretera sin cobertura celular, el Service Worker recurre de inmediato al archivo almacenado en caché (`caches.match`).
+2. **Recursos Estáticos (Cache-First con Revalidación de Fondo):** Las ilustraciones, hojas de estilo y fuentes se sirven al instante desde la memoria caché del dispositivo para velocidad extrema, mientras se desencadena una consulta en segundo plano para almacenar actualizaciones automáticas.
+3. **Invalidación de Caché:** El identificador `CACHE_NAME = 'charuautos-pwa-v2-20260915-v10'` garantiza que cada actualización del repositorio invalide y limpie las cachés anteriores, evitando que el usuario visualice gráficos desactualizados.
+
+### 6.3. Paquetes ZIP para Distribución
+- **`CharuAutos_V2_WebApp_PWA.zip`:** Archivo comprimido con la versión completa e independiente de la PWA V2, listo para subir a Netlify, Vercel, Firebase Hosting o distribuir en pendrives/descargas directas.
+- **`CharuAutos_WebApp_PWA.zip`:** Archivo comprimido con la versión PWA V1 clásica.
+
+---
+
+## 7. Estrategia Comercial y Embudo de Ventas
 
 ### 7.1. Embudo de Comercialización
-- **Canal de Adquisición:** Cuenta de Instagram **`@charuautopics`**, TikTok y YouTube Shorts.
-- **Lead Magnet / Gancho:** Videos cortos mostrando errores comunes (ej.: agua en radiador, apagar turbo de golpe, mitos del aceite).
-- **Página de Venta (Landing Page):** Documentada en `marketing/landing_page_copy.md`, estructurada bajo la fórmula de persuasión:
-  - *Atención:* Gancho sobre los costos ocultos de los talleres mecánicos.
-  - *Problema / Agitación:* La sensación de vulnerabilidad al dejar el auto con un mecánico desconocido.
-  - *Solución:* Presentación del "Manual del Conductor Inteligente".
-  - *Autoridad:* Mención de las fuentes oficiales (SAE, Garrett, Bosch, AAA).
-  - *Oferta Irresistible:* Precio de lanzamiento de **$4.99 USD** (con bonus de bitácora y checklist de viaje).
-  - *Garantía:* 7 días de satisfacción incondicional.
-
-### 7.2. Contenidos y Prompts Publicitarios (`marketing/prompts_diseno_y_portada.md`)
-- Prompts listos para copiar y pegar en herramientas de IA (Midjourney, Ideogram, DALL-E) para generar portadas planas y mockups 3D sobre iPads/teléfonos en talleres modernos.
-- Guiones de video de 30 segundos con fórmulas de alto impacto visual y retención.
-- Esquema de carruseles de 5 diapositivas para Instagram centrados en preguntas clave para desarmar presupuestos inflados en talleres.
+- **Canal de Adquisición:** Redes sociales oficiales `@charuautopics` (Instagram, TikTok, YouTube Shorts).
+- **Contenido Gancho (Lead Magnets):** Videos cortos y carruseles desmintiendo mitos mecánicos caros (el agua en el radiador, apagar el turbo de golpe, mitos del aceite de transmisión sellado).
+- **Página de Ventas (Landing Page):** Documentada en `marketing/landing_page_copy.md`, estructurada para pasarelas como Hotmart, Gumroad o Lemon Squeezy a un precio de oferta de **$4.99 USD**.
+- **Prompts Publicitarios de Inteligencia Artificial:** Almacenados en `marketing/prompts_diseno_y_portada.md` para generar portadas fotorrealistas y mockups sobre iPads y smartphones en talleres modernos.
 
 ---
 
-## 8. Hoja de Ruta (Próximos Pasos Disponibles)
+## 8. Hoja de Ruta y Próximos Pasos (Roadmap)
 
-Con el Ebook y la Identidad Visual de CharuAutos totalmente finalizados, los siguientes pasos del ecosistema son:
+1. **Configuración de Pasarela de Pagos:** Carga del PDF comercial V1 y/o acceso PWA V2 en Hotmart o Gumroad utilizando el copy oficial.
+2. **Lanzamiento de Redes Sociales:** Publicación de los primeros carruseles y guiones de video promocionando `@charuautopics`.
+3. **Desarrollo del Comparador Interactivo de Fichas Técnicas PDF:**
+   - Aplicación web para procesar fichas técnicas oficiales (Haval, Poer, Jetour, Chery, Toyota, etc.).
+   - Extracción de parámetros clave: potencia, torque, transmisión y asistencias de seguridad (ADAS).
+   - Motor de recomendación inteligente para compradores según presupuesto y uso previsto.
 
-1. **Configuración de Plataforma de Pago:** Subir el PDF compilado a Hotmart, Gumroad o Lemon Squeezy con el copy de `marketing/landing_page_copy.md`.
-2. **Lanzamiento de Contenido en `@charuautopics`:** Publicar los primeros carruseles y reels utilizando la marca de agua y avatar oficiales.
-3. **Desarrollo de la Idea 2 (Dashboard / Comparador de Fichas Técnicas PDF):**
-   - Creación de una aplicación web/interfaz que procese archivos PDF de fichas técnicas oficiales (GWM Haval/Poer, Jetour Dashing/X70, Chery Tiggo, etc.).
-   - Extracción automatizada de parámetros: motorización, potencia (HP/kW), torque (Nm), tipo de transmisión (CVT, DCT, AT), consumo mixto y equipamiento de seguridad activa (ADAS).
-   - Sistema de recomendación interactivo con preguntas al usuario (presupuesto, uso urbano/offroad, tamaño familiar) para orientar la compra óptima.
+---
+
+© 2026 **CharuAutos** (`@charuautopics`). Todos los derechos reservados.  
+`🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS`
