@@ -1,5 +1,5 @@
-// Service Worker para CharuAutos PWA Versión 2.0 (Auto-invalidation build 2026-09-15-v5)
-const CACHE_NAME = 'charuautos-pwa-v2-20260915-v5';
+// Service Worker para CharuAutos PWA Versión 2.0 (Auto-invalidation build 2026-09-15-v6)
+const CACHE_NAME = 'charuautos-pwa-v2-20260915-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -57,6 +57,7 @@ const ASSETS_TO_CACHE = [
   './assets/infografia_despiece_motor_hd.jpg',
   './assets/infografia_deteccion_fugas_hd.jpg',
   './assets/infografia_fluidos_motor_hd.jpg',
+  './assets/infografia_herramientas_esenciales_hd.jpg',
   './assets/infografia_inspeccion_360_auto.jpg',
   './assets/repuestos_calidad_espanol.jpg',
   './assets/spare_parts_quality_guide.jpg',

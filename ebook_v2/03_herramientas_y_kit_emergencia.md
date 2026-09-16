@@ -8,8 +8,8 @@
 
 No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:
 
-![Kit de Herramientas y Seguridad en la Cajuela](assets/ilustracion_kit_herramientas_emergencia.jpg)
-*Fotografía e Ilustración: Equipamiento indispensable de seguridad y rescate que todo conductor debe llevar.*
+![Kit de Herramientas Esenciales del Conductor Novato](assets/infografia_herramientas_esenciales_hd.jpg)
+*Infografía Técnica en Alta Definición: Las 6 herramientas clave para llevar bajo el asiento por menos de $40 USD.*
 
 | Herramienta Recomendada | Costo Estimado | Utilidad Clave en Ruta |
 | :--- | :---: | :--- |
