@@ -2,14 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CharuAutos | Manual Práctico del Conductor Inteligente (V2.0)</title>
-  <meta name="description" content="Manual de mecánica básica preventiva para conductores novatos con cero conocimientos. Aprende a cuidar tu vehículo, ahorrar miles en reparaciones y evitar estafas en el taller.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CharuAutos V2 | Manual Práctico del Conductor Inteligente</title>
+  <meta name="description" content="Manual práctico de mecánica básica preventiva para conductores con cero conocimientos. 14 módulos interactivos, ilustraciones técnicas y herramientas anti-estafas.">
   <meta name="theme-color" content="#070a0f">
+  
+  <!-- PWA Manifest & Mobile Config -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CharuAutos V2">
   
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   
   <!-- Google Fonts -->
@@ -43,47 +50,7 @@
       --font-badge: 'Syne', sans-serif;
     }
 
-    /* Print styling overrides */
-    @media print {
-      body {
-        background: #ffffff !important;
-        color: #111827 !important;
-        font-size: 11pt !important;
-      }
-      .top-navbar, .sidebar, .hud-telemetry, .search-container, .no-print, .btn-action {
-        display: none !important;
-      }
-      .main-content-layout {
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-      .module-card {
-        background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
-        box-shadow: none !important;
-        page-break-inside: avoid;
-        margin-bottom: 24pt !important;
-      }
-      .chapter-h1, .chapter-h2 {
-        color: #000000 !important;
-        page-break-after: avoid;
-      }
-      .custom-alert {
-        border: 1px solid #000000 !important;
-        background: #f9fafb !important;
-        color: #000000 !important;
-      }
-      .code-terminal {
-        background: #f3f4f6 !important;
-        border: 1px solid #d1d5db !important;
-      }
-      .code-terminal pre code {
-        color: #111827 !important;
-      }
-    }
-
+    /* RESET & BASE */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -92,6 +59,7 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
@@ -105,9 +73,11 @@
         linear-gradient(rgba(30, 41, 59, 0.12) 1px, transparent 1px),
         linear-gradient(90deg, rgba(30, 41, 59, 0.12) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      overflow-x: hidden;
+      width: 100%;
     }
 
-    /* PROGRESS BAR */
+    /* READING PROGRESS BAR */
     #progress-container {
       position: fixed;
       top: 0;
@@ -125,40 +95,56 @@
       transition: width 0.1s ease;
     }
 
-    /* TOP NAVBAR */
+    /* TOP NAVBAR WITH V1-STYLE LOGO DISTRIBUTION */
     .top-navbar {
       position: sticky;
       top: 0;
-      background: rgba(7, 10, 15, 0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(7, 10, 15, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 12px 24px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       z-index: 900;
+      width: 100%;
     }
     .nav-brand-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+    .nav-avatar-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan-neon);
+      box-shadow: 0 0 12px var(--cyan-glow);
+      object-fit: cover;
+      flex-shrink: 0;
     }
     .nav-logo-img {
-      height: 38px;
+      height: 32px;
       width: auto;
+      max-width: 150px;
+      object-fit: contain;
     }
     .nav-slogan-pill {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: var(--cyan-neon);
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: #ffb703;
+      background: rgba(255, 183, 3, 0.08);
+      border: 1px solid rgba(255, 183, 3, 0.25);
       padding: 4px 10px;
       border-radius: 999px;
       display: none;
+      white-space: nowrap;
     }
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .nav-slogan-pill {
         display: inline-block;
       }
@@ -167,7 +153,8 @@
     .nav-actions-group {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
     .search-box {
       position: relative;
@@ -178,43 +165,51 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       color: #fff;
-      padding: 7px 14px 7px 32px;
+      padding: 6px 12px 6px 28px;
       border-radius: 8px;
-      font-size: 0.85rem;
-      width: 180px;
+      font-size: 0.8rem;
+      width: 120px;
       transition: all 0.25s ease;
+    }
+    @media (min-width: 640px) {
+      .search-box input {
+        width: 160px;
+      }
+      .search-box input:focus {
+        width: 220px;
+      }
     }
     .search-box input:focus {
       outline: none;
       border-color: var(--cyan-neon);
-      width: 260px;
       box-shadow: 0 0 12px var(--cyan-glow);
     }
     .search-box-icon {
       position: absolute;
-      left: 10px;
+      left: 8px;
       color: var(--text-dim);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       pointer-events: none;
     }
     .btn-action {
       background: var(--bg-surface);
       color: var(--text-main);
       border: 1px solid var(--border-subtle);
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      min-height: 38px;
+      touch-action: manipulation;
       transition: all 0.2s ease;
     }
     .btn-action:hover {
       border-color: var(--cyan-neon);
       color: var(--cyan-neon);
-      transform: translateY(-1px);
     }
     .btn-action.btn-primary {
       background: linear-gradient(135deg, var(--cyan-deep), var(--cyan-neon));
@@ -226,33 +221,95 @@
       box-shadow: 0 0 15px var(--cyan-glow);
     }
 
-    /* SHOWROOM CONTAINER */
+    /* MOBILE DRAWER */
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: min(85vw, 320px);
+      height: 100%;
+      background: #0b101a;
+      border-right: 1px solid var(--border-subtle);
+      z-index: 1200;
+      padding: 20px 16px;
+      overflow-y: auto;
+      transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mobile-drawer.open {
+      left: 0;
+    }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+    }
+    @media (min-width: 1025px) {
+      #btn-mobile-menu {
+        display: none !important;
+      }
+    }
+
+    /* SHOWROOM MAIN GRID */
     .showroom-layout {
       display: flex;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 24px;
-      gap: 32px;
+      padding: 16px;
+      gap: 28px;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .showroom-layout {
+        padding: 24px;
+      }
     }
 
-    /* SIDEBAR NAVIGATION */
+    /* SIDEBAR (DESKTOP) */
     .sidebar {
       width: 310px;
       flex-shrink: 0;
       position: sticky;
-      top: 80px;
-      height: calc(100vh - 100px);
+      top: 76px;
+      height: calc(100vh - 96px);
       overflow-y: auto;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 20px;
-      display: flex;
+      padding: 18px;
+      display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
+    }
+    @media (min-width: 1025px) {
+      .sidebar {
+        display: flex;
+      }
     }
     .sidebar-header {
-      padding-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border-subtle);
     }
     .sidebar-title {
@@ -261,7 +318,6 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--text-dim);
-      margin-bottom: 4px;
     }
     .sidebar-toc {
       list-style: none;
@@ -272,19 +328,20 @@
     .toc-item a {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
+      gap: 8px;
+      padding: 8px 10px;
       border-radius: 8px;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       transition: all 0.2s ease;
-      line-height: 1.3;
+      line-height: 1.25;
+      min-height: 40px;
     }
     .toc-item a:hover {
       background: var(--bg-card);
       color: var(--cyan-neon);
-      padding-left: 16px;
+      padding-left: 14px;
     }
     .toc-item a.active {
       background: rgba(0, 242, 254, 0.1);
@@ -294,7 +351,7 @@
     }
     .toc-badge {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       background: rgba(255, 255, 255, 0.06);
       padding: 2px 6px;
       border-radius: 4px;
@@ -306,53 +363,68 @@
     .main-content-layout {
       flex: 1;
       min-width: 0;
+      width: 100%;
     }
 
-    /* HERO SHOWCASE */
+    /* HERO SHOWCASE WITH V1-STYLE BRANDING */
     .hero-showcase {
       background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 48px 32px;
+      padding: 32px 18px;
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
-    .hero-showcase::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 450px;
-      height: 300px;
-      background: radial-gradient(ellipse, rgba(0, 242, 254, 0.18), transparent 70%);
-      pointer-events: none;
+    @media (min-width: 768px) {
+      .hero-showcase {
+        padding: 44px 32px;
+      }
+    }
+    .hero-emblem-img {
+      width: 200px;
+      max-width: 70%;
+      height: auto;
+      border-radius: 20px;
+      filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.4));
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+    .hero-emblem-img:hover {
+      transform: scale(1.02);
+    }
+    .hero-logo-horizontal {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      filter: drop-shadow(0 4px 18px rgba(0, 240, 255, 0.35));
+      margin: 0 auto 16px;
+      display: block;
     }
     .hero-badge-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: rgba(0, 242, 254, 0.1);
       border: 1px solid var(--cyan-neon);
       color: var(--cyan-neon);
       font-family: var(--font-badge);
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      padding: 6px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      padding: 5px 12px;
       border-radius: 999px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .hero-main-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-size: clamp(1.8rem, 5vw, 3rem);
       font-weight: 900;
       line-height: 1.15;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .hero-main-title span {
       background: linear-gradient(135deg, var(--cyan-neon), #00c0fa, #0088ff);
@@ -360,105 +432,115 @@
       -webkit-text-fill-color: transparent;
     }
     .hero-lead-text {
-      font-size: 1.15rem;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
       color: var(--text-muted);
       max-width: 760px;
-      margin: 0 auto 28px;
+      margin: 0 auto 20px;
     }
     .hero-official-slogan {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
       font-weight: 800;
       color: #ffb703;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       background: rgba(255, 183, 3, 0.08);
       border: 1px dashed rgba(255, 183, 3, 0.35);
-      padding: 10px 20px;
+      padding: 8px 16px;
       display: inline-block;
       border-radius: 8px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
-    /* TELEMETRY HUD */
+    /* TELEMETRY HUD (RESPONSIVE) */
     .hud-telemetry {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
       text-align: left;
+    }
+    @media (min-width: 640px) {
+      .hud-telemetry {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
     }
     .hud-card {
       background: rgba(10, 14, 23, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
-      padding: 16px;
+      padding: 12px 14px;
       position: relative;
     }
-    .hud-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan-neon), transparent);
-    }
     .hud-metric-label {
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       color: var(--text-dim);
       text-transform: uppercase;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
     .hud-metric-value {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 900;
       color: #fff;
-      margin-top: 4px;
-    }
-    .hud-metric-desc {
-      font-size: 0.75rem;
-      color: var(--cyan-neon);
       margin-top: 2px;
     }
+    .hud-metric-desc {
+      font-size: 0.7rem;
+      color: var(--cyan-neon);
+    }
 
-    /* CHAPTER SECTION / CARD */
+    /* CHAPTER MODULE CARDS */
     .module-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 40px 36px;
-      margin-bottom: 32px;
+      padding: 24px 16px;
+      margin-bottom: 28px;
       position: relative;
-      transition: border-color 0.25s ease;
+      overflow: hidden;
+      width: 100%;
     }
-    .module-card:hover {
-      border-color: rgba(0, 242, 254, 0.25);
+    @media (min-width: 768px) {
+      .module-card {
+        padding: 36px 32px;
+      }
     }
     .module-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border-subtle);
+    }
+    .module-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .module-brand-icon {
+      width: 22px;
+      height: 22px;
+      opacity: 0.85;
+      flex-shrink: 0;
     }
     .module-number-pill {
       font-family: var(--font-badge);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       color: var(--cyan-neon);
       background: rgba(0, 242, 254, 0.1);
       border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 999px;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
     .module-actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
     .btn-icon-tiny {
       background: transparent;
@@ -471,18 +553,85 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
+      font-size: 0.82rem;
     }
     .btn-icon-tiny:hover {
       border-color: var(--cyan-neon);
       color: var(--cyan-neon);
     }
 
+    /* RICH IMAGE FRAMES WITH HIGH-RES ILLUSTRATIONS */
+    .img-frame {
+      margin: 24px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #090d16;
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      width: 100%;
+    }
+    .img-frame img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .img-caption {
+      padding: 10px 14px;
+      background: #0f1624;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .img-caption-icon {
+      font-style: normal;
+      color: var(--cyan-neon);
+    }
+
+    /* CHARU ADVICE CALLOUT BOX */
+    .charu-tip-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(14, 20, 32, 0.9) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .charu-tip-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan-neon);
+      box-shadow: 0 0 10px var(--cyan-glow);
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    .charu-tip-content {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .charu-tip-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--cyan-neon);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
     /* TYPOGRAPHY */
     .chapter-h1 {
       font-family: var(--font-display);
-      font-size: 1.85rem;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
       font-weight: 900;
       color: #fff;
       margin-bottom: 8px;
@@ -490,61 +639,63 @@
     }
     .chapter-h2 {
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: clamp(1.15rem, 3vw, 1.4rem);
       font-weight: 800;
       color: #f1f5f9;
-      margin: 32px 0 16px;
+      margin: 28px 0 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       border-left: 3px solid var(--cyan-neon);
-      padding-left: 12px;
+      padding-left: 10px;
     }
     .chapter-h3 {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #e2e8f0;
-      margin: 24px 0 12px;
+      margin: 20px 0 10px;
     }
     .chapter-h4 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: #cbd5e1;
-      margin: 16px 0 8px;
+      margin: 14px 0 6px;
     }
     .prose-p {
       color: #cbd5e1;
-      font-size: 1rem;
+      font-size: 0.96rem;
       line-height: 1.7;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      word-break: break-word;
     }
     .chapter-divider {
       border: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
-      margin: 32px 0;
+      margin: 28px 0;
     }
 
     /* ALERTS */
     .custom-alert {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
+      gap: 12px;
+      padding: 16px;
       border-radius: 12px;
-      margin: 24px 0;
+      margin: 20px 0;
       background: var(--bg-card);
       border-left: 4px solid var(--text-dim);
     }
     .alert-icon-wrapper {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
       line-height: 1;
     }
     .alert-body-content {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #e2e8f0;
-      line-height: 1.6;
+      line-height: 1.55;
+      word-break: break-word;
     }
     .alert-caution {
       border-left-color: var(--crimson-red);
@@ -577,26 +728,26 @@
       border-left-width: 4px;
     }
 
-    /* CODE TERMINAL / DIAGRAMS */
+    /* CODE TERMINALS / DIAGRAMS (FLUID SCROLL) */
     .code-terminal {
       background: #060910;
       border: 1px solid #1e293b;
       border-radius: 10px;
-      margin: 24px 0;
+      margin: 20px 0;
       overflow: hidden;
-      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+      width: 100%;
     }
     .terminal-bar {
       background: #0f1624;
-      padding: 8px 14px;
+      padding: 6px 12px;
       display: flex;
       align-items: center;
       gap: 6px;
       border-bottom: 1px solid #1e293b;
     }
     .t-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       display: inline-block;
     }
@@ -605,88 +756,78 @@
     .t-dot.green { background: #10b981; }
     .terminal-title {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: #64748b;
-      margin-left: 8px;
-      letter-spacing: 1px;
+      margin-left: 6px;
+      letter-spacing: 0.5px;
     }
     .code-terminal pre {
-      padding: 16px 20px;
+      padding: 14px 16px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       font-family: var(--font-mono);
-      font-size: 0.85rem;
-      line-height: 1.5;
+      font-size: clamp(0.72rem, 1.8vw, 0.85rem);
+      line-height: 1.45;
       color: #38bdf8;
     }
     .inline-code {
       font-family: var(--font-mono);
       background: rgba(255, 255, 255, 0.08);
       color: #38bdf8;
-      padding: 2px 6px;
+      padding: 2px 5px;
       border-radius: 4px;
-      font-size: 0.88em;
+      font-size: 0.86em;
     }
 
-    /* TABLES */
+    /* DATA TABLES (RESPONSIVE TOUCH SCROLL) */
     .table-responsive {
       overflow-x: auto;
-      margin: 24px 0;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
+      width: 100%;
     }
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       text-align: left;
+      min-width: 540px;
     }
     .data-table th {
       background: #0d131f;
       color: var(--cyan-neon);
       font-family: var(--font-display);
       font-weight: 700;
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-bottom: 2px solid var(--border-subtle);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
     .data-table td {
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       color: #cbd5e1;
-    }
-    .data-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    /* LISTS */
-    .styled-list, .styled-ol {
-      margin: 16px 0 20px 24px;
-      color: #cbd5e1;
-    }
-    .styled-list li, .styled-ol li {
-      margin-bottom: 8px;
-      line-height: 1.6;
     }
 
     /* INTERACTIVE CHECKLISTS */
     .interactive-checklist {
       list-style: none;
-      margin: 20px 0;
+      margin: 16px 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .checklist-item {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 12px 16px;
-      transition: all 0.2s ease;
-    }
-    .checklist-item:hover {
-      border-color: rgba(0, 242, 254, 0.3);
+      padding: 10px 14px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
     }
     .custom-checkbox-container {
       display: flex;
@@ -694,6 +835,7 @@
       gap: 12px;
       cursor: pointer;
       user-select: none;
+      width: 100%;
     }
     .custom-checkbox-container input {
       position: absolute;
@@ -709,7 +851,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
       flex-shrink: 0;
     }
     .custom-checkbox-container input:checked ~ .checkmark-box {
@@ -727,45 +868,41 @@
       text-decoration: line-through;
     }
     .chk-label-text {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: #f1f5f9;
-      transition: color 0.2s;
     }
 
-    /* DIAGNOSTIC WIDGETS */
+    /* INTERACTIVE WIDGETS */
     .interactive-widget-box {
       background: linear-gradient(135deg, #0e1524 0%, #141c2e 100%);
       border: 1px solid var(--cyan-glow);
       border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
+      padding: 20px 16px;
+      margin: 24px 0;
     }
     .widget-header-title {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 800;
       color: var(--cyan-neon);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     .filter-pills-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 6px;
+      margin-bottom: 14px;
     }
     .filter-pill-btn {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      min-height: 36px;
     }
     .filter-pill-btn:hover, .filter-pill-btn.active {
       background: var(--cyan-neon);
@@ -777,44 +914,80 @@
       background: rgba(6, 9, 16, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
-      padding: 16px;
+      padding: 14px;
       color: #cbd5e1;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     /* FOOTER */
     .showroom-footer {
       border-top: 1px solid var(--border-subtle);
-      padding: 60px 24px;
+      padding: 48px 16px;
       text-align: center;
       background: #05070c;
-      margin-top: 60px;
+      margin-top: 48px;
+      width: 100%;
+    }
+    .footer-emblem {
+      width: 90px;
+      height: auto;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.3));
     }
     .footer-logo {
-      height: 44px;
-      margin-bottom: 16px;
+      height: 36px;
+      max-width: 220px;
+      margin-bottom: 14px;
     }
     .footer-slogan {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #ffb703;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .footer-copy {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-dim);
+      line-height: 1.6;
     }
 
-    @media (max-width: 1024px) {
-      .sidebar {
-        display: none;
+    /* PRINT OVERRIDES */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+      }
+      .top-navbar, .sidebar, .hud-telemetry, .search-container, .no-print, .btn-action, .mobile-drawer, .mobile-drawer-overlay {
+        display: none !important;
       }
       .showroom-layout {
-        padding: 16px;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
       }
       .module-card {
-        padding: 24px 20px;
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 20pt !important;
+      }
+      .chapter-h1, .chapter-h2 {
+        color: #000000 !important;
+      }
+      .custom-alert {
+        border: 1px solid #000000 !important;
+        background: #f9fafb !important;
+        color: #000000 !important;
+      }
+      .code-terminal {
+        background: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+      }
+      .code-terminal pre code {
+        color: #111827 !important;
       }
     }
   </style>
@@ -826,22 +999,50 @@
     <div id="progress-bar"></div>
   </div>
 
-  <!-- Sticky Top Navbar -->
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <img src="assets/charu_avatar.png" alt="Charu" style="width:30px; height:30px; border-radius:50%; border:1.5px solid var(--cyan-neon);">
+        <span style="font-family:var(--font-display); font-size:0.85rem; font-weight:800; color:var(--cyan-neon);">
+          MÓDULOS V2.0
+        </span>
+      </div>
+      <button class="btn-icon-tiny" id="btn-close-drawer" aria-label="Cerrar menú">✕</button>
+    </div>
+    <ul class="sidebar-toc" id="drawer-toc-list">
+      <!-- Injected via JS from sidebar -->
+    </ul>
+    <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-subtle); text-align:center;">
+      <div style="font-size:0.75rem; color:#ffb703; font-weight:700; margin-bottom:4px;">🐾 CHARUAUTOS OFICIAL</div>
+      <a href="https://instagram.com/charuautopics" target="_blank" class="content-link" style="font-size:0.8rem; color:var(--cyan-neon); font-weight:700;">@charuautopics</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Top Navbar with V1 Logo Distribution -->
   <header class="top-navbar">
     <div class="nav-brand-group">
-      <img src="assets/charu_horizontal_logo.svg" alt="CharuAutos Logo" class="nav-logo-img">
+      <button id="btn-mobile-menu" class="btn-action no-print" aria-label="Abrir Menú de Módulos" style="padding:6px 10px;">
+        ☰
+      </button>
+      <img src="assets/charu_avatar.png" alt="Charu Mascota Oficial" class="nav-avatar-icon">
+      <img src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos Logo" class="nav-logo-img">
       <span class="nav-slogan-pill">🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS</span>
     </div>
     <div class="nav-actions-group">
       <div class="search-box">
         <span class="search-box-icon">🔍</span>
-        <input type="text" id="chapter-search" placeholder="Buscar concepto o tema..." aria-label="Buscar en el manual">
+        <input type="text" id="chapter-search" placeholder="Buscar..." aria-label="Buscar en el manual">
       </div>
+      <button id="btn-pwa-install" class="btn-action no-print" style="display:none; background:rgba(0, 242, 254, 0.15); border-color:var(--cyan-neon); color:var(--cyan-neon);" title="Instalar Aplicación en el dispositivo">
+        📲 <span style="display:none; @media(min-width:640px){display:inline;}">Instalar</span>
+      </button>
       <button class="btn-action no-print" onclick="window.print()" title="Guardar como PDF o Imprimir">
-        🖨️ <span style="display:none; @media(min-width:640px){display:inline;}">Imprimir / PDF</span>
+        🖨️
       </button>
       <a href="ebook_v2_completo.md" download class="btn-action btn-primary no-print" title="Descargar Manuscrito Markdown">
-        📥 <span>Descargar .MD</span>
+        📥 <span style="display:none; @media(min-width:768px){display:inline;}">Descargar .MD</span>
       </a>
     </div>
   </header>
@@ -849,11 +1050,11 @@
   <!-- Showroom Main Grid -->
   <div class="showroom-layout">
     
-    <!-- Sticky Sidebar Navigation -->
+    <!-- Sticky Desktop Sidebar Navigation -->
     <aside class="sidebar no-print">
       <div class="sidebar-header">
         <div class="sidebar-title">Índice del Manual V2.0</div>
-        <div style="font-size:0.75rem; color:var(--cyan-neon);">13 Módulos Completos</div>
+        <div style="font-size:0.75rem; color:var(--cyan-neon); font-weight:700;">14 Módulos Prácticos</div>
       </div>
       <ul class="sidebar-toc" id="sidebar-toc-list">
         <li class="toc-item">
@@ -905,38 +1106,44 @@
           </a>
         </li>
         <li class="toc-item">
-          <a href="#obd2">
+          <a href="#turbo">
             <span class="toc-badge">M09</span>
+            <span>Cuidado y Mantenimiento del Turbo</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#obd2">
+            <span class="toc-badge">M10</span>
             <span>Testigos del Tablero y Escáner OBD-II</span>
           </a>
         </li>
         <li class="toc-item">
           <a href="#kilometraje">
-            <span class="toc-badge">M10</span>
+            <span class="toc-badge">M11</span>
             <span>Mantenimiento por Kilometraje y Costos</span>
           </a>
         </li>
         <li class="toc-item">
           <a href="#emergencias">
-            <span class="toc-badge">M11</span>
+            <span class="toc-badge">M12</span>
             <span>Protocolo de Emergencias y Cambio Llanta</span>
           </a>
         </li>
         <li class="toc-item">
           <a href="#taller">
-            <span class="toc-badge">M12</span>
+            <span class="toc-badge">M13</span>
             <span>Guía de Taller Anti-Estafas</span>
           </a>
         </li>
         <li class="toc-item">
           <a href="#checklists">
-            <span class="toc-badge">M13</span>
+            <span class="toc-badge">M14</span>
             <span>Apéndices, Checklists y Bitácora</span>
           </a>
         </li>
       </ul>
-      <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border-subtle); text-align:center;">
-        <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px;">COMUNIDAD OFICIAL</div>
+      <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-subtle); text-align:center;">
+        <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:4px;">COMUNIDAD OFICIAL</div>
         <a href="https://instagram.com/charuautopics" target="_blank" class="content-link" style="font-size:0.8rem; color:var(--cyan-neon); font-weight:700;">@charuautopics</a>
       </div>
     </aside>
@@ -944,15 +1151,20 @@
     <!-- Main Content Area -->
     <main class="main-content-layout">
 
-      <!-- Hero Showcase Card -->
+      <!-- Hero Showcase Card with Full V1 Logo Distribution -->
       <section class="hero-showcase">
-        <div class="hero-badge-tag">⚡ EDICIÓN OFICIAL 2.0 • CONDUCTOR INTELIGENTE</div>
+        <div style="text-align: center; margin-bottom: 14px;">
+          <img src="assets/charuautos_emblema_mascota.png" alt="CharuAutos Emblema Oficial" class="hero-emblem-img">
+        </div>
+        <img src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos Logo Horizontal" class="hero-logo-horizontal">
+        
+        <div class="hero-badge-tag">⚡ EDICIÓN OFICIAL 2.0 • 14 MÓDULOS ILUSTRADOS</div>
         <h1 class="hero-main-title">
           MANUAL PRÁCTICO DE<br>
           <span>MECÁNICA PREVENTIVA</span>
         </h1>
         <p class="hero-lead-text">
-          Aprende a diagnosticar, cuidar y defender tu vehículo desde cero absoluto. Sin tecnicismos oscuros, con tablas prácticas de costos, paso a paso ilustrados y el escudo definitivo para el taller mecánico.
+          Aprende a diagnosticar, cuidar y defender tu vehículo desde cero absoluto. Sin jerga incomprensible, con infografías técnicas en español, tablas de costos, módulo especializado de turbo y el escudo definitivo para el taller.
         </p>
         <div class="hero-official-slogan">
           🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS
@@ -961,14 +1173,14 @@
         <!-- Telemetry HUD -->
         <div class="hud-telemetry">
           <div class="hud-card">
-            <div class="hud-metric-label">Precio Recomendado</div>
+            <div class="hud-metric-label">Precio Sugerido</div>
             <div class="hud-metric-value" style="color:#10b981;">$5.99 USD</div>
             <div class="hud-metric-desc">Accesible &amp; Rentable</div>
           </div>
           <div class="hud-card">
             <div class="hud-metric-label">Módulos Prácticos</div>
-            <div class="hud-metric-value">13 Capítulos</div>
-            <div class="hud-metric-desc">Paso a paso guiado</div>
+            <div class="hud-metric-value">14 Capítulos</div>
+            <div class="hud-metric-desc">+ Módulo Turbo</div>
           </div>
           <div class="hud-card">
             <div class="hud-metric-label">Nivel de Entrada</div>
@@ -978,7 +1190,7 @@
           <div class="hud-card">
             <div class="hud-metric-label">Herramientas</div>
             <div class="hud-metric-value">Checklists</div>
-            <div class="hud-metric-desc">Bitácora interactiva</div>
+            <div class="hud-metric-desc">Con LocalStorage</div>
           </div>
         </div>
       </section>
@@ -988,8 +1200,8 @@
         <div class="widget-header-title">
           <span>⚡ DETECTOR INTERACTIVO DE FUGAS Y SÍNTOMAS AL INSTANTE</span>
         </div>
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
-          ¿Ves un charco o líquido extraño bajo tu auto? Selecciona el color para ver el diagnóstico rápido:
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+          ¿Ves un charco o líquido extraño bajo tu auto? Toca el color para ver el diagnóstico rápido:
         </p>
         <div class="filter-pills-row" id="leak-pill-container">
           <button class="filter-pill-btn active" data-fluid="clear">💧 Agua Clara / Inodora</button>
@@ -1000,7 +1212,7 @@
         </div>
         <div class="widget-result-card" id="leak-result-display">
           <strong>💧 Diagnóstico: Condensación normal del Aire Acondicionado.</strong><br>
-          <span style="color:var(--green-ok);">Nivel de Urgencia: 🟢 NORMAL.</span> Es vapor de agua condensado del evaporador al enfriar la cabina. No es una fuga de fluido del motor. Puedes continuar conduciendo sin preocupación.
+          <span style="color:var(--green-ok); font-weight:700;">Nivel de Urgencia: 🟢 NORMAL.</span> Es vapor de agua condensado del evaporador al enfriar la cabina. No es una fuga de fluido del motor. Puedes continuar conduciendo sin preocupación.
         </div>
       </section>
 
@@ -1009,11 +1221,11 @@
         <div class="widget-header-title" style="color:#ffb703;">
           <span>🔍 BUSCADOR RÁPIDO DE CÓDIGOS OBD-II (CHECK ENGINE)</span>
         </div>
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
           Escribe el código que leyó tu escáner Bluetooth (ejemplo: P0300, P0420, P0171, P0442):
         </p>
-        <div style="display:flex; gap:10px; margin-bottom:14px;">
-          <input type="text" id="obd-search-input" placeholder="Escribe un código DTC (ej: P0301)..." style="background:#070a0f; border:1px solid var(--border-subtle); color:#fff; padding:8px 14px; border-radius:8px; width:220px; font-family:var(--font-mono); font-size:0.9rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+          <input type="text" id="obd-search-input" placeholder="Código (ej: P0301)..." style="background:#070a0f; border:1px solid var(--border-subtle); color:#fff; padding:8px 12px; border-radius:8px; width:180px; font-family:var(--font-mono); font-size:0.9rem;">
           <button class="btn-action" onclick="lookupOBDCode()">Consultar Código</button>
         </div>
         <div class="widget-result-card" id="obd-result-display">
@@ -1024,7 +1236,10 @@
       <!-- Módulo 01: Seguridad Primero & Advertencia Legal -->
       <section class="module-card" id="seguridad">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 01</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 01</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#seguridad'); alert('Enlace del Módulo 01 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#seguridad" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1034,6 +1249,9 @@
         <h1 id="m-dulo-01-introducci-n-seguridad-primero-advertencia-legal" class="chapter-h1">Módulo 01 — Introducción, Seguridad Primero & Advertencia Legal</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<p class="prose-p"><div class="img-frame"><img src="assets/charuautos_emblema_mascota.png" alt="Emblema Oficial de CharuAutos" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Emblema Oficial de CharuAutos</div></div></p>
+<p class="prose-p"><em>Charu — Mascota Oficial y Símbolo de Pasión Automotriz</em></p>
 <hr class="chapter-divider">
 <h2 id="1-bienvenido-al-mundo-del-conductor-inteligente" class="chapter-h2">⚡ 1. Bienvenido al Mundo del Conductor Inteligente</h2>
 <p class="prose-p">Si acabas de comprar tu primer auto, o llevas años conduciendo pero cada vez que abres el capó sientes que estás mirando una nave espacial alienígena, <strong>este manual fue escrito exactamente para ti</strong>.</p>
@@ -1084,7 +1302,10 @@
       <!-- Módulo 02: Cómo Funciona un Auto (Sin Jerga) -->
       <section class="module-card" id="motor">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 02</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 02</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#motor'); alert('Enlace del Módulo 02 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#motor" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1171,12 +1392,20 @@
 <li><strong>Depósito de Refrigerante:</strong> Tanque traslúcido con líquido rosado, verde o azul.</li>
 <li><strong>Depósito Limpiaparabrisas:</strong> Tapa plástica (casi siempre azul o negra) con un parabrisas y chorritos de agua grabados.</li>
 </ol>
+<hr class="chapter-divider">
+<h2 id="resumen-visual-del-motor-el-vano-motor-en-espa-ol" class="chapter-h2">🔍 Resumen Visual del Motor: El Vano Motor en Español</h2>
+<p class="prose-p">Para que nunca más sientas miedo al abrir el capó, esta infografía resume la ubicación típica de los depósitos y componentes esenciales:</p>
+<p class="prose-p"><div class="img-frame"><img src="assets/vano_motor_real_espanol.jpg" alt="Inspección Visual del Motor Real Bajo el Capó" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Inspección Visual del Motor Real Bajo el Capó</div></div></p>
+<p class="prose-p"><em>Guía Visual de Identificación de Componentes en el Vano Motor</em></p>
       </section>
     
       <!-- Módulo 03: Herramientas Básicas y Kit de Emergencia -->
       <section class="module-card" id="herramientas">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 03</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 03</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#herramientas'); alert('Enlace del Módulo 03 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#herramientas" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1245,12 +1474,19 @@
 <li><strong>Líquidos "milagrosos" para tapar fugas de radiador:</strong> Contienen partículas que taponan los conductos microscópicos del calefactor de cabina y causan averías de cientos de dólares.</li>
 <li><strong>Herramientas de marcas ultra baratas sin certificar:</strong> Se doblan en el primer intento y redondean las tuercas dejándote atrapado.</li>
 </ul>
+<hr class="chapter-divider">
+<h2 id="resumen-visual-el-kit-de-emergencia-completo-en-tu-cajuela" class="chapter-h2">🎒 Resumen Visual: El Kit de Emergencia Completo en tu Cajuela</h2>
+<p class="prose-p"><div class="img-frame"><img src="assets/car_emergency_kit.jpg" alt="Kit de Emergencia y Herramientas en la Cajuela" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Kit de Emergencia y Herramientas en la Cajuela</div></div></p>
+<p class="prose-p"><em>Elementos Reglamentarios y Esenciales para Conducir con Tranquilidad en Ciudad y Carretera</em></p>
       </section>
     
       <!-- Módulo 04: Rutinas de Inspección Preventiva -->
       <section class="module-card" id="inspeccion">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 04</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 04</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#inspeccion'); alert('Enlace del Módulo 04 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#inspeccion" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1335,7 +1571,10 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 05: Fluidos Vitales y Detección de Fugas -->
       <section class="module-card" id="fluidos">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 05</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 05</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#fluidos'); alert('Enlace del Módulo 05 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#fluidos" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1432,7 +1671,10 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 06: Neumáticos, Frenos y Seguridad Activa -->
       <section class="module-card" id="neumaticos">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 06</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 06</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#neumaticos'); alert('Enlace del Módulo 06 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#neumaticos" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1462,6 +1704,8 @@ Paso 3: Vidrios, espejos y luces limpias
 <h3 id="qu-significa-medir-en-fr-o" class="chapter-h3">¿Qué significa medir "en frío"?:</h3>
 <p class="prose-p">Se considera en frío cuando el auto ha rodado <strong>menos de 2 km</strong> o ha estado estacionado durante al menos <strong>2 horas</strong>. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.</p>
 <hr class="chapter-divider">
+<p class="prose-p"><div class="img-frame"><img src="assets/tire_guide_and_dot_code.jpg" alt="Guía Técnica de Neumáticos y Código DOT" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Guía Técnica de Neumáticos y Código DOT</div></div></p>
+<p class="prose-p"><em>Infografía: Decodificación del Código DOT, Presión en Frío y Banda de Rodadura</em></p>
 <h2 id="3-la-prueba-de-la-moneda-y-el-c-digo-de-antig-edad-dot" class="chapter-h2">🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT</h2>
 <h3 id="a-la-prueba-de-la-moneda-para-desgaste-de-banda" class="chapter-h3">A. La Prueba de la Moneda para Desgaste de Banda:</h3>
 <p class="prose-p">El límite legal mínimo en la mayoría de países es de <strong>1.6 mm</strong> de profundidad en los surcos principales, pero sobre asfalto mojado la distancia de frenado se duplica cuando el dibujo baja de <strong>3.0 mm</strong>.</p>
@@ -1508,12 +1752,19 @@ Paso 3: Vidrios, espejos y luces limpias
                 <div class="alert-body-content">### 🎵 El Famoso "Chirrido de Chivato"<br>Las pastillas de calidad incorporan una pequeña lengüeta de chapa metálica llamada avisador acústico. Cuando el material de fricción se desgasta hasta los 2.5 mm, esa chapita roza contra el disco produciendo un chillido agudo al frenar. No te asustes: es un diseño de ingeniería deliberado para avisarte antes de que el soporte de hierro dañe el disco.</div>
             </div>
             
+<hr class="chapter-divider">
+<h2 id="resumen-visual-anatom-a-de-frenos-y-suspensi-n" class="chapter-h2">🛑 Resumen Visual: Anatomía de Frenos y Suspensión</h2>
+<p class="prose-p"><div class="img-frame"><img src="assets/frenos_suspension_espanol.jpg" alt="Componentes de Frenos y Suspensión en Español" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Componentes de Frenos y Suspensión en Español</div></div></p>
+<p class="prose-p"><em>Despiece de Cáliper, Pastillas, Disco Ventilado y Amortiguador</em></p>
       </section>
     
       <!-- Módulo 07: Batería, Fusibles y Luces -->
       <section class="module-card" id="electricidad">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 07</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 07</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#electricidad'); alert('Enlace del Módulo 07 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#electricidad" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1619,7 +1870,10 @@ Paso 3: Vidrios, espejos y luces limpias
       <!-- Módulo 08: Filtros, Bujías, Correas y Escobillas -->
       <section class="module-card" id="filtros">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 08</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 08</span>
+          </div>
           <div class="module-actions no-print">
             <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#filtros'); alert('Enlace del Módulo 08 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#filtros" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
@@ -1647,6 +1901,8 @@ Paso 3: Vidrios, espejos y luces limpias
 <li><strong>La prueba de la linterna:</strong> Pon una linterna por detrás del filtro. Si la luz no atraviesa el papel plisado, está saturado y debe reemplazarse.</li>
 </ul>
 <h3 id="b-filtro-de-habit-culo-cabina-el-filtro-antipolen" class="chapter-h3">B. Filtro de Habitáculo / Cabina (El filtro antipolen):</h3>
+<p class="prose-p"><div class="img-frame"><img src="assets/cabin_filter_replacement.jpg" alt="Paso a paso cambio filtro de cabina" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Paso a paso cambio filtro de cabina</div></div></p>
+<p class="prose-p"><em>Procedimiento Visual: Extracción de Guantera y Sustitución del Filtro Antipolen en 5 Minutos</em></p>
 <p class="prose-p">Purifica el aire que tú y tu familia respiran por las rejillas del aire acondicionado.</p>
 <ul class="styled-list">
 <li><strong>Síntomas de cambio:</strong> Olor a humedad o "calcetín sucio" al encender el aire, y vidrios que se empañan constantemente en invierno sin poder desempañarse con rapidez.</li>
@@ -1701,19 +1957,103 @@ Paso 3: Vidrios, espejos y luces limpias
 </ol>
       </section>
     
-      <!-- Módulo 09: Testigos del Tablero y Escáner OBD-II -->
+      <!-- Módulo 09: Cuidado y Mantenimiento del Turbo -->
+      <section class="module-card" id="turbo">
+        <div class="module-card-header">
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 09</span>
+          </div>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#turbo'); alert('Enlace del Módulo 09 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#turbo" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-09-el-turbocompresor-cuidados-cr-ticos-y-la-regla-de-los-60-segundos" class="chapter-h1">Módulo 09 — El Turbocompresor: Cuidados Críticos y la Regla de los 60 Segundos</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<p class="prose-p"><div class="img-frame"><img src="assets/turbo_mantenimiento_espanol.jpg" alt="Funcionamiento y Mantenimiento del Turbocompresor en Español" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Funcionamiento y Mantenimiento del Turbocompresor en Español</div></div></p>
+<p class="prose-p"><em>Infografía Técnica: El Eje Flotante, Temperaturas Extremas y la Regla de Oro de los 60 Segundos</em></p>
+<hr class="chapter-divider">
+<h2 id="1-qu-es-un-turbo-y-por-qu-tu-auto-probablemente-tiene-uno" class="chapter-h2">🌪️ 1. ¿Qué es un Turbo y por qué tu Auto Probablemente Tiene Uno?</h2>
+<p class="prose-p">Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es que su motor sea turboalimentado (incluso en vehículos utilitarios compactos de 1.0 a 1.5 litros como EcoBoost, TSI, TCe, PureTech o diésel TDI/CRDi).</p>
+<h3 id="la-explicaci-n-sin-jerga" class="chapter-h3">La Explicación sin Jerga:</h3>
+<p class="prose-p">Imagina un <strong>molino de viento diminuto de altísima precisión</strong>. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que <strong>inyecta mucho más aire a presión dentro de los cilindros</strong>. </p>
+<ul class="styled-list">
+<li><strong>El resultado:</strong> Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.</li>
+</ul>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>       CÓMO FUNCIONA EL TURBOCOMPRESOR EN UN MINUTO
+┌─────────────────────────┐                 ┌─────────────────────────┐
+│ GASES DE ESCAPE         │                 │ AIRE FRESCO EXTERIOR    │
+│ Salen calientes a 900°C │                 │ Entra por el filtro     │
+└───────────┬─────────────┘                 └───────────┬─────────────┘
+            │                                           │
+            ▼                                           ▼
+┌─────────────────────────┐   EJE DE ACERO  ┌─────────────────────────┐
+│ TURBINA DE ESCAPE       │═════════════════│ COMPRESOR DE ADMISIÓN   │
+│ Gira a 200.000+ RPM     │  Bañado en óleo │ Comprime el aire al mot.│
+└─────────────────────────┘                 └─────────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="2-la-regla-de-oro-los-60-segundos-que-salvan-miles-de-d-lares" class="chapter-h2">⏱️ 2. La Regla de Oro: Los 60 Segundos que Salvan Miles de Dólares</h2>
+<p class="prose-p">El eje que une las dos turbinas del turbo gira a velocidades vertiginosas (entre <strong>150.000 y 250.000 revoluciones por minuto</strong>) y soporta temperaturas que superan los <strong>850 °C a 1.000 °C</strong>. </p>
+<p class="prose-p">A esa velocidad, ningún rodamiento de bolas convencional sobreviviría. El eje "flota" sobre una <strong>micro-película de aceite de motor a presión</strong> inyectada por la bomba de lubricación.</p>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### 🛑 EL ERROR FATAL: APAGAR EL MOTOR DE GOLPE<br>Cuando conduces por autopista a 120 km/h o subes una cuesta exigente, el turbo está al rojo vivo.  <br>Si llegas a una estación de servicio o a tu casa y <strong>apagas el motor de inmediato</strong>, la bomba de aceite se detiene en seco.  <br>El aceite que queda atrapado dentro del turbo quieto se "cocina" por el calor residual extremo (fenómeno de <strong>carbonización / coquización</strong>), convirtiéndose en carbón duro abrasivo.  <br>Al día siguiente, cuando arranques, ese carbón rayará el eje y destruirá los sellos.  <br><strong>Costo de reemplazar un turbo dañado: $800 a $2.500 USD.</strong></div>
+            </div>
+            
+<h3 id="el-protocolo-de-los-60-segundos" class="chapter-h3">💡 El Protocolo de los 60 Segundos:</h3>
+<ol class="styled-ol">
+<li><strong>Al arrancar por las mañanas:</strong> Espera <strong>30 a 60 segundos</strong> en ralentí antes de iniciar la marcha para que la presión de aceite llegue al turbo. Conduce con suavidad los primeros 5 minutos sin pisar el acelerador a fondo.</li>
+<li><strong>Al llegar a tu destino (especialmente tras autopista o viajes largos):</strong> Permanece sentado con el motor en ralentí durante <strong>60 segundos</strong> antes de girar la llave para apagar. Ese minuto permite que el aceite siga fluyendo fresco, evacuando el calor extremo del turbo de forma progresiva.</li>
+</ol>
+<hr class="chapter-divider">
+<h2 id="3-el-aceite-que-exige-un-motor-turbo" class="chapter-h2">🛢️ 3. El Aceite que Exige un Motor Turbo</h2>
+<p class="prose-p">Los motores turboalimentados no perdonan el uso de aceites baratos o minerales:</p>
+<ul class="styled-list">
+<li><strong>100% Sintético Obligatorio:</strong> Requieren aceites formulados específicamente para resistir cizallamiento térmico extremo (normas <strong>API SP</strong>, <strong>ILSAC GF-6</strong> o <strong>ACEA C2/C3</strong>).</li>
+<li><strong>Protección contra LSPI (Preignición a Baja Velocidad):</strong> En motores turbo de inyección directa de baja cilindrada (TGDI), el aceite incorrecto puede causar detonaciones destructivas espontáneas dentro del cilindro.</li>
+<li><strong>Respetar los Kilómetros:</strong> Nunca extiendas el cambio de aceite más allá de los <strong>10.000 km</strong> o 1 año. En un motor turbo, el aceite viejo con hollín degrada directamente los sellos de la turbina.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="4-s-ntomas-de-un-turbo-en-problemas" class="chapter-h2">👂 4. Síntomas de un Turbo en Problemas</h2>
+<p class="prose-p">Aprende a identificar las señales de fatiga antes de una rotura catastrófica:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
+│ SÍNTOMA SENSORIAL       │ QUÉ ESTÁ OCURRIENDO       │ ACCIÓN RECOMENDADA             │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 🚓 Silbido como sirena  │ Holgura en el eje flotante│ Acudir al taller de inmediato; │
+│ de policía al acelerar  │ y rozamiento de álabes    │ el turbo está por desarmarse   │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 💨 Humo azulado/blanco  │ Sellos desgastados dejan  │ Revisar nivel de aceite diario;│
+│ denso por el escape     │ pasar aceite a la turbina │ sustituir cartucho (CHRA)      │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 🐌 Pérdida súbita de    │ Fuga en manguera interco. │ Inspeccionar abrazaderas o     │
+│ aceleración (&quot;Limp Mode&quot;)│ o válvula wastegate trab.│ válvula de descarga            │
+└─────────────────────────┴───────────────────────────┴────────────────────────────────┘</code></pre></div>
+      </section>
+    
+      <!-- Módulo 10: Testigos del Tablero y Escáner OBD-II -->
       <section class="module-card" id="obd2">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 09</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 10</span>
+          </div>
           <div class="module-actions no-print">
-            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#obd2'); alert('Enlace del Módulo 09 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#obd2'); alert('Enlace del Módulo 10 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#obd2" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
           </div>
         </div>
         
-        <h1 id="m-dulo-09-testigos-del-tablero-y-esc-ner-obd-ii-para-principiantes" class="chapter-h1">Módulo 09 — Testigos del Tablero y Escáner OBD-II para Principiantes</h1>
+        <h1 id="m-dulo-10-testigos-del-tablero-y-esc-ner-obd-ii-para-principiantes" class="chapter-h1">Módulo 10 — Testigos del Tablero y Escáner OBD-II para Principiantes</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<p class="prose-p"><div class="img-frame"><img src="assets/tablero_testigos_espanol.jpg" alt="Cuadro de Instrumentos y Advertencias Automotrices" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Cuadro de Instrumentos y Advertencias Automotrices</div></div></p>
+<p class="prose-p"><em>Guía Gráfica de Testigos y Prioridades del Cuadro de Mandos en Español</em></p>
 <hr class="chapter-divider">
 <h2 id="1-el-sistema-de-sem-foro-del-cuadro-de-instrumentos" class="chapter-h2">🚦 1. El Sistema de Semáforo del Cuadro de Instrumentos</h2>
 <p class="prose-p">Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del cuadro se iluminan durante unos segundos en lo que se conoce como "autotest del sistema". Al arrancar el motor, deben apagarse por completo.</p>
@@ -1788,17 +2128,20 @@ Paso 3: Vidrios, espejos y luces limpias
             
       </section>
     
-      <!-- Módulo 10: Mantenimiento por Kilometraje y Costos -->
+      <!-- Módulo 11: Mantenimiento por Kilometraje y Costos -->
       <section class="module-card" id="kilometraje">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 10</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 11</span>
+          </div>
           <div class="module-actions no-print">
-            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#kilometraje'); alert('Enlace del Módulo 10 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#kilometraje'); alert('Enlace del Módulo 11 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#kilometraje" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
           </div>
         </div>
         
-        <h1 id="m-dulo-10-mantenimiento-por-kilometraje-y-costos-estimados" class="chapter-h1">Módulo 10 — Mantenimiento por Kilometraje y Costos Estimados</h1>
+        <h1 id="m-dulo-11-mantenimiento-por-kilometraje-y-costos-estimados" class="chapter-h1">Módulo 11 — Mantenimiento por Kilometraje y Costos Estimados</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
 <hr class="chapter-divider">
@@ -1832,17 +2175,20 @@ Paso 3: Vidrios, espejos y luces limpias
 </ol>
       </section>
     
-      <!-- Módulo 11: Protocolo de Emergencias y Cambio Llanta -->
+      <!-- Módulo 12: Protocolo de Emergencias y Cambio Llanta -->
       <section class="module-card" id="emergencias">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 11</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 12</span>
+          </div>
           <div class="module-actions no-print">
-            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#emergencias'); alert('Enlace del Módulo 11 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#emergencias'); alert('Enlace del Módulo 12 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#emergencias" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
           </div>
         </div>
         
-        <h1 id="m-dulo-11-protocolo-de-emergencias-en-ruta-y-cambio-de-llanta" class="chapter-h1">Módulo 11 — Protocolo de Emergencias en Ruta y Cambio de Llanta</h1>
+        <h1 id="m-dulo-12-protocolo-de-emergencias-en-ruta-y-cambio-de-llanta" class="chapter-h1">Módulo 12 — Protocolo de Emergencias en Ruta y Cambio de Llanta</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
 <hr class="chapter-divider">
@@ -1910,17 +2256,20 @@ Paso 3: Vidrios, espejos y luces limpias
 </ol>
       </section>
     
-      <!-- Módulo 12: Guía de Taller Anti-Estafas -->
+      <!-- Módulo 13: Guía de Taller Anti-Estafas -->
       <section class="module-card" id="taller">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 12</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 13</span>
+          </div>
           <div class="module-actions no-print">
-            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#taller'); alert('Enlace del Módulo 12 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#taller'); alert('Enlace del Módulo 13 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#taller" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
           </div>
         </div>
         
-        <h1 id="m-dulo-12-gu-a-para-ir-al-taller-sin-ser-estafado" class="chapter-h1">Módulo 12 — Guía para ir al Taller sin Ser Estafado</h1>
+        <h1 id="m-dulo-13-gu-a-para-ir-al-taller-sin-ser-estafado" class="chapter-h1">Módulo 13 — Guía para ir al Taller sin Ser Estafado</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
 <hr class="chapter-divider">
@@ -1964,6 +2313,8 @@ Paso 3: Vidrios, espejos y luces limpias
 </ul>
 <p class="prose-p"><em>Esto elimina de raíz la vieja estafa de "cobrar por repuestos que nunca se cambiaron".</em></p>
 <h3 id="4-conocer-las-categor-as-de-repuestos" class="chapter-h3">4. Conocer las Categorías de Repuestos:</h3>
+<p class="prose-p"><div class="img-frame"><img src="assets/repuestos_calidad_espanol.jpg" alt="Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español</div></div></p>
+<p class="prose-p"><em>Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas</em></p>
 <div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
 │ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
 ├───────────────────────────┼──────────────────────────────────┼────────────────────────────────┤
@@ -1982,19 +2333,26 @@ Paso 3: Vidrios, espejos y luces limpias
 <li>Las instalaciones están en un caos absoluto, con charcos de aceite no recogidos y herramientas tiradas por el suelo.</li>
 <li>No te permiten ver las piezas que cambiaron argumentando que "ya las tiraron a la basura".</li>
 </ul>
+<hr class="chapter-divider">
+<h2 id="resumen-visual-pasos-del-conductor-inteligente-en-el-taller" class="chapter-h2">🛠️ Resumen Visual: Pasos del Conductor Inteligente en el Taller</h2>
+<p class="prose-p"><div class="img-frame"><img src="assets/taller_mecanico_espanol.jpg" alt="Pasos del Conductor en el Taller Mecánico" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Pasos del Conductor en el Taller Mecánico</div></div></p>
+<p class="prose-p"><em>Protocolo de Recepción, Diagnóstico con Presupuesto Previo y Entrega con Piezas Viejas en Mano</em></p>
       </section>
     
-      <!-- Módulo 13: Apéndices, Checklists y Bitácora -->
+      <!-- Módulo 14: Apéndices, Checklists y Bitácora -->
       <section class="module-card" id="checklists">
         <div class="module-card-header">
-          <span class="module-number-pill">MÓDULO 13</span>
+          <div class="module-pill-group">
+            <img src="assets/charuautos_logo_icon.svg" alt="CharuAutos Icon" class="module-brand-icon">
+            <span class="module-number-pill">MÓDULO 14</span>
+          </div>
           <div class="module-actions no-print">
-            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#checklists'); alert('Enlace del Módulo 13 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#checklists'); alert('Enlace del Módulo 14 copiado al portapapeles');" title="Copiar enlace">🔗</button>
             <a href="#checklists" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
           </div>
         </div>
         
-        <h1 id="m-dulo-13-ap-ndices-checklists-imprimibles-y-bit-cora-de-mantenimiento" class="chapter-h1">Módulo 13 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento</h1>
+        <h1 id="m-dulo-14-ap-ndices-checklists-imprimibles-y-bit-cora-de-mantenimiento" class="chapter-h1">Módulo 14 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento</h1>
 <h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
 <p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
 <hr class="chapter-divider">
@@ -2016,6 +2374,8 @@ Paso 3: Vidrios, espejos y luces limpias
 <li><strong>Viscosidad SAE:</strong> Calificación de resistencia al flujo de un aceite lubricante tanto a bajas temperaturas en frío como a régimen de operación en caliente.</li>
 </ul>
 <hr class="chapter-divider">
+<p class="prose-p"><div class="img-frame"><img src="assets/workshop_smart_checklist.jpg" alt="Checklist Inteligente de Taller y Mantenimiento" loading="lazy"><div class="img-caption"><span class="img-caption-icon">📷</span> Checklist Inteligente de Taller y Mantenimiento</div></div></p>
+<p class="prose-p"><em>Cuadro Rápido de Verificaciones de Seguridad para Conducir con Confianza</em></p>
 <h2 id="2-checklists-imprimibles-de-mantenimiento" class="chapter-h2">✅ 2. Checklists Imprimibles de Mantenimiento</h2>
 <h3 id="checklist-r-pido-semanal-3-minutos" class="chapter-h3">🟢 Checklist Rápido Semanal (3 Minutos)</h3>
 <ul class="interactive-checklist">
@@ -2191,13 +2551,14 @@ Paso 3: Vidrios, espejos y luces limpias
     </main>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer with V1 Emblem and Logo Distribution -->
   <footer class="showroom-footer">
-    <img src="assets/charu_horizontal_logo.svg" alt="CharuAutos Logo" class="footer-logo">
+    <img src="assets/charuautos_emblema_mascota.png" alt="CharuAutos Emblema" class="footer-emblem"><br>
+    <img src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos Logo" class="footer-logo">
     <div class="footer-slogan">🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS</div>
     <p class="footer-copy">
       © 2026 CharuAutos • Manual Práctico del Conductor Inteligente (Versión 2.0). Todos los derechos reservados.<br>
-      Diseñado para empoderar al conductor cotidiano con rigor técnico, honestidad y seguridad vial.
+      Diseñado para empoderar al conductor cotidiano con rigor técnico, ilustraciones claras y máxima seguridad vial.
     </p>
   </footer>
 
@@ -2337,6 +2698,71 @@ Paso 3: Vidrios, espejos y luces limpias
       chk.addEventListener('change', () => {
         localStorage.setItem('charu_chk_' + id, chk.checked);
       });
+    });
+
+    // 7. Service Worker Registration & PWA Install Prompt
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('[CharuAutos V2] Service Worker activo:', reg.scope))
+          .catch(err => console.log('[CharuAutos V2] Error en Service Worker:', err));
+      });
+    }
+
+    let deferredPrompt;
+    const installBtn = document.getElementById('btn-pwa-install');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-flex';
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[CharuAutos V2] Resultado instalación:', outcome);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
+
+    // 8. Mobile Drawer Management
+    const mobileMenuBtn = document.getElementById('btn-mobile-menu');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileOverlay = document.getElementById('mobile-drawer-overlay');
+    const closeDrawerBtn = document.getElementById('btn-close-drawer');
+    const drawerTocList = document.getElementById('drawer-toc-list');
+    const sidebarTocList = document.getElementById('sidebar-toc-list');
+
+    if (sidebarTocList && drawerTocList) {
+      drawerTocList.innerHTML = sidebarTocList.innerHTML;
+    }
+
+    function toggleDrawer(open) {
+      if (open) {
+        mobileDrawer.classList.add('open');
+        mobileOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileDrawer.classList.remove('open');
+        mobileOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+    }
+    if (closeDrawerBtn) {
+      closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+    }
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', () => toggleDrawer(false));
+    }
+    drawerTocList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleDrawer(false));
     });
   </script>
 </body>

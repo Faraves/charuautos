@@ -1,4 +1,4 @@
-# Módulo 13 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento
+# Módulo 14 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -22,6 +22,9 @@
 - **Viscosidad SAE:** Calificación de resistencia al flujo de un aceite lubricante tanto a bajas temperaturas en frío como a régimen de operación en caliente.
 
 ---
+
+![Checklist Inteligente de Taller y Mantenimiento](assets/workshop_smart_checklist.jpg)
+*Cuadro Rápido de Verificaciones de Seguridad para Conducir con Confianza*
 
 ## ✅ 2. Checklists Imprimibles de Mantenimiento
 

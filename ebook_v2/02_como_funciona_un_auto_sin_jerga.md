@@ -87,3 +87,13 @@ Cuando abras el cofre, busca estos 4 tapones universales:
 2. **Varilla de Aceite:** Tirador con anilla de plástico (amarilla o naranja).
 3. **Depósito de Refrigerante:** Tanque traslúcido con líquido rosado, verde o azul.
 4. **Depósito Limpiaparabrisas:** Tapa plástica (casi siempre azul o negra) con un parabrisas y chorritos de agua grabados.
+
+
+---
+
+## 🔍 Resumen Visual del Motor: El Vano Motor en Español
+
+Para que nunca más sientas miedo al abrir el capó, esta infografía resume la ubicación típica de los depósitos y componentes esenciales:
+
+![Inspección Visual del Motor Real Bajo el Capó](assets/vano_motor_real_espanol.jpg)
+*Guía Visual de Identificación de Componentes en el Vano Motor*

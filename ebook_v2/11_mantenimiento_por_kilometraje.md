@@ -1,4 +1,4 @@
-# Módulo 10 — Mantenimiento por Kilometraje y Costos Estimados
+# Módulo 11 — Mantenimiento por Kilometraje y Costos Estimados
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 

@@ -1,5 +1,5 @@
 // Service Worker para CharuAutos PWA Versión 2.0
-const CACHE_NAME = 'charuautos-pwa-v2-v1';
+const CACHE_NAME = 'charuautos-pwa-v2-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -24,7 +24,8 @@ const ASSETS_TO_CACHE = [
   './assets/cabin_filter_replacement.jpg',
   './assets/repuestos_calidad_espanol.jpg',
   './assets/taller_mecanico_espanol.jpg',
-  './assets/car_emergency_kit.jpg'
+  './assets/car_emergency_kit.jpg',
+  './assets/workshop_smart_checklist.jpg'
 ];
 
 self.addEventListener('install', (event) => {

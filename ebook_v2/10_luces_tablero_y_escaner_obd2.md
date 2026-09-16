@@ -1,6 +1,11 @@
-# Módulo 09 — Testigos del Tablero y Escáner OBD-II para Principiantes
+# Módulo 10 — Testigos del Tablero y Escáner OBD-II para Principiantes
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
+
+---
+
+![Cuadro de Instrumentos y Advertencias Automotrices](assets/tablero_testigos_espanol.jpg)
+*Guía Gráfica de Testigos y Prioridades del Cuadro de Mandos en Español*
 
 ---
 

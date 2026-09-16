@@ -1,4 +1,4 @@
-# Módulo 11 — Protocolo de Emergencias en Ruta y Cambio de Llanta
+# Módulo 12 — Protocolo de Emergencias en Ruta y Cambio de Llanta
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 

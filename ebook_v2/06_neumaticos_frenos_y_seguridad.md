@@ -34,6 +34,9 @@ Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado est
 
 ---
 
+![Guía Técnica de Neumáticos y Código DOT](assets/tire_guide_and_dot_code.jpg)
+*Infografía: Decodificación del Código DOT, Presión en Frío y Banda de Rodadura*
+
 ## 🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT
 
 ### A. La Prueba de la Moneda para Desgaste de Banda:
@@ -87,3 +90,11 @@ No necesitas desarmar la rueda para tener una estimación del estado de tus fren
 > [!NOTE]
 > ### 🎵 El Famoso "Chirrido de Chivato"
 > Las pastillas de calidad incorporan una pequeña lengüeta de chapa metálica llamada avisador acústico. Cuando el material de fricción se desgasta hasta los 2.5 mm, esa chapita roza contra el disco produciendo un chillido agudo al frenar. No te asustes: es un diseño de ingeniería deliberado para avisarte antes de que el soporte de hierro dañe el disco.
+
+
+---
+
+## 🛑 Resumen Visual: Anatomía de Frenos y Suspensión
+
+![Componentes de Frenos y Suspensión en Español](assets/frenos_suspension_espanol.jpg)
+*Despiece de Cáliper, Pastillas, Disco Ventilado y Amortiguador*

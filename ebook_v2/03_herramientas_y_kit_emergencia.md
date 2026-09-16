@@ -47,3 +47,11 @@ En la mayoría de los países de habla hispana, estos elementos son obligatorios
 - **Juegos de 150 llaves y copas:** Ocupan espacio, pesan 15 kg y el 90% de las medidas jamás las usarás.
 - **Líquidos "milagrosos" para tapar fugas de radiador:** Contienen partículas que taponan los conductos microscópicos del calefactor de cabina y causan averías de cientos de dólares.
 - **Herramientas de marcas ultra baratas sin certificar:** Se doblan en el primer intento y redondean las tuercas dejándote atrapado.
+
+
+---
+
+## 🎒 Resumen Visual: El Kit de Emergencia Completo en tu Cajuela
+
+![Kit de Emergencia y Herramientas en la Cajuela](assets/car_emergency_kit.jpg)
+*Elementos Reglamentarios y Esenciales para Conducir con Tranquilidad en Ciudad y Carretera*

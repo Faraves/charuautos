@@ -4,6 +4,11 @@
 
 ---
 
+![Emblema Oficial de CharuAutos](assets/charuautos_emblema_mascota.png)
+*Charu — Mascota Oficial y Símbolo de Pasión Automotriz*
+
+---
+
 ## ⚡ 1. Bienvenido al Mundo del Conductor Inteligente
 
 Si acabas de comprar tu primer auto, o llevas años conduciendo pero cada vez que abres el capó sientes que estás mirando una nave espacial alienígena, **este manual fue escrito exactamente para ti**.

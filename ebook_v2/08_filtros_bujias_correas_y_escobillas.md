@@ -18,6 +18,9 @@ Tu motor respira unos 10.000 litros de aire por cada litro de gasolina quemado. 
 - **La prueba de la linterna:** Pon una linterna por detrás del filtro. Si la luz no atraviesa el papel plisado, está saturado y debe reemplazarse.
 
 ### B. Filtro de Habitáculo / Cabina (El filtro antipolen):
+
+![Paso a paso cambio filtro de cabina](assets/cabin_filter_replacement.jpg)
+*Procedimiento Visual: Extracción de Guantera y Sustitución del Filtro Antipolen en 5 Minutos*
 Purifica el aire que tú y tu familia respiran por las rejillas del aire acondicionado.
 - **Síntomas de cambio:** Olor a humedad o "calcetín sucio" al encender el aire, y vidrios que se empañan constantemente en invierno sin poder desempañarse con rapidez.
 - **Ubicación típica:** En el 80% de los autos modernos se encuentra detrás de la guantera del copiloto (se sueltan dos topes plásticos laterales sin herramientas) o en la base exterior del parabrisas.

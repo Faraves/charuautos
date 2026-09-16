@@ -1,4 +1,4 @@
-# Módulo 12 — Guía para ir al Taller sin Ser Estafado
+# Módulo 13 — Guía para ir al Taller sin Ser Estafado
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -55,6 +55,9 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 *Esto elimina de raíz la vieja estafa de "cobrar por repuestos que nunca se cambiaron".*
 
 ### 4. Conocer las Categorías de Repuestos:
+
+![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
+*Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
 ```text
 ┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
 │ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
@@ -76,3 +79,11 @@ Huye si notas cualquiera de estos comportamientos:
 - Te presionan con pánico: *"Si sacas el auto hoy mismo de aquí, tus frenos van a explotar en la esquina y te vas a matar"*.
 - Las instalaciones están en un caos absoluto, con charcos de aceite no recogidos y herramientas tiradas por el suelo.
 - No te permiten ver las piezas que cambiaron argumentando que "ya las tiraron a la basura".
+
+
+---
+
+## 🛠️ Resumen Visual: Pasos del Conductor Inteligente en el Taller
+
+![Pasos del Conductor en el Taller Mecánico](assets/taller_mecanico_espanol.jpg)
+*Protocolo de Recepción, Diagnóstico con Presupuesto Previo y Entrega con Piezas Viejas en Mano*

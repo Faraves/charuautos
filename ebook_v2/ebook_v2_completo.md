@@ -2,12 +2,13 @@
 ## Mecánica Básica Preventiva para Propietarios de Autos con Cero Conocimientos
 ### *Por CharuAutos (@charuautopics)*
 **Slogan Oficial:** `🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS`  
-**Edición:** 2.0 — Publicada en 2026 • Dirigida a conductores novatos y experimentados sin perfil mecánico.  
+**Edición:** 2.0 — Edición Especial Ilustrada • 14 Módulos Prácticos  
 **Precio Recomendado:** $5.99 USD
 
 ---
 
-![CharuAutos Logo](assets/charu_horizontal_logo.svg)
+![CharuAutos Emblema Oficial](assets/charuautos_emblema_mascota.png)
+![CharuAutos Logo Horizontal](assets/charuautos_logo_horizontal.svg)
 
 ---
 
@@ -21,11 +22,12 @@
 6. [Módulo 06 — Neumáticos, Frenos y Seguridad Activa](#módulo-06--neumáticos-frenos-y-seguridad-activa)
 7. [Módulo 07 — Batería, Sistema Eléctrico, Fusibles y Luces](#módulo-07--batería-sistema-eléctrico-fusibles-y-luces)
 8. [Módulo 08 — Filtros, Bujías, Correas y Escobillas](#módulo-08--filtros-bujías-correas-y-escobillas)
-9. [Módulo 09 — Testigos del Tablero y Escáner OBD-II para Principiantes](#módulo-09--testigos-del-tablero-y-escáner-obd-ii-para-principiantes)
-10. [Módulo 10 — Mantenimiento por Kilometraje y Costos Estimados](#módulo-10--mantenimiento-por-kilometraje-y-costos-estimados)
-11. [Módulo 11 — Protocolo de Emergencias en Ruta y Cambio de Llanta](#módulo-11--protocolo-de-emergencias-en-ruta-y-cambio-de-llanta)
-12. [Módulo 12 — Guía para ir al Taller sin Ser Estafado](#módulo-12--guía-para-ir-al-taller-sin-ser-estafado)
-13. [Módulo 13 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento](#módulo-13--apéndices-checklists-imprimibles-y-bitácora-de-mantenimiento)
+9. [Módulo 09 — El Turbocompresor: Cuidados Críticos y la Regla de los 60 Segundos](#módulo-09--el-turbocompresor-cuidados-críticos-y-la-regla-de-los-60-segundos)
+10. [Módulo 10 — Testigos del Tablero y Escáner OBD-II para Principiantes](#módulo-10--testigos-del-tablero-y-escáner-obd-ii-para-principiantes)
+11. [Módulo 11 — Mantenimiento por Kilometraje y Costos Estimados](#módulo-11--mantenimiento-por-kilometraje-y-costos-estimados)
+12. [Módulo 12 — Protocolo de Emergencias en Ruta y Cambio de Llanta](#módulo-12--protocolo-de-emergencias-en-ruta-y-cambio-de-llanta)
+13. [Módulo 13 — Guía para ir al Taller sin Ser Estafado](#módulo-13--guía-para-ir-al-taller-sin-ser-estafado)
+14. [Módulo 14 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento](#módulo-14--apéndices-checklists-imprimibles-y-bitácora-de-mantenimiento)
 
 ---
 
@@ -36,6 +38,11 @@
 # Módulo 01 — Introducción, Seguridad Primero & Advertencia Legal
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
+
+---
+
+![Emblema Oficial de CharuAutos](assets/charuautos_emblema_mascota.png)
+*Charu — Mascota Oficial y Símbolo de Pasión Automotriz*
 
 ---
 
@@ -182,6 +189,16 @@ Cuando abras el cofre, busca estos 4 tapones universales:
 
 ---
 
+## 🔍 Resumen Visual del Motor: El Vano Motor en Español
+
+Para que nunca más sientas miedo al abrir el capó, esta infografía resume la ubicación típica de los depósitos y componentes esenciales:
+
+![Inspección Visual del Motor Real Bajo el Capó](assets/vano_motor_real_espanol.jpg)
+*Guía Visual de Identificación de Componentes en el Vano Motor*
+
+
+---
+
 # Módulo 03 — Herramientas Básicas y Kit de Emergencia
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
@@ -231,6 +248,14 @@ En la mayoría de los países de habla hispana, estos elementos son obligatorios
 - **Juegos de 150 llaves y copas:** Ocupan espacio, pesan 15 kg y el 90% de las medidas jamás las usarás.
 - **Líquidos "milagrosos" para tapar fugas de radiador:** Contienen partículas que taponan los conductos microscópicos del calefactor de cabina y causan averías de cientos de dólares.
 - **Herramientas de marcas ultra baratas sin certificar:** Se doblan en el primer intento y redondean las tuercas dejándote atrapado.
+
+
+---
+
+## 🎒 Resumen Visual: El Kit de Emergencia Completo en tu Cajuela
+
+![Kit de Emergencia y Herramientas en la Cajuela](assets/car_emergency_kit.jpg)
+*Elementos Reglamentarios y Esenciales para Conducir con Tranquilidad en Ciudad y Carretera*
 
 
 ---
@@ -442,6 +467,9 @@ Se considera en frío cuando el auto ha rodado **menos de 2 km** o ha estado est
 
 ---
 
+![Guía Técnica de Neumáticos y Código DOT](assets/tire_guide_and_dot_code.jpg)
+*Infografía: Decodificación del Código DOT, Presión en Frío y Banda de Rodadura*
+
 ## 🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT
 
 ### A. La Prueba de la Moneda para Desgaste de Banda:
@@ -495,6 +523,14 @@ No necesitas desarmar la rueda para tener una estimación del estado de tus fren
 > [!NOTE]
 > ### 🎵 El Famoso "Chirrido de Chivato"
 > Las pastillas de calidad incorporan una pequeña lengüeta de chapa metálica llamada avisador acústico. Cuando el material de fricción se desgasta hasta los 2.5 mm, esa chapita roza contra el disco produciendo un chillido agudo al frenar. No te asustes: es un diseño de ingeniería deliberado para avisarte antes de que el soporte de hierro dañe el disco.
+
+
+---
+
+## 🛑 Resumen Visual: Anatomía de Frenos y Suspensión
+
+![Componentes de Frenos y Suspensión en Español](assets/frenos_suspension_espanol.jpg)
+*Despiece de Cáliper, Pastillas, Disco Ventilado y Amortiguador*
 
 
 ---
@@ -621,6 +657,9 @@ Tu motor respira unos 10.000 litros de aire por cada litro de gasolina quemado. 
 - **La prueba de la linterna:** Pon una linterna por detrás del filtro. Si la luz no atraviesa el papel plisado, está saturado y debe reemplazarse.
 
 ### B. Filtro de Habitáculo / Cabina (El filtro antipolen):
+
+![Paso a paso cambio filtro de cabina](assets/cabin_filter_replacement.jpg)
+*Procedimiento Visual: Extracción de Guantera y Sustitución del Filtro Antipolen en 5 Minutos*
 Purifica el aire que tú y tu familia respiran por las rejillas del aire acondicionado.
 - **Síntomas de cambio:** Olor a humedad o "calcetín sucio" al encender el aire, y vidrios que se empañan constantemente en invierno sin poder desempañarse con rapidez.
 - **Ubicación típica:** En el 80% de los autos modernos se encuentra detrás de la guantera del copiloto (se sueltan dos topes plásticos laterales sin herramientas) o en la base exterior del parabrisas.
@@ -687,9 +726,100 @@ Cambiar las plumillas o escobillas es una tarea de 3 minutos que te ahorra hasta
 
 ---
 
-# Módulo 09 — Testigos del Tablero y Escáner OBD-II para Principiantes
+# Módulo 09 — El Turbocompresor: Cuidados Críticos y la Regla de los 60 Segundos
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
+
+---
+
+![Funcionamiento y Mantenimiento del Turbocompresor en Español](assets/turbo_mantenimiento_espanol.jpg)
+*Infografía Técnica: El Eje Flotante, Temperaturas Extremas y la Regla de Oro de los 60 Segundos*
+
+---
+
+## 🌪️ 1. ¿Qué es un Turbo y por qué tu Auto Probablemente Tiene Uno?
+
+Si compraste un auto fabricado en los últimos 10 a 15 años, lo más seguro es que su motor sea turboalimentado (incluso en vehículos utilitarios compactos de 1.0 a 1.5 litros como EcoBoost, TSI, TCe, PureTech o diésel TDI/CRDi).
+
+### La Explicación sin Jerga:
+Imagina un **molino de viento diminuto de altísima precisión**. El turbo aprovecha los gases calientes que salen por el escape para hacer girar una turbina. Esa turbina mueve un compresor que **inyecta mucho más aire a presión dentro de los cilindros**. 
+- **El resultado:** Un motor pequeño de 3 o 4 cilindros obtiene la potencia y aceleración de un motor grande de 6 cilindros, pero consumiendo mucho menos combustible cuando conduces suave.
+
+```text
+       CÓMO FUNCIONA EL TURBOCOMPRESOR EN UN MINUTO
+┌─────────────────────────┐                 ┌─────────────────────────┐
+│ GASES DE ESCAPE         │                 │ AIRE FRESCO EXTERIOR    │
+│ Salen calientes a 900°C │                 │ Entra por el filtro     │
+└───────────┬─────────────┘                 └───────────┬─────────────┘
+            │                                           │
+            ▼                                           ▼
+┌─────────────────────────┐   EJE DE ACERO  ┌─────────────────────────┐
+│ TURBINA DE ESCAPE       │═════════════════│ COMPRESOR DE ADMISIÓN   │
+│ Gira a 200.000+ RPM     │  Bañado en óleo │ Comprime el aire al mot.│
+└─────────────────────────┘                 └─────────────────────────┘
+```
+
+---
+
+## ⏱️ 2. La Regla de Oro: Los 60 Segundos que Salvan Miles de Dólares
+
+El eje que une las dos turbinas del turbo gira a velocidades vertiginosas (entre **150.000 y 250.000 revoluciones por minuto**) y soporta temperaturas que superan los **850 °C a 1.000 °C**. 
+
+A esa velocidad, ningún rodamiento de bolas convencional sobreviviría. El eje "flota" sobre una **micro-película de aceite de motor a presión** inyectada por la bomba de lubricación.
+
+> [!CAUTION]
+> ### 🛑 EL ERROR FATAL: APAGAR EL MOTOR DE GOLPE
+> Cuando conduces por autopista a 120 km/h o subes una cuesta exigente, el turbo está al rojo vivo.  
+> Si llegas a una estación de servicio o a tu casa y **apagas el motor de inmediato**, la bomba de aceite se detiene en seco.  
+> El aceite que queda atrapado dentro del turbo quieto se "cocina" por el calor residual extremo (fenómeno de **carbonización / coquización**), convirtiéndose en carbón duro abrasivo.  
+> Al día siguiente, cuando arranques, ese carbón rayará el eje y destruirá los sellos.  
+> **Costo de reemplazar un turbo dañado: $800 a $2.500 USD.**
+
+### 💡 El Protocolo de los 60 Segundos:
+1. **Al arrancar por las mañanas:** Espera **30 a 60 segundos** en ralentí antes de iniciar la marcha para que la presión de aceite llegue al turbo. Conduce con suavidad los primeros 5 minutos sin pisar el acelerador a fondo.
+2. **Al llegar a tu destino (especialmente tras autopista o viajes largos):** Permanece sentado con el motor en ralentí durante **60 segundos** antes de girar la llave para apagar. Ese minuto permite que el aceite siga fluyendo fresco, evacuando el calor extremo del turbo de forma progresiva.
+
+---
+
+## 🛢️ 3. El Aceite que Exige un Motor Turbo
+
+Los motores turboalimentados no perdonan el uso de aceites baratos o minerales:
+- **100% Sintético Obligatorio:** Requieren aceites formulados específicamente para resistir cizallamiento térmico extremo (normas **API SP**, **ILSAC GF-6** o **ACEA C2/C3**).
+- **Protección contra LSPI (Preignición a Baja Velocidad):** En motores turbo de inyección directa de baja cilindrada (TGDI), el aceite incorrecto puede causar detonaciones destructivas espontáneas dentro del cilindro.
+- **Respetar los Kilómetros:** Nunca extiendas el cambio de aceite más allá de los **10.000 km** o 1 año. En un motor turbo, el aceite viejo con hollín degrada directamente los sellos de la turbina.
+
+---
+
+## 👂 4. Síntomas de un Turbo en Problemas
+
+Aprende a identificar las señales de fatiga antes de una rotura catastrófica:
+
+```text
+┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
+│ SÍNTOMA SENSORIAL       │ QUÉ ESTÁ OCURRIENDO       │ ACCIÓN RECOMENDADA             │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 🚓 Silbido como sirena  │ Holgura en el eje flotante│ Acudir al taller de inmediato; │
+│ de policía al acelerar  │ y rozamiento de álabes    │ el turbo está por desarmarse   │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 💨 Humo azulado/blanco  │ Sellos desgastados dejan  │ Revisar nivel de aceite diario;│
+│ denso por el escape     │ pasar aceite a la turbina │ sustituir cartucho (CHRA)      │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ 🐌 Pérdida súbita de    │ Fuga en manguera interco. │ Inspeccionar abrazaderas o     │
+│ aceleración ("Limp Mode")│ o válvula wastegate trab.│ válvula de descarga            │
+└─────────────────────────┴───────────────────────────┴────────────────────────────────┘
+```
+
+
+---
+
+# Módulo 10 — Testigos del Tablero y Escáner OBD-II para Principiantes
+### Manual del Conductor Inteligente • Edición Cero Conocimientos
+*Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
+
+---
+
+![Cuadro de Instrumentos y Advertencias Automotrices](assets/tablero_testigos_espanol.jpg)
+*Guía Gráfica de Testigos y Prioridades del Cuadro de Mandos en Español*
 
 ---
 
@@ -781,7 +911,7 @@ La app te devolverá un código de 5 caracteres como `P0300`:
 
 ---
 
-# Módulo 10 — Mantenimiento por Kilometraje y Costos Estimados
+# Módulo 11 — Mantenimiento por Kilometraje y Costos Estimados
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -827,7 +957,7 @@ Un automóvil con historial de revisiones comprobable (libro de bitácora sellad
 
 ---
 
-# Módulo 11 — Protocolo de Emergencias en Ruta y Cambio de Llanta
+# Módulo 12 — Protocolo de Emergencias en Ruta y Cambio de Llanta
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -900,7 +1030,7 @@ Si ves que la aguja de temperatura sube al rojo o sale vapor blanquecino por los
 
 ---
 
-# Módulo 12 — Guía para ir al Taller sin Ser Estafado
+# Módulo 13 — Guía para ir al Taller sin Ser Estafado
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -957,6 +1087,9 @@ Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:
 *Esto elimina de raíz la vieja estafa de "cobrar por repuestos que nunca se cambiaron".*
 
 ### 4. Conocer las Categorías de Repuestos:
+
+![Guía de Repuestos OEM vs Tier 1 y Falsificaciones en Español](assets/repuestos_calidad_espanol.jpg)
+*Infografía: Distinción entre Embalaje Oficial OEM, Calidad de Primer Nivel Aftermarket y Copias Riesgosas*
 ```text
 ┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
 │ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
@@ -982,7 +1115,15 @@ Huye si notas cualquiera de estos comportamientos:
 
 ---
 
-# Módulo 13 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento
+## 🛠️ Resumen Visual: Pasos del Conductor Inteligente en el Taller
+
+![Pasos del Conductor en el Taller Mecánico](assets/taller_mecanico_espanol.jpg)
+*Protocolo de Recepción, Diagnóstico con Presupuesto Previo y Entrega con Piezas Viejas en Mano*
+
+
+---
+
+# Módulo 14 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento
 ### Manual del Conductor Inteligente • Edición Cero Conocimientos
 *Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"*
 
@@ -1006,6 +1147,9 @@ Huye si notas cualquiera de estos comportamientos:
 - **Viscosidad SAE:** Calificación de resistencia al flujo de un aceite lubricante tanto a bajas temperaturas en frío como a régimen de operación en caliente.
 
 ---
+
+![Checklist Inteligente de Taller y Mantenimiento](assets/workshop_smart_checklist.jpg)
+*Cuadro Rápido de Verificaciones de Seguridad para Conducir con Confianza*
 
 ## ✅ 2. Checklists Imprimibles de Mantenimiento
 

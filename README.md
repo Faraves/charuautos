@@ -18,11 +18,13 @@ Este repositorio contiene todos los activos editoriales, gráficos, interactivos
 
 Accede a las aplicaciones interactivas completas directamente desde cualquier dispositivo:
 
-### ⚡ 1. Versión 2.0 — Edición Conductor con Cero Conocimientos (13 Módulos)
+### ⚡ 1. Versión 2.0 — Edición Conductor con Cero Conocimientos (14 Módulos Ilustrados)
 👉 **[Abrir CharuAutos PWA V2 Online](https://faraves.github.io/charuautos/dist_pwa_v2/)**  
 *(URL directa: [https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/))*  
 - 📲 **Instalable como App PWA:** Compatible con Android, iOS y Escritorio.
-- ⚡ **Modo Offline Autónomo:** Service Worker V2 con caché total de los 13 módulos, herramientas y diagramas para emergencias en ruta sin cobertura celular.
+- ⚡ **Modo Offline Autónomo:** Service Worker V2 con caché total de los 14 módulos, herramientas, infografías y diagramas para emergencias en ruta sin cobertura celular.
+- 🌪️ **Nuevo Módulo de Turbocompresor:** Cuidados críticos, eje flotante a 200.000 RPM y la Regla de Oro de los 60 Segundos.
+- 🎨 **11 Infografías Técnicas en Español:** Ilustraciones del vano motor, turbocompresor, cuadro de testigos, neumáticos y código DOT, filtros de cabina, frenos y repuestos de calidad.
 - 🧰 **Herramientas Interactivas Exclusivas V2:** Detector interactivo de fugas por color de charco, consultor rápido de códigos OBD-II (Check Engine) y checklists con guardado automático en LocalStorage.
 - 📂 **Paquete Descargable:** Incluye [`CharuAutos_V2_WebApp_PWA.zip`](CharuAutos_V2_WebApp_PWA.zip) listo para desplegar o distribuir.
 
@@ -51,10 +53,10 @@ CharuAutos/
 │   └── assets/                                     # Infografías HD e iconografía oficial
 │
 ├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 INDEPENDIENTE (PRODUCCIÓN V2)
-│   ├── index.html                                  # Web App interactiva V2 con drawer móvil y widgets
+│   ├── index.html                                  # Web App interactiva V2 totalmente responsiva con drawer móvil
 │   ├── manifest.json                               # Manifiesto PWA V2 (Edición Cero Conocimientos)
 │   ├── service-worker.js                           # Service Worker V2 para consulta offline en ruta
-│   ├── ebook_v2_completo.md                        # Manuscrito unificado descargable
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado descargable (14 módulos)
 │   └── assets/                                     # Favicons, logo horizontal y 28 activos gráficos
 │
 ├── branding/                                       # IDENTIDAD VISUAL Y DIRECTRICES DE MARCA
@@ -72,10 +74,10 @@ CharuAutos/
 │   └── assets/                                     # Infografías en español y vectores de marca
 │
 ├── ebook_v2/                                       # PRODUCTO DIGITAL V2 (EDICIÓN CERO CONOCIMIENTOS)
-│   ├── 01_introduccion_seguridad_legal.md          # 13 Módulos modulares en Markdown
-│   ├── ...                                         # (Módulos 01 al 13 completos sin jerga técnica)
-│   ├── ebook_v2_completo.md                        # Manuscrito unificado V2.0 (>1.000 líneas)
-│   ├── ebook_v2_interactivo.html                   # Web Showroom V2 interactivo con diagnósticos y HUD
+│   ├── 01_introduccion_seguridad_legal.md          # 14 Módulos modulares en Markdown
+│   ├── ...                                         # (Módulos 01 al 14 completos con infografías y Turbo)
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado V2.0 (>1.200 líneas)
+│   ├── ebook_v2_interactivo.html                   # Web Showroom V2 interactivo responsivo
 │   ├── index.html                                  # Entrada web local idéntica para V2
 │   ├── README.md                                   # Documentación y guía de exportación PDF de la V2
 │   └── assets/                                     # Favicons, logo horizontal y 28 activos gráficos
