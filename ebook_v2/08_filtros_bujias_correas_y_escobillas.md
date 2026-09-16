@@ -32,6 +32,9 @@ Purifica el aire que tú y tu familia respiran por las rejillas del aire acondic
 
 En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.
 
+![Bujía Deteriorada vs. Bujía Nueva de Platino](assets/infografia_bujias_deteriorada_vs_nueva.png)
+*Infografía Automotriz: Comparativa de estado de bujías, síntomas de falla, cámara de combustión y rendimiento de combustible.*
+
 | Tipo de Bujía | Material del Electrodo | Intervalo Típico de Reemplazo | Rendimiento |
 | :--- | :--- | :---: | :--- |
 | **Cobre / Estándar** | Núcleo de cobre tradicional | 20.000 a 30.000 km | Tradicional, económico |

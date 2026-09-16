@@ -21,8 +21,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/ilustracion_puente_bateria_fusibles.jpg)
-*Fotografía e Ilustración: Secuencia de cables 1-2-3-4 paso a paso y diagnóstico visual de fusibles sano vs fundido.*
+![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/infografia_bateria_fusibles_protocolo.jpg)
+*Infografía Automotriz: Secuencia 1-2-3-4 de conexión de cables para pasar corriente y comprobación de fusible sano vs quemado.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.

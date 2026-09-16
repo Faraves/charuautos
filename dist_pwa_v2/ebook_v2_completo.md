@@ -126,8 +126,8 @@ El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiemp
 3. **Explosión / Combustión:** La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. **De aquí sale toda la fuerza del auto**.
 4. **Escape:** Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.
 
-![El Ciclo de 4 Tiempos del Motor a Combustión](assets/ilustracion_ciclo_motor_4_tiempos.jpg)
-*Fotografía e Ilustración: Las 4 fases continuas de funcionamiento (Admisión, Compresión, Explosión y Escape) que dan vida al motor.*
+![Despiece del Motor y Componentes en Funcionamiento](assets/infografia_despiece_motor_real.png)
+*Infografía Automotriz: Componentes reales del motor de combustión interna (árbol de levas, válvulas, pistones, bielas, cigüeñal, cárter y poleas).*
 > **¿Por qué te importa saber esto?**  
 > Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita **3 cosas que jamás pueden faltar**:
 > - **Aire limpio** (a través del filtro de aire).
@@ -274,8 +274,8 @@ Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de 
 
 Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:
 
-![Inspección Perimétrica de 360 Grados](assets/ilustracion_inspeccion_360_auto.jpg)
-*Fotografía e Ilustración: Protocolo visual perimétrico de 4 puntos para realizar en 10 segundos antes de encender el motor.*
+![Rutina de Inspección Perimétrica de 360 Grados](assets/infografia_inspeccion_360_auto.jpg)
+*Infografía Automotriz: Los 4 puntos de chequeo perimétrico en 10 segundos antes de encender el motor.*
 
 - **Paso 1: Suelo bajo el motor.** ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojizos (caja)? *(Nota: agua clara e inodora es condensación normal del A/C).*
 - **Paso 2: Las 4 ruedas.** Comprueba visualmente que ninguna llanta se vea visiblemente aplastada o desinflada.
@@ -326,6 +326,9 @@ Con el auto estacionado en un lugar plano y el motor **frío y apagado**:
 ## 🩸 1. Los 5 Fluidos Esenciales que Mantienen Vivo tu Motor
 
 Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:
+
+![Fluidos a Cambiar en el Carro](assets/infografia_fluidos_motor_cambio.png)
+*Infografía Técnica Automotriz: Ubicación en el vano motor de los 6 depósitos de fluidos y sus frecuencias recomendadas de cambio.*
 
 | Fluido Vital | Color Saludable | Cuándo Revisar | Consecuencia de Falla |
 | :--- | :--- | :--- | :--- |
@@ -394,6 +397,9 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 ## 🕵️‍♂️ 5. Guía de Detección de Fugas en el Suelo (Tabla del Detective)
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
+
+![¿Qué se está filtrando de mi auto? Detección de fugas por color](assets/infografia_deteccion_fugas_suelo.png)
+*Infografía Automotriz: Identificación inmediata de averías por el color y consistencia del charco en el suelo de tu garaje.*
 
 | Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
 | :--- | :--- | :--- | :--- |
@@ -509,8 +515,8 @@ Si tienes un multímetro digital básico de $10 USD:
 
 Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:
 
-![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/ilustracion_puente_bateria_fusibles.jpg)
-*Fotografía e Ilustración: Secuencia de cables 1-2-3-4 paso a paso y diagnóstico visual de fusibles sano vs fundido.*
+![Protocolo Seguro para Pasar Corriente y Diagnóstico de Fusibles](assets/infografia_bateria_fusibles_protocolo.jpg)
+*Infografía Automotriz: Secuencia 1-2-3-4 de conexión de cables para pasar corriente y comprobación de fusible sano vs quemado.*
 
 ### Paso a Paso Riguroso:
 1. **Posición:** Estaciona el auto auxiliador cerca del auto sin batería, pero **sin que los parachoques o carrocerías se toquen entre sí**. Apaga el motor y retira las llaves en ambos.
@@ -593,6 +599,9 @@ Purifica el aire que tú y tu familia respiran por las rejillas del aire acondic
 ## ⚡ 2. Bujías: La Chispa de la Vida
 
 En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.
+
+![Bujía Deteriorada vs. Bujía Nueva de Platino](assets/infografia_bujias_deteriorada_vs_nueva.png)
+*Infografía Automotriz: Comparativa de estado de bujías, síntomas de falla, cámara de combustión y rendimiento de combustible.*
 
 | Tipo de Bujía | Material del Electrodo | Intervalo Típico de Reemplazo | Rendimiento |
 | :--- | :--- | :---: | :--- |

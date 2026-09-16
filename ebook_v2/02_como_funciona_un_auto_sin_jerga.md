@@ -29,8 +29,8 @@ El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiemp
 3. **Explosión / Combustión:** La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. **De aquí sale toda la fuerza del auto**.
 4. **Escape:** Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.
 
-![El Ciclo de 4 Tiempos del Motor a Combustión](assets/ilustracion_ciclo_motor_4_tiempos.jpg)
-*Fotografía e Ilustración: Las 4 fases continuas de funcionamiento (Admisión, Compresión, Explosión y Escape) que dan vida al motor.*
+![Despiece del Motor y Componentes en Funcionamiento](assets/infografia_despiece_motor_real.png)
+*Infografía Automotriz: Componentes reales del motor de combustión interna (árbol de levas, válvulas, pistones, bielas, cigüeñal, cárter y poleas).*
 > **¿Por qué te importa saber esto?**  
 > Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita **3 cosas que jamás pueden faltar**:
 > - **Aire limpio** (a través del filtro de aire).
