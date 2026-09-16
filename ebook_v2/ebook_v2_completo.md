@@ -3,7 +3,7 @@
 ### *Por CharuAutos (@charuautopics)*
 **Slogan Oficial:** `🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS`  
 **Edición:** 2.0 — Edición Especial Ilustrada • 14 Módulos Prácticos  
-**Precio Recomendado:** $5.99 USD
+**Propósito:** Guía práctica paso a paso para cuidar tu vehículo, ahorrar en reparaciones y entender la mecánica sin jerga técnica.
 
 ---
 

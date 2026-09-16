@@ -6,7 +6,7 @@
 
 ## ⚡ 1. Visión y Propósito de la Versión 2.0
 
-La **Versión 2.0** de este manual fue diseñada desde cero a partir de la retroalimentación directa y validada de nuestro público objetivo: **conductores con vehículo propio pero con cero conocimientos mecánicos**, dispuestos a adquirir una guía práctica por un valor accesible de **$5.99 USD**, bajo la premisa irrenunciable de:
+La **Versión 2.0** de este manual fue diseñada para **conductores con vehículo propio pero con cero conocimientos mecánicos**, que desean cuidar su auto, evitar averías imprevistas y ganar total confianza y criterio detrás del volante, bajo las siguientes premisas:
 - **Lenguaje claro y sin jerga:** Cada término técnico se explica con analogías de la vida cotidiana.
 - **Enfoque 100% práctico ("Hazlo tú mismo" realista):** Tareas que cualquier persona puede realizar en su cochera sin herramientas caras (medir aceite, inflar llantas, cambiar escobillas, cambiar filtro de cabina, cambiar un fusible).
 - **Seguridad primero:** Alertas destacadas sobre riesgos letales (radiador caliente, gato sin soportes, voltajes).
