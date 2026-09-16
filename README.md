@@ -52,13 +52,21 @@ CharuAutos/
 │   ├── manual_identidad.html                       # Showroom web interactivo con probador y copiado HEX
 │   └── assets/                                     # Vectores SVG nativos, PNGs HD y Favicons
 │
-├── ebook/                                          # PRODUCTO DIGITAL (EBOOK COMERCIAL)
+├── ebook/                                          # PRODUCTO DIGITAL V1 (EBOOK ORIGINAL)
 │   ├── 00_introduccion_y_tablero.md                # Capítulos individuales en Markdown
 │   ├── ...                                         # (Módulos 0 al 9 con datos oficiales auditados)
 │   ├── ebook_completo.md                           # Manuscrito unificado en Markdown
 │   ├── ebook_interactivo.html                      # Web App interactiva local
 │   ├── CharuAutos_Manual_del_Conductor_Inteligente.pdf # Documento PDF final listo para venta (33 págs)
 │   └── assets/                                     # Infografías en español y vectores de marca
+│
+├── ebook_v2/                                       # PRODUCTO DIGITAL V2 (EDICIÓN CERO CONOCIMIENTOS)
+│   ├── 01_introduccion_seguridad_legal.md          # 13 Módulos modulares en Markdown
+│   ├── ...                                         # (Módulos 01 al 13 completos sin jerga técnica)
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado V2.0 (>1.000 líneas)
+│   ├── ebook_v2_interactivo.html                   # Web Showroom V2 interactivo con diagnósticos y HUD
+│   ├── README.md                                   # Documentación y guía de exportación PDF de la V2
+│   └── assets/                                     # Favicons, logo horizontal y 28 activos gráficos
 │
 └── marketing/                                      # EMBUDO DE COMERCIALIZACIÓN
     ├── landing_page_copy.md                        # Copy persuasivo para Hotmart / Gumroad ($4.99 USD)
@@ -71,13 +79,15 @@ CharuAutos/
 
 1. **📱 Web App PWA en Línea (Producción):**  
    Ingresa a [https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/) para utilizar la versión interactiva instalable en smartphones y ordenadores.
-2. **Ebook en Versión Web Interactiva Local:**  
-   Abre [ebook/ebook_interactivo.html](ebook/ebook_interactivo.html) o [dist_pwa/index.html](dist_pwa/index.html) en tu navegador para interactuar con la barra de progreso, buscador en tiempo real, widgets de telemetría y navegación por capítulos.
-3. **Ebook en PDF de Alta Resolución (Listo para Venta):**  
+2. **⚡ Ebook Versión 2.0 (Edición Conductor con Cero Conocimientos):**  
+   Abre [ebook_v2/ebook_v2_interactivo.html](ebook_v2/ebook_v2_interactivo.html) para explorar el nuevo showroom con detector interactivo de fugas, buscador de códigos OBD-II, checklists persistentes en LocalStorage y manuscrito unificado en [ebook_v2/ebook_v2_completo.md](ebook_v2/ebook_v2_completo.md).
+3. **Ebook Versión 1 en Versión Web Interactiva Local:**  
+   Abre [ebook/ebook_interactivo.html](ebook/ebook_interactivo.html) o [dist_pwa/index.html](dist_pwa/index.html) en tu navegador para interactuar con la versión original.
+4. **Ebook en PDF de Alta Resolución (Listo para Venta):**  
    Descarga o visualiza directamente [ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf](ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf) (formato *Full Bleed* sin bordes blancos, 33 páginas).
-4. **Manual de Identidad Visual Interactivo:**  
+5. **Manual de Identidad Visual Interactivo:**  
    Abre [branding/manual_identidad.html](branding/manual_identidad.html) para probar el logo sobre fondos *Dark/Light/Wireframe*, copiar los colores HEX oficiales con un clic o descargar los archivos SVG.
-5. **Página de Ventas y Copywriting:**  
+6. **Página de Ventas y Copywriting:**  
    Revisa [marketing/landing_page_copy.md](marketing/landing_page_copy.md) para configurar tu pasarela en Hotmart, Gumroad o Lemon Squeezy.
 
 ---
