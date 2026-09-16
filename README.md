@@ -14,19 +14,22 @@ Este repositorio contiene todos los activos editoriales, gráficos, interactivos
 
 ---
 
-## 📱 Aplicación Web Progresiva (PWA) Oficial
+## 📱 Aplicaciones Web Progresivas (PWA) Oficiales
 
-Accede a la experiencia interactiva completa del **Manual del Conductor Inteligente** directamente desde cualquier dispositivo:
+Accede a las aplicaciones interactivas completas directamente desde cualquier dispositivo:
 
-👉 **[Abrir CharuAutos PWA Online](https://faraves.github.io/charuautos/dist_pwa/)**  
-*(URL directa: [https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/))*
+### ⚡ 1. Versión 2.0 — Edición Conductor con Cero Conocimientos (13 Módulos)
+👉 **[Abrir CharuAutos PWA V2 Online](https://faraves.github.io/charuautos/dist_pwa_v2/)**  
+*(URL directa: [https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/))*  
+- 📲 **Instalable como App PWA:** Compatible con Android, iOS y Escritorio.
+- ⚡ **Modo Offline Autónomo:** Service Worker V2 con caché total de los 13 módulos, herramientas y diagramas para emergencias en ruta sin cobertura celular.
+- 🧰 **Herramientas Interactivas Exclusivas V2:** Detector interactivo de fugas por color de charco, consultor rápido de códigos OBD-II (Check Engine) y checklists con guardado automático en LocalStorage.
+- 📂 **Paquete Descargable:** Incluye [`CharuAutos_V2_WebApp_PWA.zip`](CharuAutos_V2_WebApp_PWA.zip) listo para desplegar o distribuir.
 
-### ✨ Características Principales de la Web App:
-- 📲 **Instalable como App:** Totalmente compatible como PWA en Android (vía Chrome) e iOS (Safari > "Agregar a pantalla de inicio").
-- ⚡ **Modo Offline Completo:** Mediante su Service Worker (`charuautos-pwa-v4`), todo el contenido, guías y tablas técnicas quedan almacenadas en el dispositivo para consulta en carretera sin internet ni cobertura telefónica.
-- 🔍 **Buscador Dinámico:** Filtro en tiempo real para encontrar rápidamente diagnósticos, fallas, testigos y procedimientos.
-- 📊 **Infografías Técnicas en Alta Resolución:** Ilustraciones 100% en español con vano motor real (aceite vs. fluido ATF), regla de 60 segundos para turbos, despiece de frenos y suspensión, código DOT de neumáticos y kit de cajuela.
-- 🖨️ **Exportación Directa a PDF:** Incluye función de impresión adaptada con sangrado completo (*bleed*) sin elementos de navegación.
+### 🚗 2. Versión 1 — Edición Original (Clásica)
+👉 **[Abrir CharuAutos PWA V1 Online](https://faraves.github.io/charuautos/dist_pwa/)**  
+*(URL directa: [https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/))*  
+- La versión original completa con 10 módulos, infografías en vano motor real y PWA v4.
 
 ---
 
@@ -38,13 +41,21 @@ CharuAutos/
 ├── .nojekyll                                       # Configuración de despliegue para GitHub Pages
 ├── README.md                                       # Este archivo (Guía de inicio y accesos)
 ├── DOCUMENTACION_GENERAL.md                        # Documento maestro técnico y de negocio
-├── CharuAutos_WebApp_PWA.zip                       # Archivo descargable comprimido con la PWA lista
+├── CharuAutos_WebApp_PWA.zip                       # Archivo descargable comprimido con PWA V1 lista
+├── CharuAutos_V2_WebApp_PWA.zip                    # Archivo descargable comprimido con PWA V2 lista
 │
-├── dist_pwa/                                       # APLICACIÓN WEB PWA DESPLEGADA (PRODUCCIÓN)
-│   ├── index.html                                  # Web App interactiva Dark Showroom
-│   ├── manifest.json                               # Manifiesto para instalación en móviles
+├── dist_pwa/                                       # APLICACIÓN WEB PWA V1 (PRODUCCIÓN CLÁSICA)
+│   ├── index.html                                  # Web App interactiva Dark Showroom V1
+│   ├── manifest.json                               # Manifiesto PWA V1
 │   ├── service-worker.js                           # Service Worker v4 (offline y network-first)
 │   └── assets/                                     # Infografías HD e iconografía oficial
+│
+├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 INDEPENDIENTE (PRODUCCIÓN V2)
+│   ├── index.html                                  # Web App interactiva V2 con drawer móvil y widgets
+│   ├── manifest.json                               # Manifiesto PWA V2 (Edición Cero Conocimientos)
+│   ├── service-worker.js                           # Service Worker V2 para consulta offline en ruta
+│   ├── ebook_v2_completo.md                        # Manuscrito unificado descargable
+│   └── assets/                                     # Favicons, logo horizontal y 28 activos gráficos
 │
 ├── branding/                                       # IDENTIDAD VISUAL Y DIRECTRICES DE MARCA
 │   ├── BRANDBOOK.md                                # Brandbook Maestro Oficial (Estrategia, Sistema Dual y Activos)
@@ -65,6 +76,7 @@ CharuAutos/
 │   ├── ...                                         # (Módulos 01 al 13 completos sin jerga técnica)
 │   ├── ebook_v2_completo.md                        # Manuscrito unificado V2.0 (>1.000 líneas)
 │   ├── ebook_v2_interactivo.html                   # Web Showroom V2 interactivo con diagnósticos y HUD
+│   ├── index.html                                  # Entrada web local idéntica para V2
 │   ├── README.md                                   # Documentación y guía de exportación PDF de la V2
 │   └── assets/                                     # Favicons, logo horizontal y 28 activos gráficos
 │
@@ -77,13 +89,13 @@ CharuAutos/
 
 ## 🚀 Accesos Rápidos Principales
 
-1. **📱 Web App PWA en Línea (Producción):**  
-   Ingresa a [https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/) para utilizar la versión interactiva instalable en smartphones y ordenadores.
-2. **⚡ Ebook Versión 2.0 (Edición Conductor con Cero Conocimientos):**  
-   Abre [ebook_v2/ebook_v2_interactivo.html](ebook_v2/ebook_v2_interactivo.html) para explorar el nuevo showroom con detector interactivo de fugas, buscador de códigos OBD-II, checklists persistentes en LocalStorage y manuscrito unificado en [ebook_v2/ebook_v2_completo.md](ebook_v2/ebook_v2_completo.md).
-3. **Ebook Versión 1 en Versión Web Interactiva Local:**  
-   Abre [ebook/ebook_interactivo.html](ebook/ebook_interactivo.html) o [dist_pwa/index.html](dist_pwa/index.html) en tu navegador para interactuar con la versión original.
-4. **Ebook en PDF de Alta Resolución (Listo para Venta):**  
+1. **⚡ Web App PWA Versión 2.0 Online:**  
+   Ingresa a [https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/) para usar la aplicación independiente de la V2 con menú para móviles, detector de fugas y checklists.
+2. **📱 Web App PWA Versión 1 Online:**  
+   Ingresa a [https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/) para consultar la edición clásica original.
+3. **⚡ Ebook V2 en Manuscrito Unificado:**  
+   Descarga o visualiza [ebook_v2/ebook_v2_completo.md](ebook_v2/ebook_v2_completo.md) con más de 1.000 líneas y tabla de navegación lista para ePub/Kindle.
+4. **Ebook V1 en PDF de Alta Resolución (Listo para Venta):**  
    Descarga o visualiza directamente [ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf](ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf) (formato *Full Bleed* sin bordes blancos, 33 páginas).
 5. **Manual de Identidad Visual Interactivo:**  
    Abre [branding/manual_identidad.html](branding/manual_identidad.html) para probar el logo sobre fondos *Dark/Light/Wireframe*, copiar los colores HEX oficiales con un clic o descargar los archivos SVG.

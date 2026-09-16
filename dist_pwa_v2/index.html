@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CharuAutos | Manual Práctico del Conductor Inteligente (V2.0)</title>
+  <meta name="description" content="Manual de mecánica básica preventiva para conductores novatos con cero conocimientos. Aprende a cuidar tu vehículo, ahorrar miles en reparaciones y evitar estafas en el taller.">
+  <meta name="theme-color" content="#070a0f">
+  
+  
+  <!-- PWA Manifest & Mobile Config -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CharuAutos V2">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070a0f;
+      --bg-surface: #0e1420;
+      --bg-card: #131b2c;
+      --bg-card-hover: #19243b;
+      --border-subtle: #1e293b;
+      --border-accent: rgba(0, 242, 254, 0.35);
+      
+      --cyan-neon: #00f2fe;
+      --cyan-glow: rgba(0, 242, 254, 0.3);
+      --cyan-deep: #0088ff;
+      --crimson-red: #ff2a5f;
+      --amber-alert: #ffb300;
+      --green-ok: #10b981;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Montserrat', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-badge: 'Syne', sans-serif;
+    }
+
+    /* Print styling overrides */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+        font-size: 11pt !important;
+      }
+      .top-navbar, .sidebar, .hud-telemetry, .search-container, .no-print, .btn-action {
+        display: none !important;
+      }
+      .main-content-layout {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .module-card {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 24pt !important;
+      }
+      .chapter-h1, .chapter-h2 {
+        color: #000000 !important;
+        page-break-after: avoid;
+      }
+      .custom-alert {
+        border: 1px solid #000000 !important;
+        background: #f9fafb !important;
+        color: #000000 !important;
+      }
+      .code-terminal {
+        background: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+      }
+      .code-terminal pre code {
+        color: #111827 !important;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 60%, rgba(255, 42, 95, 0.04) 0%, transparent 45%),
+        linear-gradient(rgba(30, 41, 59, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.12) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    /* PROGRESS BAR */
+    #progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1000;
+    }
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan-deep), var(--cyan-neon), #38ef7d);
+      box-shadow: 0 0 10px var(--cyan-neon);
+      transition: width 0.1s ease;
+    }
+
+    /* TOP NAVBAR */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(7, 10, 15, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 900;
+    }
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo-img {
+      height: 38px;
+      width: auto;
+    }
+    .nav-slogan-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .nav-slogan-pill {
+        display: inline-block;
+      }
+    }
+
+    .nav-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 7px 14px 7px 32px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      width: 180px;
+      transition: all 0.25s ease;
+    }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--cyan-neon);
+      width: 260px;
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+    .search-box-icon {
+      position: absolute;
+      left: 10px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+    .btn-action {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-action:hover {
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      transform: translateY(-1px);
+    }
+    .btn-action.btn-primary {
+      background: linear-gradient(135deg, var(--cyan-deep), var(--cyan-neon));
+      color: #050811;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-action.btn-primary:hover {
+      box-shadow: 0 0 15px var(--cyan-glow);
+    }
+
+    /* SHOWROOM CONTAINER */
+    .showroom-layout {
+      display: flex;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+      gap: 32px;
+    }
+
+    /* SIDEBAR NAVIGATION */
+    .sidebar {
+      width: 310px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .sidebar-header {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .sidebar-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .sidebar-toc {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      line-height: 1.3;
+    }
+    .toc-item a:hover {
+      background: var(--bg-card);
+      color: var(--cyan-neon);
+      padding-left: 16px;
+    }
+    .toc-item a.active {
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--cyan-neon);
+      border-left: 3px solid var(--cyan-neon);
+      font-weight: 600;
+    }
+    .toc-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    /* MAIN CONTENT */
+    .main-content-layout {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* HERO SHOWCASE */
+    .hero-showcase {
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .hero-showcase::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 450px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(0, 242, 254, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      font-family: var(--font-badge);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-main-title span {
+      background: linear-gradient(135deg, var(--cyan-neon), #00c0fa, #0088ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead-text {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto 28px;
+    }
+    .hero-official-slogan {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffb703;
+      letter-spacing: 1px;
+      background: rgba(255, 183, 3, 0.08);
+      border: 1px dashed rgba(255, 183, 3, 0.35);
+      padding: 10px 20px;
+      display: inline-block;
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
+
+    /* TELEMETRY HUD */
+    .hud-telemetry {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+      text-align: left;
+    }
+    .hud-card {
+      background: rgba(10, 14, 23, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      position: relative;
+    }
+    .hud-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan-neon), transparent);
+    }
+    .hud-metric-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .hud-metric-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-top: 4px;
+    }
+    .hud-metric-desc {
+      font-size: 0.75rem;
+      color: var(--cyan-neon);
+      margin-top: 2px;
+    }
+
+    /* CHAPTER SECTION / CARD */
+    .module-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 40px 36px;
+      margin-bottom: 32px;
+      position: relative;
+      transition: border-color 0.25s ease;
+    }
+    .module-card:hover {
+      border-color: rgba(0, 242, 254, 0.25);
+    }
+    .module-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .module-number-pill {
+      font-family: var(--font-badge);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--cyan-neon);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 1px;
+    }
+    .module-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-icon-tiny {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .btn-icon-tiny:hover {
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+    }
+
+    /* TYPOGRAPHY */
+    .chapter-h1 {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .chapter-h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 3px solid var(--cyan-neon);
+      padding-left: 12px;
+    }
+    .chapter-h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin: 24px 0 12px;
+    }
+    .chapter-h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin: 16px 0 8px;
+    }
+    .prose-p {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .chapter-divider {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+      margin: 32px 0;
+    }
+
+    /* ALERTS */
+    .custom-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+      background: var(--bg-card);
+      border-left: 4px solid var(--text-dim);
+    }
+    .alert-icon-wrapper {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .alert-body-content {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    .alert-caution {
+      border-left-color: var(--crimson-red);
+      background: rgba(255, 42, 95, 0.08);
+      border: 1px solid rgba(255, 42, 95, 0.25);
+      border-left-width: 4px;
+    }
+    .alert-warning {
+      border-left-color: var(--amber-alert);
+      background: rgba(255, 179, 0, 0.08);
+      border: 1px solid rgba(255, 179, 0, 0.25);
+      border-left-width: 4px;
+    }
+    .alert-important {
+      border-left-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-left-width: 4px;
+    }
+    .alert-tip {
+      border-left-color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-left-width: 4px;
+    }
+    .alert-note {
+      border-left-color: var(--cyan-neon);
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-left-width: 4px;
+    }
+
+    /* CODE TERMINAL / DIAGRAMS */
+    .code-terminal {
+      background: #060910;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      margin: 24px 0;
+      overflow: hidden;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .terminal-bar {
+      background: #0f1624;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .t-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .t-dot.red { background: #ef4444; }
+    .t-dot.yellow { background: #f59e0b; }
+    .t-dot.green { background: #10b981; }
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-left: 8px;
+      letter-spacing: 1px;
+    }
+    .code-terminal pre {
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #38bdf8;
+    }
+    .inline-code {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      color: #38bdf8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    /* TABLES */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #0d131f;
+      color: var(--cyan-neon);
+      font-family: var(--font-display);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-subtle);
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+    }
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* LISTS */
+    .styled-list, .styled-ol {
+      margin: 16px 0 20px 24px;
+      color: #cbd5e1;
+    }
+    .styled-list li, .styled-ol li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    /* INTERACTIVE CHECKLISTS */
+    .interactive-checklist {
+      list-style: none;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checklist-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 16px;
+      transition: all 0.2s ease;
+    }
+    .checklist-item:hover {
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+    .custom-checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .custom-checkbox-container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .checkmark-box {
+      width: 22px;
+      height: 22px;
+      background: var(--bg-surface);
+      border: 2px solid #475569;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .custom-checkbox-container input:checked ~ .checkmark-box {
+      background: var(--cyan-neon);
+      border-color: var(--cyan-neon);
+    }
+    .custom-checkbox-container input:checked ~ .checkmark-box::after {
+      content: '✓';
+      color: #050811;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .custom-checkbox-container input:checked ~ .chk-label-text {
+      color: #64748b;
+      text-decoration: line-through;
+    }
+    .chk-label-text {
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      transition: color 0.2s;
+    }
+
+    /* DIAGNOSTIC WIDGETS */
+    .interactive-widget-box {
+      background: linear-gradient(135deg, #0e1524 0%, #141c2e 100%);
+      border: 1px solid var(--cyan-glow);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .widget-header-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--cyan-neon);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .filter-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .filter-pill-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill-btn:hover, .filter-pill-btn.active {
+      background: var(--cyan-neon);
+      color: #050811;
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 10px var(--cyan-glow);
+    }
+    .widget-result-card {
+      background: rgba(6, 9, 16, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    .showroom-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 24px;
+      text-align: center;
+      background: #05070c;
+      margin-top: 60px;
+    }
+    .footer-logo {
+      height: 44px;
+      margin-bottom: 16px;
+    }
+    .footer-slogan {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffb703;
+      margin-bottom: 20px;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+      .showroom-layout {
+        padding: 16px;
+      }
+      .module-card {
+        padding: 24px 20px;
+      }
+    }
+  
+    /* Mobile Drawer Styles */
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100%;
+      background: #0b101a;
+      border-right: 1px solid var(--border-subtle);
+      z-index: 1200;
+      padding: 24px 20px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-drawer.open {
+      left: 0;
+    }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+    }
+    @media (min-width: 1025px) {
+      #btn-mobile-menu {
+        display: none !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div style="font-family:var(--font-display); font-size:0.9rem; font-weight:800; color:var(--cyan-neon);">
+        🐾 MÓDULOS V2.0
+      </div>
+      <button class="btn-icon-tiny" id="btn-close-drawer">✕</button>
+    </div>
+    <ul class="sidebar-toc" id="drawer-toc-list">
+      <!-- Cloned via JS -->
+    </ul>
+    <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border-subtle); text-align:center;">
+      <a href="https://instagram.com/charuautopics" target="_blank" class="content-link" style="font-size:0.85rem; color:var(--cyan-neon); font-weight:700;">@charuautopics</a>
+    </div>
+  </div>
+
+
+  <!-- Reading Progress Bar -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <!-- Sticky Top Navbar -->
+  <header class="top-navbar">
+    <div class="nav-brand-group">
+      <img src="assets/charu_horizontal_logo.svg" alt="CharuAutos Logo" class="nav-logo-img">
+      <span class="nav-slogan-pill">🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS</span>
+    </div>
+    <div class="nav-actions-group">
+      <div class="search-box">
+        <span class="search-box-icon">🔍</span>
+        <input type="text" id="chapter-search" placeholder="Buscar concepto o tema..." aria-label="Buscar en el manual">
+      </div>
+      
+      <button id="btn-pwa-install" class="btn-action no-print" style="display:none; background:rgba(0, 242, 254, 0.15); border-color:var(--cyan-neon); color:var(--cyan-neon);" title="Instalar Aplicación en el dispositivo">
+        📲 <span>Instalar App</span>
+      </button>
+      <button id="btn-mobile-menu" class="btn-action no-print" style="display:inline-flex; @media(min-width:1025px){display:none;}" aria-label="Abrir Menú de Módulos">
+        ☰
+      </button>
+
+      <button class="btn-action no-print" onclick="window.print()" title="Guardar como PDF o Imprimir">
+        🖨️ <span style="display:none; @media(min-width:640px){display:inline;}">Imprimir / PDF</span>
+      </button>
+      <a href="ebook_v2_completo.md" download class="btn-action btn-primary no-print" title="Descargar Manuscrito Markdown">
+        📥 <span>Descargar .MD</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Showroom Main Grid -->
+  <div class="showroom-layout">
+    
+    <!-- Sticky Sidebar Navigation -->
+    <aside class="sidebar no-print">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Índice del Manual V2.0</div>
+        <div style="font-size:0.75rem; color:var(--cyan-neon);">13 Módulos Completos</div>
+      </div>
+      <ul class="sidebar-toc" id="sidebar-toc-list">
+        <li class="toc-item">
+          <a href="#seguridad">
+            <span class="toc-badge">M01</span>
+            <span>Seguridad Primero & Advertencia Legal</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#motor">
+            <span class="toc-badge">M02</span>
+            <span>Cómo Funciona un Auto (Sin Jerga)</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#herramientas">
+            <span class="toc-badge">M03</span>
+            <span>Herramientas Básicas y Kit de Emergencia</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#inspeccion">
+            <span class="toc-badge">M04</span>
+            <span>Rutinas de Inspección Preventiva</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#fluidos">
+            <span class="toc-badge">M05</span>
+            <span>Fluidos Vitales y Detección de Fugas</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#neumaticos">
+            <span class="toc-badge">M06</span>
+            <span>Neumáticos, Frenos y Seguridad Activa</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#electricidad">
+            <span class="toc-badge">M07</span>
+            <span>Batería, Fusibles y Luces</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#filtros">
+            <span class="toc-badge">M08</span>
+            <span>Filtros, Bujías, Correas y Escobillas</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#obd2">
+            <span class="toc-badge">M09</span>
+            <span>Testigos del Tablero y Escáner OBD-II</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#kilometraje">
+            <span class="toc-badge">M10</span>
+            <span>Mantenimiento por Kilometraje y Costos</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#emergencias">
+            <span class="toc-badge">M11</span>
+            <span>Protocolo de Emergencias y Cambio Llanta</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#taller">
+            <span class="toc-badge">M12</span>
+            <span>Guía de Taller Anti-Estafas</span>
+          </a>
+        </li>
+        <li class="toc-item">
+          <a href="#checklists">
+            <span class="toc-badge">M13</span>
+            <span>Apéndices, Checklists y Bitácora</span>
+          </a>
+        </li>
+      </ul>
+      <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border-subtle); text-align:center;">
+        <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px;">COMUNIDAD OFICIAL</div>
+        <a href="https://instagram.com/charuautopics" target="_blank" class="content-link" style="font-size:0.8rem; color:var(--cyan-neon); font-weight:700;">@charuautopics</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content-layout">
+
+      <!-- Hero Showcase Card -->
+      <section class="hero-showcase">
+        <div class="hero-badge-tag">⚡ EDICIÓN OFICIAL 2.0 • CONDUCTOR INTELIGENTE</div>
+        <h1 class="hero-main-title">
+          MANUAL PRÁCTICO DE<br>
+          <span>MECÁNICA PREVENTIVA</span>
+        </h1>
+        <p class="hero-lead-text">
+          Aprende a diagnosticar, cuidar y defender tu vehículo desde cero absoluto. Sin tecnicismos oscuros, con tablas prácticas de costos, paso a paso ilustrados y el escudo definitivo para el taller mecánico.
+        </p>
+        <div class="hero-official-slogan">
+          🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS
+        </div>
+
+        <!-- Telemetry HUD -->
+        <div class="hud-telemetry">
+          <div class="hud-card">
+            <div class="hud-metric-label">Precio Recomendado</div>
+            <div class="hud-metric-value" style="color:#10b981;">$5.99 USD</div>
+            <div class="hud-metric-desc">Accesible &amp; Rentable</div>
+          </div>
+          <div class="hud-card">
+            <div class="hud-metric-label">Módulos Prácticos</div>
+            <div class="hud-metric-value">13 Capítulos</div>
+            <div class="hud-metric-desc">Paso a paso guiado</div>
+          </div>
+          <div class="hud-card">
+            <div class="hud-metric-label">Nivel de Entrada</div>
+            <div class="hud-metric-value">Cero Jerga</div>
+            <div class="hud-metric-desc">100% Para Novatos</div>
+          </div>
+          <div class="hud-card">
+            <div class="hud-metric-label">Herramientas</div>
+            <div class="hud-metric-value">Checklists</div>
+            <div class="hud-metric-desc">Bitácora interactiva</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diagnostic Quick-Tools Widget Embedded -->
+      <section class="interactive-widget-box no-print">
+        <div class="widget-header-title">
+          <span>⚡ DETECTOR INTERACTIVO DE FUGAS Y SÍNTOMAS AL INSTANTE</span>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
+          ¿Ves un charco o líquido extraño bajo tu auto? Selecciona el color para ver el diagnóstico rápido:
+        </p>
+        <div class="filter-pills-row" id="leak-pill-container">
+          <button class="filter-pill-btn active" data-fluid="clear">💧 Agua Clara / Inodora</button>
+          <button class="filter-pill-btn" data-fluid="brown">🛢️ Marrón Oscuro / Negro</button>
+          <button class="filter-pill-btn" data-fluid="pink">🌸 Rosa / Verde Neón</button>
+          <button class="filter-pill-btn" data-fluid="amber">🛑 Ámbar Claro Muy Resbaloso</button>
+          <button class="filter-pill-btn" data-fluid="red">🍷 Rojo Grosella Brillante</button>
+        </div>
+        <div class="widget-result-card" id="leak-result-display">
+          <strong>💧 Diagnóstico: Condensación normal del Aire Acondicionado.</strong><br>
+          <span style="color:var(--green-ok);">Nivel de Urgencia: 🟢 NORMAL.</span> Es vapor de agua condensado del evaporador al enfriar la cabina. No es una fuga de fluido del motor. Puedes continuar conduciendo sin preocupación.
+        </div>
+      </section>
+
+      <!-- OBD-II Diagnostic Quick Finder Embedded -->
+      <section class="interactive-widget-box no-print" style="border-color:rgba(255, 179, 0, 0.35);">
+        <div class="widget-header-title" style="color:#ffb703;">
+          <span>🔍 BUSCADOR RÁPIDO DE CÓDIGOS OBD-II (CHECK ENGINE)</span>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
+          Escribe el código que leyó tu escáner Bluetooth (ejemplo: P0300, P0420, P0171, P0442):
+        </p>
+        <div style="display:flex; gap:10px; margin-bottom:14px;">
+          <input type="text" id="obd-search-input" placeholder="Escribe un código DTC (ej: P0301)..." style="background:#070a0f; border:1px solid var(--border-subtle); color:#fff; padding:8px 14px; border-radius:8px; width:220px; font-family:var(--font-mono); font-size:0.9rem;">
+          <button class="btn-action" onclick="lookupOBDCode()">Consultar Código</button>
+        </div>
+        <div class="widget-result-card" id="obd-result-display">
+          Introduce un código para ver su traducción sin jerga y la acción recomendada.
+        </div>
+      </section>
+
+      <!-- Módulo 01: Seguridad Primero & Advertencia Legal -->
+      <section class="module-card" id="seguridad">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 01</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#seguridad'); alert('Enlace del Módulo 01 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#seguridad" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-01-introducci-n-seguridad-primero-advertencia-legal" class="chapter-h1">Módulo 01 — Introducción, Seguridad Primero & Advertencia Legal</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-bienvenido-al-mundo-del-conductor-inteligente" class="chapter-h2">⚡ 1. Bienvenido al Mundo del Conductor Inteligente</h2>
+<p class="prose-p">Si acabas de comprar tu primer auto, o llevas años conduciendo pero cada vez que abres el capó sientes que estás mirando una nave espacial alienígena, <strong>este manual fue escrito exactamente para ti</strong>.</p>
+<p class="prose-p">La gran mayoría de los libros automotrices cometen uno de dos errores fatales:</p>
+<ol class="styled-ol">
+<li>Son folletos comerciales superficiales que solo te dicen "ve al concesionario oficial para cualquier detalle".</li>
+<li>O son manuales densos para ingenieros mecánicos con diagramas eléctricos incomprensibles y fórmulas de torque.</li>
+</ol>
+<p class="prose-p">Este manual rompe esa brecha. Nuestro objetivo <strong>no es convertirte en mecánico de carreras</strong>, sino darte la <strong>autonomía, criterio y seguridad práctica</strong> para cuidar tu inversión, no quedarte varado en carretera y saber con exactitud cuándo un taller te está hablando con honestidad o cuándo intentan inflar una factura con servicios innecesarios.</p>
+<hr class="chapter-divider">
+<h2 id="2-seguridad-primero-las-5-reglas-de-oro-inviolables" class="chapter-h2">🛡️ 2. Seguridad Primero: Las 5 Reglas de Oro Inviolables</h2>
+<p class="prose-p">Antes de tocar cualquier pieza metálica o aflojar una tuerca, graba estas cinco reglas en tu mente. La mecánica básica es sencilla y gratificante, pero un auto pesa más de 1.500 kg y almacena fluidos a alta presión y temperaturas superiores a los 90 °C.</p>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### ⚠️ REGLA 1: JAMÁS ABRAS EL TAPÓN DEL RADIADOR CON EL MOTOR CALIENTE<br>El circuito de enfriamiento trabaja bajo presión (entre 0.9 y 1.3 bares). Si abres el tapón con el motor caliente, el refrigerante hirviendo a más de 105 °C saldrá proyectado como un géiser hacia tu rostro y manos, causando quemaduras químicas y térmicas de segundo y tercer grado en segundos.  <br><strong>Regla práctica:</strong> Espera siempre un mínimo de <strong>45 a 60 minutos</strong> con el motor apagado antes de intervenir en el tapón del radiador o del depósito de expansión.</div>
+            </div>
+            
+
+            <div class="custom-alert alert-warning">
+                <div class="alert-icon-wrapper">⚠️</div>
+                <div class="alert-body-content">### ⚠️ REGLA 2: NUNCA TE METAS DEBAJO DE UN AUTO SOSTENIDO SOLO POR UN GATO<br>El gato hidráulico o de tijera que viene en tu cajuela está diseñado <strong>únicamente para levantar el auto durante los minutos que tardas en cambiar una llanta</strong>, jamás para sostener peso mientras una persona trabaja debajo. Un retén hidráulico puede colapsar sin previo aviso.  <br><strong>Regla de oro:</strong> Si alguna vez requieres mirar por debajo, el vehículo debe estar apoyado sobre <strong>torres o caballetes metálicos certificados (Jack Stands)</strong> con el freno de mano puesto y cuñas bloqueando las ruedas opuestas.</div>
+            </div>
+            
+
+            <div class="custom-alert alert-important">
+                <div class="alert-icon-wrapper">📌</div>
+                <div class="alert-body-content">### ⚠️ REGLA 3: PROTECCIÓN PERSONAL OBLIGATORIA (EPP BÁSICO)<br>Tus manos y tus ojos son insustituibles:<br>- <strong>Gafas de seguridad de policarbonato:</strong> Evitan que chispas de batería o salpicaduras de fluidos cáusticos (como el líquido de frenos) alcancen tus ojos.<br>- <strong>Guantes de nitrilo gruesos o mecánicos:</strong> El aceite quemado contiene hidrocarburos aromáticos policíclicos (HAP) cancerígenos; los metales del escape pueden estar al rojo vivo.<br>- <strong>Cero ropa holgada, bufandas o collares:</strong> Cualquier tela suelta puede ser atrapada instantáneamente por las correas en movimiento del motor.</div>
+            </div>
+            
+
+            <div class="custom-alert alert-tip">
+                <div class="alert-icon-wrapper">💡</div>
+                <div class="alert-body-content">### 💡 REGLA 4: RETIRA LLAVES Y DESCONECTA EL BORNE NEGATIVO AL TRABAJAR CON ELECTRICIDAD<br>Si vas a tocar fusibles, cambiar una batería o manipular sensores, asegúrate de que el contacto esté completamente apagado y guarda las llaves fuera del switch para evitar arranques accidentales.</div>
+            </div>
+            
+
+            <div class="custom-alert alert-note">
+                <div class="alert-icon-wrapper">ℹ️</div>
+                <div class="alert-body-content">### 📖 REGLA 5: EL MANUAL DEL FABRICANTE SIEMPRE MANDA<br>Cada modelo tiene sus propias tolerancias, viscosidades de aceite recomendadas por ingeniería y presiones de neumáticos específicas. La información en este libro aplica a la inmensa mayoría de autos a combustión del mercado global, pero ante cualquier discrepancia, <strong>la palabra final la tiene el Manual del Propietario de tu vehículo</strong>.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="3-descargo-de-responsabilidad-t-cnica-y-legal-disclaimer" class="chapter-h2">⚖️ 3. Descargo de Responsabilidad Técnica y Legal (Disclaimer)</h2>
+<p class="prose-p">Este compendio tiene como propósito la educación preventiva y el empoderamiento del conductor en tareas de mantenimiento primario (nivel usuario). La intervención en componentes críticos de seguridad activa (sistemas hidráulicos de frenos, dirección asistida, bolsas de aire o módulos ABS) debe realizarse con la debida precaución y, ante la menor duda técnica, derivarse a técnicos profesionales certificados (ASE u homólogos). El autor y CharuAutos no asumen responsabilidad por daños materiales o personales derivados de la manipulación negligente de herramientas o vehículos.</p>
+      </section>
+    
+      <!-- Módulo 02: Cómo Funciona un Auto (Sin Jerga) -->
+      <section class="module-card" id="motor">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 02</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#motor'); alert('Enlace del Módulo 02 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#motor" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-02-c-mo-funciona-un-auto-explicado-sin-jerga" class="chapter-h1">Módulo 02 — Cómo Funciona un Auto (Explicado sin Jerga)</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-la-met-fora-del-cuerpo-humano" class="chapter-h2">🚗 1. La Metáfora del Cuerpo Humano</h2>
+<p class="prose-p">Para entender tu vehículo sin necesidad de estudiar ingeniería, imagínalo como un organismo vivo:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────┬───────────────────────────┬───────────────────────────┐
+│ COMPONENTE DEL AUTO       │ EQUIVALENTE HUMANO        │ FUNCIÓN VITAL             │
+├───────────────────────────┼───────────────────────────┼───────────────────────────┤
+│ Motor                     │ El Corazón                │ Bombea energía y potencia │
+│ Gasolina / Diésel         │ El Alimento               │ La energía química cruda  │
+│ Aceite de Motor           │ La Sangre que Lubrica     │ Evita fricción y desgaste │
+│ Sistema de Refrigeración  │ El Sudor / Termostato     │ Mantiene la temp. estable │
+│ Sistema Eléctrico         │ El Sistema Nervioso       │ Da chispa y controla todo │
+│ Frenos                    │ Los Músculos de Detención │ Frenan la inercia         │
+│ Suspensión y Neumáticos   │ Las Piernas y Calzado     │ Absorben impactos y guían │
+└───────────────────────────┴───────────────────────────┴───────────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="2-los-6-sistemas-vitales-de-tu-auto" class="chapter-h2">⚙️ 2. Los 6 Sistemas Vitales de tu Auto</h2>
+<h3 id="1-el-motor-el-coraz-n-a-4-tiempos" class="chapter-h3">1. El Motor (El Corazón a 4 Tiempos)</h3>
+<p class="prose-p">El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiempos:</p>
+<ol class="styled-ol">
+<li><strong>Admisión:</strong> Abre la válvula y entra una mezcla de aire y gasolina pulverizada.</li>
+<li><strong>Compresión:</strong> El pistón sube y comprime la mezcla con enorme fuerza.</li>
+<li><strong>Explosión / Combustión:</strong> La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. <strong>De aquí sale toda la fuerza del auto</strong>.</li>
+<li><strong>Escape:</strong> Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.</li>
+</ol>
+<p class="prose-p">> <strong>¿Por qué te importa saber esto?</strong>  </p>
+<p class="prose-p">> Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita <strong>3 cosas que jamás pueden faltar</strong>:</p>
+<p class="prose-p">> - <strong>Aire limpio</strong> (a través del filtro de aire).</p>
+<p class="prose-p">> - <strong>Chispa a tiempo</strong> (a través de las bujías).</p>
+<p class="prose-p">> - <strong>Lubricación continua</strong> (a través del aceite y filtro de aceite).</p>
+<hr class="chapter-divider">
+<h3 id="2-la-transmisi-n-caja-de-cambios-la-palanca-de-fuerza" class="chapter-h3">2. La Transmisión / Caja de Cambios (La Palanca de Fuerza)</h3>
+<p class="prose-p">El motor gira muy rápido (entre 800 y 6.000 revoluciones por minuto). Si conectaras las ruedas directamente al motor, el auto saldría disparado o se apagaría al arrancar.</p>
+<ul class="styled-list">
+<li>La <strong>caja de cambios</strong> adapta esa velocidad mediante engranajes:</li>
+<li>Las marchas bajas (1ª y 2ª) dan <strong>mucha fuerza y poca velocidad</strong> (para arrancar o subir pendientes).</li>
+<li>Las marchas altas (4ª, 5ª y 6ª) dan <strong>poca fuerza y mucha velocidad</strong> (para viajar en carretera gastando poca gasolina).</li>
+<li><strong>Cajas Manuales:</strong> El conductor usa el pedal de embrague para conectar y desconectar la fuerza.</li>
+<li><strong>Cajas Automáticas (ATF / CVT / Doble Embrague):</strong> El vehículo cambia los engranajes mediante presión hidráulica y computadoras.</li>
+</ul>
+<hr class="chapter-divider">
+<h3 id="3-el-sistema-de-refrigeraci-n-el-enfriador" class="chapter-h3">3. El Sistema de Refrigeración (El Enfriador)</h3>
+<p class="prose-p">Solo el 30% de la gasolina se convierte en movimiento; el 70% restante se transforma en calor puro.</p>
+<ul class="styled-list">
+<li>El <strong>radiador</strong> enfría el líquido refrigerante con el viento que entra por la parrilla frontal.</li>
+<li>La <strong>bomba de agua</strong> hace circular el refrigerante por canales internos del bloque motor.</li>
+<li>El <strong>termostato</strong> es una compuerta inteligente: si el motor está frío, se cierra para que caliente rápido; cuando llega a 90 °C, se abre para enviar el fluido al radiador.</li>
+</ul>
+<hr class="chapter-divider">
+<h3 id="4-el-sistema-de-frenos-la-seguridad-cr-tica" class="chapter-h3">4. El Sistema de Frenos (La Seguridad Crítica)</h3>
+<p class="prose-p">La mayoría de los autos modernos tienen <strong>frenos de disco hidráulicos</strong> en las 4 ruedas (o tambores en las traseras):</p>
+<ul class="styled-list">
+<li>Cuando pisas el pedal, empujas <strong>líquido de frenos</strong> incompresible por tuberías metálicas.</li>
+<li>Ese líquido empuja un pistón en la mordaza (<em>caliper</em>).</li>
+<li>La mordaza aprieta dos <strong>pastillas de freno</strong> abrasivas contra un disco de acero que gira con la rueda.</li>
+<li>La fricción detiene el auto transformando la velocidad en calor extremo.</li>
+</ul>
+<hr class="chapter-divider">
+<h3 id="5-suspensi-n-y-direcci-n-el-control-del-camino" class="chapter-h3">5. Suspensión y Dirección (El Control del Camino)</h3>
+<ul class="styled-list">
+<li><strong>Amortiguadores y Resortes:</strong> Absorben los baches para que las llantas nunca pierdan contacto con el asfalto.</li>
+<li><strong>Rótulas y Muñones:</strong> Son las articulaciones esféricas que permiten que las ruedas giren a los lados y suban y bajen simultáneamente.</li>
+</ul>
+<hr class="chapter-divider">
+<h3 id="6-sistema-el-ctrico-y-bater-a-el-cerebro" class="chapter-h3">6. Sistema Eléctrico y Batería (El Cerebro)</h3>
+<ul class="styled-list">
+<li>La <strong>batería</strong> solo sirve para arrancar el auto y alimentar accesorios cuando el motor está apagado.</li>
+<li>Una vez que el motor arranca, el <strong>alternador</strong> genera toda la electricidad del vehículo y recarga la batería para el siguiente arranque.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="3-mapa-visual-r-pido-bajo-el-cap" class="chapter-h2">🔍 3. Mapa Visual Rápido Bajo el Capó</h2>
+<p class="prose-p">Cuando abras el cofre, busca estos 4 tapones universales:</p>
+<ol class="styled-ol">
+<li><strong>Tapón de Aceite:</strong> Tiene grabado el icono de una aceitera goteando.</li>
+<li><strong>Varilla de Aceite:</strong> Tirador con anilla de plástico (amarilla o naranja).</li>
+<li><strong>Depósito de Refrigerante:</strong> Tanque traslúcido con líquido rosado, verde o azul.</li>
+<li><strong>Depósito Limpiaparabrisas:</strong> Tapa plástica (casi siempre azul o negra) con un parabrisas y chorritos de agua grabados.</li>
+</ol>
+      </section>
+    
+      <!-- Módulo 03: Herramientas Básicas y Kit de Emergencia -->
+      <section class="module-card" id="herramientas">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 03</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#herramientas'); alert('Enlace del Módulo 03 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#herramientas" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-03-herramientas-b-sicas-y-kit-de-emergencia" class="chapter-h1">Módulo 03 — Herramientas Básicas y Kit de Emergencia</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-el-kit-del-principiante-inteligente-menos-de-40-usd" class="chapter-h2">🧰 1. El Kit del Principiante Inteligente (Menos de $40 USD)</h2>
+<p class="prose-p">No necesitas gastar cientos de dólares en cajas de herramientas profesionales. Como conductor precavido, solo requieres 6 elementos esenciales que caben en una pequeña bolsa bajo el asiento:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌──────────────────────────────────────┬───────────────┬───────────────────────────┐
+│ HERRAMIENTA RECOMENDADA              │ COSTO ESTIMADO│ UTILIDAD CLAVE            │
+├──────────────────────────────────────┼───────────────┼───────────────────────────┤
+│ 1. Calibrador Digital de Neumáticos  │ $8 - $12 USD  │ Medir presión en frío     │
+│ 2. Linterna Frontal LED (manos libres)│ $7 - $10 USD │ Iluminar sin ocupar manos │
+│ 3. Juego de Cables de Puente (4 AWG) │ $15 - $22 USD │ Arrancar batería muerta   │
+│ 4. Guantes de Trabajo Nitrilo / Piel │ $4 - $6 USD   │ Proteger de calor y grasa │
+│ 5. Paño de Microfibra y Toallitas    │ $3 - $5 USD   │ Limpiar varilla y manos   │
+│ 6. Llave Telescópica para Ruedas     │ $12 - $16 USD │ Palanca extra p/ tuercas  │
+└──────────────────────────────────────┴───────────────┴───────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-tip">
+                <div class="alert-icon-wrapper">💡</div>
+                <div class="alert-body-content"><strong>El Secreto de la Llave Telescópica:</strong> La llave pequeña en forma de "L" que traen los autos de fábrica es corta y requiere que hagas una fuerza sobrehumana para aflojar tuercas apretadas con pistola neumática en talleres. Una llave telescópica extensible duplica tu brazo de palanca: <strong>con la mitad de esfuerzo aflojas cualquier tuerca fácilmente</strong>.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="2-el-kit-obligatorio-de-supervivencia-en-la-cajuela" class="chapter-h2">🎒 2. El Kit Obligatorio de Supervivencia en la Cajuela</h2>
+<p class="prose-p">En la mayoría de los países de habla hispana, estos elementos son obligatorios por ley de tránsito y te salvarán la vida ante una avería en autopista:</p>
+<ol class="styled-ol">
+<li><strong>Triángulos de Señalización Reflectivos (2 unidades):</strong>  </li>
+</ol>
+<ul class="styled-list">
+<li>Se colocan a <strong>50 metros detrás del auto</strong> en carretera convencional y a <strong>100 metros en autopista</strong> para avisar a los autos que vienen a 120 km/h.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Chaleco Reflectante de Alta Visibilidad:</strong>  </li>
+</ol>
+<ul class="styled-list">
+<li><strong>Guárdalo dentro de la guantera o bajo el asiento del piloto</strong>, NUNCA en la cajuela. Si te bajas del auto en una noche oscura sin el chaleco puesto, corres riesgo de atropellamiento.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Mini Compresor Eléctrico Portátil (12V para encendedor):</strong>  </li>
+</ol>
+<ul class="styled-list">
+<li>Cuesta entre $20 y $30 USD y te permite inflar una llanta desinflada en 4 minutos sin tener que desmontarla en un lugar peligroso.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Botiquín de Primeros Auxilios:</strong>  </li>
+</ol>
+<ul class="styled-list">
+<li>Gasas estériles, vendas, alcohol, cinta médica, tijeras y analgésicos básicos.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Extintor Automotriz de Polvo Químico Seco (Tipo ABC):</strong>  </li>
+</ol>
+<ul class="styled-list">
+<li>Verifica que el manómetro esté en la zona verde y no vencido.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="qu-cosas-no-vale-la-pena-comprar-al-inicio" class="chapter-h2">❌ Qué Cosas NO Vale la Pena Comprar al Inicio</h2>
+<ul class="styled-list">
+<li><strong>Juegos de 150 llaves y copas:</strong> Ocupan espacio, pesan 15 kg y el 90% de las medidas jamás las usarás.</li>
+<li><strong>Líquidos "milagrosos" para tapar fugas de radiador:</strong> Contienen partículas que taponan los conductos microscópicos del calefactor de cabina y causan averías de cientos de dólares.</li>
+<li><strong>Herramientas de marcas ultra baratas sin certificar:</strong> Se doblan en el primer intento y redondean las tuercas dejándote atrapado.</li>
+</ul>
+      </section>
+    
+      <!-- Módulo 04: Rutinas de Inspección Preventiva -->
+      <section class="module-card" id="inspeccion">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 04</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#inspeccion'); alert('Enlace del Módulo 04 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#inspeccion" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-04-rutinas-de-revisi-n-en-5-minutos-diaria-semanal-y-mensual" class="chapter-h1">Módulo 04 — Rutinas de Revisión en 5 Minutos (Diaria, Semanal y Mensual)</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-la-filosof-a-del-mantenimiento-predictivo" class="chapter-h2">⏱️ 1. La Filosofía del Mantenimiento Predictivo</h2>
+<p class="prose-p">El 80% de las averías catastróficas (motor fundido, caja rota o radiador estallado) <strong>empiezan semanas antes como una fuga silenciosa o un nivel bajo</strong> que pudo detectarse con una mirada de 30 segundos.</p>
+<p class="prose-p">Crear hábitos preventivos es la diferencia entre gastar $15 USD en un litro de aceite a tiempo o gastar $2.500 USD en rectificar un motor arruinado.</p>
+<hr class="chapter-divider">
+<h2 id="2-el-chequeo-visual-diario-30-segundos-al-acercarte-al-auto" class="chapter-h2">🚶 2. El Chequeo Visual Diario (30 Segundos al Acercarte al Auto)</h2>
+<p class="prose-p">Cada mañana antes de subirte al vehículo, haz una inspección rápida en 3 pasos:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>Paso 1: Mira el suelo debajo del motor
+└─ ¿Hay charcos negros (aceite), rosados/verdes (coolant) o rojos (caja)?
+   (Nota: Si usaste el A/C ayer, ver un charquito de agua pura es normal).
+
+Paso 2: Mirada perimétrica a los 4 neumáticos
+└─ ¿Alguna llanta se ve visiblemente más aplastada o &quot;panzona&quot; que las demás?
+
+Paso 3: Vidrios, espejos y luces limpias
+└─ ¿Parabrisas libre de hojas, ramas o suciedad que reste visibilidad?</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="3-la-rutina-semanal-de-5-minutos-d-a-s-bado-o-domingo" class="chapter-h2">🗓️ 3. La Rutina Semanal de 5 Minutos (Día Sábado o Domingo)</h2>
+<p class="prose-p">Con el auto estacionado en un lugar plano y el motor <strong>frío y apagado</strong>:</p>
+<h3 id="1-nivel-de-aceite-de-motor" class="chapter-h3">1. Nivel de Aceite de Motor</h3>
+<ul class="styled-list">
+<li>Saca la varilla amarilla/naranja.</li>
+<li>Límpiala con un papel o toalla de microfibra.</li>
+<li>Insértala de nuevo hasta el fondo.</li>
+<li>Retírala y observa: el aceite debe estar <strong>entre los orificios o marcas MIN y MAX</strong>.</li>
+<li><em>Si está cerca del MIN:</em> Agrega de 0.5 a 1 litro del aceite de la misma viscosidad recomendada en tu manual.</li>
+</ul>
+<h3 id="2-nivel-de-l-quido-refrigerante-coolant" class="chapter-h3">2. Nivel de Líquido Refrigerante / Coolant</h3>
+<ul class="styled-list">
+<li>Mira el envase plástico translúcido al lado del radiador.</li>
+<li>Sin abrirlo, confirma que el nivel esté entre las marcas <strong>COLD / MIN</strong> y <strong>FULL / MAX</strong>.</li>
+</ul>
+<h3 id="3-l-quido-limpiaparabrisas" class="chapter-h3">3. Líquido Limpiaparabrisas</h3>
+<ul class="styled-list">
+<li>Abre la tapa azul y rellena con líquido lavaparabrisas formulado (evita agua del grifo sola porque crea hongos y sarro que obstruyen los aspersores).</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="4-la-rutina-mensual-de-10-minutos-el-primer-fin-de-semana-de-cada-mes" class="chapter-h2">📆 4. La Rutina Mensual de 10 Minutos (El Primer Fin de Semana de Cada Mes)</h2>
+<div class="table-responsive"><table class="data-table">
+<thead><tr>
+<th>Componente</th>
+<th>Qué Comprobar</th>
+<th>Acción Preventiva</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Presión de Neumáticos</strong></td>
+<td>Medir con calibrador digital las 4 ruedas + la de repuesto.</td>
+<td>Inflar a las PSI indicadas en la etiqueta de la puerta del conductor.</td>
+</tr>
+<tr>
+<td><strong>Líquido de Frenos</strong></td>
+<td>Nivel visible a través del envase transparente cerca de la pared de fuego.</td>
+<td>Si bajó del MIN, no solo rellenes: ¡revisa desgaste de pastillas!</td>
+</tr>
+<tr>
+<td><strong>Batería y Bornes</strong></td>
+<td>Inspeccionar si hay corrosión blanca/azulada en los postes.</td>
+<td>Limpiar con agua caliente y bicarbonato usando un cepillo viejo.</td>
+</tr>
+<tr>
+<td><strong>Luces Exteriores</strong></td>
+<td>Encender bajas, altas, intermitentes, reversa y freno.</td>
+<td>Pídele a alguien que mire atrás o apóyate contra una pared para ver el reflejo.</td>
+</tr>
+<tr>
+<td><strong>Escobillas Limpiaparabrisas</strong></td>
+<td>Pasar un trapo húmedo por el filo de goma.</td>
+<td>Si rechina, salta o deja rayas sobre el vidrio, cámbialas de inmediato.</td>
+</tr>
+</tbody></table></div>
+      </section>
+    
+      <!-- Módulo 05: Fluidos Vitales y Detección de Fugas -->
+      <section class="module-card" id="fluidos">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 05</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#fluidos'); alert('Enlace del Módulo 05 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#fluidos" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-05-fluidos-vitales-la-sangre-y-el-sudor-de-tu-veh-culo" class="chapter-h1">Módulo 05 — Fluidos Vitales: La Sangre y el Sudor de tu Vehículo</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-los-5-fluidos-esenciales-que-mantienen-vivo-tu-motor" class="chapter-h2">🩸 1. Los 5 Fluidos Esenciales que Mantienen Vivo tu Motor</h2>
+<p class="prose-p">Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────────────┬──────────────────────┬────────────────────────┬──────────────────────┐
+│ FLUIDO                  │ COLOR SALUDABLE      │ CUÁNDO REVISAR         │ CONSECUENCIA DE FALLA│
+├─────────────────────────┼──────────────────────┼────────────────────────┼──────────────────────┤
+│ Aceite de Motor         │ Miel dorado a ámbar  │ Cada 1.000 km o 15 días│ Fundición de motor   │
+│ Líquido Refrigerante    │ Rosa, Verde o Azul   │ Cada mes (en frío)     │ Sobrecalentamiento   │
+│ Líquido de Frenos       │ Amarillo claro/Ámbar │ Cada 2 a 3 meses       │ Pérdida de frenada   │
+│ Dirección Asistida/ATF  │ Rojo grosella / Rosa │ Cada 3 meses           │ Dirección dura/falla │
+│ Limpiaparabrisas        │ Azul o verde claro   │ Cada semana            │ Cero visibilidad     │
+└─────────────────────────┴──────────────────────┴────────────────────────┴──────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="2-aceite-de-motor-lectura-exacta-de-la-varilla" class="chapter-h2">🛢️ 2. Aceite de Motor: Lectura Exacta de la Varilla</h2>
+<p class="prose-p">El aceite lubrica las piezas metálicas que se mueven a miles de revoluciones por minuto, dispersa el calor interno y arrastra impurezas hacia el filtro.</p>
+<h3 id="procedimiento-de-medici-n-en-5-pasos" class="chapter-h3">Procedimiento de Medición en 5 Pasos:</h3>
+<ol class="styled-ol">
+<li><strong>Superficie plana:</strong> Estaciona el auto en un terreno completamente horizontal. En una pendiente, la lectura será falsa.</li>
+<li><strong>Motor tibio/frío:</strong> Apaga el motor y espera al menos <strong>10 a 15 minutos</strong> para que todo el aceite de la culata descienda al cárter.</li>
+<li><strong>Primera extracción:</strong> Saca la varilla (suele tener tirador amarillo o naranja). Límpiala completamente con un paño de microfibra o papel sin pelusa. No mires esta primera lectura: no es válida porque el aceite salpicó al circular.</li>
+<li><strong>Segunda inserción:</strong> Introduce la varilla hasta el fondo firmemente, espera 3 segundos y extráela con cuidado manteniéndola vertical con la punta hacia abajo.</li>
+<li><strong>Lectura visual:</strong> Observa dónde se sitúa la película brillante de aceite.</li>
+</ol>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>               NIVEL CORRECTO: Entre MIN y MAX (Zona rayada)
+  ┌───────────────────────────────────────────────────────────────┐
+══╡ (MIN) • • • • • • • • • • • • • • • • • • • • • • • • • (MAX) ╞══► Hacia el mango
+  └───────────────────────────────────────────────────────────────┘
+    ▲                             ▲                          ▲
+    │                             │                          │
+  PELIGRO CRÍTICO            ZONA IDEAL                  SOBRELLENADO
+  Añadir 0.8 a 1.0 L        Perfecto estado           ¡Peligro de sobrepresión!
+  de inmediato               No tocar nada             Espuma y rotura de retenes</code></pre></div>
+
+            <div class="custom-alert alert-warning">
+                <div class="alert-icon-wrapper">⚠️</div>
+                <div class="alert-body-content">### ⚠️ El Error del Sobrellenado<br>Muchos conductores novatos piensan: "si un poco es bueno, más es mejor". <strong>Falso y peligroso</strong>. Si el nivel de aceite supera la marca MAX, el cigüeñal golpeará la superficie del aceite batiéndolo como mayonesa y creando burbujas de aire. Las bombas de aceite no bombean espuma, por lo que las piezas se quedarán sin lubricación y los retenes reventarán por exceso de presión en el cárter.</div>
+            </div>
+            
+<h3 id="decodificando-la-viscosidad-qu-significa-5w-30-o-0w-20" class="chapter-h3">Decodificando la Viscosidad: ¿Qué significa 5W-30 o 0W-20?</h3>
+<ul class="styled-list">
+<li><strong>El número con la "W" (Winter / Invierno):</strong> Indica la fluidez en frío. Un <code class="inline-code">0W</code> o <code class="inline-code">5W</code> fluye como agua al arrancar a baja temperatura, llegando al árbol de levas en microsegundos.</li>
+<li><strong>El segundo número (Verano / Temperatura de operación a 100 °C):</strong> Indica la viscosidad cuando el motor está a régimen térmico pleno. Un <code class="inline-code">30</code> o <code class="inline-code">40</code> mantendrá una película protectora resistente bajo el sol abrasador.</li>
+<li><strong>¿Mineral vs Sintético?:</strong> Los aceites <strong>100% sintéticos</strong> modernos protegen el doble, se degradan menos y resisten hasta 10.000 - 15.000 km frente a los 5.000 km del mineral clásico. Usa siempre la especificación recomendada por el fabricante (API SP, ILSAC GF-6 o normas ACEA).</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="3-refrigerante-anticongelante-el-escudo-t-rmico" class="chapter-h2">❄️ 3. Refrigerante / Anticongelante: El Escudo Térmico</h2>
+<p class="prose-p">El refrigerante es una mezcla equilibrada de 50% agua desmineralizada y 50% glicol (monoetilenglicol) con aditivos anticorrosivos. Eleva el punto de ebullición a más de 125 °C bajo presión y evita que el bloque se congele a -35 °C.</p>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### 🛑 REGLA INQUEBRANTABLE DE SEGURIDAD<br><strong>NUNCA, BAJO NINGUNA CIRCUNSTANCIA, ABRAS EL DEPÓSITO DE EXPANSIÓN O RADIADOR CON EL MOTOR RECIÉN APAGADO.</strong>  <br>El sistema almacena líquido a más de 100 °C y presiones de 1 a 1.4 bar. Al retirar el tapón, la caída repentina de presión hace que el líquido entre en ebullición instantánea, provocando una erupción que rocía agua hirviendo y vapor directamente sobre tu cara y manos.  <br>Espera siempre que el motor esté <strong>frío al tacto</strong> (mínimo 45 minutos).</div>
+            </div>
+            
+<h3 id="por-qu-nunca-se-debe-usar-agua-de-grifo" class="chapter-h3">¿Por qué NUNCA se debe usar agua de grifo?</h3>
+<p class="prose-p">El agua del grifo contiene sales, cloro y cal que oxidan el radiador por dentro, forman sarro que tapa los conductos microscópicos de la culata y corroe la bomba de agua. Solo en una emergencia absoluta y para llegar al taller más próximo se admite agua; luego deberá drenarse y purgarse el circuito por completo.</p>
+<hr class="chapter-divider">
+<h2 id="4-l-quido-de-frenos-la-fuerza-hidr-ulica-oculta" class="chapter-h2">🛑 4. Líquido de Frenos: La Fuerza Hidráulica Oculta</h2>
+<p class="prose-p">El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cuatro ruedas con una presión que supera los 100 bares.</p>
+<ul class="styled-list">
+<li><strong>Naturaleza Higroscópica:</strong> El líquido de frenos absorbe humedad ambiental del aire como una esponja a través de los microporos de los manguitos flexibles.</li>
+<li><strong>El Fenómeno del "Vapor Lock":</strong> Con apenas un 3% de agua absorbida, el punto de ebullición del líquido cae de 260 °C a menos de 150 °C. Si bajas una colina frenando repetidamente, los discos calientan las pinzas, el agua dentro del líquido hierve y crea <strong>burbujas de vapor</strong>. Como el vapor se comprime, el pedal de freno se irá al fondo <strong>sin frenar el auto</strong>.</li>
+<li><strong>Cambio Obligatorio:</strong> Se debe reemplazar cada <strong>2 años o 40.000 km</strong>, independientemente del uso del auto.</li>
+<li><strong>Especificaciones:</strong> La mayoría de autos usan <strong>DOT 4</strong> (compatible hacia atrás con DOT 3). Nunca mezcles con fluidos base silicona (DOT 5).</li>
+</ul>
+
+            <div class="custom-alert alert-warning">
+                <div class="alert-icon-wrapper">⚠️</div>
+                <div class="alert-body-content">El líquido de frenos es un decapante corrosivo para la pintura de la carrocería. Si derramas una sola gota en la chapa, enjuágala inmediatamente con abundante agua corriente.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="5-gu-a-de-detecci-n-de-fugas-en-el-suelo-tabla-del-detective" class="chapter-h2">🕵️‍♂️ 5. Guía de Detección de Fugas en el Suelo (Tabla del Detective)</h2>
+<p class="prose-p">Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────┬──────────────────────┬────────────────────────┬──────────────────────────────────┐
+│ COLOR DEL CHARCO│ TEXTURA / OLOR       │ ORIGEN PROBABLE        │ NIVEL DE URGENCIA                │
+├─────────────────┼──────────────────────┼────────────────────────┼──────────────────────────────────┤
+│ Transparente    │ Acuosa, inodora      │ Condensación de Aire A.│ 🟢 NORMAL: No es una fuga        │
+│ Marrón oscuro   │ Oleosa, resbaladiza  │ Aceite de motor        │ 🟡 MODERADO: Revisar nivel motor │
+│ Rosa / Verde    │ Acuosa, olor dulce   │ Líquido Refrigerante   │ 🔴 ALTO: Peligro de recalentón   │
+│ Rojo brillante  │ Aceitosa, fluido     │ ATF (Caja automática)  │ 🔴 ALTO: Acudir a taller         │
+│ Ámbar claro     │ Muy resbalosa        │ Líquido de Frenos      │ ⛔ CRÍTICO: NO CONDUCIR          │
+└─────────────────┴──────────────────────┴────────────────────────┴──────────────────────────────────┘</code></pre></div>
+      </section>
+    
+      <!-- Módulo 06: Neumáticos, Frenos y Seguridad Activa -->
+      <section class="module-card" id="neumaticos">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 06</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#neumaticos'); alert('Enlace del Módulo 06 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#neumaticos" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-06-neum-ticos-frenos-y-seguridad-activa" class="chapter-h1">Módulo 06 — Neumáticos, Frenos y Seguridad Activa</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-los-neum-ticos-tus-nicos-4-puntos-de-contacto-con-la-tierra" class="chapter-h2">🛞 1. Los Neumáticos: Tus Únicos 4 Puntos de Contacto con la Tierra</h2>
+<p class="prose-p">Mucha gente cree que los frenos detienen el vehículo; en estricto rigor físico, <strong>los frenos detienen las ruedas, pero los neumáticos detienen el auto</strong>. El área total de contacto entre un automóvil moderno y el asfalto equivale aproximadamente al tamaño de cuatro postales de papel. De esa minúscula superficie dependen tu vida y la de tus acompañantes.</p>
+<hr class="chapter-divider">
+<h2 id="2-presi-n-de-inflado-en-fr-o-d-nde-encontrarla-y-c-mo-medirla" class="chapter-h2">💨 2. Presión de Inflado en Frío: Dónde Encontrarla y Cómo Medirla</h2>
+<p class="prose-p">El error más común es leer la presión máxima grabada en el flanco del neumático (ej: <code class="inline-code">44 PSI MAX PRESS</code>). <strong>Ese NO es el inflado de tu auto; es el límite de ruptura que soporta el neumático antes de reventar en fábrica.</strong></p>
+<h3 id="d-nde-est-la-etiqueta-oficial-de-tu-auto" class="chapter-h3">Dónde está la etiqueta oficial de tu auto:</h3>
+<p class="prose-p">Abre la puerta del conductor y mira el <strong>pilar B</strong> (el marco metálico donde traba la puerta). Allí encontrarás una placa metálica o pegatina con la presión exacta para tu modelo (expresada en PSI y BAR), distinguiendo entre carga normal y carga completa con equipaje.</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>       PEGATINA TÍPICA EN EL MARCO DE LA PUERTA (PILAR B)
+┌─────────────────────────────────────────────────────────────┐
+│  TIRE AND LOADING INFORMATION / INFORMACIÓN DE NEUMÁTICOS   │
+├───────────────────┬─────────────────────┬───────────────────┤
+│  DIMENSIÓN RUEDA  │  DELANTERA (FRONT)  │  TRASERA (REAR)   │
+├───────────────────┼─────────────────────┼───────────────────┤
+│  205/55 R16 91V   │  32 PSI (2.2 BAR)   │  30 PSI (2.1 BAR) │
+│  Con carga plena  │  35 PSI (2.4 BAR)   │  36 PSI (2.5 BAR) │
+└───────────────────┴─────────────────────┴───────────────────┘</code></pre></div>
+<h3 id="qu-significa-medir-en-fr-o" class="chapter-h3">¿Qué significa medir "en frío"?:</h3>
+<p class="prose-p">Se considera en frío cuando el auto ha rodado <strong>menos de 2 km</strong> o ha estado estacionado durante al menos <strong>2 horas</strong>. Al rodar por autopista, la fricción calienta el aire interno y sube la presión de 3 a 5 PSI de forma natural; jamás desinfles un neumático caliente pensando que está sobreinflado.</p>
+<hr class="chapter-divider">
+<h2 id="3-la-prueba-de-la-moneda-y-el-c-digo-de-antig-edad-dot" class="chapter-h2">🪙 3. La Prueba de la Moneda y el Código de Antigüedad DOT</h2>
+<h3 id="a-la-prueba-de-la-moneda-para-desgaste-de-banda" class="chapter-h3">A. La Prueba de la Moneda para Desgaste de Banda:</h3>
+<p class="prose-p">El límite legal mínimo en la mayoría de países es de <strong>1.6 mm</strong> de profundidad en los surcos principales, pero sobre asfalto mojado la distancia de frenado se duplica cuando el dibujo baja de <strong>3.0 mm</strong>.</p>
+<ol class="styled-ol">
+<li>Toma una moneda con borde visible (por ejemplo, una moneda de 1 Euro, de 10 pesos mexicanos o una moneda de 1 cuarto de dólar americano con la cabeza de Washington hacia abajo).</li>
+<li>Introdúcela en las ranuras centrales de la banda de rodadura.</li>
+<li>Si puedes ver la parte superior de la corona o el borde exterior completo sin que el surco lo cubra, el neumático ha perdido sus canales de evacuación hidrodinámica: <strong>el riesgo de aquaplaning en lluvia es inminente</strong>.</li>
+</ol>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>     NEUMÁTICO SANO (&gt; 3mm)            NEUMÁTICO PELIGROSO (&lt; 1.6mm)
+   ┌───┐    ┌───┐    ┌───┐            ┌───┐    ┌───┐    ┌───┐
+   │   │    │   │    │   │            │   │    │   │    │   │
+───┘   └────┘   └────┘   └───      ───┘   └────┘   └────┘   └───
+  [ Surco Profundo: Desaloja ]       [ Surco Raso: Desliza en agua ]</code></pre></div>
+<h3 id="b-el-c-digo-dot-la-fecha-de-caducidad-de-la-goma" class="chapter-h3">B. El Código DOT: La Fecha de Caducidad de la Goma:</h3>
+<p class="prose-p">Los neumáticos caducan por envejecimiento natural de los polímeros del caucho (se cristalizan y se vuelven rígidos como plástico), aunque nunca se hayan usado y tengan el dibujo intacto.</p>
+<ul class="styled-list">
+<li>Busca la palabra <strong>DOT</strong> en el flanco exterior y localiza un recuadro ovalado con <strong>4 dígitos numéricos</strong>:</li>
+<li>Ejemplo: <code class="inline-code">DOT ... 2423</code></li>
+<li><strong>Primeros 2 dígitos (24):</strong> Semana del año (Semana 24 = principios de Junio).</li>
+<li><strong>Últimos 2 dígitos (23):</strong> Año de fabricación (2023).</li>
+<li><strong>Regla de oro:</strong> Neumáticos con más de <strong>5 años</strong> deben inspeccionarse minuciosamente por microfisuras; con más de <strong>7 a 8 años</strong>, deben reemplazarse por seguridad aunque tengan dibujo.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="4-rotaci-n-alineaci-n-y-balanceo" class="chapter-h2">🔄 4. Rotación, Alineación y Balanceo</h2>
+<ul class="styled-list">
+<li><strong>Rotación (cada 10.000 km):</strong> Como las ruedas delanteras soportan el peso del motor, la dirección y el 70% de la frenada, se desgastan el doble de rápido que las traseras. Rotarlas de eje distribuye el desgaste de forma uniforme y alarga su vida útil un 40%.</li>
+<li><strong>Balanceo (Equilibrado):</strong> Si el volante <strong>tiembla o vibra rítmicamente</strong> a velocidades de autopista (entre 90 y 120 km/h), las ruedas han perdido sus contrapesos de plomo.</li>
+<li><strong>Alineación:</strong> Si sueltas el volante unos metros en una recta plana y el auto <strong>se desvía bruscamente hacia la izquierda o derecha</strong>, o si notas que las llantas se gastan más por el borde interno que por el externo, la geometría de la suspensión está descalibrada.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="5-inspecci-n-visual-de-pastillas-y-discos-de-freno" class="chapter-h2">🛑 5. Inspección Visual de Pastillas y Discos de Freno</h2>
+<p class="prose-p">No necesitas desarmar la rueda para tener una estimación del estado de tus frenos en la mayoría de rines de aleación:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────────────┬───────────────────────────┬────────────────────────────────┐
+│ ELEMENTO                │ CONDICIÓN SALUDABLE       │ SEÑAL DE REEMPLAZO URGENTE     │
+├─────────────────────────┼───────────────────────────┼────────────────────────────────┤
+│ Grosor de Pastilla      │ 8 mm a 12 mm de material  │ Menos de 3 mm (Acudir a taller)│
+│ Disco de Freno          │ Superficie lisa y pulida  │ Surcos profundos o reborde alto│
+│ Sonido al Frenar        │ Silencio o leve fricción  │ Chirrido metálico chillón      │
+│ Tacto en el Pedal       │ Firme y progresivo        │ Esponjoso o vibra fuertemente  │
+└─────────────────────────┴───────────────────────────┴────────────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-note">
+                <div class="alert-icon-wrapper">ℹ️</div>
+                <div class="alert-body-content">### 🎵 El Famoso "Chirrido de Chivato"<br>Las pastillas de calidad incorporan una pequeña lengüeta de chapa metálica llamada avisador acústico. Cuando el material de fricción se desgasta hasta los 2.5 mm, esa chapita roza contra el disco produciendo un chillido agudo al frenar. No te asustes: es un diseño de ingeniería deliberado para avisarte antes de que el soporte de hierro dañe el disco.</div>
+            </div>
+            
+      </section>
+    
+      <!-- Módulo 07: Batería, Fusibles y Luces -->
+      <section class="module-card" id="electricidad">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 07</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#electricidad'); alert('Enlace del Módulo 07 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#electricidad" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-07-bater-a-sistema-el-ctrico-fusibles-y-luces" class="chapter-h1">Módulo 07 — Batería, Sistema Eléctrico, Fusibles y Luces</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-la-bater-a-de-12v-el-coraz-n-el-ctrico" class="chapter-h2">⚡ 1. La Batería de 12V: El Corazón Eléctrico</h2>
+<p class="prose-p">La batería tiene una misión principal: entregar una corriente violenta de entre 300 y 600 amperios durante 2 segundos para mover el motor de arranque. Una vez que el motor enciende, el <strong>alternador</strong> toma el relevo, genera la electricidad del vehículo y recarga la batería.</p>
+<h3 id="los-voltajes-que-debes-conocer" class="chapter-h3">Los Voltajes que Debes Conocer:</h3>
+<p class="prose-p">Si tienes un multímetro digital básico de $10 USD:</p>
+<ul class="styled-list">
+<li><strong>12.6V a 12.8V (Motor apagado):</strong> Batería cargada al 100%.</li>
+<li><strong>12.2V (Motor apagado):</strong> Batería al 50% de carga (recarga preventiva).</li>
+<li><strong>Menos de 11.9V (Motor apagado):</strong> Batería descargada o comunicada internamente. No arrancará.</li>
+<li><strong>13.8V a 14.4V (Motor encendido en ralentí):</strong> El alternador está cargando perfectamente. Si marca menos de 13.2V o más de 15.0V, el alternador o regulador está averiado.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="2-protocolo-de-puente-de-arranque-seguro-jump-start" class="chapter-h2">🔌 2. Protocolo de Puente de Arranque Seguro (Jump Start)</h2>
+<p class="prose-p">Hacer un puente de arranque de manera incorrecta puede quemar computadoras de a bordo (ECU) o provocar explosiones de gas hidrógeno liberado por una batería dañada. Sigue rigurosamente este orden:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>                    DIAGRAMA DE CONEXIÓN DE CABLES
+   AUTO AUXILIADOR (DONANTE)               AUTO VARADO (BATERÍA AGOTADA)
+   ┌───────────────────────┐               ┌──────────────────────────┐
+   │       BATERÍA         │               │         BATERÍA          │
+   │  [ + ]         [ - ]  │               │    [ + ]         [ - ]   │
+   └───┬──────────────┬────┘               └─────┬────────────────────┘
+       │              │                          │            NO CONECTAR
+       │ (1)          │ (3)                      │ (2)        AQUÍ AL BORNE
+       │ CABLE ROJO   │ CABLE NEGRO              │ CABLE ROJO
+       └──────────────┼──────────────────────────┘
+                      │
+                      └──────────────────────────────► (4) A MASA METÁLICA:
+                                                        Bloque del motor sin
+                                                        pintar o tornillo de chasis</code></pre></div>
+<h3 id="paso-a-paso-riguroso" class="chapter-h3">Paso a Paso Riguroso:</h3>
+<ol class="styled-ol">
+<li><strong>Posición:</strong> Estaciona el auto auxiliador cerca del auto sin batería, pero <strong>sin que los parachoques o carrocerías se toquen entre sí</strong>. Apaga el motor y retira las llaves en ambos.</li>
+<li><strong>Paso 1 (Rojo a Muerta):</strong> Conecta una pinza del <strong>cable ROJO (+)</strong> al borne positivo de la batería descargada.</li>
+<li><strong>Paso 2 (Rojo a Sana):</strong> Conecta la otra pinza del <strong>cable ROJO (+)</strong> al borne positivo de la batería del auto donante.</li>
+<li><strong>Paso 3 (Negro a Sana):</strong> Conecta una pinza del <strong>cable NEGRO (-)</strong> al borne negativo de la batería donante.</li>
+<li><strong>Paso 4 (Negro a Masa Metálica del Auto Muerto):</strong> Conecta la otra pinza del <strong>cable NEGRO (-)</strong> a una parte metálica gruesa y sin pintar del bloque del motor o tornillo de la torreta de amortiguación del auto varado.</li>
+</ol>
+<ul class="styled-list">
+<li><em>¿Por qué no al borne negativo de la batería descargada?</em> Porque al conectar el último cable siempre salta una microchispa. Si la batería descargada emitió vapores de hidrógeno inflamable, la chispa podría provocar una deflagración. Conectarlo al chasis alejado de la batería elimina este riesgo.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Arranque:</strong></li>
+</ol>
+<ul class="styled-list">
+<li>Enciende el auto donante y mantenlo acelerado levemente a 1.500 RPM durante 3 a 5 minutos para transferir energía inicial.</li>
+<li>Da arranque al auto averiado. Debería encender de inmediato.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Desconexión en Orden Inverso Exacto:</strong></li>
+</ol>
+<ul class="styled-list">
+<li>1° Retirar pinza negra de masa metálica.</li>
+<li>2° Retirar pinza negra del auto donante.</li>
+<li>3° Retirar pinza roja del auto donante.</li>
+<li>4° Retirar pinza roja del auto auxiliado.</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>Rodaje:</strong> Conduce el auto auxiliado durante un mínimo de 30 a 45 minutos continuos sin apagarlo para que el alternador restaure la carga química.</li>
+</ol>
+<hr class="chapter-divider">
+<h2 id="3-fusibles-los-guardianes-de-la-instalaci-n-el-ctrica" class="chapter-h2">🧯 3. Fusibles: Los Guardianes de la Instalación Eléctrica</h2>
+<p class="prose-p">Si de repente dejan de funcionar los limpiaparabrisas, la toma de 12V del mechero o una luz interior, el 90% de las veces no hay una avería grave: simplemente se ha "volado" (fundido) un fusible de $0.50 USD.</p>
+<h3 id="la-anatom-a-de-un-fusible-de-cuchilla" class="chapter-h3">La Anatomía de un Fusible de Cuchilla:</h3>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>      FUSIBLE BUENO                      FUSIBLE FUNDIDO / QUEMADO
+     ┌─────────────┐                          ┌─────────────┐
+     │   [ 15A ]   │                          │   [ 15A ]   │
+     │    ┌───┐    │                          │    ┌   ┐    │
+     │    │ ∩ │    │ &lt;── Filamento en         │    │   │    │ &lt;── Filamento roto
+     └────┴─┬─┴────┘     &quot;U&quot; intacto          └────┴─┬─┴────┘     o carbonizado
+           │ │                                      │ │</code></pre></div>
+<h3 id="tabla-de-c-digos-de-color-est-ndar-din" class="chapter-h3">Tabla de Códigos de Color Estándar DIN:</h3>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────┬────────────────┬───────────────────────────────────────┐
+│ COLOR         │ AMPERAJE (A)   │ CIRCUITOS TÍPICOS PROTEGIDOS          │
+├───────────────┼────────────────┼───────────────────────────────────────┤
+│ Naranja / Beige│ 5 Amperios     │ Módulos de confort, sensores del cuadro│
+│ Rojo          │ 10 Amperios    │ Luces de posición, radio, airbag      │
+│ Azul          │ 15 Amperios    │ Tomas de mechero 12V, bomba limpiapar.│
+│ Amarillo      │ 20 Amperios    │ Faros principales, limpiaparabrisas   │
+│ Blanco / Claro│ 25 Amperios    │ Luneta térmica trasera, ventilador A/C│
+│ Verde         │ 30 Amperios    │ Elevalunas eléctricos, motor calefacc.│
+└───────────────┴────────────────┴───────────────────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### 🚫 LA REGLA SAGRADA DE LOS FUSIBLES<br><strong>NUNCA instales un fusible de mayor amperaje que el original y JAMÁS sustituyas un fusible por papel de aluminio o un trozo de alambre de cobre.</strong>  <br>El fusible es el eslabón débil diseñado a propósito para derretirse de forma controlada si hay un cortocircuito. Si colocas un fusible de 30A donde iba uno de 10A, el fusible no se fundirá; lo que se fundirá e incendiará será el mazo de cables dentro de tu tablero.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="4-cambio-de-bombillas-hal-genas-h7-h4" class="chapter-h2">💡 4. Cambio de Bombillas Halógenas (H7 / H4)</h2>
+<ul class="styled-list">
+<li><strong>Regla de oro:</strong> <strong>NUNCA toques la ampolla de cuarzo/cristal con los dedos descalzos</strong>. La grasa natural de tu piel se transfiere al cristal. Al encender la bombilla y superar los 250 °C, esa grasa crea un punto caliente que hace que el cristal se sobrecaliente localmente y estalle en pocos días. Manipúlala siempre sosteniéndola por el casquillo metálico o usando guantes limpios.</li>
+</ul>
+      </section>
+    
+      <!-- Módulo 08: Filtros, Bujías, Correas y Escobillas -->
+      <section class="module-card" id="filtros">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 08</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#filtros'); alert('Enlace del Módulo 08 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#filtros" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-08-filtros-buj-as-correas-y-escobillas" class="chapter-h1">Módulo 08 — Filtros, Bujías, Correas y Escobillas</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-filtros-de-aire-los-pulmones-del-auto-y-del-pasajero" class="chapter-h2">🌬️ 1. Filtros de Aire: Los Pulmones del Auto y del Pasajero</h2>
+<h3 id="a-filtro-de-aire-de-motor-cambio-diy-en-5-minutos" class="chapter-h3">A. Filtro de Aire de Motor (Cambio DIY en 5 minutos):</h3>
+<p class="prose-p">Tu motor respira unos 10.000 litros de aire por cada litro de gasolina quemado. Si el filtro de aire está saturado de polvo e insectos, el motor trabaja forzado, pierde entre un 5% y 10% de potencia y aumenta el consumo de combustible.</p>
+<ul class="styled-list">
+<li><strong>Cómo cambiarlo:</strong></li>
+</ul>
+<ol class="styled-ol">
+<li>Ubica la caja de plástico negra rectangular en el vano motor con una manguera gruesa que va hacia la admisión.</li>
+<li>Suelta las 2 a 4 grapas metálicas o retira un par de tornillos con destornillador de estrella.</li>
+<li>Levanta la tapa, extrae el filtro antiguo fijándote en su posición.</li>
+<li>Aspira o limpia con un paño húmedo el polvo suelto en el fondo de la caja plástica.</li>
+<li>Inserta el filtro nuevo y cierra las grapas asegurándote de que selle perfectamente alrededor del labio de goma.</li>
+</ol>
+<ul class="styled-list">
+<li><strong>La prueba de la linterna:</strong> Pon una linterna por detrás del filtro. Si la luz no atraviesa el papel plisado, está saturado y debe reemplazarse.</li>
+</ul>
+<h3 id="b-filtro-de-habit-culo-cabina-el-filtro-antipolen" class="chapter-h3">B. Filtro de Habitáculo / Cabina (El filtro antipolen):</h3>
+<p class="prose-p">Purifica el aire que tú y tu familia respiran por las rejillas del aire acondicionado.</p>
+<ul class="styled-list">
+<li><strong>Síntomas de cambio:</strong> Olor a humedad o "calcetín sucio" al encender el aire, y vidrios que se empañan constantemente en invierno sin poder desempañarse con rapidez.</li>
+<li><strong>Ubicación típica:</strong> En el 80% de los autos modernos se encuentra detrás de la guantera del copiloto (se sueltan dos topes plásticos laterales sin herramientas) o en la base exterior del parabrisas.</li>
+<li><strong>Atención a la flecha:</strong> El filtro tiene grabada una flecha con las palabras <code class="inline-code">AIR FLOW ⬇️</code>. Debe apuntar siempre en la dirección hacia donde viaja el aire (suele ser hacia el suelo del habitáculo).</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="2-buj-as-la-chispa-de-la-vida" class="chapter-h2">⚡ 2. Bujías: La Chispa de la Vida</h2>
+<p class="prose-p">En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────────────┬──────────────────────┬────────────────────────┬─────────────────────┐
+│ TIPO DE BUJÍA           │ MATERIAL ELECTRODO   │ INTERVALO DE REEMPLAZO │ RENDIMIENTO         │
+├─────────────────────────┼──────────────────────┼────────────────────────┼─────────────────────┤
+│ Cobre / Estándar        │ Núcleo de cobre      │ 20.000 a 30.000 km     │ Tradicional, barato │
+│ Platino (Single/Double) │ Pastilla de platino  │ 60.000 a 80.000 km     │ Alta durabilidad    │
+│ Iridio (Iridium)        │ Punta fina de iridio │ 100.000 a 120.000 km   │ Máxima eficiencia   │
+└─────────────────────────┴──────────────────────┴────────────────────────┴─────────────────────┘</code></pre></div>
+<h3 id="lectura-r-pida-del-electrodo-al-retirarlas" class="chapter-h3">Lectura Rápida del Electrodo al Retirarlas:</h3>
+<ul class="styled-list">
+<li><strong>Color café claro / gris tostado:</strong> Combustión perfecta y motor en óptima salud.</li>
+<li><strong>Cubierta de hollín negro seco:</strong> Mezcla excesivamente rica (demasiada gasolina o filtro de aire tapado).</li>
+<li><strong>Brillante o aceitosa:</strong> Retenes de válvula o aros de pistón gastados que dejan pasar aceite a la cámara.</li>
+<li><strong>Electrodo derretido o blanco lechoso:</strong> Mezcla excesivamente pobre o sobrecalentamiento severo.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="3-correas-la-diferencia-vital-entre-accesorios-y-distribuci-n" class="chapter-h2">🔄 3. Correas: La Diferencia Vital entre Accesorios y Distribución</h2>
+<p class="prose-p">Muchos conductores confunden las dos correas del motor. Conocer la diferencia te evitará perder miles de dólares:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
+│ CORREA DE ACCESORIOS (SERPENTINA / POLY-V)    │ CORREA DE DISTRIBUCIÓN (TIMING BELT)          │
+├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ • Se ve a simple vista en el lateral motor    │ • Oculta bajo tapas plásticas herméticas      │
+│ • Es ranurada longitudinalmente               │ • Es dentada transversalmente (dientes duros) │
+│ • Mueve el alternador, bomba agua y compresor │ • Sincroniza el cigüeñal con el árbol levas   │
+│ • Si se rompe: Se apaga alternador/batería    │ • Si se rompe en motor de interferencia:      │
+│   y la dirección se endurece. Te detienes.    │   ¡LAS VÁLVULAS CHOCAN CONTRA LOS PISTONES    │
+│   Costo de reparación: $40 - $90 USD          │   Y EL MOTOR QUEDA DESTRUIDO! ($1.500+ USD)   │
+└───────────────────────────────────────────────┴───────────────────────────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### 🛑 ¿Tu Auto Tiene Correa o Cadena de Distribución?<br>- <strong>Cadena metálica:</strong> Bañada en aceite de motor. Suele durar la vida útil del vehículo (250.000+ km) y solo requiere inspección de tensores si empieza a sonar metálicamente al arrancar en frío.<br>- <strong>Correa de goma:</strong> Se degrada con los años. <strong>Debe reemplazarse estrictamente por tiempo o kilometraje</strong> (típicamente cada 5 a 6 años o entre 60.000 y 100.000 km, lo que ocurra primero), aunque a simple vista se vea entera.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="4-escobillas-limpiaparabrisas-el-truco-de-la-toalla" class="chapter-h2">🌧️ 4. Escobillas Limpiaparabrisas: El Truco de la Toalla</h2>
+<p class="prose-p">Cambiar las plumillas o escobillas es una tarea de 3 minutos que te ahorra hasta $30 USD de mano de obra en talleres:</p>
+<ol class="styled-ol">
+<li>Levanta el brazo metálico del limpiaparabrisas hasta su posición de servicio vertical.</li>
+<li><strong>El truco de la toalla (VITAL):</strong> Coloca inmediatamente una toalla gruesa doblada sobre el parabrisas, directamente debajo del brazo levantado. Si mientras retiras la escobilla el brazo de acero accionado por resorte se te resbala de las manos, <strong>impactará como un martillo contra el cristal y lo quebrará al instante</strong>. La toalla absorberá el impacto.</li>
+<li>Presiona la pestaña plástica de liberación central y desliza la escobilla desgastada hacia abajo.</li>
+<li>Inserta la nueva escobilla en el gancho (generalmente tipo "J-Hook") hasta escuchar un "click" audible.</li>
+<li>Retira la cubierta plástica protectora de la goma y apoya suavemente el brazo sobre el cristal.</li>
+</ol>
+      </section>
+    
+      <!-- Módulo 09: Testigos del Tablero y Escáner OBD-II -->
+      <section class="module-card" id="obd2">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 09</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#obd2'); alert('Enlace del Módulo 09 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#obd2" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-09-testigos-del-tablero-y-esc-ner-obd-ii-para-principiantes" class="chapter-h1">Módulo 09 — Testigos del Tablero y Escáner OBD-II para Principiantes</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-el-sistema-de-sem-foro-del-cuadro-de-instrumentos" class="chapter-h2">🚦 1. El Sistema de Semáforo del Cuadro de Instrumentos</h2>
+<p class="prose-p">Cuando giras la llave a la posición de contacto ("ON"), todos los testigos del cuadro se iluminan durante unos segundos en lo que se conoce como "autotest del sistema". Al arrancar el motor, deben apagarse por completo.</p>
+<p class="prose-p">Si alguno permanece encendido o parpadea mientras conduces, clasifícalo inmediatamente según el código internacional de colores ISO 2575:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────┬──────────────────────┬────────────────────────────────────────────────────────┐
+│ CÓDIGO DE COLOR │ SIGNIFICADO          │ ACCIÓN INMEDIATA REQUERIDA                             │
+├─────────────────┼──────────────────────┼────────────────────────────────────────────────────────┤
+│ 🔴 ROJO         │ PELIGRO GRAVE        │ Detenerse con seguridad de inmediato. Apagar motor.     │
+│ 🟡 ÁMBAR / AMAR.│ ANOMALÍA O AVISO     │ Conducir con cautela. Llevar a revisión en próximos días│
+│ 🟢 VERDE / AZUL │ INFORMACIÓN ACTIVA   │ Todo normal (luces altas, control de crucero, etc.)    │
+└─────────────────┴──────────────────────┴────────────────────────────────────────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="2-los-7-testigos-cr-ticos-que-jam-s-debes-ignorar" class="chapter-h2">⚠️ 2. Los 7 Testigos Críticos que Jamás Debes Ignorar</h2>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────┬──────────────┬────────────────────────────────────────────────────────┐
+│ ICONO SIMBOLIZADO         │ COLOR        │ QUÉ SIGNIFICA REALMENTE                                │
+├───────────────────────────┼──────────────┼────────────────────────────────────────────────────────┤
+│ 🛢️ Tetera / Aladino       │ 🔴 Rojo      │ PRESIÓN DE ACEITE NULA: El motor se fundirá en segundos │
+│ 🌡️ Termómetro en Líquido  │ 🔴 Rojo      │ TEMPERATURA CRÍTICA: Sobrecalentamiento extremo        │
+│ 🪫 Batería con Polos      │ 🔴 Rojo      │ FALLO DE CARGA: El alternador no alimenta el vehículo  │
+│ 🛑 Círculo con Exclamación│ 🔴 Rojo      │ FRENO DE MANO ACTIVO o Fuga grave de líquido de frenos │
+│ 🏎️ Silueta de Motor       │ 🟡 Amarillo  │ CHECK ENGINE: Sensor defectuoso o fallo en combustión  │
+│ 🛞 Neumático con Rayas (!) │ 🟡 Amarillo  │ TPMS: Presión baja de aire en uno o más neumáticos     │
+│ ⭕ Círculo con siglas ABS  │ 🟡 Amarillo  │ ABS DESACTIVADO: Frenas como auto clásico sin antibloq.│
+└───────────────────────────┴──────────────┴────────────────────────────────────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-caution">
+                <div class="alert-icon-wrapper">🛑</div>
+                <div class="alert-body-content">### 🛑 La Tetera Roja: La Emergencia Más Letal<br>El testigo de la tetera <strong>NO mide la cantidad de aceite</strong>, sino la <strong>presión hidráulica</strong>. Si se enciende en marcha significa que el aceite no está llegando con fuerza a las bielas y pistones. Si sigues conduciendo aunque sea 60 segundos, las piezas metálicas se soldarán por fricción extrema ("motor fundido" o "biela desbocada").  <br><strong>Acción:</strong> Pisar embrague, detenerse en el arcén, apagar el motor al instante y pedir grúa.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="3-el-esc-ner-obd-ii-para-principiantes-diagn-stico-por-15-usd" class="chapter-h2">📱 3. El Escáner OBD-II para Principiantes: Diagnóstico por $15 USD</h2>
+<p class="prose-p">Desde 1996 en EE.UU. y 2001 en Europa, todos los automóviles cuentan por ley con un puerto estándar llamado <strong>OBD-II (On-Board Diagnostics de 16 pines)</strong>.</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>               EL CONECTOR OBD-II DE 16 PINES
+         ┌───────────────────────────────────────────┐
+         \  1   2   3   4   5   6   7   8            /
+          \ 9  10  11  12  13  14  15  16           /
+           └───────────────────────────────────────┘
+  (Ubicación típica: Bajo el volante o junto a la caja de fusibles)</code></pre></div>
+<h3 id="qu-necesitas-para-leer-tu-auto-t-mismo" class="chapter-h3">¿Qué necesitas para leer tu auto tú mismo?</h3>
+<ol class="styled-ol">
+<li><strong>Un adaptador Bluetooth/Wi-Fi mini ELM327:</strong> Cuesta entre $8 y $15 USD en Amazon o tiendas online.</li>
+<li><strong>Una app gratuita en tu smartphone:</strong> <em>Car Scanner ELM OBD2</em>, <em>Torque Lite</em> o <em>OBD Fusion</em>.</li>
+</ol>
+<h3 id="c-mo-conectarlo-y-diagnosticar-en-3-pasos" class="chapter-h3">Cómo Conectarlo y Diagnosticar en 3 Pasos:</h3>
+<ol class="styled-ol">
+<li>Con el auto apagado, enchufa el adaptador en el puerto OBD-II bajo el tablero.</li>
+<li>Pon la llave en contacto ("ON") sin arrancar el motor.</li>
+<li>Abre la app en el teléfono, conéctala por Bluetooth y pulsa "Leer códigos de error (Read Fault Codes)".</li>
+</ol>
+<h3 id="anatom-a-de-un-c-digo-dtc-diagnostic-trouble-code" class="chapter-h3">Anatomía de un Código DTC (Diagnostic Trouble Code):</h3>
+<p class="prose-p">La app te devolverá un código de 5 caracteres como <code class="inline-code">P0300</code>:</p>
+<ul class="styled-list">
+<li><strong>P (Powertrain):</strong> Fallo en tren motriz (motor o transmisión).</li>
+<li><strong>0 (Universal):</strong> Código estándar de la industria SAE.</li>
+<li><strong>3 (Subsistema):</strong> Sistema de encendido / chispa.</li>
+<li><strong>00 (Código específico):</strong> Fallo de encendido aleatorio en los cilindros (Random/Multiple Cylinder Misfire).</li>
+</ul>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌─────────────────┬──────────────────────────────────┬──────────────────────────────────────────┐
+│ CÓDIGO COMÚN    │ SIGNIFICADO                      │ CAUSA PROBABLE                           │
+├─────────────────┼──────────────────────────────────┼──────────────────────────────────────────┤
+│ P0301 / P0302   │ Fallo de chispa cilindro 1 o 2   │ Bujía gastada o bobina de encendido mala │
+│ P0420           │ Eficiencia de catalizador baja   │ Sensor de oxígeno sucio o catalizador    │
+│ P0171           │ Sistema demasiado pobre (Banco 1)│ Manguera de vacío rajada o caudalímetro  │
+│ P0442           │ Fuga pequeña en sistema EVAP     │ ¡El tapón de gasolina quedó mal cerrado! │
+└─────────────────┴──────────────────────────────────┴──────────────────────────────────────────┘</code></pre></div>
+
+            <div class="custom-alert alert-tip">
+                <div class="alert-icon-wrapper">💡</div>
+                <div class="alert-body-content">### 💡 Borrar el Código NO Repara la Falla<br>Las aplicaciones tienen un botón que dice "Clear DTC / Borrar Códigos". Si lo pulsas, la luz de Check Engine se apagará temporalmente, pero si no reparaste la pieza física rota, la computadora detectará la anomalía nuevamente tras 20 a 50 km de ciclo de conducción y volverá a encender la luz.</div>
+            </div>
+            
+      </section>
+    
+      <!-- Módulo 10: Mantenimiento por Kilometraje y Costos -->
+      <section class="module-card" id="kilometraje">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 10</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#kilometraje'); alert('Enlace del Módulo 10 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#kilometraje" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-10-mantenimiento-por-kilometraje-y-costos-estimados" class="chapter-h1">Módulo 10 — Mantenimiento por Kilometraje y Costos Estimados</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-las-5-etapas-del-ciclo-de-vida-del-veh-culo" class="chapter-h2">📈 1. Las 5 Etapas del Ciclo de Vida del Vehículo</h2>
+<p class="prose-p">El mantenimiento automotriz no es un gasto caprichoso: es una póliza de seguro matemático. Por cada dólar que inviertes en mantenimiento preventivo a tiempo, ahorras un promedio de $8 a $12 USD en reparaciones correctivas de emergencia.</p>
+<hr class="chapter-divider">
+<h2 id="2-tabla-maestra-de-mantenimiento-preventivo" class="chapter-h2">📊 2. Tabla Maestra de Mantenimiento Preventivo</h2>
+<p class="prose-p">A continuación, los intervalos recomendados por la industria automotriz global con costos aproximados de repuestos (precios orientativos en USD de marcas Tier 1 de calidad) y tiempos de mano de obra en taller:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌──────────────────────────────────────┬────────────────┬──────────────┬──────────────┬─────────────┐
+│ OPERACIÓN DE MANTENIMIENTO           │ INTERVALO      │ COSTO PIEZA  │ MANO DE OBRA │ DIFICULTAD  │
+├──────────────────────────────────────┼────────────────┼──────────────┼──────────────┼─────────────┤
+│ Aceite Sintético y Filtro de Aceite  │ 10.000 km / 1a │ $30 - $55    │ 0.5 - 1.0 h  │ DIY Fácil   │
+│ Rotación de los 4 Neumáticos         │ 10.000 km / 1a │ $0 (gratis)  │ 0.5 h        │ DIY Medio   │
+│ Filtro de Aire de Motor              │ 15.000 - 20.000│ $12 - $25    │ 0.2 h        │ DIY Sencillo│
+│ Filtro de Cabina (Antipolen)         │ 15.000 - 20.000│ $10 - $22    │ 0.3 h        │ DIY Sencillo│
+│ Escobillas Limpiaparabrisas          │ 1 año          │ $15 - $30    │ 0.1 h        │ DIY Sencillo│
+│ Líquido de Frenos (Purga completa)   │ 40.000 km / 2a │ $12 - $20    │ 1.0 h        │ Taller      │
+│ Pastillas de Freno Delanteras        │ 35.000 - 50.000│ $35 - $70    │ 1.0 h        │ Taller/Avan.│
+│ Bujías de Iridio (x4)                │ 80.000 - 100.00│ $40 - $75    │ 0.8 h        │ Taller/Medio│
+│ Cambio Líquido Refrigerante          │ 60.000 km / 3a │ $20 - $35    │ 1.0 h        │ Taller/Medio│
+│ Aceite de Transmisión Manual / ATF   │ 60.000 - 80.000│ $45 - $110   │ 1.5 h        │ Taller      │
+│ Kit Correa Distribución + Bomba Agua │ 90.000 - 120.00│ $120 - $250  │ 3.5 - 5.0 h  │ Taller Esp. │
+│ Amortiguadores Delanteros/Traseros   │ 80.000 - 100.00│ $150 - $350  │ 2.5 h        │ Taller Esp. │
+└──────────────────────────────────────┴────────────────┴──────────────┴──────────────┴─────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="3-el-impacto-en-el-valor-de-reventa" class="chapter-h2">💰 3. El Impacto en el Valor de Reventa</h2>
+<p class="prose-p">Un automóvil con historial de revisiones comprobable (libro de bitácora sellado y facturas de repuestos organizadas en una carpeta):</p>
+<ol class="styled-ol">
+<li><strong>Se vende un 15% a 25% más caro</strong> que el mismo modelo con kilometraje idéntico pero sin antecedentes.</li>
+<li><strong>Se vende 3 veces más rápido</strong>, porque transmite confianza inmediata al comprador particular o concesionario.</li>
+</ol>
+      </section>
+    
+      <!-- Módulo 11: Protocolo de Emergencias y Cambio Llanta -->
+      <section class="module-card" id="emergencias">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 11</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#emergencias'); alert('Enlace del Módulo 11 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#emergencias" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-11-protocolo-de-emergencias-en-ruta-y-cambio-de-llanta" class="chapter-h1">Módulo 11 — Protocolo de Emergencias en Ruta y Cambio de Llanta</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-seguridad-en-v-a-p-blica-el-protocolo-pas" class="chapter-h2">🛡️ 1. Seguridad en Vía Pública: El Protocolo PAS</h2>
+<p class="prose-p">Si el auto sufre una avería o pinchazo en plena autopista o carretera secundaria, el mayor peligro no es la avería en sí, sino el riesgo de atropello por otros conductores desatentos.</p>
+<p class="prose-p">Aplica la regla internacional <strong>PAS</strong>:</p>
+<ol class="styled-ol">
+<li><strong>PROTEGER:</strong></li>
+</ol>
+<ul class="styled-list">
+<li>Enciende las <strong>luces intermitentes de emergencia (warning / balizas)</strong> de inmediato.</li>
+<li>Lleva el auto con suavidad hacia el arcén derecho o berma, lo más alejado posible del carril de circulación.</li>
+<li>Ponte el <strong>chaleco reflectante ANTES de bajar del vehículo</strong>.</li>
+<li>Coloca los triángulos de preseñalización a <strong>50 metros por detrás</strong> (o usa la baliza luminosa magnética V-16 sobre el techo si está homologada en tu país).</li>
+</ul>
+<ol class="styled-ol">
+<li><strong>AVISAR:</strong> Llama a tu servicio de asistencia en carretera o números de emergencia vial indicando el punto kilométrico exacto o tu ubicación GPS.</li>
+<li><strong>SOCORRER:</strong> Si hay heridos, no moverlos a menos que exista riesgo de incendio inminente.</li>
+</ol>
+<hr class="chapter-divider">
+<h2 id="2-el-cambio-de-llanta-paso-a-paso-a-prueba-de-fallos" class="chapter-h2">🛞 2. El Cambio de Llanta Paso a Paso (A Prueba de Fallos)</h2>
+<p class="prose-p">Cambiar una rueda ponchada parece intimidante, pero siguiendo esta secuencia lógica de 10 pasos no tendrás ningún contratiempo:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>                      SECUENCIA DEL CAMBIO DE LLANTA
+ ┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+ │ 1. INMOVILIZ.│──►│ 2. AFLOJAR   │──►│ 3. COLOCAR   │──►│ 4. ELEVAR    │
+ │ Freno de mano│   │ 1/2 vuelta en│   │ Gato en punto│   │ Rueda a 3 cm │
+ │ y marcha     │   │ el SUELO     │   │ reforzado    │   │ del suelo    │
+ └──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘
+                                                                 │
+ ┌──────────────┐   ┌──────────────┐   ┌──────────────┐          │
+ │ 7. APRIETE   │◄──│ 6. BAJAR     │◄──│ 5. CAMBIAR   │◄─────────┘
+ │ FINAL en cruz│   │ auto al suelo│   │ Rueda ponch. │
+ │ en el suelo  │   │ y retirar gat│   │ por repuesto │
+ └──────────────┘   └──────────────┘   └──────────────┘</code></pre></div>
+<h3 id="los-10-pasos-detallados" class="chapter-h3">Los 10 Pasos Detallados:</h3>
+<ol class="styled-ol">
+<li><strong>Inmovilización Absoluta:</strong> Terreno plano. Pon el freno de mano al máximo. Si es transmisión manual, coloca <strong>1ª marcha</strong> (o marcha atrás); si es automático, posición <strong>"P" (Park)</strong>.</li>
+<li><strong>Aflojar en el Suelo (CRÍTICO):</strong> Retira la copa embellecedora si tiene. Con el auto <strong>apoyado en el suelo</strong>, toma la llave de cruceta y gira cada perno o tuerca media vuelta en sentido antihorario (hacia la izquierda).  </li>
+</ol>
+<p class="prose-p">   <em>¿Por qué en el suelo?</em> Porque si intentas aflojar pernos duros con la rueda suspendida en el aire, la rueda girará loca y corres el riesgo de volcar el auto del gato.</p>
+<ol class="styled-ol">
+<li><strong>Ubicar el Punto de Apoyo Reforzado:</strong> Mira debajo del zócalo de la carrocería, a unos 15 cm detrás de la rueda delantera o delante de la rueda trasera. Verás una muesca o pestaña metálica gruesa de doble chapa diseñada para recibir la cabeza del gato.</li>
+<li><strong>Elevar el Vehículo:</strong> Gira la manivela del gato suavemente hasta que el neumático pinchado quede separado unos <strong>3 a 4 centímetros del suelo</strong>.</li>
+<li><strong>El Truco de la Rueda Salvavidas:</strong> Coloca la llanta de repuesto de costado debajo del zócalo del auto (cerca del gato). Si el gato llega a resbalar o fallar, el auto caerá sobre la goma de la rueda y no aplastará tus piernas.</li>
+<li><strong>Retirar Tuercas y Llanta Pinchada:</strong> Desenrosca los pernos que ya estaban flojos con la mano y extrae la rueda pinchada hacia afuera.</li>
+<li><strong>Montar la Rueda de Repuesto:</strong> Alinea los orificios e introduce la rueda de refacción. Coloca las tuercas a mano hasta que hagan tope y apriétalas suavemente con la llave de cruz.</li>
+<li><strong>Recuperar la Rueda Salvavidas y Bajar:</strong> Retira la rueda que pusiste debajo del chasis y baja el gato girando en sentido inverso hasta que la nueva rueda apoye completamente en el suelo. Retira el gato.</li>
+<li><strong>Apriete Final en Estrella (Patrón Cruzado):</strong> Con el auto ya en el suelo, aprieta firmemente todas las tuercas siguiendo un orden en estrella (en cruz): nunca en círculo continuo. Esto asegura que el aro asiente perfectamente plano contra el buje sin deformarse.</li>
+<li><strong>Revisión de Presión:</strong> Guarda la rueda ponchada, triángulos y gato en la cajuela. Conduce con calma a la estación de servicio más cercana para verificar la presión de la rueda de repuesto.</li>
+</ol>
+
+            <div class="custom-alert alert-warning">
+                <div class="alert-icon-wrapper">⚠️</div>
+                <div class="alert-body-content">### 🍩 La Rueda de Repuesto Temporal ("Galleta / Donut")<br>Si tu auto tiene una rueda de repuesto delgada y compacta:<br>- <strong>Velocidad máxima:</strong> Jamás superes los <strong>80 km/h</strong>.<br>- <strong>Distancia máxima:</strong> Diseñada para recorrer no más de <strong>80 a 100 km</strong>.<br>- Lleva la llanta principal ponchada a reparar a un taller vulcanizador de inmediato.</div>
+            </div>
+            
+<hr class="chapter-divider">
+<h2 id="3-qu-hacer-si-el-motor-empieza-a-recalentarse-en-marcha" class="chapter-h2">🔥 3. ¿Qué Hacer si el Motor Empieza a Recalentarse en Marcha?</h2>
+<p class="prose-p">Si ves que la aguja de temperatura sube al rojo o sale vapor blanquecino por los bordes del capó:</p>
+<ol class="styled-ol">
+<li><strong>Enciende la calefacción al máximo con el ventilador a tope:</strong> Parece contradictorio en verano, pero el radiador de la calefacción actúa como un enfriador auxiliar sacando calor del bloque motor.</li>
+<li><strong>Oríllate con seguridad:</strong> No aceleres bruscamente; mantén una velocidad constante sin forzar el motor hasta detenerte en un lugar seguro.</li>
+<li><strong>Apaga el motor de inmediato.</strong></li>
+<li><strong>Levanta el seguro del capó pero NO abras el tapón de refrigerante:</strong> Deja que el aire circule, pero mantén una distancia prudencial. Espera un mínimo de <strong>45 a 60 minutos</strong> antes de acercarte a tocar mangueras o verificar niveles.</li>
+</ol>
+      </section>
+    
+      <!-- Módulo 12: Guía de Taller Anti-Estafas -->
+      <section class="module-card" id="taller">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 12</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#taller'); alert('Enlace del Módulo 12 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#taller" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-12-gu-a-para-ir-al-taller-sin-ser-estafado" class="chapter-h1">Módulo 12 — Guía para ir al Taller sin Ser Estafado</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-el-escudo-protector-del-conductor-inteligente" class="chapter-h2">🛡️ 1. El Escudo Protector del Conductor Inteligente</h2>
+<p class="prose-p">El miedo a ser estafado en un taller mecánico es una de las razones principales por las cuales muchos conductores postergan el mantenimiento preventivo. La asimetría de información juega a favor del mecánico inescrupuloso: él conoce el vocabulario técnico y tú no.</p>
+<p class="prose-p">Este módulo te enseña las técnicas exactas de comunicación, documentación y verificación para negociar de igual a igual y evitar sobreprecios absurdos.</p>
+<hr class="chapter-divider">
+<h2 id="2-c-mo-explicar-el-problema-sin-parecer-un-novato" class="chapter-h2">🗣️ 2. Cómo Explicar el Problema sin Parecer un Novato</h2>
+<h3 id="la-regla-de-oro-describe-s-ntomas-sensoriales-jam-s-des-diagn-sticos" class="chapter-h3">La Regla de Oro: Describe Síntomas Sensoriales, JAMÁS des Diagnósticos.</h3>
+<p class="prose-p">Cuando un conductor llega al taller diciendo: <em>"Creo que se rompió la transmisión automática"</em>, el mecánico deshonesto escucha: <em>"Esta persona está dispuesta a gastar $1.500 USD en una caja de cambios aunque solo sea un taco de motor de $40 USD"</em>.</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────────────────────────┬───────────────────────────────────────────────┐
+│ ❌ LO QUE NUNCA DEBES DECIR                   │ ✅ LA MANERA CORRECTA Y PRECISA               │
+├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ &quot;Creo que la suspensión trasera está rota&quot;    │ &quot;Escucho un golpe metálico en la rueda trasera│
+│                                               │ derecha al pasar por badenes a 30 km/h&quot;       │
+├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ &quot;Cámbienme el alternador que la batería murió&quot;│ &quot;Por las mañanas el motor de arranque gira    │
+│                                               │ lento durante 3 segundos antes de encender&quot;   │
+├───────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ &quot;Hagan lo que haga falta para que quede bien&quot; │ &quot;Revisen el origen del chirrido al frenar y   │
+│                                               │ llámenme con un presupuesto escrito detallado │
+│                                               │ antes de comprar o cambiar cualquier pieza&quot;   │
+└───────────────────────────────────────────────┴───────────────────────────────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="3-las-4-cl-usulas-innegociables-en-todo-presupuesto" class="chapter-h2">📋 3. Las 4 Cláusulas Innegociables en Todo Presupuesto</h2>
+<p class="prose-p">Antes de entregar las llaves de tu vehículo en cualquier taller, haz respetar estas 4 condiciones:</p>
+<h3 id="1-presupuesto-previo-escrito-y-detallado" class="chapter-h3">1. Presupuesto Previo Escrito y Detallado:</h3>
+<p class="prose-p">El documento debe desglosar:</p>
+<ul class="styled-list">
+<li>Costo unitario de cada repuesto con marca y número de parte.</li>
+<li>Cantidad de horas estimadas de mano de obra y tarifa por hora.</li>
+<li>Impuestos aplicables.</li>
+</ul>
+<h3 id="2-cl-usula-de-cero-sorpresas-no-add-ons" class="chapter-h3">2. Cláusula de Cero Sorpresas ("No Add-ons"):</h3>
+<p class="prose-p">Declara explícitamente: <em>"Cualquier avería imprevista o pieza adicional que descubran durante el trabajo debe ser aprobada por mí por escrito (WhatsApp o correo) con su costo correspondiente antes de proceder. No autorizo gastos no pactados"</em>.</p>
+<h3 id="3-exigir-las-piezas-viejas-sustituidas-en-una-caja" class="chapter-h3">3. Exigir las Piezas Viejas Sustituidas en una Caja:</h3>
+<p class="prose-p">Cuando te entreguen el auto reparado, pide ver las piezas usadas que cambiaron:</p>
+<ul class="styled-list">
+<li>Si cambiaron las pastillas de freno, deben entregarte las pastillas viejas en la caja del repuesto nuevo.</li>
+<li>Si cambiaron un termostato, la bomba de agua o un rodamiento, exige ver la pieza desgastada.  </li>
+</ul>
+<p class="prose-p"><em>Esto elimina de raíz la vieja estafa de "cobrar por repuestos que nunca se cambiaron".</em></p>
+<h3 id="4-conocer-las-categor-as-de-repuestos" class="chapter-h3">4. Conocer las Categorías de Repuestos:</h3>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌───────────────────────────┬──────────────────────────────────┬────────────────────────────────┐
+│ TIPO DE REPUESTO          │ QUÉ ES EN REALIDAD               │ VALOR / RECOMENDACIÓN          │
+├───────────────────────────┼──────────────────────────────────┼────────────────────────────────┤
+│ OEM (Original / Conces.)  │ Caja de la marca del auto        │ Máxima calidad, pero +50% caro │
+│ OES / Tier 1 Aftermarket  │ El fabricante real del OEM       │ MISMA calidad que OEM, pero a  │
+│ (Bosch, Denso, Mann, etc.)│ (Bosch, Brembo, Valeo, NGK, etc.)│ mitad de precio. ¡LA MEJOR OPC!│
+│ Genérico de Bajo Costo    │ Marcas blancas o copias sin sello│ Aceptable solo en plásticos;   │
+│                           │ de calidad comprobable           │ peligro en frenos y dirección  │
+└───────────────────────────┴──────────────────────────────────┴────────────────────────────────┘</code></pre></div>
+<hr class="chapter-divider">
+<h2 id="4-banderas-rojas-red-flags-para-huir-de-un-taller" class="chapter-h2">🚩 4. Banderas Rojas (Red Flags) para Huir de un Taller</h2>
+<p class="prose-p">Huye si notas cualquiera de estos comportamientos:</p>
+<ul class="styled-list">
+<li>Se niegan a darte un presupuesto por escrito o solo te dicen cifras verbales vagas ("te costará unos $300 o más, ya veremos al abrir").</li>
+<li>Te presionan con pánico: <em>"Si sacas el auto hoy mismo de aquí, tus frenos van a explotar en la esquina y te vas a matar"</em>.</li>
+<li>Las instalaciones están en un caos absoluto, con charcos de aceite no recogidos y herramientas tiradas por el suelo.</li>
+<li>No te permiten ver las piezas que cambiaron argumentando que "ya las tiraron a la basura".</li>
+</ul>
+      </section>
+    
+      <!-- Módulo 13: Apéndices, Checklists y Bitácora -->
+      <section class="module-card" id="checklists">
+        <div class="module-card-header">
+          <span class="module-number-pill">MÓDULO 13</span>
+          <div class="module-actions no-print">
+            <button class="btn-icon-tiny" onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#checklists'); alert('Enlace del Módulo 13 copiado al portapapeles');" title="Copiar enlace">🔗</button>
+            <a href="#checklists" class="btn-icon-tiny" title="Ir al inicio de sección">▲</a>
+          </div>
+        </div>
+        
+        <h1 id="m-dulo-13-ap-ndices-checklists-imprimibles-y-bit-cora-de-mantenimiento" class="chapter-h1">Módulo 13 — Apéndices, Checklists Imprimibles y Bitácora de Mantenimiento</h1>
+<h3 id="manual-del-conductor-inteligente-edici-n-cero-conocimientos" class="chapter-h3">Manual del Conductor Inteligente • Edición Cero Conocimientos</h3>
+<p class="prose-p"><em>Por CharuAutos (@charuautopics) — "Pasión Automotriz al Alcance de tus Manos"</em></p>
+<hr class="chapter-divider">
+<h2 id="1-glosario-de-t-rminos-automotrices-de-la-a-a-la-z-sin-jerga" class="chapter-h2">📖 1. Glosario de Términos Automotrices de la A a la Z (Sin Jerga)</h2>
+<ul class="styled-list">
+<li><strong>ABS (Anti-lock Braking System):</strong> Sistema antibloqueo de frenos. Evita que las ruedas patinen en frenadas bruscas, permitiéndote mantener el control del volante.</li>
+<li><strong>Alternador:</strong> Generador eléctrico accionado por el motor que produce la corriente que usa el auto y recarga la batería de 12V.</li>
+<li><strong>Aquaplaning:</strong> Fenómeno físico donde el neumático pierde contacto con el asfalto al flotar sobre una película de agua, anulando frenada y dirección.</li>
+<li><strong>Bujía:</strong> Dispositivo que produce la chispa eléctrica para hacer explotar la mezcla de aire y gasolina en los cilindros.</li>
+<li><strong>Cárter:</strong> Recipiente o bandeja metálica inferior del motor donde se acumula todo el aceite lubricante cuando el motor está en reposo.</li>
+<li><strong>Catalizador (Convertidor Catalítico):</strong> Dispositivo en el tubo de escape con metales preciosos (platino, paladio) que transforma gases tóxicos en gases menos contaminantes.</li>
+<li><strong>DTC (Diagnostic Trouble Code):</strong> Código alfanumérico estandarizado generado por la computadora del vehículo ante un fallo detectado por sensores.</li>
+<li><strong>ECU (Engine Control Unit):</strong> La computadora central del automóvil que gestiona la inyección, encendido y emisiones en tiempo real.</li>
+<li><strong>Filtro de Habitáculo:</strong> Filtro de partículas y polen que limpia el aire del sistema de climatización antes de entrar a la cabina de pasajeros.</li>
+<li><strong>Líquido de Frenos DOT 4:</strong> Fluido hidráulico incompresible con alto punto de ebullición (>230 °C) que transmite la fuerza del pedal a los calipers.</li>
+<li><strong>OBD-II:</strong> Puerto de diagnóstico universal estandarizado presente en todos los automóviles modernos para conexión de escáneres y herramientas de lectura.</li>
+<li><strong>Presión PSI:</strong> Libras por pulgada cuadrada (Pounds per Square Inch). Unidad común de medición de presión de inflado en neumáticos.</li>
+<li><strong>Termostato:</strong> Válvula mecánica termosensible que abre o cierra el paso de refrigerante hacia el radiador para mantener el motor a su temperatura ideal (90 °C).</li>
+<li><strong>Viscosidad SAE:</strong> Calificación de resistencia al flujo de un aceite lubricante tanto a bajas temperaturas en frío como a régimen de operación en caliente.</li>
+</ul>
+<hr class="chapter-divider">
+<h2 id="2-checklists-imprimibles-de-mantenimiento" class="chapter-h2">✅ 2. Checklists Imprimibles de Mantenimiento</h2>
+<h3 id="checklist-r-pido-semanal-3-minutos" class="chapter-h3">🟢 Checklist Rápido Semanal (3 Minutos)</h3>
+<ul class="interactive-checklist">
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-1" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Nivel de Aceite de Motor:</strong> Varilla entre marcas MIN y MAX sobre suelo plano.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-2" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Nivel de Refrigerante:</strong> En depósito de expansión transparente (sin abrir tapón).</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-3" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Líquido Limpiaparabrisas:</strong> Lleno con mezcla limpiadora anti-insectos.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-4" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Inspección de Neumáticos:</strong> Sin abultamientos laterales (chichones) ni cortes en flancos.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-5" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Luces Principales:</strong> Faros frontales, direccionales y luces de stop operativas.</span>
+                </label>
+            </li>
+            
+</ul>
+<h3 id="checklist-mensual-de-conductor-inteligente-15-minutos" class="chapter-h3">🟡 Checklist Mensual de Conductor Inteligente (15 Minutos)</h3>
+<ul class="interactive-checklist">
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-6" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Presión en Frío de los 4 Neumáticos:</strong> Con manómetro según pegatina de pilar B.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-7" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Presión de la Rueda de Repuesto:</strong> Verificar inflado correcto (suele requerir 45 a 60 PSI en compactas).</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-8" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Nivel de Líquido de Frenos:</strong> Depósito transparente entre líneas MIN y MAX.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-9" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Bornes de Batería:</strong> Limpios, sin sulfato blanquecino y firmemente ajustados.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-10" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Escobillas Limpiaparabrisas:</strong> Sin estrías de goma rotas o saltos sobre el parabrisas.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-11" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text"><strong>Inspección de Fugas en el Suelo:</strong> Suelo del garaje limpio de manchas sospechosas.</span>
+                </label>
+            </li>
+            
+</ul>
+<h3 id="checklist-antes-de-un-viaje-en-carretera-pre-trip-inspection" class="chapter-h3">🔵 Checklist Antes de un Viaje en Carretera (Pre-Trip Inspection)</h3>
+<ul class="interactive-checklist">
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-12" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text">Presión de neumáticos ajustada para carga completa (pasajeros + equipaje).</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-13" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text">Kit de emergencia completo: Chaleco reflectante, triángulos/luz V-16, gato funcional, cruceta y perno de remolque.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-14" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text">Pastillas de freno con espesor superior a 4 mm.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-15" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text">Aire acondicionado / calefacción y desempañador de luneta trasera funcionando.</span>
+                </label>
+            </li>
+            
+
+            <li class="checklist-item">
+                <label class="custom-checkbox-container">
+                    <input type="checkbox" id="chk-checklists-16" data-mod="checklists" class="interactive-chk" >
+                    <span class="checkmark-box"></span>
+                    <span class="chk-label-text">Documentación reglamentaria: Licencia, seguro de auto vigente, registro vehicular e inspección técnica al día.</span>
+                </label>
+            </li>
+            
+</ul>
+<hr class="chapter-divider">
+<h2 id="3-bit-cora-de-registro-de-mantenimientos-y-reparaciones" class="chapter-h2">📝 3. Bitácora de Registro de Mantenimientos y Reparaciones</h2>
+<p class="prose-p">Imprime esta plantilla o consérvala en la guantera de tu auto junto a las facturas del taller:</p>
+<div class="code-terminal"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">DIAGRAMA TÉCNICO</span></div><pre><code>┌────────────┬─────────────┬────────────────────────────────┬──────────────┬──────────────┐
+│ FECHA      │ KILOMETRAJE │ TRABAJO / SERVICIO REALIZADO   │ TALLER / DIY │ COSTO TOTAL  │
+├────────────┼─────────────┼────────────────────────────────┼──────────────┼──────────────┤
+│ 15/03/2026 │ 45.200 km   │ Aceite 5W-30 + Filtro + Rotac. │ DIY en casa  │ $42.50 USD   │
+│            │             │                                │              │              │
+│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
+│            │             │                                │              │              │
+│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
+│            │             │                                │              │              │
+│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
+│            │             │                                │              │              │
+│ ──/──/──── │ ─────── km  │ ────────────────────────────── │ ──────────── │ $─────────   │
+└────────────┴─────────────┴────────────────────────────────┴──────────────┴──────────────┘</code></pre></div>
+      </section>
+    
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="showroom-footer">
+    <img src="assets/charu_horizontal_logo.svg" alt="CharuAutos Logo" class="footer-logo">
+    <div class="footer-slogan">🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS</div>
+    <p class="footer-copy">
+      © 2026 CharuAutos • Manual Práctico del Conductor Inteligente (Versión 2.0). Todos los derechos reservados.<br>
+      Diseñado para empoderar al conductor cotidiano con rigor técnico, honestidad y seguridad vial.
+    </p>
+  </footer>
+
+  <!-- Interactive Client-side Script -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // 2. Active Sidebar Item Tracking
+    const sections = document.querySelectorAll('.module-card');
+    const navLinks = document.querySelectorAll('.toc-item a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // 3. Search Filter in Content
+    document.getElementById('chapter-search').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.module-card');
+      cards.forEach(card => {
+        if (!query) {
+          card.style.display = 'block';
+        } else {
+          const text = card.textContent.toLowerCase();
+          if (text.includes(query)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // 4. Interactive Leak Diagnostic Pills
+    const leakData = {
+      'clear': {
+        title: '💧 Agua Clara / Inodora',
+        urgency: '🟢 NORMAL: Condensación del Aire Acondicionado',
+        color: '#10b981',
+        desc: 'Es simplemente agua que el evaporador del aire acondicionado drena al enfriar el habitáculo en días calurosos o húmedos. Es un proceso 100% normal y no requiere ninguna acción.'
+      },
+      'brown': {
+        title: '🛢️ Marrón Oscuro / Negro (Aceitoso)',
+        urgency: '🟡 MODERADO A ALTO: Fuga de Aceite de Motor',
+        color: '#f59e0b',
+        desc: 'Revisa de inmediato la varilla de aceite sobre suelo plano. Si el nivel está entre MIN y MAX puedes conducir al taller con cautela; si está bajo MIN, añade aceite antes de encender el motor.'
+      },
+      'pink': {
+        title: '🌸 Rosa, Verde Neón o Azul Brillante (Olor dulce)',
+        urgency: '🔴 ALTO: Fuga de Líquido Refrigerante / Anticongelante',
+        color: '#ff2a5f',
+        desc: 'Peligro grave de sobrecalentamiento y rotura de culata. No abras el depósito en caliente. Revisa mangueras y radiador cuando el motor esté completamente frío.'
+      },
+      'amber': {
+        title: '🛑 Ámbar Claro / Resbaloso como Silicona',
+        urgency: '⛔ CRÍTICO: Fuga de Líquido de Frenos (NO CONDUCIR)',
+        color: '#ef4444',
+        desc: 'Peligro inminente de perder la capacidad de frenado. Inspecciona el depósito de frenos y la parte interna de las ruedas. Pide una grúa inmediatamente: no circules con el auto.'
+      },
+      'red': {
+        title: '🍷 Rojo Grosella / Rosa Brillante (Textura de aceite fino)',
+        urgency: '🔴 ALTO: Fuga de Fluido ATF de Transmisión Automática / Dirección',
+        color: '#ff2a5f',
+        desc: 'Fuga en el circuito de la caja de cambios automática o la bomba de dirección asistida hidráulica. Acude al taller especializado antes de que la caja sufra daños costosos.'
+      }
+    };
+
+    document.querySelectorAll('#leak-pill-container button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#leak-pill-container button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const fKey = btn.getAttribute('data-fluid');
+        const data = leakData[fKey];
+        if (data) {
+          const display = document.getElementById('leak-result-display');
+          display.innerHTML = `<strong>${data.title}</strong><br><span style="color:${data.color}; font-weight:700;">${data.urgency}</span><p style="margin-top:6px;">${data.desc}</p>`;
+        }
+      });
+    });
+
+    // 5. OBD-II Code Lookup Tool
+    const obdDatabase = {
+      'P0300': 'Fallo de encendido aleatorio en múltiples cilindros. Causas: bujías gastadas, bobinas defectuosas o baja presión de combustible.',
+      'P0301': 'Fallo de encendido en el Cilindro 1. Revisa la bujía y bobina del cilindro 1.',
+      'P0302': 'Fallo de encendido en el Cilindro 2. Revisa la bujía y bobina del cilindro 2.',
+      'P0303': 'Fallo de encendido en el Cilindro 3. Revisa la bujía y bobina del cilindro 3.',
+      'P0304': 'Fallo de encendido en el Cilindro 4. Revisa la bujía y bobina del cilindro 4.',
+      'P0420': 'Eficiencia del convertidor catalítico por debajo del umbral (Banco 1). Muy común: sensor de oxígeno posterior o catalizador fatigado.',
+      'P0171': 'Sistema demasiado pobre (Banco 1: exceso de aire o falta de gasolina). Causas: manguera de vacío agrietada, caudalímetro MAF sucio o filtro gasolina.',
+      'P0172': 'Sistema demasiado rico (Banco 1: exceso de gasolina o falta de aire). Causa: inyector goteando o filtro de aire de motor colapsado.',
+      'P0442': 'Fuga pequeña en el sistema EVAP de gases de combustible. ¡En el 70% de los casos es solo el tapón de combustible mal enroscado o flojo!',
+      'P0115': 'Fallo en circuito del sensor de temperatura de refrigerante (ECT). El electroventilador suele quedarse encendido a máxima velocidad por seguridad.'
+    };
+
+    function lookupOBDCode() {
+      const code = document.getElementById('obd-search-input').value.toUpperCase().trim();
+      const display = document.getElementById('obd-result-display');
+      if (!code) {
+        display.innerHTML = 'Por favor escribe un código válido (ejemplo: P0300).';
+        return;
+      }
+      if (obdDatabase[code]) {
+        display.innerHTML = `<strong style="color:var(--cyan-neon); font-family:var(--font-mono); font-size:1.1rem;">${code}</strong>: ${obdDatabase[code]}`;
+      } else {
+        display.innerHTML = `<strong style="color:#ffb703;">${code}</strong>: Código no almacenado en la memoria rápida, pero pertenece al subsistema estándar SAE. Te recomendamos buscarlo en la base de datos de tu app (Car Scanner o Torque) para el detalle por marca.`;
+      }
+    }
+
+    document.getElementById('obd-search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') lookupOBDCode();
+    });
+
+    // 6. Interactive Checklists with LocalStorage Persistence
+    document.querySelectorAll('.interactive-chk').forEach(chk => {
+      const id = chk.getAttribute('id');
+      const saved = localStorage.getItem('charu_chk_' + id);
+      if (saved === 'true') {
+        chk.checked = true;
+      }
+      chk.addEventListener('change', () => {
+        localStorage.setItem('charu_chk_' + id, chk.checked);
+      });
+    });
+  
+    // 7. Service Worker Registration & PWA Install Prompt
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('[CharuAutos V2] Service Worker activo:', reg.scope))
+          .catch(err => console.log('[CharuAutos V2] Error en Service Worker:', err));
+      });
+    }
+
+    let deferredPrompt;
+    const installBtn = document.getElementById('btn-pwa-install');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-flex';
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[CharuAutos V2] Resultado instalación:', outcome);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
+
+    // 8. Mobile Drawer Management
+    const mobileMenuBtn = document.getElementById('btn-mobile-menu');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileOverlay = document.getElementById('mobile-drawer-overlay');
+    const closeDrawerBtn = document.getElementById('btn-close-drawer');
+    const drawerTocList = document.getElementById('drawer-toc-list');
+    const sidebarTocList = document.getElementById('sidebar-toc-list');
+
+    if (sidebarTocList && drawerTocList) {
+      drawerTocList.innerHTML = sidebarTocList.innerHTML;
+    }
+
+    function toggleDrawer(open) {
+      if (open) {
+        mobileDrawer.classList.add('open');
+        mobileOverlay.classList.add('open');
+      } else {
+        mobileDrawer.classList.remove('open');
+        mobileOverlay.classList.remove('open');
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+    }
+    if (closeDrawerBtn) {
+      closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+    }
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', () => toggleDrawer(false));
+    }
+    drawerTocList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleDrawer(false));
+    });
+
+  </script>
+</body>
+</html>
