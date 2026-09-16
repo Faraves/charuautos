@@ -126,8 +126,8 @@ El 95% de los autos a combustión funcionan con el ciclo Otto/Diésel de 4 tiemp
 3. **Explosión / Combustión:** La bujía salta con una chispa eléctrica; la mezcla explota y empuja el pistón hacia abajo violentamente. **De aquí sale toda la fuerza del auto**.
 4. **Escape:** Sube el pistón y expulsa los gases quemados hacia el escape y silenciador.
 
-![Despiece del Motor y Componentes en Funcionamiento](assets/infografia_despiece_motor_real.png)
-*Infografía Automotriz: Componentes reales del motor de combustión interna (árbol de levas, válvulas, pistones, bielas, cigüeñal, cárter y poleas).*
+![Anatomía Interna del Motor a Combustión](assets/infografia_despiece_motor_hd.jpg)
+*Infografía Técnica en Alta Definición: Funcionamiento y relación entre árboles de levas, válvulas, pistones, bielas y cigüeñal.*
 > **¿Por qué te importa saber esto?**  
 > Porque para que ese proceso ocurra miles de veces por minuto sin fundirse, el motor necesita **3 cosas que jamás pueden faltar**:
 > - **Aire limpio** (a través del filtro de aire).
@@ -327,8 +327,8 @@ Con el auto estacionado en un lugar plano y el motor **frío y apagado**:
 
 Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:
 
-![Fluidos a Cambiar en el Carro](assets/infografia_fluidos_motor_cambio.png)
-*Infografía Técnica Automotriz: Ubicación en el vano motor de los 6 depósitos de fluidos y sus frecuencias recomendadas de cambio.*
+![Guía Maestra de Fluidos Vitales del Vehículo](assets/infografia_fluidos_motor_hd.jpg)
+*Infografía Técnica en Alta Definición: Ubicación exacta de los depósitos en el vano motor, colores y frecuencias de reemplazo.*
 
 | Fluido Vital | Color Saludable | Cuándo Revisar | Consecuencia de Falla |
 | :--- | :--- | :--- | :--- |
@@ -398,8 +398,8 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
 
-![¿Qué se está filtrando de mi auto? Detección de fugas por color](assets/infografia_deteccion_fugas_suelo.png)
-*Infografía Automotriz: Identificación inmediata de averías por el color y consistencia del charco en el suelo de tu garaje.*
+![Guía de Detección de Fugas en el Suelo](assets/infografia_deteccion_fugas_hd.jpg)
+*Infografía Técnica en Alta Definición: Diagnóstico inmediato de averías según el color, textura y consistencia del charco bajo el auto.*
 
 | Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
 | :--- | :--- | :--- | :--- |
@@ -600,8 +600,8 @@ Purifica el aire que tú y tu familia respiran por las rejillas del aire acondic
 
 En los motores de gasolina, la bujía genera el arco voltaico de más de 20.000 voltios que inflama la mezcla aire-combustible.
 
-![Bujía Deteriorada vs. Bujía Nueva de Platino](assets/infografia_bujias_deteriorada_vs_nueva.png)
-*Infografía Automotriz: Comparativa de estado de bujías, síntomas de falla, cámara de combustión y rendimiento de combustible.*
+![Estado de las Bujías: Desgaste vs. Rendimiento Óptimo](assets/infografia_bujias_comparativa_hd.jpg)
+*Infografía Técnica en Alta Definición: Comparativa entre bujía deteriorada y bujía nueva de platino/iridio, síntomas de falla y eficiencia.*
 
 | Tipo de Bujía | Material del Electrodo | Intervalo Típico de Reemplazo | Rendimiento |
 | :--- | :--- | :---: | :--- |

@@ -8,8 +8,8 @@
 
 Un vehículo moderno depende de cinco fluidos principales para funcionar sin destruirse a sí mismo. Si aprendes a revisarlos, evitarás el 70% de las averías catastróficas de motor y transmisión:
 
-![Fluidos a Cambiar en el Carro](assets/infografia_fluidos_motor_cambio.png)
-*Infografía Técnica Automotriz: Ubicación en el vano motor de los 6 depósitos de fluidos y sus frecuencias recomendadas de cambio.*
+![Guía Maestra de Fluidos Vitales del Vehículo](assets/infografia_fluidos_motor_hd.jpg)
+*Infografía Técnica en Alta Definición: Ubicación exacta de los depósitos en el vano motor, colores y frecuencias de reemplazo.*
 
 | Fluido Vital | Color Saludable | Cuándo Revisar | Consecuencia de Falla |
 | :--- | :--- | :--- | :--- |
@@ -79,8 +79,8 @@ El líquido de frenos transmite la fuerza de tu pie desde el pedal hasta las cua
 
 Si al mover tu auto por la mañana ves manchas en el suelo del garaje o la acera, no te alarmes a ciegas; usa esta tabla de identificación cromática y de consistencia:
 
-![¿Qué se está filtrando de mi auto? Detección de fugas por color](assets/infografia_deteccion_fugas_suelo.png)
-*Infografía Automotriz: Identificación inmediata de averías por el color y consistencia del charco en el suelo de tu garaje.*
+![Guía de Detección de Fugas en el Suelo](assets/infografia_deteccion_fugas_hd.jpg)
+*Infografía Técnica en Alta Definición: Diagnóstico inmediato de averías según el color, textura y consistencia del charco bajo el auto.*
 
 | Color del Charco | Textura y Olor | Origen Probable | Nivel de Urgencia |
 | :--- | :--- | :--- | :--- |
