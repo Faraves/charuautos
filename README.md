@@ -1,19 +1,23 @@
-# CharuAutos — Ecosistema Digital Automotriz
-### Manual del Conductor Inteligente • Edición Ilustrada V2.0 • Identidad de Marca • Plataforma PWA
+# CharuAutos — Las Aventuras de Charu (Cómic PWA)
+### Novela Gráfica Educativa • Manual del Conductor Inteligente • Ecosistema Digital Automotriz
 *Marca Oficial: CharuAutos (`@charuautopics`) • "Pasión Automotriz al Alcance de tus Manos"*
+
+[![Leer Cómic en Vivo](https://img.shields.io/badge/🎨_LEER_HISTORIETA_EN_VIVO-Click_Aquí-00f2fe?style=for-the-badge&logo=googlechrome&logoColor=black)](https://faraves.github.io/charuautos/dist_pwa_historieta/)
+[![Ebook V2 Técnico](https://img.shields.io/badge/📖_MANUAL_TÉCNICO_V2.0-Entrar-ffb703?style=for-the-badge)](https://faraves.github.io/charuautos/dist_pwa_v2/)
+[![PWA Ready](https://img.shields.io/badge/PWA-100%25_OFFLINE-38ef7d?style=for-the-badge)](https://faraves.github.io/charuautos/dist_pwa_historieta/)
 
 ---
 
-## ⚡ 1. Acceso Directo y Despliegue en Vivo
+## ⚡ 1. Enlaces Oficiales y Despliegue en Vivo (GitHub Pages)
 
-El proyecto cuenta con despliegue continuo en **GitHub Pages** con acceso directo a ambas ediciones de lectura:
+El proyecto cuenta con despliegue continuo en **GitHub Pages**. Por defecto, la URL principal abre **directamente la Historieta Ilustrada (Cómic PWA)**:
 
 - 🎨 **Lector Web Interactivo de la Historieta (Cómic PWA Oficial):**  
   👉 **[https://faraves.github.io/charuautos/dist_pwa_historieta/](https://faraves.github.io/charuautos/dist_pwa_historieta/)**  
-  *(o mediante el atajo directo: [https://faraves.github.io/charuautos/?historieta](https://faraves.github.io/charuautos/?historieta))*
+  *(o directamente a través del dominio principal: **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)**)*
 
 - 🚀 **Manual Técnico Ilustrado (Ebook V2 Técnico):**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/)** *(o [https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/))*
+  👉 **[https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/)** *(o atajo `?v2`)*
 
 - 🚗 **URL Directa PWA Versión 1.0 (Clásica):**  
   👉 **[https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/)**

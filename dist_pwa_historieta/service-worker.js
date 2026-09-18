@@ -1,4 +1,4 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v6';
+const CACHE_NAME = 'charuautos-comic-pwa-v7';
 const ASSETS = [
   './',
   './index.html',
