@@ -251,10 +251,10 @@ El Service Worker (`service-worker.js`) implementa una política agresiva y mode
 Como evolución natural del proyecto y para maximizar el alcance pedagógico entre conductores de todas las edades, se desarrolló la versión en **novela gráfica y libro de historietas educativas (*comic book*)**:
 
 ### 9.1. Filosofía Pedagógica y Dinámica de Personajes
-1. **Charu (El Piloto y Mentor Mecánico):** Inspirado en **Charulo** (el leal compañero canino real del usuario) y en la mascota heráldica del logotipo oficial de CharuAutos: pelaje caramelo, manchita blanca en la frente, orejas caídas expresivas y arnés/pechera de competición. Mentor y copiloto de carreras que traduce la ingeniería automotriz a consejos sencillos y divertidos.
+1. **Charu (El Piloto y Mentor - Mech-Dog):** Diseñado fielmente bajo la estética canónica de la mascota oficial: perro pequeño mestizo de pelaje caramelo claro con marcas blancas en hocico, mentón, pecho y patas, casco de aviador retro con gafas, y arnés táctico color caqui con bolsillos utilitarios, parche lateral 'CHARULO - MECH-DOG' y placa identificatoria de hueso.
 2. **Carmen (La Conductora Inteligente):** Joven profesional de 26 años, dueña de su primer automóvil hatchback rojo. Representa las dudas, inseguridades y miedos del conductor principiante frente a fallas y talleres. A lo largo de los 14 episodios pasa de la incertidumbre al empoderamiento técnico y la autonomía total.
 3. **Don Carlos (El Mecánico Sabio y Honesto):** Dueño del taller *AutoSolución*, enseña a Carmen el valor de la transparencia, presupuestos por escrito y repuestos certificados.
-4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco diseñado como un gato mecánico atigrado con parche negro en el ojo izquierdo, mono de trabajo salpicado de grasa/aceite de motor y llave inglesa al hombro, que inventa averías astronómicas hasta que Carmen despliega el Escudo Anti-Estafas de CharuAutos.
+4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco diseñado como un gato doméstico bicolor (blanco y negro con máscara de esmoquin), arnés de trabajo de cuero manchado de grasa, gafas de aviador agrietadas, medidor de calibración manipulado con diales alterados y manchas de grasa en su pelaje, que inventa averías astronómicas hasta que Carmen despliega el Escudo Anti-Estafas de CharuAutos.
 
 ### 9.2. Los 14 Episodios de la Historieta
 - **Episodio 00:** Prólogo y presentación del elenco.

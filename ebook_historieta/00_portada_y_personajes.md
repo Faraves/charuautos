@@ -13,8 +13,8 @@
 **[CARTUCHO DEL NARRADOR]:**
 > ¡Bienvenida al universo de CharuAutos! Una novela gráfica concebida para que cualquier persona, sin importar su experiencia previa, aprenda a cuidar su vehículo, prevenir averías costosas y blindarse contra engaños de taller con humor, arte y ciencia práctica.
 
-**Charu (Piloto y Mentor)** `🐾 ¡Copiloto al Rescate!`:
-*Inspirado en Charulo, el leal compañero canino de pelaje caramelo, manchita blanca en la frente, orejas expresivas y mirada atenta. Charu es el copiloto y mentor automotriz de carreras que guía a Carmen en cada aventura mecánica.*
+**Charu (Piloto y Mentor - Mech-Dog)** `🐾 ¡Copiloto al Rescate!`:
+*Charulo en su versión Mech-Dog canónica: perro pequeño mestizo de pelaje marrón claro caramelo con marcas blancas en hocico, mentón, pecho y patas, y lucero blanco en la frente. Equipado con casco de aviador de cuero retro con gafas descansando arriba, y arnés táctico caqui con bolsillos utilitarios, parche 'CHARULO - MECH-DOG' y placa de hueso metálica.*
 > "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Carmen a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres." 
 
 **Carmen (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
@@ -26,7 +26,7 @@
 > "En mi taller tenemos una máxima sagrada: la honestidad no da clientes para una semana, da clientes para toda la vida. Aquí aprenderás a exigir diagnósticos por escrito, ver piezas sustituidas y reconocer un trabajo profesional con garantía."
 
 **Don Chanchullo (El Taller Sospechoso)** `😈 ¡Trampa del Taller!`:
-*Un gato atigrado mecánico con parche negro en el ojo izquierdo, mono de trabajo azul marino empapado de grasa y aceite de motor, y una enorme llave inglesa al hombro.*
+*Un gato doméstico bicolor blanco y negro con patrón de máscara de esmoquin, arnés de cuero tosco manchado de grasa negra, gafas de aviador agrietadas colgando, estuche de herramientas con llave oxidada y un medidor de calibración manipulado con diales y cables desordenados.*
 > "¡Je, je, je! Mientras existan conductoras que no sepan mirar el aceite ni pregunten qué repuestos les ponen, ¡mi negocio de presupuestos inflados seguirá viento en popa!"
 
 ---
