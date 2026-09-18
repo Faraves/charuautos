@@ -80,7 +80,7 @@
       box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
       z-index: 2;
     }
-    .brand-avatar-sofia {
+    .brand-avatar-carmen {
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -911,7 +911,7 @@
     <a href="#ep00" class="brand-box" id="brand-link" title="Volver al inicio de la historieta">
       <div class="brand-avatars">
         <img src="assets/charu_avatar.png" alt="Charu" class="brand-avatar-charu">
-        <img src="assets/carmen_avatar.png" alt="Carmen" class="brand-avatar-sofia">
+        <img src="assets/carmen_avatar.png" alt="Carmen" class="brand-avatar-carmen">
       </div>
       <div>
         <div class="brand-title">CHARU<span>AUTOS</span></div>
@@ -2949,8 +2949,11 @@
     // 5. Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js')
-          .then(reg => console.log('[CharuAutos Historieta] Service Worker activo'))
+        navigator.serviceWorker.register('./service-worker.js?v=20260918v3')
+          .then(reg => {
+            reg.update();
+            console.log('[CharuAutos Historieta] Service Worker activo v3');
+          })
           .catch(err => console.log('[CharuAutos Historieta] Error SW:', err));
       });
     }
