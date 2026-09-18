@@ -224,6 +224,44 @@ El Service Worker (`service-worker.js`) implementa una política agresiva y mode
 
 ---
 
+
+---
+
+## 9. La Trilogía Editorial: La Versión en Historieta Ilustrada ("Las Aventuras de Charu")
+
+Como evolución natural del proyecto y para maximizar el alcance pedagógico entre conductores de todas las edades, se desarrolló la versión en **novela gráfica y libro de historietas educativas (*comic book*)**:
+
+### 9.1. Filosofía Pedagógica y Dinámica de Personajes
+1. **Charu (El Piloto y Mentor Mecánico):** Perro piloto de carreras intrépido, leal y con casco de competición. Representa la sabiduría preventiva, detiene errores peligrosos y explica la mecánica con analogías visuales y humor.
+2. **Álex (El Conductor Novato):** Dueño de su primer auto, representa las dudas, inseguridades y miedos del conductor real. A lo largo de los 14 episodios pasa del pánico a la total autonomía.
+3. **Don Carlos (El Mecánico Sabio y Honesto):** Dueño del taller *AutoSolución*, enseña a Álex el valor de la transparencia, presupuestos por escrito y repuestos certificados.
+4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco que inventa averías astronómicas hasta que Álex despliega el Escudo Anti-Estafas de CharuAutos.
+
+### 9.2. Los 14 Episodios de la Historieta
+- **Episodio 00:** Prólogo y presentación del elenco.
+- **Episodio 01:** El Misterio del Capó y las 5 Reglas de Oro (peligros del radiador caliente a 125°C).
+- **Episodio 02:** El Auto es un Cuerpo Humano (motor = corazón, aceite = sangre, 4 tiempos).
+- **Episodio 03:** La Caja Mágica de la Cajuela (armado del kit táctico de rescate).
+- **Episodio 04:** La Caminata del Detective (rutina 360° en 3 tiempos y detección de tornillo).
+- **Episodio 05:** El Misterio del Charco de Colores (diagnóstico de fugas por color y varilla de aceite).
+- **Episodio 06:** Las Runas Secretas del Neumático (código DOT de caducidad y prueba de la moneda).
+- **Episodio 07:** Chispa y Rescate a Medianoche (puente seguro de cables y fusibles de colores).
+- **Episodio 08:** Respirando Aire Puro en la Guantera (filtro de cabina en 5 minutos y ahorro de $140 USD).
+- **Episodio 09:** El Caracol de las 200.000 RPM (el turbo al rojo vivo y la Regla de los 60 Segundos).
+- **Episodio 10:** El Árbol de Navidad en el Tablero (Check Engine, escáner OBD-II y la tapa de gasolina).
+- **Episodio 11:** La Factura Fantasma y los 100k km (plan de mantenimiento real y mito del ATF sellado).
+- **Episodio 12:** Llanta Ponchada en la Autopista (protocolo PAS y cambio seguro de llanta en 8 pasos).
+- **Episodio 13:** El Duelo en el Taller Mecánico (el Escudo Anti-Estafas de 5 pasos en acción).
+- **Episodio 14:** El Pasaporte a la Tranquilidad (la Bitácora sellada de Don Carlos y conducción feliz).
+
+### 9.3. Tecnología del Lector Web ("Comic Reader")
+- **Visualización Dual:** Modo tira continua vertical (*webtoon*) optimizado para celulares y modo viñeta a viñeta.
+- **Web Audio API:** Efectos sonoros interactivos al hacer clic sobre onomatopeyas visuales (*¡ZAS! ¡BUM! ¡CLIC!*).
+- **PWA Offline:** Service Worker independiente y manifiesto para lectura sin conexión en carretera.
+- **Paquete de Distribución:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).
+
+---
+
 ## 8. Hoja de Ruta y Próximos Pasos (Roadmap)
 
 1. **Configuración de Pasarela de Pagos:** Carga del PDF comercial V1 y/o acceso PWA V2 en Hotmart o Gumroad utilizando el copy oficial.

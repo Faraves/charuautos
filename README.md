@@ -8,10 +8,10 @@
 
 El repositorio está configurado para que el acceso web principal cargue **directamente la Versión 2.0 (Edición Conductor con Cero Conocimientos)**:
 
-- 🚀 **Acceso Principal Online (Redirección Inmediata a V2):**  
-  👉 **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)**
-- 📱 **URL Directa PWA Versión 2.0:**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/)**
+- 🚀 **Acceso Principal Online (Ebook V2 Técnico):**  
+  👉 **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)** *(o [https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/))*
+- 🎨 **Nueva Versión Historieta Ilustrada (Cómic Book PWA):**  
+  👉 **[https://faraves.github.io/charuautos/dist_pwa_historieta/](https://faraves.github.io/charuautos/dist_pwa_historieta/)**
 - 🚗 **URL Directa PWA Versión 1.0 (Clásica):**  
   👉 **[https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/)**
 
@@ -24,6 +24,13 @@ El repositorio está configurado para que el acceso web principal cargue **direc
 **CharuAutos** es una plataforma editorial y educativa concebida para cerrar la brecha de asimetría de información entre los talleres mecánicos y los propietarios de vehículos en Latinoamérica y el mundo hispanohablante.
 
 El repositorio conserva dos productos editoriales completos e independientes:
+
+### 🎨 Versión Historieta Ilustrada — Las Aventuras de Charu (Cómic PWA)
+Una adaptación en **novela gráfica y libro de historietas educativas** basada en el Ebook V2:
+- **14 Episodios con Storytelling:** Protagonizada por **Charu** (el perro piloto de carreras y mentor), **Álex** (el conductor novato), **Don Carlos** (el mecánico honesto) y **Don Chanchullo** (el taller sospechoso).
+- **15 Ilustraciones de Cómic en Alta Definición:** Viñetas a todo color con globos de diálogo, onomatopeyas y esquemas técnicos integrados.
+- **Lector Web Interactivo ("Comic Reader"):** Formato tira continua vertical (*webtoon*) para smartphones y vista de viñetas, con efectos de sonido interactivos, drawer táctil de episodios y funcionamiento offline total (PWA).
+- **Paquete Desplegable:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).
 
 ### 🏆 Versión 2.0 — Edición Conductor con Cero Conocimientos (Producto Insignia)
 Desarrollada para quienes manejan a diario pero no tienen formación técnica previa:
@@ -53,9 +60,26 @@ CharuAutos/
 ├── .gitignore                                      # Exclusión de archivos de desarrollo y temporales
 ├── README.md                                       # Este archivo (Guía de inicio, accesos y mapa)
 ├── DOCUMENTACION_GENERAL.md                        # Documentación maestra técnica, de arquitectura y negocio
-├── CharuAutos_V2_WebApp_PWA.zip                    # Paquete PWA V2 listo para distribución y despliegue
+├── CharuAutos_Historieta_WebApp_PWA.zip           # Paquete PWA de la Historieta Ilustrada lista
+├── CharuAutos_V2_WebApp_PWA.zip                    # Paquete PWA V2 técnico listo para distribución
 ├── CharuAutos_WebApp_PWA.zip                       # Paquete PWA V1 clásico
 ├── favicon.ico                                     # Icono global de pestaña
+│
+├── dist_pwa_historieta/                            # APLICACIÓN WEB PWA HISTORIETA (PRODUCCIÓN CÓMIC)
+│   ├── index.html                                  # Lector web de cómic interactivo con efectos sonoros
+│   ├── manifest.json                               # Manifiesto PWA de la historieta
+│   ├── service-worker.js                           # Service Worker offline del cómic
+│   ├── ebook_historieta_completo.md                # Guion maestro consolidado
+│   └── assets/                                     # 31 activos gráficos (portada, 14 viñetas HD, avatares)
+│
+├── ebook_historieta/                               # CÓDIGO FUENTE DE LA HISTORIETA ILUSTRADA
+│   ├── 00_portada_y_personajes.md                  # Prólogo y elenco de personajes
+│   ├── ...                                         # 14 episodios modulares en Markdown
+│   ├── ebook_historieta_completo.md                # Guion maestro unificado
+│   ├── historieta_interactiva.html                 # Lector web de cómic local
+│   ├── index.html                                  # Entrada local
+│   ├── README.md                                   # Documentación interna del cómic
+│   └── assets/                                     # Ilustraciones maestras del cómic
 │
 ├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 (PRODUCCIÓN EN VIVO)
 │   ├── index.html                                  # Web App interactiva Dark Showroom con drawer táctil
