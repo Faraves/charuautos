@@ -1,4 +1,4 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v4';
+const CACHE_NAME = 'charuautos-comic-pwa-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -7,6 +7,8 @@ const ASSETS = [
   './assets/carmen_avatar.png',
   './assets/carlos_avatar.png',
   './assets/chanchullo_avatar.png',
+  './assets/chanchullo_avatar_nervioso.png',
+  './assets/don_chanchullo_personaje_animado.jpg',
   './assets/charuautos_emblema_mascota.png',
   './assets/comic_cover_historieta.jpg'
 ];

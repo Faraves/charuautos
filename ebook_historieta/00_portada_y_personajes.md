@@ -26,7 +26,7 @@
 > "En mi taller tenemos una máxima sagrada: la honestidad no da clientes para una semana, da clientes para toda la vida. Aquí aprenderás a exigir diagnósticos por escrito, ver piezas sustituidas y reconocer un trabajo profesional con garantía."
 
 **Don Chanchullo (El Taller Sospechoso)** `😈 ¡Trampa del Taller!`:
-*frotándose las manos avariciosamente junto a una calculadora desgastada*
+*Un gato atigrado mecánico con parche negro en el ojo izquierdo, mono de trabajo azul marino empapado de grasa y aceite de motor, y una enorme llave inglesa al hombro.*
 > "¡Je, je, je! Mientras existan conductoras que no sepan mirar el aceite ni pregunten qué repuestos les ponen, ¡mi negocio de presupuestos inflados seguirá viento en popa!"
 
 ---

@@ -27,7 +27,7 @@ El repositorio conserva dos productos editoriales completos e independientes:
 
 ### 🎨 Versión Historieta Ilustrada — Las Aventuras de Charu (Cómic PWA)
 Una adaptación en **novela gráfica y libro de historietas educativas** basada en el Ebook V2:
-- **14 Episodios con Storytelling y Actuación:** Protagonizada por **Charu** (el perro piloto y mentor automotriz), **Carmen** (la joven conductora principiante que aprende a dominar su auto y defender su bolsillo), **Don Carlos** (el maestro honesto de taller) y **Don Chanchullo** (el taller de las mil trampas).
+- **14 Episodios con Storytelling y Actuación:** Protagonizada por **Charu** (el perro piloto y mentor automotriz), **Carmen** (la joven conductora principiante que aprende a dominar su auto y defender su bolsillo), **Don Carlos** (el maestro honesto de taller) y **Don Chanchullo** (el gato mecánico con parche en el ojo y mono manchado de aceite de 'El Tornillo Loco').
 - **15 Escenas de Cómic en Alta Resolución (16:9 HD):** Ilustraciones panorámicas de estilo novela gráfica con personajes en acción física, rostros expresivos, esquemas mecánicos integrados y acotaciones escénicas con insignias emocionales (`😱 ¡Pánico!`, `💡 ¡Momento Eureka!`, `🛑 ¡Alerta!`, `🛡️ ¡Escudo Activado!`).
 - **Lector Web Interactivo Dual ("Comic Reader"):** Soporte para lectura en tira vertical continua (*webtoon*) ideal para celulares y modo diapositiva horizontal viñeta a viñeta para computadoras (con atajos de teclado `←` / `→` y gestos *swipe* táctiles), efectos de sonido sintetizados con Web Audio API, botón de exportación/impresión a PDF de colección (`@media print`) y funcionamiento offline total (PWA).
 - **Paquete Desplegable:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).

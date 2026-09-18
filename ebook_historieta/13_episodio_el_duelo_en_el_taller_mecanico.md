@@ -11,7 +11,7 @@
 ### [ESCENA: Taller desordenado 'El Tornillo Loco'. Don Chanchullo frota sus manos mientras contempla a Carmen llegar con su vehículo para un simple cambio de pastillas de freno.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Don Chanchullo pone cara de preocupación fingida y sale del foso con una libreta grasienta.
+> Don Chanchullo (el gato mecánico con su parche en el ojo y su mono bañado en grasa de motor) pone cara de preocupación fingida y sale del foso sosteniendo una llave inglesa y una libreta grasienta.
 
 **Don Chanchullo (El Taller Sospechoso)** `😈 El Cuento del Tío`:
 *meneando la cabeza con gesto de tragedia exagerada*
