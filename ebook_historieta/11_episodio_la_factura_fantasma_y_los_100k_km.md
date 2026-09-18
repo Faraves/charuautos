@@ -3,40 +3,35 @@
 
 ---
 
-![Episodio 11: Mantenimiento por Kilometraje](assets/comic_panel_11_mapa_kilometraje.jpg)
-*Viñeta Principal: Charu desenrolla el mapa de ruta de los 10k a los 100k km desmantelando los costos inflados y mitos de taller.*
+![La Factura Fantasma y los 100k km](assets/comic_panel_11_mapa_kilometraje.jpg)
+*El mapa de kilometraje, mitos de fluidos sellados y correa de distribución*
 
 ---
 
-### [ESCENA: Mesa de la cocina de Álex, revisando facturas]
+### [ESCENA: En el taller honesto AutoSolución. Don Carlos recibe a Sofía para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> El odómetro de Álex marcaba 49.800 km. Un amigo le dijo: *"Prepárate, el servicio de los 50.000 km te va a costar un riñón y medio"*.
+> El odómetro del auto de Sofía marca exactamente 60.020 kilómetros.
 
-**VIÑETA 1:**  
-*Álex con calculadora en mano sacando cuentas con cara de terror.*  
-- **Álex:** — Charu, me pasaron una cotización de $750 USD para el mantenimiento de los 50.000 km. Dicen que incluye 'limpieza de inyectores por ultrasonido', 'aditivo antifricción espacial' y 'alineación de antena'...  
-- **Charu (tachando la hoja con un marcador rojo furioso):** — ¡Pamplinas y fantasías de taller para engordar facturas!
+**Sofía (Conductora Principiante)** `📋 Revisión Informada`:
+*mostrando a Don Carlos su cuaderno con los puntos del manual del fabricante*
+> "Don Carlos, en otro taller me pasaron un presupuesto de $850 USD diciendo que a los 60 mil kilómetros hay que limpiar inyectores con ultrasonido, cambiar cables y hacer 'lavado interno de motor'..."
 
-**VIÑETA 2:**  
-*Charu despliega el auténtico mapa cronológico de kilometraje:*  
-- **Charu:** — Este es el **MAPA REAL DE SERVICIOS POR KILOMETRAJE**:  
-  - 🟢 **Cada 10.000 km:** Aceite sintético 100% + Filtro de aceite + Inspección 360°.  
-  - 🔵 **Cada 20.000 km:** Filtro de aire de motor + Filtro de cabina + Rotación de llantas.  
-  - 🟡 **Cada 40.000 - 50.000 km:** Líquido de frenos (absorbe humedad) + Refrigerante de motor + Pastillas de freno (según desgaste).  
-  - 🔴 **Cada 80.000 - 100.000 km:** Cambio de bujías de Iridio + **Fluido de transmisión (ATF/CVT)** + Correa de distribución (si usa banda y no cadena).
+**Don Carlos (El Mecánico Honesto)** `🔧 Transparencia Total`:
+*tachando con una pluma roja los conceptos innecesarios en la hoja*
+> "¡Puro invento comercial, señorita Sofía! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
 
-**VIÑETA 3:**  
-*Álex señala un apartado con signo de interrogación:*  
-- **Álex:** — Pero en la concesionaria me dijeron que el aceite de mi caja de cambios es 'sellado de por vida' y nunca se cambia...  
-- **Charu:** — ¡La mentira más destructiva de la industria automotriz! Las cajas de cambio operan bajo fricción y calor infernal. El aceite pierde viscosidad. 'De por vida' solo significa 'hasta que se rompa la caja fuera de garantía y tengas que pagar $3.000 USD por una nueva'. ¡Se cambia cada 60.000 a 80.000 km!
+**Sofía (Conductora Principiante)** `🤔 Duda del Fluido Eterno`:
+*preguntando con genuina curiosidad técnica*
+> "Don Carlos, ¿y es verdad lo que dicen en algunos concesionarios de que el aceite de la transmisión automática dura 'de por vida' y nunca se cambia?"
 
-**VIÑETA 4:**  
-*Álex reescribe el presupuesto real:*  
-- **Álex:** — Cotizando solo lo que realmente necesita el manual del fabricante, el servicio de 50k km me sale en $180 USD con repuestos de primera calidad.  
-- **Charu:** — ¡Ahorro neto de casi $600 USD con un solo golpe de criterio!
+**Don Carlos (El Mecánico Honesto)** `💡 Desmintiendo el Mito`:
+*mostrando una probeta con fluido ATF degradado y oscuro frente a uno nuevo traslúcido*
+> "¡Ese es el mito más peligroso de la industria! 'De por vida' solo significa hasta que venza la garantía de fábrica. El fluido hidráulico se degrada por calor y fricción. Cambiarlo a los 60k km evita una reparación de $3.500 USD."
+
+💥 **[EFECTO SONORO VISUAL]:** *¡$660 AHORRADOS!* (Mantenimiento preventivo real y transmisión protegida para 300.000 km)
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Llevar tu propio aceite sintético con la certificación exacta (API SP / ILSAC GF-6) y filtros de marca reconocida al taller ahorra hasta un 40% en sobreprecios de lubricantes."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"No existe ningún aceite eterno: el fluido de transmisión automática (ATF/CVT) debe sustituirse rigurosamente entre los 60.000 y 80.000 km para no quemar la caja."*

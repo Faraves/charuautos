@@ -3,46 +3,37 @@
 
 ---
 
-![Episodio 12: Cambio de Llanta en 8 Pasos](assets/comic_panel_12_cambio_llanta.jpg)
-*Viñeta Principal: Noche de lluvia en el arcén; Álex con chaleco y Charu ejecutando el cambio de rueda seguro en 8 pasos.*
+![Llanta Ponchada en la Autopista](assets/comic_panel_12_cambio_llanta.jpg)
+*Protocolo PAS y cambio seguro de neumático en 8 pasos*
 
 ---
 
-### [ESCENA: Arcén de una autopista nocturna, lluvia ligera]
+### [ESCENA: Noche lluviosa en una autopista de alta velocidad. De pronto se escucha un tironeo sordo en la rueda trasera derecha: la llanta se ha desinflado por completo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> *¡PUM-FLAP-FLAP-FLAP!* El auto tironea hacia la derecha bruscamente. El neumático trasero se desinfló por completo en plena marcha.
+> La dirección vibra con fuerza. Sofía mantiene el pulso firme sin entrar en pánico.
 
-**VIÑETA 1:**  
-*Álex se detiene con calma en el arcén derecho y pone las luces intermitentes de emergencia.*  
-- **Charu:** — ¡Excelente maniobra, Álex! Jamás frenes en seco con una llanta ponchada; rueda despacio hasta salir de los carriles activos hacia una zona plana y firme.  
-- **Álex:** — ¿Salgo a cambiarla ya?  
-- **Charu:** — ¡No sin el **PROTOCOLO PAS (Proteger, Avisar, Socorrer)**!
+💥 **[EFECTO SONORO VISUAL]:** *¡PUM-FLAP-FLAP!* (Neumático desinflado perdiendo sustentación sobre el asfalto mojado)
 
-**VIÑETA 2:**  
-*Álex se pone el chaleco reflectante dentro del auto, baja y coloca los triángulos a 50 y 100 metros:*  
-- **Charu:** — Bien visible para los camiones que vienen atrás. Ahora ejecutaremos el **CAMBIO DE RUEDA EN 8 PASOS**:  
-  1. *Freno de mano puesto y primera marcha (o P en automático).*  
-  2. *Retirar auxilio, gato y llave de cruz.*  
-  3. **¡EL PASO CRÍTICO!: Aflojar los birlos/tuercas media vuelta en el suelo ANTES de subir el gato.**  
-  4. *Ubicar el gato en la ranura reforzada del chasis (marcada con muesca).*  
-  5. *Elevar el auto hasta que la llanta despegue 5 cm del suelo.*  
-  6. *Quitar las tuercas y sustituir por la rueda de auxilio.*  
-  7. *Apretar las tuercas a mano en forma de cruz (X).*  
-  8. *Bajar el auto al suelo y dar el apriete final con fuerza con la llave de cruz.*
+**Sofía (Conductora Principiante)** `🛑 Nervios bajo Control`:
+*sujetando el volante con ambas manos a las 9 y a las 3 sin frenar bruscamente*
+> "¡Se desinfló la llanta trasera! No voy a clavar los frenos... ruedo suave hacia el arcén derecho bien iluminado y plano."
 
-**VIÑETA 3:**  
-*Álex sudando pero con total control, aprieta la última tuerca en estrella mientras el gato baja:*  
-- **[ONOMATOPEYA]:** *¡CLAC-CRAC!* (Tuercas encajando perfectamente).  
-- **Álex:** — Si no hubiera aflojado los tornillos en el suelo antes de levantar el auto, la llanta habría girado en el aire o el auto se habría caído del gato...  
-- **Charu:** — ¡Exactamente! Ese es el error número uno de los novatos.
+**Charu (Piloto y Mentor)** `🛡️ Protocolo PAS en Marcha`:
+*alcanzando el chaleco reflectante amarillo neón de la guantera*
+> "¡Ponte el chaleco reflectante ANTES de abrir la puerta! Enciende las intermitentes de emergencia. Yo coloco los triángulos reflectantes a 50 y 100 metros atrás para que el tráfico nos vea desde lejos."
 
-**VIÑETA 4:**  
-*Ambos guardan la llanta ponchada y las herramientas en la cajuela:*  
-- **Charu:** — Recuerda: si la rueda de auxilio es pequeña (tipo dona o galleta), velocidad máxima de **80 km/h** hasta llegar a una vulcanizadora a parchar la llanta titular.  
-- **Álex:** — ¡15 minutos de reloj y estamos rodando seguros otra vez!
+**Sofía (Conductora Principiante)** `💪 El Paso de Oro`:
+*con la llave de cruz en mano, aflojando media vuelta cada tuerca con la llanta en el piso*
+> "¡Y aplico el secreto que me enseñaste!: aflojo las tuercas media vuelta en el suelo ANTES de subir el gato. Luego subo el auto, cambio la rueda, coloco la de repuesto, bajo el gato y aprieto en estrella (cruz X) con todo mi peso."
+
+💥 **[EFECTO SONORO VISUAL]:** *¡CLAC-CRAC! ¡LISTO!* (Rueda de repuesto asegurada firmemente en 15 minutos exactos)
+
+**Sofía (Conductora Principiante)** `🏎️ ¡Orgullo y Empoderamiento!`:
+*guardando las herramientas con una sonrisa de satisfacción total*
+> "¡15 minutos cronometrados! Sin mojarme de más, segura y sin tener que esperar 2 horas por una grúa costosa. ¡Soy completamente autónoma!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Nunca coloques el gato sobre tierra suelta o barro sin una tabla o base plana debajo, y jamás metas ninguna parte de tu cuerpo debajo de un auto sostenido únicamente por un gato."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Afloja siempre las tuercas o birlos media vuelta con la llanta apoyada en el suelo ANTES de levantar el gato; de lo contrario la rueda girará loca en el aire."*

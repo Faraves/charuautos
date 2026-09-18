@@ -3,41 +3,39 @@
 
 ---
 
-![Episodio 01: Las 5 Reglas de Oro](assets/comic_panel_01_seguridad.jpg)
-*Viñeta Principal: Charu intercepta a Álex justo antes de cometer un error letal con el radiador hirviendo.*
+![El Misterio del Capó y las 5 Reglas de Oro](assets/comic_panel_01_seguridad.jpg)
+*Seguridad física, sentido común y peligros del refrigerante hirviendo*
 
 ---
 
-### [ESCENA: Cochera de Álex, Sábado por la mañana]
+### [ESCENA: Sábado por la mañana en la cochera. Tras regresar de un viaje por carretera, Sofía nota un silbido vaporoso bajo el capó y decide abrirlo por primera vez para ver si le falta agua.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Era un sábado soleado. Álex contemplaba su auto recién comprado con orgullo... hasta que notó un leve silbido bajo el capó tras un largo viaje. Decidió que era momento de "hacer de mecánico".
+> Sofía abre el seguro del capó. El vano motor irradia una ola de calor sofocante. Ve una tapa metálica brillante con un símbolo de advertencia y estira el brazo decidida...
 
-**VIÑETA 1:**  
-*Álex abre el capó. El motor está al rojo vivo y una columna de vapor sale del depósito de refrigerante. Álex se acerca con la mano desnuda directo al tapón del radiador.*  
-- **Álex:** — Bueno, esto parece fácil... Solo desenrosco esta tapa metálica para ver si le falta agua...  
-- **[ONOMATOPEYA]:** *¡SSSSSSTTTTTT!* (Vapor silbando a 110°C).
+**Sofía (Conductora Principiante)** `🤔 Curiosidad Ingenua`:
+*con la mano a escasos centímetros de la tapa metálica del radiador*
+> "Bueno... esto no debe ser tan difícil. Solo desenrosco esta tapita plateada para echarle un poco de agua del grifo..."
 
-**VIÑETA 2:**  
-*¡Un salto acrobático! Charu cae desde el techo de la cochera con su casco de piloto y gafas reflectantes, apartando la mano de Álex de un manotazo.*  
-- **Charu:** — ¡¡ALTO AHÍ, ÁLEX!! ¡Si giras esa tapa ahora mismo, saldrá un géiser de refrigerante hirviendo a más de 120°C directo a tu cara y brazos!  
-- **Álex (asustado cayendo hacia atrás):** — ¡¿Waaaah?! ¿Quién eres tú? ¿Un perro con casco de carreras?
+💥 **[EFECTO SONORO VISUAL]:** *¡SSSSSS-CLAC!* (Vapor a presión silbando a más de 115°C)
 
-**VIÑETA 3:**  
-*Charu saca una pizarra holográfica con el logo de CharuAutos iluminado en Neón Cian.*  
-- **Charu:** — Soy Charu, tu mentor automotriz. Y antes de que toques un solo tornillo, debes tatuarte mentalmente **LAS 5 REGLAS DE ORO DE SEGURIDAD**:
-  1. 🚫 **Motor caliente = Zona Prohibida.** Jamás abras el radiador o el depósito presurizado caliente.
-  2. 🛑 **Superficie plana y freno de mano.** Nunca trabajes en pendientes.
-  3. 🧱 **El gato hidráulico NO sostiene el auto solo.** Obligatorio usar torres o caballetes metálicos.
-  4. ⚡ **Desconecta el borne negativo de la batería** antes de tocar circuitos eléctricos.
-  5. 🧤 **Protección personal:** Guantes de nitrilo y gafas de seguridad siempre.
+**Charu (Piloto y Mentor)** `🛑 ¡ALTO AHÍ!`:
+*aterrizando en un salto acrobático y apartando el brazo de Sofía de un manotazo firme*
+> "¡¡DETENTE, SOFÍA!! ¡Si giras esa tapa ahora mismo, el refrigerante presurizado a 125°C estallará como un géiser hirviendo directo a tu cara, cuello y brazos causando quemaduras de tercer grado!"
 
-**VIÑETA 4:**  
-*Álex se pone unas gafas de seguridad y guantes de mecánico con una sonrisa de alivio.*  
-- **Álex:** — Entendido, Charu. ¡Casi termino en la sala de urgencias el primer día!  
-- **Charu (guiñando un ojo con pulgar arriba):** — ¡Exacto! Un auto es una maravilla de la ingeniería, pero exige respeto. ¡Ahora te enseñaré qué hay dentro de este monstruo!
+**Sofía (Conductora Principiante)** `😱 ¡Pánico y Asombro!`:
+*retrocediendo dos pasos con las manos en el pecho y el corazón acelerado*
+> "¡¿125 grados?! ¡¿Una bomba de vapor en mi propio auto?! ¡Casi termino en el hospital el primer fin de semana!"
+
+**Charu (Piloto y Mentor)** `📋 Reglas Sagradas`:
+*desplegando una infografía holográfica con 5 mandamientos de seguridad*
+> "¡Tranquila, para eso estamos aquí! Memoriza las 5 Reglas Inviolables: 1. Motor caliente = Zona Prohibida (espera 45 min). 2. Superficie plana y freno puesto. 3. El gato hidráulico jamás sostiene el auto solo (usar torres). 4. Desconectar el borne negativo de la batería antes de tocar cables. 5. Gafas y guantes siempre."
+
+**Sofía (Conductora Principiante)** `😌 ¡Lección Aprendida!`:
+*colocándose unos guantes de nitrilo y gafas protectoras con renovada compostura*
+> "¡Anotadísimo en mi mente! La seguridad física va primero. ¡Ahora explícame qué es lo que hace latir a este auto!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"El refrigerante automotriz bajo presión no hierve a 100°C como el agua; puede superar los 125°C. Abrir la tapa en caliente es como destapar una olla a presión en erupción."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Nunca abras la tapa del radiador ni del vaso presurizado con el motor caliente. Deja enfriar al menos 45 minutos."*

@@ -1,37 +1,35 @@
-# Las Aventuras de Charu: El Conductor Inteligente
-## Libro de Historietas Ilustrada • Edición Cero Conocimientos
-*Basado en el Manual Práctico del Conductor Inteligente de CharuAutos (`@charuautopics`)*  
-**Slogan:** `🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS`
+# Prólogo y Personajes
+## Las Aventuras de Charu: El Manual del Conductor Inteligente en Historieta Ilustrada
 
 ---
 
-![Portada Oficial de la Historieta](assets/comic_cover_historieta.jpg)
-*Las Aventuras de Charu y Álex: El cómic que te enseña a cuidar tu auto, ahorrar dinero y evitar estafas sin saber nada de mecánica.*
+![Prólogo y Personajes](assets/comic_cover_historieta.jpg)
+*Las Aventuras de Charu: El Manual del Conductor Inteligente en Historieta Ilustrada*
 
 ---
 
-## 👥 Elenco Principal de Personajes
+### [ESCENA: Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Sofía estrena las llaves de su primer vehículo.]
 
-### 1. Charu — "El Piloto y Mentor Mecánico" 🐶🏁
-- **Quién es:** La mascota oficial de CharuAutos. Un perro piloto de carreras intrépido, leal y con casco de competición.
-- **Su misión:** Salvar a los conductores novatos de cometer errores peligrosos, traducir los tecnicismos mecánicos a lenguaje humano y proteger el bolsillo de sus amigos.
-- **Frase típica:** *"¡Un conductor inteligente no espera a que algo se rompa: previene y disfruta del camino!"*
+**[CARTUCHO DEL NARRADOR]:**
+> ¡Bienvenida al universo de CharuAutos! Una novela gráfica concebida para que cualquier persona, sin importar su experiencia previa, aprenda a cuidar su vehículo, prevenir averías costosas y blindarse contra engaños de taller con humor, arte y ciencia práctica.
 
-### 2. Álex — "El Conductor Novato" 🚗😅
-- **Quién es:** Un joven conductor que acaba de comprar su primer auto para ir al trabajo y salir de fin de semana.
-- **Su problema:** No sabe qué hay debajo del capó, le aterra que se encienda una luz en el tablero y siente que los mecánicos le hablan en otro idioma.
-- **Su evolución:** Acompañado de Charu, pasa del pánico absoluto a tener total seguridad, criterio técnico y control de su vehículo.
+**Charu (Piloto y Mentor)** `🐾 ¡Copiloto al Rescate!`:
+*apoyado sobre el capó con las gafas de piloto arriba y una sonrisa cómplice*
+> "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Sofía a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres."
 
-### 3. Don Carlos — "El Mecánico Sabio y Honesto" 🔧👨‍🔧
-- **Quién es:** Dueño del taller *"AutoSolución"*. Trabaja con llaves limpias, entrega presupuestos por escrito y le muestra a los clientes las piezas sustituidas.
-- **Su lema:** *"La honestidad no da clientes para una semana, da clientes para toda la vida"*.
+**Sofía (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
+*sosteniendo con orgullo el llavero de su auto rojo, aunque con una gota de sudor frío*
+> "¡Hola! Por fin logré comprar mi primer auto y me encanta la libertad que siento al manejar... pero cada vez que escucho un ruido raro o veo una luz encenderse en el velocímetro, ¡siento que voy a quedar en bancarrota! ¡Necesito que Charu me convierta en una conductora inteligente!"
 
-### 4. Don Chanchullo — "El Taller de las Mil Mentiras" 💸🦊
-- **Quién es:** El mecánico astuto que se aprovecha de la ignorancia de los clientes novatos para inflar facturas, cobrar por repuestos inexistentes e inventar averías catastróficas.
-- **Su pesadilla:** Que un cliente como Álex llegue con el Escudo Anti-Estafas de CharuAutos.
+**Don Carlos (El Mecánico Honesto)** `🔧 ¡Maestro de Confianza!`:
+*limpiándose las manos con un paño limpio en su taller AutoSolución*
+> "En mi taller tenemos una máxima sagrada: la honestidad no da clientes para una semana, da clientes para toda la vida. Aquí aprenderás a exigir diagnósticos por escrito, ver piezas sustituidas y reconocer un trabajo profesional con garantía."
+
+**Don Chanchullo (El Taller Sospechoso)** `😈 ¡Trampa del Taller!`:
+*frotándose las manos avariciosamente junto a una calculadora desgastada*
+> "¡Je, je, je! Mientras existan conductoras que no sepan mirar el aceite ni pregunten qué repuestos les ponen, ¡mi negocio de presupuestos inflados seguirá viento en popa!"
 
 ---
 
-## 📖 Estructura de la Historieta
-
-La historieta cuenta con **14 episodios completos**, cada uno adaptando los conceptos técnicos fundamentales de la Versión 2.0 en una aventura visual dinámica con humor, acción y rigor técnico.
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Un auto no es un monstruo de metal: es una máquina noble que recompensa con años de fidelidad a quien aprende su lenguaje."*

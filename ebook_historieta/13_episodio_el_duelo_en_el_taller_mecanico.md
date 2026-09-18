@@ -3,41 +3,35 @@
 
 ---
 
-![Episodio 13: El Duelo en el Taller](assets/comic_panel_13_escudo_taller.jpg)
-*Viñeta Principal: Don Chanchullo intentando cobrar una factura inflada; Álex despliega el Escudo Anti-Estafas de Charu.*
+![El Duelo en el Taller Mecánico](assets/comic_panel_13_escudo_taller.jpg)
+*El Escudo Anti-Estafas y el Protocolo de 5 Pasos de Sofía*
 
 ---
 
-### [ESCENA: Interior del taller de Don Chanchullo, piezas sucias por el suelo]
+### [ESCENA: Taller desordenado 'El Tornillo Loco'. Don Chanchullo frota sus manos mientras contempla a Sofía llegar con su vehículo para un simple cambio de pastillas de freno.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Álex necesitaba cambiar pastillas de freno y entró a un taller con aspecto dudoso. Don Chanchullo lo vio llegar, frotándose las manos grasientas con una sonrisa de lobo.
+> Don Chanchullo pone cara de preocupación fingida y sale del foso con una libreta grasienta.
 
-**VIÑETA 1:**  
-*Don Chanchullo con lápiz en la oreja y una factura escrita en servilleta:*  
-- **Don Chanchullo:** — Amigo... tiene suerte de haber llegado vivo. Sus frenos están destruidos, el tren delantero colapsó y hay que rectificar los inyectores... Total: $850 USD más mano de obra.  
-- **Álex (serio, sin titubear, saca su carpeta de CharuAutos):** — Muy bien Don Chanchullo. Vamos a aplicar el **PROTOCOLO DE 5 PASOS**:
+**Don Chanchullo (El Taller Sospechoso)** `😈 El Cuento del Tío`:
+*meneando la cabeza con gesto de tragedia exagerada*
+> "Uy, señorita... qué suerte tuvo de llegar viva. El tren delantero está destrozado, los amortiguadores reventados y la cremallera quebrada. Son $850 dólares o el auto no puede rodar ni una cuadra..."
 
-**VIÑETA 2:**  
-*Álex saca su teléfono y toma fotos con flash:*  
-- **Álex:**  
-  1. 📸 *Foto al odómetro frente a usted: 52.140 km exactos.*  
-  2. 📝 *Exijo presupuesto formal por escrito desglosando repuestos vs mano de obra.*  
-  3. 📦 *Todas las piezas sustituidas deben entregármelas en la cajuela dentro de las cajas de los repuestos nuevos.*  
-  4. 📞 *Cualquier trabajo adicional no presupuestado requiere mi autorización telefónica previa, o no lo pagaré.*  
-  5. 🔍 *¿Los repuestos que cotiza son OEM o Tier 1 con garantía por escrito?*
+**Sofía (Conductora Principiante)** `🛡️ ¡ESCUDO ACTIVADO!`:
+*cruzando los brazos con mirada serena, firme e inquebrantable*
+> "Un momento, Don Chanchullo. Vamos a aplicar el Escudo de CharuAutos: 1. Le tomé foto al odómetro frente a usted. 2. Exijo presupuesto por escrito desglosando repuesto y mano de obra. 3. No autorizo extras por teléfono. 4. Las piezas viejas me las entrega en mi cajuela en las cajas nuevas. 5. ¿Sus repuestos son OEM o Tier 1 con garantía certificada?"
 
-**VIÑETA 3:**  
-*La cara de Don Chanchullo palidece, la sonrisa se le congela y empieza a sudar:*  
-- **Don Chanchullo:** — Eh... bueno... mirándolo bien con buena luz... el tren delantero está impecable, y los inyectores no hace falta tocarlos... En realidad solo eran las pastillas delanteras... Serían $45 USD...  
-- **Charu (asomándose desde la ventana del auto con gafas de sol):** — ¡Menudo milagro mecánico acaba de ocurrir aquí! ¡La factura se redujo un 95% en 30 segundos!
+**Don Chanchullo (El Taller Sospechoso)** `😰 ¡Descubierto In Fraganti!`:
+*tragando saliva y guardando apresuradamente la libreta grasienta*
+> "Eh... bueno... ejem... mirándolo bien con mejor iluminación... el tren delantero está en perfecto estado. En realidad solo eran las pastillas de freno delanteras gastadas por $45 USD..."
 
-**VIÑETA 4:**  
-*Álex saluda con firmeza y decide ir al taller de Don Carlos:*  
-- **Álex:** — Gracias Don Chanchullo, pero prefiero hacer el servicio en un taller transparente.  
-- **Charu (chocando patas con Álex):** — ¡Has dominado el Escudo Anti-Estafas! Cuando un mecánico deshonesto ve que el cliente sabe lo que pide y exige comprobantes, no se atreve a inflar un solo centavo.
+💥 **[EFECTO SONORO VISUAL]:** *¡ESCUDO: 95% DESCUENTO!* (La factura se redujo de $850 a $45 USD en 30 segundos)
+
+**Charu (Piloto y Mentor)** `🏆 ¡Jaquel Mate!`:
+*haciendo una reverencia con su casco de carreras*
+> "¡Cuando un mecánico abusivo se da cuenta de que la conductora tiene conocimiento, exige comprobantes y no firma cheques en blanco, se le acaba el negocio del engaño!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Exige siempre que te devuelvan las piezas viejas en la caja del repuesto nuevo. Si un taller se niega diciendo que 'las tiraron a la basura', sospecha de inmediato: es muy probable que nunca las hayan cambiado."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Exige siempre que te devuelvan las piezas viejas sustituidas dentro de las cajas de los repuestos nuevos para verificar que realmente las cambiaron."*

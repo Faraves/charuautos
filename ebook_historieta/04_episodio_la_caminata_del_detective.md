@@ -3,42 +3,31 @@
 
 ---
 
-![Episodio 04: Inspección 360 Grados](assets/comic_panel_04_inspeccion_360.jpg)
-*Viñeta Principal: Charu detective con lupa luminosa enseñando a Álex la rutina perimetral de 3 tiempos.*
+![La Caminata del Detective](assets/comic_panel_04_inspeccion_360.jpg)
+*Inspección perimetral 360° en 3 tiempos antes de salir*
 
 ---
 
-### [ESCENA: Alrededor del auto en la mañana]
+### [ESCENA: Exterior de la vivienda. Sofía lleva cómicamente una gorra de detective y una lupa gigante en la mano. Charu la guía paso a paso alrededor de la carrocería del auto rojo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> La mayoría de la gente se sube al auto, enciende el motor, pone música y arranca a ciegas. Hasta que un neumático desinflado destruye el rin a las tres cuadras.
+> La inmensa mayoría de los conductores enciende el motor y arranca a ciegas... hasta que a los quinientos metros una llanta en el rin destruye el neumático.
 
-**VIÑETA 1:**  
-*Charu aparece con sombrero de detective inglés, pipa de burbujas y una lupa gigante de Neón Cian.*  
-- **Charu:** — Elemental, mi querido Álex. Hoy aprenderás el hábito que separa a los novatos de los conductores inteligentes: **La Caminata 360°**.  
-- **Álex:** — ¿Caminar alrededor de mi propio auto? ¿No creerán los vecinos que estoy loco?
+**Charu (Piloto y Mentor)** `🕵️‍♂️ Modo Detective`:
+*olfateando el suelo y señalando el perímetro del vehículo*
+> "¡Elemental, mi querida Sofía! La 'Caminata 360°' se divide en 3 rutinas: Diaria (30 segundos rodeando el auto buscando charcos o llantas bajas), Semanal (3 minutos abriendo capó en frío) y Mensual (15 minutos calibrando la presión de las 5 ruedas, incluida la de repuesto)."
 
-**VIÑETA 2:**  
-*Secuencia de viñetas rápidas mostrando los tres tiempos:*  
-- **Charu:**  
-  - ⏱️ **TIEMPO 1: El Escaneo Diario (30 Segundos)**  
-    Caminar alrededor antes de abrir la puerta. Mirar el suelo: ¿hay charcos? Mirar las 4 llantas: ¿alguna está aplastada? Mirar los vidrios y retrovisores.  
-  - ⏱️ **TIEMPO 2: La Guardia Semanal (3 Minutos)**  
-    Abrir el capó con motor frío. Mirar nivel de aceite, refrigerante y líquido de frenos. Probar luces delanteras, traseras y reversa.  
-  - ⏱️ **TIEMPO 3: La Inspección Mensual (15 Minutos)**  
-    Calibrar presión con manómetro en las 5 llantas (incluyendo auxilio). Revisar profundidad de dibujo y bornes de batería.
+**Sofía (Conductora Principiante)** `🧐 Ojo Clínico`:
+*arrodillándose junto a la rueda delantera izquierda e inspeccionando la goma con la lupa*
+> "¡Espera un segundo, Charu! Mira aquí... en el surco central de la llanta delantera... ¡hay un tornillo plateado con cabeza de estrella bien clavado!"
 
-**VIÑETA 3:**  
-*Álex agachándose junto a la llanta delantera izquierda con la lupa.*  
-- **Álex:** — ¡Espera, Charu! Mira esto... ¡Hay un tornillo brillante clavado en la banda de rodamiento de la llanta delantera!  
-- **Charu (asintiendo satisfecho):** — ¡Brillante deducción, detective! Ese tornillo habría reventado tu caucho en plena autopista a 100 km/h. Como lo detectamos aquí en la cochera, podemos repararlo con una mecha en 5 minutos.
+💥 **[EFECTO SONORO VISUAL]:** *¡CLAVO DETECTADO!* (¡Detección preventiva a tiempo en la cochera!)
 
-**VIÑETA 4:**  
-*Álex anota en su celular con una sonrisa de victoria.*  
-- **Álex:** — ¡30 segundos de caminata acaban de salvarme una tarde entera y $100 dólares de grúa!  
-- **Charu:** — La prevención no es paranoia, Álex: es libertad económica.
+**Charu (Piloto y Mentor)** `🎉 ¡Deducción Brillante!`:
+*chocando la pata con la mano de Sofía entusiasmado*
+> "¡Brillante deducción, detective Sofía! Si hubieras salido a la autopista a 100 km/h, ese tornillo habría reventado el neumático en plena marcha provocando un accidente. ¡30 segundos de caminata te ahorraron una grúa de $120 USD y salvaron tu integridad!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Revisa siempre la presión de los neumáticos en frío (antes de rodar más de 2 km). Al rodar, el aire interior se calienta y marca de 3 a 5 PSI más de lo real."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Calibra la presión de los neumáticos siempre en frío; al rodar la fricción calienta el aire y marca hasta 4 PSI de más en el manómetro."*

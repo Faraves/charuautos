@@ -3,41 +3,35 @@
 
 ---
 
-![Episodio 10: Tablero y Escáner OBD2](assets/comic_panel_10_tablero_obd2.jpg)
-*Viñeta Principal: El tablero de Álex iluminado; Charu conecta el escáner OBD-II y descifra el misterio del Check Engine.*
+![El Árbol de Navidad en el Tablero](assets/comic_panel_10_tablero_obd2.jpg)
+*Testigos luminosos, escáner OBD-II y el misterio del tapón de gasolina*
 
 ---
 
-### [ESCENA: Tráfico de la tarde, dentro del auto]
+### [ESCENA: A mitad de camino hacia el trabajo. En el tablero de instrumentos se ilumina una silueta amarilla con forma de motor: CHECK ENGINE.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> De repente, sonó un *¡BEEP!* agudo. Un icono con forma de pequeño motor amarillo se encendió fijamente en el tablero: el temido **CHECK ENGINE**.
+> Un pequeño pitido alerta a Sofía. Una luz ámbar fija brilla en su velocímetro.
 
-**VIÑETA 1:**  
-*Álex entra en pánico mirando el tablero como si fuera a explotar:*  
-- **Álex:** — ¡¡SE PRENDIÓ EL CHECK ENGINE!! ¡Se rompió el motor! ¡Vamos a explotar en medio del tráfico!  
-- **Charu (riendo con tranquilidad):** — ¡Cálmate, Álex! Respira hondo y mira el color del testigo. ¿Es rojo o es amarillo?  
-- **Álex:** — Es... amarillo fijo.
+💥 **[EFECTO SONORO VISUAL]:** *¡BEEP-BEEP!* (Testigo Check Engine (MIL) iluminado en ámbar constante)
 
-**VIÑETA 2:**  
-*Charu muestra la infografía del Semáforo Universal ISO:*  
-- **Charu:** — Recuerda la **REGLA DEL SEMÁFORO**:  
-  - 🔴 **ROJO (Peligro crítico):** Presión de aceite baja, temperatura hirviendo o fallo de frenos. *¡Detén el auto a la orilla de inmediato y apaga el motor!*  
-  - 🟡 **AMARILLO / ÁMBAR (Precaución preventiva):** Check Engine, ABS, presión de llantas. *El auto funciona, pero la computadora detectó una anomalía. Puedes seguir conduciendo con suavidad hasta revisar.*  
-  - 🟢 / 🔵 **VERDE / AZUL (Informativo):** Luces altas, direccionales encendidas.
+**Sofía (Conductora Principiante)** `😰 Susto en el Tablero`:
+*aferrándose al volante con los ojos clavados en el ícono amarillo*
+> "¡¡CHARU, EL MOTORCITO AMARILLO!! ¡Se prendió el Check Engine! Llamé a un taller rápido y me dijeron que seguramente se dañó el convertidor catalítico o la caja de velocidades..."
 
-**VIÑETA 3:**  
-*Charu saca un pequeño conector Bluetooth de $15 USD y lo enchufa bajo el volante:*  
-- **Charu:** — Todos los autos desde 1996 tienen este puerto trapezoidal de 16 pines: el **conector OBD-II**. Conectamos este escáner barato y leemos el código en el celular...  
-- **[CELULAR DE ÁLEX]:** *Código P0442 — Fuga menor en el sistema EVAP de gases.*  
-- **Álex:** — ¿Fuga del sistema EVAP? ¿Eso qué significa?
+**Charu (Piloto y Mentor)** `🚦 Semáforo ISO`:
+*conectando un pequeño escáner OBD-II Bluetooth de $15 USD bajo el volante*
+> "¡Calma! Recuerda el código de colores ISO: Azul/Verde = Sistema activo; Amarillo ámbar = Precaución/Atención programada (el auto rueda seguro, no hay que llamar grúa); Rojo = Peligro crítico (apagar de inmediato); Amarillo parpadeante = Falla de encendido severa (detenerse)."
 
-**VIÑETA 4:**  
-*Charu se baja, camina a la tapa de gasolina, la gira y hace ¡CLIC! tres veces con fuerza:*  
-- **Charu:** — ¡Significa que en la gasolinera cerraron la tapa de combustible floja y se escapaban vapores! Apretamos la tapa, borramos el código con la app y... ¡testigo apagado!  
-- **Álex:** — ¡No me lo puedo creer! En un taller deshonesto me habrían cobrado $300 USD diciendo que cambiaron tres sensores.
+**Charu (Piloto y Mentor)** `📱 Diagnóstico en Vivo`:
+*mostrando la pantalla del teléfono de Sofía conectada al escáner*
+> "El escáner arroja: 'Código P0455: Fuga grande en sistema EVAP'. ¿Cargaste gasolina esta mañana, Sofía?"
+
+**Sofía (Conductora Principiante)** `💡 ¡Resolución en 5 Segundos!`:
+*bajando del auto, cerrando la tapa del combustible y girándola con fuerza*
+> "¡Sí! El despachador de la gasolinera la dejó floja. La apreté hasta escuchar los 3 clics ('¡CLIC-CLIC-CLIC!'), borré el código con la aplicación... ¡y la luz jamás volvió a encenderse! ¡Cero dólares gastados!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Si el Check Engine parpadea (titila) como loco en vez de quedarse fijo, significa fallo grave de encendido que puede destruir el catalizador. En ese caso no aceleres y detente pronto."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Aprieta siempre el tapón del tanque de combustible hasta escuchar 3 clics firmes; una tapa floja dispara el código EVAP de Check Engine simulando una avería grave."*

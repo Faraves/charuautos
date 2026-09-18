@@ -3,42 +3,35 @@
 
 ---
 
-![Episodio 08: Filtro de Cabina y Bujías](assets/comic_panel_08_filtro_cabina.jpg)
-*Viñeta Principal: Álex y Charu extrayendo el filtro de cabina antipolen detrás de la guantera en solo 5 minutos.*
+![Respirando Aire Puro en la Guantera](assets/comic_panel_08_filtro_cabina.jpg)
+*Filtro de cabina en 5 minutos, bujías y correas*
 
 ---
 
-### [ESCENA: Dentro del habitáculo del auto]
+### [ESCENA: Sofía enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Cada vez que Álex encendía el aire acondicionado, salía un olor nauseabundo a calcetín húmedo y tierra mojada.
+> Sofía tose y estornuda mientras una nube de polvo microscópico invade la cabina.
 
-**VIÑETA 1:**  
-*Álex estornudando con los ojos llorosos mientras maneja.*  
-- **Álex:** — *¡¡Atchííís!!* No soporto este olor a humedad. Fui a un taller y me dijeron que tenían que desmontar todo el tablero por $150 USD...  
-- **Charu (sentado de copiloto):** — ¡Mienten con descaro! Tienes el **filtro de cabina antipolen** colapsado de hongos y hojas secas. Vamos a cambiarlo nosotros mismos en **5 minutos y por $10 dólares**.
+💥 **[EFECTO SONORO VISUAL]:** *¡ATCHÍÍÍS!* (Ojos llorosos y aroma a humedad insoportable)
 
-**VIÑETA 2:**  
-*Charu presiona los dos topes plásticos laterales de la guantera y la deja caer suavemente:*  
-- **Charu:**  
-  1. *Abre la guantera y vacíala.*  
-  2. *Presiona los dos ganchos laterales hacia adentro para liberar los topes.*  
-  3. *Retira la tapa horizontal que dice "AIR FLOW".*  
-  4. *¡Extrae el cartucho de filtro viejo!*  
-- **[ONOMATOPEYA]:** *¡CRAC-CLIC!*
+**Sofía (Conductora Principiante)** `🤢 Asco y Frustración`:
+*tapándose la nariz con una mano y apagando el ventilador*
+> "¡Qué asco! Fui a un taller a preguntar y me dijeron que tenían que desmontar todo el tablero por $150 USD para hacerle una 'higienización profunda' de cuatro horas..."
 
-**VIÑETA 3:**  
-*Álex sostiene el filtro viejo (negro, lleno de insectos y tierra) junto al filtro nuevo blanco inmaculado:*  
-- **Álex (asqueado):** — ¡Qué asco! ¿Todo esto estaba respirando mi familia cada vez que prendía el ventilador?  
-- **Charu:** — ¡Así es! El filtro de cabina debe cambiarse cada 15.000 km o una vez al año. Y el truco de oro: **apaga el botón A/C 2 minutos antes de llegar a tu destino**, dejando solo el soplador encendido. Eso seca el evaporador y evita que nazcan hongos.
+**Charu (Piloto y Mentor)** `🐶 ¡Ni se te Ocurra!`:
+*apuntando hacia la parte posterior de la guantera con una linterna*
+> "¡Te quieren ver la cara! El 90% de los malos olores provienen simplemente del filtro de cabina antipolen saturado. No hay que desmontar nada: abres la guantera, presionas dos topes laterales plásticos, destrabas la compuerta y extraes el cartucho."
 
-**VIÑETA 4:**  
-*Charu sostiene una bujía limpia y una correa de goma:*  
-- **Charu:** — Y bajo el capó:  
-  - Las bujías de Iridio duran hasta 100.000 km; si la punta está café con leche, la combustión es perfecta.  
-  - La correa de accesorios se revisa buscando grietas en sus ranuras. Si chilla al encender en la mañana, está floja o desgastada.
+**Sofía (Conductora Principiante)** `😲 ¡Increíblemente Fácil!`:
+*extrayendo el filtro viejo repleto de hojas secas y colocando uno nuevo con carbón activado*
+> "¡No tardé ni 4 minutos de reloj! El filtro nuevo me costó apenas $10 dólares en la refaccionaria. ¡Me acabo de ahorrar $140 USD de mano de obra y el aire ahora huele a brisa de montaña!"
+
+**Charu (Piloto y Mentor)** `🌿 Truco Maestro`:
+*respirando hondo con aire puro*
+> "Y acuérdate de mi regla de oro: apaga el botón A/C 2 minutos antes de apagar el motor. El soplador secará las gotas del evaporador y los hongos jamás volverán a colonizar tu auto."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Nunca confundas la correa de accesorios externa con la correa de distribución interna del motor. Si la correa de accesorios se rompe, te quedas sin alternador; si la correa de distribución se corta en marcha, los pistones destruyen las válvulas."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Apaga el botón A/C dos minutos antes de llegar a tu destino manteniendo el soplador encendido; esto secará la condensación y evitará que nazcan hongos."*

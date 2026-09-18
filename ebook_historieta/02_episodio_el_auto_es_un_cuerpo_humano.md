@@ -3,46 +3,35 @@
 
 ---
 
-![Episodio 02: Anatomía del Motor](assets/comic_panel_02_cuerpo_humano.jpg)
-*Viñeta Principal: Rayos X pedagógicos de Charu mostrando las analogías del cuerpo humano y el ciclo de 4 tiempos.*
+![El Auto es un Cuerpo Humano](assets/comic_panel_02_cuerpo_humano.jpg)
+*Anatomía del vano motor y el ciclo de 4 tiempos sin jerga*
 
 ---
 
-### [ESCENA: Vano motor del auto, vista panorámica]
+### [ESCENA: Bajo la luz clara de la cochera, Sofía observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Frente al capó abierto, Álex sentía que miraba los circuitos de una nave espacial alienígena. Mangueras, cables y bloques de metal sin sentido aparente.
+> Sofía mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.
 
-**VIÑETA 1:**  
-*Álex rascándose la cabeza con expresión de desconcierto total.*  
-- **Álex:** — Charu, sé sincero... ¿Cómo diablos hace esta caja de fierros para mover toneladas de peso con solo pisar un pedal?  
-- **Charu:** — Muy simple, Álex. Olvídate de la física cuántica. **Un auto funciona exactamente igual que el cuerpo humano.**
+**Sofía (Conductora Principiante)** `🤯 Confusión Total`:
+*rascándose la cabeza y señalando el laberinto de cables y tubos de acero*
+> "Charu, sé totalmente honesto... ¿Cómo diablos hace este bloque de fierros para mover más de una tonelada de peso con solo acariciar un pedal?"
 
-**VIÑETA 2:**  
-*Charu activa su lente holográfica. El vano motor se ilumina en azul y rojo:*  
-- **Charu:**  
-  - 🫀 **El Motor es el Corazón:** Bombea fuerza a las ruedas.  
-  - 🩸 **El Aceite es la Sangre:** Lubrica y limpia cada rincón vital.  
-  - 🫁 **El Filtro y la Admisión son los Pulmones:** Inhalan oxígeno limpio.  
-  - 🍔 **La Gasolina es la Comida:** La energía química que se quema.  
-  - 💨 **El Escape es la Exhalación:** Expulsa los gases quemados hacia atrás.  
-  - 🧠 **La ECU es el Cerebro:** La computadora que coordina cada latido.
+**Charu (Piloto y Mentor)** `💡 Analogía Médica`:
+*apuntando con una varita holográfica brillante al corazón del motor*
+> "¡Míralo como un cuerpo humano! Motor = Corazón; Aceite sintético = Sangre que lubrica y enfría; Filtro de aire = Pulmones; Gasolina = Comida; Tubo de escape = Exhalación; Computadora ECU = Cerebro digital."
 
-**VIÑETA 3:**  
-*Primer plano a un cilindro animado mostrando el ciclo de 4 tiempos:*  
-- **Charu:** — Y dentro de cada cilindro ocurre la magia de los **4 TIEMPOS**:  
-  1. ⬇️ **Admisión:** *¡Aspira aire y gasolina!*  
-  2. ⬆️ **Compresión:** *¡Aprieta la mezcla con fuerza!*  
-  3. 💥 **Explosión:** *¡La bujía enciende la chispa y empuja el pistón con furia!*  
-  4. ⬆️ **Escape:** *¡Abre la válvula y barre el humo afuera!*  
-- **[ONOMATOPEYA]:** *¡BUM! ¡BRRRROOOOM!*
+💥 **[EFECTO SONORO VISUAL]:** *¡BUM! ¡BRROOOM!* (Ciclo de 4 Tiempos: Admisión ➡️ Compresión ➡️ Explosión ➡️ Escape)
 
-**VIÑETA 4:**  
-*Álex señala con el dedo los componentes del vano motor con total claridad.*  
-- **Álex:** — ¡Guau! Entonces si el filtro está tapado, el auto no respira; si el aceite está seco, le da un infarto... ¡Tiene todo el sentido del mundo!  
-- **Charu:** — ¡Disté en el clavo, novato! Ya hablas el idioma de las máquinas.
+**Sofía (Conductora Principiante)** `💡 ¡Momento Eureka!`:
+*con los ojos brillantes y una gran sonrisa de entendimiento*
+> "¡Eureka! ¡Tiene todo el sentido del mundo! Si el aceite se seca, le da un infarto; si el filtro se tapa, el motor se asfixia; y si la gasolina está sucia, se indigesta. ¡Por fin lo entiendo sin fórmulas raras!"
+
+**Charu (Piloto y Mentor)** `🏆 ¡Exacto!`:
+*sonriendo satisfecho con las orejas levantadas*
+> "¡Esa es la mentalidad! Y recuerda: cuando enciendas en frío por la mañana, dale 30 a 60 segundos antes de moverte para que la 'sangre' llegue a cada rincón del 'corazón'."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"El 75% del desgaste del motor ocurre en los primeros 90 segundos tras encenderlo en frío. Deja que el aceite suba y lubrique antes de exigirle potencia."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"El 75% del desgaste de un motor ocurre en los primeros 90 segundos posteriores al encendido en frío; nunca aceleres a fondo al arrancar."*

@@ -3,41 +3,35 @@
 
 ---
 
-![Episodio 05: Fluidos y Detección de Fugas](assets/comic_panel_05_charco_colores.jpg)
-*Viñeta Principal: Álex en pánico por un charco en el suelo; Charu analiza los fluidos con la varilla de aceite y la guía de colores.*
+![El Misterio del Charco de Colores](assets/comic_panel_05_charco_colores.jpg)
+*Varilla de aceite, niveles y diagnóstico visual de fugas en el piso*
 
 ---
 
-### [ESCENA: Garaje de Álex, piso de cemento]
+### [ESCENA: Sofía retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Un charco debajo del auto es la peor pesadilla visual de un novato. Álex retrocedió su auto y vio una mancha líquida en el piso.
+> Los ojos de Sofía se abren desmesuradamente al descubrir la mancha en el piso.
 
-**VIÑETA 1:**  
-*Álex sudando frío mirando una mancha transparente que gotea bajo el motor.*  
-- **Álex:** — ¡¡NO PUEDE SER!! ¡Se le está saliendo la vida al motor! ¡Voy a tener que gastar todos mis ahorros!  
-- **Charu (acercándose con una servilleta blanca):** — ¡Tranquilo, drama-queen! Pon la servilleta sobre el líquido y déjame examinarlo.
+**Sofía (Conductora Principiante)** `😱 ¡Pánico Desesperado!`:
+*apoyando ambas manos en sus mejillas con expresión de telenovela dramática*
+> "¡¡UN CHARCO EN EL PISO!! ¡Se le salió un órgano vital al auto! ¡Se le está vaciando el motor! ¡Dime que no voy a tener que empeñar mi salario!"
 
-**VIÑETA 2:**  
-*Charu toca la servilleta, la huele y sonríe ampliamente:*  
-- **Charu:** — Incoloro, inodoro, líquido como agua pura... ¡Es solo condensación del aire acondicionado! Tu evaporador está enfriando perfectamente y drena el agua hacia afuera. ¡Falsa alarma!  
-- **Álex (respirando aliviado):** — ¿O sea que no está roto?  
-- **Charu:** — ¡Cero peligro! Pero aprende esta **PALETA DE FLUIDOS VITALES**:  
-  - 🟢 / 🌺 **Verde o Rosa fosforescente:** *Refrigerante.* Dulzón y resbaloso. ¡Detén el auto, riesgo de fundir el motor!  
-  - 🟤 / ⚫ **Marrón oscuro o negro viscoso:** *Aceite de motor.* Revisa la varilla de inmediato.  
-  - 🔴 **Rojo brillante traslúcido:** *Aceite de transmisión (ATF).* Fuga en mangueras de caja o dirección.  
-  - 🟡 **Amarillo pálido aceitoso:** *Líquido de frenos.* ¡PELIGRO LETAL! No conduzcas.
+**Charu (Piloto y Mentor)** `🧪 Prueba Científica`:
+*agachándose con calma zen y apoyando una servilleta blanca sobre la gota*
+> "¡Respira hondo, Sofía! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
 
-**VIÑETA 3:**  
-*Charu toma la varilla de aceite de motor y le muestra a Álex el ritual sagrado de los 3 pasos:*  
-- **Charu:**  
-  1. 🧹 *Extraer la varilla y limpiarla con papel sin mirar.*  
-  2. ⬇️ *Reintroducirla hasta el fondo.*  
-  3. 🔍 *Extraerla nuevamente y leer el nivel entre MIN y MAX.*  
-- **Álex:** — ¡Mira! El aceite cubre justo el 80% entre el punto mínimo y el máximo, color ámbar claro.  
-- **Charu:** — ¡Nivel perfecto! Recuerda: ni una gota por debajo del MIN, ni una gota por encima del MAX. El sobrellenado crea espuma y rompe retenes.
+**Charu (Piloto y Mentor)** `🎨 La Paleta de Colores`:
+*mostrando una paleta de pintor con las gotas de colores mecánicos*
+> "Memoriza el arcoíris de fluidos: Rosa o Verde fosforescente = Refrigerante dulce (peligro); Ámbar o Negro viscoso = Aceite de motor; Rojo vino = Fluido de transmisión ATF; Amarillo paja aceitoso = Líquido de frenos (¡alerta máxima!)."
+
+💥 **[EFECTO SONORO VISUAL]:** *¡FALSA ALARMA!* (Varilla de aceite leída en frío: nivel al 80% entre MIN y MAX)
+
+**Sofía (Conductora Principiante)** `😌 ¡Alivio Cósmico!`:
+*secándose una gota de sudor de la frente con una sonrisa radiante*
+> "¡Ufff, qué respiro! Ya aprendí: si es agua pura debajo del copiloto, es el A/C enfriando; si tiene color y olor químico, entonces sí busco la linterna."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Nunca uses agua de grifo en el radiador. El agua común hierve a 100°C, oxida el bloque de motor y destruye la bomba de agua. Usa refrigerante 50/50 OAT."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Jamás uses agua de grifo en el radiador; los minerales corroen los conductos internos y hierve a solo 100°C. Usa refrigerante OAT certificado al 50/50."*

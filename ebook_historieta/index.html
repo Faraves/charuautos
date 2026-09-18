@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CharuAutos — Las Aventuras de Charu y el Conductor Inteligente (Historieta Ilustrada)</title>
-  <meta name="description" content="Novela gráfica y libro de historietas ilustradas de mecánica básica preventiva para conductores principiantes.">
+  <title>CharuAutos — Las Aventuras de Charu y Sofía (Historieta Ilustrada)</title>
+  <meta name="description" content="Novela gráfica y libro de historietas ilustradas de mecánica básica preventiva para conductores con cero conocimientos. Protagonizado por Charu y Sofía.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#070a0f">
   <link rel="shortcut icon" href="assets/favicon.ico">
@@ -13,7 +13,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -25,6 +25,7 @@
       --crimson-racing: #ff2a5f;
       --amber-gold: #ffb703;
       --green-safe: #38ef7d;
+      --purple-accent: #a855f7;
       --text-white: #ffffff;
       --text-muted: #94a3b8;
       --border-cyan: rgba(0, 242, 254, 0.35);
@@ -66,12 +67,27 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .brand-avatar {
-      width: 42px;
-      height: 42px;
+    .brand-avatars {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .brand-avatar-charu {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 2px solid var(--cyan-neon);
-      box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+      z-index: 2;
+    }
+    .brand-avatar-sofia {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--amber-gold);
+      box-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
+      margin-left: -14px;
+      z-index: 1;
     }
     .brand-title {
       font-family: var(--font-display);
@@ -85,8 +101,8 @@
       background: linear-gradient(135deg, var(--blue-electric), var(--cyan-neon));
       color: #050811;
       font-weight: 800;
-      font-size: 0.75rem;
-      padding: 3px 8px;
+      font-size: 0.72rem;
+      padding: 2px 8px;
       border-radius: 6px;
       letter-spacing: 0.5px;
       margin-top: 2px;
@@ -204,7 +220,7 @@
       border-radius: 12px;
       overflow: hidden;
       border: 2px solid rgba(0, 242, 254, 0.4);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       background: #000;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     }
@@ -219,12 +235,31 @@
       transform: scale(1.01);
     }
 
+    /* SCENE SETTING CARD */
+    .scene-setting-card {
+      background: rgba(16, 23, 38, 0.9);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-left: 5px solid var(--cyan-neon);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .scene-setting-card strong {
+      color: var(--cyan-neon);
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     /* DIALOGUE & SCRIPT BOX */
     .comic-script-stream {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      background: rgba(10, 16, 26, 0.7);
+      gap: 16px;
+      background: rgba(10, 16, 26, 0.75);
       border: 1px solid rgba(30, 41, 59, 0.8);
       border-radius: 12px;
       padding: 20px;
@@ -234,15 +269,71 @@
       align-items: flex-start;
       gap: 14px;
     }
+    .char-avatar-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
     .char-avatar {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: 2px solid var(--cyan-neon);
-      flex-shrink: 0;
       object-fit: cover;
       box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
     }
+    .char-role-tag {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      max-width: 68px;
+      line-height: 1.1;
+    }
+
+    .dialogue-content {
+      flex: 1;
+    }
+    .dialogue-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+    .char-name-label {
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 800;
+      color: var(--blue-electric);
+      text-transform: uppercase;
+    }
+    .char-emotion-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.3px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+    }
+    .emotion-alert { background: rgba(255, 42, 95, 0.2); color: #ff2a5f; border-color: #ff2a5f; }
+    .emotion-panic { background: rgba(255, 42, 95, 0.15); color: #ff758c; border-color: #ff758c; }
+    .emotion-eureka { background: rgba(0, 242, 254, 0.2); color: #00f2fe; border-color: #00f2fe; }
+    .emotion-curious { background: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: #a855f7; }
+    .emotion-mentor { background: rgba(0, 136, 255, 0.2); color: #38bdf8; border-color: #0088ff; }
+    .emotion-honest { background: rgba(56, 239, 125, 0.2); color: #38ef7d; border-color: #38ef7d; }
+    .emotion-trap { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: #ef4444; }
+    .emotion-relief { background: rgba(56, 239, 125, 0.15); color: #4ade80; border-color: #22c55e; }
+    .emotion-empowered { background: rgba(255, 183, 3, 0.2); color: #facc15; border-color: #eab308; }
+    .emotion-shield { background: rgba(0, 242, 254, 0.25); color: #38bdf8; border-color: #00f2fe; }
+    .emotion-happy { background: rgba(56, 239, 125, 0.2); color: #86efac; border-color: #4ade80; }
+    .emotion-detective { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: #f59e0b; }
+
     .speech-bubble {
       background: #ffffff;
       color: #0f172a;
@@ -253,7 +344,7 @@
       font-size: 1.05rem;
       font-weight: 700;
       line-height: 1.4;
-      max-width: 85%;
+      max-width: 90%;
       border: 2px solid #0f172a;
       box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
     }
@@ -266,33 +357,49 @@
       border-style: solid;
       border-color: transparent #ffffff transparent transparent;
     }
-    .char-name-label {
-      font-size: 0.8rem;
+    .stage-direction {
+      display: block;
       font-family: var(--font-body);
-      font-weight: 800;
-      color: var(--blue-electric);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-style: italic;
+      color: #475569;
       margin-bottom: 4px;
-      text-transform: uppercase;
     }
-    .char-alex .speech-bubble { background: #f0fdf4; border-color: #166534; }
-    .char-alex .speech-bubble::before { border-color: transparent #f0fdf4 transparent transparent; }
-    .char-alex .char-name-label { color: #16a34a; }
+
+    /* Character specific bubble accents */
+    .char-sofia .speech-bubble { background: #fdf2f8; border-color: #be185d; }
+    .char-sofia .speech-bubble::before { border-color: transparent #fdf2f8 transparent transparent; }
+    .char-sofia .char-name-label { color: #db2777; }
+    .char-sofia .char-avatar { border-color: #f43f5e; box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); }
+
+    .char-charu .speech-bubble { background: #f0fdfa; border-color: #0f766e; }
+    .char-charu .speech-bubble::before { border-color: transparent #f0fdfa transparent transparent; }
+    .char-charu .char-name-label { color: #0d9488; }
+    .char-charu .char-avatar { border-color: var(--cyan-neon); }
+
     .char-carlos .speech-bubble { background: #eff6ff; border-color: #1e40af; }
     .char-carlos .speech-bubble::before { border-color: transparent #eff6ff transparent transparent; }
+    .char-carlos .char-name-label { color: #2563eb; }
+    .char-carlos .char-avatar { border-color: #3b82f6; }
+
     .char-chanchullo .speech-bubble { background: #fef2f2; border-color: #991b1b; }
     .char-chanchullo .speech-bubble::before { border-color: transparent #fef2f2 transparent transparent; }
+    .char-chanchullo .char-name-label { color: #dc2626; }
+    .char-chanchullo .char-avatar { border-color: #ef4444; }
 
     .narrator-card {
       background: #fef3c7;
       color: #78350f;
       border: 2px solid #b45309;
       border-radius: 8px;
-      padding: 10px 16px;
+      padding: 12px 18px;
       font-size: 0.95rem;
       font-weight: 700;
       font-family: var(--font-body);
       box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
       width: 100%;
+      line-height: 1.45;
     }
 
     .onomatopoeia-badge {
@@ -331,7 +438,7 @@
       background: linear-gradient(90deg, rgba(255, 183, 3, 0.15), rgba(255, 183, 3, 0.05));
       border: 2px solid var(--amber-gold);
       border-radius: 10px;
-      padding: 12px 18px;
+      padding: 14px 18px;
       margin-top: 20px;
       display: flex;
       align-items: center;
@@ -636,7 +743,6 @@
         margin: 0 !important;
         gap: 0 !important;
       }
-      /* Ensure ALL episodes print sequentially regardless of active slide mode */
       .episode-card {
         display: block !important;
         opacity: 1 !important;
@@ -690,6 +796,15 @@
         object-fit: contain;
         margin: 0 auto;
       }
+      .scene-setting-card {
+        background: #f1f5f9 !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        font-size: 9pt !important;
+      }
+      .scene-setting-card strong {
+        color: #0f172a !important;
+      }
       .comic-script-stream {
         background: #f8fafc !important;
         border: 1.5px solid #cbd5e1 !important;
@@ -708,6 +823,10 @@
       .speech-bubble::before {
         display: none !important;
       }
+      .stage-direction {
+        color: #64748b !important;
+        font-size: 8pt !important;
+      }
       .char-avatar {
         width: 38px !important;
         height: 38px !important;
@@ -717,6 +836,12 @@
         color: #0f172a !important;
         font-weight: 800 !important;
         font-size: 8pt !important;
+      }
+      .char-emotion-badge {
+        background: #f1f5f9 !important;
+        border: 1px solid #0f172a !important;
+        color: #0f172a !important;
+        font-size: 7.5pt !important;
       }
       .narrator-card {
         background: #fef3c7 !important;
@@ -784,10 +909,13 @@
   <!-- Top Navbar -->
   <header class="top-navbar no-print">
     <a href="#ep00" class="brand-box" id="brand-link" title="Volver al inicio de la historieta">
-      <img src="assets/charu_avatar.png" alt="Charu" class="brand-avatar">
+      <div class="brand-avatars">
+        <img src="assets/charu_avatar.png" alt="Charu" class="brand-avatar-charu">
+        <img src="assets/sofia_avatar.png" alt="Sofía" class="brand-avatar-sofia">
+      </div>
       <div>
         <div class="brand-title">CHARU<span>AUTOS</span></div>
-        <span class="brand-pill">HISTORIETA ILUSTRADA • NOVELA GRÁFICA</span>
+        <span class="brand-pill">HISTORIETA ILUSTRADA • CHARU & SOFÍA</span>
       </div>
     </a>
 
@@ -862,41 +990,81 @@
         <img src="assets/comic_cover_historieta.jpg" alt="Prólogo y Personajes" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Sofía estrena las llaves de su primer vehículo.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Bienvenido al universo ilustrado de CharuAutos. Una novela gráfica educativa diseñada para que cualquier persona aprenda mecánica preventiva con diversión, humor y cero jerga técnica.</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> ¡Bienvenida al universo de CharuAutos! Una novela gráfica concebida para que cualquier persona, sin importar su experiencia previa, aprenda a cuidar su vehículo, prevenir averías costosas y blindarse contra engaños de taller con humor, arte y ciencia práctica.</div>
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu (Piloto y Mentor)" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu (Piloto y Mentor)</div>
-                <div class="speech-bubble">¡Hola, futuro conductor inteligente! Soy Charu, tu copiloto de carreras. Acompáñame a través de 14 episodios donde salvaremos a Álex de cometer errores costosos y desarmaremos las trampas de los malos talleres.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🐾 ¡Copiloto al Rescate!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apoyado sobre el capó con las gafas de piloto arriba y una sonrisa cómplice]</em>
+                  "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Sofía a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex (Conductor Novato)" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex (Conductor Novato)</div>
-                <div class="speech-bubble">¡Hola a todos! Acabo de comprar mi primer auto y cada vez que veo una luz en el tablero sudo frío. ¡Espero que Charu me enseñe a no quedarme varado!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-eureka">✨ ¡Emocionada pero con Dudas!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[sosteniendo con orgullo el llavero de su auto rojo, aunque con una gota de sudor frío]</em>
+                  "¡Hola! Por fin logré comprar mi primer auto y me encanta la libertad que siento al manejar... pero cada vez que escucho un ruido raro o veo una luz encenderse en el velocímetro, ¡siento que voy a quedar en bancarrota! ¡Necesito que Charu me convierta en una conductora inteligente!"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-carlos">
-              <img src="assets/carlos_avatar.png" alt="Don Carlos (Mecánico Honesto)" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Carlos (Mecánico Honesto)</div>
-                <div class="speech-bubble">En mi taller AutoSolución creemos que la honestidad no da clientes para una semana, da clientes para toda la vida. ¡Aquí aprenderás a exigir repuestos de calidad y presupuestos transparentes!</div>
+              <div class="char-avatar-box">
+                <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
+                <span class="char-role-tag">El Mecánico Honesto</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Carlos</span>
+                  <span class="char-emotion-badge emotion-honest">🔧 ¡Maestro de Confianza!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[limpiándose las manos con un paño limpio en su taller AutoSolución]</em>
+                  "En mi taller tenemos una máxima sagrada: la honestidad no da clientes para una semana, da clientes para toda la vida. Aquí aprenderás a exigir diagnósticos por escrito, ver piezas sustituidas y reconocer un trabajo profesional con garantía."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-chanchullo">
-              <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo (El Taller Sospechoso)" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Chanchullo (El Taller Sospechoso)</div>
-                <div class="speech-bubble">¡Jejeje! Mientras existan conductores desinformados que no revisan el aceite, ¡mi negocio de facturas infladas seguirá siendo muy próspero!</div>
+              <div class="char-avatar-box">
+                <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo" class="char-avatar">
+                <span class="char-role-tag">El Taller Sospechoso</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Chanchullo</span>
+                  <span class="char-emotion-badge emotion-trap">😈 ¡Trampa del Taller!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[frotándose las manos avariciosamente junto a una calculadora desgastada]</em>
+                  "¡Je, je, je! Mientras existan conductoras que no sepan mirar el aceite ni pregunten qué repuestos les ponen, ¡mi negocio de presupuestos inflados seguirá viento en popa!"
+                </div>
               </div>
             </div>
             
@@ -904,7 +1072,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Un auto no es un monstruo de metal: es una máquina noble que recompensa a quien aprende su lenguaje.</span>
+        <span class="golden-rule-text">Un auto no es un monstruo de metal: es una máquina noble que recompensa con años de fidelidad a quien aprende su lenguaje.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -921,7 +1089,7 @@
         <div class="ep-title-box">
           <span class="ep-badge">EPISODIO 01</span>
           <h2>El Misterio del Capó y las 5 Reglas de Oro</h2>
-          <p>Seguridad física, sentido común y riesgos del refrigerante hirviendo</p>
+          <p>Seguridad física, sentido común y peligros del refrigerante hirviendo</p>
         </div>
       </div>
 
@@ -929,39 +1097,105 @@
         <img src="assets/comic_panel_01_seguridad.jpg" alt="El Misterio del Capó y las 5 Reglas de Oro" loading="lazy">
       </div>
 
-      <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Sábado soleado. Álex contempla su auto nuevo. Nota un silbido bajo el capó tras un viaje y decide actuar como mecánico aficionado...</div>
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Sábado por la mañana en la cochera. Tras regresar de un viaje por carretera, Sofía nota un silbido vaporoso bajo el capó y decide abrirlo por primera vez para ver si le falta agua.
+      </div>
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Bueno, esto parece fácil... Solo desenrosco esta tapa metálica del radiador para ver si le falta agua...</div>
+      <div class="comic-script-stream">
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Sofía abre el seguro del capó. El vano motor irradia una ola de calor sofocante. Ve una tapa metálica brillante con un símbolo de advertencia y estira el brazo decidida...</div>
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">🤔 Curiosidad Ingenua</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[con la mano a escasos centímetros de la tapa metálica del radiador]</em>
+                  "Bueno... esto no debe ser tan difícil. Solo desenrosco esta tapita plateada para echarle un poco de agua del grifo..."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡SSSSSSSTTTTT!
-              <span class="onomatopoeia-desc">Vapor silbando a más de 110°C</span>
+              ¡SSSSSS-CLAC!
+              <span class="onomatopoeia-desc">Vapor a presión silbando a más de 115°C</span>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡¡ALTO AHÍ, ÁLEX!! ¡Si giras esa tapa caliente, el refrigerante presurizado a 125°C saldrá como un géiser directo a tu cara y brazos!</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🛑 ¡ALTO AHÍ!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[aterrizando en un salto acrobático y apartando el brazo de Sofía de un manotazo firme]</em>
+                  "¡¡DETENTE, SOFÍA!! ¡Si giras esa tapa ahora mismo, el refrigerante presurizado a 125°C estallará como un géiser hirviendo directo a tu cara, cuello y brazos causando quemaduras de tercer grado!"
+                </div>
               </div>
             </div>
             
-<div class="narrator-card">📖 <strong>NARRADOR:</strong> Charu despliega las 5 Reglas de Oro: 1. Motor caliente = Zona Prohibida. 2. Superficie plana y freno puesto. 3. El gato hidráulico jamás sostiene el auto solo (usar torres). 4. Desconectar borne negativo de batería. 5. Gafas y guantes siempre.</div>
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Uff, gracias Charu! ¡Casi termino en la sala de urgencias el primer día de tener auto!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😱 ¡Pánico y Asombro!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[retrocediendo dos pasos con las manos en el pecho y el corazón acelerado]</em>
+                  "¡¿125 grados?! ¡¿Una bomba de vapor en mi propio auto?! ¡Casi termino en el hospital el primer fin de semana!"
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">📋 Reglas Sagradas</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[desplegando una infografía holográfica con 5 mandamientos de seguridad]</em>
+                  "¡Tranquila, para eso estamos aquí! Memoriza las 5 Reglas Inviolables: 1. Motor caliente = Zona Prohibida (espera 45 min). 2. Superficie plana y freno puesto. 3. El gato hidráulico jamás sostiene el auto solo (usar torres). 4. Desconectar el borne negativo de la batería antes de tocar cables. 5. Gafas y guantes siempre."
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-relief">😌 ¡Lección Aprendida!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[colocándose unos guantes de nitrilo y gafas protectoras con renovada compostura]</em>
+                  "¡Anotadísimo en mi mente! La seguridad física va primero. ¡Ahora explícame qué es lo que hace latir a este auto!"
+                </div>
               </div>
             </div>
             
@@ -969,7 +1203,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Nunca abras la tapa del radiador ni del vaso presurizado con el motor caliente. Deja enfriar 45 minutos.</span>
+        <span class="golden-rule-text">Nunca abras la tapa del radiador ni del vaso presurizado con el motor caliente. Deja enfriar al menos 45 minutos.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -994,38 +1228,87 @@
         <img src="assets/comic_panel_02_cuerpo_humano.jpg" alt="El Auto es un Cuerpo Humano" loading="lazy">
       </div>
 
-      <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Frente al capó abierto, Álex siente que mira los circuitos de una nave espacial alienígena...</div>
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Bajo la luz clara de la cochera, Sofía observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.
+      </div>
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Charu, sé sincero... ¿Cómo hace esta caja de fierros para mover toneladas de peso con solo pisar un pedal?</div>
+      <div class="comic-script-stream">
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Sofía mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.</div>
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">🤯 Confusión Total</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[rascándose la cabeza y señalando el laberinto de cables y tubos de acero]</em>
+                  "Charu, sé totalmente honesto... ¿Cómo diablos hace este bloque de fierros para mover más de una tonelada de peso con solo acariciar un pedal?"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Muy simple! El auto es un cuerpo humano: Motor = Corazón; Aceite = Sangre; Filtro y Admisión = Pulmones; Gasolina = Comida; Escape = Exhalación; Computadora = Cerebro.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">💡 Analogía Médica</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apuntando con una varita holográfica brillante al corazón del motor]</em>
+                  "¡Míralo como un cuerpo humano! Motor = Corazón; Aceite sintético = Sangre que lubrica y enfría; Filtro de aire = Pulmones; Gasolina = Comida; Tubo de escape = Exhalación; Computadora ECU = Cerebro digital."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡BUM! ¡BRROOOM!
-              <span class="onomatopoeia-desc">Los 4 Tiempos: Admisión ➡️ Compresión ➡️ Explosión ➡️ Escape</span>
+              <span class="onomatopoeia-desc">Ciclo de 4 Tiempos: Admisión ➡️ Compresión ➡️ Explosión ➡️ Escape</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Tiene todo el sentido del mundo! Si el aceite se seca, le da un infarto; si el filtro se tapa, se asfixia. ¡Ya entiendo mi motor!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-eureka">💡 ¡Momento Eureka!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[con los ojos brillantes y una gran sonrisa de entendimiento]</em>
+                  "¡Eureka! ¡Tiene todo el sentido del mundo! Si el aceite se seca, le da un infarto; si el filtro se tapa, el motor se asfixia; y si la gasolina está sucia, se indigesta. ¡Por fin lo entiendo sin fórmulas raras!"
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🏆 ¡Exacto!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[sonriendo satisfecho con las orejas levantadas]</em>
+                  "¡Esa es la mentalidad! Y recuerda: cuando enciendas en frío por la mañana, dale 30 a 60 segundos antes de moverte para que la 'sangre' llegue a cada rincón del 'corazón'."
+                </div>
               </div>
             </div>
             
@@ -1033,7 +1316,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">El 75% del desgaste del motor ocurre en los primeros 90 segundos tras encender en frío.</span>
+        <span class="golden-rule-text">El 75% del desgaste de un motor ocurre en los primeros 90 segundos posteriores al encendido en frío; nunca aceleres a fondo al arrancar.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1058,47 +1341,87 @@
         <img src="assets/comic_panel_03_kit_cajuela.jpg" alt="La Caja Mágica de la Cajuela" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Apertura de la cajuela del auto rojo de Sofía. En su interior reina el desorden: un paraguas quebrado, botellas de plástico, una toalla playera y bolsas de supermercado arrugadas.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> En la cajuela de Álex había un paraguas roto, botellas vacías, una toalla y un balón desinflado...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Charu se asoma a la cajuela abierta y parpadea atónito ante el caos acumulado.</div>
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Álex... Si hoy te quedas varado a las 11 de la noche en una ruta oscura, ¿planeas defenderte arrojándole el paraguas a los problemas?</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🤨 Inspección Severa</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[cruzando los brazos y levantando una ceja con ironía cómica]</em>
+                  "Sofía... Si hoy a las 11 de la noche en una autopista solitaria se te poncha una llanta, ¿planeas ahuyentar los peligros arrojándole ese paraguas roto y la toalla playera?"
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Bueno... ¡El vendedor me dijo que tenía rueda de auxilio!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
               </div>
-            </div>
-            
-
-            <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Armemos el kit táctico! 2 triángulos pesados, chaleco reflectante (en la guantera, te lo pones antes de bajar), linterna frontal, kit de mechas para ponchaduras y mini compresor 12V con manómetro.</div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😳 Vergüenza Divertida</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[sonrojándose mientras apila apenada los cacharros viejos fuera del maletero]</em>
+                  "¡Ups! Confieso que la cajuela se convirtió en el armario de lo que no sabía dónde guardar... ¡El vendedor me juró que venía con llanta de repuesto y no revisé nada más!"
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡CLIC! ¡EQUIPADO!
-              <span class="onomatopoeia-desc">Cajuela organizada con soporte antivuelco</span>
+              <span class="onomatopoeia-desc">El Kit Táctico resplandece ordenado en su estuche rígido</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Todo costó menos de $40 USD y me ahorra cientos en grúas innecesarias!</div>
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-shield">🛡️ Equipamiento Táctico</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[abriendo con orgullo un maletín negro con compartimentos de espuma de alta densidad]</em>
+                  "¡Aquí tienes tu kit táctico de rescate! 2 triángulos reflectantes de base pesada, linterna frontal LED recargable, minicompresor 12V con manómetro digital, kit de mechas vulcanizantes y cables pasa-corriente calibre 4 AWG. Y el chaleco reflectante va en la guantera: ¡te lo pones ANTES de abrir la puerta!"
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-empowered">💪 ¡Empoderada!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[guardando el kit táctico con firmeza y orden impecable]</em>
+                  "¡Todo cupo en un solo estuche compacto que costó menos de $45 USD! Ahora sé que si ocurre una eventualidad, tengo las armas necesarias para salir rodando."
+                </div>
               </div>
             </div>
             
@@ -1106,7 +1429,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Guarda el chaleco reflectante en la guantera o bajo el asiento, jamás en el fondo de la cajuela.</span>
+        <span class="golden-rule-text">Guarda siempre el chaleco reflectante en la guantera o debajo del asiento del conductor, jamás en el fondo de la cajuela.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1131,38 +1454,69 @@
         <img src="assets/comic_panel_04_inspeccion_360.jpg" alt="La Caminata del Detective" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Exterior de la vivienda. Sofía lleva cómicamente una gorra de detective y una lupa gigante en la mano. Charu la guía paso a paso alrededor de la carrocería del auto rojo.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> La mayoría arranca a ciegas... hasta que una llanta baja destruye el rin a las tres cuadras.</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> La inmensa mayoría de los conductores enciende el motor y arranca a ciegas... hasta que a los quinientos metros una llanta en el rin destruye el neumático.</div>
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Elemental, mi querido Álex! La Caminata 360° se divide en 3 tiempos: Diaria (30s alrededor del auto buscando charcos y llantas bajas), Semanal (3m abriendo capó en frío) y Mensual (15m calibrando manómetro en las 5 ruedas).</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-detective">🕵️‍♂️ Modo Detective</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[olfateando el suelo y señalando el perímetro del vehículo]</em>
+                  "¡Elemental, mi querida Sofía! La 'Caminata 360°' se divide en 3 rutinas: Diaria (30 segundos rodeando el auto buscando charcos o llantas bajas), Semanal (3 minutos abriendo capó en frío) y Mensual (15 minutos calibrando la presión de las 5 ruedas, incluida la de repuesto)."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Espera, Charu! En la llanta delantera izquierda veo un tornillo plateado clavado en el dibujo...</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">🧐 Ojo Clínico</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[arrodillándose junto a la rueda delantera izquierda e inspeccionando la goma con la lupa]</em>
+                  "¡Espera un segundo, Charu! Mira aquí... en el surco central de la llanta delantera... ¡hay un tornillo plateado con cabeza de estrella bien clavado!"
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡CLAVO DETECTADO!
-              <span class="onomatopoeia-desc">Detección a tiempo en la cochera</span>
+              <span class="onomatopoeia-desc">¡Detección preventiva a tiempo en la cochera!</span>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Brillante deducción! Ese tornillo habría reventado tu llanta a 100 km/h en autopista. ¡30 segundos de caminata te ahorraron una grúa y una llanta nueva!</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-eureka">🎉 ¡Deducción Brillante!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[chocando la pata con la mano de Sofía entusiasmado]</em>
+                  "¡Brillante deducción, detective Sofía! Si hubieras salido a la autopista a 100 km/h, ese tornillo habría reventado el neumático en plena marcha provocando un accidente. ¡30 segundos de caminata te ahorraron una grúa de $120 USD y salvaron tu integridad!"
+                </div>
               </div>
             </div>
             
@@ -1170,7 +1524,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Calibra la presión de los neumáticos siempre en frío; al rodar se calientan y marcan 4 PSI de más.</span>
+        <span class="golden-rule-text">Calibra la presión de los neumáticos siempre en frío; al rodar la fricción calienta el aire y marca hasta 4 PSI de más en el manómetro.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1195,47 +1549,87 @@
         <img src="assets/comic_panel_05_charco_colores.jpg" alt="El Misterio del Charco de Colores" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Sofía retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Álex retrocede su auto y ve una mancha brillante en el suelo de cemento...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Los ojos de Sofía se abren desmesuradamente al descubrir la mancha en el piso.</div>
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡¡UN CHARCO EN EL PISO!! ¡Se le salió la vida al motor! ¡Voy a quedar en la quiebra!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😱 ¡Pánico Desesperado!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apoyando ambas manos en sus mejillas con expresión de telenovela dramática]</em>
+                  "¡¡UN CHARCO EN EL PISO!! ¡Se le salió un órgano vital al auto! ¡Se le está vaciando el motor! ¡Dime que no voy a tener que empeñar mi salario!"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Tranquilo! Pongamos una servilleta blanca: es agua pura inodora. ¡Es solo condensación normal del aire acondicionado! El evaporador está sano.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🧪 Prueba Científica</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[agachándose con calma zen y apoyando una servilleta blanca sobre la gota]</em>
+                  "¡Respira hondo, Sofía! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Recuerda la paleta: Verde/Rosa fosforescente = Refrigerante; Marrón/Negro = Aceite motor; Rojo traslúcido = Aceite caja ATF; Amarillo aceitoso = Líquido frenos.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-eureka">🎨 La Paleta de Colores</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mostrando una paleta de pintor con las gotas de colores mecánicos]</em>
+                  "Memoriza el arcoíris de fluidos: Rosa o Verde fosforescente = Refrigerante dulce (peligro); Ámbar o Negro viscoso = Aceite de motor; Rojo vino = Fluido de transmisión ATF; Amarillo paja aceitoso = Líquido de frenos (¡alerta máxima!)."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡FALSA ALARMA!
-              <span class="onomatopoeia-desc">Nivel de aceite en varilla perfecto al 80% entre MIN y MAX</span>
+              <span class="onomatopoeia-desc">Varilla de aceite leída en frío: nivel al 80% entre MIN y MAX</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Qué alivio! Ahora sé exactamente qué color mirar si algún día gotea de verdad.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-relief">😌 ¡Alivio Cósmico!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[secándose una gota de sudor de la frente con una sonrisa radiante]</em>
+                  "¡Ufff, qué respiro! Ya aprendí: si es agua pura debajo del copiloto, es el A/C enfriando; si tiene color y olor químico, entonces sí busco la linterna."
+                </div>
               </div>
             </div>
             
@@ -1243,7 +1637,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Jamás uses agua de grifo en el radiador; hierve a 100°C y oxida el motor. Usa refrigerante OAT 50/50.</span>
+        <span class="golden-rule-text">Jamás uses agua de grifo en el radiador; los minerales corroen los conductos internos y hierve a solo 100°C. Usa refrigerante OAT certificado al 50/50.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1268,47 +1662,87 @@
         <img src="assets/comic_panel_06_codigo_dot.jpg" alt="Las Runas Secretas del Neumático" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Sofía inspecciona un caucho con apariencia reluciente.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> En una tienda de ocasión ofrecen llantas 'seminuevas' a $20 USD cada una...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> El vendedor ofrece con insistencia un neumático lustrado con abundante silicona negra brillante.</div>
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Mira qué ganga, Charu! Tienen mucho dibujo y están bien lustradas con silicona negra.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">🤑 Tentación de Oferta</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[tocando el neumático brillante con intenciones de sacar la tarjeta]</em>
+                  "¡Mira qué ganga, Charu! Está baratísima, se ve negrísima como nueva y los surcos se ven profundos. ¡Con esto me ahorro $80 dólares!"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Frena esa billetera! Mira el óvalo: DOT XXXX 1418. Semana 14 del año 2018: ¡tienen 8 años de fabricadas! La goma está cristalizada y dura como roca. En lluvia patinarás como sobre hielo.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
               </div>
-            </div>
-            
-
-            <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Para tus llantas actuales usa la prueba de la moneda: si se oculta el borde exterior, tienes más de 3 mm; si se ve toda la cabeza (< 1.6 mm), están en límite ilegal. Y la presión correcta no es lo que dice la llanta, sino la etiqueta del Pilar B de tu puerta.</div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🛑 ¡Frena esa Billetera!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apuntando con su pata a un pequeño óvalo grabado en el flanco del caucho]</em>
+                  "¡Alto ahí! Lee las runas sagradas del flanco: 'DOT XXXX 1418'. ¿Sabes qué significa? Semana 14 del año 2018. ¡Ese neumático tiene 8 años de fabricado! La goma está reseca y cristalizada. En una frenada sobre piso mojado patinarás como si estuvieras en una pista de patinaje sobre hielo."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡SEGURIDAD!
-              <span class="onomatopoeia-desc">32 PSI adelante / 30 PSI atrás según fabricante</span>
+              ¡DOT 1418: CADUCADO!
+              <span class="onomatopoeia-desc">Caucho cristalizado = 0% de agarre en pavimento mojado</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Casi compro llantas caducadas! De ahora en adelante siempre leo el código DOT.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😱 ¡Casi Caigo en la Trampa!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apartando la mano del neumático con indignación hacia el vendedor]</em>
+                  "¡¿Me iban a vender una llanta de hace 8 años disfrazada con abrillantador?! ¡Menos mal me enseñaste a descifrar el código DOT y la prueba de la moneda!"
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">📖 La Verdad del Pilar B</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[señalando la calcomanía metálica en el marco de la puerta del auto de Sofía]</em>
+                  "Y la presión correcta nunca es el número gigante que dice la llanta (esa es la presión máxima de ruptura). La presión de ingeniería está en la etiqueta del Pilar B de tu auto: 32 PSI adelante y 30 PSI atrás."
+                </div>
               </div>
             </div>
             
@@ -1316,7 +1750,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Los neumáticos caducan a los 5-6 años aunque tengan dibujo. No compres cauchos viejos.</span>
+        <span class="golden-rule-text">Los neumáticos caducan a los 5 años desde su fecha de fabricación aunque conserven dibujo profundo; el caucho pierde elasticidad y se vuelve piedra.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1341,44 +1775,93 @@
         <img src="assets/comic_panel_07_puente_bateria.jpg" alt="Chispa y Rescate a Medianoche" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Medianoche en el estacionamiento desolado de un centro comercial. Sofía gira la llave de encendido... Las luces parpadean débilmente y solo se escucha un triste chasquido metálico.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Medianoche en un estacionamiento oscuro. Llave en contacto... ¡Trac-trac-trac! Batería muerta.</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> La noche está fría y el tablero apenas tiene fuerza para encender los testigos. Un conductor bienintencionado se acerca con unos cables finos y enredados.</div>
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡TRAC-TRAC!
-              <span class="onomatopoeia-desc">Luces parpadeando agónicamente</span>
+              ¡TRAC-TRAC-TRAC!
+              <span class="onomatopoeia-desc">El motor de arranque no gira: batería con menos de 10.5V</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡No arranca! El vecino trajo unos cables enredados y quiere conectarlos como caigan...</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😰 Angustia Nocturna</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apretando el volante con el frío de la noche y mirando el estacionamiento oscuro]</em>
+                  "¡No enciende! El señor de al lado me dice que conectemos los cables rojo con rojo y negro con negro directo entre las dos baterías a ver qué pasa..."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡ALTO! El orden sagrado del puente: 1. Rojo a Positivo (+) descargada. 2. Rojo a Positivo (+) sana. 3. Negro a Negativo (-) sana. 4. Negro a metal sin pintar del chasis LEJOS de la batería para no hacer chispa junto a gases inflamables.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🛑 ¡ALTO VOLTAJE!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[sacando los cables profesionales 4 AWG de su kit táctico y colocándose las gafas protectoras]</em>
+                  "¡Si conectas al revés o cierras el circuito sobre la batería que desprende hidrógeno inflamable, provocarás un chispazo que freirá la computadora del motor de $1.200 USD! Sigue el Orden Sagrado del Rescate."
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">⚡ El Orden Sagrado</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[guiando la mano de Sofía paso a paso con su linterna]</em>
+                  "1. Pinza Roja al Positivo (+) de tu batería muerta. 2. Pinza Roja al Positivo (+) del auto donante. 3. Pinza Negra al Negativo (-) del auto donante. 4. Pinza Negra a un tornillo o metal sin pintar del chasis de tu auto, LEJOS de la batería."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡WROOOOM!
-              <span class="onomatopoeia-desc">El motor de Álex arranca al primer toque</span>
+              <span class="onomatopoeia-desc">El motor ruge al primer giro de llave sin titubeos</span>
             </div>
             
 
-            <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Y si algún día se apagan las luces o el radio, revisa la caja de fusibles: si el filamento está roto, cámbialo por otro del mismo color y amperaje (Rojo 10A, Azul 15A, Amarillo 20A) por 50 centavos.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-empowered">💪 ¡Triunfo Absoluto!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[acelerando suavemente con una sonrisa triunfal en el rostro]</em>
+                  "¡Arrancó de inmediato y sin soltar una sola chispa peligrosa! Y ahora sé que si se me apaga la radio o una luz, reviso los fusibles de colores por 50 centavos."
+                </div>
               </div>
             </div>
             
@@ -1386,7 +1869,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">El último cable negro va al chasis lejos de la batería para evitar chispas junto a gases inflamables.</span>
+        <span class="golden-rule-text">La última pinza negra va a un metal sólido sin pintar del bloque motor o chasis, NUNCA al borne negativo de la batería agotada para evitar chispas inflamables.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1411,38 +1894,87 @@
         <img src="assets/comic_panel_08_filtro_cabina.jpg" alt="Respirando Aire Puro en la Guantera" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Sofía enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Cada vez que Álex enciende el aire acondicionado, sale un olor a calcetín húmedo y tierra mojada...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Sofía tose y estornuda mientras una nube de polvo microscópico invade la cabina.</div>
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡ATCHÍÍÍS!
-              <span class="onomatopoeia-desc">Ojos llorosos y estornudos</span>
+              <span class="onomatopoeia-desc">Ojos llorosos y aroma a humedad insoportable</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">En un taller me dijeron que tenían que desmontar todo el tablero por $150 USD para limpiar el A/C...</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">🤢 Asco y Frustración</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[tapándose la nariz con una mano y apagando el ventilador]</em>
+                  "¡Qué asco! Fui a un taller a preguntar y me dijeron que tenían que desmontar todo el tablero por $150 USD para hacerle una 'higienización profunda' de cuatro horas..."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Mienten! Solo es el filtro de cabina antipolen tras la guantera. Abres la guantera, presionas dos topes, retiras la tapa y cambias el cartucho viejo por uno nuevo de $10 USD en 5 minutos.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🐶 ¡Ni se te Ocurra!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[apuntando hacia la parte posterior de la guantera con una linterna]</em>
+                  "¡Te quieren ver la cara! El 90% de los malos olores provienen simplemente del filtro de cabina antipolen saturado. No hay que desmontar nada: abres la guantera, presionas dos topes laterales plásticos, destrabas la compuerta y extraes el cartucho."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Salió lleno de hojas podridas e insectos! Y el truco de apagar el A/C 2 minutos antes de llegar evita que vuelva el olor a humedad. ¡$140 USD ahorrados!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-eureka">😲 ¡Increíblemente Fácil!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[extrayendo el filtro viejo repleto de hojas secas y colocando uno nuevo con carbón activado]</em>
+                  "¡No tardé ni 4 minutos de reloj! El filtro nuevo me costó apenas $10 dólares en la refaccionaria. ¡Me acabo de ahorrar $140 USD de mano de obra y el aire ahora huele a brisa de montaña!"
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🌿 Truco Maestro</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[respirando hondo con aire puro]</em>
+                  "Y acuérdate de mi regla de oro: apaga el botón A/C 2 minutos antes de apagar el motor. El soplador secará las gotas del evaporador y los hongos jamás volverán a colonizar tu auto."
+                </div>
               </div>
             </div>
             
@@ -1450,7 +1982,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Apaga el botón A/C 2 minutos antes de estacionar; el soplador secará el evaporador evitando hongos.</span>
+        <span class="golden-rule-text">Apaga el botón A/C dos minutos antes de llegar a tu destino manteniendo el soplador encendido; esto secará la condensación y evitará que nazcan hongos.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1475,38 +2007,87 @@
         <img src="assets/comic_panel_09_turbo_60segundos.jpg" alt="El Caracol de las 200.000 RPM" loading="lazy">
       </div>
 
-      <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Álex llega a toda velocidad a una gasolinera en la autopista y gira la llave para apagar de inmediato...</div>
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Estación de servicio al borde de una autopista rápida. Sofía se estaciona tras manejar 2 horas a 120 km/h y se prepara para apagar el motor de inmediato.
+      </div>
 
-            <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡¡ÁLEX, ESPERA 60 SEGUNDOS!! Tu motor es turboalimentado: la turbina gira a más de 200.000 RPM y trabaja a 900°C gracias a los gases de escape.</div>
+      <div class="comic-script-stream">
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> El motor turboalimentado de Sofía acaba de trabajar a fondo. El turbocompresor se encuentra al rojo vivo bajo el aislante térmico.</div>
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">⏱️ Apuro Cotidiano</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[con la mano en la llave lista para girarla y bajarse a comprar un café]</em>
+                  "¡Uff, qué buen ritmo traíamos en la pista! Voy a apagar rápido para ir al baño..."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Si cortas el motor de golpe, la bomba de aceite se detiene inmediatamente. El aceite atrapado en el eje de la turbina se carboniza en segundos, formando una lija que destruye el turbo de $1.500 USD.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-alert">🛑 ¡60 SEGUNDOS SAGRADOS!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[poniendo su pata sobre la mano de Sofía en la llave]</em>
+                  "¡¡SOFÍA, ESPERA UN MINUTO!! Tu auto tiene motor turbo. Esa turbina gira a más de 200.000 revoluciones por minuto empujada por gases de escape que rozan los 900°C. Flota sobre una microscópica película de aceite a presión."
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-charu">
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🔥 La Ciencia de la Fricción</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mostrando un gráfico térmico de carbonización de aceite]</em>
+                  "Si cortas el motor de golpe, la bomba de aceite se detiene al instante. El aceite estancado en el eje hirviendo se cocina y se convierte en coque (carbón abrasivo). ¡Esa lija destruye el turbo de $1.500 USD en pocos meses!"
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡TIC... TAC... 60s!
-              <span class="onomatopoeia-desc">El aceite sigue fluyendo y bajando el calor crítico</span>
+              <span class="onomatopoeia-desc">60 segundos al ralentí bajan la temperatura interna 300 grados</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡1 minuto de paciencia salva $1.500 USD! De ahora en adelante siempre cuento hasta 60 antes de apagar.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-relief">😌 Paciencia de Oro</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mirando tranquilamente su reloj de pulsera mientras el motor descansa en marcha mínima]</em>
+                  "58... 59... ¡60 segundos! Es fascinante pensar que 60 segundos de paciencia protegen una pieza de más de mil quinientos dólares. ¡De ahora en adelante siempre le daré su minuto de respiro!"
+                </div>
               </div>
             </div>
             
@@ -1514,7 +2095,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Tras viaje exigente o autopista, deja el motor al ralentí 60 segundos antes de apagarlo.</span>
+        <span class="golden-rule-text">Tras una exigencia en autopista o subida pronunciada, deja el motor turbo al ralentí durante 60 segundos antes de girar la llave de apagado.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1539,47 +2120,87 @@
         <img src="assets/comic_panel_10_tablero_obd2.jpg" alt="El Árbol de Navidad en el Tablero" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> A mitad de camino hacia el trabajo. En el tablero de instrumentos se ilumina una silueta amarilla con forma de motor: CHECK ENGINE.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> De pronto, un ícono amarillo con forma de motor se enciende en el velocímetro: CHECK ENGINE...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Un pequeño pitido alerta a Sofía. Una luz ámbar fija brilla en su velocímetro.</div>
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡BEEP-BEEP!
-              <span class="onomatopoeia-desc">Luz ámbar fija en el tablero</span>
+              <span class="onomatopoeia-desc">Testigo Check Engine (MIL) iluminado en ámbar constante</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Auxilio! ¡Se encendió el motor amarillo! Don Chanchullo me dijo por teléfono que hay que bajar la transmisión...</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-panic">😰 Susto en el Tablero</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[aferrándose al volante con los ojos clavados en el ícono amarillo]</em>
+                  "¡¡CHARU, EL MOTORCITO AMARILLO!! ¡Se prendió el Check Engine! Llamé a un taller rápido y me dijeron que seguramente se dañó el convertidor catalítico o la caja de velocidades..."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡No te alarmes! Amarillo = Precaución/Atención programada (puedes rodar con calma). Rojo = PELIGRO INMEDIATO (apaga ya). Y parpadeando = Falla catastrófica de encendido.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🚦 Semáforo ISO</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[conectando un pequeño escáner OBD-II Bluetooth de $15 USD bajo el volante]</em>
+                  "¡Calma! Recuerda el código de colores ISO: Azul/Verde = Sistema activo; Amarillo ámbar = Precaución/Atención programada (el auto rueda seguro, no hay que llamar grúa); Rojo = Peligro crítico (apagar de inmediato); Amarillo parpadeante = Falla de encendido severa (detenerse)."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Conectemos nuestro escáner OBD-II Bluetooth de $15 USD: Código P0455 (Fuga grande en sistema EVAP de vapores de combustible). ¿Cuándo cargaste gasolina?</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-eureka">📱 Diagnóstico en Vivo</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mostrando la pantalla del teléfono de Sofía conectada al escáner]</em>
+                  "El escáner arroja: 'Código P0455: Fuga grande en sistema EVAP'. ¿Cargaste gasolina esta mañana, Sofía?"
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Hace media hora... ¡Ah! ¡El despachador dejó el tapón medio suelto! Lo apreté hasta escuchar 3 clics y la luz se borró sola. ¡Cero dólares de gasto!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-relief">💡 ¡Resolución en 5 Segundos!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[bajando del auto, cerrando la tapa del combustible y girándola con fuerza]</em>
+                  "¡Sí! El despachador de la gasolinera la dejó floja. La apreté hasta escuchar los 3 clics ('¡CLIC-CLIC-CLIC!'), borré el código con la aplicación... ¡y la luz jamás volvió a encenderse! ¡Cero dólares gastados!"
+                </div>
               </div>
             </div>
             
@@ -1587,7 +2208,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Aprieta siempre el tapón de gasolina hasta escuchar 3 clics para evitar códigos EVAP falsos.</span>
+        <span class="golden-rule-text">Aprieta siempre el tapón del tanque de combustible hasta escuchar 3 clics firmes; una tapa floja dispara el código EVAP de Check Engine simulando una avería grave.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1612,55 +2233,95 @@
         <img src="assets/comic_panel_11_mapa_kilometraje.jpg" alt="La Factura Fantasma y los 100k km" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> En el taller honesto AutoSolución. Don Carlos recibe a Sofía para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> El odómetro de Álex marca 60.000 km. En un taller le ofrecen un 'mantenimiento general de $800 USD'...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> El odómetro del auto de Sofía marca exactamente 60.020 kilómetros.</div>
 
-            <div class="script-item char-carlos">
-              <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Carlos</div>
-                <div class="speech-bubble">No caigas en paquetes genéricos, Álex. El manual del fabricante manda: a los 60k km toca fluido de transmisión automática, bujías de iridio y líquido de frenos DOT 4.</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">📋 Revisión Informada</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mostrando a Don Carlos su cuaderno con los puntos del manual del fabricante]</em>
+                  "Don Carlos, en otro taller me pasaron un presupuesto de $850 USD diciendo que a los 60 mil kilómetros hay que limpiar inyectores con ultrasonido, cambiar cables y hacer 'lavado interno de motor'..."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Don Carlos, pero en la agencia me dijeron que la caja de cambios venía 'sellada de por vida'...</div>
+            <div class="script-item char-carlos">
+              <div class="char-avatar-box">
+                <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
+                <span class="char-role-tag">El Mecánico Honesto</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Carlos</span>
+                  <span class="char-emotion-badge emotion-honest">🔧 Transparencia Total</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[tachando con una pluma roja los conceptos innecesarios en la hoja]</em>
+                  "¡Puro invento comercial, señorita Sofía! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-curious">🤔 Duda del Fluido Eterno</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[preguntando con genuina curiosidad técnica]</em>
+                  "Don Carlos, ¿y es verdad lo que dicen en algunos concesionarios de que el aceite de la transmisión automática dura 'de por vida' y nunca se cambia?"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-carlos">
-              <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Carlos</div>
-                <div class="speech-bubble">¡El gran mito de la industria! 'De por vida' significa hasta que termine la garantía de fábrica. El fluido hidráulico se degrada por calor y fricción. Cambiarlo a tiempo evita una reparación de $3.000 USD.</div>
+              <div class="char-avatar-box">
+                <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
+                <span class="char-role-tag">El Mecánico Honesto</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Carlos</span>
+                  <span class="char-emotion-badge emotion-mentor">💡 Desmintiendo el Mito</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[mostrando una probeta con fluido ATF degradado y oscuro frente a uno nuevo traslúcido]</em>
+                  "¡Ese es el mito más peligroso de la industria! 'De por vida' solo significa hasta que venza la garantía de fábrica. El fluido hidráulico se degrada por calor y fricción. Cambiarlo a los 60k km evita una reparación de $3.500 USD."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡PRECISIÓN!
-              <span class="onomatopoeia-desc">Fluidos renovados según el manual de fábrica</span>
-            </div>
-            
-
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡Solo pagué lo que el auto realmente necesitaba y tengo caja para 300.000 km más!</div>
-              </div>
+              ¡$660 AHORRADOS!
+              <span class="onomatopoeia-desc">Mantenimiento preventivo real y transmisión protegida para 300.000 km</span>
             </div>
             
       </div>
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">No existe ningún aceite eterno: la transmisión automática requiere cambio cada 60.000 km.</span>
+        <span class="golden-rule-text">No existe ningún aceite eterno: el fluido de transmisión automática (ATF/CVT) debe sustituirse rigurosamente entre los 60.000 y 80.000 km para no quemar la caja.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1685,44 +2346,93 @@
         <img src="assets/comic_panel_12_cambio_llanta.jpg" alt="Llanta Ponchada en la Autopista" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Noche lluviosa en una autopista de alta velocidad. De pronto se escucha un tironeo sordo en la rueda trasera derecha: la llanta se ha desinflado por completo.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Noche de lluvia en la autopista. ¡Pum-flap-flap! Neumático desinflado en plena marcha...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> La dirección vibra con fuerza. Sofía mantiene el pulso firme sin entrar en pánico.</div>
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡FLAP-FLAP!
-              <span class="onomatopoeia-desc">Tironeo hacia el arcén derecho</span>
+              ¡PUM-FLAP-FLAP!
+              <span class="onomatopoeia-desc">Neumático desinflado perdiendo sustentación sobre el asfalto mojado</span>
             </div>
             
 
-            <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Rodamos despacio hasta el arcén plano sin frenar en seco! Ahora: Protocolo PAS (Chaleco reflectante puesto dentro del auto y triángulos colocados a 50 y 100 metros).</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-alert">🛑 Nervios bajo Control</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[sujetando el volante con ambas manos a las 9 y a las 3 sin frenar bruscamente]</em>
+                  "¡Se desinfló la llanta trasera! No voy a clavar los frenos... ruedo suave hacia el arcén derecho bien iluminado y plano."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">Y EL PASO CRÍTICO QUE TODOS OLVIDAN: Aflojar las tuercas media vuelta con la rueda apoyada en el suelo ANTES de subir el gato. Si levantas primero, la rueda girará loca en el aire.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-shield">🛡️ Protocolo PAS en Marcha</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[alcanzando el chaleco reflectante amarillo neón de la guantera]</em>
+                  "¡Ponte el chaleco reflectante ANTES de abrir la puerta! Enciende las intermitentes de emergencia. Yo coloco los triángulos reflectantes a 50 y 100 metros atrás para que el tráfico nos vea desde lejos."
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-empowered">💪 El Paso de Oro</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[con la llave de cruz en mano, aflojando media vuelta cada tuerca con la llanta en el piso]</em>
+                  "¡Y aplico el secreto que me enseñaste!: aflojo las tuercas media vuelta en el suelo ANTES de subir el gato. Luego subo el auto, cambio la rueda, coloco la de repuesto, bajo el gato y aprieto en estrella (cruz X) con todo mi peso."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡CLAC-CRAC!
-              <span class="onomatopoeia-desc">Apretando tuercas en cruz (X) firmemente en el suelo</span>
+              ¡CLAC-CRAC! ¡LISTO!
+              <span class="onomatopoeia-desc">Rueda de repuesto asegurada firmemente en 15 minutos exactos</span>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">¡15 minutos de reloj y estamos rodando seguros otra vez sin esperar 2 horas a una grúa!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-happy">🏎️ ¡Orgullo y Empoderamiento!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[guardando las herramientas con una sonrisa de satisfacción total]</em>
+                  "¡15 minutos cronometrados! Sin mojarme de más, segura y sin tener que esperar 2 horas por una grúa costosa. ¡Soy completamente autónoma!"
+                </div>
               </div>
             </div>
             
@@ -1730,7 +2440,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Afloja siempre las tuercas media vuelta con la llanta en el suelo antes de levantar el gato.</span>
+        <span class="golden-rule-text">Afloja siempre las tuercas o birlos media vuelta con la llanta apoyada en el suelo ANTES de levantar el gato; de lo contrario la rueda girará loca en el aire.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1747,7 +2457,7 @@
         <div class="ep-title-box">
           <span class="ep-badge">EPISODIO 13</span>
           <h2>El Duelo en el Taller Mecánico</h2>
-          <p>El Escudo Anti-Estafas y el Protocolo de 5 Pasos</p>
+          <p>El Escudo Anti-Estafas y el Protocolo de 5 Pasos de Sofía</p>
         </div>
       </div>
 
@@ -1755,47 +2465,87 @@
         <img src="assets/comic_panel_13_escudo_taller.jpg" alt="El Duelo en el Taller Mecánico" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Taller desordenado 'El Tornillo Loco'. Don Chanchullo frota sus manos mientras contempla a Sofía llegar con su vehículo para un simple cambio de pastillas de freno.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Álex entra al taller de Don Chanchullo para un cambio de pastillas de freno...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> Don Chanchullo pone cara de preocupación fingida y sale del foso con una libreta grasienta.</div>
 
             <div class="script-item char-chanchullo">
-              <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Chanchullo</div>
-                <div class="speech-bubble">Amigo... tiene suerte de haber llegado vivo. El tren delantero está quebrado, los frenos destruidos... Total: $850 USD.</div>
+              <div class="char-avatar-box">
+                <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo" class="char-avatar">
+                <span class="char-role-tag">El Taller Sospechoso</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Chanchullo</span>
+                  <span class="char-emotion-badge emotion-trap">😈 El Cuento del Tío</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[meneando la cabeza con gesto de tragedia exagerada]</em>
+                  "Uy, señorita... qué suerte tuvo de llegar viva. El tren delantero está destrozado, los amortiguadores reventados y la cremallera quebrada. Son $850 dólares o el auto no puede rodar ni una cuadra..."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Momento, Don Chanchullo. Vamos a aplicar el Escudo de CharuAutos: 1. Foto al odómetro frente a usted. 2. Presupuesto formal por escrito desglosado. 3. Las piezas viejas me las entrega en mi cajuela en las cajas nuevas. 4. No autorizo extras por teléfono. 5. ¿Son repuestos OEM o Tier 1 con garantía?</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-shield">🛡️ ¡ESCUDO ACTIVADO!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[cruzando los brazos con mirada serena, firme e inquebrantable]</em>
+                  "Un momento, Don Chanchullo. Vamos a aplicar el Escudo de CharuAutos: 1. Le tomé foto al odómetro frente a usted. 2. Exijo presupuesto por escrito desglosando repuesto y mano de obra. 3. No autorizo extras por teléfono. 4. Las piezas viejas me las entrega en mi cajuela en las cajas nuevas. 5. ¿Sus repuestos son OEM o Tier 1 con garantía certificada?"
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-chanchullo">
-              <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Chanchullo</div>
-                <div class="speech-bubble">Eh... bueno... mirándolo con mejor luz... el tren delantero está perfecto... En realidad solo eran las pastillas delanteras por $45 USD...</div>
+              <div class="char-avatar-box">
+                <img src="assets/chanchullo_avatar.png" alt="Don Chanchullo" class="char-avatar">
+                <span class="char-role-tag">El Taller Sospechoso</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Chanchullo</span>
+                  <span class="char-emotion-badge emotion-panic">😰 ¡Descubierto In Fraganti!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[tragando saliva y guardando apresuradamente la libreta grasienta]</em>
+                  "Eh... bueno... ejem... mirándolo bien con mejor iluminación... el tren delantero está en perfecto estado. En realidad solo eran las pastillas de freno delanteras gastadas por $45 USD..."
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
-              ¡ESCUDO ACTIVADO!
-              <span class="onomatopoeia-desc">La factura se redujo un 95% en 30 segundos</span>
+              ¡ESCUDO: 95% DESCUENTO!
+              <span class="onomatopoeia-desc">La factura se redujo de $850 a $45 USD en 30 segundos</span>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Cuando un mecánico deshonesto ve que el cliente sabe lo que pide y exige comprobantes, no se atreve a estafar!</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🏆 ¡Jaquel Mate!</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[haciendo una reverencia con su casco de carreras]</em>
+                  "¡Cuando un mecánico abusivo se da cuenta de que la conductora tiene conocimiento, exige comprobantes y no firma cheques en blanco, se le acaba el negocio del engaño!"
+                </div>
               </div>
             </div>
             
@@ -1803,7 +2553,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Exige que te devuelvan las piezas viejas en la caja del repuesto nuevo para comprobar el cambio.</span>
+        <span class="golden-rule-text">Exige siempre que te devuelvan las piezas viejas sustituidas dentro de las cajas de los repuestos nuevos para verificar que realmente las cambiaron.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1828,47 +2578,87 @@
         <img src="assets/comic_panel_14_conductor_feliz.jpg" alt="El Pasaporte a la Tranquilidad" loading="lazy">
       </div>
 
+      <div class="scene-setting-card">
+        📍 <strong>ESCENA & ENTORNO:</strong> Atardecer dorado en una carretera panorámica. Sofía conduce su auto rojo con gafas de sol oscuras, Charu viaja en el asiento del copiloto disfrutando de la brisa, y sobre el tablero descansa la Bitácora de Mantenimiento sellada.
+      </div>
+
       <div class="comic-script-stream">
-        <div class="narrator-card">📖 <strong>NARRADOR:</strong> En el taller ordenado y limpio de Don Carlos, el auto de Álex recibe sus pastillas cerámicas y aceite sintético 5W-30 certificado...</div>
+        <div class="narrator-card">📖 <strong>NARRADOR:</strong> En el taller de Don Carlos, el auto de Sofía recibió sus repuestos certificados y cada detalle quedó registrado con sello y firma profesional.</div>
 
             <div class="script-item char-carlos">
-              <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
-              <div>
-                <div class="char-name-label">Don Carlos</div>
-                <div class="speech-bubble">¡Listo Álex! Todo anotado y sellado en tu Bitácora de Guantera de CharuAutos: fecha, kilometraje, viscosidad y factura engrapada.</div>
+              <div class="char-avatar-box">
+                <img src="assets/carlos_avatar.png" alt="Don Carlos" class="char-avatar">
+                <span class="char-role-tag">El Mecánico Honesto</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Don Carlos</span>
+                  <span class="char-emotion-badge emotion-honest">⭐ Trabajo Impecable</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[entregándole a Sofía su libreta sellada con las facturas adjuntas]</em>
+                  "¡Listo Sofía! Aceite sintético certificado, pastillas nuevas y revisión de 25 puntos. Tu Bitácora de Guantera está sellada con fecha, kilometraje y número de lote."
+                </div>
               </div>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Esa libreta vale oro puro! Cuando vendas el auto en unos años, un comprador que vea todo documentado te pagará hasta un 20% más sin regatear.</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">💎 Oro en la Guantera</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[tocando la bitácora con orgullo]</em>
+                  "¡Esa pequeña libreta es tu pasaporte a la tranquilidad! El día que decidas vender este auto, cualquier comprador que vea todo documentado te pagará de inmediato el precio más alto del mercado sin dudar."
+                </div>
               </div>
             </div>
             
 
-            <div class="script-item char-alex">
-              <img src="assets/alex_avatar.png" alt="Álex" class="char-avatar">
-              <div>
-                <div class="char-name-label">Álex</div>
-                <div class="speech-bubble">Y con el glosario latinoamericano entiendo cualquier término en México, Colombia, Venezuela o Chile. ¡Adiós a los miedos!</div>
+            <div class="script-item char-sofia">
+              <div class="char-avatar-box">
+                <img src="assets/sofia_avatar.png" alt="Sofía" class="char-avatar">
+                <span class="char-role-tag">Conductora Principiante</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Sofía</span>
+                  <span class="char-emotion-badge emotion-happy">✨ Libertad y Paz</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[conduciendo con serenidad y alegría bajo los últimos rayos dorados del sol]</em>
+                  "Atrás quedaron los días de miedo e incertidumbre. Ahora entiendo mi auto, sé cuidarlo, sé defenderme en un taller y disfruto cada kilómetro con una sonrisa. ¡Gracias Charu!"
+                </div>
               </div>
             </div>
             
 
             <div class="onomatopoeia-badge" title="Haz clic para escuchar el efecto sonoro">
               ¡CONDUCCIÓN FELIZ!
-              <span class="onomatopoeia-desc">El auto rojo recorre la carretera abierta hacia el atardecer</span>
+              <span class="onomatopoeia-desc">Ruta abierta, música en el estéreo y seguridad total en cada curva</span>
             </div>
             
 
             <div class="script-item char-charu">
-              <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
-              <div>
-                <div class="char-name-label">Charu</div>
-                <div class="speech-bubble">¡Manejen con pasión, prevengan con inteligencia y disfruten del camino! Fin del viaje... ¡y comienzo de tu vida de conductor inteligente!</div>
+              <div class="char-avatar-box">
+                <img src="assets/charu_avatar.png" alt="Charu" class="char-avatar">
+                <span class="char-role-tag">Piloto y Mentor</span>
+              </div>
+              <div class="dialogue-content">
+                <div class="dialogue-header">
+                  <span class="char-name-label">Charu</span>
+                  <span class="char-emotion-badge emotion-mentor">🏁 Mensaje Final</span>
+                </div>
+                <div class="speech-bubble">
+                  <em class="stage-direction">[levantando su pulgar con la bandera de cuadros al viento]</em>
+                  "¡Manejen con pasión, prevengan con inteligencia y disfruten del camino! Fin de la historieta... ¡y comienzo de tu vida como Conductora Inteligente!"
+                </div>
               </div>
             </div>
             
@@ -1876,7 +2666,7 @@
 
       <div class="golden-rule-banner">
         <span class="golden-rule-pill">💡 REGLA DE CHARU</span>
-        <span class="golden-rule-text">Una bitácora con facturas y fechas documentadas puede aumentar el valor de reventa de tu auto un 20%.</span>
+        <span class="golden-rule-text">Una bitácora de servicio con facturas y fechas documentadas puede aumentar el valor de reventa de tu auto hasta un 20% frente a otro sin historial comprobable.</span>
       </div>
 
       <!-- Card Pager Controls for Slide Mode -->
@@ -1907,8 +2697,8 @@
   <footer class="comic-footer">
     <img src="assets/charuautos_emblema_mascota.png" alt="CharuAutos Mascota" class="footer-emblem"><br>
     <div class="footer-slogan">🐾 PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS</div>
-    <p style="color:var(--text-muted); font-size:0.9rem; max-width:600px; margin:0 auto 16px;">
-      Las Aventuras de Charu: Novela gráfica y libro de historietas educativas basadas en el Manual del Conductor Inteligente.
+    <p style="color:var(--text-muted); font-size:0.9rem; max-width:620px; margin:0 auto 16px; line-height:1.5;">
+      Las Aventuras de Charu y Sofía: Novela gráfica y libro de historietas educativas basadas en el Manual del Conductor Inteligente.
       Todos los derechos reservados © 2026 CharuAutos (@charuautopics).
     </p>
     <div class="footer-crosslinks no-print">
@@ -1926,7 +2716,6 @@
     const episodeCards = Array.from(document.querySelectorAll('.episode-card'));
     const totalEpisodes = episodeCards.length;
     const btnToggleMode = document.getElementById('btn-toggle-mode');
-    const modeLabel = document.getElementById('mode-label');
     const slideNavBar = document.getElementById('slide-nav-bar');
     const slideCounter = document.getElementById('slide-counter');
     const btnSlidePrev = document.getElementById('btn-slide-prev');
@@ -2062,9 +2851,9 @@
       const deltaY = touchEndY - touchStartY;
       if (Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
         if (deltaX < 0 && currentSlideIndex < totalEpisodes - 1) {
-          updateActiveSlide(currentSlideIndex + 1); // Deslizar izquierda = Siguiente
+          updateActiveSlide(currentSlideIndex + 1);
         } else if (deltaX > 0 && currentSlideIndex > 0) {
-          updateActiveSlide(currentSlideIndex - 1); // Deslizar derecha = Anterior
+          updateActiveSlide(currentSlideIndex - 1);
         }
       }
     }, { passive: true });
@@ -2118,7 +2907,6 @@
     // 4. Sound FX synthesiser
     let soundEnabled = true;
     const btnSound = document.getElementById('btn-sound-fx');
-    const soundLabel = document.getElementById('sound-label');
     btnSound.addEventListener('click', () => {
       soundEnabled = !soundEnabled;
       btnSound.innerHTML = soundEnabled ? '🔊 <span class="nav-text">Efectos FX</span>' : '🔇 <span class="nav-text">Sin Sonido</span>';

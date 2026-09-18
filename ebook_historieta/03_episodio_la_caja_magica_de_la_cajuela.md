@@ -3,46 +3,35 @@
 
 ---
 
-![Episodio 03: Kit de Emergencia de Cajuela](assets/comic_panel_03_kit_cajuela.jpg)
-*Viñeta Principal: Charu auditando la cajuela de Álex y organizando el kit táctico de supervivencia vial.*
+![La Caja Mágica de la Cajuela](assets/comic_panel_03_kit_cajuela.jpg)
+*Herramientas esenciales y kit de emergencia táctico de cajuela*
 
 ---
 
-### [ESCENA: Cajuela abierta del auto]
+### [ESCENA: Apertura de la cajuela del auto rojo de Sofía. En su interior reina el desorden: un paraguas quebrado, botellas de plástico, una toalla playera y bolsas de supermercado arrugadas.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> En la cajuela de Álex había un paraguas roto, dos botellas de refresco vacías, una toalla sucia y un balón desinflado.
+> Charu se asoma a la cajuela abierta y parpadea atónito ante el caos acumulado.
 
-**VIÑETA 1:**  
-*Charu con patas en jarras mirando la cajuela con decepción cómica.*  
-- **Charu:** — Álex... Si hoy te quedas varado a las 11 de la noche en una ruta sin luz, ¿planeas defenderte arrojándole el paraguas a los problemas?  
-- **Álex (apenado):** — Bueno... ¡El vendedor me dijo que traía rueda de auxilio!
+**Charu (Piloto y Mentor)** `🤨 Inspección Severa`:
+*cruzando los brazos y levantando una ceja con ironía cómica*
+> "Sofía... Si hoy a las 11 de la noche en una autopista solitaria se te poncha una llanta, ¿planeas ahuyentar los peligros arrojándole ese paraguas roto y la toalla playera?"
 
-**VIÑETA 2:**  
-*Charu saca una caja organizadora táctica con iluminación LED y la despliega.*  
-- **Charu:** — La cajuela es tu búnker de rescate. Aquí va el **KIT OBLIGATORIO DE SALVACIÓN**:  
-  - 🔺 **Dos triángulos reflectantes** con base pesada.  
-  - 🦺 **Chaleco fluorescente** (va en la guantera, te lo pones ANTES de bajar).  
-  - 🔦 **Linterna recargable** o frontal (porque nadie tiene 3 manos).  
-  - 💨 **Compresor portátil 12V** con manómetro digital.  
-  - 🧵 **Kit de mechas para llantas** (soluciona un clavo en 5 minutos).  
-  - 🧯 **Extintor ABC de 1 kg** con manómetro en verde vigente.
+**Sofía (Conductora Principiante)** `😳 Vergüenza Divertida`:
+*sonrojándose mientras apila apenada los cacharros viejos fuera del maletero*
+> "¡Ups! Confieso que la cajuela se convirtió en el armario de lo que no sabía dónde guardar... ¡El vendedor me juró que venía con llanta de repuesto y no revisé nada más!"
 
-**VIÑETA 3:**  
-*Charu muestra un estuche compacto de herramientas caseras esenciales:*  
-- **Charu:** — Y en herramientas de mano, no necesitas un taller entero:  
-  1. Llave inglesa ajustable (perico).  
-  2. Pinza de presión y alicate universal aislado.  
-  3. Destornillador reversible plano/estrella.  
-  4. Cinta aislante y precintos plásticos (cinchos/tirrajes).  
-  5. Un rollo de cinta americana reforzada (*duct tape*).
+💥 **[EFECTO SONORO VISUAL]:** *¡CLIC! ¡EQUIPADO!* (El Kit Táctico resplandece ordenado en su estuche rígido)
 
-**VIÑETA 4:**  
-*La cajuela de Álex ahora está impecable, con todo asegurado contra los laterales.*  
-- **Álex:** — ¡Parece el equipamiento de un equipo de rescate de Fórmula 1!  
-- **Charu:** — Y lo mejor: todo esto cuesta menos de $40 dólares y te ahorrará cientos en grúas innecesarias.
+**Charu (Piloto y Mentor)** `🛡️ Equipamiento Táctico`:
+*abriendo con orgullo un maletín negro con compartimentos de espuma de alta densidad*
+> "¡Aquí tienes tu kit táctico de rescate! 2 triángulos reflectantes de base pesada, linterna frontal LED recargable, minicompresor 12V con manómetro digital, kit de mechas vulcanizantes y cables pasa-corriente calibre 4 AWG. Y el chaleco reflectante va en la guantera: ¡te lo pones ANTES de abrir la puerta!"
+
+**Sofía (Conductora Principiante)** `💪 ¡Empoderada!`:
+*guardando el kit táctico con firmeza y orden impecable*
+> "¡Todo cupo en un solo estuche compacto que costó menos de $45 USD! Ahora sé que si ocurre una eventualidad, tengo las armas necesarias para salir rodando."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"El chaleco reflectante debe guardarse dentro del habitáculo (en la guantera o bajo el asiento), jamás en el fondo de la cajuela. En una emergencia vial debes bajar del auto ya visible a 150 metros."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Guarda siempre el chaleco reflectante en la guantera o debajo del asiento del conductor, jamás en el fondo de la cajuela."*

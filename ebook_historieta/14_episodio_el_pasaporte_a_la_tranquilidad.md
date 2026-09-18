@@ -3,42 +3,35 @@
 
 ---
 
-![Episodio 14: La Bitácora y la Conducción Feliz](assets/comic_panel_14_conductor_feliz.jpg)
-*Viñeta Principal: Carretera panorámica soleada; Álex conduce feliz con Charu de copiloto y su bitácora certificada en la guantera.*
+![El Pasaporte a la Tranquilidad](assets/comic_panel_14_conductor_feliz.jpg)
+*Bitácora de servicio, valor de reventa y conducción feliz*
 
 ---
 
-### [ESCENA: Taller AutoSolución de Don Carlos]
+### [ESCENA: Atardecer dorado en una carretera panorámica. Sofía conduce su auto rojo con gafas de sol oscuras, Charu viaja en el asiento del copiloto disfrutando de la brisa, y sobre el tablero descansa la Bitácora de Mantenimiento sellada.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> En el taller ordenado de Don Carlos, el auto de Álex acababa de recibir sus pastillas de freno nuevas y su cambio de aceite certificado.
+> En el taller de Don Carlos, el auto de Sofía recibió sus repuestos certificados y cada detalle quedó registrado con sello y firma profesional.
 
-**VIÑETA 1:**  
-*Don Carlos estampa un sello con fecha y firma en una libreta cuidada: la **Bitácora de Mantenimiento de CharuAutos**.*  
-- **Don Carlos:** — Aquí tienes, Álex. Aceite 5W-30 sintético API SP, pastillas cerámicas y filtro original. Todo anotado con fecha, kilometraje y costo exacto.  
-- **Álex:** — ¡Muchas gracias Don Carlos! Esta libreta vive en mi guantera.  
-- **Charu:** — ¡Y esa libreta vale oro puro! Cuando vayas a revender tu auto en unos años, un comprador que vea todo el historial documentado con facturas te pagará hasta un 20% más sin regatear.
+**Don Carlos (El Mecánico Honesto)** `⭐ Trabajo Impecable`:
+*entregándole a Sofía su libreta sellada con las facturas adjuntas*
+> "¡Listo Sofía! Aceite sintético certificado, pastillas nuevas y revisión de 25 puntos. Tu Bitácora de Guantera está sellada con fecha, kilometraje y número de lote."
 
-**VIÑETA 2:**  
-*Charu y Álex hojean el anexo final de la libreta: **El Glosario Maestro Latinoamericano**.*  
-- **Álex:** — ¡Mira esto! En México le dicen *cajuela*, en Venezuela *maleta*, y en Chile *maletero*. ¡Y al anticongelante le dicen *coolant* o *refrigerante*!  
-- **Charu:** — El lenguaje cambia con las fronteras, Álex, pero la mecánica y las leyes de la física son universales. ¡Ahora entiendes cualquier video, manual o conversación de taller en todo el continente!
+**Charu (Piloto y Mentor)** `💎 Oro en la Guantera`:
+*tocando la bitácora con orgullo*
+> "¡Esa pequeña libreta es tu pasaporte a la tranquilidad! El día que decidas vender este auto, cualquier comprador que vea todo documentado te pagará de inmediato el precio más alto del mercado sin dudar."
 
-**VIÑETA 3:**  
-*Panorámica cinematográfica: El auto rojo avanza por una autopista abierta hacia el atardecer, montañas verdes de fondo y el cielo despejado.*  
-- **[CARTUCHO DEL NARRADOR]:**  
-  > Aquel joven temeroso que no se atrevía a tocar el capó quedó atrás. Hoy, Álex no es mecánico de carreras, pero es algo mucho más valioso: **un conductor inteligente, autónomo y libre de miedos**.
+**Sofía (Conductora Principiante)** `✨ Libertad y Paz`:
+*conduciendo con serenidad y alegría bajo los últimos rayos dorados del sol*
+> "Atrás quedaron los días de miedo e incertidumbre. Ahora entiendo mi auto, sé cuidarlo, sé defenderme en un taller y disfruto cada kilómetro con una sonrisa. ¡Gracias Charu!"
 
-**VIÑETA 4:**  
-*Primer plano a la cabina: Álex al volante con una gran sonrisa y Charu a su lado levantando una insignia dorada:*  
-- **Álex:** — ¡Gracias, Charu! Por primera vez en mi vida disfruto cada kilómetro sabiendo que mi auto está sano y mi familia segura.  
-- **Charu:** — ¡Para eso nacimos, amigo! Y a todos los que lean esta historieta:  
-  *"¡Manejen con pasión, prevengan con inteligencia y disfruten del camino!"*  
-- **[CARTEL DE CIERRE]:**  
-  **FIN DEL VIAJE... ¡Y COMIENZO DE TU VIDA COMO CONDUCTOR INTELIGENTE!**  
-  `🐾 CHARUAUTOS (@CHARUAUTOPICS) — PASIÓN AUTOMOTRIZ AL ALCANCE DE TUS MANOS`
+💥 **[EFECTO SONORO VISUAL]:** *¡CONDUCCIÓN FELIZ!* (Ruta abierta, música en el estéreo y seguridad total en cada curva)
+
+**Charu (Piloto y Mentor)** `🏁 Mensaje Final`:
+*levantando su pulgar con la bandera de cuadros al viento*
+> "¡Manejen con pasión, prevengan con inteligencia y disfruten del camino! Fin de la historieta... ¡y comienzo de tu vida como Conductora Inteligente!"
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Un auto bien cuidado no es un gasto, es tu herramienta de libertad. Dedicarle 3 minutos a la semana te regalará años de viajes seguros y miles de dólares en tu bolsillo."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Una bitácora de servicio con facturas y fechas documentadas puede aumentar el valor de reventa de tu auto hasta un 20% frente a otro sin historial comprobable."*

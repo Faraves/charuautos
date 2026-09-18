@@ -3,41 +3,35 @@
 
 ---
 
-![Episodio 06: Neumáticos y Código DOT](assets/comic_panel_06_codigo_dot.jpg)
-*Viñeta Principal: Charu con lupa descifrando las inscripciones del flanco de la llanta y realizando la prueba de la moneda.*
+![Las Runas Secretas del Neumático](assets/comic_panel_06_codigo_dot.jpg)
+*Código DOT de caducidad, banda de rodamiento y presión del pilar B*
 
 ---
 
-### [ESCENA: Frente a una tienda de llantas usadas de ocasión]
+### [ESCENA: En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Sofía inspecciona un caucho con apariencia reluciente.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Álex quería ahorrar y vio un letrero: *"Llantas seminuevas casi regaladas: $20 USD cada una"*. Se veían negras y brillantes.
+> El vendedor ofrece con insistencia un neumático lustrado con abundante silicona negra brillante.
 
-**VIÑETA 1:**  
-*Álex con la billetera abierta a punto de pagarle al vendedor de la tienda.*  
-- **Álex:** — ¡Mira esta ganga, Charu! Tienen mucho dibujo y están lustradas con silicona.  
-- **Charu (saltando al flanco del neumático con linterna UV):** — ¡Frena esa billetera, Álex! La silicona maquilla a los muertos. Vamos a leer **EL CÓDIGO DOT**.
+**Sofía (Conductora Principiante)** `🤑 Tentación de Oferta`:
+*tocando el neumático brillante con intenciones de sacar la tarjeta*
+> "¡Mira qué ganga, Charu! Está baratísima, se ve negrísima como nueva y los surcos se ven profundos. ¡Con esto me ahorro $80 dólares!"
 
-**VIÑETA 2:**  
-*Primer plano macro al código ovalado en el caucho: `DOT 1417`.*  
-- **Charu:** — Mira los últimos cuatro dígitos:  
-  - Los primeros dos números (`14`) indican la **semana del año**.  
-  - Los últimos dos números (`17`) indican el **año de fabricación: ¡2017!**  
-  - ¡Esta llanta tiene casi 10 años de fabricada! La goma está cristalizada como el plástico duro. En una frenada de lluvia patinarás como sobre hielo.  
-- **Álex (boquiabierto):** — ¡¿Las llantas tienen fecha de caducidad como la leche?!
+**Charu (Piloto y Mentor)** `🛑 ¡Frena esa Billetera!`:
+*apuntando con su pata a un pequeño óvalo grabado en el flanco del caucho*
+> "¡Alto ahí! Lee las runas sagradas del flanco: 'DOT XXXX 1418'. ¿Sabes qué significa? Semana 14 del año 2018. ¡Ese neumático tiene 8 años de fabricado! La goma está reseca y cristalizada. En una frenada sobre piso mojado patinarás como si estuvieras en una pista de patinaje sobre hielo."
 
-**VIÑETA 3:**  
-*Charu saca una moneda y la introduce de cabeza en los surcos de rodamiento:*  
-- **Charu:** — ¡Por supuesto! A los 5 años la goma pierde agarre y a los 6 se descarta aunque tenga dibujo. Y para medir el desgaste en tus llantas actuales, usa **la prueba de la moneda**:  
-  - Si el dibujo tapa el borde exterior de la moneda, tienes más de 3 mm de vida.  
-  - Si se ve toda la cabeza, tienes menos de 1.6 mm: estás en el límite legal de infracción y riesgo inminente de *aquaplaning*.
+💥 **[EFECTO SONORO VISUAL]:** *¡DOT 1418: CADUCADO!* (Caucho cristalizado = 0% de agarre en pavimento mojado)
 
-**VIÑETA 4:**  
-*Álex revisa la etiqueta plateada en el marco de la puerta del conductor (Pilar B):*  
-- **Álex:** — ¡Y aquí en la puerta dice la presión exacta: 32 PSI adelante y 30 PSI atrás! El vendedor me decía que le metiera 45 PSI a ojo...  
-- **Charu:** — ¡Jamás infles según lo que dice el costado de la llanta (esa es la presión máxima de ruptura)! La presión real la define el peso de tu carrocería en la puerta.
+**Sofía (Conductora Principiante)** `😱 ¡Casi Caigo en la Trampa!`:
+*apartando la mano del neumático con indignación hacia el vendedor*
+> "¡¿Me iban a vender una llanta de hace 8 años disfrazada con abrillantador?! ¡Menos mal me enseñaste a descifrar el código DOT y la prueba de la moneda!"
+
+**Charu (Piloto y Mentor)** `📖 La Verdad del Pilar B`:
+*señalando la calcomanía metálica en el marco de la puerta del auto de Sofía*
+> "Y la presión correcta nunca es el número gigante que dice la llanta (esa es la presión máxima de ruptura). La presión de ingeniería está en la etiqueta del Pilar B de tu auto: 32 PSI adelante y 30 PSI atrás."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Neumáticos con 25% menos de presión triplican el riesgo de siniestro y aumentan el consumo de gasolina en un 10%. Revísalos cada 15 días."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"Los neumáticos caducan a los 5 años desde su fecha de fabricación aunque conserven dibujo profundo; el caucho pierde elasticidad y se vuelve piedra."*

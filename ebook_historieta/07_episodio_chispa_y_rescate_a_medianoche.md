@@ -3,42 +3,37 @@
 
 ---
 
-![Episodio 07: Batería y Fusibles](assets/comic_panel_07_puente_bateria.jpg)
-*Viñeta Principal: Medianoche en ruta; Charu supervisa la conexión exacta de cables pasa-corriente para salvar la computadora del auto.*
+![Chispa y Rescate a Medianoche](assets/comic_panel_07_puente_bateria.jpg)
+*Batería, fusibles de colores y puente seguro sin quemar la ECU*
 
 ---
 
-### [ESCENA: Estacionamiento oscuro a medianoche, lluvia ligera]
+### [ESCENA: Medianoche en el estacionamiento desolado de un centro comercial. Sofía gira la llave de encendido... Las luces parpadean débilmente y solo se escucha un triste chasquido metálico.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Medianoche. Álex gira la llave de su auto y solo escucha un triste y agónico: *¡Trac-trac-trac!* Las luces parpadean como velas muriéndose.
+> La noche está fría y el tablero apenas tiene fuerza para encender los testigos. Un conductor bienintencionado se acerca con unos cables finos y enredados.
 
-**VIÑETA 1:**  
-*Álex desesperado golpeando el volante.*  
-- **Álex:** — ¡No arranca! ¡Me quedé sin batería a medianoche!  
-- **Vecino servicial con cables enredados:** — ¡Tranquilo amigo! Ponemos mi camioneta frente a tu auto, pegamos los bornes como caigan y le damos arranque con furia.  
-- **Charu (saliendo de la oscuridad como un ninja):** — ¡¡ALTO AHÍ VECINO!! Si conectan los cables al azar van a generar un pico de tensión inversa y quemarán la computadora (ECU) de $1.200 USD de ambos autos.
+💥 **[EFECTO SONORO VISUAL]:** *¡TRAC-TRAC-TRAC!* (El motor de arranque no gira: batería con menos de 10.5V)
 
-**VIÑETA 2:**  
-*Charu despliega el diagrama de conexión con cables luminosos:*  
-- **Charu:** — Grábense a fuego el **ORDEN MILITAR DEL PUENTE DE BATERÍA**:  
-  1. 🔴 **Pinza Roja:** Al borne **POSITIVO (+)** de la batería descargada de Álex.  
-  2. 🔴 **Pinza Roja:** Al borne **POSITIVO (+)** de la batería sana del vecino.  
-  3. ⚫ **Pinza Negra:** Al borne **NEGATIVO (-)** de la batería sana del vecino.  
-  4. ⚫ **Pinza Negra (CRÍTICO):** A un metal sin pintar del chasis o motor de Álex, **LEJOS DE LA BATERÍA**.  
-- **Álex:** — ¿Por qué no al borne negativo de mi batería?  
-- **Charu:** — Porque al hacer contacto salta una chispa, y las baterías agotadas emiten gas hidrógeno inflamable. ¡No queremos fuegos artificiales!
+**Sofía (Conductora Principiante)** `😰 Angustia Nocturna`:
+*apretando el volante con el frío de la noche y mirando el estacionamiento oscuro*
+> "¡No enciende! El señor de al lado me dice que conectemos los cables rojo con rojo y negro con negro directo entre las dos baterías a ver qué pasa..."
 
-**VIÑETA 3:**  
-*Encienden el motor de auxilio 3 minutos, luego Álex da arranque a su auto:*  
-- **[ONOMATOPEYA]:** *¡WRRRR-ROOOOOM!* El motor arranca al primer toque.  
-- **Álex:** — ¡Revivió! ¡Eres un genio, Charu!
+**Charu (Piloto y Mentor)** `🛑 ¡ALTO VOLTAJE!`:
+*sacando los cables profesionales 4 AWG de su kit táctico y colocándose las gafas protectoras*
+> "¡Si conectas al revés o cierras el circuito sobre la batería que desprende hidrógeno inflamable, provocarás un chispazo que freirá la computadora del motor de $1.200 USD! Sigue el Orden Sagrado del Rescate."
 
-**VIÑETA 4:**  
-*Charu le muestra una cajita plástica transparente con fusibles de colores:*  
-- **Charu:** — Y si algún día no encienden las luces o el radio, antes de pagar $80 USD en un taller eléctrico, abre la caja de fusibles. Si el filamento curvo de metal en el medio está partido o ennegrecido, cámbialo por otro del **mismo color y amperaje exacto** (Rojo=10A, Azul=15A, Amarillo=20A). ¡Cuesta 50 centavos de dólar!
+**Charu (Piloto y Mentor)** `⚡ El Orden Sagrado`:
+*guiando la mano de Sofía paso a paso con su linterna*
+> "1. Pinza Roja al Positivo (+) de tu batería muerta. 2. Pinza Roja al Positivo (+) del auto donante. 3. Pinza Negra al Negativo (-) del auto donante. 4. Pinza Negra a un tornillo o metal sin pintar del chasis de tu auto, LEJOS de la batería."
+
+💥 **[EFECTO SONORO VISUAL]:** *¡WROOOOM!* (El motor ruge al primer giro de llave sin titubeos)
+
+**Sofía (Conductora Principiante)** `💪 ¡Triunfo Absoluto!`:
+*acelerando suavemente con una sonrisa triunfal en el rostro*
+> "¡Arrancó de inmediato y sin soltar una sola chispa peligrosa! Y ahora sé que si se me apaga la radio o una luz, reviso los fusibles de colores por 50 centavos."
 
 ---
 
-💡 **[LA REGLA DE ORO DE CHARU]:**  
-*"Nunca reemplaces un fusible quemado con un alambre, papel aluminio o un fusible de mayor amperaje. El fusible es el cinturón de seguridad de los cables; si lo anulas, se quemará la instalación del auto."*
+💡 **[LA REGLA DE ORO DE CHARU]:**
+> *"La última pinza negra va a un metal sólido sin pintar del bloque motor o chasis, NUNCA al borne negativo de la batería agotada para evitar chispas inflamables."*
