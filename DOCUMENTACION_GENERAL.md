@@ -214,9 +214,11 @@ La **Versión 1.0** se mantiene intacta en el repositorio en las carpetas `ebook
 
 ### 6.1. Configuración en GitHub Pages y Redirección Raíz
 - **URL Base:** `https://faraves.github.io/charuautos/`
+- **Acceso Directo a la Historieta (Cómic PWA):** `https://faraves.github.io/charuautos/dist_pwa_historieta/` (o con el atajo `https://faraves.github.io/charuautos/?historieta`).
+- **Acceso Directo al Ebook V2 (Manual Técnico):** `https://faraves.github.io/charuautos/dist_pwa_v2/`
+- **Acceso Directo V1:** `https://faraves.github.io/charuautos/dist_pwa/`
 - **Comportamiento Raíz (`index.html`):**  
-  El archivo raíz ejecuta una redirección automática e instantánea hacia `dist_pwa_v2/?v=10` preservando cualquier query string o hash de anclaje, permitiendo que cualquier visitante que ingrese al enlace principal acceda de forma inmediata al Ebook V2 ilustrado.
-- **Acceso Directo V1:** Los usuarios que deseen consultar la edición clásica original pueden acceder mediante `https://faraves.github.io/charuautos/dist_pwa/`.
+  El archivo raíz implementa una redirección inteligente: si detecta parámetros como `?historieta` o `?comic`, envía al visitante de inmediato al lector del cómic PWA; por defecto redirige al Ebook V2 (`dist_pwa_v2/?v=10`), ofreciendo en pantalla botones de acceso rápido a ambas ediciones.
 - **Archivo `.nojekyll`:** Presente en la raíz para evitar que el motor Jekyll de GitHub omita carpetas con guiones bajos o archivos estáticos.
 
 ### 6.2. Estrategia del Service Worker (v10) y Modo Offline

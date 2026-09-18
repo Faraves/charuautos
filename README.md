@@ -6,12 +6,15 @@
 
 ## ⚡ 1. Acceso Directo y Despliegue en Vivo
 
-El repositorio está configurado para que el acceso web principal cargue **directamente la Versión 2.0 (Edición Conductor con Cero Conocimientos)**:
+El proyecto cuenta con despliegue continuo en **GitHub Pages** con acceso directo a ambas ediciones de lectura:
 
-- 🚀 **Acceso Principal Online (Ebook V2 Técnico):**  
-  👉 **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)** *(o [https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/))*
-- 🎨 **Nueva Versión Historieta Ilustrada (Cómic Book PWA):**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa_historieta/](https://faraves.github.io/charuautos/dist_pwa_historieta/)**
+- 🎨 **Lector Web Interactivo de la Historieta (Cómic PWA Oficial):**  
+  👉 **[https://faraves.github.io/charuautos/dist_pwa_historieta/](https://faraves.github.io/charuautos/dist_pwa_historieta/)**  
+  *(o mediante el atajo directo: [https://faraves.github.io/charuautos/?historieta](https://faraves.github.io/charuautos/?historieta))*
+
+- 🚀 **Manual Técnico Ilustrado (Ebook V2 Técnico):**  
+  👉 **[https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/)** *(o [https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/))*
+
 - 🚗 **URL Directa PWA Versión 1.0 (Clásica):**  
   👉 **[https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/)**
 

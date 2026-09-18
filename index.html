@@ -9,11 +9,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="dist_pwa_v2/assets/favicon-32x32.png">
   <meta http-equiv="refresh" content="0; url=dist_pwa_v2/?v=10">
   <script>
-    // Redirección inmediata y directa a la Versión 2.0 del Ebook PWA
+    // Redirección inteligente: si incluye ?historieta o ?comic abre la historieta, de lo contrario Ebook V2
     (function() {
-      var query = window.location.search ? window.location.search + '&v=10' : '?v=10';
-      var target = 'dist_pwa_v2/' + query + window.location.hash;
-      window.location.replace(target);
+      var s = window.location.search.toLowerCase();
+      if (s.indexOf('comic') !== -1 || s.indexOf('historieta') !== -1) {
+        window.location.replace('dist_pwa_historieta/?v=5' + window.location.hash);
+      } else {
+        var query = window.location.search ? window.location.search + '&v=10' : '?v=10';
+        window.location.replace('dist_pwa_v2/' + query + window.location.hash);
+      }
     })();
   </script>
   <style>
@@ -41,7 +45,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     h2 {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 700;
       margin: 0 0 8px 0;
       color: #ffffff;
@@ -50,30 +54,50 @@
     p {
       color: #94a3b8;
       font-size: 0.95rem;
-      margin: 0 0 16px 0;
+      margin: 0 0 20px 0;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
     }
     a.btn-direct {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       color: #050811;
       background: linear-gradient(135deg, #0088ff, #00f2fe);
       text-decoration: none;
       font-weight: 700;
-      padding: 12px 24px;
+      padding: 12px 22px;
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
       transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a.btn-comic {
+      background: linear-gradient(135deg, #f59e0b, #ffb703);
+      box-shadow: 0 0 20px rgba(255, 183, 3, 0.3);
     }
     a.btn-direct:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
     }
+    a.btn-comic:hover {
+      box-shadow: 0 0 30px rgba(255, 183, 3, 0.5);
+    }
   </style>
 </head>
 <body>
   <div class="spinner"></div>
-  <h2>Abriendo CharuAutos V2.0...</h2>
-  <p>Cargando la edición ilustrada e interactiva del Manual del Conductor Inteligente.</p>
-  <a href="dist_pwa_v2/?v=10" class="btn-direct">Entrar directamente al Ebook V2</a>
+  <h2>CharuAutos — Ecosistema Automotriz</h2>
+  <p>Cargando el Manual del Conductor Inteligente. Selecciona la edición que deseas explorar si no redirige automáticamente:</p>
+  <div class="btn-group">
+    <a href="dist_pwa_historieta/?v=5" class="btn-direct btn-comic">🎨 Ver Historieta Ilustrada (Cómic)</a>
+    <a href="dist_pwa_v2/?v=10" class="btn-direct">🚀 Abrir Manual Técnico (Ebook V2)</a>
+  </div>
 </body>
 </html>
