@@ -30,9 +30,26 @@ CharuAutos/
 ├── .gitignore                                      # Exclusiones de temporales de Python y del sistema operativo
 ├── README.md                                       # Guía general de inicio, accesos rápidos y tabla de módulos
 ├── DOCUMENTACION_GENERAL.md                        # Documento maestro técnico y estratégico (este archivo)
+├── CharuAutos_Historieta_WebApp_PWA.zip           # Paquete PWA de la Historieta Ilustrada lista para distribución
 ├── CharuAutos_V2_WebApp_PWA.zip                    # Paquete ZIP comprimido con la PWA V2 lista para desplegar
 ├── CharuAutos_WebApp_PWA.zip                       # Paquete ZIP comprimido con la PWA V1 clásica
 ├── favicon.ico                                     # Favicon corporativo raíz
+│
+├── dist_pwa_historieta/                            # APLICACIÓN WEB PWA HISTORIETA EN PRODUCCIÓN (CÓMIC V3)
+│   ├── index.html                                  # Lector web de cómic interactivo con efectos sonoros y modo dual
+│   ├── manifest.json                               # Manifiesto PWA de la historieta
+│   ├── service-worker.js                           # Service Worker v3 offline del cómic
+│   ├── ebook_historieta_completo.md                # Guion maestro consolidado (14 episodios + prólogo)
+│   └── assets/                                     # 31 activos gráficos (portada, 14 viñetas HD, avatares, infografía)
+│
+├── ebook_historieta/                               # CÓDIGO FUENTE EDITORIAL DE LA HISTORIETA ILUSTRADA
+│   ├── 00_portada_y_personajes.md                  # Prólogo y elenco de personajes
+│   ├── ...                                         # 14 episodios modulares en Markdown
+│   ├── ebook_historieta_completo.md                # Guion maestro unificado
+│   ├── historieta_interactiva.html                 # Lector web de cómic local
+│   ├── index.html                                  # Entrada local sincronizada
+│   ├── README.md                                   # Documentación interna del cómic
+│   └── assets/                                     # Ilustraciones maestras y avatares del cómic
 │
 ├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 EN PRODUCCIÓN (PRODUCTO INSIGNIA)
 │   ├── index.html                                  # Web App interactiva responsiva con drawer móvil y buscador
@@ -232,8 +249,8 @@ El Service Worker (`service-worker.js`) implementa una política agresiva y mode
 Como evolución natural del proyecto y para maximizar el alcance pedagógico entre conductores de todas las edades, se desarrolló la versión en **novela gráfica y libro de historietas educativas (*comic book*)**:
 
 ### 9.1. Filosofía Pedagógica y Dinámica de Personajes
-1. **Charu (El Piloto y Mentor Mecánico):** Perro piloto de carreras intrépido, leal y con casco de competición. Representa la sabiduría preventiva, detiene errores peligrosos y explica la mecánica con analogías visuales y humor.
-2. **Carmen (La Conductora Principiante):** Joven profesional de 25 años, dueña de su primer automóvil. Representa las dudas, inseguridades y miedos del conductor real frente a fallas y talleres. A lo largo de los 14 episodios pasa de la incertidumbre al empoderamiento técnico y la autonomía total.
+1. **Charu (El Piloto y Mentor Mecánico):** Inspirado en **Charulo** (el leal compañero canino real del usuario) y en la mascota heráldica del logotipo oficial de CharuAutos: pelaje caramelo, manchita blanca en la frente, orejas caídas expresivas y arnés/pechera de competición. Mentor y copiloto de carreras que traduce la ingeniería automotriz a consejos sencillos y divertidos.
+2. **Carmen (La Conductora Inteligente):** Joven profesional de 26 años, dueña de su primer automóvil hatchback rojo. Representa las dudas, inseguridades y miedos del conductor principiante frente a fallas y talleres. A lo largo de los 14 episodios pasa de la incertidumbre al empoderamiento técnico y la autonomía total.
 3. **Don Carlos (El Mecánico Sabio y Honesto):** Dueño del taller *AutoSolución*, enseña a Carmen el valor de la transparencia, presupuestos por escrito y repuestos certificados.
 4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco que inventa averías astronómicas hasta que Carmen despliega el Escudo Anti-Estafas de CharuAutos.
 
@@ -258,7 +275,7 @@ Como evolución natural del proyecto y para maximizar el alcance pedagógico ent
 - **Visualización Dual:** Modo tira continua vertical (*webtoon*) optimizado para celulares y modo diapositiva horizontal viñeta a viñeta para computadoras (con atajos de teclado `←` / `→`, botones flotantes y gestos *swipe* táctiles).
 - **Exportación e Impresión a PDF:** Hoja de estilos `@media print` optimizada para exportar el cómic completo a PDF de colección, con saltos de página limpios por episodio y contraste de alta legibilidad.
 - **Web Audio API:** Efectos sonoros interactivos al hacer clic sobre onomatopeyas visuales (*¡ZAS! ¡BUM! ¡CLIC!*).
-- **PWA Offline:** Service Worker independiente y manifiesto para lectura sin conexión en carretera.
+- **PWA Offline V3:** Service Worker independiente v3 (`charuautos-comic-pwa-v3`) con recarga forzada `reg.update()`, invalidación de cachés anteriores y manifiesto para lectura sin conexión en carretera.
 - **Paquete de Distribución:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).
 
 ---
