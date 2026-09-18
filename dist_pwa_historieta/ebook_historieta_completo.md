@@ -15,16 +15,16 @@
 
 ---
 
-### [ESCENA: Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Sofía estrena las llaves de su primer vehículo.]
+### [ESCENA: Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Carmen estrena las llaves de su primer vehículo.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > ¡Bienvenida al universo de CharuAutos! Una novela gráfica concebida para que cualquier persona, sin importar su experiencia previa, aprenda a cuidar su vehículo, prevenir averías costosas y blindarse contra engaños de taller con humor, arte y ciencia práctica.
 
 **Charu (Piloto y Mentor)** `🐾 ¡Copiloto al Rescate!`:
 *apoyado sobre el capó con las gafas de piloto arriba y una sonrisa cómplice*
-> "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Sofía a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres."
+> "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Carmen a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres."
 
-**Sofía (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
+**Carmen (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
 *sosteniendo con orgullo el llavero de su auto rojo, aunque con una gota de sudor frío*
 > "¡Hola! Por fin logré comprar mi primer auto y me encanta la libertad que siento al manejar... pero cada vez que escucho un ruido raro o veo una luz encenderse en el velocímetro, ¡siento que voy a quedar en bancarrota! ¡Necesito que Charu me convierta en una conductora inteligente!"
 
@@ -54,22 +54,22 @@
 
 ---
 
-### [ESCENA: Sábado por la mañana en la cochera. Tras regresar de un viaje por carretera, Sofía nota un silbido vaporoso bajo el capó y decide abrirlo por primera vez para ver si le falta agua.]
+### [ESCENA: Sábado por la mañana en la cochera. Tras regresar de un viaje por carretera, Carmen nota un silbido vaporoso bajo el capó y decide abrirlo por primera vez para ver si le falta agua.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Sofía abre el seguro del capó. El vano motor irradia una ola de calor sofocante. Ve una tapa metálica brillante con un símbolo de advertencia y estira el brazo decidida...
+> Carmen abre el seguro del capó. El vano motor irradia una ola de calor sofocante. Ve una tapa metálica brillante con un símbolo de advertencia y estira el brazo decidida...
 
-**Sofía (Conductora Principiante)** `🤔 Curiosidad Ingenua`:
+**Carmen (Conductora Principiante)** `🤔 Curiosidad Ingenua`:
 *con la mano a escasos centímetros de la tapa metálica del radiador*
 > "Bueno... esto no debe ser tan difícil. Solo desenrosco esta tapita plateada para echarle un poco de agua del grifo..."
 
 💥 **[EFECTO SONORO VISUAL]:** *¡SSSSSS-CLAC!* (Vapor a presión silbando a más de 115°C)
 
 **Charu (Piloto y Mentor)** `🛑 ¡ALTO AHÍ!`:
-*aterrizando en un salto acrobático y apartando el brazo de Sofía de un manotazo firme*
+*aterrizando en un salto acrobático y apartando el brazo de Carmen de un manotazo firme*
 > "¡¡DETENTE, SOFÍA!! ¡Si giras esa tapa ahora mismo, el refrigerante presurizado a 125°C estallará como un géiser hirviendo directo a tu cara, cuello y brazos causando quemaduras de tercer grado!"
 
-**Sofía (Conductora Principiante)** `😱 ¡Pánico y Asombro!`:
+**Carmen (Conductora Principiante)** `😱 ¡Pánico y Asombro!`:
 *retrocediendo dos pasos con las manos en el pecho y el corazón acelerado*
 > "¡¿125 grados?! ¡¿Una bomba de vapor en mi propio auto?! ¡Casi termino en el hospital el primer fin de semana!"
 
@@ -77,7 +77,7 @@
 *desplegando una infografía holográfica con 5 mandamientos de seguridad*
 > "¡Tranquila, para eso estamos aquí! Memoriza las 5 Reglas Inviolables: 1. Motor caliente = Zona Prohibida (espera 45 min). 2. Superficie plana y freno puesto. 3. El gato hidráulico jamás sostiene el auto solo (usar torres). 4. Desconectar el borne negativo de la batería antes de tocar cables. 5. Gafas y guantes siempre."
 
-**Sofía (Conductora Principiante)** `😌 ¡Lección Aprendida!`:
+**Carmen (Conductora Principiante)** `😌 ¡Lección Aprendida!`:
 *colocándose unos guantes de nitrilo y gafas protectoras con renovada compostura*
 > "¡Anotadísimo en mi mente! La seguridad física va primero. ¡Ahora explícame qué es lo que hace latir a este auto!"
 
@@ -99,12 +99,12 @@
 
 ---
 
-### [ESCENA: Bajo la luz clara de la cochera, Sofía observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.]
+### [ESCENA: Bajo la luz clara de la cochera, Carmen observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Sofía mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.
+> Carmen mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.
 
-**Sofía (Conductora Principiante)** `🤯 Confusión Total`:
+**Carmen (Conductora Principiante)** `🤯 Confusión Total`:
 *rascándose la cabeza y señalando el laberinto de cables y tubos de acero*
 > "Charu, sé totalmente honesto... ¿Cómo diablos hace este bloque de fierros para mover más de una tonelada de peso con solo acariciar un pedal?"
 
@@ -114,7 +114,7 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡BUM! ¡BRROOOM!* (Ciclo de 4 Tiempos: Admisión ➡️ Compresión ➡️ Explosión ➡️ Escape)
 
-**Sofía (Conductora Principiante)** `💡 ¡Momento Eureka!`:
+**Carmen (Conductora Principiante)** `💡 ¡Momento Eureka!`:
 *con los ojos brillantes y una gran sonrisa de entendimiento*
 > "¡Eureka! ¡Tiene todo el sentido del mundo! Si el aceite se seca, le da un infarto; si el filtro se tapa, el motor se asfixia; y si la gasolina está sucia, se indigesta. ¡Por fin lo entiendo sin fórmulas raras!"
 
@@ -140,16 +140,16 @@
 
 ---
 
-### [ESCENA: Apertura de la cajuela del auto rojo de Sofía. En su interior reina el desorden: un paraguas quebrado, botellas de plástico, una toalla playera y bolsas de supermercado arrugadas.]
+### [ESCENA: Apertura de la cajuela del auto rojo de Carmen. En su interior reina el desorden: un paraguas quebrado, botellas de plástico, una toalla playera y bolsas de supermercado arrugadas.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > Charu se asoma a la cajuela abierta y parpadea atónito ante el caos acumulado.
 
 **Charu (Piloto y Mentor)** `🤨 Inspección Severa`:
 *cruzando los brazos y levantando una ceja con ironía cómica*
-> "Sofía... Si hoy a las 11 de la noche en una autopista solitaria se te poncha una llanta, ¿planeas ahuyentar los peligros arrojándole ese paraguas roto y la toalla playera?"
+> "Carmen... Si hoy a las 11 de la noche en una autopista solitaria se te poncha una llanta, ¿planeas ahuyentar los peligros arrojándole ese paraguas roto y la toalla playera?"
 
-**Sofía (Conductora Principiante)** `😳 Vergüenza Divertida`:
+**Carmen (Conductora Principiante)** `😳 Vergüenza Divertida`:
 *sonrojándose mientras apila apenada los cacharros viejos fuera del maletero*
 > "¡Ups! Confieso que la cajuela se convirtió en el armario de lo que no sabía dónde guardar... ¡El vendedor me juró que venía con llanta de repuesto y no revisé nada más!"
 
@@ -159,7 +159,7 @@
 *abriendo con orgullo un maletín negro con compartimentos de espuma de alta densidad*
 > "¡Aquí tienes tu kit táctico de rescate! 2 triángulos reflectantes de base pesada, linterna frontal LED recargable, minicompresor 12V con manómetro digital, kit de mechas vulcanizantes y cables pasa-corriente calibre 4 AWG. Y el chaleco reflectante va en la guantera: ¡te lo pones ANTES de abrir la puerta!"
 
-**Sofía (Conductora Principiante)** `💪 ¡Empoderada!`:
+**Carmen (Conductora Principiante)** `💪 ¡Empoderada!`:
 *guardando el kit táctico con firmeza y orden impecable*
 > "¡Todo cupo en un solo estuche compacto que costó menos de $45 USD! Ahora sé que si ocurre una eventualidad, tengo las armas necesarias para salir rodando."
 
@@ -181,24 +181,24 @@
 
 ---
 
-### [ESCENA: Exterior de la vivienda. Sofía lleva cómicamente una gorra de detective y una lupa gigante en la mano. Charu la guía paso a paso alrededor de la carrocería del auto rojo.]
+### [ESCENA: Exterior de la vivienda. Carmen lleva cómicamente una gorra de detective y una lupa gigante en la mano. Charu la guía paso a paso alrededor de la carrocería del auto rojo.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > La inmensa mayoría de los conductores enciende el motor y arranca a ciegas... hasta que a los quinientos metros una llanta en el rin destruye el neumático.
 
 **Charu (Piloto y Mentor)** `🕵️‍♂️ Modo Detective`:
 *olfateando el suelo y señalando el perímetro del vehículo*
-> "¡Elemental, mi querida Sofía! La 'Caminata 360°' se divide en 3 rutinas: Diaria (30 segundos rodeando el auto buscando charcos o llantas bajas), Semanal (3 minutos abriendo capó en frío) y Mensual (15 minutos calibrando la presión de las 5 ruedas, incluida la de repuesto)."
+> "¡Elemental, mi querida Carmen! La 'Caminata 360°' se divide en 3 rutinas: Diaria (30 segundos rodeando el auto buscando charcos o llantas bajas), Semanal (3 minutos abriendo capó en frío) y Mensual (15 minutos calibrando la presión de las 5 ruedas, incluida la de repuesto)."
 
-**Sofía (Conductora Principiante)** `🧐 Ojo Clínico`:
+**Carmen (Conductora Principiante)** `🧐 Ojo Clínico`:
 *arrodillándose junto a la rueda delantera izquierda e inspeccionando la goma con la lupa*
 > "¡Espera un segundo, Charu! Mira aquí... en el surco central de la llanta delantera... ¡hay un tornillo plateado con cabeza de estrella bien clavado!"
 
 💥 **[EFECTO SONORO VISUAL]:** *¡CLAVO DETECTADO!* (¡Detección preventiva a tiempo en la cochera!)
 
 **Charu (Piloto y Mentor)** `🎉 ¡Deducción Brillante!`:
-*chocando la pata con la mano de Sofía entusiasmado*
-> "¡Brillante deducción, detective Sofía! Si hubieras salido a la autopista a 100 km/h, ese tornillo habría reventado el neumático en plena marcha provocando un accidente. ¡30 segundos de caminata te ahorraron una grúa de $120 USD y salvaron tu integridad!"
+*chocando la pata con la mano de Carmen entusiasmado*
+> "¡Brillante deducción, detective Carmen! Si hubieras salido a la autopista a 100 km/h, ese tornillo habría reventado el neumático en plena marcha provocando un accidente. ¡30 segundos de caminata te ahorraron una grúa de $120 USD y salvaron tu integridad!"
 
 ---
 
@@ -218,18 +218,18 @@
 
 ---
 
-### [ESCENA: Sofía retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.]
+### [ESCENA: Carmen retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Los ojos de Sofía se abren desmesuradamente al descubrir la mancha en el piso.
+> Los ojos de Carmen se abren desmesuradamente al descubrir la mancha en el piso.
 
-**Sofía (Conductora Principiante)** `😱 ¡Pánico Desesperado!`:
+**Carmen (Conductora Principiante)** `😱 ¡Pánico Desesperado!`:
 *apoyando ambas manos en sus mejillas con expresión de telenovela dramática*
 > "¡¡UN CHARCO EN EL PISO!! ¡Se le salió un órgano vital al auto! ¡Se le está vaciando el motor! ¡Dime que no voy a tener que empeñar mi salario!"
 
 **Charu (Piloto y Mentor)** `🧪 Prueba Científica`:
 *agachándose con calma zen y apoyando una servilleta blanca sobre la gota*
-> "¡Respira hondo, Sofía! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
+> "¡Respira hondo, Carmen! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
 
 **Charu (Piloto y Mentor)** `🎨 La Paleta de Colores`:
 *mostrando una paleta de pintor con las gotas de colores mecánicos*
@@ -237,7 +237,7 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡FALSA ALARMA!* (Varilla de aceite leída en frío: nivel al 80% entre MIN y MAX)
 
-**Sofía (Conductora Principiante)** `😌 ¡Alivio Cósmico!`:
+**Carmen (Conductora Principiante)** `😌 ¡Alivio Cósmico!`:
 *secándose una gota de sudor de la frente con una sonrisa radiante*
 > "¡Ufff, qué respiro! Ya aprendí: si es agua pura debajo del copiloto, es el A/C enfriando; si tiene color y olor químico, entonces sí busco la linterna."
 
@@ -259,12 +259,12 @@
 
 ---
 
-### [ESCENA: En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Sofía inspecciona un caucho con apariencia reluciente.]
+### [ESCENA: En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Carmen inspecciona un caucho con apariencia reluciente.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > El vendedor ofrece con insistencia un neumático lustrado con abundante silicona negra brillante.
 
-**Sofía (Conductora Principiante)** `🤑 Tentación de Oferta`:
+**Carmen (Conductora Principiante)** `🤑 Tentación de Oferta`:
 *tocando el neumático brillante con intenciones de sacar la tarjeta*
 > "¡Mira qué ganga, Charu! Está baratísima, se ve negrísima como nueva y los surcos se ven profundos. ¡Con esto me ahorro $80 dólares!"
 
@@ -274,12 +274,12 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡DOT 1418: CADUCADO!* (Caucho cristalizado = 0% de agarre en pavimento mojado)
 
-**Sofía (Conductora Principiante)** `😱 ¡Casi Caigo en la Trampa!`:
+**Carmen (Conductora Principiante)** `😱 ¡Casi Caigo en la Trampa!`:
 *apartando la mano del neumático con indignación hacia el vendedor*
 > "¡¿Me iban a vender una llanta de hace 8 años disfrazada con abrillantador?! ¡Menos mal me enseñaste a descifrar el código DOT y la prueba de la moneda!"
 
 **Charu (Piloto y Mentor)** `📖 La Verdad del Pilar B`:
-*señalando la calcomanía metálica en el marco de la puerta del auto de Sofía*
+*señalando la calcomanía metálica en el marco de la puerta del auto de Carmen*
 > "Y la presión correcta nunca es el número gigante que dice la llanta (esa es la presión máxima de ruptura). La presión de ingeniería está en la etiqueta del Pilar B de tu auto: 32 PSI adelante y 30 PSI atrás."
 
 ---
@@ -300,14 +300,14 @@
 
 ---
 
-### [ESCENA: Medianoche en el estacionamiento desolado de un centro comercial. Sofía gira la llave de encendido... Las luces parpadean débilmente y solo se escucha un triste chasquido metálico.]
+### [ESCENA: Medianoche en el estacionamiento desolado de un centro comercial. Carmen gira la llave de encendido... Las luces parpadean débilmente y solo se escucha un triste chasquido metálico.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > La noche está fría y el tablero apenas tiene fuerza para encender los testigos. Un conductor bienintencionado se acerca con unos cables finos y enredados.
 
 💥 **[EFECTO SONORO VISUAL]:** *¡TRAC-TRAC-TRAC!* (El motor de arranque no gira: batería con menos de 10.5V)
 
-**Sofía (Conductora Principiante)** `😰 Angustia Nocturna`:
+**Carmen (Conductora Principiante)** `😰 Angustia Nocturna`:
 *apretando el volante con el frío de la noche y mirando el estacionamiento oscuro*
 > "¡No enciende! El señor de al lado me dice que conectemos los cables rojo con rojo y negro con negro directo entre las dos baterías a ver qué pasa..."
 
@@ -316,12 +316,12 @@
 > "¡Si conectas al revés o cierras el circuito sobre la batería que desprende hidrógeno inflamable, provocarás un chispazo que freirá la computadora del motor de $1.200 USD! Sigue el Orden Sagrado del Rescate."
 
 **Charu (Piloto y Mentor)** `⚡ El Orden Sagrado`:
-*guiando la mano de Sofía paso a paso con su linterna*
+*guiando la mano de Carmen paso a paso con su linterna*
 > "1. Pinza Roja al Positivo (+) de tu batería muerta. 2. Pinza Roja al Positivo (+) del auto donante. 3. Pinza Negra al Negativo (-) del auto donante. 4. Pinza Negra a un tornillo o metal sin pintar del chasis de tu auto, LEJOS de la batería."
 
 💥 **[EFECTO SONORO VISUAL]:** *¡WROOOOM!* (El motor ruge al primer giro de llave sin titubeos)
 
-**Sofía (Conductora Principiante)** `💪 ¡Triunfo Absoluto!`:
+**Carmen (Conductora Principiante)** `💪 ¡Triunfo Absoluto!`:
 *acelerando suavemente con una sonrisa triunfal en el rostro*
 > "¡Arrancó de inmediato y sin soltar una sola chispa peligrosa! Y ahora sé que si se me apaga la radio o una luz, reviso los fusibles de colores por 50 centavos."
 
@@ -343,14 +343,14 @@
 
 ---
 
-### [ESCENA: Sofía enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.]
+### [ESCENA: Carmen enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Sofía tose y estornuda mientras una nube de polvo microscópico invade la cabina.
+> Carmen tose y estornuda mientras una nube de polvo microscópico invade la cabina.
 
 💥 **[EFECTO SONORO VISUAL]:** *¡ATCHÍÍÍS!* (Ojos llorosos y aroma a humedad insoportable)
 
-**Sofía (Conductora Principiante)** `🤢 Asco y Frustración`:
+**Carmen (Conductora Principiante)** `🤢 Asco y Frustración`:
 *tapándose la nariz con una mano y apagando el ventilador*
 > "¡Qué asco! Fui a un taller a preguntar y me dijeron que tenían que desmontar todo el tablero por $150 USD para hacerle una 'higienización profunda' de cuatro horas..."
 
@@ -358,7 +358,7 @@
 *apuntando hacia la parte posterior de la guantera con una linterna*
 > "¡Te quieren ver la cara! El 90% de los malos olores provienen simplemente del filtro de cabina antipolen saturado. No hay que desmontar nada: abres la guantera, presionas dos topes laterales plásticos, destrabas la compuerta y extraes el cartucho."
 
-**Sofía (Conductora Principiante)** `😲 ¡Increíblemente Fácil!`:
+**Carmen (Conductora Principiante)** `😲 ¡Increíblemente Fácil!`:
 *extrayendo el filtro viejo repleto de hojas secas y colocando uno nuevo con carbón activado*
 > "¡No tardé ni 4 minutos de reloj! El filtro nuevo me costó apenas $10 dólares en la refaccionaria. ¡Me acabo de ahorrar $140 USD de mano de obra y el aire ahora huele a brisa de montaña!"
 
@@ -384,17 +384,17 @@
 
 ---
 
-### [ESCENA: Estación de servicio al borde de una autopista rápida. Sofía se estaciona tras manejar 2 horas a 120 km/h y se prepara para apagar el motor de inmediato.]
+### [ESCENA: Estación de servicio al borde de una autopista rápida. Carmen se estaciona tras manejar 2 horas a 120 km/h y se prepara para apagar el motor de inmediato.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> El motor turboalimentado de Sofía acaba de trabajar a fondo. El turbocompresor se encuentra al rojo vivo bajo el aislante térmico.
+> El motor turboalimentado de Carmen acaba de trabajar a fondo. El turbocompresor se encuentra al rojo vivo bajo el aislante térmico.
 
-**Sofía (Conductora Principiante)** `⏱️ Apuro Cotidiano`:
+**Carmen (Conductora Principiante)** `⏱️ Apuro Cotidiano`:
 *con la mano en la llave lista para girarla y bajarse a comprar un café*
 > "¡Uff, qué buen ritmo traíamos en la pista! Voy a apagar rápido para ir al baño..."
 
 **Charu (Piloto y Mentor)** `🛑 ¡60 SEGUNDOS SAGRADOS!`:
-*poniendo su pata sobre la mano de Sofía en la llave*
+*poniendo su pata sobre la mano de Carmen en la llave*
 > "¡¡SOFÍA, ESPERA UN MINUTO!! Tu auto tiene motor turbo. Esa turbina gira a más de 200.000 revoluciones por minuto empujada por gases de escape que rozan los 900°C. Flota sobre una microscópica película de aceite a presión."
 
 **Charu (Piloto y Mentor)** `🔥 La Ciencia de la Fricción`:
@@ -403,7 +403,7 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡TIC... TAC... 60s!* (60 segundos al ralentí bajan la temperatura interna 300 grados)
 
-**Sofía (Conductora Principiante)** `😌 Paciencia de Oro`:
+**Carmen (Conductora Principiante)** `😌 Paciencia de Oro`:
 *mirando tranquilamente su reloj de pulsera mientras el motor descansa en marcha mínima*
 > "58... 59... ¡60 segundos! Es fascinante pensar que 60 segundos de paciencia protegen una pieza de más de mil quinientos dólares. ¡De ahora en adelante siempre le daré su minuto de respiro!"
 
@@ -428,11 +428,11 @@
 ### [ESCENA: A mitad de camino hacia el trabajo. En el tablero de instrumentos se ilumina una silueta amarilla con forma de motor: CHECK ENGINE.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Un pequeño pitido alerta a Sofía. Una luz ámbar fija brilla en su velocímetro.
+> Un pequeño pitido alerta a Carmen. Una luz ámbar fija brilla en su velocímetro.
 
 💥 **[EFECTO SONORO VISUAL]:** *¡BEEP-BEEP!* (Testigo Check Engine (MIL) iluminado en ámbar constante)
 
-**Sofía (Conductora Principiante)** `😰 Susto en el Tablero`:
+**Carmen (Conductora Principiante)** `😰 Susto en el Tablero`:
 *aferrándose al volante con los ojos clavados en el ícono amarillo*
 > "¡¡CHARU, EL MOTORCITO AMARILLO!! ¡Se prendió el Check Engine! Llamé a un taller rápido y me dijeron que seguramente se dañó el convertidor catalítico o la caja de velocidades..."
 
@@ -441,10 +441,10 @@
 > "¡Calma! Recuerda el código de colores ISO: Azul/Verde = Sistema activo; Amarillo ámbar = Precaución/Atención programada (el auto rueda seguro, no hay que llamar grúa); Rojo = Peligro crítico (apagar de inmediato); Amarillo parpadeante = Falla de encendido severa (detenerse)."
 
 **Charu (Piloto y Mentor)** `📱 Diagnóstico en Vivo`:
-*mostrando la pantalla del teléfono de Sofía conectada al escáner*
-> "El escáner arroja: 'Código P0455: Fuga grande en sistema EVAP'. ¿Cargaste gasolina esta mañana, Sofía?"
+*mostrando la pantalla del teléfono de Carmen conectada al escáner*
+> "El escáner arroja: 'Código P0455: Fuga grande en sistema EVAP'. ¿Cargaste gasolina esta mañana, Carmen?"
 
-**Sofía (Conductora Principiante)** `💡 ¡Resolución en 5 Segundos!`:
+**Carmen (Conductora Principiante)** `💡 ¡Resolución en 5 Segundos!`:
 *bajando del auto, cerrando la tapa del combustible y girándola con fuerza*
 > "¡Sí! El despachador de la gasolinera la dejó floja. La apreté hasta escuchar los 3 clics ('¡CLIC-CLIC-CLIC!'), borré el código con la aplicación... ¡y la luz jamás volvió a encenderse! ¡Cero dólares gastados!"
 
@@ -466,20 +466,20 @@
 
 ---
 
-### [ESCENA: En el taller honesto AutoSolución. Don Carlos recibe a Sofía para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.]
+### [ESCENA: En el taller honesto AutoSolución. Don Carlos recibe a Carmen para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> El odómetro del auto de Sofía marca exactamente 60.020 kilómetros.
+> El odómetro del auto de Carmen marca exactamente 60.020 kilómetros.
 
-**Sofía (Conductora Principiante)** `📋 Revisión Informada`:
+**Carmen (Conductora Principiante)** `📋 Revisión Informada`:
 *mostrando a Don Carlos su cuaderno con los puntos del manual del fabricante*
 > "Don Carlos, en otro taller me pasaron un presupuesto de $850 USD diciendo que a los 60 mil kilómetros hay que limpiar inyectores con ultrasonido, cambiar cables y hacer 'lavado interno de motor'..."
 
 **Don Carlos (El Mecánico Honesto)** `🔧 Transparencia Total`:
 *tachando con una pluma roja los conceptos innecesarios en la hoja*
-> "¡Puro invento comercial, señorita Sofía! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
+> "¡Puro invento comercial, señorita Carmen! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
 
-**Sofía (Conductora Principiante)** `🤔 Duda del Fluido Eterno`:
+**Carmen (Conductora Principiante)** `🤔 Duda del Fluido Eterno`:
 *preguntando con genuina curiosidad técnica*
 > "Don Carlos, ¿y es verdad lo que dicen en algunos concesionarios de que el aceite de la transmisión automática dura 'de por vida' y nunca se cambia?"
 
@@ -510,11 +510,11 @@
 ### [ESCENA: Noche lluviosa en una autopista de alta velocidad. De pronto se escucha un tironeo sordo en la rueda trasera derecha: la llanta se ha desinflado por completo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> La dirección vibra con fuerza. Sofía mantiene el pulso firme sin entrar en pánico.
+> La dirección vibra con fuerza. Carmen mantiene el pulso firme sin entrar en pánico.
 
 💥 **[EFECTO SONORO VISUAL]:** *¡PUM-FLAP-FLAP!* (Neumático desinflado perdiendo sustentación sobre el asfalto mojado)
 
-**Sofía (Conductora Principiante)** `🛑 Nervios bajo Control`:
+**Carmen (Conductora Principiante)** `🛑 Nervios bajo Control`:
 *sujetando el volante con ambas manos a las 9 y a las 3 sin frenar bruscamente*
 > "¡Se desinfló la llanta trasera! No voy a clavar los frenos... ruedo suave hacia el arcén derecho bien iluminado y plano."
 
@@ -522,13 +522,13 @@
 *alcanzando el chaleco reflectante amarillo neón de la guantera*
 > "¡Ponte el chaleco reflectante ANTES de abrir la puerta! Enciende las intermitentes de emergencia. Yo coloco los triángulos reflectantes a 50 y 100 metros atrás para que el tráfico nos vea desde lejos."
 
-**Sofía (Conductora Principiante)** `💪 El Paso de Oro`:
+**Carmen (Conductora Principiante)** `💪 El Paso de Oro`:
 *con la llave de cruz en mano, aflojando media vuelta cada tuerca con la llanta en el piso*
 > "¡Y aplico el secreto que me enseñaste!: aflojo las tuercas media vuelta en el suelo ANTES de subir el gato. Luego subo el auto, cambio la rueda, coloco la de repuesto, bajo el gato y aprieto en estrella (cruz X) con todo mi peso."
 
 💥 **[EFECTO SONORO VISUAL]:** *¡CLAC-CRAC! ¡LISTO!* (Rueda de repuesto asegurada firmemente en 15 minutos exactos)
 
-**Sofía (Conductora Principiante)** `🏎️ ¡Orgullo y Empoderamiento!`:
+**Carmen (Conductora Principiante)** `🏎️ ¡Orgullo y Empoderamiento!`:
 *guardando las herramientas con una sonrisa de satisfacción total*
 > "¡15 minutos cronometrados! Sin mojarme de más, segura y sin tener que esperar 2 horas por una grúa costosa. ¡Soy completamente autónoma!"
 
@@ -546,11 +546,11 @@
 ---
 
 ![El Duelo en el Taller Mecánico](assets/comic_panel_13_escudo_taller.jpg)
-*El Escudo Anti-Estafas y el Protocolo de 5 Pasos de Sofía*
+*El Escudo Anti-Estafas y el Protocolo de 5 Pasos de Carmen*
 
 ---
 
-### [ESCENA: Taller desordenado 'El Tornillo Loco'. Don Chanchullo frota sus manos mientras contempla a Sofía llegar con su vehículo para un simple cambio de pastillas de freno.]
+### [ESCENA: Taller desordenado 'El Tornillo Loco'. Don Chanchullo frota sus manos mientras contempla a Carmen llegar con su vehículo para un simple cambio de pastillas de freno.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > Don Chanchullo pone cara de preocupación fingida y sale del foso con una libreta grasienta.
@@ -559,7 +559,7 @@
 *meneando la cabeza con gesto de tragedia exagerada*
 > "Uy, señorita... qué suerte tuvo de llegar viva. El tren delantero está destrozado, los amortiguadores reventados y la cremallera quebrada. Son $850 dólares o el auto no puede rodar ni una cuadra..."
 
-**Sofía (Conductora Principiante)** `🛡️ ¡ESCUDO ACTIVADO!`:
+**Carmen (Conductora Principiante)** `🛡️ ¡ESCUDO ACTIVADO!`:
 *cruzando los brazos con mirada serena, firme e inquebrantable*
 > "Un momento, Don Chanchullo. Vamos a aplicar el Escudo de CharuAutos: 1. Le tomé foto al odómetro frente a usted. 2. Exijo presupuesto por escrito desglosando repuesto y mano de obra. 3. No autorizo extras por teléfono. 4. Las piezas viejas me las entrega en mi cajuela en las cajas nuevas. 5. ¿Sus repuestos son OEM o Tier 1 con garantía certificada?"
 
@@ -591,20 +591,20 @@
 
 ---
 
-### [ESCENA: Atardecer dorado en una carretera panorámica. Sofía conduce su auto rojo con gafas de sol oscuras, Charu viaja en el asiento del copiloto disfrutando de la brisa, y sobre el tablero descansa la Bitácora de Mantenimiento sellada.]
+### [ESCENA: Atardecer dorado en una carretera panorámica. Carmen conduce su auto rojo con gafas de sol oscuras, Charu viaja en el asiento del copiloto disfrutando de la brisa, y sobre el tablero descansa la Bitácora de Mantenimiento sellada.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> En el taller de Don Carlos, el auto de Sofía recibió sus repuestos certificados y cada detalle quedó registrado con sello y firma profesional.
+> En el taller de Don Carlos, el auto de Carmen recibió sus repuestos certificados y cada detalle quedó registrado con sello y firma profesional.
 
 **Don Carlos (El Mecánico Honesto)** `⭐ Trabajo Impecable`:
-*entregándole a Sofía su libreta sellada con las facturas adjuntas*
-> "¡Listo Sofía! Aceite sintético certificado, pastillas nuevas y revisión de 25 puntos. Tu Bitácora de Guantera está sellada con fecha, kilometraje y número de lote."
+*entregándole a Carmen su libreta sellada con las facturas adjuntas*
+> "¡Listo Carmen! Aceite sintético certificado, pastillas nuevas y revisión de 25 puntos. Tu Bitácora de Guantera está sellada con fecha, kilometraje y número de lote."
 
 **Charu (Piloto y Mentor)** `💎 Oro en la Guantera`:
 *tocando la bitácora con orgullo*
 > "¡Esa pequeña libreta es tu pasaporte a la tranquilidad! El día que decidas vender este auto, cualquier comprador que vea todo documentado te pagará de inmediato el precio más alto del mercado sin dudar."
 
-**Sofía (Conductora Principiante)** `✨ Libertad y Paz`:
+**Carmen (Conductora Principiante)** `✨ Libertad y Paz`:
 *conduciendo con serenidad y alegría bajo los últimos rayos dorados del sol*
 > "Atrás quedaron los días de miedo e incertidumbre. Ahora entiendo mi auto, sé cuidarlo, sé defenderme en un taller y disfruto cada kilómetro con una sonrisa. ¡Gracias Charu!"
 

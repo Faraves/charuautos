@@ -8,12 +8,12 @@
 
 ---
 
-### [ESCENA: En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Sofía inspecciona un caucho con apariencia reluciente.]
+### [ESCENA: En una gomería / llantera de segunda mano con letreros llamativos: 'LLANTAS SEMINUEVAS A PRECIO DE REGALO: $25 USD'. Carmen inspecciona un caucho con apariencia reluciente.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > El vendedor ofrece con insistencia un neumático lustrado con abundante silicona negra brillante.
 
-**Sofía (Conductora Principiante)** `🤑 Tentación de Oferta`:
+**Carmen (Conductora Principiante)** `🤑 Tentación de Oferta`:
 *tocando el neumático brillante con intenciones de sacar la tarjeta*
 > "¡Mira qué ganga, Charu! Está baratísima, se ve negrísima como nueva y los surcos se ven profundos. ¡Con esto me ahorro $80 dólares!"
 
@@ -23,12 +23,12 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡DOT 1418: CADUCADO!* (Caucho cristalizado = 0% de agarre en pavimento mojado)
 
-**Sofía (Conductora Principiante)** `😱 ¡Casi Caigo en la Trampa!`:
+**Carmen (Conductora Principiante)** `😱 ¡Casi Caigo en la Trampa!`:
 *apartando la mano del neumático con indignación hacia el vendedor*
 > "¡¿Me iban a vender una llanta de hace 8 años disfrazada con abrillantador?! ¡Menos mal me enseñaste a descifrar el código DOT y la prueba de la moneda!"
 
 **Charu (Piloto y Mentor)** `📖 La Verdad del Pilar B`:
-*señalando la calcomanía metálica en el marco de la puerta del auto de Sofía*
+*señalando la calcomanía metálica en el marco de la puerta del auto de Carmen*
 > "Y la presión correcta nunca es el número gigante que dice la llanta (esa es la presión máxima de ruptura). La presión de ingeniería está en la etiqueta del Pilar B de tu auto: 32 PSI adelante y 30 PSI atrás."
 
 ---

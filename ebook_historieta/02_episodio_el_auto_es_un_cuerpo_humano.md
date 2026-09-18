@@ -8,12 +8,12 @@
 
 ---
 
-### [ESCENA: Bajo la luz clara de la cochera, Sofía observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.]
+### [ESCENA: Bajo la luz clara de la cochera, Carmen observa el bloque motor repleto de mangueras, tubos y sensores. Charu despliega un holograma interactivo que compara la máquina con un organismo vivo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Sofía mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.
+> Carmen mira el vano motor con expresión perpleja, como si intentara descifrar jeroglíficos alienígenas.
 
-**Sofía (Conductora Principiante)** `🤯 Confusión Total`:
+**Carmen (Conductora Principiante)** `🤯 Confusión Total`:
 *rascándose la cabeza y señalando el laberinto de cables y tubos de acero*
 > "Charu, sé totalmente honesto... ¿Cómo diablos hace este bloque de fierros para mover más de una tonelada de peso con solo acariciar un pedal?"
 
@@ -23,7 +23,7 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡BUM! ¡BRROOOM!* (Ciclo de 4 Tiempos: Admisión ➡️ Compresión ➡️ Explosión ➡️ Escape)
 
-**Sofía (Conductora Principiante)** `💡 ¡Momento Eureka!`:
+**Carmen (Conductora Principiante)** `💡 ¡Momento Eureka!`:
 *con los ojos brillantes y una gran sonrisa de entendimiento*
 > "¡Eureka! ¡Tiene todo el sentido del mundo! Si el aceite se seca, le da un infarto; si el filtro se tapa, el motor se asfixia; y si la gasolina está sucia, se indigesta. ¡Por fin lo entiendo sin fórmulas raras!"
 

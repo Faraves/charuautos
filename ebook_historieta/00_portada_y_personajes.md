@@ -8,16 +8,16 @@
 
 ---
 
-### [ESCENA: Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Sofía estrena las llaves de su primer vehículo.]
+### [ESCENA: Taller Dark Showroom de CharuAutos iluminado con luces de neón cian. Un flamante hatchback rojo espera con el capó abierto. Charu viste su casco de piloto con gafas reflectantes y Carmen estrena las llaves de su primer vehículo.]
 
 **[CARTUCHO DEL NARRADOR]:**
 > ¡Bienvenida al universo de CharuAutos! Una novela gráfica concebida para que cualquier persona, sin importar su experiencia previa, aprenda a cuidar su vehículo, prevenir averías costosas y blindarse contra engaños de taller con humor, arte y ciencia práctica.
 
 **Charu (Piloto y Mentor)** `🐾 ¡Copiloto al Rescate!`:
-*apoyado sobre el capó con las gafas de piloto arriba y una sonrisa cómplice*
-> "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Sofía a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres."
+*Inspirado en Charulo, el leal compañero canino de pelaje caramelo, manchita blanca en la frente, orejas expresivas y mirada atenta. Charu es el copiloto y mentor automotriz de carreras que guía a Carmen en cada aventura mecánica.*
+> "¡Hola a todos los apasionados del camino! Soy Charu, tu copiloto de carreras. Acompáñame junto a Carmen a lo largo de 14 capítulos llenos de aventuras donde aprenderemos a descifrar los misterios mecánicos y a desmantelar las trampas de los malos talleres." 
 
-**Sofía (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
+**Carmen (Conductora Principiante)** `✨ ¡Emocionada pero con Dudas!`:
 *sosteniendo con orgullo el llavero de su auto rojo, aunque con una gota de sudor frío*
 > "¡Hola! Por fin logré comprar mi primer auto y me encanta la libertad que siento al manejar... pero cada vez que escucho un ruido raro o veo una luz encenderse en el velocímetro, ¡siento que voy a quedar en bancarrota! ¡Necesito que Charu me convierta en una conductora inteligente!"
 

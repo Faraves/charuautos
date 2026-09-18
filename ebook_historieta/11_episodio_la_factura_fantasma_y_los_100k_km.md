@@ -8,20 +8,20 @@
 
 ---
 
-### [ESCENA: En el taller honesto AutoSolución. Don Carlos recibe a Sofía para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.]
+### [ESCENA: En el taller honesto AutoSolución. Don Carlos recibe a Carmen para la revisión de los 60.000 km con su manual de mantenimiento abierto sobre el mostrador.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> El odómetro del auto de Sofía marca exactamente 60.020 kilómetros.
+> El odómetro del auto de Carmen marca exactamente 60.020 kilómetros.
 
-**Sofía (Conductora Principiante)** `📋 Revisión Informada`:
+**Carmen (Conductora Principiante)** `📋 Revisión Informada`:
 *mostrando a Don Carlos su cuaderno con los puntos del manual del fabricante*
 > "Don Carlos, en otro taller me pasaron un presupuesto de $850 USD diciendo que a los 60 mil kilómetros hay que limpiar inyectores con ultrasonido, cambiar cables y hacer 'lavado interno de motor'..."
 
 **Don Carlos (El Mecánico Honesto)** `🔧 Transparencia Total`:
 *tachando con una pluma roja los conceptos innecesarios en la hoja*
-> "¡Puro invento comercial, señorita Sofía! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
+> "¡Puro invento comercial, señorita Carmen! Lo que el fabricante de tu auto estipula para los 60.000 km es muy claro: cambio de fluido ATF de caja automática, líquido de frenos DOT 4, bujías y filtro de aire. El servicio real cuesta $190 USD, no $850."
 
-**Sofía (Conductora Principiante)** `🤔 Duda del Fluido Eterno`:
+**Carmen (Conductora Principiante)** `🤔 Duda del Fluido Eterno`:
 *preguntando con genuina curiosidad técnica*
 > "Don Carlos, ¿y es verdad lo que dicen en algunos concesionarios de que el aceite de la transmisión automática dura 'de por vida' y nunca se cambia?"
 

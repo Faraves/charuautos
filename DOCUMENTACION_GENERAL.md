@@ -233,9 +233,9 @@ Como evolución natural del proyecto y para maximizar el alcance pedagógico ent
 
 ### 9.1. Filosofía Pedagógica y Dinámica de Personajes
 1. **Charu (El Piloto y Mentor Mecánico):** Perro piloto de carreras intrépido, leal y con casco de competición. Representa la sabiduría preventiva, detiene errores peligrosos y explica la mecánica con analogías visuales y humor.
-2. **Sofía (La Conductora Principiante):** Joven profesional de 25 años, dueña de su primer automóvil. Representa las dudas, inseguridades y miedos del conductor real frente a fallas y talleres. A lo largo de los 14 episodios pasa de la incertidumbre al empoderamiento técnico y la autonomía total.
-3. **Don Carlos (El Mecánico Sabio y Honesto):** Dueño del taller *AutoSolución*, enseña a Sofía el valor de la transparencia, presupuestos por escrito y repuestos certificados.
-4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco que inventa averías astronómicas hasta que Sofía despliega el Escudo Anti-Estafas de CharuAutos.
+2. **Carmen (La Conductora Principiante):** Joven profesional de 25 años, dueña de su primer automóvil. Representa las dudas, inseguridades y miedos del conductor real frente a fallas y talleres. A lo largo de los 14 episodios pasa de la incertidumbre al empoderamiento técnico y la autonomía total.
+3. **Don Carlos (El Mecánico Sabio y Honesto):** Dueño del taller *AutoSolución*, enseña a Carmen el valor de la transparencia, presupuestos por escrito y repuestos certificados.
+4. **Don Chanchullo (El Taller Sospechoso):** Antagonista caricaturesco que inventa averías astronómicas hasta que Carmen despliega el Escudo Anti-Estafas de CharuAutos.
 
 ### 9.2. Los 14 Episodios de la Historieta
 - **Episodio 00:** Prólogo y presentación del elenco.

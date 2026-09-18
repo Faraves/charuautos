@@ -8,14 +8,14 @@
 
 ---
 
-### [ESCENA: Sofía enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.]
+### [ESCENA: Carmen enciende el aire acondicionado en un día caluroso. De los ductos de ventilación sale una ráfaga con hedor a moho, hojas en descomposición y calcetín viejo.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Sofía tose y estornuda mientras una nube de polvo microscópico invade la cabina.
+> Carmen tose y estornuda mientras una nube de polvo microscópico invade la cabina.
 
 💥 **[EFECTO SONORO VISUAL]:** *¡ATCHÍÍÍS!* (Ojos llorosos y aroma a humedad insoportable)
 
-**Sofía (Conductora Principiante)** `🤢 Asco y Frustración`:
+**Carmen (Conductora Principiante)** `🤢 Asco y Frustración`:
 *tapándose la nariz con una mano y apagando el ventilador*
 > "¡Qué asco! Fui a un taller a preguntar y me dijeron que tenían que desmontar todo el tablero por $150 USD para hacerle una 'higienización profunda' de cuatro horas..."
 
@@ -23,7 +23,7 @@
 *apuntando hacia la parte posterior de la guantera con una linterna*
 > "¡Te quieren ver la cara! El 90% de los malos olores provienen simplemente del filtro de cabina antipolen saturado. No hay que desmontar nada: abres la guantera, presionas dos topes laterales plásticos, destrabas la compuerta y extraes el cartucho."
 
-**Sofía (Conductora Principiante)** `😲 ¡Increíblemente Fácil!`:
+**Carmen (Conductora Principiante)** `😲 ¡Increíblemente Fácil!`:
 *extrayendo el filtro viejo repleto de hojas secas y colocando uno nuevo con carbón activado*
 > "¡No tardé ni 4 minutos de reloj! El filtro nuevo me costó apenas $10 dólares en la refaccionaria. ¡Me acabo de ahorrar $140 USD de mano de obra y el aire ahora huele a brisa de montaña!"
 

@@ -8,18 +8,18 @@
 
 ---
 
-### [ESCENA: Sofía retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.]
+### [ESCENA: Carmen retrocede su auto un metro en la cochera y de pronto vislumbra una mancha líquida transparente que brilla sobre el cemento pulido.]
 
 **[CARTUCHO DEL NARRADOR]:**
-> Los ojos de Sofía se abren desmesuradamente al descubrir la mancha en el piso.
+> Los ojos de Carmen se abren desmesuradamente al descubrir la mancha en el piso.
 
-**Sofía (Conductora Principiante)** `😱 ¡Pánico Desesperado!`:
+**Carmen (Conductora Principiante)** `😱 ¡Pánico Desesperado!`:
 *apoyando ambas manos en sus mejillas con expresión de telenovela dramática*
 > "¡¡UN CHARCO EN EL PISO!! ¡Se le salió un órgano vital al auto! ¡Se le está vaciando el motor! ¡Dime que no voy a tener que empeñar mi salario!"
 
 **Charu (Piloto y Mentor)** `🧪 Prueba Científica`:
 *agachándose con calma zen y apoyando una servilleta blanca sobre la gota*
-> "¡Respira hondo, Sofía! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
+> "¡Respira hondo, Carmen! Mira la servilleta: el líquido es 100% transparente, inodoro y fluido como el agua pura. ¡Es simple condensación normal del evaporador del aire acondicionado! Tu motor está más sano que nunca."
 
 **Charu (Piloto y Mentor)** `🎨 La Paleta de Colores`:
 *mostrando una paleta de pintor con las gotas de colores mecánicos*
@@ -27,7 +27,7 @@
 
 💥 **[EFECTO SONORO VISUAL]:** *¡FALSA ALARMA!* (Varilla de aceite leída en frío: nivel al 80% entre MIN y MAX)
 
-**Sofía (Conductora Principiante)** `😌 ¡Alivio Cósmico!`:
+**Carmen (Conductora Principiante)** `😌 ¡Alivio Cósmico!`:
 *secándose una gota de sudor de la frente con una sonrisa radiante*
 > "¡Ufff, qué respiro! Ya aprendí: si es agua pura debajo del copiloto, es el A/C enfriando; si tiene color y olor químico, entonces sí busco la linterna."
 
