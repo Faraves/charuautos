@@ -255,7 +255,8 @@ Como evolución natural del proyecto y para maximizar el alcance pedagógico ent
 - **Episodio 14:** El Pasaporte a la Tranquilidad (la Bitácora sellada de Don Carlos y conducción feliz).
 
 ### 9.3. Tecnología del Lector Web ("Comic Reader")
-- **Visualización Dual:** Modo tira continua vertical (*webtoon*) optimizado para celulares y modo viñeta a viñeta.
+- **Visualización Dual:** Modo tira continua vertical (*webtoon*) optimizado para celulares y modo diapositiva horizontal viñeta a viñeta para computadoras (con atajos de teclado `←` / `→`, botones flotantes y gestos *swipe* táctiles).
+- **Exportación e Impresión a PDF:** Hoja de estilos `@media print` optimizada para exportar el cómic completo a PDF de colección, con saltos de página limpios por episodio y contraste de alta legibilidad.
 - **Web Audio API:** Efectos sonoros interactivos al hacer clic sobre onomatopeyas visuales (*¡ZAS! ¡BUM! ¡CLIC!*).
 - **PWA Offline:** Service Worker independiente y manifiesto para lectura sin conexión en carretera.
 - **Paquete de Distribución:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).
