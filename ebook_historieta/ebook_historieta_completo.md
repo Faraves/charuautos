@@ -67,7 +67,7 @@
 
 **Charu (Piloto y Mentor)** `🛑 ¡ALTO AHÍ!`:
 *aterrizando en un salto acrobático y apartando el brazo de Carmen de un manotazo firme*
-> "¡¡DETENTE, SOFÍA!! ¡Si giras esa tapa ahora mismo, el refrigerante presurizado a 125°C estallará como un géiser hirviendo directo a tu cara, cuello y brazos causando quemaduras de tercer grado!"
+> "¡¡DETENTE, CARMEN!! ¡Si giras esa tapa ahora mismo, el refrigerante presurizado a 125°C estallará como un géiser hirviendo directo a tu cara, cuello y brazos causando quemaduras de tercer grado!"
 
 **Carmen (Conductora Principiante)** `😱 ¡Pánico y Asombro!`:
 *retrocediendo dos pasos con las manos en el pecho y el corazón acelerado*
@@ -395,7 +395,7 @@
 
 **Charu (Piloto y Mentor)** `🛑 ¡60 SEGUNDOS SAGRADOS!`:
 *poniendo su pata sobre la mano de Carmen en la llave*
-> "¡¡SOFÍA, ESPERA UN MINUTO!! Tu auto tiene motor turbo. Esa turbina gira a más de 200.000 revoluciones por minuto empujada por gases de escape que rozan los 900°C. Flota sobre una microscópica película de aceite a presión."
+> "¡¡CARMEN, ESPERA UN MINUTO!! Tu auto tiene motor turbo. Esa turbina gira a más de 200.000 revoluciones por minuto empujada por gases de escape que rozan los 900°C. Flota sobre una microscópica película de aceite a presión."
 
 **Charu (Piloto y Mentor)** `🔥 La Ciencia de la Fricción`:
 *mostrando un gráfico térmico de carbonización de aceite*
