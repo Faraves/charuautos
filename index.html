@@ -7,16 +7,16 @@
   <link rel="canonical" href="https://faraves.github.io/charuautos/dist_pwa_historieta/">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="dist_pwa_historieta/assets/favicon-32x32.png">
-  <meta http-equiv="refresh" content="0; url=dist_pwa_historieta/?v=11">
+  <meta http-equiv="refresh" content="0; url=dist_pwa_historieta/?v=12">
   <script>
     // Redirección inmediata a la Historieta Ilustrada (Cómic PWA) por defecto
     (function() {
       var s = window.location.search.toLowerCase();
       if (s.indexOf('v2') !== -1 || s.indexOf('manual') !== -1 || s.indexOf('ebook') !== -1) {
-        var query = window.location.search ? window.location.search + '&v=10' : '?v=11';
+        var query = window.location.search ? window.location.search + '&v=10' : '?v=12';
         window.location.replace('dist_pwa_v2/' + query + window.location.hash);
       } else {
-        window.location.replace('dist_pwa_historieta/?v=11' + window.location.hash);
+        window.location.replace('dist_pwa_historieta/?v=12' + window.location.hash);
       }
     })();
   </script>
@@ -96,8 +96,8 @@
   <h2>CharuAutos — Ecosistema Automotriz</h2>
   <p>Cargando el Manual del Conductor Inteligente. Selecciona la edición que deseas explorar si no redirige automáticamente:</p>
   <div class="btn-group">
-    <a href="dist_pwa_historieta/?v=11" class="btn-direct btn-comic">🎨 Ver Historieta Ilustrada (Cómic)</a>
-    <a href="dist_pwa_v2/?v=11" class="btn-direct">🚀 Abrir Manual Técnico (Ebook V2)</a>
+    <a href="dist_pwa_historieta/?v=12" class="btn-direct btn-comic">🎨 Ver Historieta Ilustrada (Cómic)</a>
+    <a href="dist_pwa_v2/?v=12" class="btn-direct">🚀 Abrir Manual Técnico (Ebook V2)</a>
   </div>
 </body>
 </html>
