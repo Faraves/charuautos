@@ -1,58 +1,42 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v12';
+const CACHE_NAME = 'charuautos-comic-pwa-v13';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './assets/charu_avatar.png?v=12',
-  './assets/carmen_avatar.png?v=12',
-  './assets/carlos_avatar.png?v=12',
-  './assets/chanchullo_avatar.png?v=12',
-  './assets/chanchullo_avatar_nervioso.png?v=12',
-  './assets/don_chanchullo_personaje_animado.jpg?v=12',
-  './assets/charuautos_emblema_mascota.png?v=12',
-  './assets/comic_cover_historieta.jpg?v=12'
+  './assets/charu_avatar.png',
+  './assets/carmen_avatar.png',
+  './assets/carlos_avatar.png',
+  './assets/chanchullo_avatar.png',
+  './assets/comic_cover_historieta_v2.jpg',
+  './assets/comic_panel_01_seguridad_v2.jpg',
+  './assets/comic_panel_02_cuerpo_humano_v2.jpg'
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(
-      keys.map((k) => k !== CACHE_NAME ? caches.delete(k) : null)
+      keys.map((k) => caches.delete(k))
     )).then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.startsWith('http')) return;
-  const isImage = event.request.destination === 'image' || event.request.url.match(/\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i);
-  
-  if (isImage) {
-    event.respondWith(
-      fetch(event.request).then((res) => {
-        if (res && res.status === 200) {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
-        }
-        return res;
-      }).catch(() => caches.match(event.request))
-    );
-  } else {
-    event.respondWith(
-      caches.match(event.request).then((cached) => {
-        const fetchPromise = fetch(event.request).then((res) => {
-          if (res && res.status === 200) {
-            const clone = res.clone();
-            caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
-          }
-          return res;
-        }).catch(() => null);
-        return cached || fetchPromise;
-      })
-    );
-  }
+  // Network-First for everything to ensure freshness
+  event.respondWith(
+    fetch(event.request).then((res) => {
+      if (res && res.status === 200) {
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
+      }
+      return res;
+    }).catch(() => caches.match(event.request))
+  );
 });
