@@ -1,4 +1,4 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v14';
+const CACHE_NAME = 'charuautos-comic-pwa-v15';
 const ASSETS = [
   './',
   './index.html',
@@ -9,7 +9,8 @@ const ASSETS = [
   './assets/chanchullo_avatar.png',
   './assets/comic_cover_historieta_v2.jpg',
   './assets/comic_panel_01_seguridad_v2.jpg',
-  './assets/comic_panel_02_cuerpo_humano_v2.jpg'
+  './assets/comic_panel_02_cuerpo_humano_v2.jpg',
+  './assets/comic_panel_03_kit_cajuela_v2.jpg'
 ];
 
 self.addEventListener('install', (event) => {
