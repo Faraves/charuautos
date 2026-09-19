@@ -1,16 +1,16 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v6';
+const CACHE_NAME = 'charuautos-comic-pwa-v10';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './assets/charu_avatar.png',
-  './assets/carmen_avatar.png',
-  './assets/carlos_avatar.png',
-  './assets/chanchullo_avatar.png',
-  './assets/chanchullo_avatar_nervioso.png',
-  './assets/don_chanchullo_personaje_animado.jpg',
-  './assets/charuautos_emblema_mascota.png',
-  './assets/comic_cover_historieta.jpg'
+  './assets/charu_avatar.png?v=10',
+  './assets/carmen_avatar.png?v=10',
+  './assets/carlos_avatar.png?v=10',
+  './assets/chanchullo_avatar.png?v=10',
+  './assets/chanchullo_avatar_nervioso.png?v=10',
+  './assets/don_chanchullo_personaje_animado.jpg?v=10',
+  './assets/charuautos_emblema_mascota.png?v=10',
+  './assets/comic_cover_historieta.jpg?v=10'
 ];
 
 self.addEventListener('install', (event) => {
@@ -29,16 +29,30 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.startsWith('http')) return;
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request).then((res) => {
+  const isImage = event.request.destination === 'image' || event.request.url.match(/\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i);
+  
+  if (isImage) {
+    event.respondWith(
+      fetch(event.request).then((res) => {
         if (res && res.status === 200) {
           const clone = res.clone();
           caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
         }
         return res;
-      }).catch(() => null);
-      return cached || fetchPromise;
-    })
-  );
+      }).catch(() => caches.match(event.request))
+    );
+  } else {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        const fetchPromise = fetch(event.request).then((res) => {
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
+          }
+          return res;
+        }).catch(() => null);
+        return cached || fetchPromise;
+      })
+    );
+  }
 });
