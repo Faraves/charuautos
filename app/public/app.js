@@ -320,19 +320,21 @@ function switchTab(tabId, btnElement) {
   const panes = document.querySelectorAll(".tab-pane");
   panes.forEach(pane => pane.classList.remove("active"));
 
-  // Desactivar todos los botones de navegación
-  const navItems = document.querySelectorAll(".nav-item");
-  navItems.forEach(item => item.classList.remove("active"));
+  // Sincronizar simultáneamente la barra superior de escritorio y el dock inferior
+  const allNavButtons = document.querySelectorAll(".nav-item, .desktop-nav-btn");
+  allNavButtons.forEach(btn => {
+    const target = btn.getAttribute("data-tab");
+    if (target === tabId) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 
   // Mostrar la pestaña seleccionada
   const targetPane = document.getElementById(tabId);
   if (targetPane) {
     targetPane.classList.add("active");
-  }
-
-  // Activar botón pulsado
-  if (btnElement) {
-    btnElement.classList.add("active");
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -701,7 +703,7 @@ const SAMPLE_BROCHURES_CATALOG = {
     transmission: "Automática 6DCT Doble Embrague",
     traction: "FWD Delantera",
     fuelType: "Gasolina 95 Oct",
-    airbags: "4 Airbags",
+    airbags: "2 Frontales (Conductor y Pasajero)",
     esp: "ESP + Control de Tracción + Freno EPB",
     brakes: "Discos en las 4 Ruedas (ABS+EBD)",
     infotainment: "Pantalla Cockpit Digital 12.8 pulg HD",
@@ -728,7 +730,7 @@ const SAMPLE_BROCHURES_CATALOG = {
     transmission: "Automática 6DCT Doble Embrague",
     traction: "FWD Delantera",
     fuelType: "Gasolina 95 Oct",
-    airbags: "4 Airbags",
+    airbags: "4 Airbags (Frontales + Laterales)",
     esp: "ESP + TCS + Asistente de Arranque en Pendiente",
     brakes: "Discos en 4 Ruedas (ABS + EBD)",
     infotainment: "Pantalla Táctil HD 10 pulg con Bluetooth",
@@ -755,7 +757,7 @@ const SAMPLE_BROCHURES_CATALOG = {
     transmission: "Automática 6DCT Doble Embrague",
     traction: "FWD Delantera",
     fuelType: "Gasolina 95 Oct",
-    airbags: "4 Airbags",
+    airbags: "4 Airbags (Frontales + Laterales)",
     esp: "ESP + TCS + Asistencia Frenado EBA",
     brakes: "Discos Ventilados Del / Discos Sólidos Tras",
     infotainment: "Pantalla 10.1 pulg táctil con MirrorLink",
@@ -904,6 +906,101 @@ const SAMPLE_BROCHURES_CATALOG = {
   }
 };
 
+// =============================================================================
+// MOTOR DE EVALUACIÓN AUTOMOTRIZ DE SEGURIDAD & CONFORT
+// Basado en estándares Euro NCAP / Latin NCAP, ingeniería de chasis y telemática
+// =============================================================================
+function scoreAirbags(v) {
+  const str = String(v.airbags || '').toLowerCase();
+  const match = str.match(/(\d+)/);
+  if (match) {
+    let count = parseInt(match[1], 10);
+    if (str.includes('rodilla') && count < 7) count = 7;
+    return count;
+  }
+  if (str.includes('cortina')) return 6;
+  if (str.includes('lateral') || str.includes('laterales')) return 4;
+  if (str.includes('conductor y pasajero') || str.includes('conductor y copiloto') || str.includes('frontal') || str.includes('doble')) return 2;
+  if (str.includes('no') || str.includes('sin')) return 0;
+  return 2;
+}
+
+function scoreESP(v) {
+  const str = String(v.esp || '').toLowerCase();
+  if (str.includes('no disponible') || str.includes('sin esp') || str.includes('no incluye')) return 0;
+  let score = 10; // Base por contar con control de estabilidad activo (ESP / ESC)
+  // Generación módulo Bosch
+  if (str.includes('9.3')) score += 6;
+  else if (str.includes('9.1') || str.includes('9.')) score += 4;
+  else if (str.includes('bosch')) score += 3;
+  // Control de tracción
+  if (str.includes('tcs') || str.includes('tracción') || str.includes('traccion') || str.includes('asr')) score += 4;
+  // Asistencias en pendiente y descenso
+  if (str.includes('hill') || str.includes('hac') || str.includes('hhc') || str.includes('pendiente')) score += 5;
+  if (str.includes('descenso') || str.includes('hdc') || str.includes('dac')) score += 4;
+  // Freno EPB / Auto-Hold integrado
+  if (str.includes('epb') || str.includes('eléctrico') || str.includes('electrico') || str.includes('auto-hold') || str.includes('autohold')) score += 4;
+  // ADAS / Frenado Autónomo de Emergencia
+  if (str.includes('adas') || str.includes('autónomo') || str.includes('autonomo') || str.includes('aeb') || str.includes('colisión') || str.includes('colision') || str.includes('carril') || str.includes('punto ciego') || str.includes('bsd')) score += 15;
+  // EBA / BAS / Mitigación de vuelco
+  if (str.includes('eba') || str.includes('bas') || str.includes('ba ')) score += 3;
+  if (str.includes('rmi') || str.includes('rom') || str.includes('vuelco')) score += 3;
+  return score;
+}
+
+function scoreBrakes(v) {
+  const str = String(v.brakes || '').toLowerCase();
+  let score = 0;
+  // 4 Discos vs Tambor Trasero
+  if (str.includes('4 ruedas') || str.includes('cuatro ruedas') || str.includes('4 discos') || (str.includes('discos') && !str.includes('tambor'))) {
+    score += 25; // 4 Discos completos (sin fatiga térmica en bajadas)
+    if (str.includes('ventilados 4') || str.includes('ventilados en las 4') || (str.includes('ventilados del') && str.includes('ventilados tras'))) {
+      score += 5; // 4 Discos Ventilados
+    }
+  } else if (str.includes('tambor')) {
+    score += 12; // Discos Delanteros / Tambor Trasero
+  } else {
+    score += 15;
+  }
+  // Asistencias electrónicas de frenado
+  if (str.includes('abs')) score += 5;
+  if (str.includes('ebd') || str.includes('ref')) score += 5;
+  if (str.includes('bas') || str.includes('ba') || str.includes('eba') || str.includes('asistencia frenado') || str.includes('asistente de frenado')) score += 5;
+  if (str.includes('epb') || str.includes('eléctrico') || str.includes('electrico')) score += 4;
+  if (str.includes('cerámic') || str.includes('ceramic')) score += 3;
+  return score;
+}
+
+function scoreInfotainment(v) {
+  const str = String(v.infotainment || '').toLowerCase();
+  let score = 0;
+  // Tamaño de pantalla en pulgadas
+  const match = str.match(/(\d+(?:\.\d+)?)\s*(?:pulg|"|''|pulgadas)/);
+  if (match) {
+    score += parseFloat(match[1]) * 5;
+  } else {
+    score += 35;
+  }
+  // Smartphone Mirroring & Conectividad OEM
+  if (str.includes('carplay') || str.includes('apple')) score += 15;
+  if (str.includes('android')) score += 15;
+  if (str.includes('inalámbrico') || str.includes('inalambrico') || str.includes('wireless')) score += 5;
+  // Cockpit / Clúster digital
+  if (str.includes('cockpit') || str.includes('clúster digital') || str.includes('cluster digital') || str.includes('tablero digital') || str.includes('digital 12') || str.includes('digital 10')) score += 10;
+  if (str.includes('táctil') || str.includes('tactil') || str.includes('touch')) score += 5;
+  if (str.includes('hd') || str.includes('alta definición') || str.includes('alta definicion')) score += 3;
+  return score;
+}
+
+function scoreTraction(v) {
+  const str = String(v.traction || '').toLowerCase();
+  if (str.includes('reductora') || str.includes('low') || str.includes('4l') || str.includes('part-time')) return 35;
+  if (str.includes('4x4') || str.includes('awd') || str.includes('integral') || str.includes('4wd')) return 28;
+  if (str.includes('rwd') || str.includes('trasera')) return 18;
+  if (str.includes('fwd') || str.includes('delantera')) return 15;
+  return 10;
+}
+
 // Matriz Técnica Canónica Categorizada
 const TECHNICAL_SPECS_SCHEMA = [
   // --- MOTOR & TRACCIÓN ---
@@ -915,6 +1012,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'HP',
     isNumeric: true,
     better: 'higher',
+    evaluateScore: v => Number(v.hp) || 0,
     getValue: v => Number(v.hp) || 0,
     format: v => `${v.hp} HP`
   },
@@ -926,6 +1024,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'Nm',
     isNumeric: true,
     better: 'higher',
+    evaluateScore: v => Number(v.torque) || 0,
     getValue: v => Number(v.torque) || 0,
     format: v => `${v.torque} Nm`
   },
@@ -956,6 +1055,8 @@ const TECHNICAL_SPECS_SCHEMA = [
     label: 'Sistema de Tracción',
     unit: '',
     isNumeric: false,
+    better: 'higher',
+    evaluateScore: scoreTraction,
     getValue: v => v.traction || 'FWD Delantera',
     format: v => v.traction || 'FWD Delantera'
   },
@@ -979,6 +1080,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'mm',
     isNumeric: true,
     better: 'higher',
+    evaluateScore: v => Number(v.clearance) || 0,
     getValue: v => Number(v.clearance) || 0,
     format: v => `${v.clearance} mm`
   },
@@ -990,6 +1092,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'L',
     isNumeric: true,
     better: 'higher',
+    evaluateScore: v => Number(v.trunk) || 0,
     getValue: v => Number(v.trunk) || 0,
     format: v => `${v.trunk} L`
   },
@@ -1001,6 +1104,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'L',
     isNumeric: true,
     better: 'higher',
+    evaluateScore: v => Number(v.tank) || 0,
     getValue: v => Number(v.tank) || 0,
     format: v => `${v.tank} L`
   },
@@ -1012,6 +1116,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: 'kg',
     isNumeric: true,
     better: 'lower',
+    evaluateScore: v => Number(v.weight) || 1350,
     getValue: v => Number(v.weight) || 1350,
     format: v => `${v.weight || 1350} kg`
   },
@@ -1025,6 +1130,7 @@ const TECHNICAL_SPECS_SCHEMA = [
     unit: '',
     isNumeric: false,
     better: 'higher',
+    evaluateScore: scoreAirbags,
     getValue: v => v.airbags || '2 Frontales',
     format: v => v.airbags || '2 Frontales'
   },
@@ -1035,6 +1141,8 @@ const TECHNICAL_SPECS_SCHEMA = [
     label: 'Control Estabilidad (ESP/TCS)',
     unit: '',
     isNumeric: false,
+    better: 'higher',
+    evaluateScore: scoreESP,
     getValue: v => v.esp || 'ESP + TCS',
     format: v => v.esp || 'ESP + TCS'
   },
@@ -1045,6 +1153,8 @@ const TECHNICAL_SPECS_SCHEMA = [
     label: 'Frenos & Asistencias (ABS/EBD)',
     unit: '',
     isNumeric: false,
+    better: 'higher',
+    evaluateScore: scoreBrakes,
     getValue: v => v.brakes || 'Discos Del / Tambor Tras',
     format: v => v.brakes || 'Discos Del / Tambor Tras'
   },
@@ -1055,6 +1165,8 @@ const TECHNICAL_SPECS_SCHEMA = [
     label: 'Pantalla & Conectividad',
     unit: '',
     isNumeric: false,
+    better: 'higher',
+    evaluateScore: scoreInfotainment,
     getValue: v => v.infotainment || 'Pantalla Táctil HD',
     format: v => v.infotainment || 'Pantalla Táctil HD'
   }
@@ -1347,8 +1459,9 @@ function extractSpecsFromText(fileName, text) {
   if (clean.includes("4x4") || clean.includes("awd") || clean.includes("4wd")) traction = "4x4 / AWD";
 
   let airbags = "2 Frontales";
-  if (clean.includes("6 airbag") || clean.includes("6 bolsas")) airbags = "6 Airbags";
-  else if (clean.includes("4 airbag") || clean.includes("4 bolsas")) airbags = "4 Airbags";
+  if (clean.includes("6 airbag") || clean.includes("6 bolsas") || clean.includes("cortina")) airbags = "6 Airbags";
+  else if (clean.includes("4 airbag") || clean.includes("4 bolsas") || clean.includes("lateral") || clean.includes("laterales")) airbags = "4 Airbags";
+  else if (clean.includes("conductor y pasajero") || clean.includes("conductor y copiloto")) airbags = "2 Frontales (Conductor y Pasajero)";
 
   return {
     maker: "Marca Ficha PDF",
@@ -1435,15 +1548,37 @@ function renderComparisonTable() {
 
   const displayList = getDisplayVehiclesList();
 
-  // Calcular mejores valores en métricas cuantitativas
-  const bestValues = {};
+  // Calcular líderes para cada especificación técnica (Métricas Cuantitativas y Cualitativas de Seguridad & Confort)
+  const specLeadersMap = {}; // { [spec.key]: Set of winner vehicle IDs }
+
   TECHNICAL_SPECS_SCHEMA.forEach(spec => {
-    if (spec.isNumeric && displayList.length > 1) {
-      const values = displayList.map(v => Number(spec.getValue(v)) || 0);
-      if (spec.better === 'higher') {
-        bestValues[spec.key] = Math.max(...values);
-      } else if (spec.better === 'lower') {
-        bestValues[spec.key] = Math.min(...values);
+    if (displayList.length < 2) return;
+
+    let getScore = null;
+    if (typeof spec.evaluateScore === 'function') {
+      getScore = spec.evaluateScore;
+    } else if (spec.isNumeric) {
+      getScore = v => Number(spec.getValue(v)) || 0;
+    }
+
+    if (getScore) {
+      const scoredList = displayList.map(v => ({ id: v.id, score: getScore(v) }));
+      const scoreValues = scoredList.map(s => s.score);
+
+      // Si todos los vehículos empatan con exactamente el mismo puntaje, ninguno es líder diferenciado
+      const allTied = scoreValues.every(val => val === scoreValues[0]);
+      if (!allTied) {
+        let bestScore;
+        if (spec.better === 'lower') {
+          bestScore = Math.min(...scoreValues.filter(s => s > 0));
+        } else {
+          bestScore = Math.max(...scoreValues);
+        }
+
+        const leaders = new Set(
+          scoredList.filter(s => s.score === bestScore).map(s => s.id)
+        );
+        specLeadersMap[spec.key] = leaders;
       }
     }
   });
@@ -1542,12 +1677,12 @@ function renderComparisonTable() {
         </div>
       </div>
 
-      <!-- TABLA HORIZONTAL RESPONSIVA -->
-      <div style="overflow-x:auto;">
-        <table class="compare-table" style="min-width:${Math.max(540, displayList.length * 175 + 175)}px;">
+      <!-- TABLA HORIZONTAL RESPONSIVA CON COLUMNA STICKY -->
+      <div class="table-responsive-wrapper">
+        <table class="compare-table" style="min-width:${Math.max(480, displayList.length * 165 + 160)}px;">
           <thead>
             <tr>
-              <th style="width:175px; background:rgba(0,0,0,0.55); font-family:var(--font-mono); font-size:11px; letter-spacing:1px; text-transform:uppercase;">
+              <th style="min-width:155px; width:155px; font-family:var(--font-mono); font-size:11px; letter-spacing:1px; text-transform:uppercase;">
                 Parámetro Técnico
               </th>
               ${displayList.map((v, idx) => {
@@ -1595,18 +1730,16 @@ function renderComparisonTable() {
 
                 <!-- Filas de la Categoría -->
                 ${catObj.specs.map(spec => {
-                  const bestVal = bestValues[spec.key];
                   return `
                     <tr>
-                      <td style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); width:175px;">
+                      <td style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); min-width:155px; width:155px;">
                         <strong style="color:var(--text-secondary);">${spec.label}:</strong>
                       </td>
                       ${displayList.map(v => {
-                        const rawVal = spec.getValue(v);
-                        const isLeader = highlightBestMode && spec.isNumeric && displayList.length > 1 && Number(rawVal) === bestVal;
+                        const isLeader = highlightBestMode && displayList.length > 1 && Boolean(specLeadersMap[spec.key]?.has(v.id));
                         return `
-                          <td class="${isLeader ? 'winner-val' : ''}" style="${isLeader ? 'background:rgba(16,185,129,0.06);' : ''}">
-                            <span style="font-family:${spec.isNumeric ? 'var(--font-mono)' : 'var(--font-main)'}; font-size:12px; font-weight:${spec.isNumeric ? '800' : '500'};">
+                          <td class="${isLeader ? 'winner-val' : ''}" style="${isLeader ? 'background:rgba(16,185,129,0.08);' : ''}">
+                            <span style="font-family:${spec.isNumeric ? 'var(--font-mono)' : 'var(--font-main)'}; font-size:12px; font-weight:${isLeader ? '800' : (spec.isNumeric ? '700' : '500')}; color:${isLeader ? 'var(--green)' : 'inherit'};">
                               ${spec.format(v, isLeader)}
                             </span>
                             ${isLeader ? `<span class="badge-best-in-class">🏆 LÍDER</span>` : ''}
@@ -1736,12 +1869,10 @@ function renderComparisonCharts() {
     const scoreClearance = Math.min(100, Math.round(((Number(v.clearance) || 150) / 220) * 100));
     const scoreTrunk = Math.min(100, Math.round(((Number(v.trunk) || 400) / 1050) * 100));
     
-    let scoreSafety = 50;
-    if (v.airbags && v.airbags.includes('6')) scoreSafety += 30;
-    else if (v.airbags && v.airbags.includes('4')) scoreSafety += 20;
-    else scoreSafety += 10;
-    if (v.esp && !v.esp.includes('No')) scoreSafety += 20;
-    scoreSafety = Math.min(100, scoreSafety);
+    const safetyAirbags = Math.min(35, Math.round((scoreAirbags(v) / 6) * 35));
+    const safetyESP = Math.min(35, Math.round((scoreESP(v) / 25) * 35));
+    const safetyBrakes = Math.min(30, Math.round((scoreBrakes(v) / 40) * 30));
+    const scoreSafety = Math.min(100, safetyAirbags + safetyESP + safetyBrakes);
 
     return {
       label: `${v.maker} ${v.model}`,
@@ -1872,12 +2003,10 @@ function renderAdvisorResults() {
     const rawC = Math.min(100, Math.round(((Number(v.clearance) || 150) / 220) * 100));
     const rawK = Math.min(100, Math.round(((Number(v.trunk) || 400) / 1050) * 100));
     
-    let rawS = 50;
-    if (v.airbags && v.airbags.includes('6')) rawS += 30;
-    else if (v.airbags && v.airbags.includes('4')) rawS += 20;
-    else rawS += 10;
-    if (v.esp && !v.esp.includes('No')) rawS += 20;
-    rawS = Math.min(100, rawS);
+    const safetyAirbags = Math.min(35, Math.round((scoreAirbags(v) / 6) * 35));
+    const safetyESP = Math.min(35, Math.round((scoreESP(v) / 25) * 35));
+    const safetyBrakes = Math.min(30, Math.round((scoreBrakes(v) / 40) * 30));
+    const rawS = Math.min(100, safetyAirbags + safetyESP + safetyBrakes);
 
     const finalScore = Math.round((rawP * wP + rawC * wC + rawK * wK + rawS * wS) / totalWeight);
 
@@ -1886,7 +2015,11 @@ function renderAdvisorResults() {
     if (v.clearance >= 170) reasons.push(`Excelente despeje de ${v.clearance} mm para proteger tren motriz de baches`);
     if (v.hp >= 145) reasons.push(`Reserva de potencia sólida de ${v.hp} HP para subidas y adelantamientos`);
     if (v.trunk >= 600) reasons.push(`Capacidad volumétrica destacada de ${v.trunk} L para carga familiar o trabajo`);
-    if (v.esp && !v.esp.includes('No')) reasons.push(`Control de estabilidad electrónico activo`);
+    if (scoreAirbags(v) >= 6) reasons.push(`Máxima protección pasiva en cabina: ${v.airbags}`);
+    else if (scoreAirbags(v) >= 4) reasons.push(`Seguridad pasiva destacada con ${v.airbags}`);
+    if (scoreESP(v) >= 20) reasons.push(`Seguridad activa avanzada: ${v.esp}`);
+    else if (v.esp && !v.esp.includes('No')) reasons.push(`Control de estabilidad electrónico activo`);
+    if (scoreBrakes(v) >= 35) reasons.push(`Potente sistema de frenado con ${v.brakes}`);
     if (v.traction && v.traction.includes('4x4')) reasons.push(`Tracción 4x4 robusta con caja reductora`);
 
     return {
@@ -1902,42 +2035,44 @@ function renderAdvisorResults() {
     <div style="font-size:12px; font-family:var(--font-mono); color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">
       Ranking Ponderado de Idoneidad (${scored.length} Vehículos Evaluados):
     </div>
-    ${scored.map((item, idx) => {
-      const isWinner = idx === 0;
-      const v = item.vehicle;
-      const rankBadge = isWinner
-        ? `<span class="badge" style="background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.4); font-size:11px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">🏆 RECOMENDACIÓN N° 1</span>`
-        : `<span class="badge" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid var(--border-subtle); font-family:var(--font-mono);">Puesto #${idx + 1}</span>`;
+    <div class="advisor-cards-grid">
+      ${scored.map((item, idx) => {
+        const isWinner = idx === 0;
+        const v = item.vehicle;
+        const rankBadge = isWinner
+          ? `<span class="badge" style="background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.4); font-size:11px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">🏆 RECOMENDACIÓN N° 1</span>`
+          : `<span class="badge" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid var(--border-subtle); font-family:var(--font-mono);">Puesto #${idx + 1}</span>`;
 
-      return `
-        <div class="advisor-card-rank ${isWinner ? 'leader' : ''}">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <div style="font-size:22px; font-weight:900; font-family:var(--font-mono); color:${isWinner ? 'var(--green)' : 'var(--text-muted)'};">
-                #${idx + 1}
+        return `
+          <div class="advisor-card-rank ${isWinner ? 'leader' : ''}">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div style="font-size:22px; font-weight:900; font-family:var(--font-mono); color:${isWinner ? 'var(--green)' : 'var(--text-muted)'};">
+                  #${idx + 1}
+                </div>
+                <div>
+                  <div style="font-size:16px; font-weight:900; color:#fff;">${v.maker} ${v.model}</div>
+                  <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${v.engine} • ${v.transmission}</div>
+                </div>
               </div>
-              <div>
-                <div style="font-size:16px; font-weight:900; color:#fff;">${v.maker} ${v.model}</div>
-                <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${v.engine} • ${v.transmission}</div>
+              <div style="text-align:right;">
+                <div style="font-size:20px; font-weight:900; font-family:var(--font-mono); color:${item.score >= 80 ? 'var(--green)' : 'var(--cyan)'};">
+                  ${item.score}%
+                </div>
+                ${rankBadge}
               </div>
             </div>
-            <div style="text-align:right;">
-              <div style="font-size:20px; font-weight:900; font-family:var(--font-mono); color:${item.score >= 80 ? 'var(--green)' : 'var(--cyan)'};">
-                ${item.score}%
-              </div>
-              ${rankBadge}
+
+            <div style="background:rgba(255,255,255,0.02); border-left:3px solid ${isWinner ? 'var(--green)' : 'var(--accent)'}; padding:8px 12px; border-radius:0 6px 6px 0; font-size:12px; color:#cbd5e1; margin-top:8px;">
+              <strong style="color:#fff; font-size:11px; text-transform:uppercase; font-family:var(--font-mono); display:block; margin-bottom:4px;">Factores Decisivos de tu Búsqueda:</strong>
+              <ul style="padding-left:16px; margin:0; line-height:1.6;">
+                ${item.reasons.map(r => `<li>${r}</li>`).join('')}
+              </ul>
             </div>
           </div>
-
-          <div style="background:rgba(255,255,255,0.02); border-left:3px solid ${isWinner ? 'var(--green)' : 'var(--accent)'}; padding:8px 12px; border-radius:0 6px 6px 0; font-size:12px; color:#cbd5e1; margin-top:8px;">
-            <strong style="color:#fff; font-size:11px; text-transform:uppercase; font-family:var(--font-mono); display:block; margin-bottom:4px;">Factores Decisivos de tu Búsqueda:</strong>
-            <ul style="padding-left:16px; margin:0; line-height:1.6;">
-              ${item.reasons.map(r => `<li>${r}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
-      `;
-    }).join('')}
+        `;
+      }).join('')}
+    </div>
   `;
 }
 

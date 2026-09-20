@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>CharuAutos — El Copiloto Digital del Conductor Inteligente (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
@@ -72,8 +72,19 @@
       --shadow-ambient: 0 0 24px -2px rgba(59, 130, 246, 0.18);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+    }
+
     body {
       background-color: var(--bg-dark);
       background-image: 
@@ -89,7 +100,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-bottom: 92px; /* Espacio para barra de navegación cockpit */
+      padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 96px; /* Espacio para dock flotante en PC/Tablet */
+      }
     }
 
     /* CUSTOM SCROLLBAR (SOBER AUTOMOTIVE) */
@@ -102,14 +119,14 @@
     header {
       background: rgba(11, 15, 23, 0.95);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 12px 20px;
+      padding: 10px clamp(12px, 3vw, 28px);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
     }
     header::after {
       content: '';
@@ -121,13 +138,22 @@
       background: linear-gradient(90deg, var(--accent) 0%, rgba(59, 130, 246, 0.3) 80%, transparent 100%);
       box-shadow: 0 0 10px var(--accent-glow);
     }
+    .header-inner {
+      width: 100%;
+      max-width: min(1820px, 97vw);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .brand-logo {
-      font-size: 21px;
+      font-size: clamp(17px, 4vw, 21px);
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #fff;
@@ -136,6 +162,7 @@
       gap: 2px;
       text-transform: uppercase;
       font-style: normal;
+      white-space: nowrap;
     }
     .brand-logo span {
       color: var(--accent);
@@ -143,8 +170,8 @@
     }
     .brand-tag {
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 1.5px;
+      font-size: 8.5px;
+      letter-spacing: 1.2px;
       color: var(--text-muted);
       text-transform: uppercase;
       font-style: normal;
@@ -152,22 +179,45 @@
       padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid var(--border-subtle);
-      margin-left: 6px;
+      margin-left: 2px;
+    }
+    @media (max-width: 360px) {
+      .brand-tag {
+        display: none;
+      }
     }
     .status-badge {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.5px;
-      padding: 5px 12px;
+      font-size: 10.5px;
+      letter-spacing: 0.3px;
+      padding: 4px 10px;
       border-radius: var(--radius-sm);
       font-weight: 700;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       cursor: pointer;
       user-select: none;
       transition: all 0.25s ease;
       text-transform: uppercase;
+      white-space: nowrap;
+    }
+    @media (max-width: 520px) {
+      .status-badge {
+        font-size: 9.5px;
+        padding: 3px 8px;
+      }
+    }
+    @media (max-width: 380px) {
+      #statusText {
+        display: none;
+      }
+      .status-badge::after {
+        content: "ON";
+      }
+      .status-offline.status-badge::after {
+        content: "OFF";
+      }
     }
     .status-online {
       background: rgba(16, 185, 129, 0.08);
@@ -210,9 +260,9 @@
     }
     .pro-pill {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1px;
-      padding: 6px 14px;
+      font-size: 10.5px;
+      letter-spacing: 0.8px;
+      padding: 5px 12px;
       border-radius: var(--radius-sm);
       font-weight: 800;
       cursor: pointer;
@@ -221,7 +271,8 @@
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
     }
     .pro-active {
       background: linear-gradient(135deg, #f59e0b, #d97706);
@@ -241,12 +292,12 @@
       box-shadow: 0 0 14px var(--accent-glow);
     }
 
-    /* CONTAINER PRINCIPAL */
+    /* CONTAINER PRINCIPAL RESPONSIVO FLUIDO */
     .app-container {
-      max-width: 960px;
+      max-width: min(1820px, 97vw);
       width: 100%;
       margin: 0 auto;
-      padding: 22px 18px;
+      padding: clamp(12px, 2vw, 26px);
     }
 
     /* PANELES DE PESTAÑAS (ANIMACIÓN FLUIDA) */
@@ -262,38 +313,116 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* NAVEGACIÓN INFERIOR (DRIVE-MODE SELECTOR COCKPIT) */
+    /* NAVEGACIÓN SUPERIOR EN HEADER (DESKTOP COCKPIT TABS) */
+    .desktop-nav {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .desktop-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(14, 19, 31, 0.96);
+        border: 1.5px solid rgba(59, 130, 246, 0.38);
+        padding: 4px 6px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(59, 130, 246, 0.16);
+        flex-shrink: 0;
+      }
+      .desktop-nav-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 13px;
+        border-radius: 8px;
+        font-family: var(--font-main);
+        font-size: 12px;
+        font-weight: 700;
+        color: #94a3b8;
+        background: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        user-select: none;
+        white-space: nowrap;
+      }
+      .desktop-nav-btn:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+      .desktop-nav-btn .cockpit-svg {
+        color: #94a3b8;
+        transition: all 0.2s ease;
+      }
+      .desktop-nav-btn:hover .cockpit-svg {
+        color: var(--cyan);
+      }
+      .desktop-nav-btn.active {
+        color: #ffffff;
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 0 18px rgba(37, 99, 235, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .desktop-nav-btn.active .cockpit-svg {
+        color: #ffffff;
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+      }
+    }
+    @media (min-width: 1100px) {
+      .desktop-nav-btn {
+        padding: 8px 17px;
+        font-size: 12.5px;
+        gap: 8px;
+      }
+    }
+
+    /* NAVEGACIÓN INFERIOR (DRIVE-MODE SELECTOR COCKPIT - ALTA VISIBILIDAD) */
     nav.bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(11, 15, 23, 0.96);
-      border-top: 1px solid var(--border-color);
+      background: rgba(10, 14, 23, 0.98);
+      border-top: 1.5px solid rgba(59, 130, 246, 0.45);
       display: flex;
       justify-content: space-around;
-      padding: 8px 10px;
+      align-items: center;
+      padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
       z-index: 90;
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      gap: 6px;
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.85), 0 0 22px rgba(59, 130, 246, 0.22);
     }
     .nav-item {
       position: relative;
+      flex: 1 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      color: #94a3b8;
       font-size: 11px;
       font-weight: 700;
       font-family: var(--font-main);
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
       cursor: pointer;
-      padding: 7px 18px 8px;
+      padding: 7px 4px 6px;
       border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       outline: none;
+      user-select: none;
+    }
+    .nav-item span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+      text-align: center;
     }
     .nav-item .icon {
       display: inline-flex;
@@ -301,34 +430,68 @@
       justify-content: center;
       width: 22px;
       height: 22px;
-      color: var(--text-muted);
+      color: #94a3b8;
       transition: all 0.2s ease;
     }
     .nav-item:hover {
       color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
     }
     .nav-item:hover .icon {
-      color: #fff;
+      color: var(--cyan);
     }
     .nav-item.active {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.03);
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.32) 0%, rgba(29, 78, 216, 0.45) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.6);
+      border-radius: 8px;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.38);
     }
     .nav-item.active .icon {
-      color: var(--accent);
+      color: #ffffff;
       transform: translateY(-1px);
-      filter: drop-shadow(0 0 8px var(--accent-glow));
+      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
     }
     .nav-item.active::after {
       content: '';
       position: absolute;
-      top: -9px;
+      top: -3px;
       left: 20%;
       right: 20%;
       height: 2.5px;
-      background: var(--accent);
+      background: var(--cyan);
       border-radius: 2px;
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    /* DESKTOP & TABLET: DOCK FLOTANTE CENTRADO DE ALTA VISIBILIDAD */
+    @media (min-width: 768px) {
+      nav.bottom-nav {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 20px;
+        width: min(640px, calc(100vw - 36px));
+        border-radius: 16px;
+        border: 1.5px solid rgba(59, 130, 246, 0.45);
+        box-shadow: 0 20px 50px -4px rgba(0, 0, 0, 0.95), 0 0 26px rgba(59, 130, 246, 0.28);
+        padding: 6px 12px;
+        background: rgba(12, 17, 28, 0.97);
+      }
+      .nav-item {
+        padding: 8px 16px;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .nav-item.active::after {
+        top: -4px;
+        left: 22%;
+        right: 22%;
+      }
     }
 
     /* TARJETAS MONOCOQUE DE ALTA PRECISIÓN */
@@ -336,7 +499,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 20px 22px;
+      padding: clamp(14px, 2.5vw, 24px);
       margin-bottom: 18px;
       box-shadow: var(--shadow-elevation);
       position: relative;
@@ -352,13 +515,15 @@
       background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
     }
     .card-title {
-      font-size: 16px;
+      font-size: clamp(14px, 2vw, 16px);
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.3px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 14px;
     }
     .card-title span.badge {
@@ -511,13 +676,124 @@
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
+    .filter-pills-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 6px !important;
+    }
+    .filter-pills-grid .filter-pill {
+      padding: 6px 8px !important;
+      font-size: 11px !important;
+      margin: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      justify-content: flex-start !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    /* =========================================================================
+       LAYOUTS SPLIT-SCREEN COCKPIT EN ESCRITORIO & PC WIDESCREEN (≥ 1100px)
+       ========================================================================= */
+    .matchmaker-split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .matchmaker-sidebar {
+      width: 100%;
+    }
+    .matchmaker-main {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .scanner-split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .scanner-sidebar {
+      width: 100%;
+    }
+    .scanner-main {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .garage-split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .garage-sidebar {
+      width: 100%;
+    }
+    .garage-main {
+      width: 100%;
+      min-width: 0;
+    }
+
+    @media (min-width: 1100px) {
+      /* MATCHMAKER SPLIT DASHBOARD */
+      .matchmaker-split-layout {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        align-items: start;
+        gap: 24px;
+      }
+      .matchmaker-sidebar {
+        position: sticky;
+        top: 76px;
+        width: 100%;
+      }
+      .matchmaker-sidebar .card {
+        padding: 16px 18px !important;
+      }
+
+      /* SCANNER SPLIT DASHBOARD */
+      .scanner-split-layout {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        align-items: start;
+        gap: 24px;
+      }
+      .scanner-sidebar {
+        position: sticky;
+        top: 76px;
+      }
+
+      /* GARAGE SPLIT DASHBOARD */
+      .garage-split-layout {
+        display: grid;
+        grid-template-columns: 480px 1fr;
+        align-items: start;
+        gap: 24px;
+      }
+      .garage-sidebar {
+        position: sticky;
+        top: 76px;
+      }
+    }
+
     /* MATCHMAKER: FICHAS DE HOMOLOGACIÓN */
+    #matchmakerResults {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: 16px;
+    }
     .car-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
-      padding: 18px 20px;
-      margin-bottom: 14px;
+      padding: clamp(14px, 2vw, 20px);
+      margin-bottom: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: var(--shadow-elevation);
     }
@@ -530,13 +806,15 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
       margin-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 10px;
     }
     .match-score {
       font-family: var(--font-mono);
-      font-size: 18px;
+      font-size: clamp(16px, 2.5vw, 18px);
       font-weight: 800;
       letter-spacing: -0.5px;
     }
@@ -570,6 +848,9 @@
     .cause-info {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
       font-size: 12px;
       margin-bottom: 5px;
     }
@@ -606,7 +887,7 @@
     .dropzone {
       border: 1.5px dashed rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-md);
-      padding: 28px 20px;
+      padding: clamp(18px, 4vw, 28px) 16px;
       text-align: center;
       background: rgba(255, 255, 255, 0.015);
       cursor: pointer;
@@ -619,14 +900,22 @@
       border-color: var(--accent);
       box-shadow: 0 0 18px var(--accent-glow);
     }
+    .table-responsive-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      margin-top: 14px;
+    }
     .compare-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      margin-top: 14px;
     }
     .compare-table th, .compare-table td {
-      padding: 12px 10px;
+      padding: 11px 12px;
       text-align: left;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
@@ -636,6 +925,23 @@
       font-weight: 700;
       background: rgba(0, 0, 0, 0.4);
       letter-spacing: 0.5px;
+    }
+    /* STICKY FIRST COLUMN FOR RESPONSIVE COMPARISON TABLE */
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 6;
+      background: #0d131f;
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .compare-table thead th:first-child {
+      z-index: 16;
+      background: #080c14;
+    }
+    .matrix-category-header td {
+      position: sticky;
+      left: 0;
     }
     .winner-val {
       color: var(--green);
@@ -653,10 +959,15 @@
       border: 1px solid var(--border-subtle);
       margin: 18px 0;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .compare-subnav::-webkit-scrollbar {
+      display: none;
     }
     .compare-subnav-btn {
-      flex: 1;
-      min-width: 140px;
+      flex: 1 1 auto;
+      min-width: 135px;
       padding: 8px 12px;
       border-radius: var(--radius-sm);
       background: transparent;
@@ -671,6 +982,7 @@
       gap: 7px;
       transition: all 0.2s ease;
       white-space: nowrap;
+      user-select: none;
     }
     .compare-subnav-btn:hover {
       color: #fff;
@@ -697,8 +1009,8 @@
       border: 1px solid var(--border-subtle);
     }
     .matrix-search-wrap {
-      flex: 1;
-      min-width: 200px;
+      flex: 1 1 220px;
+      min-width: min(100%, 200px);
       position: relative;
     }
     .matrix-search-input {
@@ -781,7 +1093,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: clamp(14px, 2vw, 18px);
       position: relative;
     }
     .chart-box-title {
@@ -797,7 +1109,7 @@
     }
     .chart-canvas-wrap {
       position: relative;
-      height: 290px;
+      height: clamp(250px, 40vw, 310px);
       width: 100%;
     }
 
@@ -808,15 +1120,25 @@
     .advisor-priority-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       font-size: 11.5px;
       margin-bottom: 4px;
+    }
+    .advisor-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+      gap: 14px;
     }
     .advisor-card-rank {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
-      padding: 16px;
-      margin-bottom: 12px;
+      padding: clamp(14px, 2vw, 18px);
+      margin-bottom: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       transition: all 0.2s ease;
     }
     .advisor-card-rank:hover {
@@ -831,7 +1153,7 @@
     /* MARKETPLACE B2B & SERVICIOS AFILIADOS */
     .b2b-services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
       gap: 14px;
       margin-top: 14px;
     }
@@ -839,7 +1161,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: clamp(14px, 2vw, 18px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -854,8 +1176,29 @@
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 18px;
+    }
+    @media (max-width: 480px) {
+      .metric-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      }
+    }
+    @media (max-width: 320px) {
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .garage-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 440px) {
+      .garage-btn-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .metric-box {
       background: var(--bg-card-alt);
@@ -882,7 +1225,7 @@
     }
     .metric-val {
       font-family: var(--font-mono);
-      font-size: 20px;
+      font-size: clamp(17px, 2.5vw, 20px);
       font-weight: 900;
       color: #fff;
       margin-top: 5px;
@@ -899,6 +1242,7 @@
       border-top: 1px solid var(--border-subtle);
       border-right: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
+      overflow-wrap: break-word;
     }
     .chain-hash {
       color: var(--cyan);
@@ -923,10 +1267,11 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(4, 5, 8, 0.88);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 200;
       align-items: center;
       justify-content: center;
-      padding: 18px;
+      padding: clamp(10px, 3vw, 18px);
     }
     .modal-backdrop.show {
       display: flex;
@@ -942,8 +1287,8 @@
       border-radius: var(--radius-lg);
       max-width: 480px;
       width: 100%;
-      padding: 24px;
-      max-height: 90vh;
+      padding: clamp(16px, 3vw, 24px);
+      max-height: 88vh;
       overflow-y: auto;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
       position: relative;
@@ -964,7 +1309,7 @@
       padding-bottom: 12px;
     }
     .modal-title {
-      font-size: 16px;
+      font-size: clamp(14px, 2vw, 16px);
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.3px;
@@ -985,20 +1330,43 @@
 
   <!-- HEADER // AUTOMOTIVE BRAND HUD -->
   <header>
-    <div class="brand-wrap">
-      <div class="brand-logo">
-        Charu<span>Autos</span>
-        <span class="brand-tag">AUTOMOTIVE</span>
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <div class="brand-logo">
+          Charu<span>Autos</span>
+          <span class="brand-tag">AUTOMOTIVE</span>
+        </div>
+        <div id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()">
+          <span class="status-indicator"></span> <span id="statusText">Sistema // En Línea</span>
+        </div>
       </div>
-      <div id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()">
-        <span class="status-indicator"></span> <span id="statusText">Sistema // En Línea</span>
+
+      <!-- SELECTOR PRINCIPAL DE MÓDULOS / COCKPIT TABS (DESKTOP) -->
+      <nav class="desktop-nav" aria-label="Navegación de Secciones">
+        <button class="desktop-nav-btn active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
+          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Matchmaker</span>
+        </button>
+        <button class="desktop-nav-btn" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
+          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
+          <span>Escáner OBD2</span>
+        </button>
+        <button class="desktop-nav-btn" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
+          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
+          <span>Comparador</span>
+        </button>
+        <button class="desktop-nav-btn" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
+          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10l-2-4H7L5 10c0 0-2.7.6-4.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M9.5 17h5"/></svg>
+          <span>Mi Garage</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <span id="proBadge" class="pro-pill pro-free" onclick="openCheckoutModal()">
+          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
+          <span>CharuPro</span>
+        </span>
       </div>
-    </div>
-    <div>
-      <span id="proBadge" class="pro-pill pro-free" onclick="openCheckoutModal()">
-        <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
-        <span>CharuPro</span>
-      </span>
     </div>
   </header>
 
@@ -1007,140 +1375,154 @@
 
     <!-- TAB 1: MATCHMAKER -->
     <div id="tab-matchmaker" class="tab-pane active">
-      <div class="card">
-        <div class="card-title">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
-            <span>Matchmaker Automotriz Inteligente</span>
-          </div>
-          <span class="badge" style="background: rgba(0,242,254,0.15); color: var(--cyan);">IA Venezuela</span>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
-          Calcula la compatibilidad real según tu presupuesto en dólares, condición de vías (baches severos) y disponibilidad inmediata de repuestos en el país.
-        </p>
+      <div class="matchmaker-split-layout">
+        <!-- SIDEBAR DE FILTROS & CONTROL TELEMÉTRICO (STICKY EN PC) -->
+        <aside class="matchmaker-sidebar">
+          <div class="card" style="margin-bottom:0; padding:16px 18px;">
+            <div class="card-title" style="margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
+                <span>Filtros Matchmaker</span>
+              </div>
+              <span class="badge" style="background: rgba(0,242,254,0.15); color: var(--cyan); font-size:10px; padding:2px 7px;">IA Venezuela</span>
+            </div>
+            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.3;">
+              Calcula la compatibilidad según presupuesto en USD, baches severos y repuestos en el país.
+            </p>
 
-        <!-- CONTROL DE PRESUPUESTO AJUSTADO -->
-        <div class="input-group" style="background: #090e18; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
-            <span class="input-label" style="margin-bottom:0;">Presupuesto Máximo de Compra:</span>
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="color:var(--cyan); font-weight:900;">$</span>
-              <input type="number" id="budgetNumber" min="1000" max="25000" step="250" value="6000" 
-                     class="input-field" style="width: 110px; padding: 6px 10px; text-align:right; font-weight:800; color:var(--cyan); font-size:15px;"
+            <!-- CONTROL DE PRESUPUESTO AJUSTADO -->
+            <div class="input-group" style="background: #090e18; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom: 8px;">
+                <span class="input-label" style="margin-bottom:0; font-size:10.5px;">Presupuesto Máximo:</span>
+                <div style="display:flex; align-items:center; gap:5px;">
+                  <span style="color:var(--cyan); font-weight:900; font-size:14px;">$</span>
+                  <input type="number" id="budgetNumber" min="1000" max="25000" step="250" value="6000" 
+                         class="input-field" style="width: 95px; padding: 4px 6px; text-align:right; font-weight:800; color:var(--cyan); font-size:14px;"
+                         oninput="syncBudgetInput(this.value)">
+                  <span style="font-size:10.5px; color:var(--text-muted); font-weight:700;">USD</span>
+                </div>
+              </div>
+
+              <input type="range" id="budgetRange" min="1000" max="22000" step="250" value="6000" 
+                     style="width:100%; accent-color: var(--cyan); margin-bottom: 8px;" 
                      oninput="syncBudgetInput(this.value)">
-              <span style="font-size:11px; color:var(--text-muted); font-weight:700;">USD</span>
+
+              <!-- BOTONES DE ACCESO RÁPIDO DE PRESUPUESTO -->
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-bottom: 8px;">
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(3500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  ≤ $3,500 (Econ.)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(5500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  ≤ $5,500 (Aveo)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(8500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  ≤ $8,500 (Yaris)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(15000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  ≤ $15,000 (0 km)
+                </button>
+              </div>
+
+              <!-- CHECKBOX DE FILTRO ESTRICTO -->
+              <label style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--cyan); cursor:pointer; margin-bottom:0;">
+                <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--cyan); width:14px; height:14px;">
+                <span style="display:inline-flex; align-items:center; gap:4px;">
+                  <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <strong>Filtro estricto:</strong> Ocultar fuera de presupuesto
+                </span>
+              </label>
+            </div>
+
+            <div class="input-label" style="margin-top:10px; margin-bottom:6px; font-size:10.5px;">Condición Vial Predominante:</div>
+            <div class="filter-pills filter-pills-grid" id="roadFilterPills" style="margin-bottom:10px;">
+              <div class="filter-pill active" onclick="setRoadFilter('severo', this)" title="Baches Severos / Huecos">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 18h4l3-6 4 9 4-6 5 3"/></svg>
+                <span>Baches Severos</span>
+              </div>
+              <div class="filter-pill" onclick="setRoadFilter('moderado', this)" title="Caracas Urbana / Tráfico">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 21h18M6 21V9a2 2 0 0 1 2-2h2v14M14 21V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v17"/></svg>
+                <span>Caracas Urbana</span>
+              </div>
+              <div class="filter-pill" onclick="setRoadFilter('autopista', this)" title="Autopista Plana">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M4 21l4-18M20 21l-4-18M12 5v3M12 11v3M12 17v3"/></svg>
+                <span>Autopista Plana</span>
+              </div>
+              <div class="filter-pill" onclick="setRoadFilter('montana', this)" title="Subidas / Los Teques">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 20l9-15 4 7 2-3 5 11H2z"/></svg>
+                <span>Subidas / Teques</span>
+              </div>
+            </div>
+
+            <div class="input-label" style="margin-top:6px; margin-bottom:6px; font-size:10.5px;">Uso Principal Planeado:</div>
+            <div class="filter-pills filter-pills-grid" id="usageFilterPills" style="margin-bottom:0;">
+              <div class="filter-pill active" onclick="setUsageFilter('diario', this)" title="Uso Diario / Económico">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
+                <span>Uso Diario / Econ.</span>
+              </div>
+              <div class="filter-pill" onclick="setUsageFilter('taxi', this)" title="Yummy / Ridery / Taxi">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="10" width="18" height="9" rx="2"/><path d="M7 10l2-5h6l2 5M5 19v2M19 19v2"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
+                <span>Taxi / Ridery</span>
+              </div>
+              <div class="filter-pill" onclick="setUsageFilter('familia', this)" title="Familiar / Espacio">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                <span>Familiar / Espacio</span>
+              </div>
+              <div class="filter-pill" onclick="setUsageFilter('rustico', this)" title="Rústico / Carga">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 13h18l-2-6H5L3 13zM2 17h20"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M10 17h4"/></svg>
+                <span>Rústico / Carga</span>
+              </div>
             </div>
           </div>
+        </aside>
 
-          <input type="range" id="budgetRange" min="1000" max="22000" step="250" value="6000" 
-                 style="width:100%; accent-color: var(--cyan); margin-bottom: 10px;" 
-                 oninput="syncBudgetInput(this.value)">
-
-          <!-- BOTONES DE ACCESO RÁPIDO DE PRESUPUESTO -->
-          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom: 10px;">
-            <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(3500)" style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Hasta $3,500 (Económicos)
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(5500)" style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Hasta $5,500 (Aveo/Fiesta)
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(8500)" style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Hasta $8,500 (Yaris/Corolla)
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(15000)" style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Hasta $15,000 (0 km / Nuevos)
-            </button>
-          </div>
-
-          <!-- CHECKBOX DE FILTRO ESTRICTO -->
-          <label style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--cyan); cursor:pointer;">
-            <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--cyan); width:15px; height:15px;">
-            <span style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <strong>Filtro estricto:</strong> Ocultar vehículos que superen mi presupuesto
-            </span>
-          </label>
-        </div>
-
-        <div class="input-label" style="margin-top:14px;">Condición Vial Predominante:</div>
-        <div class="filter-pills" id="roadFilterPills">
-          <div class="filter-pill active" onclick="setRoadFilter('severo', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M2 18h4l3-6 4 9 4-6 5 3"/></svg>
-            Baches Severos / Huecos
-          </div>
-          <div class="filter-pill" onclick="setRoadFilter('moderado', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M3 21h18M6 21V9a2 2 0 0 1 2-2h2v14M14 21V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v17"/></svg>
-            Caracas Urbana / Tráfico
-          </div>
-          <div class="filter-pill" onclick="setRoadFilter('autopista', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M4 21l4-18M20 21l-4-18M12 5v3M12 11v3M12 17v3"/></svg>
-            Autopista Plana
-          </div>
-          <div class="filter-pill" onclick="setRoadFilter('montana', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M2 20l9-15 4 7 2-3 5 11H2z"/></svg>
-            Subidas / Los Teques
-          </div>
-        </div>
-
-        <div class="input-label">Uso Principal Planeado:</div>
-        <div class="filter-pills" id="usageFilterPills">
-          <div class="filter-pill active" onclick="setUsageFilter('diario', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
-            Uso Diario / Económico
-          </div>
-          <div class="filter-pill" onclick="setUsageFilter('taxi', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><rect x="3" y="10" width="18" height="9" rx="2"/><path d="M7 10l2-5h6l2 5M5 19v2M19 19v2"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
-            Yummy / Ridery / Taxi
-          </div>
-          <div class="filter-pill" onclick="setUsageFilter('familia', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-            Familiar / Espacio
-          </div>
-          <div class="filter-pill" onclick="setUsageFilter('rustico', this)">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M3 13h18l-2-6H5L3 13zM2 17h20"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M10 17h4"/></svg>
-            Rústico / Carga
-          </div>
-        </div>
+        <!-- RESULTADOS MATCHMAKER DINÁMICOS -->
+        <main class="matchmaker-main">
+          <div id="matchmakerResults"></div>
+        </main>
       </div>
-
-      <!-- RESULTADOS MATCHMAKER -->
-      <div id="matchmakerResults"></div>
     </div>
 
     <!-- TAB 2: ESCÁNER OBD2 -->
     <div id="tab-scanner" class="tab-pane">
-      <div class="card">
-        <div class="card-title">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
-            <span>Diagnóstico OBD2 & Escudo Anti-Estafas</span>
+      <div class="scanner-split-layout">
+        <aside class="scanner-sidebar">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-title">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
+                <span>Diagnóstico OBD2</span>
+              </div>
+              <span class="badge" style="background: rgba(56,239,125,0.15); color: var(--green);">100% OFFLINE</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">
+              Ingresa el código arrojado por tu escáner. Desglosamos probabilidades 80/20 y preguntas anti-estafa.
+            </p>
+
+            <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+              <input type="text" id="dtcInput" class="input-field" placeholder="Ej: P0420, P0171..." style="text-transform:uppercase;" value="P0420">
+              <button class="btn" onclick="lookupDTC()">Diagnosticar</button>
+            </div>
+
+            <div class="input-label" style="margin-bottom:8px;">Fallas Típicas en Venezuela:</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span class="filter-pill" onclick="quickDTC('P0420')">P0420 (Catalizador)</span>
+              <span class="filter-pill" onclick="quickDTC('P0171')">P0171 (Mezcla Pobre)</span>
+              <span class="filter-pill" onclick="quickDTC('P0300')">P0300 (Misfire)</span>
+              <span class="filter-pill" onclick="quickDTC('P0442')">P0442 (EVAP Fuga)</span>
+              <span class="filter-pill" onclick="quickDTC('P0128')">P0128 (Termostato)</span>
+            </div>
           </div>
-          <span class="badge" style="background: rgba(56,239,125,0.15); color: var(--green);">100% OFFLINE</span>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
-          Ingresa el código que arrojó tu escáner. Desglosamos las probabilidades 80/20 y te damos las preguntas para evitar que te engañen en el taller.
-        </p>
+        </aside>
 
-        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-          <input type="text" id="dtcInput" class="input-field" placeholder="Ej: P0420, P0171, P0300..." style="text-transform:uppercase;" value="P0420">
-          <button class="btn" onclick="lookupDTC()">Diagnosticar</button>
-        </div>
-
-        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-          <span class="filter-pill" onclick="quickDTC('P0420')">P0420 (Catalizador)</span>
-          <span class="filter-pill" onclick="quickDTC('P0171')">P0171 (Mezcla Pobre)</span>
-          <span class="filter-pill" onclick="quickDTC('P0300')">P0300 (Misfire)</span>
-          <span class="filter-pill" onclick="quickDTC('P0442')">P0442 (EVAP Fuga)</span>
-          <span class="filter-pill" onclick="quickDTC('P0128')">P0128 (Termostato)</span>
-        </div>
+        <!-- REPORTE DE DIAGNÓSTICO -->
+        <main class="scanner-main">
+          <div id="dtcResultCard"></div>
+        </main>
       </div>
-
-      <!-- REPORTE DE DIAGNÓSTICO -->
-      <div id="dtcResultCard"></div>
     </div>
 
     <!-- TAB 3: COMPARADOR & PDF SCRAPER -->
@@ -1336,103 +1718,110 @@
 
     <!-- TAB 4: GARAGE & BLOCKCHAIN -->
     <div id="tab-garage" class="tab-pane">
-      <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-          <div>
-            <div style="font-size: 18px; font-weight: 900; color: #fff; letter-spacing:-0.4px;">Toyota Corolla GLi 2011</div>
-            <div style="font-size: 12px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:2px;">Apodo: "El Gladiador" • Placa: AB123CD</div>
-          </div>
-          <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:5px 9px; border-radius:6px; font-size:10.5px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">
-            <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            ODÓMETRO INMUTABLE
-          </span>
-        </div>
+      <div class="garage-split-layout">
+        <!-- SIDEBAR DE VEHÍCULO & ODÓMETRO -->
+        <aside class="garage-sidebar">
+          <div class="card" style="margin-bottom: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <div>
+                <div style="font-size: 18px; font-weight: 900; color: #fff; letter-spacing:-0.4px;">Toyota Corolla GLi 2011</div>
+                <div style="font-size: 12px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:2px;">Apodo: "El Gladiador" • Placa: AB123CD</div>
+              </div>
+              <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:5px 9px; border-radius:6px; font-size:10.5px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                ODÓMETRO INMUTABLE
+              </span>
+            </div>
 
-        <div class="metric-grid">
-          <div class="metric-box">
-            <div class="metric-label">Odómetro</div>
-            <div class="metric-val" id="garageOdoDisplay">148,500 km</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-label">Health Score</div>
-            <div class="metric-val" style="color: var(--green);">92/100</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-label">Costo por km</div>
-            <div class="metric-val" id="garageCostDisplay" style="color: var(--amber);">$0.040</div>
-          </div>
-        </div>
+            <div class="metric-grid">
+              <div class="metric-box">
+                <div class="metric-label">Odómetro</div>
+                <div class="metric-val" id="garageOdoDisplay">148,500 km</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Health Score</div>
+                <div class="metric-val" style="color: var(--green);">92/100</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Costo por km</div>
+                <div class="metric-val" id="garageCostDisplay" style="color: var(--amber);">$0.040</div>
+              </div>
+            </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-          <button class="btn btn-secondary" onclick="openFuelModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-            <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-            Registrar Gasolina
-          </button>
-          <button class="btn btn-secondary" onclick="openOdometerModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-            <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
-            Actualizar Odómetro
-          </button>
-        </div>
-        <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
-          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
-          Ver / Imprimir Pasaporte Criptográfico
-        </button>
-      </div>
-
-      <!-- COLA DE MUTACIONES OFFLINE -->
-      <div class="card" id="syncQueueCard" style="display:none; border-color: var(--amber);">
-        <div class="card-title" style="color: var(--amber); font-size: 14px;">
-          <div style="display:flex; align-items:center; gap:6px;">
-            <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Mutaciones en Cola (Modo Offline)</span>
+            <div class="garage-btn-grid">
+              <button class="btn btn-secondary" onclick="openFuelModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                Registrar Gasolina
+              </button>
+              <button class="btn btn-secondary" onclick="openOdometerModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
+                Actualizar Odómetro
+              </button>
+            </div>
+            <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
+              Ver / Imprimir Pasaporte Criptográfico
+            </button>
           </div>
-          <span id="queueCountBadge" class="badge" style="background:var(--amber); color:#070a0f;">2 pendientes</span>
-        </div>
-        <div id="queueList" style="font-size: 11px; font-family: monospace; color: #cbd5e1;"></div>
-      </div>
 
-      <!-- CADENA CRIPTOGRÁFICA SHA-256 -->
-      <div class="card">
-        <div class="card-title">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4M6 15v2a2 2 0 0 0 2 2h2"/></svg>
-            <span>Micro-Blockchain de Kilometraje</span>
+          <!-- COLA DE MUTACIONES OFFLINE -->
+          <div class="card" id="syncQueueCard" style="display:none; border-color: var(--amber); margin-bottom: 0;">
+            <div class="card-title" style="color: var(--amber); font-size: 14px;">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>Mutaciones en Cola (Modo Offline)</span>
+              </div>
+              <span id="queueCountBadge" class="badge" style="background:var(--amber); color:#070a0f;">2 pendientes</span>
+            </div>
+            <div id="queueList" style="font-size: 11px; font-family: monospace; color: #cbd5e1;"></div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
-            <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            Auditar Cadena
-          </button>
-        </div>
-        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-          Cada actualización crea un bloque criptográfico SHA-256 encadenado matemáticamente al anterior. Si alguien intenta retroceder el odómetro, la cadena activa una alerta de fraude.
-        </div>
-        <div id="blockchainFeed"></div>
+        </aside>
+
+        <!-- CADENA CRIPTOGRÁFICA SHA-256 PRINCIPAL -->
+        <main class="garage-main">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-title">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4M6 15v2a2 2 0 0 0 2 2h2"/></svg>
+                <span>Micro-Blockchain de Kilometraje</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
+                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Auditar Cadena
+              </button>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+              Cada actualización crea un bloque criptográfico SHA-256 encadenado matemáticamente al anterior. Si alguien intenta retroceder el odómetro, la cadena activa una alerta de fraude.
+            </div>
+            <div id="blockchainFeed"></div>
+          </div>
+        </main>
       </div>
     </div>
 
   </div>
 
-  <!-- NAVEGACIÓN INFERIOR (DRIVE-MODE SELECTOR COCKPIT) -->
-  <nav class="bottom-nav">
-    <button class="nav-item active" onclick="switchTab('tab-matchmaker', this)">
+  <!-- NAVEGACIÓN INFERIOR (DRIVE-MODE SELECTOR COCKPIT - ALTA VISIBILIDAD) -->
+  <nav class="bottom-nav" aria-label="Selector de Módulos Cockpit">
+    <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
       </span>
       <span>Matchmaker</span>
     </button>
-    <button class="nav-item" onclick="switchTab('tab-scanner', this)">
+    <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
       </span>
       <span>OBD-II Scan</span>
     </button>
-    <button class="nav-item" onclick="switchTab('tab-compare', this)">
+    <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
       </span>
       <span>Comparador</span>
     </button>
-    <button class="nav-item" onclick="switchTab('tab-garage', this)">
+    <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10l-2-4H7L5 10c0 0-2.7.6-4.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M9.5 17h5"/></svg>
       </span>
@@ -1597,6 +1986,6 @@
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20260920_autocompare_v6"></script>
+  <script src="app.js?v=20260920_sidebar_v12"></script>
 </body>
 </html>

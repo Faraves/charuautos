@@ -1,26 +1,34 @@
-# CharuAutos — Las Aventuras de Charu (Cómic PWA)
-### Novela Gráfica Educativa • Manual del Conductor Inteligente • Ecosistema Digital Automotriz
+# CharuAutos — Ecosistema Digital Automotriz
+### WebApp & Comparador • Novela Gráfica Educativa • Manual del Conductor Inteligente
 *Marca Oficial: CharuAutos (`@charuautopics`) • "Pasión Automotriz al Alcance de tus Manos"*
 
-[![Leer Cómic en Vivo](https://img.shields.io/badge/🎨_LEER_HISTORIETA_EN_VIVO-Click_Aquí-00f2fe?style=for-the-badge&logo=googlechrome&logoColor=black)](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)
+[![Abrir WebApp PWA](https://img.shields.io/badge/📱_ABRIR_WEBAPP_PWA-Click_Aquí-3b82f6?style=for-the-badge&logo=googlechrome&logoColor=white)](https://faraves.github.io/charuautos/app/public/)
+[![Leer Cómic en Vivo](https://img.shields.io/badge/🎨_LEER_HISTORIETA_EN_VIVO-Entrar-00f2fe?style=for-the-badge&logoColor=black)](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)
 [![Ebook V2 Técnico](https://img.shields.io/badge/📖_MANUAL_TÉCNICO_V2.0-Entrar-ffb703?style=for-the-badge)](https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/)
-[![PWA Ready](https://img.shields.io/badge/PWA-100%25_OFFLINE-38ef7d?style=for-the-badge)](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)
+[![Hub Maestro Portada](https://img.shields.io/badge/🌐_HUB_MAESTRO-Visitar-10b981?style=for-the-badge)](https://faraves.github.io/charuautos/)
 
 ---
 
 ## ⚡ 1. Enlaces Oficiales y Despliegue en Vivo (GitHub Pages)
 
-El proyecto cuenta con despliegue continuo en **GitHub Pages**. Por defecto, la URL principal abre **directamente la Historieta Ilustrada (Cómic PWA)**:
+El proyecto cuenta con despliegue continuo en **GitHub Pages**. Cada producto opera de forma independiente y cuenta con su propia URL directa:
 
-- 🎨 **Lector Web Interactivo de la Historieta (Cómic PWA Oficial):**  
+- 🌐 **Hub Maestro / Portada Central del Ecosistema:**  
+  👉 **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)**  
+  *(Página de inicio con accesos directos a la App, Manuales e Historieta)*
+
+- 📱 **CharuAutos WebApp & Comparador Automotriz (PWA Oficial):**  
+  👉 **[https://faraves.github.io/charuautos/app/public/](https://faraves.github.io/charuautos/app/public/)**  
+  *(Matchmaker con precios de Venezuela, Diagnóstico OBD2 anti-estafas, Comparador Chart.js y Mi Garage)*
+
+- 🎨 **Lector Web Interactivo de la Historieta (Cómic PWA Educativo):**  
   👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)**  
-  *(o directamente a través del dominio principal: **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)**)*
 
 - 🚀 **Manual Técnico Ilustrado (Ebook V2 Técnico):**  
-  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/)** *(o atajo `?v2`)*
+  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/)**  
 
-- 🚗 **URL Directa PWA Versión 1.0 (Clásica):**  
-  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/)**
+- 🚗 **Manual Original PWA (Edición Clásica V1):**  
+  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/)**  
 
 > 📖 **Para una auditoría técnica profunda de estándares, fuentes SAE/ISO y arquitectura de software, consulta la [DOCUMENTACIÓN GENERAL MAESTRA](DOCUMENTACION_GENERAL.md).**
 

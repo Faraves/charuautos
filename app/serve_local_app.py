@@ -147,24 +147,28 @@ def parse_pdf_bytes_with_pymupdf(filename, pdf_bytes):
         engine = "1.5L Turbo Acteco E4T15C"
         displacement = "1.5L (1,498 cc)"
         transmission = "Automática 6DCT Doble Embrague"
-        airbags = "4 Airbags"
         esp = "ESP + Control de Tracción"
         brakes = "Discos en las 4 Ruedas (ABS+EBD)"
         if "dashing" in model.lower():
+            airbags = "2 Frontales (Conductor y Pasajero)"
             trunk = 486
             tank = 57
             weight = 1520
             infotainment = "Pantalla Cockpit Digital 12.8 pulg HD"
         elif "x50" in model.lower():
+            airbags = "4 Airbags (Frontales + Laterales)"
             trunk = 398
             tank = 45
             weight = 1390
             infotainment = "Pantalla Táctil HD 10 pulg"
         elif "x70" in model.lower():
+            airbags = "4 Airbags (Frontales + Laterales)"
             trunk = 895
             tank = 57
             weight = 1560
             infotainment = "Pantalla 10.1 pulg táctil (7 Pasajeros)"
+        else:
+            airbags = "2 Frontales"
 
     # Heurística genérica si no coincidió con los anteriores
     if hp is None:
