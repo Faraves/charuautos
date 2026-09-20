@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CharuAutos App — Hub Maestro de Documentación</title>
+    <style>
+        @page {
+            size: letter portrait;
+            margin: 18mm 16mm 20mm 16mm;
+            @bottom-right {
+                content: "Página " counter(page);
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                font-size: 8pt;
+                color: #64748b;
+            }
+            @bottom-left {
+                content: "CharuAutos App • Hub Maestro de Documentación & Inversión";
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                font-size: 8pt;
+                color: #64748b;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #0f172a;
+            background-color: #ffffff;
+            font-size: 11pt;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* PORTADA EJECUTIVA */
+        .cover-page {
+            page-break-after: always;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 20px 20px 20px;
+            background: linear-gradient(135deg, #070a0f 0%, #0f172a 60%, #1e293b 100%);
+            color: #ffffff;
+            border-radius: 12px;
+            border: 2px solid #00f2fe;
+            margin-bottom: 20px;
+        }
+        .cover-top {
+            border-bottom: 2px solid rgba(0, 242, 254, 0.4);
+            padding-bottom: 20px;
+        }
+        .cover-brand {
+            font-size: 38pt;
+            font-weight: 900;
+            color: #00f2fe;
+            letter-spacing: -1px;
+            margin: 0;
+            line-height: 1.1;
+        }
+        .cover-brand span {
+            color: #ffb703;
+        }
+        .cover-badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 10pt;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 14px;
+        }
+        .cover-center {
+            margin: 40px 0;
+        }
+        .cover-doc-title {
+            font-size: 26pt;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+        .cover-doc-subtitle {
+            font-size: 13pt;
+            color: #94a3b8;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+        .cover-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+        }
+        .meta-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .meta-box-label {
+            font-size: 8pt;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .meta-box-val {
+            font-size: 11pt;
+            color: #00f2fe;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        /* TABLA DE CONTENIDOS */
+        .toc-page {
+            page-break-after: always;
+            padding: 20px 0;
+        }
+        .toc-header {
+            font-size: 22pt;
+            font-weight: 800;
+            color: #0f172a;
+            border-bottom: 3px solid #0284c7;
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+        }
+        .toc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .toc-num {
+            font-size: 14pt;
+            font-weight: 900;
+            color: #0284c7;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .toc-details {
+            flex: 1;
+        }
+        .toc-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+        }
+        .toc-desc {
+            font-size: 9.5pt;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* CAPÍTULOS */
+        .chapter {
+            page-break-before: always;
+            padding-top: 10px;
+        }
+        .chapter-header-banner {
+            background: #f8fafc;
+            border-left: 5px solid #0284c7;
+            padding: 18px 24px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 28px;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .chapter-badge {
+            font-size: 8pt;
+            font-weight: 800;
+            color: #0284c7;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .chapter-title {
+            font-size: 20pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 4px 0;
+            line-height: 1.2;
+        }
+        .chapter-lead {
+            font-size: 10.5pt;
+            color: #475569;
+            margin: 0;
+        }
+
+        /* TIPOGRAFÍA GENERAL */
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            font-weight: 800;
+            margin-top: 22px;
+            margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+        h1 { font-size: 16pt; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px; }
+        h2 { font-size: 13.5pt; color: #0369a1; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px; }
+        h3 { font-size: 12pt; color: #334155; }
+        h4 { font-size: 11pt; color: #475569; }
+
+        p, li {
+            color: #334155;
+            font-size: 10.5pt;
+            line-height: 1.6;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+            margin-bottom: 14px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* TABLAS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 9.5pt;
+            page-break-inside: avoid;
+        }
+        th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 8px 10px;
+            text-align: left;
+            border: 1px solid #0f172a;
+        }
+        td {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
+            vertical-align: top;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        /* CALLOUTS GITHUB */
+        .callout {
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 16px 0;
+            page-break-inside: avoid;
+            font-size: 10pt;
+        }
+        .callout-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 9.5pt;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .callout-note {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            color: #0369a1;
+        }
+        .callout-important {
+            background-color: #f5f3ff;
+            border-left: 4px solid #7c3aed;
+            color: #6d28d9;
+        }
+        .callout-warning {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+            color: #b45309;
+        }
+        .callout-tip {
+            background-color: #ecfdf5;
+            border-left: 4px solid #059669;
+            color: #047857;
+        }
+        .callout-caution {
+            background-color: #fef2f2;
+            border-left: 4px solid #dc2626;
+            color: #b91c1c;
+        }
+        .callout-body {
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        /* CÓDIGO Y DIAGRAMAS */
+        pre {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: 9pt;
+            overflow-x: auto;
+            margin: 14px 0;
+            page-break-inside: avoid;
+            border: 1px solid #1e293b;
+        }
+        code {
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 9.5pt;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        .mermaid-box {
+            background-color: #0b1320;
+            border: 1.5px solid #0284c7;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin: 18px 0;
+            page-break-inside: avoid;
+        }
+        .mermaid-tag {
+            font-size: 7.5pt;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .mermaid-box pre {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            color: #93c5fd;
+        }
+
+        .checkbox {
+            font-family: monospace;
+            font-weight: bold;
+            color: #64748b;
+        }
+        .checkbox.checked {
+            color: #059669;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 24px 0;
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            font-weight: 700;
+            background: #e2e8f0;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. PORTADA CORPORATIVA -->
+    <div class="cover-page">
+        <div class="cover-top">
+            <div class="cover-brand">Charu<span>Autos</span> App</div>
+            <div class="cover-badge">Ecosistema Digital Automotriz • Venezuela</div>
+        </div>
+
+        <div class="cover-center">
+            <div class="cover-doc-title">HUB MAESTRO DE INGENIERÍA, ARQUITECTURA, GOBERNANZA DE DATOS Y NEGOCIO</div>
+            <div class="cover-doc-subtitle">
+                Compendio Maestro Integral de Especificación Técnica, Algoritmos de Dominio, Modelo Híbrido de Monetización, Seguridad Criptográfica Anti-Fraude y Plan de Despliegue.
+            </div>
+        </div>
+
+        <div class="cover-meta-grid">
+            <div class="meta-box">
+                <div class="meta-box-label">Versión del Sistema</div>
+                <div class="meta-box-val">v1.0 (MVP Sprint 4)</div>
+            </div>
+            <div class="meta-box">
+                <div class="meta-box-label">Mercado Objetivo</div>
+                <div class="meta-box-val">Venezuela (Bimonetario)</div>
+            </div>
+            <div class="meta-box">
+                <div class="meta-box-label">Estado Documental</div>
+                <div class="meta-box-val">Auditado & Homologado</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. TABLA DE CONTENIDOS -->
+    <div class="toc-page">
+        <div class="toc-header">📑 Índice General del Hub Maestro</div>
+        
+        <div class="toc-item">
+            <div class="toc-num">01</div>
+            <div class="toc-details">
+                <a href="#capitulo-01" class="toc-title">Resumen Ejecutivo y Modelo de Negocio</a>
+                <div class="toc-desc">Mercado automotor dual en Venezuela, patología mecánica por combustible y modelo híbrido multimoneda.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">02</div>
+            <div class="toc-details">
+                <a href="#capitulo-02" class="toc-title">Pitch Deck Maestro para Inversores</a>
+                <div class="toc-desc">Tesis de inversión, rondas de financiamiento Seed ($150k USD), unit economics y moat defensivo.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">03</div>
+            <div class="toc-details">
+                <a href="#capitulo-03" class="toc-title">Gestión y Gobernanza de Datos</a>
+                <div class="toc-desc">Arquitectura Medallion (Lakehouse), MDM automotriz venezolano, dbt, Great Expectations y RAG vectorial.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">04</div>
+            <div class="toc-details">
+                <a href="#capitulo-04" class="toc-title">Especificación Funcional de los 3 Pilares</a>
+                <div class="toc-desc">Algoritmo del Matchmaker, semáforo de riesgo OBD2 manual, Escudo Anti-Estafas y Cuaderno Dinámico ($/km).</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">05</div>
+            <div class="toc-details">
+                <a href="#capitulo-05" class="toc-title">Arquitectura Técnica y Stack de Software</a>
+                <div class="toc-desc">Diagramas C4, stack React Native / Expo, NestJS, FastAPI, modelos PostgreSQL y persistencia SQLite.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">06</div>
+            <div class="toc-details">
+                <a href="#capitulo-06" class="toc-title">Ciberseguridad, Implementación y Mantenimiento</a>
+                <div class="toc-desc">Modelo de amenazas STRIDE, OWASP Mobile/API, cadena SHA-256 anti-fraude, Zero Trust y DevSecOps.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">07</div>
+            <div class="toc-details">
+                <a href="#capitulo-07" class="toc-title">Diseño UI/UX y Experiencia de Usuario</a>
+                <div class="toc-desc">Sistema de diseño Dark Showroom, modo manos sucias, emergencias en carretera y flujos de pantalla.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">08</div>
+            <div class="toc-details">
+                <a href="#capitulo-08" class="toc-title">Plan de Ejecución, Roadmap y GTM</a>
+                <div class="toc-desc">Timeline de 4 sprints (8 semanas), estrategia de lanzamiento con @charuautopics y red de talleres.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">09</div>
+            <div class="toc-details">
+                <a href="#capitulo-09" class="toc-title">Bitácora de Desarrollo Viva y Estado del Proyecto</a>
+                <div class="toc-desc">Registro histórico y continuo de hitos completados, tareas en curso y backlog de próximos sprints.</div>
+            </div>
+        </div>
+        
+
+        <div class="toc-item">
+            <div class="toc-num">10</div>
+            <div class="toc-details">
+                <a href="#capitulo-10" class="toc-title">Índice Maestro y Matriz de Trazabilidad</a>
+                <div class="toc-desc">Matriz de correlación técnica, requerimientos de negocio y trazabilidad del ecosistema digital.</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- 3. CUERPO COMPLETO DE CAPÍTULOS -->
+    
+        <section class="chapter" id="capitulo-01">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 01</div>
+                <h1 class="chapter-title">Resumen Ejecutivo y Modelo de Negocio</h1>
+                <p class="chapter-lead">Mercado automotor dual en Venezuela, patología mecánica por combustible y modelo híbrido multimoneda.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-01-resumen-ejecutivo-contexto-de-mercado-venezuela-y-modelo-de-negocio-hibrido">Sección 01: Resumen Ejecutivo, Contexto de Mercado (Venezuela) y Modelo de Negocio Híbrido</h1>
+<hr />
+<h2 id="11-contexto-de-mercado-la-realidad-automotriz-en-venezuela">1.1. Contexto de Mercado: La Realidad Automotriz en Venezuela</h2>
+<p>Para que <strong>CharuAutos App</strong> triunfe en el mercado venezolano, su diseño funcional y de negocio debe responder con precisión milimétrica a las anomalías y particularidades del parque automotor y la economía local:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>graph TD
+    A["Mercado Automotriz Venezolano"] --> B["Parque Automotor Dual"]
+    A --> C["Crisis de Combustible & Desgaste Acelerado"]
+    A --> D["Mercado de Repuestos Fragmentado"]
+    A --> E["Economía Multimoneda"]
+
+    B --> B1["Autos Tradicionales (2000-2015)<br>Aveo, Optra, Fiesta, Yaris, Hilux, Explorer"]
+    B --> B2["Nueva Ola de Marcas Chinas (2021-Presente)<br>Changan, Chery, JAC, Dongfeng, Baic"]
+
+    C --> C1["Fallas recurrentes en bombas de gasolina,<br>sensores de O2 y catalizadores (DTCs P0420, P0171)"]
+
+    D --> D1["Proliferación de repuestos 'tipo original'<br>Gran asimetría de precios y desconfianza en talleres"]
+
+    E --> E1["Cobros en USD (Zelle, Efectivo, USDT)<br>y Bs. (Pago Móvil a tasa oficial BCV)"]</code></pre></div>
+
+<h3 id="1-el-fenomeno-del-parque-automotor-dual">1. El Fenómeno del Parque Automotor Dual</h3>
+<ul>
+<li><strong>El Bloque Clásico (2000–2015):</strong> Vehículos con 10 a 20 años de rodaje continuo. Modelos icónicos como Chevrolet Aveo, Optra, Spark, Silverado; Ford Fiesta, EcoSport, Explorer; Toyota Corolla, Yaris, Fortuner; Hyundai Getz y Renault Clio/Logan. Requieren mantenimiento preventivo constante y padecen de repuestos de calidad dudosa.</li>
+<li><strong>La Nueva Ola Asiática (2021–Presente):</strong> Crecimiento exponencial de marcas chinas ensambladas o importadas (Changan, JAC, Chery, Dongfeng, Jetour, DFSK). Los compradores carecen de referencias históricas sobre durabilidad, reventa y disponibilidad de repuestos a largo plazo.</li>
+<li><strong>La Oportunidad CharuAutos:</strong> El comprador venezolano vive en un dilema permanente: <em>“¿Compro un Toyota Corolla 2008 usado por $7,500 o un Changan Alsvin 0km financiado por $16,000?”</em>. Nuestro <strong>Matchmaker</strong> responde exactamente a este dolor sin sesgos de marca.</li>
+</ul>
+<h3 id="2-calidad-del-combustible-y-patologia-mecanica-local">2. Calidad del Combustible y Patología Mecánica Local</h3>
+<ul>
+<li>Las variaciones en el octanaje y la presencia de sedimentos o agua en los tanques subterráneos provocan una tasa desproporcionada de fallas en:</li>
+<li>Bombas de combustible (pilas de gasolina) quemadas por recalentamiento o filtros saturados.</li>
+<li>Inyectores obstruidos y mezcla pobre (Códigos <code>P0171</code>, <code>P0174</code>).</li>
+<li>Falsas explosiones y misfires (Códigos <code>P0300</code>, <code>P0301</code>).</li>
+<li>Degradación prematura de sensores de oxígeno y convertidores catalíticos (Código <code>P0420</code>).</li>
+<li>La app debe contextualizar los códigos OBD2 en función de la realidad del combustible venezolano.</li>
+</ul>
+<h3 id="3-ecosistema-de-pagos-multimoneda">3. Ecosistema de Pagos Multimoneda</h3>
+<ul>
+<li>Cualquier sistema de monetización en Venezuela debe admitir:</li>
+<li><strong>Pago Móvil y Transferencias Bancarias (VES):</strong> Integrado con APIs bancarias locales a tasa BCV.</li>
+<li><strong>Dólares en Efectivo / Depósitos Custodia.</strong></li>
+<li><strong>Fintech / Criptoactivos:</strong> Binance Pay (USDT), Zinli, Wally Tech, Pipol Pay o Zelle.</li>
+</ul>
+<hr />
+<h2 id="12-mision-vision-y-propuesta-de-valor-unica-uvp">1.2. Misión, Visión y Propuesta de Valor Única (UVP)</h2>
+<ul>
+<li><strong>Misión:</strong> Empoderar a los conductores en Venezuela mediante inteligencia de datos, educación preventiva y herramientas transparentes para comprar, diagnosticar y mantener sus vehículos sin ser víctimas de engaños ni sobreprecios.</li>
+<li><strong>Visión:</strong> Convertirse en la plataforma digital y pasaporte vehicular de referencia en Venezuela y el norte de Sudamérica, intermediando de forma ética la relación entre conductores, comercios de repuestos y talleres de servicio.</li>
+<li><strong>Propuesta de Valor Única (UVP):</strong><blockquote>
+<p><em>"El copiloto digital que te dice con honestidad qué auto comprar para las calles de Venezuela, qué tiene tu carro cuando prende el Check Engine y cuánto deberías pagar realmente por arreglarlo."</em></p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h2 id="13-buyer-personas-locales">1.3. Buyer Personas Locales</h2>
+<div class="codehilite"><pre><span></span><code>┌───────────────────────────────────┬───────────────────────────────────┬───────────────────────────────────┐
+│ 1. El Comprador Indeciso          │ 2. La Conductora Protectora       │ 3. El Dueño de Micro-Flota        │
+│ (Avatar: Daniel, 29 años)         │ (Avatar: Carmen, 35 años)         │ (Avatar: Roberto, 44 años)        │
+├───────────────────────────────────┼───────────────────────────────────┼───────────────────────────────────┤
+│ • Situación: Quiere comprar su    │ • Situación: Usa un sedán para    │ • Situación: Administra 4 vans de │
+│   primer auto o renovar el que    │   trasladar a sus hijos y trabajo │   despacho o mototaxis/delivery.  │
+│   tiene con $6,000 - $12,000 USD. │ • Dolor: Terror a quedarse varada │ • Dolor: Falta de control de gas- │
+│ • Dolor: Miedo a comprar un &quot;pote │   en la autopista y a que el      │   tos, mecánicos que facturan re- │
+│   chocado&quot; o un carro chino sin   │   mecánico le invente fallas caras│   puestos inexistentes.           │
+│   repuestos en el país.           │ • Solución CharuAutos: Diagnósti- │ • Solución CharuAutos: Dashboard  │
+│ • Solución CharuAutos: Matchmaker │   co OBD2 en español claro y      │   multi-vehículo con alertas de   │
+│   conversacional y ficha técnica. │   Escudo Anti-Estafas.            │   kilometraje y costos $/km.      │
+└───────────────────────────────────┴───────────────────────────────────┴───────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="14-modelo-de-negocio-hibrido-detallado">1.4. Modelo de Negocio Híbrido Detallado</h2>
+<p>La estrategia de monetización combina flujos <strong>B2C directos</strong> con flujos <strong>B2B transaccionales</strong>:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    subgraph Ecosistema CharuAutos
+        App["🚗 CharuAutos App<br>(Conductor / Usuario)"]
+    end
+
+    subgraph Flujos B2C Directos
+        App -->|"Suscripción $2.99/mes o $24.99/año"| B2C_Sub["💎 CharuPro B2C<br>(Alertas predictivas, multi-auto, reportes PDF)"]
+        App -->|"Micropago $4.99"| B2C_Report["📑 Reporte Certificado de Compra / Venta<br>(Checklist inspección + aval de mantenimiento)"]
+    end
+
+    subgraph Flujos B2B Marketplace & Afiliación
+        App -->|"Reserva con descuento"| Taller["🔧 Red de Talleres Éticos 'Don Carlos'<br>(Take-rate: 10% a 15% por servicio)"]
+        App -->|"Compra de repuesto verificado"| Repuestos["📦 Repuesteras Certificadas<br>(Comisión: 5% a 8% por venta)"]
+    end
+
+    subgraph Flujos B2B Lead Generation
+        App -->|"Lead calificado Matchmaker"| Concesionario["🏢 Concesionarios y Agencias de Seminuevos<br>($10 a $25 USD por lead comprador interesado)"]
+        App -->|"Cotización de póliza"| Seguros["🛡️ Corretaje de Seguros Vehiculares<br>(Comisión por emisión de póliza)"]
+    end</code></pre></div>
+
+<h3 id="1-nivel-b2c-freemium-charupro">1. Nivel B2C: Freemium + CharuPro</h3>
+<ul>
+<li><strong>Capa Gratuita (Free Tier):</strong></li>
+<li>Acceso completo al <strong>Matchmaker de compra</strong> (Hook de entrada viral).</li>
+<li>3 consultas mensuales de códigos OBD2 manuales.</li>
+<li>Registro de 1 vehículo en el Cuaderno de Mantenimiento con métricas básicas.</li>
+<li><strong>Suscripción CharuPro ($2.99 USD/mes o $24.99 USD/año):</strong></li>
+<li>Consultas OBD2 ilimitadas con árbol completo de causa-raíz y guía de preguntas para el taller.</li>
+<li>Registro multi-vehículo (hasta 3 autos para familias).</li>
+<li>Generador de <strong>Certificado Digital de Mantenimiento</strong> en PDF para aumentar el valor de reventa del auto.</li>
+<li>Descuentos exclusivos del 10% en mano de obra en la Red de Talleres certificados.</li>
+<li><strong>Pasarelas de Pago Habilitadas:</strong> Pago Móvil (a tasa BCV), Binance Pay (USDT), Zinli, Tarjetas internacionales.</li>
+</ul>
+<h3 id="2-nivel-b2b-marketplace-red-de-talleres-y-repuesteras">2. Nivel B2B Marketplace: Red de Talleres y Repuesteras</h3>
+<ul>
+<li><strong>Take-rate de Talleres (10% - 15%):</strong> El usuario detecta la falla con el escáner manual y la app le sugiere: <em>"3 talleres de confianza cerca de ti en Caracas/Valencia que solucionan este código con precio de mano de obra cerrado"</em>. El taller paga una comisión por cliente efectivamente atendido.</li>
+<li><strong>Afiliación de Repuestos (5% - 8%):</strong> Vinculación directa del código de falla con el repuesto exacto (ej. Código P0300 -&gt; Juego de bujías y cables recomendados) disponible en repuesteras verificadas que garantizan piezas originales (no copias piratas).</li>
+</ul>
+<h3 id="3-nivel-b2b-lead-generation-concesionarios-y-seguros">3. Nivel B2B Lead Generation: Concesionarios y Seguros</h3>
+<ul>
+<li><strong>Leads Calificados del Matchmaker:</strong> Cuando un usuario finaliza la entrevista del Matchmaker y selecciona un modelo de su interés (ej. <em>Changan CS35</em>, <em>Toyota Yaris</em>, <em>JAC JS4</em>), se le ofrece: <em>“¿Deseas que un asesor oficial te agende una prueba de manejo o cotice el plan de financiamiento?”</em>. Ese lead perfilado con presupuesto y capacidad de pago se vende al concesionario por $15 a $30 USD.</li>
+</ul>
+<hr />
+<h2 id="15-unit-economics-preliminares-proyeccion-para-1000-usuarios-activos">1.5. Unit Economics Preliminares (Proyección para 1,000 Usuarios Activos)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica / Parámetro</th>
+<th style="text-align: center;">Valor Estimado (Mercado Venezuela)</th>
+<th style="text-align: left;">Racional Financiero</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CAC (Costo de Adquisición de Cliente)</strong></td>
+<td style="text-align: center;"><strong>$0.80 - $1.50 USD</strong></td>
+<td style="text-align: left;">Altamente orgánico gracias al contenido viral de la Historieta de Charu en TikTok e Instagram (<code>@charuautopics</code>) y el boca a boca del Matchmaker.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Conversión a CharuPro B2C</strong></td>
+<td style="text-align: center;"><strong>3.5%</strong></td>
+<td style="text-align: left;">De cada 1,000 usuarios, ~35 contratan la suscripción anual ($24.99) = <strong>$874 USD</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Conversión a Marketplace (Talleres/Repuestos)</strong></td>
+<td style="text-align: center;"><strong>4.0%</strong></td>
+<td style="text-align: left;">40 usuarios realizan al menos 1 servicio al mes con ticket promedio de $60 USD. Take-rate del 12% = <strong>$288 USD/mes</strong> ($3,456 anual).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Venta de Leads Calificados (Concesionarios/Seguros)</strong></td>
+<td style="text-align: center;"><strong>15 leads/mes</strong></td>
+<td style="text-align: left;">15 leads vendidos a $20 USD = <strong>$300 USD/mes</strong> ($3,600 anual).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LTV Proyectado (12 meses)</strong></td>
+<td style="text-align: center;"><strong>$7.93 USD por usuario registrado</strong></td>
+<td style="text-align: left;">Muy saludable frente a un CAC de ~$1.20 USD (Ratio LTV/CAC &gt; 6x).</td>
+</tr>
+</tbody>
+</table>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-02">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 02</div>
+                <h1 class="chapter-title">Pitch Deck Maestro para Inversores</h1>
+                <p class="chapter-lead">Tesis de inversión, rondas de financiamiento Seed ($150k USD), unit economics y moat defensivo.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="charuautos-app-pitch-deck-maestro-para-inversores">CharuAutos App — Pitch Deck Maestro para Inversores</h1>
+<h3 id="presentacion-de-tesis-de-inversion-modelo-de-negocio-y-escalabilidad">Presentación de Tesis de Inversión, Modelo de Negocio y Escalabilidad</h3>
+<p><em>Confidencial • Ronda Semilla (Seed Round) • Mercado: Venezuela &amp; Región Andina</em></p>
+<hr />
+<h2 id="diapositiva-1-portada-vision-ejecutiva">🎯 Diapositiva 1: Portada &amp; Visión Ejecutiva</h2>
+<div class="codehilite"><pre><span></span><code>  ██████╗██╗  ██╗ █████╗ ██████╗ ██╗   ██╗ █████╗ ██╗   ██╗████████╗ ██████╗ ███████╗
+ ██╔════╝██║  ██║██╔══██╗██╔══██╗██║   ██║██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝
+ ██║     ███████║███████║██████╔╝██║   ██║███████║██║   ██║   ██║   ██║   ██║███████╗
+ ██║     ██╔══██║██╔══██║██╔══██╗██║   ██║██╔══██║██║   ██║   ██║   ██║   ██║╚════██║
+ ╚██████╗██║  ██║██║  ██║██║  ██║╚██████╔╝██║  ██║╚██████╔╝   ██║   ╚██████╔╝███████║
+</code></pre></div>
+
+<ul>
+<li><strong>Tagline:</strong> <em>"Pasión Automotriz al Alcance de tus Manos"</em></li>
+<li><strong>Misión:</strong> Democratizar el conocimiento automotriz y erradicar la asimetría de información en la compra, diagnóstico y mantenimiento de vehículos.</li>
+<li><strong>La Oportunidad:</strong> Construir la super-app y el pasaporte digital del vehículo para más de 5.5 millones de conductores en Venezuela y 45 millones en la región andina.</li>
+</ul>
+<hr />
+<h2 id="diapositiva-2-el-gran-problema-del-mercado">🛑 Diapositiva 2: El Gran Problema del Mercado</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>pie title Distribución del Dolor del Conductor en Venezuela
+    "Miedo a estafas o sobreprecios en el taller" : 42
+    "Inseguridad al comprar usado o marcas chinas nuevas" : 28
+    "Averías frecuentes por mala calidad de combustible" : 18
+    "Falta de registro de mantenimiento para reventa" : 12</code></pre></div>
+
+<ol>
+<li><strong>Desconfianza Endémica (78% de insatisfacción):</strong> Los conductores asisten al taller mecánico con ansiedad, temiendo cobros inflados por fallas inventadas (<em>"Don Chanchullo"</em>).</li>
+<li><strong>Dilema del Parque Automotor Dual:</strong> Comprar un auto tradicional usado (2000-2015: <em>Corolla, Aveo, Fiesta</em>) con riesgo de piezas piratas vs. arriesgarse con la nueva ola de marcas chinas desconocidas (2021-2025: <em>Changan, JAC, Chery, Dongfeng</em>).</li>
+<li><strong>El Combustible Destruye Componentes:</strong> El octanaje irregular y los sedimentos multiplican las fallas en pilas de gasolina, sensores de oxígeno y catalizadores (DTCs <code>P0420</code>, <code>P0171</code>, <code>P0300</code>).</li>
+</ol>
+<hr />
+<h2 id="diapositiva-3-la-solucion-charuautos-app">💡 Diapositiva 3: La Solución — CharuAutos App</h2>
+<p>Un ecosistema digital cerrado que acompaña al conductor durante todo el ciclo de vida de su vehículo:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    A["1. COMPRAR<br><b>Matchmaker Inteligente</b><br>• Entrevista sin jerga<br>• Scraping de PDFs de fichas"] --> B["2. DIAGNOSTICAR<br><b>Asistente OBD2 Manual</b><br>• Semáforo de riesgo<br>• Escudo Anti-Estafas"]
+    B --> C["3. MANTENER<br><b>Cuaderno Digital</b><br>• Health Score (0-100%)<br>• Costo bimonetario $/km"]
+    C --> D["4. VENDER<br><b>Certificado Digital</b><br>• Sello SHA-256 verificado<br>• +10% valor de reventa"]
+    D --> A</code></pre></div>
+
+<hr />
+<h2 id="diapositiva-4-tamano-del-mercado-tam-sam-som">📈 Diapositiva 4: Tamaño del Mercado (TAM - SAM - SOM)</h2>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────────────────┐
+│  TAM (Total Addressable Market) — Hispanoamérica                       │
+│  85 Millones de Vehículos Ligeros • $45,000M USD Gasto Anual Posventa │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│  SAM (Serviceable Addressable Market) — Venezuela &amp; Región Andina      │
+│  5.5 Millones de Vehículos en Venezuela • $2,200M USD Gasto Anual      │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│  SOM (Serviceable Obtainable Market) — Meta Año 1-2 (MVP)              │
+│  85,000 Usuarios Activos (Caracas, Valencia, Maracaibo)               │
+│  Facturación Anual Estimada: $680,000 USD                             │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="diapositiva-5-modelo-de-negocio-hibrido-monetizacion">💎 Diapositiva 5: Modelo de Negocio Híbrido &amp; Monetización</h2>
+<p>La plataforma no depende de un solo canal; diversifica ingresos entre el usuario final y los actores comerciales de la industria automotriz:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    App["🚗 CharuAutos App"]
+
+    subgraph B2C Directo
+        App -->|"Suscripción $2.99/mes o $24.99/año"| B2C1["💎 CharuPro B2C<br>(Alertas predictivas, multi-auto, reportes PDF)"]
+        App -->|"Micropago $4.99"| B2C2["📑 Reporte Certificado de Mantenimiento<br>(Sello criptográfico para reventa)"]
+    end
+
+    subgraph B2B Marketplace
+        App -->|"Comisión 10% a 15%"| B2B1["🔧 Red de Talleres Éticos<br>(Clientes referidos con mano de obra tasada)"]
+        App -->|"Comisión 5% a 8%"| B2B2["📦 Repuesteras Verificadas<br>(Venta cruzada de repuestos OEM)"]
+    end
+
+    subgraph B2B Lead Gen
+        App -->|"CPA $15 a $30 USD"| B2B3["🏢 Concesionarios de Nuevos/Usados<br>(Leads calificados del Matchmaker)"]
+        App -->|"Comisión por emisión"| B2B4["🛡️ Corretaje de Seguros Vehiculares"]
+    end</code></pre></div>
+
+<hr />
+<h2 id="diapositiva-6-unit-economics-proyeccion-financiera">📊 Diapositiva 6: Unit Economics &amp; Proyección Financiera</h2>
+<h3 id="metricas-unitarias-por-usuario-cohorte-venezuela">Métricas Unitarias por Usuario (Cohorte Venezuela):</h3>
+<ul>
+<li><strong>CAC (Costo de Adquisición de Cliente):</strong> <strong>$0.80 - $1.50 USD</strong> <em>(apalancado en la marca <code>@charuautopics</code>)</em>.</li>
+<li><strong>ARPU (Ingreso Promedio por Usuario Registrado):</strong> <strong>$8.10 USD/año</strong>.</li>
+<li><strong>LTV (Lifetime Value a 24 meses):</strong> <strong>$14.50 USD</strong>.</li>
+<li><strong>Ratio LTV / CAC:</strong> <strong>&gt; 9.6x</strong> <em>(muy por encima del estándar de la industria de 3x)</em>.</li>
+<li><strong>Margen Bruto del Software:</strong> <strong>82%</strong>.</li>
+</ul>
+<h3 id="proyeccion-a-3-anos-escenario-base">Proyección a 3 Años (Escenario Base):</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica Clave</th>
+<th style="text-align: center;">Año 1 (Lanzamiento)</th>
+<th style="text-align: center;">Año 2 (Expansión Nacional)</th>
+<th style="text-align: center;">Año 3 (Regionalización)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Usuarios Registrados</strong></td>
+<td style="text-align: center;">25,000</td>
+<td style="text-align: center;">120,000</td>
+<td style="text-align: center;">450,000</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Suscriptores CharuPro B2C</strong></td>
+<td style="text-align: center;">875 (3.5%)</td>
+<td style="text-align: center;">5,400 (4.5%)</td>
+<td style="text-align: center;">24,750 (5.5%)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Servicios Talleres/Repuestos</strong></td>
+<td style="text-align: center;">1,200 transacciones</td>
+<td style="text-align: center;">11,500 transacciones</td>
+<td style="text-align: center;">54,000 transacciones</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ingresos Anuales Totales</strong></td>
+<td style="text-align: center;"><strong>$74,500 USD</strong></td>
+<td style="text-align: center;"><strong>$412,000 USD</strong></td>
+<td style="text-align: center;"><strong>$1,890,000 USD</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>EBITDA</strong></td>
+<td style="text-align: center;">-$18,000 USD <em>(Inversión)</em></td>
+<td style="text-align: center;"><strong>+$115,000 USD (28%)</strong></td>
+<td style="text-align: center;"><strong>+$680,000 USD (36%)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="diapositiva-7-el-foso-defensivo-moat-ventajas-competitivas">🏰 Diapositiva 7: El Foso Defensivo (<em>Moat</em>) &amp; Ventajas Competitivas</h2>
+<ol>
+<li><strong>Efecto de Red y Costo de Cambio (Data Lock-in):</strong><br />
+   - El historial de mantenimiento acumulado es el activo del usuario. Borrar la app significa perder la bitácora verificada que demuestra que el auto fue bien cuidado.</li>
+<li><strong>Master Data Management Localizado:</strong><br />
+   - La base de datos canónica entiende los modismos de Venezuela (<em>"Corolla Pantallita"</em>, <em>"Yaris Belén"</em>), las fallas de combustible y los precios reales de repuestos del mercado informal y formal.</li>
+<li><strong>Scraping Inteligente de Fichas Técnicas PDF:</strong><br />
+   - Permite ingresar al instante cualquier modelo chino que aterrice en el país, extrayendo potencia, torque, despeje de huecos y maletero para compararlo contra los líderes del mercado.</li>
+<li><strong>Resiliencia 100% Offline (Local-First):</strong><br />
+   - El escáner OBD2 y las guías de emergencia funcionan sin señal en carreteras y sótanos.</li>
+</ol>
+<hr />
+<h2 id="diapositiva-8-arquitectura-tecnica-seguridad-grado-financiero">⚙️ Diapositiva 8: Arquitectura Técnica &amp; Seguridad Grado Financiero</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    Client["📱 React Native + Expo<br>(Local-First / SQLite)"] <--> Edge["🛡️ Cloudflare WAF + TLS 1.3"]
+    Edge <--> API["⚙️ NestJS Core API + FastAPI (RAG)"]
+    API <--> Data[("🗄️ PostgreSQL + TimescaleDB + pgvector")]
+    Data <--> Lake["🥉 Medallion Data Lakehouse<br>(dbt + Parquet)"]</code></pre></div>
+
+<ul>
+<li><strong>Cadena Criptográfica Anti-Fraude:</strong> Registros de odómetro enlazados con hashes <code>SHA-256</code>, impidiendo la alteración de kilometraje para reventa.</li>
+<li><strong>Gobernanza de Datos:</strong> Arquitectura Medallion (<em>Bronze/Silver/Gold</em>), K-Anonimato y pruebas automatizadas con Great Expectations.</li>
+</ul>
+<hr />
+<h2 id="diapositiva-9-roadmap-de-ejecucion-mvp-en-8-semanas">🛣️ Diapositiva 9: Roadmap de Ejecución (MVP en 8 Semanas)</h2>
+<div class="codehilite"><pre><span></span><code>MES 1 - 2 (Sprints 1-4)    ──&gt; MES 3 - 4 (Tracción)       ──&gt; MES 5 - 6 (Monetización)
+• MVP Funcional en React Native • Lanzamiento Beta Cerrada    • Activación CharuPro y Pagos
+• Matchmaker + OBD2 Manual      • 5,000 Usuarios Caracas      • Red 25 Talleres Afiliados
+• Scraping de PDFs activo       • Alianza 10 Talleres Piloto  • Venta de Leads a Agencias
+</code></pre></div>
+
+<hr />
+<h2 id="diapositiva-10-la-ronda-de-inversion-the-ask">💼 Diapositiva 10: La Ronda de Inversión (<em>The Ask</em>)</h2>
+<h3 id="buscamos-150000-usd-ronda-semilla-pre-seed">Buscamos: <strong>$150,000 USD (Ronda Semilla / Pre-Seed)</strong></h3>
+<ul>
+<li><strong>Instrumento:</strong> SAFE (Simple Agreement for Future Equity) con valoración cap o equity directo.</li>
+</ul>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>pie title Distribución del Uso de Fondos ($150,000 USD)
+    "Desarrollo de Producto e Ingeniería de Datos (45%)" : 45
+    "Crecimiento, Marketing y Adquisición B2C (30%)" : 30
+    "Adquisición B2B Talleres & Concesionarios (15%)" : 15
+    "Reserva Legal, Compliance y Operaciones (10%)" : 10</code></pre></div>
+
+<h3 id="hitos-a-alcanzar-con-esta-ronda-runway-14-meses">Hitos a Alcanzar con esta Ronda (Runway: 14 Meses):</h3>
+<ol>
+<li><strong>25,000 Usuarios Activos Mensuales (MAU)</strong> en Venezuela.</li>
+<li><strong>$6,500 USD de Ingresos Recurrentes Mensuales (MRR)</strong> alcanzando punto de equilibrio (<em>Break-Even</em> operativo).</li>
+<li>Red de <strong>40 talleres mecánicos y 15 concesionarios/agencias</strong> activos en plataforma.</li>
+<li>Preparación de métricas para Ronda Seed Serie A regional (expansión a Colombia).</li>
+</ol>
+<hr />
+<h2 id="diapositiva-11-contacto-y-llamado-a-la-accion">🏁 Diapositiva 11: Contacto y Llamado a la Acción</h2>
+<ul>
+<li><strong>Proyecto:</strong> CharuAutos App (<code>@charuautopics</code>)</li>
+<li><strong>Deck Interactivo y Documentación Completa:</strong> <a href="file:///c:/Users/Frode/Documents/Proyectos/CharuAutos/app/docs"><code>app/docs/</code></a></li>
+<li><strong>Mensaje de Cierre:</strong>  <blockquote>
+<p><em>"El mercado automotriz en Hispanoamérica sigue funcionando como en 1990. Estamos construyendo la infraestructura de datos y confianza para los próximos 20 años. Únete a nosotros."</em></p>
+</blockquote>
+</li>
+</ul>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-03">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 03</div>
+                <h1 class="chapter-title">Gestión y Gobernanza de Datos</h1>
+                <p class="chapter-lead">Arquitectura Medallion (Lakehouse), MDM automotriz venezolano, dbt, Great Expectations y RAG vectorial.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-02-gestion-y-gobernanza-de-datos-data-engineering-governance">Sección 02: Gestión y Gobernanza de Datos (Data Engineering &amp; Governance)</h1>
+<h3 id="arquitectura-de-datos-calidad-linaje-y-modelado-analitico-para-charuautos-app">Arquitectura de Datos, Calidad, Linaje y Modelado Analítico para CharuAutos App</h3>
+<p><em>Diseñado bajo estándares de Ingeniería de Datos moderna para entornos analíticos y operativos escalables.</em></p>
+<hr />
+<h2 id="21-arquitectura-de-datos-enfoque-medallion-lakehouse">2.1. Arquitectura de Datos: Enfoque Medallion (Lakehouse)</h2>
+<p>Para soportar tanto la operativa en tiempo real de la aplicación (OLTP) como la analítica avanzada, el motor de recomendación del Matchmaker y los modelos de IA (OLAP / RAG), implementamos una <strong>Arquitectura Medallion</strong> desacoplada:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    subgraph Fuentes de Ingesta
+        F1["📱 App Telemetría / Gastos<br>(PostgreSQL CDC Debezium)"]
+        F2["🚗 Web Scraping / APIs Mercado<br>(Precios Venezuela USD/Bs)"]
+        F3["🔧 Catálogos Técnicos & DTCs<br>(NHTSA, SAE J2012, Manuales)"]
+    end
+
+    subgraph Bronze Layer ["🥉 Capa Bronze (Raw / Ingestion)"]
+        B1[("Eventos Raw en Parquet / S3<br>Logs inmutables sin transformar")]
+    end
+
+    subgraph Silver Layer ["🥈 Capa Silver (Cleaned / Conformed)"]
+        S1[("Datos Validados & Tipados<br>Deduplicación, MDM aplicado,<br>Normalización de VIN y Monedas")]
+    end
+
+    subgraph Gold Layer ["🥇 Capa Gold (Business / Aggregated)"]
+        G1[("Data Mart: Matchmaker Scoring")]
+        G2[("Data Mart: Health Score & Predictivo")]
+        G3[("Vector Store: Embeddings RAG Mecánica")]
+    end
+
+    F1 --> B1
+    F2 --> B1
+    F3 --> B1
+
+    B1 -->|"Transformaciones dbt / DuckDB"| S1
+    S1 -->|"Métricas & Modelos de Negocio"| G1
+    S1 -->|"Agregaciones Temporales"| G2
+    S1 -->|"Generación de Embeddings"| G3</code></pre></div>
+
+<h3 id="1-capa-bronze-raw-data-store">1. Capa Bronze (Raw Data Store)</h3>
+<ul>
+<li><strong>Propósito:</strong> Almacén inmutable de solo adición (<em>append-only</em>).</li>
+<li><strong>Formato:</strong> Archivos Apache Parquet particionados por <code>año/mes/día/fuente</code> almacenados en Cloud Object Storage (S3 / Cloudflare R2 / MinIO).</li>
+<li><strong>Tipos de Datos:</strong> Eventos crudos de navegación del Matchmaker, respuestas crudas de las entrevistas, registros de cargas de combustible, fallas ingresadas por usuarios y scrapings de precios de vehículos usados en portales locales.</li>
+</ul>
+<h3 id="2-capa-silver-cleansed-enriched-core">2. Capa Silver (Cleansed &amp; Enriched Core)</h3>
+<ul>
+<li><strong>Propósito:</strong> Tablas limpias, validadas, deduplicadas y estructuradas según el modelo canónico.</li>
+<li><strong>Transformaciones:</strong></li>
+<li>Limpieza de cadenas y estandarización fonética de marcas/modelos (ej. corregir "Toyoya Corola" a <code>TOYOTA COROLLA</code>).</li>
+<li>Conversión de precios multimoneda a una base estandarizada USD a la tasa oficial BCV del día del registro.</li>
+<li>Validación de coherencia de kilometraje (detección de saltos temporales erróneos o regresión de odómetro).</li>
+</ul>
+<h3 id="3-capa-gold-business-level-data-marts">3. Capa Gold (Business Level / Data Marts)</h3>
+<ul>
+<li><strong>Propósito:</strong> Consumo directo para la aplicación, dashboards analíticos y motores de inteligencia artificial.</li>
+<li><strong>Data Mart Matchmaker:</strong> Fichas técnicas consolidadas con puntuaciones de confiabilidad, disponibilidad de repuestos en Venezuela y costo total de propiedad (TCO).</li>
+<li><strong>Data Mart Telemetría y Salud:</strong> Agregaciones por marca/modelo de frecuencia de códigos DTC según kilometraje (ej. <em>"El 68% de los Aveo con más de 120,000 km reportan falla P0300"</em>).</li>
+<li><strong>Vector Database (Qdrant / pgvector):</strong> Embeddings vectoriales de síntomas mecánicos y causas raíz para alimentar el asistente RAG en lenguaje natural.</li>
+</ul>
+<hr />
+<h2 id="22-master-data-management-mdm-catalogo-canonico-vehicular">2.2. Master Data Management (MDM): Catálogo Canónico Vehicular</h2>
+<p>La fragmentación y los errores en nombres de vehículos en Venezuela es uno de los mayores problemas de datos. El sistema implementa una entidad de <strong>Golden Record</strong> para vehículos y repuestos:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>erDiagram
+    MAKER ||--o{ MODEL : manufactures
+    MODEL ||--o{ GENERATION : has
+    GENERATION ||--o{ TRIM : configures
+    TRIM ||--o{ VEHICLE_SPEC : defines
+    TRIM ||--o{ MAINTENANCE_SCHEDULE : requires
+    MAINTENANCE_SCHEDULE ||--o{ PART_REQUIREMENT : uses
+    PART_REQUIREMENT }o--|| CANONICAL_PART : matches
+
+    MAKER {
+        string maker_id PK "UUID"
+        string name "Ej: Toyota, Changan, Chevrolet"
+        string origin_country "JP, CN, US"
+    }
+    MODEL {
+        string model_id PK "UUID"
+        string maker_id FK
+        string canonical_name "Ej: Corolla, Alsvin, Aveo"
+        string body_type "Sedan, SUV, Pickup, Hatchback"
+    }
+    GENERATION {
+        string gen_id PK "UUID"
+        string model_id FK
+        int year_start "2008"
+        int year_end "2014"
+        string local_nickname "Ej: 'New Sensation', 'Boca de Bagre'"
+    }
+    TRIM {
+        string trim_id PK "UUID"
+        string gen_id FK
+        string engine_code "Ej: 1ZZ-FE (1.8L)"
+        string transmission "Manual 5v / Automática 4v"
+        string fuel_type "Gasolina 91/95"
+    }
+    CANONICAL_PART {
+        string part_id PK "UUID"
+        string part_number_oem "Número parte fabricante"
+        string category "Frenos, Suspensión, Filtración, Inyección"
+        string standard_name "Pila de Gasolina, Pastillas Delanteras"
+        boolean critical_for_venezuela "True si falla por gasolina/huecos"
+    }</code></pre></div>
+
+<h3 id="reglas-de-normalizacion-de-entidades">Reglas de Normalización de Entidades:</h3>
+<ol>
+<li><strong>Identificador Global Canónico (CarID):</strong> Cada vehículo comercializado en Venezuela posee un UUID inmutable que desacopla el nombre comercial de su especificación técnica.</li>
+<li><strong>Aliases y Moteado Popular:</strong> El MDM mapea los modismos populares venezolanos (<em>"Corolla Pantallita"</em>, <em>"Spark Tapita"</em>, <em>"Yaris Belén"</em>, <em>"Silverado Carita Sucia"</em>) hacia el <code>trim_id</code> exacto, permitiendo que el buscador y el chatbot entiendan el lenguaje de la calle sin romper la consistencia relacional.</li>
+<li><strong>Equivalencias de Repuestos (Cross-Reference Engine):</strong> Mapeo de piezas OEM contra alternativas de repuesteras del <em>Aftermarket</em> reconocidas (Denso, Bosch, Valeo, ACDelco, 555) descartando copias de baja calidad.</li>
+</ol>
+<hr />
+<h2 id="23-pipelines-de-datos-ingesta-etl-elt">2.3. Pipelines de Datos &amp; Ingesta (ETL / ELT)</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>sequenceDiagram
+    autonumber
+    participant App as App Cliente / API
+    participant Kafka as Event Stream (Kafka/Redpanda)
+    participant Lake as Data Lakehouse (Parquet/Iceberg)
+    participant DBT as dbt Core Engine
+    participant Gold as PostgreSQL / Supabase (Gold DB)
+
+    App->>Kafka: Evento: Nuevo gasto de combustible ($20 USD / 40L)
+    App->>Kafka: Evento: Código DTC consultado (P0420 - Aveo 2011)
+    Kafka->>Lake: Micro-batching a Bronze Layer (cada 15 min)
+    DBT->>Lake: Lectura de Bronze & Validación de Esquema
+    DBT->>DBT: Ejecución de reglas Silver (conversión BCV, tipado)
+    DBT->>Gold: Actualización de Data Marts (Cálculo $/km y Health Score)
+    Gold-->>App: Dashboard analítico actualizado en tiempo real</code></pre></div>
+
+<h3 id="orquestacion-y-herramientas">Orquestación y Herramientas:</h3>
+<ul>
+<li><strong>Orquestador:</strong> <strong>Prefect</strong> o <strong>Airflow</strong> ligero en contenedor Docker.</li>
+<li><strong>Transformación en el Data Warehouse:</strong> <strong>dbt (data build tool)</strong> para control de versiones en SQL, pruebas automáticas de integridad y generación de documentación de linaje.</li>
+<li><strong>Ingesta de Fichas Técnicas:</strong> Scrapers programados que ingieren especificaciones oficiales y validan contra la base de datos global de la <strong>NHTSA VPIC API</strong>.</li>
+</ul>
+<hr />
+<h2 id="24-data-quality-data-observability">2.4. Data Quality &amp; Data Observability</h2>
+<p>Para garantizar la veracidad de las recomendaciones del Matchmaker y la precisión del dashboard, se implementa un marco de observabilidad de datos basado en <strong>Great Expectations</strong> y pruebas automatizadas en <strong>dbt</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Dimensión de Calidad</th>
+<th style="text-align: left;">Regla / Prueba Implementada</th>
+<th style="text-align: left;">Acción ante Falla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Completitud</strong></td>
+<td style="text-align: left;">Todo registro de vehículo debe contener obligatoriamente: <code>trim_id</code>, <code>combustible</code>, <code>despeje_suelo_mm</code> y <code>capacidad_tanque_litros</code>.</td>
+<td style="text-align: left;">Registro rechazado a cuarentena (<em>Dead Letter Queue</em>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Consistencia de Kilometraje</strong></td>
+<td style="text-align: left;"><code>Kilometraje_Actual &gt;= Kilometraje_Anterior</code> (Monotonicidad estricta). La tasa de avance no puede exceder los 1,000 km/día (salvo flag explícito de viaje).</td>
+<td style="text-align: left;">Alerta de posible manipulación de odómetro / error de dedo del usuario.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Data Drift en Precios</strong></td>
+<td style="text-align: left;">Desviación estándar del precio promedio de mercado de un modelo específico &gt; 25% en una ventana móvil de 7 días.</td>
+<td style="text-align: left;">Alerta al equipo comercial para revisar si hubo distorsión cambiaria o error de scraping.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validez de Códigos DTC</strong></td>
+<td style="text-align: left;">El código ingresado debe coincidir con la expresión regular <code>^[PBCU][0-3][0-9A-F]{3}$</code> (Estándar SAE J2012).</td>
+<td style="text-align: left;">Si no existe, se clasifica como código específico de fabricante o error tipográfico y se envía a revisión.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="25-privacidad-seguridad-y-anonimizacion-de-datos">2.5. Privacidad, Seguridad y Anonimización de Datos</h2>
+<ol>
+<li><strong>Anonimización de Patrones de Uso y Kilometraje:</strong><br />
+   - Para alimentar los modelos de recomendación general (Big Data automotriz), los datos de conducción y fallas se disocian completamente del nombre, cédula/DNI y correo electrónico del usuario mediante técnicas de <strong>K-Anonimato</strong>.</li>
+<li><strong>Cifrado de Número de Chasis (VIN) y Placas:</strong><br />
+   - El VIN y la placa del vehículo se consideran identificadores sensibles. Se almacenan cifrados a nivel de columna con <strong>AES-256-GCM</strong> y se indexan mediante hashes ciegos (<em>Blind Indexing con HMAC-SHA256</em>) para permitir búsquedas sin exponer el dato en texto plano.</li>
+<li><strong>Linaje del Dato (Data Lineage):</strong><br />
+   - Trazabilidad completa con dbt Docs y OpenLineage: cualquier cálculo visible en el dashboard (ej. <em>"Costo por kilómetro: $0.14 USD/km"</em>) puede ser auditado hacia atrás hasta el ticket de combustible o factura original que lo originó.</li>
+</ol>
+<hr />
+<h2 id="26-modelado-analitico-y-preparacion-para-ia-rag">2.6. Modelado Analítico y Preparación para IA / RAG</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    RawDocs["Manuales de Taller + Guías SAE + Fichas Técnicas"] --> Chunking["Chunking Semántico por Sistema Mecánico"]
+    Chunking --> Embedding["Generador de Embeddings (OpenAI / Cohere / Local)"]
+    Embedding --> VectorDB[("Base de Datos Vectorial (pgvector)")]
+
+    UserQuery["Consulta del Usuario: 'Mi Yaris suena como matraca al cruzar'"] --> QueryEmbed["Embedding de la Consulta"]
+    QueryEmbed --> SimilaritySearch["Búsqueda de Similitud Coseno (k-NN)"]
+    VectorDB --> SimilaritySearch
+    SimilaritySearch --> Context["Contexto Enriquecido: Fallas comunes de triceta / punta de tripoide en Yaris"]
+    Context --> LLM["LLM (Generación en lenguaje accesible CharuAutos)"]
+    LLM --> Answer["Explicación clara, costo aproximado y prevención anti-estafas"]</code></pre></div>
+
+<ul>
+<li><strong>Almacenamiento Vectorial:</strong> Extensión <strong>pgvector</strong> integrada en la misma base de datos PostgreSQL, evitando mantener una infraestructura separada en la etapa de MVP.</li>
+<li><strong>Metadatos Enriquecidos:</strong> Cada fragmento vectorial incluye filtros relacionales: <code>{ "marca": "Toyota", "modelo": "Yaris", "componente": "Tripoide/Junta Homocinética", "frecuencia_venezuela": "Alta" }</code>.</li>
+</ul>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-04">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 04</div>
+                <h1 class="chapter-title">Especificación Funcional de los 3 Pilares</h1>
+                <p class="chapter-lead">Algoritmo del Matchmaker, semáforo de riesgo OBD2 manual, Escudo Anti-Estafas y Cuaderno Dinámico ($/km).</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-03-especificacion-funcional-detallada-de-los-3-pilares-core">Sección 03: Especificación Funcional Detallada de los 3 Pilares Core</h1>
+<h3 id="diseno-de-producto-algoritmos-logica-de-negocio-y-experiencia-funcional">Diseño de Producto, Algoritmos, Lógica de Negocio y Experiencia Funcional</h3>
+<p><em>Especialmente contextualizado para el mercado automotriz venezolano • Hook: Matchmaker-First</em></p>
+<hr />
+<h2 id="31-pilar-1-hook-principal-matchmaker-de-compra-comparador-inteligente">3.1. Pilar 1 (Hook Principal): Matchmaker de Compra &amp; Comparador Inteligente</h2>
+<p>El <strong>Matchmaker de CharuAutos</strong> no es un simple filtro de búsqueda por precio o año; es un <strong>asesor virtual empático</strong> que traduce las necesidades cotidianas del usuario en especificaciones de ingeniería automotriz adaptadas a las exigencias de Venezuela.</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    Start(["🚀 Inicio de la Entrevista"]) --> Q1["💰 1. Presupuesto Total y Liquidez<br>(Compra inicial + colchón de mantenimiento)"]
+    Q1 --> Q2["🛣️ 2. Rutas y Caminos Recorridos<br>(Autopistas, calles con baches, subidas, viajes al interior)"]
+    Q2 --> Q3["⛽ 3. Sensibilidad al Combustible<br>(Capacidad de surtir subsidiada/internacional, consumo km/L)"]
+    Q3 --> Q4["👨‍👩‍👧‍👦 4. Espacio y Capacidad de Carga<br>(Pasajeros, coche de bebé, maletas, trabajo de carga)"]
+    Q4 --> Q5["🔧 5. Tolerancia a la Disponibilidad de Repuestos<br>(¿Consigue en cualquier esquina o puede esperar importación?)"]
+
+    Q5 --> Engine["🧠 Algoritmo de Ponderación & Scoring<br>(Compatibilidad de Fichas Técnicas)"]
+
+    Engine --> Results["🏆 Top 3 Modelos Recomendados<br>(% Match + Pros y Contras en Venezuela)"]
+    Results --> Compare["⚖️ Comparador Lado a Lado Sin Jerga"]
+    Results --> LeadGen["🏢 CTA: Contactar Concesionario / Taller de Revisión Pre-Compra"]</code></pre></div>
+
+<h3 id="1-el-arbol-conversacional-guiado-entrevista-sin-jerga">1. El Árbol Conversacional Guiado (Entrevista Sin Jerga)</h3>
+<p>Las preguntas evitan tecnicismos y se basan en escenarios del día a día en Venezuela:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Pregunta del Asistente</th>
+<th style="text-align: left;">Opciones de Respuesta</th>
+<th style="text-align: left;">Traducción a Variables de Ingeniería</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1. "¿Cuánto dinero tienes disponible para el carro?"</strong></td>
+<td style="text-align: left;">A) &lt; $4,000 USD<br>B) $4,000 - $8,000 USD<br>C) $8,000 - $15,000 USD<br>D) &gt; $15,000 USD (0km / Financiamiento)</td>
+<td style="text-align: left;">Filtra segmentos: Usados de batalla, sedanes tradicionales, SUVs medianas o modelos 0km nuevos chinos/financiamientos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2. "¿Por dónde vas a rodar la mayor parte del tiempo?"</strong></td>
+<td style="text-align: left;">A) Pura ciudad plana (Caracas centro, Maracaibo)<br>B) Subidas fuertes y cerros (El Hatillo, Táchira, Mérida)<br>C) Vías con muchos huecos y baches pronunciados<br>D) Viajes largos interurbanos por autopistas</td>
+<td style="text-align: left;">- Despeje al suelo mínimo (ej. &gt; 170 mm para opción C).<br>- Curva de torque a bajas RPM (&gt; 140 Nm para opción B).<br>- Rigidez estructural del tren delantero.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3. "¿Cuál es tu prioridad con la gasolina?"</strong></td>
+<td style="text-align: left;">A) Máximo ahorro, que rinda bastante<br>B) No me importa tanto el consumo, prefiero fuerza<br>C) Que acepte gasolina regular sin pistoneo ni fallas</td>
+<td style="text-align: left;">- Relación de compresión del motor (preferir motores &lt; 10.5:1 atmosféricos para evitar detonación con octanaje irregular).<br>- Consumo mixto &gt; 14 km/litro.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4. "¿Qué tan fácil quieres conseguir los repuestos?"</strong></td>
+<td style="text-align: left;">A) "Que los vendan hasta en la panadería"<br>B) "Puedo esperar unos días si el carro es más moderno"</td>
+<td style="text-align: left;">Ponderador de densidad de stock en repuesteras locales (ej. Toyota/Chevrolet vs. marcas asiáticas emergentes).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2-algoritmo-de-ponderacion-y-scoring-de-compatibilidad">2. Algoritmo de Ponderación y Scoring (% de Compatibilidad)</h3>
+<p>Para cada vehículo $i$ de la base de datos canónica, el Score de Compatibilidad ($S_i \in [0, 100]$) se calcula mediante una suma ponderada normalizada:</p>
+<p>$$S_i = \left( \sum_{j=1}^{6} w_j \cdot C_{ij} \right) \times P_{\text{penalización}}$$</p>
+<p>Donde:<br />
+- $w_j$ = Peso relativo asignado a cada criterio según las respuestas del usuario ($\sum w_j = 1$).<br />
+- $C_{ij} \in [0, 1]$ = Grado de cumplimiento del vehículo $i$ en el criterio $j$:<br />
+  1. <strong>$C_1$ (Ajuste a Presupuesto):</strong> Penalización cuadrática si excede el presupuesto del usuario.<br />
+  2. <strong>$C_2$ (Costo Total de Mantenimiento TCO en Venezuela):</strong> Basado en el precio de repuestos clave (amortiguadores, pastillas, kit de embrague, bujías).<br />
+  3. <strong>$C_3$ (Despeje del Suelo / Suspensión):</strong> Distancia libre al suelo contra irregularidades viales.<br />
+  4. <strong>$C_4$ (Tolerancia al Combustible Local):</strong> Sensibilidad del sistema de inyección y sensores de O2.<br />
+  5. <strong>$C_5$ (Habitabilidad &amp; Espacio):</strong> Volumen del maletero en litros y espacio entre ejes.<br />
+  6. <strong>$C_6$ (Liquidez de Reventa):</strong> Tiempo promedio en días que tarda el modelo en venderse en portales de segunda mano.<br />
+- $P_{\text{penalización}}$ = Factor de descuento (0.75) si el modelo posee un historial crítico de fallas endémicas (ej. rotura de correa de tiempo en modelos de interferencia sin mantenimiento estricto).</p>
+<hr />
+<h3 id="3-comparador-lado-a-lado-fichas-tecnicas-humanizadas">3. Comparador Lado a Lado: Fichas Técnicas "Humanizadas"</h3>
+<p>Cuando el usuario selecciona dos o tres modelos para contrastar (ej. <em>Toyota Corolla 2011</em> vs. <em>Changan Alsvin 2024</em> vs. <em>Ford Fiesta 2012</em>), la interfaz traduce las especificaciones crudas a lenguaje intuitivo:</p>
+<div class="codehilite"><pre><span></span><code>┌──────────────────────────────────────┬──────────────────────────────────────┬──────────────────────────────────────┐
+│ TOYOTA COROLLA 1.8 (2011)            │ CHANGAN ALSVIN 1.4 (2024)            │ FORD FIESTA TITANIUM (2012)          │
+├──────────────────────────────────────┼──────────────────────────────────────┼──────────────────────────────────────┤
+│ 🏆 Compatibilidad: 94%               │ 🏆 Compatibilidad: 88%               │ 🏆 Compatibilidad: 76%               │
+│                                      │                                      │                                      │
+│ 🛡️ Repuestos en Venezuela:          │ 🛡️ Repuestos en Venezuela:          │ 🛡️ Repuestos en Venezuela:          │
+│ Inmediatos en cualquier ciudad       │ En concesionarios y tiendas grandes  │ Frecuentes, pero ojo con imitaciones │
+│                                      │                                      │                                      │
+│ 🛑 Altura contra Huecos y Policías:  │ 🛑 Altura contra Huecos y Policías:  │ 🛑 Altura contra Huecos y Policías:  │
+│ Buena (160 mm de despeje)            │ Regular (145 mm, raspa si va cargado)│ Baja (135 mm, requiere cuidado)      │
+│                                      │                                      │                                      │
+│ ⛽ Comportamiento con la Gasolina:   │ ⛽ Comportamiento con la Gasolina:   │ ⛽ Comportamiento con la Gasolina:   │
+│ Excelente, motor rústico de cadena   │ Requiere mantenimiento de inyectores │ Sensible a suciedad en tanque        │
+│                                      │                                      │                                      │
+│ 💰 Costo de Mantenimiento Anual:     │ 💰 Costo de Mantenimiento Anual:     │ 💰 Costo de Mantenimiento Anual:     │
+│ ~$320 USD/año                        │ ~$260 USD/año (primeros años)        │ ~$410 USD/año (frecuente en tren del)│
+└──────────────────────────────────────┴──────────────────────────────────────┴──────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h3 id="4-ingesta-inteligente-de-fichas-tecnicas-por-pdf-adjunto-document-scraping-parsing">4. Ingesta Inteligente de Fichas Técnicas por PDF Adjunto (Document Scraping &amp; Parsing)</h3>
+<p>Para responder a la necesidad de evaluar vehículos no listados o modelos recién importados por concesionarios en Venezuela:<br />
+- <strong>Flujo de Carga:</strong> El usuario o vendedor puede adjuntar un archivo PDF oficial (brochure comercial o ficha técnica del fabricante) arrastrándolo a la app o seleccionándolo desde el celular.<br />
+- <strong>Motor de Extracción y Regex Heurístico:</strong><br />
+  - Extrae cilindrada, potencia en HP, torque en Nm, despeje al suelo en mm, volumen de maletero y tipo de transmisión/distribución.<br />
+- <strong>Normalización Automática a la Interfaz Canónica:</strong><br />
+  - El documento procesado se convierte automáticamente en una entidad <code>CanonicalVehicle</code> candidata.<br />
+  - Se incorpora de inmediato al comparador lado a lado para contrastarlo contra cualquier auto del catálogo de CharuAutos.</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    PDF["📄 Ficha Técnica en PDF<br>(Ej: Brochure Dongfeng / Changan)"] --> Parser["⚙️ Motor de Parsing & Scraping<br>(Extracción de Entidades Automotrices)"]
+    Parser --> Norm["🔄 Normalizador Canónico<br>(Potencia, Torque, Despeje mm, Maletero)"]
+    Norm --> Compare["⚖️ Comparación Lado a Lado Instantánea<br>(PDF vs. Autos de la Base de Datos)"]</code></pre></div>
+
+<hr />
+<h2 id="32-pilar-2-asistente-mecanico-diagnostico-obd2-manual">3.2. Pilar 2: Asistente Mecánico &amp; Diagnóstico OBD2 Manual</h2>
+<p>En la fase MVP, el usuario no necesita hardware Bluetooth. El diagnóstico se activa mediante un <strong>buscador predictivo de códigos DTC</strong> o un <strong>selector visual de síntomas</strong>.</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    User["👤 Usuario ingresa: 'P0420'"] --> Engine["🔍 Motor de Diagnóstico SAE/ISO"]
+    Engine --> Severity["🚦 Nivel de Severidad (Semáforo ISO)"]
+    Engine --> Causes["📊 Causas Raíz Ordenadas por Probabilidad (80/20)"]
+    Engine --> Shield["🛡️ Escudo Anti-Estafas en el Taller"]
+
+    Severity --> Display["Pantalla de Resultados Didáctica"]
+    Causes --> Display
+    Shield --> Display</code></pre></div>
+
+<h3 id="1-el-semaforo-de-severidad-isosae">1. El Semáforo de Severidad ISO/SAE</h3>
+<ul>
+<li><strong>🟢 Código Nivel 1 (Leve / Conducción Segura):</strong></li>
+<li><em>Ejemplos:</em> <code>P0442</code> (pequeña fuga EVAP / tapa de gasolina floja), <code>P0128</code> (termostato abre a destiempo).</li>
+<li><em>Mensaje:</em> <em>"Puedes seguir manejando con tranquilidad. No daña el motor a corto plazo. Revísalo en tu próximo servicio rutinario."</em></li>
+<li><strong>🟡 Código Nivel 2 (Precaución / Atención Necesaria):</strong></li>
+<li><em>Ejemplos:</em> <code>P0420</code> (eficiencia catalizador baja), <code>P0171</code> (mezcla pobre en banco 1).</li>
+<li><em>Mensaje:</em> <em>"El auto rueda, pero consumirá más gasolina o perderá fuerza. Atiéndelo pronto para evitar averías mayores."</em></li>
+<li><strong>🔴 Código Nivel 3 (Crítico / Detener el Auto Inmediatamente):</strong></li>
+<li><em>Ejemplos:</em> <code>P0300</code> parpadeando (misfire masivo dañando motor), <code>P0524</code> (presión de aceite insuficiente).</li>
+<li><em>Mensaje:</em> <em>"¡ALERTA ROJA! Detén el vehículo en un lugar seguro y apaga el motor. Continuar la marcha puede fundir el motor o causar daños catastróficos."</em></li>
+</ul>
+<hr />
+<h3 id="2-arbol-de-causas-raiz-8020-y-desglose-economico">2. Árbol de Causas Raíz 80/20 y Desglose Económico</h3>
+<p>Para evitar que el usuario gaste cientos de dólares innecesariamente, la app muestra las causas más probables ordenadas de menor a mayor costo:</p>
+<h4 id="caso-de-estudio-codigo-p0420-muy-frecuente-en-venezuela-por-combustible">Caso de Estudio: Código <code>P0420</code> (Muy frecuente en Venezuela por combustible)</h4>
+<ol>
+<li><strong>Causa más barata y probable (60% de los casos):</strong> Sensor de oxígeno posterior defectuoso o sucio ($25 - $40 USD).</li>
+<li><strong>Segunda causa común (25% de los casos):</strong> Fuga en el tubo de escape o junta suelta antes del catalizador ($15 USD de soldadura).</li>
+<li><strong>Causa más cara y menos común (15% de los casos):</strong> Catalizador verdaderamente fundido o tapado ($200 - $600 USD).</li>
+</ol>
+<hr />
+<h3 id="3-generador-del-escudo-anti-estafas-para-el-taller">3. Generador del "Escudo Anti-Estafas" para el Taller</h3>
+<p>La app genera una tarjeta exportable a WhatsApp o pantalla completa que el usuario muestra o utiliza como libreto al hablar con el mecánico:</p>
+<div class="codehilite"><pre><span></span><code>╔══════════════════════════════════════════════════════════════════════════╗
+║  🛡️ ESCUDO CHARUAUTOS — REGLAS PARA EL MECÁNICO                          ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  Vehículo: Chevrolet Aveo 1.6 • Código Detectado: P0171 (Mezcla Pobre)   ║
+║                                                                          ║
+║  1. PREGUNTA CLAVE DE CONFRONTACIÓN:                                     ║
+║     &quot;Amigo, antes de cambiar la bomba de gasolina completa, ¿podemos      ║
+║     medir la presión en el riel de inyectores con el manómetro y         ║
+║     revisar si hay una toma de aire falsa en la manguera de vacío?&quot;      ║
+║                                                                          ║
+║  2. CONDICIONES OBLIGATORIAS:                                            ║
+║     • Todo repuesto reemplazado debe entregarse en su caja original      ║
+║       con la pieza vieja retirada como evidencia.                        ║
+║     • No autorizo trabajos adicionales sin presupuesto escrito previo.   ║
+║     • Escaneo final para verificar que el código se borró y no volvió.   ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre></div>
+
+<hr />
+<h2 id="33-pilar-3-cuaderno-de-mantenimiento-dinamico-dashboard-analitico">3.3. Pilar 3: Cuaderno de Mantenimiento Dinámico &amp; Dashboard Analítico</h2>
+<p>El cuaderno de mantenimiento digital sustituye a la libreta física olvidada en la guantera, convirtiendo cada gasto en inteligencia preventiva.</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>graph LR
+    subgraph Registro Rápido
+        Input["➕ Nueva Carga / Mantenimiento<br>(Cámara / Manual en 10 seg)"]
+    end
+
+    subgraph Procesamiento
+        Calc1["Calculador de Rendimiento (km/L)"]
+        Calc2["Cálculo de Costo Real ($/km)"]
+        Calc3["Algoritmo Health Score (0-100%)"]
+    end
+
+    subgraph Visualización en Canvas
+        Dash["📊 Dashboard Analítico Reactivo"]
+        Time["⏳ Timeline Cronológico de Vida Útil"]
+        Alert["🔔 Alerta Predictiva de Servicio Próximo"]
+    end
+
+    Input --> Calc1 & Calc2 & Calc3
+    Calc1 & Calc2 & Calc3 --> Dash & Time & Alert</code></pre></div>
+
+<h3 id="1-el-timeline-interactivo-de-vida-util">1. El Timeline Interactivo de Vida Útil</h3>
+<p>Una línea de tiempo interactiva donde el usuario hace scroll horizontal o vertical por los hitos mecánicos de su auto:<br />
+- <strong>Nodos Verdes:</strong> Mantenimientos preventivos realizados a tiempo (cambio de aceite 5W-30, filtro de cabina, rotación de llantas).<br />
+- <strong>Nodos Amarillos:</strong> Servicios próximos a vencer (ej. <em>"Faltan 800 km para cambio de pastillas de freno"</em>).<br />
+- <strong>Nodos Rojos:</strong> Servicios vencidos con alerta de riesgo (ej. <em>"Correa de distribución con 62,000 km sin cambiar: riesgo de rotura"</em>).</p>
+<hr />
+<h3 id="2-algoritmo-del-health-score-del-vehiculo-0-a-100">2. Algoritmo del "Health Score" del Vehículo (0 a 100%)</h3>
+<p>El puntaje de salud del vehículo ($H \in [0, 100]$) se recalcula automáticamente con cada ingreso de kilometraje:</p>
+<p>$$H = 100 - \sum_{k=1}^{M} \left( \Delta_{\text{vencimiento}, k} \times \omega_k \right) - \text{Penalización}_{\text{DTC}}$$</p>
+<p>Donde:<br />
+- $\omega_k$ es el peso del componente según su criticidad mecánica (ej. Aceite de motor: $\omega = 25$; Filtro de aire acondicionado: $\omega = 5$).<br />
+- $\Delta_{\text{vencimiento}, k}$ es el porcentaje de sobre-kilometraje transcurrido desde la fecha límite.<br />
+- $\text{Penalización}_{\text{DTC}}$ descuenta 15 puntos por cada código Nivel 2 activo y 35 puntos por cada código Nivel 3 sin resolver.</p>
+<p><em>Impacto Comercial:</em> Un auto con <strong>Health Score &gt; 90%</strong> durante más de 6 meses desbloquea el sello de <strong>"Vehículo Certificado CharuAutos"</strong>, aumentando su valor de reventa en el mercado local entre un <strong>5% y un 12%</strong>.</p>
+<hr />
+<h3 id="3-dashboard-financiero-bimonetario-km">3. Dashboard Financiero Bimonetario ($/km)</h3>
+<p>El dashboard resuelve la necesidad de los conductores venezolanos de entender cuánto les cuesta realmente mover el vehículo:</p>
+<div class="codehilite"><pre><span></span><code>┌──────────────────────────────────────────────────────────────────────────┐
+│ 📊 RESUMEN DE SALUD Y COSTOS — TOYOTA COROLLA (2011)                      │
+├──────────────────────────────────────────────────────────────────────────┤
+│  ❤️ Salud Global: 92/100 (Excelente)     🛣️ Odómetro: 148,500 km         │
+├──────────────────────────────────────────────────────────────────────────┤
+│  ⛽ RENDIMIENTO DE COMBUSTIBLE:           💰 COSTO OPERATIVO:             │
+│  • 12.4 km / Litro (Promedio ciudad)     • $0.11 USD / km recorrido      │
+│  • Autonomía por tanque: ~580 km         • (Aprox. 4.18 Bs./km a tasa BCV)│
+├──────────────────────────────────────────────────────────────────────────┤
+│  🔔 PRÓXIMA ALERTA PREVENTIVA:                                           │
+│  ⚠️ Cambio de Aceite y Filtro en 1,200 km (Estimado: 22 días)             │
+│  Presupuesto estimado repuestos: $35 - $45 USD                            │
+└──────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-05">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 05</div>
+                <h1 class="chapter-title">Arquitectura Técnica y Stack de Software</h1>
+                <p class="chapter-lead">Diagramas C4, stack React Native / Expo, NestJS, FastAPI, modelos PostgreSQL y persistencia SQLite.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-04-arquitectura-tecnica-y-stack-de-software">Sección 04: Arquitectura Técnica y Stack de Software</h1>
+<h3 id="diseno-de-arquitectura-de-sistemas-diagrama-c4-seleccion-de-stack-y-persistencia-local-first">Diseño de Arquitectura de Sistemas, Diagrama C4, Selección de Stack y Persistencia Local-First</h3>
+<p><em>Diseñado bajo estándares de ingeniería de software moderna para resiliencia offline y alta concurrencia.</em></p>
+<hr />
+<h2 id="41-arquitectura-del-sistema-diagrama-c4-nivel-contenedores">4.1. Arquitectura del Sistema: Diagrama C4 (Nivel Contenedores)</h2>
+<p>La arquitectura sigue el patrón <strong>Local-First Reactive Sync</strong> con microservicios en el backend desacoplados mediante colas de eventos:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TB
+    subgraph Dispositivo del Usuario ["📱 Dispositivo del Usuario (Cliente Multiplataforma)"]
+        UI["React Native Client (TypeScript / Expo)"]
+        LocalDB[("Local SQLite / WatermelonDB<br>(Caché Offline Encriptada)")]
+        SyncManager["Sync Manager (Replication Worker)"]
+
+        UI <--> LocalDB
+        LocalDB <--> SyncManager
+    end
+
+    subgraph Perímetro de Seguridad ["🛡️ Edge & API Gateway"]
+        CDN["Cloudflare WAF / CDN"]
+        Gateway["Kong / Envoy API Gateway<br>(Rate Limiting, JWT Auth, TLS 1.3)"]
+    end
+
+    subgraph Capa de Microservicios ["⚙️ Backend Services (K8s / ECS)"]
+        CoreAPI["Core API Service (NestJS / TypeScript)<br>Vehículos, Usuarios, Mantenimientos"]
+        AIService["AI & RAG Engine (FastAPI / Python)<br>Embeddings, Diagnóstico DTC & Matchmaker"]
+        SyncService["Real-Time Sync Engine (Go / Node.js)<br>WebSockets / Server-Sent Events"]
+    end
+
+    subgraph Capa de Persistencia ["🗄️ Persistencia & Event Streaming"]
+        Postgres[("PostgreSQL Master-Replica<br>(Usuarios, Vehículos, Talleres)")]
+        Timescale[("TimescaleDB<br>(Series de Tiempo: Odómetro, Gastos)")]
+        VectorStore[("pgvector Extension<br>(Búsqueda Semántica Mecánica)")]
+        RedisCluster[("Redis Cluster<br>(Caché L2, Colas BullMQ, Sesiones)")]
+        KafkaCluster[("Apache Kafka / Redpanda<br>(Eventos de Ingesta para Data Lake)")]
+    end
+
+    SyncManager <-->|"HTTPS / WSS Sync"| CDN
+    UI <-->|"GraphQL / REST"| CDN
+    CDN --> Gateway
+    Gateway --> CoreAPI
+    Gateway --> AIService
+    Gateway --> SyncService
+
+    CoreAPI --> Postgres
+    CoreAPI --> Timescale
+    CoreAPI --> RedisCluster
+    CoreAPI --> KafkaCluster
+
+    AIService --> VectorStore
+    AIService --> RedisCluster
+
+    SyncService --> RedisCluster
+    SyncService --> Postgres</code></pre></div>
+
+<hr />
+<h2 id="42-seleccion-justificada-del-stack-tecnologico">4.2. Selección Justificada del Stack Tecnológico</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>mindmap
+  root((CharuAutos Tech Stack))
+    Frontend Móvil
+      React Native 0.74+
+      Expo SDK 51+
+      NativeWind Tailwind CSS
+      WatermelonDB Local-First
+    Backend Core
+      Node.js v20 LTS
+      NestJS Framework
+      Prisma / Drizzle ORM
+      Redis + BullMQ
+    Servicios IA
+      Python 3.11+
+      FastAPI Microservicio
+      LangChain / LlamaIndex
+      pgvector en PostgreSQL
+    Infraestructura & Cloud
+      Docker + Kubernetes
+      AWS / Supabase Dedicated
+      Cloudflare Enterprise WAF
+      GitHub Actions CI/CD</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Capa / Componente</th>
+<th style="text-align: left;">Tecnología Seleccionada</th>
+<th style="text-align: left;">Justificación Técnica &amp; Comercial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Frontend Móvil</strong></td>
+<td style="text-align: left;"><strong>React Native + Expo (TypeScript)</strong></td>
+<td style="text-align: left;">• Un solo codebase para iOS, Android y versión Web PWA.<br>• Arquitectura moderna con nuevo motor <em>Hermes</em> y compilador reactivo.<br>• Acceso directo a biometría, cámara y SQLite nativo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Estilos &amp; UI Kit</strong></td>
+<td style="text-align: left;"><strong>NativeWind (Tailwind CSS v3)</strong></td>
+<td style="text-align: left;">• Permite una implementación limpia del sistema de diseño <em>Dark Showroom</em> con variables compartidas entre web y móvil.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Persistencia Local</strong></td>
+<td style="text-align: left;"><strong>WatermelonDB (sobre SQLite)</strong></td>
+<td style="text-align: left;">• Extremadamente rápido para grandes volúmenes de datos en dispositivos móviles de gama media/baja.<br>• Permite consultas reactivas en &lt;16ms para garantizar 60 fps en la UI.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Backend Core API</strong></td>
+<td style="text-align: left;"><strong>NestJS (Node.js)</strong></td>
+<td style="text-align: left;">• Arquitectura modular basada en principios SOLID y Domain-Driven Design (DDD).<br>• Tipado estricto extremo con TypeScript compartido con el frontend.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Motor IA &amp; Diagnóstico</strong></td>
+<td style="text-align: left;"><strong>FastAPI (Python)</strong></td>
+<td style="text-align: left;">• Framework asíncrono ultrarrápido para servir modelos de embeddings e integrarse con librerías de IA (NumPy, PyTorch, LangChain).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Base de Datos Operacional</strong></td>
+<td style="text-align: left;"><strong>PostgreSQL 16 + TimescaleDB</strong></td>
+<td style="text-align: left;">• PostgreSQL garantiza consistencia ACID para compras, reservas y transacciones.<br>• TimescaleDB gestiona eficientemente millones de lecturas de kilometraje y consumos de combustible con compresión del 90%.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Base de Datos Vectorial</strong></td>
+<td style="text-align: left;"><strong>pgvector (Integrado en Postgres)</strong></td>
+<td style="text-align: left;">• Elimina la necesidad de pagar y mantener un clúster separado de Pinecone o Qdrant en el MVP, abaratando la factura cloud en más de $300/mes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="43-modelo-operacional-de-base-de-datos-postgresql-ddl-schemas">4.3. Modelo Operacional de Base de Datos (PostgreSQL DDL Schemas)</h2>
+<p>A continuación, el esquema canónico de las tablas nodales para el MVP:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- 1. EXTENSIONES NECESARIAS</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="ss">&quot;uuid-ossp&quot;</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="ss">&quot;pgcrypto&quot;</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="ss">&quot;vector&quot;</span><span class="p">;</span>
+
+<span class="c1">-- 2. TABLA DE USUARIOS</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">password_hash</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">full_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">phone_number</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="k">role</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;driver&#39;</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="k">role</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;driver&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mechanic&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dealer&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">is_pro_member</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pro_expires_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="c1">-- 3. TABLA DE VEHÍCULOS DEL USUARIO (GARAGE)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user_vehicles</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">canonical_trim_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- FK hacia el catálogo MDM</span>
+<span class="w">    </span><span class="n">license_plate_hash</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Blind index HMAC</span>
+<span class="w">    </span><span class="n">encrypted_license_plate</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- AES-256 encrypted</span>
+<span class="w">    </span><span class="n">current_mileage</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">current_mileage</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<span class="w">    </span><span class="n">health_score</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">health_score</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="c1">-- 4. TABLA DE REGISTROS DE COMBUSTIBLE Y GASTOS (TIMESCALEDB HYPERTABLE)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">fuel_logs</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">vehicle_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">user_vehicles</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">logged_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">mileage_at_fill</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">liters_filled</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">price_total_usd</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">price_total_ves</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">bcv_exchange_rate</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span>
+<span class="w">    </span><span class="n">fuel_octane</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">fuel_octane</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;regular_91&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;premium_95&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;diesel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unknown&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">logged_at</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- 5. TABLA CANÓNICA DE CÓDIGOS DTC OBD2 (SAE J2012)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dtc_codes</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Ej: &#39;P0420&#39;</span>
+<span class="w">    </span><span class="n">system_category</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Powertrain, Chassis, Body, Network</span>
+<span class="w">    </span><span class="n">severity_level</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">severity_level</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="c1">-- 1: Leve, 2: Precaución, 3: Crítico</span>
+<span class="w">    </span><span class="n">technical_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">plain_spanish_summary</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">causes_root_json</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Lista ponderada de causas</span>
+<span class="w">    </span><span class="n">anti_scam_questions</span><span class="w"> </span><span class="n">JSONB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Preguntas blindaje</span>
+<span class="w">    </span><span class="n">embedding</span><span class="w"> </span><span class="n">vector</span><span class="p">(</span><span class="mi">1536</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Vector para búsqueda semántica por síntomas</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<hr />
+<h2 id="44-catalogo-de-apis-y-repositorios-locales-de-datos">4.4. Catálogo de APIs y Repositorios Locales de Datos</h2>
+<p>Para asegurar que la app funcione en los lugares más recónditos de las carreteras venezolanas sin conexión a internet, se diseña una arquitectura híbrida de datos:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>graph TD
+    subgraph Almacén Local Offline en Dispositivo
+        Local1["SQLite Pre-empaquetada en la App (18 MB)<br>• Diccionario completo de 8,500 códigos DTC SAE<br>• Catálogo esencial de los 120 autos más comunes en VE<br>• Guía de emergencias y cambio de llanta"]
+    end
+
+    subgraph APIs Externas Conectadas en la Nube
+        API1["NHTSA VPIC API (Decodificador global gratuito de VINs)"]
+        API2["API Tasa Oficial BCV (Actualización diaria de cambio Bs/USD)"]
+        API3["Servicio Push Notifications (Firebase Cloud Messaging - FCM)"]
+        API4["Pasarelas de Pago (Pago Móvil API, Binance Pay SDK, Stripe)"]
+    end
+
+    App["📱 App CharuAutos"] --> Local1
+    App -.->|"Cuando hay conexión disponible"| API1 & API2 & API3 & API4</code></pre></div>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-06">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 06</div>
+                <h1 class="chapter-title">Ciberseguridad, Implementación y Mantenimiento</h1>
+                <p class="chapter-lead">Modelo de amenazas STRIDE, OWASP Mobile/API, cadena SHA-256 anti-fraude, Zero Trust y DevSecOps.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-05-ciberseguridad-implementacion-y-mantenimiento-continuo">Sección 05: Ciberseguridad, Implementación y Mantenimiento Continuo</h1>
+<h3 id="estrategia-de-seguridad-en-profundidad-defense-in-depth-appsec-devsecops-y-resiliencia-operativa">Estrategia de Seguridad en Profundidad (Defense-in-Depth), AppSec, DevSecOps y Resiliencia Operativa</h3>
+<p><em>Estándares de referencia: OWASP Mobile Top 10 • OWASP API Top 10 • NIST CSF • CIS Benchmarks</em></p>
+<hr />
+<h2 id="51-marco-de-ciberseguridad-y-modelo-de-amenazas-threat-modeling">5.1. Marco de Ciberseguridad y Modelo de Amenazas (Threat Modeling)</h2>
+<p>Para proteger la integridad de los datos de los usuarios, las transacciones financieras multimoneda y la autenticidad de los certificados de mantenimiento de los vehículos, aplicamos el modelo de amenazas <strong>STRIDE</strong>:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>graph TD
+    subgraph Amenazas Específicas del Negocio Automotriz
+        T1["🚨 Falsificación de Historial / Odómetro<br>(Adulterar km para inflar reventa)"]
+        T2["🚨 Interceptación de Pagos Bimonetarios<br>(Ataques MITM en Pago Móvil / USDT)"]
+        T3["🚨 Extracción de Leads de Concesionarios<br>(Scraping masivo de base de datos)"]
+        T4["🚨 Inyección de Diagnósticos Falsos<br>(Manipulación de árboles de decisión)"]
+    end
+
+    subgraph Capas Defensivas Implementadas
+        D1["🔒 Cadena Criptográfica SHA-256 inmutable para lecturas de km"]
+        D2["🛡️ TLS 1.3 + Certificate Pinning + Firmas de Webhook HMAC"]
+        D3["⚡ Rate Limiting estricto + WAF Cloudflare + CAPTCHA"]
+        D4["🔑 Verificación de integridad de respuestas en servidor"]
+    end
+
+    T1 --> D1
+    T2 --> D2
+    T3 --> D3
+    T4 --> D4</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Categoría STRIDE</th>
+<th style="text-align: left;">Amenaza Concreta</th>
+<th style="text-align: left;">Contramedida de Seguridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Spoofing (Suplantación)</strong></td>
+<td style="text-align: left;">Un taller o usuario no autorizado registra servicios en nombre de un taller certificado.</td>
+<td style="text-align: left;">Autenticación multifactor (MFA), firmas digitales asimétricas y verificación de identidad KYC para talleres de la red.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tampering (Adulteración)</strong></td>
+<td style="text-align: left;">Manipulación local en el dispositivo del kilometraje o registros de gastos de combustible.</td>
+<td style="text-align: left;">Hashing criptográfico en cadena (Merkle Tree local) y sincronización con marca de tiempo inmutable en el backend.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Repudiation (Repudio)</strong></td>
+<td style="text-align: left;">Un taller desconoce haber emitido un presupuesto o cobrado un trabajo deficiente.</td>
+<td style="text-align: left;">Audit Log inmutable de todas las transacciones con identificador único de sesión y firma de recepción.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Information Disclosure (Fuga)</strong></td>
+<td style="text-align: left;">Exposición del VIN, placa o ubicación del vehículo que facilite el robo o rastreo de conductores.</td>
+<td style="text-align: left;">Cifrado a nivel de campo (Field-Level Encryption) con AES-256-GCM y ofuscación de identificadores.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Denial of Service (DoS)</strong></td>
+<td style="text-align: left;">Ataques de denegación de servicio a las APIs de consulta OBD2 o al Matchmaker.</td>
+<td style="text-align: left;">Cloudflare WAF, rate limiting por token/IP (Redis Token Bucket) y CDN perimetral para activos estáticos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Elevation of Privilege</strong></td>
+<td style="text-align: left;">Un usuario normal intenta acceder a la consola administrativa de concesionarios o talleres.</td>
+<td style="text-align: left;">Control de Acceso Basado en Roles (RBAC) estricto con validación de Claims en cada endpoint del backend.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="52-seguridad-en-la-aplicacion-movil-appsec-client-side-hardening">5.2. Seguridad en la Aplicación Móvil (AppSec &amp; Client-Side Hardening)</h2>
+<p>Siguiendo el estándar <strong>OWASP Mobile Application Security (MASVS)</strong>:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart LR
+    subgraph Dispositivo Móvil
+        App["📱 App Móvil (React Native)"]
+        Keystore["🔐 Hardware Keystore / Secure Enclave<br>(Llaves privadas, Tokens JWT)"]
+        LocalDB["🗄️ SQLite Cifrado (SQLCipher AES-256)<br>(Caché offline de datos sensibles)"]
+    end
+
+    subgraph Red & Tránsito
+        Pinning["🛡️ SSL / Certificate Pinning"]
+        TLS["🔒 Canal Seguro TLS 1.3"]
+    end
+
+    subgraph Backend Cloud
+        API["⚙️ API Gateway"]
+    end
+
+    App <-->|"Acceso por biometría"| Keystore
+    App <--> LocalDB
+    App --> Pinning --> TLS --> API</code></pre></div>
+
+<ol>
+<li><strong>Almacenamiento Seguro de Credenciales:</strong><br />
+   - Prohibido el uso de <code>AsyncStorage</code> o <code>SharedPreferences</code> sin cifrar para tokens o datos sensibles.<br />
+   - Implementación de <strong>Keychain</strong> en iOS y <strong>Android Keystore / EncryptedSharedPreferences</strong> mediante la librería <code>react-native-keychain</code>.</li>
+<li><strong>Cifrado de Base de Datos Local:</strong><br />
+   - La base de datos local-first (SQLite / WatermelonDB) opera cifrada con <strong>SQLCipher (AES-256)</strong>, derivando la llave de cifrado a partir del enclave de seguridad del teléfono.</li>
+<li><strong>Anti-Tampering y Detección de Dispositivos Vulnerables:</strong><br />
+   - Detección en tiempo de ejecución de dispositivos con <strong>Root (Android)</strong> o <strong>Jailbreak (iOS)</strong> usando comprobaciones de integridad SafetyNet / Play Integrity API y DeviceCheck de Apple.<br />
+   - Ofuscación del código JavaScript compilado mediante <strong>Hermes bytecode</strong> y herramientas de ofuscación de código contra ingeniería inversa.</li>
+<li><strong>Certificate Pinning:</strong><br />
+   - Prevención de ataques Man-In-The-Middle (MITM) mediante <em>SSL Pinning</em>, impidiendo que certificados raíz instalados maliciosamente en el teléfono intercepten el tráfico de la app.</li>
+</ol>
+<hr />
+<h2 id="53-criptografia-y-proteccion-de-datos">5.3. Criptografía y Protección de Datos</h2>
+<h3 id="1-datos-en-transito">1. Datos en Tránsito</h3>
+<ul>
+<li>Exclusivamente <strong>TLS 1.3</strong> con suites de cifrado modernas (ECDHE-ECDSA-AES128-GCM-SHA256).</li>
+<li>Rechazo forzado de conexiones HTTP planas mediante directivas <strong>HSTS (HTTP Strict Transport Security)</strong> con un <code>max-age</code> de 2 años.</li>
+</ul>
+<h3 id="2-datos-en-reposo-data-at-rest">2. Datos en Reposo (Data at Rest)</h3>
+<ul>
+<li>Bases de datos (PostgreSQL, TimescaleDB, S3) con cifrado transparente <strong>AES-256</strong>.</li>
+<li><strong>Field-Level Encryption (FLE):</strong> Los campos ultrasensibles (VIN del vehículo, número de placa, cuentas de Pago Móvil o direcciones) se cifran en la capa de aplicación antes de ingresar a la base de datos.</li>
+<li><strong>Gestión de Llaves Criptográficas:</strong> Rotación automática de llaves cada 90 días administrada mediante <strong>AWS KMS</strong> o <strong>HashiCorp Vault</strong>.</li>
+</ul>
+<h3 id="3-integridad-criptografica-del-odometro-anti-fraude-de-kilometraje">3. Integridad Criptográfica del Odómetro (Anti-Fraude de Kilometraje)</h3>
+<ul>
+<li>Para que el <strong>Certificado Digital de Mantenimiento</strong> sea reconocido por aseguradoras y compradores de autos usados:</li>
+<li>Cada registro de kilometraje incluye: <code>hash_actual = SHA-256(km + fecha_utc + user_id + hash_anterior)</code>.</li>
+<li>Si un usuario o atacante intenta alterar una lectura histórica, la cadena criptográfica se rompe y el certificado pierde su estado de "Verificado".</li>
+</ul>
+<hr />
+<h2 id="54-seguridad-de-infraestructura-y-red-zero-trust">5.4. Seguridad de Infraestructura y Red (Zero Trust)</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    Internet["🌐 Internet / Tráfico Público"] --> Cloudflare["🛡️ Cloudflare Enterprise WAF + DDoS Protection"]
+    Cloudflare --> ALB["⚖️ Application Load Balancer (Solo acepta tráfico de Cloudflare)"]
+
+    subgraph VPC Privada (AWS / GCP)
+        subgraph Subred Pública
+            ALB
+            Bastion["🚪 Bastion Host con MFA & WireGuard VPN"]
+        end
+
+        subgraph Subred Privada (Aplicación)
+            K8s["☸️ Clúster Kubernetes / Contenedores NestJS & FastAPI"]
+        end
+
+        subgraph Subred Aislada (Datos)
+            RDS[("🗄️ PostgreSQL + TimescaleDB (Sin IP pública)")]
+            RedisCluster[("⚡ Redis Cache")]
+        end
+    end
+
+    ALB --> K8s
+    K8s --> RDS
+    K8s --> RedisCluster</code></pre></div>
+
+<ol>
+<li><strong>Aislamiento de Red:</strong><br />
+   - La base de datos y los servicios internos <strong>carecen de dirección IP pública</strong>. Solo son accesibles desde los pods de la aplicación dentro de una Virtual Private Cloud (VPC) privada.</li>
+<li><strong>Gestión Centralizada de Secretos:</strong><br />
+   - Prohibido el uso de variables de entorno en archivos <code>.env</code> en producción.<br />
+   - Los secretos (credenciales de base de datos, API keys de pasarelas de pago, tokens de LLM) se inyectan en memoria al arrancar usando <strong>Doppler</strong> o <strong>AWS Secrets Manager</strong>.</li>
+<li><strong>Mínimo Privilegio (Principle of Least Privilege):</strong><br />
+   - Políticas IAM estrictas para cada microservicio: el servicio de ingesta no tiene permisos para borrar datos, solo para escribir (<em>append-only</em>).</li>
+</ol>
+<hr />
+<h2 id="55-pipeline-devsecops-automatizacion-de-la-seguridad">5.5. Pipeline DevSecOps &amp; Automatización de la Seguridad</h2>
+<p>La seguridad se integra en el ciclo de vida del desarrollo de software (SSDLC) desde el primer commit:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>sequenceDiagram
+    autonumber
+    participant Dev as Desarrollador
+    participant Git as GitHub Repository
+    participant CI as GitHub Actions (CI/CD)
+    participant Sec as Motores de Seguridad (Snyk, SonarQube, Trivy)
+    participant Prod as Producción
+
+    Dev->>Git: git push (Pull Request)
+    Git->>CI: Disparo del pipeline automatizado
+    CI->>Sec: 1. SAST (Análisis de código estático con SonarQube)
+    CI->>Sec: 2. SCA (Detección de dependencias vulnerables con Snyk)
+    CI->>Sec: 3. Container Scan (Vulnerabilidades en Docker con Trivy)
+    CI->>Sec: 4. Secret Scanning (Prevención de API Keys con Gitleaks)
+
+    alt ¿Vulnerabilidades Críticas o Altas (CVSS >= 7.0)?
+        Sec-->>CI: Falla de seguridad detectada
+        CI-->>Dev: ❌ Pull Request bloqueado automáticamente
+    else Sin vulnerabilidades críticas
+        Sec-->>CI: Aprobado
+        CI->>Prod: 🚀 Despliegue seguro a Staging / Producción
+    end</code></pre></div>
+
+<hr />
+<h2 id="56-plan-de-mantenimiento-continuo-gestion-de-vulnerabilidades-y-respuesta-a-incidentes">5.6. Plan de Mantenimiento Continuo, Gestión de Vulnerabilidades y Respuesta a Incidentes</h2>
+<h3 id="1-ciclo-de-mantenimiento-preventivo-y-parches">1. Ciclo de Mantenimiento Preventivo y Parches</h3>
+<ul>
+<li><strong>Parches de Dependencias:</strong> Revisión quincenal automatizada con <strong>Dependabot / Renovate</strong>. Parches de emergencia desplegados en &lt; 24 horas ante alertas críticas (Zero-Day).</li>
+<li><strong>Hardening Trimestral de Infraestructura:</strong> Rotación de certificados TLS, revisión de roles IAM y auditoría de accesos de personal técnico.</li>
+</ul>
+<h3 id="2-plan-de-copias-de-seguridad-y-resiliencia-disaster-recovery">2. Plan de Copias de Seguridad y Resiliencia (Disaster Recovery)</h3>
+<ul>
+<li><strong>Estrategia 3-2-1:</strong></li>
+<li>3 copias de los datos: Base de datos primaria, réplica de lectura en caliente en zona de disponibilidad secundaria, y backups diarios cifrados en almacenamiento de objetos en región geográfica distinta.</li>
+<li><strong>RTO (Recovery Time Objective):</strong> &lt; 1 hora.</li>
+<li><strong>RPO (Recovery Point Objective):</strong> &lt; 5 minutos (mediante WAL archiving en PostgreSQL).</li>
+<li><strong>Simulacros de Recuperación:</strong> Pruebas programadas semestrales de restauración total de base de datos desde cero.</li>
+</ul>
+<h3 id="3-protocolo-de-respuesta-a-incidentes-irp">3. Protocolo de Respuesta a Incidentes (IRP)</h3>
+<div class="codehilite"><pre><span></span><code>┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│ 1. DETECCIÓN    │ ──&gt; │ 2. CONTENCIÓN   │ ──&gt; │ 3. ERRADICACIÓN │ ──&gt; │ 4. POST-MORTEM  │
+│ Alerta en SIEM  │     │ Aislamiento del │     │ Parcheo de la   │     │ Informe técnico │
+│ o anomalía WAF  │     │ servicio/token  │     │ vulnerabilidad  │     │ y mejoras al IRP│
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+</code></pre></div>
+
+<ul>
+<li><strong>Monitoreo &amp; SIEM:</strong> Centralización de logs de seguridad con <strong>Datadog</strong> o stack <strong>ELK</strong> con alertas inmediatas a Telegram/Slack para eventos sospechosos (múltiples intentos fallidos de login, exportación masiva de datos).</li>
+<li><strong>Notificación y Transparencia:</strong> Protocolo de comunicación a usuarios en caso de incidentes de seguridad que involucren datos personales en cumplimiento con estándares internacionales.</li>
+</ul>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-07">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 07</div>
+                <h1 class="chapter-title">Diseño UI/UX y Experiencia de Usuario</h1>
+                <p class="chapter-lead">Sistema de diseño Dark Showroom, modo manos sucias, emergencias en carretera y flujos de pantalla.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-06-diseno-uiux-y-experiencia-del-usuario">Sección 06: Diseño UI/UX y Experiencia del Usuario</h1>
+<h3 id="sistema-de-diseno-dark-showroom-wireflows-de-baja-friccion-y-psicologia-del-conductor">Sistema de Diseño "Dark Showroom", Wireflows de Baja Fricción y Psicología del Conductor</h3>
+<p><em>Enfocado en accesibilidad, legibilidad en autopista y reducción del estrés ante emergencias mecánicas.</em></p>
+<hr />
+<h2 id="61-sistema-de-diseno-dark-showroom-design-tokens">6.1. Sistema de Diseño: "Dark Showroom" Design Tokens</h2>
+<p>La estética visual de <strong>CharuAutos App</strong> extiende la línea de diseño de la marca: una atmósfera moderna, nocturna y premium inspirada en los tableros de instrumentos deportivos, que además <strong>reduce drásticamente el consumo de batería en pantallas OLED</strong> de teléfonos celulares:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>mindmap
+  root((CharuAutos UI Tokens))
+    Fondos y Superficies
+      Dark Background #070a0f
+      Card Surface #0c121d
+      Border Outline rgba 0 242 254 0.15
+    Acentos Funcionales
+      Cyan Primario #00f2fe
+      Ámbar Alerta #ffb703
+      Carmesí Peligro #ff2a5f
+      Esmeralda OK #38ef7d
+    Tipografía
+      Titulares Syne / Inter Bold
+      Lectura Inter Regular / Medium
+      Datos Numéricos JetBrains Mono</code></pre></div>
+
+<h3 id="tabla-canonica-de-design-tokens-tailwind-css-nativewind">Tabla Canónica de Design Tokens (Tailwind CSS / NativeWind):</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Token Semántico</th>
+<th style="text-align: left;">Valor Hex / RGBA</th>
+<th style="text-align: left;">Uso en Interfaz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>color-bg-base</code></td>
+<td style="text-align: left;"><code>#070a0f</code></td>
+<td style="text-align: left;">Fondo principal de todas las vistas de la app.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-surface-card</code></td>
+<td style="text-align: left;"><code>#0c121d</code></td>
+<td style="text-align: left;">Fondo de tarjetas, módulos interactivos y modales.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-primary-cyan</code></td>
+<td style="text-align: left;"><code>#00f2fe</code></td>
+<td style="text-align: left;">Botones de acción principal (CTA), barras de progreso, iconos clave.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-accent-amber</code></td>
+<td style="text-align: left;"><code>#ffb703</code></td>
+<td style="text-align: left;">Advertencias preventivas, nivel 2 de OBD2, insignias Pro.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-danger-crimson</code></td>
+<td style="text-align: left;"><code>#ff2a5f</code></td>
+<td style="text-align: left;">Alertas críticas de semáforo rojo (Detener auto), servicios vencidos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-success-emerald</code></td>
+<td style="text-align: left;"><code>#38ef7d</code></td>
+<td style="text-align: left;">Nivel 1 de OBD2, mantenimientos al día, Health Score &gt; 85%.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-text-primary</code></td>
+<td style="text-align: left;"><code>#f8fafc</code></td>
+<td style="text-align: left;">Titulares, nombres de vehículos, cifras monetarias principales.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>color-text-muted</code></td>
+<td style="text-align: left;"><code>#94a3b8</code></td>
+<td style="text-align: left;">Textos explicativos secundarios, fechas y labels de soporte.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="62-wireflows-del-onboarding-y-flujo-del-matchmaker">6.2. Wireflows del Onboarding y Flujo del Matchmaker</h2>
+<p>El diseño prioriza el valor inmediato (<em>Time-to-Value &lt; 45 segundos</em>):</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>sequenceDiagram
+    autonumber
+    participant U as Usuario
+    participant O as Onboarding (Sin registro)
+    participant M as Matchmaker Conversacional
+    participant R as Resultados & Comparador
+    participant Auth as Registro Progresivo (Soft Wall)
+
+    U->>O: Abre la app por primera vez
+    O->>U: "Bienvenido a CharuAutos. ¿Qué necesitas hoy?"
+    Note over O,U: Botón 1: "Quiero comprar un carro ideal" (Hook)<br>Botón 2: "Se prendió una luz en mi tablero"
+    U->>M: Selecciona "Comprar carro ideal"
+    M->>U: Preguntas dinámicas estilo chat (Presupuesto, rutas, familia)
+    U->>M: Responde con 4 toques sencillos
+    M->>R: Muestra Top 3 vehículos recomendados con % de Match
+    R->>U: Permite comparar lado a lado y ver pros/contras en Venezuela
+    U->>Auth: Toca "Guardar comparativa" o "Cotizar con concesionario"
+    Auth-->>U: "Ingresa tu WhatsApp o correo para guardar tu selección"</code></pre></div>
+
+<h3 id="reglas-de-diseno-de-la-entrevista-conversacional">Reglas de Diseño de la Entrevista Conversacional:</h3>
+<ol>
+<li><strong>Un solo concepto por pantalla:</strong> Evitar formularios kilométricos que generen fatiga mental.</li>
+<li><strong>Controles Táctiles Masivos:</strong> Los botones de opción tienen un alto mínimo de <strong>56dp</strong> con feedback háptico (vibración sutil), diseñados para ser operados cómodamente con una sola mano.</li>
+<li><strong>Barra de Progreso Reactiva:</strong> Un indicador visual superior con la mascota <strong>Charu</strong> avanzando a lo largo de una pista de carreras para mantener la gamificación.</li>
+</ol>
+<hr />
+<h2 id="63-interacciones-de-baja-friccion-cognitiva-y-accesibilidad-en-ruta">6.3. Interacciones de Baja Fricción Cognitiva y Accesibilidad en Ruta</h2>
+<ol>
+<li><strong>"Modo Manos Sucias / Emergencia en Autopista":</strong><br />
+   - Cuando el usuario accede a la sección de emergencias (ej. cambio de llanta o código OBD2 crítico), la interfaz entra en modo de alto contraste con tipografías ampliadas en un 130% y elementos táctiles gigantes para que puedan accionarse incluso con luz solar intensa en el arcén de la carretera.</li>
+<li><strong>Soporte de Lectura Text-to-Speech (Voz):</strong><br />
+   - El protocolo de seguridad para cambio de neumático o diagnóstico crítico incluye un botón de audio para que el conductor pueda escuchar las instrucciones paso a paso mientras tiene las manos ocupadas con las herramientas.</li>
+<li><strong>Semáforo Visual Redundante (Diseño para Daltónicos):</strong><br />
+   - Todo estado de advertencia combina <strong>color + icono universal + texto explícito</strong> (ej. 🔴 Círculo Rojo + 🛑 Icono Octagonal + Texto: <em>"CRÍTICO: DETENER MOTOR"</em>), garantizando que usuarios con daltonismo no confundan una alerta grave con una leve.</li>
+</ol>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-08">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 08</div>
+                <h1 class="chapter-title">Plan de Ejecución, Roadmap y GTM</h1>
+                <p class="chapter-lead">Timeline de 4 sprints (8 semanas), estrategia de lanzamiento con @charuautopics y red de talleres.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="seccion-07-plan-de-ejecucion-roadmap-y-go-to-market-venezuela">Sección 07: Plan de Ejecución, Roadmap y Go-To-Market (Venezuela)</h1>
+<h3 id="estrategia-de-lanzamiento-despliegue-en-4-sprints-kpis-de-crecimiento-y-mitigacion-de-riesgos">Estrategia de Lanzamiento, Despliegue en 4 Sprints, KPIs de Crecimiento y Mitigación de Riesgos</h3>
+<p><em>Enfocado en alcanzar Product-Market Fit rápido y flujo de caja positivo en los primeros 6 meses.</em></p>
+<hr />
+<h2 id="71-plan-de-desarrollo-del-mvp-en-4-sprints-8-semanas">7.1. Plan de Desarrollo del MVP en 4 Sprints (8 Semanas)</h2>
+<p>El cronograma prioriza la entrega continua del valor principal (Matchmaker y Diagnóstico Manual) con la mínima sobrecarga de infraestructura:</p>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>gantt
+    title Cronograma de Ejecución del MVP (8 Semanas)
+    dateFormat  YYYY-MM-DD
+    section Sprint 1: Fundaciones
+    Diseño UI Tokens & Setup Expo/React Native  :s1a, 2026-10-01, 7d
+    Esquema PostgreSQL + MDM Catálogo Canónico :s1b, 2026-10-05, 9d
+    section Sprint 2: Matchmaker
+    Árbol Conversacional & Algoritmo de Scoring :s2a, 2026-10-15, 8d
+    Comparador Visual de Fichas Técnicas       :s2b, 2026-10-20, 6d
+    section Sprint 3: Diagnóstico OBD2
+    Base Local SQLite con 8,500 códigos DTC     :s3a, 2026-10-27, 7d
+    Semáforo de Severidad & Escudo Anti-Estafas:s3b, 2026-11-01, 7d
+    section Sprint 4: Cuaderno & Lanzamiento
+    Cuaderno de Gastos $/km (Bimonetario)       :s4a, 2026-11-08, 8d
+    Integración Pasarela Pago Móvil / Binance   :s4b, 2026-11-12, 6d
+    Auditoría DevSecOps & Beta Cerrada en Ccs  :s4c, 2026-11-18, 6d</code></pre></div>
+
+<h3 id="detalle-de-entregables-por-sprint">Detalle de Entregables por Sprint:</h3>
+<ul>
+<li><strong>Sprint 1 (Días 1 a 14):</strong> Base del proyecto en React Native (Expo) con TypeScript y NativeWind. Base de datos PostgreSQL con extensión pgvector y tablas canónicas del MDM vehicular de los 100 modelos más comunes en Venezuela.</li>
+<li><strong>Sprint 2 (Días 15 a 28):</strong> Módulo funcional del <strong>Matchmaker de compra</strong>. Chatbot interactivo y vista comparativa lado a lado con fichas técnicas traducidas.</li>
+<li><strong>Sprint 3 (Días 29 a 42):</strong> Módulo del <strong>Asistente Mecánico OBD2 manual</strong>. Buscador reactivo por código DTC con semáforo ISO de severidad, desglose de causas raíz 80/20 y generador del "Escudo Anti-Estafas".</li>
+<li><strong>Sprint 4 (Días 43 a 56):</strong> Cuaderno de Mantenimiento con timeline interactivo y cálculo bimonetario de costo por kilómetro ($/km y Bs./km). Pruebas de seguridad DevSecOps y lanzamiento de la Beta Privada para los primeros 300 conductores en Caracas y Valencia.</li>
+</ul>
+<hr />
+<h2 id="72-estrategia-go-to-market-gtm-para-venezuela">7.2. Estrategia Go-To-Market (GTM) para Venezuela</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>flowchart TD
+    subgraph Canales de Adquisición Orgánica (Top of Funnel)
+        A1["📱 TikTok & Reels (@charuautopics)<br>Videos virales: 'Los 3 carros que NO debes comprar en Venezuela'<br>'¿Qué significa la luz amarilla de tu Aveo?'"]
+        A2["👥 Comunidades de Marca en WhatsApp / Telegram<br>Club Aveo, Club Corolla, Propietarios Changan"]
+        A3["📚 Ebooks e Historietas de CharuAutos<br>(Funnels de conversión desde los lectores interactivos)"]
+    end
+
+    subgraph Activación del Usuario (Middle of Funnel)
+        M1["🚀 Matchmaker Gratuito en la App<br>(Compartir ficha comparativa en historias de Instagram)"]
+    end
+
+    subgraph Monetización & Alianzas (Bottom of Funnel)
+        B1["🏢 Concesionarios de Nuevos / Usados<br>(Venta de leads calificados)"]
+        B2["🔧 Red Piloto de 10 Talleres Éticos en Caracas<br>(Boleíta, Los Ruices, Chacao, Las Mercedes)"]
+        B3["💎 Suscripción CharuPro (Pago Móvil / USDT)"]
+    end
+
+    A1 & A2 & A3 --> M1
+    M1 --> B1 & B2 & B3</code></pre></div>
+
+<h3 id="1-el-gancho-viral-en-redes-sociales">1. El Gancho Viral en Redes Sociales</h3>
+<ul>
+<li>Aprovechar la marca y personalidad ya construida de <strong>CharuAutos</strong> (<code>@charuautopics</code>) con micro-videos de humor y educación que confrontan mitos populares de la mecánica venezolana (ej. el mito de echarle agua al radiador, o la trampa de los talleres tramposos tipo <em>Don Chanchullo</em>). Cada video cierra con un llamado a la acción: <em>"Descarga CharuAutos y usa el Matchmaker gratis antes de comprar carro"</em>.</li>
+</ul>
+<h3 id="2-alianzas-piloto-de-talleres-mecanicos">2. Alianzas Piloto de Talleres Mecánicos</h3>
+<ul>
+<li>Reclutamiento de <strong>10 talleres mecánicos de prestigio</strong> en la Gran Caracas (zonas industriales de Boleíta, Los Ruices, San Martín, Chacao).</li>
+<li>Para ser admitidos, los talleres firman el <strong>Manifiesto Ético CharuAutos</strong>: entregar siempre las piezas viejas retiradas al cliente, no alterar presupuestos sin autorización previa y otorgar un 10% de descuento a miembros <em>CharuPro</em>.</li>
+</ul>
+<hr />
+<h2 id="73-metricas-clave-de-exito-kpis-y-matriz-de-mitigacion-de-riesgos">7.3. Métricas Clave de Éxito (KPIs) y Matriz de Mitigación de Riesgos</h2>
+<h3 id="1-cuadro-de-mando-de-kpis-primeros-90-dias-post-lanzamiento">1. Cuadro de Mando de KPIs (Primeros 90 Días Post-Lanzamiento)</h3>
+<ul>
+<li><strong>Adquisición:</strong> 5,000 descargas orgánicas.</li>
+<li><strong>Activación:</strong> &gt; 65% de los usuarios completan al menos una consulta en el Matchmaker o ingresan un código DTC en sus primeras 48 horas.</li>
+<li><strong>Retención (D30):</strong> &gt; 28% de retención activa a los 30 días mediante el registro de gastos de combustible o recordatorios de mantenimiento.</li>
+<li><strong>Conversión Monetaria:</strong></li>
+<li>3.5% de conversión a suscripción <em>CharuPro</em>.</li>
+<li>Al menos 60 leads de compra referidos a concesionarios/agencias.</li>
+</ul>
+<hr />
+<h3 id="2-matriz-de-mitigacion-de-riesgos">2. Matriz de Mitigación de Riesgos</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Riesgo Identificado</th>
+<th style="text-align: center;">Nivel de Impacto</th>
+<th style="text-align: left;">Estrategia Concreta de Mitigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Riesgo Cambiario e Hiperinflación</strong></td>
+<td style="text-align: center;">Alto</td>
+<td style="text-align: left;">Toda la contabilidad interna y precios base de la app se tasan en <strong>USD</strong>. Los pagos en Bolívares se calculan en tiempo real consumiendo la API de la tasa oficial del Banco Central de Venezuela (BCV).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Intermitencia de Conectividad Eléctrica y Móvil</strong></td>
+<td style="text-align: center;">Alto</td>
+<td style="text-align: left;"><strong>Arquitectura 100% Local-First:</strong> El motor de búsqueda de códigos OBD2, la guía de emergencias y el registro de combustible funcionan sin internet gracias a la base de datos local SQLite cifrada.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Falsos Diagnósticos Mecánicos / Responsabilidad Legal</strong></td>
+<td style="text-align: center;">Medio</td>
+<td style="text-align: left;">En todos los diagnósticos se incluye un descargo de responsabilidad legal claro: la app actúa como herramienta informativa y educativa de referencia, no como peritaje pericial vinculante.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fricción en Métodos de Pago Locales</strong></td>
+<td style="text-align: center;">Medio</td>
+<td style="text-align: left;">Integración prioritaria de <strong>Pago Móvil P2P/C2P</strong> automatizado junto con <strong>Binance Pay (USDT)</strong> para permitir pagos directos sin necesidad de tarjetas de crédito internacionales.</td>
+</tr>
+</tbody>
+</table>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-09">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 09</div>
+                <h1 class="chapter-title">Bitácora de Desarrollo Viva y Estado del Proyecto</h1>
+                <p class="chapter-lead">Registro histórico y continuo de hitos completados, tareas en curso y backlog de próximos sprints.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="bitacora-de-desarrollo-estado-del-proyecto-y-roadmap">Bitácora de Desarrollo, Estado del Proyecto y Roadmap</h1>
+<h3 id="registro-vivo-de-avances-hecho-en-curso-y-por-hacer">Registro Vivo de Avances: Hecho, En Curso y Por Hacer</h3>
+<p><em>Ecosistema Digital CharuAutos • Proyecto: CharuAutos App (MVP Venezuela)</em></p>
+<hr />
+<h2 id="1-resumen-ejecutivo-del-estado-actual">📊 1. Resumen Ejecutivo del Estado Actual</h2>
+<div class="mermaid-box"><div class="mermaid-tag">DIAGRAMA DE ARQUITECTURA / FLUJO</div><pre><code>pie title Estado General de Avance del Proyecto
+    "Completado (Documentación, Arquitectura y Dominio)" : 40
+    "En Curso (Andamiaje y Setup Frontend)" : 15
+    "Por Hacer (UI, Integración y Persistencia)" : 45</code></pre></div>
+
+<ul>
+<li><strong>Fase Actual:</strong> Transición de <em>Fase 1: Dominio y Contratos de Datos</em> a <em>Fase 2: Andamiaje de la Aplicación Móvil (React Native / Expo)</em>.</li>
+<li><strong>Enfoque Estratégico:</strong> Contract-First, Domain-Driven Design (DDD) y Local-First Reactive Sync.</li>
+<li><strong>Mercado Inicial:</strong> Venezuela (Monetización Híbrida: B2C Freemium + B2B Marketplace &amp; Leads).</li>
+</ul>
+<hr />
+<h2 id="2-lo-que-se-ha-hecho-completed-milestones">✅ 2. Lo que se ha Hecho (Completed Milestones)</h2>
+<h3 id="a-organizacion-corporativa-del-repositorio">A. Organización Corporativa del Repositorio</h3>
+<p><span class="checkbox checked">☑</span> Restructuración del repositorio raíz en 4 departamentos empresariales limpios:<br />
+  - <code>marketing/</code>: Manual de marca, Brandbook, copys de landing page y prompts artísticos.<br />
+  - <code>ebook/</code>: Centralización de todo lo relativo a los ebooks (manuscritos V1, V2, Cómic, recursos visuales y lectores web PWA en <code>ebook/pwa/</code>).<br />
+  - <code>app/</code>: Directorio oficial para el desarrollo conjunto de la nueva aplicación.<br />
+  - <code>agente_ia/</code>: Base de conocimientos de negocio, biblia narrativa, estándares mecánicos SAE y scripts.<br />
+<span class="checkbox checked">☑</span> Enrutador inteligente <a href="file:///c:/Users/Frode/Documents/Proyectos/CharuAutos/index.html">index.html</a> y <a href="file:///c:/Users/Frode/Documents/Proyectos/CharuAutos/README.md">README.md</a> actualizados con redirección y enlaces de GitHub Pages.</p>
+<h3 id="b-suite-documental-maestra-completa-appdocs">B. Suite Documental Maestra Completa (<code>app/docs/</code>)</h3>
+<p><span class="checkbox checked">☑</span> <strong>00. Índice y Arquitectura Documental:</strong> Trazabilidad de requerimientos y decisiones del MVP.<br />
+<span class="checkbox checked">☑</span> <strong>01. Resumen Ejecutivo y Modelo de Negocio:</strong> Mercado automotor dual en Venezuela, patología mecánica por combustible y modelo híbrido multimoneda.<br />
+<span class="checkbox checked">☑</span> <strong>02. Gestión y Gobernanza de Datos:</strong> Arquitectura Medallion (<em>Bronze/Silver/Gold</em>), MDM con modismos venezolanos, calidad de datos con Great Expectations y RAG vectorial con pgvector.<br />
+<span class="checkbox checked">☑</span> <strong>03. Especificación Funcional de los 3 Pilares:</strong> Árbol conversacional del Matchmaker, semáforo de severidad OBD2, Escudo Anti-Estafas y Cuaderno Dinámico ($/km).<br />
+<span class="checkbox checked">☑</span> <strong>04. Arquitectura Técnica y Stack de Software:</strong> Diagrama C4, React Native (Expo), NestJS + FastAPI, esquemas PostgreSQL/TimescaleDB.<br />
+<span class="checkbox checked">☑</span> <strong>05. Ciberseguridad, Implementación y Mantenimiento:</strong> STRIDE, OWASP Mobile/API, cadena criptográfica SHA-256 anti-fraude de odómetro, Zero Trust y DevSecOps.<br />
+<span class="checkbox checked">☑</span> <strong>06. Diseño UI/UX y Experiencia del Usuario:</strong> Tokens <em>Dark Showroom</em>, accesibilidad en ruta y modo manos sucias.<br />
+<span class="checkbox checked">☑</span> <strong>07. Plan de Ejecución, Roadmap y GTM:</strong> 4 Sprints (8 semanas), estrategia de lanzamiento con <code>@charuautopics</code> y red de talleres en Caracas.<br />
+<span class="checkbox checked">☑</span> <strong>Executive Brief para Inversores:</strong> Tesis de inversión y foso defensivo (<em>Moat</em>).</p>
+<h3 id="c-nucleo-de-dominio-y-contratos-de-datos-appsrcdomain">C. Núcleo de Dominio y Contratos de Datos (<code>app/src/domain/</code>)</h3>
+<p><span class="checkbox checked">☑</span> <strong>Contratos Canónicos TypeScript (<code>types/</code>):</strong><br />
+  - <code>vehicle.ts</code>: Tipos estrictos para motor, dimensiones, despeje al suelo y mercado venezolano.<br />
+  - <code>dtc.ts</code>: Tipos para códigos OBD2, niveles de severidad (1, 2, 3), causas 80/20 y preguntas anti-estafas.<br />
+  - <code>matchmaker.ts</code>: Perfil de usuario, desglose de scoring y modelo de recomendaciones.<br />
+  - <code>maintenance.ts</code>: Registro de combustible bimonetario, servicios y métricas de salud ($/km).<br />
+<span class="checkbox checked">☑</span> <strong>Datasets Semilla Auditados para Venezuela (<code>data/</code>):</strong><br />
+  - <code>vehicles.seed.ts</code>: Dataset con especificaciones reales de los autos clave del país (Corolla, Aveo, Fiesta, Yaris, Alsvin, Hilux, Spark, JS4).<br />
+  - <code>dtc.seed.ts</code>: Catálogo de códigos recurrentes por combustible y desgaste (<code>P0420</code>, <code>P0171</code>, <code>P0300</code>).<br />
+<span class="checkbox checked">☑</span> <strong>Motores Algorítmicos Puros (<code>engine/</code>):</strong><br />
+  - <code>matchmaker.ts</code>: Algoritmo matemático ponderado para el cálculo de compatibilidad (% de Match), pros, contras y veredicto adaptado a Venezuela.<br />
+  - <code>dtcLookup.ts</code>: Motor de búsqueda exacta y difusa por palabras clave de fallas mecánicas.<br />
+  - <code>documentScraper.ts</code>: Motor de parsing y scraping de documentos PDF de fichas técnicas para extraer potencia, torque, despeje al suelo y maletero.<br />
+  - <code>index.ts</code>: Barrel export unificado del dominio.</p>
+<h3 id="d-validacion-y-testing-del-dominio">D. Validación y Testing del Dominio</h3>
+<p><span class="checkbox checked">☑</span> <strong>Verificación del Algoritmo del Matchmaker (<code>verify_engine.py</code>):</strong><br />
+  - Caso 1 (Daniel: $5,500 USD, baches): Recomienda certeramente Chevrolet Aveo (83%) y Toyota Yaris (80%).<br />
+  - Caso 2 (Familia: $9,000 USD, baches): Recomienda Toyota Corolla Pantallita (93%) y Toyota Yaris (88%).<br />
+<span class="checkbox checked">☑</span> <strong>Pruebas de Búsqueda OBD2:</strong> Consulta y desglose 80/20 de causas para códigos críticos en Venezuela (<code>P0420</code>, <code>P0171</code>, <code>P0300</code>).<br />
+<span class="checkbox checked">☑</span> <strong>Pruebas de Scraping de Fichas Técnicas PDF (<code>pdf_scraper_service.py</code>):</strong><br />
+  - Extracción exitosa de brochure de sedán moderno (190 HP, 300 Nm, 155 mm despeje, 480 L) y comparación instantánea contra Toyota Corolla.</p>
+<h3 id="e-andamiaje-y-pantallas-de-la-app-movil-appsrcapp">E. Andamiaje y Pantallas de la App Móvil (<code>app/src/app/</code>)</h3>
+<p><span class="checkbox checked">☑</span> <strong>Configuración del Proyecto Expo / React Native:</strong><br />
+  - <code>package.json</code>: Dependencias base de Expo SDK 51, Expo Router, NativeWind y TypeScript.<br />
+  - <code>app.json</code>: Esquema visual nativo <em>Dark Showroom</em> (<code>#070a0f</code>) y soporte iOS/Android/Web.<br />
+  - <code>tsconfig.json</code> y <code>tailwind.config.js</code>: Tokens de diseño canónicos y alias de importación (<code>@/*</code>).<br />
+<span class="checkbox checked">☑</span> <strong>Arquitectura de Navegación y Pantallas Principales (<code>(tabs)/</code>):</strong><br />
+  - <code>_layout.tsx</code>: Layout raíz con SafeAreaProvider y StatusBar nocturna.<br />
+  - <code>(tabs)/_layout.tsx</code>: Barra de pestañas inferior con estilo Dark Showroom y acentos Cyan (<code>#00f2fe</code>).<br />
+  - <code>(tabs)/index.tsx</code>: <strong>Pantalla del Matchmaker</strong> conectada al motor algorítmico, selectores de presupuesto, vías y tarjetas de recomendación en vivo.<br />
+  - <code>(tabs)/scanner.tsx</code>: <strong>Pantalla de Diagnóstico OBD2 Manual</strong> con buscador predictivo, semáforo de riesgo, causas 80/20 y generador de "Escudo Anti-Estafas".<br />
+  - <code>(tabs)/compare.tsx</code>: <strong>Pantalla de Comparador &amp; Scraping de PDFs</strong> con dropzone interactivo de fichas técnicas, extracción de entidades automotrices y tabla comparativa lado a lado.<br />
+  - <code>(tabs)/garage.tsx</code>: <strong>Pantalla de Garage y Cuaderno de Mantenimiento</strong> con widget circular de Health Score (92/100), métricas bimonetarias ($/km y Bs./km), timeline de vida útil y exportación de certificado CharuPro.</p>
+<hr />
+<p><span class="checkbox checked">☑</span> <strong>Persistencia Local-First y Seguridad Criptográfica (<code>app/src/storage/</code>):</strong><br />
+  - <code>database.ts</code>: Esquema DDL SQLite con 6 tablas (<code>user_vehicles</code>, <code>odometer_chain</code>, <code>fuel_logs</code>, <code>service_records</code>, <code>cached_dtc_codes</code>, <code>sync_queue</code>).<br />
+  - <code>crypto/odometerHasher.ts</code>: Micro-blockchain de odómetro con función inmutable SHA-256 (<code>hash = SHA256(index + id + km + date + prevHash)</code>). Regla estricta de monotonicidad (rechaza retrocesos de kilometraje).<br />
+  - <code>repositories/</code>:<br />
+    - <code>vehicleRepository.ts</code>: CRUD de vehículos y verificación matemática de integridad de la cadena.<br />
+    - <code>fuelRepository.ts</code>: Registros de tanqueo bimonetario (USD y Bs. al cambio BCV) y cálculo dinámico de costo por kilómetro y consumo km/L.<br />
+    - <code>maintenanceRepository.ts</code>: Registro de talleres, piezas, mano de obra y alertas de servicios futuros.<br />
+  - <code>service.ts</code>: Orquestador <code>LocalStorageService</code> (Singleton) con precarga inicial del vehículo de referencia venezolano (<em>Toyota Corolla GLi 2011 "Pantallita"</em>).<br />
+<span class="checkbox checked">☑</span> <strong>Capa de Hooks Reactivos (<code>app/src/hooks/</code>):</strong><br />
+  - <code>useGarage.ts</code>: Conexión de la pantalla de garage con SQLite, actualización de odómetro con minado de bloque SHA-256, cálculo de $/km y estado de no-manipulación.<br />
+  - <code>useDtcScanner.ts</code>: Búsqueda de códigos OBD2, semáforo de riesgo y guardado local de historial de fallas del vehículo.<br />
+  - <code>useDocumentScraper.ts</code>: Extracción de entidades de fichas técnicas PDF y comparador lado a lado.<br />
+  - <code>useMatchmaker.ts</code>: Filtros dinámicos de vías venezolanas, presupuesto y favoritos.<br />
+<span class="checkbox checked">☑</span> <strong>Pantallas Interactivas con Modales Operativos (<code>(tabs)/</code>):</strong><br />
+  - <code>garage.tsx</code>: Modales para carga de gasolina bimonetaria, actualización protegida de odómetro, registro de servicios e inspección visual del pasaporte criptográfico.<br />
+  - <code>scanner.tsx</code>: Indicador de base de datos SQLite offline y guardado con notas en el historial del auto.<br />
+  - <code>compare.tsx</code>: Dropzone de PDFs con parsing y comparativa en vivo contra parque automotor venezolano.<br />
+  - <code>index.tsx</code>: Sistema interactivo de recomendaciones y marcado de favoritos.<br />
+<span class="checkbox checked">☑</span> <strong>Batería de Pruebas de Persistencia (<code>verify_full_persistence_flow.py</code>):</strong><br />
+  - 100% de éxito en creación de tablas, minado de bloques, detección y bloqueo de intentos de fraude de kilometraje, y cálculo exacto de rendimiento de combustible ($0.040 USD/km).</p>
+<hr />
+<p><span class="checkbox checked">☑</span> <strong>Generador de Certificado Criptográfico CharuPro en PDF / Print (<code>app/src/domain/engine/certificateGenerator.ts</code>):</strong><br />
+  - Motor de compilación canónica <code>CertificateGeneratorEngine</code>: Unifica identidad del auto, micro-blockchain SHA-256, telemetría financiera bimonetaria ($/km y Bs./km) y bitácora de mantenimientos.<br />
+  - Template HTML/CSS de alta fidelidad para impresión y exportación en PDF (<code>@media print</code>), compatible con <code>expo-print</code> y navegadores web.<br />
+  - Generador de prueba y validación editorial en Python (<code>generate_sample_certificate.py</code>): Generó exitosamente <a href="file:///c:/Users/Frode/Documents/Proyectos/CharuAutos/app/src/public/certificado_charupro_muestra.html">certificado_charupro_muestra.html</a> (13.3 KB) con sello visual de no-manipulación, validación matemática de bloques y URL de verificación QR.<br />
+  - Integración en la pantalla de Garage (<code>garage.tsx</code>) mediante botón interactivo para generar y exportar el certificado oficial en compra-ventas.</p>
+<hr />
+<h2 id="3-lo-que-se-esta-haciendo-in-progress-current-sprint">🟡 3. Lo que se está Haciendo (In Progress / Current Sprint)</h2>
+<p><span class="checkbox">☐</span> <strong>Sincronización Reactiva en Segundo Plano (Offline Mutation Queue):</strong><br />
+  - Procesador de la tabla <code>sync_queue</code> para reintentar la subida automática a la nube cuando regrese la conectividad celular (WiFi / LTE).<br />
+<span class="checkbox">☐</span> <strong>Integración de Pagos Bimonetarios (Sprint 4):</strong><br />
+  - Módulos para validación de Pago Móvil (a tasa oficial BCV) y Binance Pay (USDT) para membresías CharuPro.</p>
+<hr />
+<h2 id="4-lo-que-falta-por-hacer-backlog-proximos-sprints">🔴 4. Lo que Falta por Hacer (Backlog &amp; Próximos Sprints)</h2>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ ROADMAP DE IMPLEMENTACIÓN RESTANTE (SPRINTS 4 AL 5)                                    │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│ 💳 SPRINT 4: INTEGRACIÓN DE PAGOS BIMONETARIOS                                         │
+│ • [ ] Integración de webhook para validación de Pago Móvil a tasa oficial BCV          │
+│ • [ ] Pasarela Binance Pay (USDT) para suscripciones CharuPro                          │
+│                                                                                        │
+│ 🚀 SPRINT 5: EMPAQUETADO, TESTING E2E Y BETA PRIVADA                                   │
+│ • [ ] Pruebas end-to-end con emuladores Android / iOS (Expo Go &amp; Build)                │
+│ • [ ] Despliegue de la versión Web PWA complementaria                                  │
+│ • [ ] Lanzamiento de la Beta cerrada con la comunidad de @charuautopics                │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<p><em>Esta bitácora se actualiza continuamente al completar cada componente o hito del desarrollo.</em></p>
+            </div>
+        </section>
+        
+
+        <section class="chapter" id="capitulo-10">
+            <div class="chapter-header-banner">
+                <div class="chapter-badge">CAPÍTULO 10</div>
+                <h1 class="chapter-title">Índice Maestro y Matriz de Trazabilidad</h1>
+                <p class="chapter-lead">Matriz de correlación técnica, requerimientos de negocio y trazabilidad del ecosistema digital.</p>
+            </div>
+            <div class="chapter-content">
+                <h1 id="documentacion-maestra-charuautos-app">Documentación Maestra — CharuAutos App</h1>
+<h3 id="arquitectura-integral-del-sistema-negocio-producto-gobernanza-de-datos-y-ciberseguridad">Arquitectura Integral del Sistema, Negocio, Producto, Gobernanza de Datos y Ciberseguridad</h3>
+<p><em>Mercado Inicial: Venezuela (Despliegue MVP) • Enfoque: Matchmaker-First • Modelo Híbrido</em></p>
+<hr />
+<h2 id="estructura-del-indice-maestro">📑 Estructura del Índice Maestro</h2>
+<div class="codehilite"><pre><span></span><code>📁 app/docs/
+│
+├── 00_INDICE_Y_ARQUITECTURA_DOCUMENTAL.md
+│   └── Índice general, parámetros estratégicos del MVP y matriz de trazabilidad.
+│
+├── 01_RESUMEN_EJECUTIVO_Y_MODELO_DE_NEGOCIO.md
+│   ├── 1.1. Contexto de Mercado: Realidad Automotriz en Venezuela
+│   │   ├── Parque automotor dual (clásicos 2000-2015 vs. nueva ola de marcas chinas)
+│   │   ├── Calidad del combustible, octanaje y fallas mecánicas recurrentes
+│   │   └── Ecosistema de pagos multimoneda (USD efectivo, Pago Móvil, Zelle, USDT)
+│   ├── 1.2. Misión, Visión y Propuesta de Valor Diferencial (UVP)
+│   ├── 1.3. Buyer Personas locales (El comprador confundido, el dueño protector, la pyme)
+│   ├── 1.4. Modelo de Negocio Híbrido Detallado (B2C Freemium + B2B Marketplace &amp; Leads)
+│   └── 1.5. Unit Economics preliminares y Proyección de Flujo de Caja
+│
+├── 02_GESTION_Y_GOBERNANZA_DE_DATOS.md
+│   ├── 2.1. Arquitectura de Datos (Arquitectura Medallion: Bronze -&gt; Silver -&gt; Gold / Lakehouse)
+│   ├── 2.2. Master Data Management (MDM): Catálogo canónico de marcas, modelos, versiones y repuestos
+│   ├── 2.3. Pipelines de Datos &amp; Ingesta (ETL/ELT de fichas técnicas, precios de mercado y DTCs)
+│   ├── 2.4. Data Quality &amp; Data Observability (Monitoreo de drift en precios, telemetría y calidad de datos)
+│   ├── 2.5. Clasificación y Ciclo de Vida del Dato (Retención, linaje y trazabilidad)
+│   └── 2.6. Modelado Analítico y Preparación de Datos para IA/RAG
+│
+├── 03_ESPECIFICACION_FUNCIONAL_DE_LOS_3_PILARES.md
+│   ├── 3.1. Pilar 1 (Hook Principal): Matchmaker de Compra &amp; Comparador Inteligente
+│   │   ├── Árbol conversacional adaptado a Venezuela (gasolina, repuestos, suspensión)
+│   │   ├── Algoritmo de compatibilidad y ponderación de costos reales de tenencia
+│   │   └── Visualización comparativa lado a lado
+│   ├── 3.2. Pilar 2: Asistente Mecánico &amp; Diagnóstico OBD2 Manual
+│   │   ├── Diccionario enriquecido DTC SAE J2012 / ISO con jerga venezolana accesible
+│   │   ├── Clasificación de severidad y causas raíz comunes por combustible y desgaste
+│   │   └── Generador del &quot;Escudo Anti-Estafas&quot; para visitas al taller
+│   └── 3.3. Pilar 3: Cuaderno de Mantenimiento Dinámico &amp; Dashboard Analítico
+│       ├── Timeline interactivo de vida útil y servicios
+│       ├── Algoritmo de &quot;Health Score&quot; del vehículo
+│       └── Métricas de $/km (bimonetario: USD / Bs.) y consumo de combustible
+│
+├── 04_ARQUITECTURA_TECNICA_Y_STACK_DE_SOFTWARE.md
+│   ├── 4.1. Arquitectura del Sistema (Diagrama C4, Local-First Sync, Nube)
+│   ├── 4.2. Stack Tecnológico Frontend Multiplataforma (React Native / Expo)
+│   ├── 4.3. Backend &amp; Microservicios (Node.js/NestJS + Python FastAPI para IA)
+│   ├── 4.4. Modelo Operacional de Base de Datos (PostgreSQL + TimescaleDB)
+│   └── 4.5. Catálogo de APIs y Repositorios Locales de Datos
+│
+├── 05_CIBERSEGURIDAD_IMPLEMENTACION_Y_MANTENIMIENTO.md  &lt;-- [NUEVA SECCIÓN DE CIBERSEGURIDAD]
+│   ├── 5.1. Marco de Seguridad y Modelo de Amenazas (STRIDE &amp; OWASP Mobile/API Top 10)
+│   ├── 5.2. Seguridad en la Aplicación Móvil (AppSec, Secure Enclave/Keystore, Anti-Tampering)
+│   ├── 5.3. Criptografía y Protección de Datos en Reposo y en Tránsito (AES-256, TLS 1.3, Hashing SHA-256 anti-fraude de odómetro)
+│   ├── 5.4. Seguridad de Infraestructura y Red (Zero Trust, WAF, Gestión de Secretos con Vault/Doppler)
+│   ├── 5.5. Pipeline DevSecOps &amp; Automatización (SAST, DAST, SCA con Snyk/Trivy en CI/CD)
+│   └── 5.6. Plan de Mantenimiento Continuo, Gestión de Vulnerabilidades y Respuesta a Incidentes
+│
+├── 06_DISENO_UI_UX_Y_EXPERIENCIA_DEL_USUARIO.md
+│   ├── 6.1. Sistema de Diseño (Design Tokens, Dark Showroom y Tipografía)
+│   ├── 6.2. Wireflows del Onboarding y Flujo del Matchmaker
+│   └── 6.3. Interacciones de Baja Fricción Cognitiva y Accesibilidad
+│
+└── 07_PLAN_DE_EJECUCION_ROADMAP_Y_GTM.md
+    ├── 7.1. Plan de MVP en 4 Sprints
+    ├── 7.2. Estrategia Go-to-Market específica para Venezuela (Canales y Alianzas)
+    └── 7.3. Métricas de Éxito (KPIs) y Matriz de Mitigación de Riesgos
+</code></pre></div>
+            </div>
+        </section>
+        
+
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CharuAutos | Manual de Identidad Visual &amp; Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-space: #070a0f;
+      --bg-surface: #0e1420;
+      --bg-card: #131b2c;
+      --bg-card-hover: #19243b;
+      --border-subtle: #1e293b;
+      --border-accent: rgba(0, 242, 254, 0.35);
+      
+      --cyan-neon: #00f2fe;
+      --cyan-deep: #0088ff;
+      --crimson-red: #ff2a5f;
+      --amber-alert: #ffb300;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --glow-cyan: 0 0 25px rgba(0, 242, 254, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-space);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(255, 42, 95, 0.05) 0%, transparent 45%),
+        linear-gradient(rgba(30, 41, 59, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.15) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* HEADER & HERO */
+    .brand-hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      box-shadow: var(--glow-cyan);
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--cyan-neon), #00c0fa, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.4));
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 30px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stat-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .stat-pill strong {
+      color: var(--cyan-neon);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* SECTIONS */
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 70px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-left: 4px solid var(--cyan-neon);
+      padding-left: 16px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 30px;
+      max-width: 850px;
+    }
+
+    /* LOGO INTERACTIVE STAGE */
+    .logo-stage {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .stage-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      background: var(--bg-card);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toolbar-label {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .btn-stage {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-stage:hover, .btn-stage.active {
+      background: var(--cyan-neon);
+      color: #050811;
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+    }
+
+    .stage-canvas {
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      transition: background 0.3s ease;
+      position: relative;
+    }
+
+    /* Stage Canvas Themes */
+    .stage-canvas.theme-dark {
+      background-color: #060911;
+      background-image: radial-gradient(circle at center, #10192d 0%, #060911 80%);
+    }
+
+    .stage-canvas.theme-light {
+      background-color: #f1f5f9;
+      background-image: radial-gradient(circle at center, #ffffff 0%, #e2e8f0 85%);
+    }
+
+    .stage-canvas.theme-wireframe {
+      background-color: #070d18;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.15) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .logo-display-img {
+      max-width: 90%;
+      max-height: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4));
+      transition: all 0.3s ease;
+    }
+
+    /* LOGO VARIANTS GRID */
+    .variants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .variant-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+
+    .variant-card:hover {
+      border-color: var(--cyan-neon);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .variant-preview {
+      height: 180px;
+      background: #060911;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .variant-preview img {
+      max-width: 85%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    .variant-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .variant-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+
+    .btn-download-asset {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--cyan-neon);
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-download-asset:hover {
+      background: var(--cyan-neon);
+      color: #050811;
+      border-color: var(--cyan-neon);
+    }
+
+    /* COLOR PALETTE */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .swatch-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--cyan-neon);
+      transform: translateY(-4px);
+    }
+
+    .swatch-color {
+      height: 120px;
+      position: relative;
+    }
+
+    .swatch-info {
+      padding: 16px;
+    }
+
+    .swatch-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .swatch-hex {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan-neon);
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-role {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    /* TYPOGRAPHY */
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    .type-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .type-specimen {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin: 16px 0;
+      color: #fff;
+    }
+
+    /* DO'S & DON'TS */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .rule-card {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .rule-card.do {
+      border-top: 4px solid #10b981;
+    }
+
+    .rule-card.dont {
+      border-top: 4px solid var(--crimson-red);
+    }
+
+    .rule-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .rule-card.do .rule-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+    }
+
+    .rule-card.dont .rule-badge {
+      background: rgba(255, 42, 95, 0.15);
+      color: var(--crimson-red);
+    }
+
+    /* INSTAGRAM PREVIEW MOCKUP */
+    .ig-mockup-wrapper {
+      background: #000;
+      border: 1px solid #262626;
+      border-radius: 24px;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 24px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .ig-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .ig-avatar-ring {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ig-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #000;
+      overflow: hidden;
+      background: #070a0f;
+    }
+
+    .ig-avatar-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ig-stats-row {
+      display: flex;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .ig-stat-num {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .ig-stat-lbl {
+      font-size: 0.75rem;
+      color: #a8a8a8;
+    }
+
+    .ig-bio {
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .ig-bio-name {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .ig-bio-tag {
+      color: #00f2fe;
+    }
+
+    .ig-stories-row {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #262626;
+      margin-bottom: 20px;
+    }
+
+    .ig-story-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #121824;
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .ig-story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: #a8a8a8;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #00f2fe;
+      color: #050811;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* FOOTER */
+    .brand-footer {
+      text-align: center;
+      padding: 50px 20px;
+      margin-top: 80px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast">Código HEX copiado al portapapeles ✓</div>
+
+  <div class="container">
+    
+    <!-- BRAND HERO -->
+    <header class="brand-hero">
+      <div class="hero-badge">Manual Oficial de Marca • v1.0</div>
+      <h1 class="hero-title">CHARU<span>AUTOS</span></h1>
+      <p class="hero-subtitle">
+        Guía integral de identidad visual, directrices de diseño y arquitectura de marca para <strong>@charuautopics</strong> y el ecosistema de productos y medios automotrices.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-pill">Estilo: <strong>Dark Showroom / High-Tech</strong></div>
+        <div class="stat-pill">Handle: <strong>@charuautopics</strong></div>
+        <div class="stat-pill">Enfoque: <strong>Latinoamérica</strong></div>
+        <div class="stat-pill">Formato: <strong>Vectorial SVG Nativo</strong></div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: MANIFIESTO Y ADN DE MARCA -->
+    <section>
+      <h2 class="section-title">1. ADN y Filosofía de Marca</h2>
+      <p class="section-desc">
+        CharuAutos nace para transformar la relación entre los conductores y sus vehículos. Rompemos la opacidad y el misterio de los talleres mecánicos mediante conocimiento accesible, ingeniería clara y una estética automotriz vanguardista.
+      </p>
+
+      <div class="variants-grid">
+        <div class="variant-card">
+          <h3 class="variant-title">🎯 Propósito</h3>
+          <p class="variant-desc">
+            Empoderar al conductor inteligente para tomar decisiones mecánicas y financieras fundamentadas, cuidando su patrimonio y disfrutando la cultura del motor.
+          </p>
+        </div>
+        <div class="variant-card">
+          <h3 class="variant-title">⚡ Personalidad</h3>
+          <p class="variant-desc">
+            Analítica, tecnológica, directa y confiable. Hablamos con la precisión de un mecánico de telemetría y la claridad de un copiloto de confianza.
+          </p>
+        </div>
+        <div class="variant-card">
+          <h3 class="variant-title">🏁 Eslogan Oficial</h3>
+          <p class="variant-desc" style="color: var(--cyan-neon); font-weight: 700;">
+            "Dominio Mecánico &amp; Cultura Automotriz"
+          </p>
+          <span style="font-size: 0.85rem; color: var(--text-dim);">Variante comercial: "Conoce, Cuida y Domina tu Auto"</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LABORATORIO INTERACTIVO DEL LOGOTIPO -->
+    <section>
+      <h2 class="section-title">2. Laboratorio Interactivo del Logotipo</h2>
+      <p class="section-desc">
+        Visualiza el logotipo oficial en sus diferentes variantes y pon a prueba su contraste sobre fondos de showroom, luz diurna o retícula de telemetría.
+      </p>
+
+      <div class="logo-stage">
+        <div class="stage-toolbar">
+          <div class="toolbar-group">
+            <span class="toolbar-label">Fondo:</span>
+            <button class="btn-stage active" onclick="setTheme('dark', this)">Dark Showroom</button>
+            <button class="btn-stage" onclick="setTheme('light', this)">Luz Diurna</button>
+            <button class="btn-stage" onclick="setTheme('wireframe', this)">Telemetría</button>
+          </div>
+          <div class="toolbar-group">
+            <span class="toolbar-label">Variante:</span>
+            <button class="btn-stage active" onclick="setVariant('horizontal', this)">Horizontal</button>
+            <button class="btn-stage" onclick="setVariant('icon', this)">Isotipo Mascota</button>
+            <button class="btn-stage" onclick="setVariant('emblem', this)">Emblema Heráldico</button>
+            <button class="btn-stage" onclick="setVariant('avatar', this)">Avatar Instagram</button>
+            <button class="btn-stage" onclick="setVariant('watermark', this)">Marca de Agua</button>
+          </div>
+        </div>
+
+        <div id="stageCanvas" class="stage-canvas theme-dark">
+          <img id="logoDisplay" src="assets/charuautos_logo_horizontal.svg" alt="CharuAutos Logo" class="logo-display-img">
+        </div>
+      </div>
+
+      <!-- DESCARGA DE ACTIVOS VECTORIALES -->
+      <div class="variants-grid">
+        
+        <!-- VARIANTE 1: HORIZONTAL -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_logo_horizontal.svg" alt="Horizontal">
+          </div>
+          <h3 class="variant-title">Imagotipo Horizontal</h3>
+          <p class="variant-desc">
+            Versión principal para cabeceras web, portadas de ebooks, banners de YouTube y membretes oficiales.
+          </p>
+          <a href="assets/charuautos_logo_horizontal.svg" download="charuautos_logo_horizontal.svg" class="btn-download-asset">
+            ⬇ Descargar SVG Horizontal
+          </a>
+        </div>
+
+        <!-- VARIANTE 2: ISOTIPO SQUIRCLE MASCOTA -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_logo_icon.svg" alt="Isotipo Mascota Charu">
+          </div>
+          <h3 class="variant-title">Isotipo Oficial Mascota</h3>
+          <p class="variant-desc">
+            Retrato en squircle de Charu con fondo de fibra de carbono y halo neón cian. Se utiliza como PWA App Icon, favicon y accesos móviles.
+          </p>
+          <a href="assets/charuautos_logo_icon.svg" download="charuautos_logo_icon.svg" class="btn-download-asset">
+            ⬇ Descargar SVG Isotipo
+          </a>
+        </div>
+
+        <!-- VARIANTE 3: EMBLEMA HERÁLDICO DE TITANIO -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_emblema_mascota.png" alt="Emblema Heráldico Charu">
+          </div>
+          <h3 class="variant-title">Emblema Heráldico Mascota</h3>
+          <p class="variant-desc">
+            Escudo de titanio automotriz con Charu, cámara fotográfica, camioneta y herramientas en taller. Sello de calidad editorial para portadas.
+          </p>
+          <a href="assets/charuautos_emblema_mascota.png" download="charuautos_emblema_mascota.png" class="btn-download-asset">
+            ⬇ Descargar Emblema HD (PNG)
+          </a>
+        </div>
+
+        <!-- VARIANTE 3: AVATAR INSTAGRAM -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_avatar_instagram.svg" alt="Avatar Instagram">
+          </div>
+          <h3 class="variant-title">Emblema Circular Redes</h3>
+          <p class="variant-desc">
+            Optimizado con bisel de tacómetro para perfiles de Instagram (@charuautopics), TikTok, WhatsApp Business y stickers.
+          </p>
+          <a href="assets/charuautos_avatar_instagram.svg" download="charuautos_avatar_instagram.svg" class="btn-download-asset">
+            ⬇ Descargar SVG Avatar
+          </a>
+        </div>
+
+        <!-- VARIANTE 4: MARCA DE AGUA -->
+        <div class="variant-card">
+          <div class="variant-preview">
+            <img src="assets/charuautos_watermark.svg" alt="Watermark">
+          </div>
+          <h3 class="variant-title">Marca de Agua Translúcida</h3>
+          <p class="variant-desc">
+            Para esquinas inferiores de Reels, carruseles de Instagram, fichas técnicas y pie de página de documentos técnicos.
+          </p>
+          <a href="assets/charuautos_watermark.svg" download="charuautos_watermark.svg" class="btn-download-asset">
+            ⬇ Descargar SVG Watermark
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: SISTEMA CROMÁTICO -->
+    <section>
+      <h2 class="section-title">3. Sistema Cromático (Dark Showroom Palette)</h2>
+      <p class="section-desc">
+        Haz clic en cualquier color para copiar automáticamente el código HEX al portapapeles.
+      </p>
+
+      <div class="palette-grid">
+        
+        <div class="swatch-card" onclick="copyColor('#070a0f')">
+          <div class="swatch-color" style="background: #070a0f; border-bottom: 1px solid #1e293b;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Obsidian Black</div>
+            <div class="swatch-hex">#070a0f <span>📋</span></div>
+            <div class="swatch-role">Fondo principal de atmósfera showroom</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColor('#00f2fe')">
+          <div class="swatch-color" style="background: #00f2fe; box-shadow: inset 0 0 20px rgba(0,0,0,0.2);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Hyper Neon Cyan</div>
+            <div class="swatch-hex">#00f2fe <span>📋</span></div>
+            <div class="swatch-role">Acento primario de energía y tecnología</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColor('#0066ff')">
+          <div class="swatch-color" style="background: #0066ff;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Electric Blue</div>
+            <div class="swatch-hex">#0066ff <span>📋</span></div>
+            <div class="swatch-role">Gradientes de profundidad y sombras cian</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColor('#ff2a5f')">
+          <div class="swatch-color" style="background: #ff2a5f;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Racing Crimson</div>
+            <div class="swatch-hex">#ff2a5f <span>📋</span></div>
+            <div class="swatch-role">Rendimiento, zona roja y alertas críticas</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColor('#ffb300')">
+          <div class="swatch-color" style="background: #ffb300;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Telemetry Amber</div>
+            <div class="swatch-hex">#ffb300 <span>📋</span></div>
+            <div class="swatch-role">Testigos preventivos y certificaciones</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColor('#94a3b8')">
+          <div class="swatch-color" style="background: #94a3b8;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Brushed Titanium</div>
+            <div class="swatch-hex">#94a3b8 <span>📋</span></div>
+            <div class="swatch-role">Metálico secundario, rejillas y textos de apoyo</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: TIPOGRAFÍA -->
+    <section>
+      <h2 class="section-title">4. Sistema Tipográfico</h2>
+      <p class="section-desc">
+        La jerarquía tipográfica combina la fuerza geométrica de los súper deportivos con la legibilidad técnica y editorial.
+      </p>
+
+      <div class="type-grid">
+        <div class="type-card">
+          <span class="hero-badge" style="margin-bottom: 8px;">Titulares &amp; Logotipo</span>
+          <h3 style="color: var(--cyan-neon); font-size: 1.4rem;">Montserrat / Syne</h3>
+          <div class="type-specimen" style="font-family: 'Montserrat', sans-serif;">
+            CHARU AUTOS 2026
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Uso: Logotipos, H1, portadas de ebooks, badges y miniaturas llamativas para redes sociales.
+          </p>
+        </div>
+
+        <div class="type-card">
+          <span class="hero-badge" style="margin-bottom: 8px;">Lectura &amp; Editorial</span>
+          <h3 style="color: #fff; font-size: 1.4rem;">Inter</h3>
+          <div class="type-specimen" style="font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 400;">
+            Mantenimiento preventivo, diagnóstico y gestión inteligente.
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Uso: Cuerpo de texto del ebook, artículos técnicos, subtítulos y publicaciones de blog.
+          </p>
+        </div>
+
+        <div class="type-card">
+          <span class="hero-badge" style="margin-bottom: 8px;">Telemetría &amp; Datos</span>
+          <h3 style="color: var(--amber-alert); font-size: 1.4rem;">JetBrains Mono</h3>
+          <div class="type-specimen" style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; color: var(--amber-alert);">
+            RPM: 6200 | PSI: 32.5 | 5W-30
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Uso: Fichas técnicas, códigos de escáner OBD-II, métricas, tablas y parámetros mecánicos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: USOS CORRECTOS E INCORRECTOS -->
+    <section>
+      <h2 class="section-title">5. Reglas de Uso (Do's &amp; Don'ts)</h2>
+      <p class="section-desc">
+        Para mantener la integridad y el reconocimiento de la marca, respeta siempre las siguientes directrices:
+      </p>
+
+      <div class="rules-grid">
+        <div class="rule-card do">
+          <span class="rule-badge">Correcto</span>
+          <h4 style="color:#fff; margin-bottom: 8px;">Contraste Alto</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Aplicar el imagotipo sobre fondos negros, gris titanio oscuro (#0e1420) o azul profundo de showroom.
+          </p>
+        </div>
+
+        <div class="rule-card dont">
+          <span class="rule-badge">Incorrecto</span>
+          <h4 style="color:#fff; margin-bottom: 8px;">No Deformar</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Nunca estirar ni alterar las proporciones de aspecto (ancho/alto) del monograma ni de la tipografía.
+          </p>
+        </div>
+
+        <div class="rule-card dont">
+          <span class="rule-badge">Incorrecto</span>
+          <h4 style="color:#fff; margin-bottom: 8px;">No Cambiar Colores</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            No sustituir el cian neón por verdes, violetas ni colores no aprobados en la paleta oficial.
+          </p>
+        </div>
+
+        <div class="rule-card do">
+          <span class="rule-badge">Correcto</span>
+          <h4 style="color:#fff; margin-bottom: 8px;">Área de Aislamiento</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Mantener un espacio libre equivalente a la altura de la letra 'C' alrededor de todo el imagotipo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MAQUETA DE INSTAGRAM (@CHARUAUTOPICS) -->
+    <section>
+      <h2 class="section-title">6. Aplicación en Redes Sociales (@charuautopics)</h2>
+      <p class="section-desc">
+        Visualización de la identidad aplicada en el ecosistema de Instagram:
+      </p>
+
+      <div class="ig-mockup-wrapper">
+        <div class="ig-header">
+          <div class="ig-avatar-ring">
+            <div class="ig-avatar-inner">
+              <img src="assets/charuautos_avatar_instagram.svg" alt="@charuautopics">
+            </div>
+          </div>
+          <div style="flex-grow: 1;">
+            <div style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px;">charuautopics</div>
+            <div class="ig-stats-row">
+              <div>
+                <div class="ig-stat-num">124</div>
+                <div class="ig-stat-lbl">posts</div>
+              </div>
+              <div>
+                <div class="ig-stat-num">18.4K</div>
+                <div class="ig-stat-lbl">seguidores</div>
+              </div>
+              <div>
+                <div class="ig-stat-num">342</div>
+                <div class="ig-stat-lbl">siguiendo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ig-bio">
+          <div class="ig-bio-name">CharuAutos | Cultura &amp; Mecánica</div>
+          <div style="color: #a8a8a8; font-size: 0.82rem; margin-bottom: 4px;">Comunidad automotriz • Educación para conductores</div>
+          <div>🚗 Conoce, cuida y domina tu auto sin gastar de más.</div>
+          <div>⚙️ Mantenimiento preventivo, turbos &amp; datos de taller.</div>
+          <div>📘 Descarga el <strong>Manual del Conductor Inteligente</strong> aquí 👇</div>
+          <div class="ig-bio-tag">🔗 charuautos.com/manual</div>
+        </div>
+
+        <div class="ig-stories-row">
+          <div class="ig-story-item">
+            <div class="ig-story-circle">📘</div>
+            <span>Ebook</span>
+          </div>
+          <div class="ig-story-item">
+            <div class="ig-story-circle">🌀</div>
+            <span>Turbos</span>
+          </div>
+          <div class="ig-story-item">
+            <div class="ig-story-circle">🔧</div>
+            <span>Tips Taller</span>
+          </div>
+          <div class="ig-story-item">
+            <div class="ig-story-circle">🛢️</div>
+            <span>Fluidos</span>
+          </div>
+          <div class="ig-story-item">
+            <div class="ig-story-circle">⭐</div>
+            <span>Reseñas</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; color: var(--text-dim); font-size: 0.8rem;">
+          Feed optimizado con paleta Obsidian / Hyper Cyan
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="brand-footer">
+      <p>© 2026 <strong>CharuAutos</strong> (@charuautopics). Todos los derechos reservados.</p>
+      <p style="margin-top: 6px;">Brandbook Oficial versión 2.0 • Sistema de Marca Dual & Mascota Charu</p>
+    </footer>
+
+  </div>
+
+  <script>
+    const variants = {
+      horizontal: 'assets/charuautos_logo_horizontal.svg',
+      icon: 'assets/charuautos_logo_icon.svg',
+      emblem: 'assets/charuautos_emblema_mascota.png',
+      avatar: 'assets/charuautos_avatar_instagram.svg',
+      watermark: 'assets/charuautos_watermark.svg'
+    };
+
+    function setVariant(variantKey, btn) {
+      document.querySelectorAll('.stage-toolbar .toolbar-group:last-child .btn-stage').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const img = document.getElementById('logoDisplay');
+      img.src = variants[variantKey];
+    }
+
+    function setTheme(themeName, btn) {
+      document.querySelectorAll('.stage-toolbar .toolbar-group:first-child .btn-stage').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const canvas = document.getElementById('stageCanvas');
+      canvas.className = 'stage-canvas theme-' + themeName;
+    }
+
+    function copyColor(hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        const toast = document.getElementById('toastNotification');
+        toast.textContent = `Código ${hex} copiado al portapapeles ✓`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"01 - Negocio & Finanzas\"",
+      "color": {
+        "a": 1,
+        "rgb": 16757507
+      }
+    },
+    {
+      "query": "path:\"02 - Ingenieria de Datos\"",
+      "color": {
+        "a": 1,
+        "rgb": 62207
+      }
+    },
+    {
+      "query": "path:\"03 - Producto & Pilares\"",
+      "color": {
+        "a": 1,
+        "rgb": 3731325
+      }
+    },
+    {
+      "query": "path:\"04 - Arquitectura de Software\"",
+      "color": {
+        "a": 1,
+        "rgb": 10079487
+      }
+    },
+    {
+      "query": "path:\"05 - Ciberseguridad\"",
+      "color": {
+        "a": 1,
+        "rgb": 16722527
+      }
+    },
+    {
+      "query": "path:\"07 - Pitch Inversores\"",
+      "color": {
+        "a": 1,
+        "rgb": 16763904
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.25,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.9999999999999993,
+  "close": false
+}

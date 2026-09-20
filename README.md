@@ -2,9 +2,9 @@
 ### Novela Gráfica Educativa • Manual del Conductor Inteligente • Ecosistema Digital Automotriz
 *Marca Oficial: CharuAutos (`@charuautopics`) • "Pasión Automotriz al Alcance de tus Manos"*
 
-[![Leer Cómic en Vivo](https://img.shields.io/badge/🎨_LEER_HISTORIETA_EN_VIVO-Click_Aquí-00f2fe?style=for-the-badge&logo=googlechrome&logoColor=black)](https://faraves.github.io/charuautos/dist_pwa_historieta/)
-[![Ebook V2 Técnico](https://img.shields.io/badge/📖_MANUAL_TÉCNICO_V2.0-Entrar-ffb703?style=for-the-badge)](https://faraves.github.io/charuautos/dist_pwa_v2/)
-[![PWA Ready](https://img.shields.io/badge/PWA-100%25_OFFLINE-38ef7d?style=for-the-badge)](https://faraves.github.io/charuautos/dist_pwa_historieta/)
+[![Leer Cómic en Vivo](https://img.shields.io/badge/🎨_LEER_HISTORIETA_EN_VIVO-Click_Aquí-00f2fe?style=for-the-badge&logo=googlechrome&logoColor=black)](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)
+[![Ebook V2 Técnico](https://img.shields.io/badge/📖_MANUAL_TÉCNICO_V2.0-Entrar-ffb703?style=for-the-badge)](https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/)
+[![PWA Ready](https://img.shields.io/badge/PWA-100%25_OFFLINE-38ef7d?style=for-the-badge)](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)
 
 ---
 
@@ -13,128 +13,101 @@
 El proyecto cuenta con despliegue continuo en **GitHub Pages**. Por defecto, la URL principal abre **directamente la Historieta Ilustrada (Cómic PWA)**:
 
 - 🎨 **Lector Web Interactivo de la Historieta (Cómic PWA Oficial):**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa_historieta/](https://faraves.github.io/charuautos/dist_pwa_historieta/)**  
+  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/](https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/)**  
   *(o directamente a través del dominio principal: **[https://faraves.github.io/charuautos/](https://faraves.github.io/charuautos/)**)*
 
 - 🚀 **Manual Técnico Ilustrado (Ebook V2 Técnico):**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa_v2/](https://faraves.github.io/charuautos/dist_pwa_v2/)** *(o atajo `?v2`)*
+  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/)** *(o atajo `?v2`)*
 
 - 🚗 **URL Directa PWA Versión 1.0 (Clásica):**  
-  👉 **[https://faraves.github.io/charuautos/dist_pwa/](https://faraves.github.io/charuautos/dist_pwa/)**
+  👉 **[https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/](https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/)**
 
 > 📖 **Para una auditoría técnica profunda de estándares, fuentes SAE/ISO y arquitectura de software, consulta la [DOCUMENTACIÓN GENERAL MAESTRA](DOCUMENTACION_GENERAL.md).**
 
 ---
 
-## 🌟 2. Visión del Proyecto y Dualidad de Versiones
+## 🌟 2. Visión del Proyecto y Productos Editoriales
 
 **CharuAutos** es una plataforma editorial y educativa concebida para cerrar la brecha de asimetría de información entre los talleres mecánicos y los propietarios de vehículos en Latinoamérica y el mundo hispanohablante.
 
-El repositorio conserva dos productos editoriales completos e independientes:
+El repositorio conserva tres productos editoriales completos e independientes dentro de la carpeta `ebook/`:
 
 ### 🎨 Versión Historieta Ilustrada — Las Aventuras de Charu (Cómic PWA)
 Una adaptación en **novela gráfica y libro de historietas educativas** basada en el Ebook V2:
 - **14 Episodios con Storytelling y Actuación:** Protagonizada por **Charu** (el perro piloto y mentor automotriz), **Carmen** (la joven conductora principiante que aprende a dominar su auto y defender su bolsillo), **Don Carlos** (el maestro honesto de taller) y **Don Chanchullo** (el gato esmoquin mecánico tramposo con gafas agrietadas y manómetro manipulado de 'El Tornillo Loco').
-- **15 Escenas de Cómic en Alta Resolución (16:9 HD):** Ilustraciones panorámicas de estilo novela gráfica con personajes en acción física, rostros expresivos, esquemas mecánicos integrados y acotaciones escénicas con insignias emocionales (`😱 ¡Pánico!`, `💡 ¡Momento Eureka!`, `🛑 ¡Alerta!`, `🛡️ ¡Escudo Activado!`).
-- **Lector Web Interactivo Dual ("Comic Reader"):** Soporte para lectura en tira vertical continua (*webtoon*) ideal para celulares y modo diapositiva horizontal viñeta a viñeta para computadoras (con atajos de teclado `←` / `→` y gestos *swipe* táctiles), efectos de sonido sintetizados con Web Audio API, botón de exportación/impresión a PDF de colección (`@media print`) y funcionamiento offline total (PWA).
-- **Paquete Desplegable:** [`CharuAutos_Historieta_WebApp_PWA.zip`](CharuAutos_Historieta_WebApp_PWA.zip).
+- **15 Escenas de Cómic en Alta Resolución (16:9 HD):** Ilustraciones panorámicas de estilo novela gráfica con personajes en acción física, esquemas mecánicos integrados y acotaciones escénicas con insignias emocionales (`😱 ¡Pánico!`, `💡 ¡Momento Eureka!`, `🛑 ¡Alerta!`, `🛡️ ¡Escudo Activado!`).
+- **Lector Web Interactivo Dual ("Comic Reader"):** Soporte para lectura en tira vertical continua (*webtoon*) para móviles y diapositiva viñeta a viñeta para computadoras (con atajos de teclado `←` / `→` y gestos *swipe* táctiles), efectos de sonido sintetizados con Web Audio API, botón de exportación/impresión a PDF y funcionamiento offline total (PWA).
+- **Paquete Desplegable:** [`ebook/pwa/releases/CharuAutos_Historieta_WebApp_PWA.zip`](ebook/pwa/releases/CharuAutos_Historieta_WebApp_PWA.zip).
 
 ### 🏆 Versión 2.0 — Edición Conductor con Cero Conocimientos (Producto Insignia)
 Desarrollada para quienes manejan a diario pero no tienen formación técnica previa:
 - **14 Módulos Prácticos:** Desde las reglas de oro de seguridad y el funcionamiento del auto sin jerga, hasta protocolos de emergencia en carretera y el escudo anti-estafas del taller.
-- **16 Ilustraciones e Infografías HD Técnicas:** Vano motor real, turbocompresor con la Regla de los 60 Segundos, inspección 360°, varilla de nivel, cambio de llanta en 8 pasos, selector de fusibles, desmontaje de filtro antipolen y la nueva ilustración de mentalidad preventiva y conducción feliz.
+- **16 Ilustraciones e Infografías HD Técnicas:** Vano motor real, turbocompresor con la Regla de los 60 Segundos, inspección 360°, varilla de nivel, cambio de llanta en 8 pasos, selector de fusibles, desmontaje de filtro antipolen y mentalidad preventiva.
 - **Herramientas Interactivas en Vivo:**
   - 💧 *Detector interactivo de fugas por color de mancha o charco* (aceite, refrigerante, líquido de frenos, ATF).
   - 🔌 *Buscador de códigos de diagnóstico OBD-II (Check Engine)* con explicación en lenguaje accesible.
-  - ✅ *Checklists interactivos con persistencia en LocalStorage* (los datos se conservan al cerrar o recargar).
+  - ✅ *Checklists interactivos con persistencia en LocalStorage*.
   - 📱 *Drawer táctil para navegación móvil* con barra de progreso reactiva.
-  - 📶 *PWA Offline Autónoma:* Service Worker v10 para consulta total sin conexión en autopistas o zonas remotas.
-- **Paquete Desplegable:** [`CharuAutos_V2_WebApp_PWA.zip`](CharuAutos_V2_WebApp_PWA.zip) listo para subir a cualquier hosting estático.
+  - 📶 *PWA Offline Autónoma:* Service Worker para consulta total sin conexión en autopistas o zonas remotas.
+- **Paquete Desplegable:** [`ebook/pwa/releases/CharuAutos_V2_WebApp_PWA.zip`](ebook/pwa/releases/CharuAutos_V2_WebApp_PWA.zip).
 
 ### 🚗 Versión 1.0 — Edición Clásica Original
 - 10 módulos técnicos originales con datos auditados SAE J300, ASTM D3306 y ATRA.
-- Manuscrito consolidado y documento comercial final listo para venta en formato PDF Full Bleed de 33 páginas: [`ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf`](ebook/CharuAutos_Manual_del_Conductor_Inteligente.pdf).
-- PWA original en [`dist_pwa/`](dist_pwa/) y paquete [`CharuAutos_WebApp_PWA.zip`](CharuAutos_WebApp_PWA.zip).
+- Manuscrito consolidado y documento comercial final listo para venta en formato PDF Full Bleed de 33 páginas: [`ebook/v1_clasico/CharuAutos_Manual_del_Conductor_Inteligente.pdf`](ebook/v1_clasico/CharuAutos_Manual_del_Conductor_Inteligente.pdf).
+- PWA original en [`ebook/pwa/pwa_v1/`](ebook/pwa/pwa_v1/) y paquete [`ebook/pwa/releases/CharuAutos_WebApp_PWA.zip`](ebook/pwa/releases/CharuAutos_WebApp_PWA.zip).
 
 ---
 
-## 📁 3. Mapa del Repositorio Organizado
+## 🏢 3. Organización Corporativa del Repositorio
+
+El repositorio está estructurado bajo un modelo de empresa organizado en 4 departamentos maestros:
 
 ```text
 CharuAutos/
-├── index.html                                      # Redirección directa e instantánea a dist_pwa_v2/
-├── .nojekyll                                       # Habilita soporte estático puro en GitHub Pages
-├── .gitignore                                      # Exclusión de archivos de desarrollo y temporales
-├── README.md                                       # Este archivo (Guía de inicio, accesos y mapa)
+├── index.html                                      # Enrutador inteligente PWA a ebook/pwa/pwa_historieta/ y pwa_v2/
+├── README.md                                       # Mapa general del proyecto y guía de navegación
 ├── DOCUMENTACION_GENERAL.md                        # Documentación maestra técnica, de arquitectura y negocio
-├── CharuAutos_Historieta_WebApp_PWA.zip           # Paquete PWA de la Historieta Ilustrada lista
-├── CharuAutos_V2_WebApp_PWA.zip                    # Paquete PWA V2 técnico listo para distribución
-├── CharuAutos_WebApp_PWA.zip                       # Paquete PWA V1 clásico
-├── favicon.ico                                     # Icono global de pestaña
+├── favicon.ico / .gitignore / .nojekyll       # Archivos de entorno y despliegue estático
 │
-├── dist_pwa_historieta/                            # APLICACIÓN WEB PWA HISTORIETA (PRODUCCIÓN CÓMIC)
-│   ├── index.html                                  # Lector web de cómic interactivo con efectos sonoros
-│   ├── manifest.json                               # Manifiesto PWA de la historieta
-│   ├── service-worker.js                           # Service Worker offline del cómic
-│   ├── ebook_historieta_completo.md                # Guion maestro consolidado
-│   └── assets/                                     # 31 activos gráficos (portada, 14 viñetas HD, avatares)
+├── 📂 marketing/                                    # 📢 ÁREA DE MARKETING, BRANDING Y COMUNICACIÓN
+│   ├── branding/                                   # Brandbook, Manual de Marca, manual_identidad.html y assets
+│   ├── copy/                                       # Textos persuasivos y landing page (landing_page_copy.md)
+│   ├── diseno_y_prompts/                           # Prompts de generación artística (prompts_diseno_y_portada.md)
+│   └── README.md                                   # Guía estratégica del área de marketing
 │
-├── ebook_historieta/                               # CÓDIGO FUENTE DE LA HISTORIETA ILUSTRADA
-│   ├── 00_portada_y_personajes.md                  # Prólogo y elenco de personajes
-│   ├── ...                                         # 14 episodios modulares en Markdown
-│   ├── ebook_historieta_completo.md                # Guion maestro unificado
-│   ├── historieta_interactiva.html                 # Lector web de cómic local
-│   ├── index.html                                  # Entrada local
-│   ├── README.md                                   # Documentación interna del cómic
-│   └── assets/                                     # Ilustraciones maestras del cómic
+├── 📂 ebook/                                        # 📖 TODO LO RELACIONADO AL EBOOK (MANUSCRITOS + PWAS)
+│   ├── v2_tecnico/                                 # 🏆 Versión 2.0 Conductor Inteligente (14 módulos, lector, assets)
+│   ├── historieta/                                 # 🎨 Novela Gráfica Cómic Educativo (14 episodios, lector, assets)
+│   ├── v1_clasico/                                 # 🚗 Edición Clásica V1 (capítulos, PDF 33 pág, lector, assets)
+│   ├── ajustes_visuales/                           # 📐 Infografías y esquemas fuente de ajuste
+│   ├── pwa/                                        # 🚀 LECTORES WEB Y PWAs DEL EBOOK EN PRODUCCIÓN
+│   │   ├── pwa_historieta/                         # PWA Cómic interactivo listo para producción
+│   │   ├── pwa_v2/                                 # PWA Manual Técnico V2 Dark Showroom offline
+│   │   ├── pwa_v1/                                 # PWA Versión clásica V1
+│   │   └── releases/                               # Paquetes .zip compilados listos para distribución
+│   └── README.md                                   # Índice maestro editorial comparativo
 │
-├── dist_pwa_v2/                                    # APLICACIÓN WEB PWA V2 (PRODUCCIÓN EN VIVO)
-│   ├── index.html                                  # Web App interactiva Dark Showroom con drawer táctil
-│   ├── manifest.json                               # Manifiesto PWA V2 (instalable en Android/iOS/PC)
-│   ├── service-worker.js                           # Service Worker v10 con caché offline resiliente
-│   ├── ebook_v2_completo.md                        # Manuscrito unificado descargable (14 módulos)
-│   ├── favicon.ico                                 # Icono de pestaña
-│   └── assets/                                     # 61 activos gráficos (ilustraciones HD, SVGs, iconos)
+├── 📂 app/                                          # 📱 PROYECTO DE LA FUTURA APLICACIÓN CHARUAUTOS
+│   ├── README.md                                   # Visión, arquitectura técnica y roadmap de desarrollo
+│   ├── docs/                                       # Especificaciones de producto y wireframes
+│   ├── src/                                        # Código fuente de la app (a desarrollar juntos)
+│   └── public/                                     # Activos estáticos de la aplicación
 │
-├── ebook_v2/                                       # CÓDIGO FUENTE EDITORIAL V2
-│   ├── 01_introduccion_seguridad_legal.md          # Módulo 01 en Markdown
-│   ├── ...                                         # Módulos 02 al 13 modulares
-│   ├── 14_apendices_checklists_y_bitacora.md       # Módulo 14 (Checklists, glosario y bitácora)
-│   ├── ebook_v2_completo.md                        # Manuscrito completo unificado
-│   ├── ebook_v2_interactivo.html                   # Web Showroom V2 local
-│   ├── index.html                                  # Punto de entrada local idéntico
-│   ├── manifest.json                               # Manifiesto PWA V2
-│   ├── service-worker.js                           # Service Worker local
-│   ├── README.md                                   # Guía de módulos y exportación PDF V2
-│   └── assets/                                     # Activos maestros originales de la V2
-│
-├── dist_pwa/                                       # APLICACIÓN WEB PWA V1 (PRODUCCIÓN CLÁSICA)
-│   ├── index.html                                  # Web App interactiva V1
-│   ├── manifest.json                               # Manifiesto PWA V1
-│   ├── service-worker.js                           # Service Worker V1 (v4)
-│   └── assets/                                     # Infografías HD y marca V1
-│
-├── ebook/                                          # CÓDIGO FUENTE EDITORIAL V1
-│   ├── 00_introduccion_y_tablero.md                # Módulos 0 a 9 en Markdown
-│   ├── ...                                         # Capítulos individuales clásicos
-│   ├── ebook_completo.md                           # Manuscrito unificado V1
-│   ├── ebook_interactivo.html                      # Web App interactiva clásica
-│   ├── CharuAutos_Manual_del_Conductor_Inteligente.pdf # PDF comercial Full Bleed (33 páginas)
-│   └── assets/                                     # Gráficos e infografías V1
-│
-├── branding/                                       # IDENTIDAD VISUAL CORPORATIVA
-│   ├── BRANDBOOK.md                                # Brandbook Maestro Oficial
-│   ├── MANUAL_DE_MARCA.md                          # Manual de lineamientos en Markdown
-│   ├── manual_identidad.html                       # Showroom web interactivo con probador y copiado HEX
-│   └── assets/                                     # Vectores SVG nativos, PNGs y avatares
-│
-├── marketing/                                      # ESTRATEGIA COMERCIAL Y CONVERSIÓN
-│   ├── landing_page_copy.md                        # Copywriting persuasivo para pasarelas de venta
-│   └── prompts_diseno_y_portada.md                 # Prompts de IA, guiones de video y carruseles
-│
-└── Ajustes/                                        # BANCO DE REFERENCIAS FOTOGRÁFICAS
-    ├── README.md                                   # Índice y correspondencia de fotos de referencia
-    └── *.jpg                                       # Fotografías base de varillas, turbo, frenos, cauchos
+└── 📂 agente_ia/                                    # 🤖 CENTRO DE CONOCIMIENTOS Y SKILLS DEL AGENTE IA
+    ├── README.md                                   # Manifiesto y guía operativa para el Agente IA
+    ├── knowledge/                                  # Base de conocimientos estructurada
+    │   ├── contexto_negocio.md                     # Visión de mercado, buyer persona y UVP
+    │   ├── personajes_y_storytelling.md            # Biblia narrativa y voces de personajes
+    │   └── estandares_tecnicos.md                  # Normas SAE J300, ASTM, DOT, OBD-II y protocolos
+    ├── skills/                                     # Habilidades operativas del agente
+    │   ├── redaccion_editorial.md                  # Técnica pedagógica y redacción sin jerga
+    │   ├── auditoria_mecanica.md                   # Verificación técnica y checklist de seguridad
+    │   └── optimizacion_pwa.md                     # Directrices frontend y desarrollo PWA
+    └── scripts/                                    # Scripts de generación gráfica y automatización
+        ├── build_panel_03b_final.py
+        ├── build_panel_03b_master.py
+        ├── build_panel_03b_perfect.py
+        └── update_ebook_03b.py
 ```
 
 ---
@@ -184,9 +157,10 @@ Para consultar o editar localmente la plataforma:
    python -m http.server 8080
    ```
 3. Abre en tu navegador:
-   - Versión 2.0 (Insignia): `http://localhost:8080/dist_pwa_v2/` (o directamente `http://localhost:8080/`)
-   - Versión 1.0 (Clásica): `http://localhost:8080/dist_pwa/`
-   - Manual de Marca Interactivo: `http://localhost:8080/branding/manual_identidad.html`
+   - Historieta Ilustrada (Cómic PWA): `http://localhost:8080/ebook/pwa/pwa_historieta/` (o directamente `http://localhost:8080/`)
+   - Versión 2.0 (Técnica): `http://localhost:8080/ebook/pwa/pwa_v2/`
+   - Versión 1.0 (Clásica): `http://localhost:8080/ebook/pwa/pwa_v1/`
+   - Manual de Marca Interactivo: `http://localhost:8080/marketing/branding/manual_identidad.html`
 
 ---
 

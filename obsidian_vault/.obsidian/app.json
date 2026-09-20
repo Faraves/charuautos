@@ -1,0 +1,8 @@
+{
+  "spellcheck": true,
+  "useMarkdownLinks": false,
+  "newLinkFormat": "relative",
+  "showLineNumber": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false
+}

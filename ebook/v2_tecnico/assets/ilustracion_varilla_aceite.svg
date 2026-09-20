@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgOil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#121a2c"/>
+    </linearGradient>
+    <linearGradient id="steelBlade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <pattern id="crosshatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#10b981" stroke-width="2" />
+    </pattern>
+  </defs>
+  <rect width="960" height="420" rx="16" fill="url(#bgOil)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="30" y="20" width="900" height="54" rx="8" fill="#131e33" stroke="rgba(0,242,254,0.3)"/>
+  <text x="50" y="44" fill="#00f2fe" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">MÓDULO 05 • FLUIDOS VITALES</text>
+  <text x="50" y="63" fill="#ffffff" font-family="'Montserrat', sans-serif" font-size="17" font-weight="900">GUÍA VISUAL: CÓMO LEER LA VARILLA DE ACEITE DE MOTOR</text>
+  <text x="890" y="52" text-anchor="end" fill="#ffb703" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">📏 EN SUELO PLANO Y MOTOR FRÍO</text>
+
+  <!-- Dipstick Illustration -->
+  <!-- Handle (Yellow Loop) -->
+  <g transform="translate(40, 150)">
+    <circle cx="35" cy="20" r="28" fill="none" stroke="#eab308" stroke-width="12"/>
+    <rect x="58" y="12" width="40" height="16" rx="4" fill="#eab308"/>
+    <!-- Blade extending to the right -->
+    <rect x="98" y="15" width="770" height="10" rx="2" fill="url(#steelBlade)"/>
+
+    <!-- Measuring Tip Detail Zoom Box -->
+    <rect x="280" y="-30" width="550" height="80" rx="8" fill="#0a101d" stroke="#253553" stroke-width="1.5"/>
+
+    <!-- MIN Marker -->
+    <circle cx="340" cy="20" r="4" fill="#ff2a5f"/>
+    <line x1="340" y1="5" x2="340" y2="35" stroke="#ff2a5f" stroke-width="3"/>
+    <text x="340" y="-2" text-anchor="middle" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">MIN</text>
+
+    <!-- Safe Crosshatched Zone -->
+    <rect x="340" y="10" width="280" height="20" fill="url(#crosshatch)" opacity="0.85" stroke="#10b981" stroke-width="1.5"/>
+
+    <!-- MAX Marker -->
+    <circle cx="620" cy="20" r="4" fill="#f59e0b"/>
+    <line x1="620" y1="5" x2="620" y2="35" stroke="#f59e0b" stroke-width="3"/>
+    <text x="620" y="-2" text-anchor="middle" fill="#f59e0b" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">MAX</text>
+
+    <!-- Tip End -->
+    <path d="M 800 15 L 815 20 L 800 25 Z" fill="#64748b"/>
+  </g>
+
+  <!-- 3 Explanatory Status Cards Below -->
+  <!-- Card 1: Zona Peligro Min -->
+  <g transform="translate(60, 240)">
+    <rect width="260" height="120" rx="10" fill="#141a29" stroke="#ff2a5f" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#ff2a5f" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">🛑 BAJO EL MÍNIMO (MIN)</text>
+    <text x="20" y="54" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Peligro inminente de fundir motor.</text>
+    <text x="20" y="74" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• La bomba aspira aire en curvas.</text>
+    <rect x="16" y="86" width="228" height="24" rx="4" fill="rgba(255,42,95,0.15)"/>
+    <text x="24" y="102" fill="#ff2a5f" font-family="'Inter', sans-serif" font-size="11" font-weight="700">ACCIÓN: Añadir 0.8L a 1.0L de aceite ya</text>
+  </g>
+
+  <!-- Card 2: Zona Ideal Safe -->
+  <g transform="translate(350, 240)">
+    <rect width="260" height="120" rx="10" fill="#141a29" stroke="#10b981" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#10b981" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">🟢 ZONA SEGURA (IDEAL)</text>
+    <text x="20" y="54" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Nivel óptimo de lubricación.</text>
+    <text x="20" y="74" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Presión constante en cojinetes.</text>
+    <rect x="16" y="86" width="228" height="24" rx="4" fill="rgba(16,185,129,0.15)"/>
+    <text x="24" y="102" fill="#10b981" font-family="'Inter', sans-serif" font-size="11" font-weight="700">ACCIÓN: No tocar nada. Todo perfecto</text>
+  </g>
+
+  <!-- Card 3: Zona Peligro Sobrellenado -->
+  <g transform="translate(640, 240)">
+    <rect width="260" height="120" rx="10" fill="#141a29" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#f59e0b" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900">⚠️ SOBRE EL MÁXIMO (MAX)</text>
+    <text x="20" y="54" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• El cigüeñal bate el aceite y crea espuma.</text>
+    <text x="20" y="74" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="11">• Peligro de reventar retenes de goma.</text>
+    <rect x="16" y="86" width="228" height="24" rx="4" fill="rgba(245,158,11,0.15)"/>
+    <text x="24" y="102" fill="#f59e0b" font-family="'Inter', sans-serif" font-size="11" font-weight="700">ACCIÓN: Drenar el exceso en taller</text>
+  </g>
+
+  <!-- Protocol Footnote -->
+  <text x="480" y="395" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">
+    📋 <strong>Método correcto:</strong> Extraer varilla ➔ Limpiar con paño ➔ Insertar hasta el fondo ➔ Extraer y leer la marca de aceite.
+  </text>
+</svg>

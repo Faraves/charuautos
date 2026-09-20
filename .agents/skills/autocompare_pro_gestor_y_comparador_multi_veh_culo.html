@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCompare Pro - Gestor & Comparador de Vehículos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080c14;
+            color: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-modal {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .badge-best {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.25));
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16 custom-scrollbar selection:bg-sky-500 selection:text-white">
+
+    <header class="sticky top-0 z-40 glass-card border-b border-slate-800 bg-slate-950/90 px-4 py-3.5 md:px-8 shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-gradient-to-tr from-sky-600 to-indigo-600 text-white rounded-xl shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-car-tunnel text-2xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl font-black text-white tracking-tight">AutoCompare <span class="text-sky-400">PRO</span></h1>
+                        <span class="text-[10px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded-full bg-sky-950 text-sky-300 border border-sky-800">Multi-Fichas</span>
+                    </div>
+                    <p class="text-xs text-slate-400">Plataforma Dinámica de Comparación Técnica & Análisis de Mercado</p>
+                </div>
+            </div>
+
+            <!-- Global Actions & Counter -->
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 flex items-center gap-2 text-xs">
+                    <i class="fa-solid fa-layer-group text-sky-400"></i>
+                    <span class="text-slate-400">Seleccionados:</span>
+                    <span id="activeCount" class="font-bold text-white bg-sky-600/30 px-2 py-0.5 rounded text-sky-300 border border-sky-500/30">0</span>
+                </div>
+
+                <button onclick="openModal('vehicleModal')" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-bold transition-all shadow-md shadow-sky-600/30 flex items-center gap-2">
+                    <i class="fa-solid fa-plus text-sm"></i> Agregar Vehículo
+                </button>
+
+                <button onclick="resetDefaultVehicles()" title="Restablecer Datos por Defecto" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition-colors">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Navigation Pills -->
+        <div class="max-w-7xl mx-auto mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between overflow-x-auto custom-scrollbar">
+            <nav class="flex items-center gap-2 text-xs font-semibold">
+                <button onclick="switchTab('manager')" id="tab-manager" class="tab-btn px-3.5 py-1.5 rounded-lg transition-all bg-sky-600 text-white">
+                    <i class="fa-solid fa-sliders mr-1.5"></i> 1. Catálogo & Selección
+                </button>
+                <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn px-3.5 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-table-list mr-1.5"></i> 2. Tabla Comparativa
+                </button>
+                <button onclick="switchTab('charts')" id="tab-charts" class="tab-btn px-3.5 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-chart-radar mr-1.5"></i> 3. Gráficos Visuales
+                </button>
+                <button onclick="switchTab('advisor')" id="tab-advisor" class="tab-btn px-3.5 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> 4. Asistente Inteligente
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 mt-6 space-y-8">
+
+        <!-- TAB 1: VEHICLE CATALOG & SELECTION MANAGER -->
+        <section id="section-manager" class="space-y-6">
+            <div class="glass-card p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-stacked text-sky-400"></i> Catálogo de Vehículos Disponibles
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Selecciona los vehículos que deseas incluir en la matriz comparativa o agrega nuevas fichas técnicas.</p>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <button onclick="selectAllVehicles(true)" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700 text-slate-300">
+                        <i class="fa-solid fa-check-double text-sky-400 mr-1"></i> Seleccionar Todos
+                    </button>
+                    <button onclick="selectAllVehicles(false)" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700 text-slate-300">
+                        <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Desmarcar Todos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Vehicle Cards Grid -->
+            <div id="vehicleCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JavaScript will populate cards here -->
+            </div>
+        </section>
+
+        <!-- TAB 2: COMPARISON MATRIX -->
+        <section id="section-matrix" class="hidden space-y-4">
+            <!-- Table Filter Toolbar -->
+            <div class="glass-card p-4 rounded-xl flex flex-col lg:flex-row justify-between items-center gap-4">
+                <!-- Search Input -->
+                <div class="relative w-full lg:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="matrixSearch" onkeyup="renderMatrixTable()" placeholder="Buscar especificación (ej. ESP, Torque, ABS)..." 
+                        class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                    <button onclick="filterMatrixCat('all')" class="cat-btn active px-3 py-1.5 text-xs rounded-lg border border-slate-700 bg-sky-600 text-white font-medium">Todas</button>
+                    <button onclick="filterMatrixCat('motor')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700">Motor & Tracción</button>
+                    <button onclick="filterMatrixCat('dimensiones')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700">Dimensiones & Carga</button>
+                    <button onclick="filterMatrixCat('seguridad')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700">Seguridad & Confort</button>
+
+                    <div class="h-4 w-px bg-slate-800 hidden sm:block"></div>
+
+                    <button onclick="toggleDiffOnly()" id="diffToggleBtn" class="px-3 py-1.5 text-xs rounded-lg border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 font-medium">
+                        <i class="fa-solid fa-code-compare mr-1"></i> Solo Diferencias
+                    </button>
+                    
+                    <button onclick="toggleHighlightBest()" id="highlightToggleBtn" class="px-3 py-1.5 text-xs rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20 font-medium">
+                        <i class="fa-solid fa-trophy mr-1"></i> Resaltar Mejores Datos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Table Container -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs text-slate-300" id="matrixTable">
+                        <thead class="bg-slate-950/90 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800" id="matrixHead">
+                            <!-- Dynamic Header Columns Generated by JS -->
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 font-medium" id="matrixBody">
+                            <!-- Dynamic Rows Generated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: CHARTS AND METRICS -->
+        <section id="section-charts" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Bar Chart Specs -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-column text-sky-400"></i> Rendimiento Mecánico & Capacidades
+                        </h3>
+                        <span class="text-[10px] text-slate-400">Comparativa directa</span>
+                    </div>
+                    <div class="h-72 relative">
+                        <canvas id="barChartCanvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Radar Chart Performance Balance -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-emerald-400"></i> Radar de Atributos Clave (0-100)
+                        </h3>
+                        <span class="text-[10px] text-slate-400">Balance general</span>
+                    </div>
+                    <div class="h-72 relative">
+                        <canvas id="radarChartCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: SMART SELECTION ADVISOR -->
+        <section id="section-advisor" class="hidden space-y-6">
+            <div class="glass-card p-6 md:p-8 rounded-2xl border border-sky-500/30 max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">Algoritmo de Elección</span>
+                    <h2 class="text-2xl font-black text-white mt-2">¿Cuál vehículo se ajusta a tu perfil?</h2>
+                    <p class="text-xs text-slate-400 mt-1">Evaluaremos los vehículos **actualmente activos** en tu comparativa según tus prioridades.</p>
+                </div>
+
+                <form id="advisorForm" class="space-y-6" onsubmit="event.preventDefault(); runSmartAdvisor();">
+                    <!-- Priority 1: Fuel vs Technology -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-200 flex items-center gap-2">
+                            <span class="w-5 h-5 bg-sky-600 rounded-full text-white text-[10px] flex items-center justify-center font-bold">1</span>
+                            ¿Cuál es la prioridad para tu entorno de uso?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-7">
+                            <label class="p-3 bg-slate-900 border border-slate-800 rounded-xl cursor-pointer hover:border-sky-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="adv_priority" value="fuel" class="mt-0.5 text-sky-600" checked>
+                                <div>
+                                    <span class="font-bold text-white block">Tolerancia a Combustible Variable</span>
+                                    <span class="text-[11px] text-slate-400">Viajo a zonas remotas con gasolina de bajo octanaje o norma Euro II/III.</span>
+                                </div>
+                            </label>
+                            <label class="p-3 bg-slate-900 border border-slate-800 rounded-xl cursor-pointer hover:border-sky-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="adv_priority" value="tech" class="mt-0.5 text-sky-600">
+                                <div>
+                                    <span class="font-bold text-white block">Máxima Potencia & Seguridad</span>
+                                    <span class="text-[11px] text-slate-400">Prefiero más HP, Control de Estabilidad (ESP) y tecnología moderna.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Priority 2: Heavy Payload vs Warranty -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-200 flex items-center gap-2">
+                            <span class="w-5 h-5 bg-sky-600 rounded-full text-white text-[10px] flex items-center justify-center font-bold">2</span>
+                            ¿Qué atributo utilitario valoras más?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-7">
+                            <label class="p-3 bg-slate-900 border border-slate-800 rounded-xl cursor-pointer hover:border-sky-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="adv_utility" value="payload" class="mt-0.5 text-sky-600" checked>
+                                <div>
+                                    <span class="font-bold text-white block">Capacidad de Carga Brutal</span>
+                                    <span class="text-[11px] text-slate-400">Trabajo duro con peso en platón (> 900 kg).</span>
+                                </div>
+                            </label>
+                            <label class="p-3 bg-slate-900 border border-slate-800 rounded-xl cursor-pointer hover:border-sky-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="adv_utility" value="warranty" class="mt-0.5 text-sky-600">
+                                <div>
+                                    <span class="font-bold text-white block">Extensa Garantía de Fábrica</span>
+                                    <span class="text-[11px] text-slate-400">Tranquilidad con más kilometraje cubierto (ej. 100,000 km o más).</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:opacity-95 transition-all shadow-lg shadow-sky-500/20">
+                        <i class="fa-solid fa-calculator mr-2"></i> Evaluar Vehículos Activos
+                    </button>
+                </form>
+
+                <div id="advisorResult" class="hidden mt-6 p-6 rounded-2xl border border-slate-700 bg-slate-900/90 transition-all">
+                    <!-- JavaScript will insert ranking results -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL FOR ADDING / EDITING VEHICLES -->
+    <div id="vehicleModal" class="fixed inset-0 z-50 hidden overflow-y-auto custom-scrollbar bg-black/80 backdrop-blur-md p-4 flex items-center justify-center">
+        <div class="glass-modal w-full max-w-3xl rounded-2xl p-6 border border-slate-700 shadow-2xl relative my-8 my-auto">
+            <button onclick="closeModal('vehicleModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg bg-slate-800/50">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 bg-sky-500/20 text-sky-400 rounded-xl border border-sky-500/30">
+                    <i class="fa-solid fa-pen-to-square text-xl"></i>
+                </div>
+                <div>
+                    <h3 id="modalTitle" class="text-lg font-extrabold text-white">Agregar Nueva Ficha Técnica</h3>
+                    <p class="text-xs text-slate-400">Introduce los parámetros del vehículo para agregarlo al comparador.</p>
+                </div>
+            </div>
+
+            <form id="vehicleForm" onsubmit="saveVehicleForm(event)" class="space-y-6">
+                <input type="hidden" id="v_id">
+
+                <!-- Basic Info -->
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider"><i class="fa-solid fa-id-card mr-1"></i> Información General</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Marca *</label>
+                            <input type="text" id="v_brand" required placeholder="ej. Dongfeng, Toyota..." class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Modelo *</label>
+                            <input type="text" id="v_model" required placeholder="ej. Rich 6 4x4, Hilux..." class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Color Temático</label>
+                            <input type="color" id="v_color" value="#0284c7" class="w-full h-8 bg-slate-950 border border-slate-700 rounded-lg cursor-pointer p-1">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 mb-1">Etiqueta / Destacado</label>
+                        <input type="text" id="v_tag" placeholder="ej. Motor Mitsubishi, Base Nissan..." class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                    </div>
+                </div>
+
+                <!-- Engine Specs -->
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider"><i class="fa-solid fa-gauge-high mr-1"></i> Motorización & Rendimiento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Motor / Cilindrada</label>
+                            <input type="text" id="v_engine" placeholder="ej. 2.4L (2,438 cc) 16V" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Potencia (HP) *</label>
+                            <input type="number" id="v_powerHP" required placeholder="156" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Torque (Nm) *</label>
+                            <input type="number" id="v_torqueNm" required placeholder="235" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Norma Emisión</label>
+                            <input type="text" id="v_emission" placeholder="Euro V / Euro II" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Transmisión</label>
+                            <input type="text" id="v_transmission" placeholder="Manual 5 Vel 4x4" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Garantía (KM)</label>
+                            <input type="number" id="v_warrantyKm" placeholder="60000" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dimensions & Capacities -->
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider"><i class="fa-solid fa-ruler-combined mr-1"></i> Dimensiones & Carga</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Largo (mm)</label>
+                            <input type="number" id="v_length" placeholder="5290" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Ancho (mm)</label>
+                            <input type="number" id="v_width" placeholder="1850" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Alto (mm)</label>
+                            <input type="number" id="v_height" placeholder="1810" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Tanque (L)</label>
+                            <input type="number" id="v_tank" placeholder="73" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Capacidad Carga (Kg)</label>
+                            <input type="number" id="v_payload" placeholder="800" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Despeje del suelo (mm)</label>
+                            <input type="number" id="v_ground" placeholder="207" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety & Features Checkboxes -->
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider"><i class="fa-solid fa-shield-halved mr-1"></i> Equipamiento & Seguridad</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                            <input type="checkbox" id="v_esp" class="rounded text-sky-600 bg-slate-950 border-slate-700"> Control Estabilidad ESP
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                            <input type="checkbox" id="v_tpms" class="rounded text-sky-600 bg-slate-950 border-slate-700"> Monitoreo Presión TPMS
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                            <input type="checkbox" id="v_keyless" class="rounded text-sky-600 bg-slate-950 border-slate-700"> Botón Encendido Keyless
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Radar Ratings (0-100) -->
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider"><i class="fa-solid fa-chart-radar mr-1"></i> Puntuación para Gráfico Radar (0 a 100)</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Potencia</label>
+                            <input type="number" id="v_scorePower" min="0" max="100" value="75" class="w-full px-2 py-1 bg-slate-950 border border-slate-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Seguridad</label>
+                            <input type="number" id="v_scoreSafety" min="0" max="100" value="70" class="w-full px-2 py-1 bg-slate-950 border border-slate-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Repuestos</label>
+                            <input type="number" id="v_scoreSpares" min="0" max="100" value="80" class="w-full px-2 py-1 bg-slate-950 border border-slate-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Tol. Gasolina</label>
+                            <input type="number" id="v_scoreFuel" min="0" max="100" value="80" class="w-full px-2 py-1 bg-slate-950 border border-slate-700 rounded text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeModal('vehicleModal')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-sky-600/30">
+                        <i class="fa-solid fa-floppy-disk mr-1.5"></i> Guardar Ficha
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CUSTOM CONFIRMATION MODAL (NO ALERT/CONFIRM) -->
+    <div id="confirmModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 flex items-center justify-center">
+        <div class="glass-modal w-full max-w-sm rounded-2xl p-6 border border-slate-700 text-center space-y-4">
+            <div class="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center mx-auto text-xl border border-rose-500/30">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-base font-extrabold text-white" id="confirmTitle">¿Confirmar Acción?</h3>
+            <p class="text-xs text-slate-400" id="confirmMessage">Esta acción eliminará el vehículo seleccionado.</p>
+            <div class="flex justify-center gap-3 pt-2">
+                <button id="confirmCancelBtn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl">Cancelar</button>
+                <button id="confirmOkBtn" class="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initial Default Dataset of Pick-ups
+        const defaultVehicles = [
+            {
+                id: 'v_df_rich6',
+                brand: 'Dongfeng',
+                model: 'Rich 6 4x4',
+                tag: 'Plataforma Nissan NP300',
+                color: '#2563eb', // Blue
+                active: true,
+                specs: {
+                    engine: '2.4L (2,438 cc) 16V',
+                    powerHP: 156,
+                    torqueNm: 235,
+                    emission: 'Euro V',
+                    transmission: 'Manual 5 Vel 4x4',
+                    length: 5290,
+                    width: 1850,
+                    height: 1810,
+                    groundClearance: 207,
+                    tankLitres: 73,
+                    payloadKg: 800,
+                    esp: true,
+                    tpms: true,
+                    keyless: true,
+                    warrantyKm: 60000
+                },
+                radarScores: { power: 85, safety: 90, spares: 85, fuelTol: 60, warranty: 60, payload: 80 }
+            },
+            {
+                id: 'v_foton_tunland',
+                brand: 'Foton',
+                model: 'Tunland E 4x4',
+                tag: 'Motor Mitsubishi 4G69',
+                color: '#10b981', // Emerald
+                active: true,
+                specs: {
+                    engine: '2.4L Mitsubishi 4G69',
+                    powerHP: 135,
+                    torqueNm: 200,
+                    emission: 'Euro II',
+                    transmission: 'Manual 5 Vel 4x4',
+                    length: 5310,
+                    width: 1860,
+                    height: 1860,
+                    groundClearance: 200,
+                    tankLitres: 76,
+                    payloadKg: 800,
+                    esp: false,
+                    tpms: false,
+                    keyless: false,
+                    warrantyKm: 100000
+                },
+                radarScores: { power: 70, safety: 60, spares: 95, fuelTol: 95, warranty: 95, payload: 80 }
+            },
+            {
+                id: 'v_toyota_hilux',
+                brand: 'Toyota',
+                model: 'Hilux 2.7L 4x4',
+                tag: 'Referente Legendario',
+                color: '#ef4444', // Red
+                active: true,
+                specs: {
+                    engine: '2.7L (2,694 cc) 2TR-FE',
+                    powerHP: 164,
+                    torqueNm: 245,
+                    emission: 'Euro IV / V',
+                    transmission: 'Manual 5 Vel 4x4',
+                    length: 5325,
+                    width: 1855,
+                    height: 1815,
+                    groundClearance: 215,
+                    tankLitres: 80,
+                    payloadKg: 950,
+                    esp: true,
+                    tpms: true,
+                    keyless: false,
+                    warrantyKm: 100000
+                },
+                radarScores: { power: 90, safety: 85, spares: 100, fuelTol: 80, warranty: 90, payload: 95 }
+            },
+            {
+                id: 'v_greatwall_poer',
+                brand: 'Great Wall',
+                model: 'Poer 2.0 Turbo 4x4',
+                tag: 'Equipamiento Premium',
+                color: '#8b5cf6', // Purple
+                active: false,
+                specs: {
+                    engine: '2.0L Turbo Gasolina',
+                    powerHP: 187,
+                    torqueNm: 360,
+                    emission: 'Euro VI',
+                    transmission: 'Manual 6 Vel 4x4',
+                    length: 5362,
+                    width: 1948,
+                    height: 1886,
+                    groundClearance: 227,
+                    tankLitres: 80,
+                    payloadKg: 1050,
+                    esp: true,
+                    tpms: true,
+                    keyless: true,
+                    warrantyKm: 100000
+                },
+                radarScores: { power: 95, safety: 95, spares: 75, fuelTol: 55, warranty: 85, payload: 100 }
+            }
+        ];
+
+        // State Array
+        let vehicles = JSON.parse(JSON.stringify(defaultVehicles));
+        let activeMatrixCat = 'all';
+        let filterDiffOnly = false;
+        let filterHighlightBest = false;
+
+        // Chart Instances
+        let barChartInstance = null;
+        let radarChartInstance = null;
+
+        // On Load Initialization
+        window.onload = function() {
+            renderVehicleManagerCards();
+            updateActiveCount();
+            renderMatrixTable();
+        };
+
+        function switchTab(tabId) {
+            ['manager', 'matrix', 'charts', 'advisor'].forEach(t => {
+                document.getElementById(`section-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-${t}`);
+                btn.className = "tab-btn px-3.5 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white hover:bg-slate-800/60";
+            });
+
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.className = "tab-btn px-3.5 py-1.5 rounded-lg transition-all bg-sky-600 text-white";
+
+            if (tabId === 'matrix') {
+                renderMatrixTable();
+            } else if (tabId === 'charts') {
+                renderCharts();
+            }
+        }
+
+        function renderVehicleManagerCards() {
+            const grid = document.getElementById('vehicleCardsGrid');
+            grid.innerHTML = '';
+
+            vehicles.forEach(v => {
+                const isChecked = v.active;
+                const card = document.createElement('div');
+                card.className = `glass-card rounded-2xl p-5 border-t-4 transition-all relative overflow-hidden group ${isChecked ? 'border-slate-700' : 'opacity-60 grayscale'}`;
+                card.style.borderTopColor = v.color;
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border" style="color:${v.color}; background-color:${v.color}15; border-color:${v.color}30">${v.brand}</span>
+                            <h3 class="text-xl font-black text-white mt-1">${v.model}</h3>
+                            <p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-tag text-sky-400 mr-1"></i> ${v.tag || 'Ficha Técnica'}</p>
+                        </div>
+                        
+                        <!-- Toggle Compare Checkbox -->
+                        <label class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-xl cursor-pointer hover:border-sky-500">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleVehicleActive('${v.id}')" class="rounded text-sky-500">
+                            <span class="text-[11px] font-bold ${isChecked ? 'text-sky-400' : 'text-slate-400'}">Comparar</span>
+                        </label>
+                    </div>
+
+                    <!-- Quick Spec Highlights -->
+                    <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-800/80 text-center my-3 bg-slate-950/40 rounded-xl">
+                        <div>
+                            <span class="block text-[10px] text-slate-400">Potencia</span>
+                            <span class="text-xs font-black text-white">${v.specs.powerHP} HP</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-slate-400">Torque</span>
+                            <span class="text-xs font-black text-sky-400">${v.specs.torqueNm} Nm</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-slate-400">Emisión</span>
+                            <span class="text-xs font-black text-slate-300">${v.specs.emission}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div class="flex items-center gap-2">
+                            <button onclick="editVehicle('${v.id}')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold border border-slate-700">
+                                <i class="fa-solid fa-pen mr-1"></i> Editar
+                            </button>
+                            <button onclick="duplicateVehicle('${v.id}')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold border border-slate-700">
+                                <i class="fa-solid fa-copy mr-1"></i> Duplicar
+                            </button>
+                        </div>
+                        <button onclick="promptDeleteVehicle('${v.id}')" class="p-1.5 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg text-xs">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleVehicleActive(id) {
+            const v = vehicles.find(item => item.id === id);
+            if (v) {
+                v.active = !v.active;
+                renderVehicleManagerCards();
+                updateActiveCount();
+            }
+        }
+
+        function selectAllVehicles(status) {
+            vehicles.forEach(v => v.active = status);
+            renderVehicleManagerCards();
+            updateActiveCount();
+        }
+
+        function updateActiveCount() {
+            const activeVehicles = vehicles.filter(v => v.active);
+            document.getElementById('activeCount').innerText = activeVehicles.length;
+        }
+
+        function renderMatrixTable() {
+            const activeVehicles = vehicles.filter(v => v.active);
+            const head = document.getElementById('matrixHead');
+            const body = document.getElementById('matrixBody');
+            const searchQuery = document.getElementById('matrixSearch').value.toLowerCase();
+
+            if (activeVehicles.length === 0) {
+                head.innerHTML = `<tr><th class="p-4 text-center text-slate-400">Sin vehículos seleccionados</th></tr>`;
+                body.innerHTML = `<tr><td class="p-8 text-center text-slate-500">Por favor, activa al menos un vehículo en la pestaña "1. Catálogo & Selección" para visualizar la tabla.</td></tr>`;
+                return;
+            }
+
+            // Generate Table Header
+            let headHTML = `<tr><th class="p-4 w-64 bg-slate-950">Especificación / Característica</th>`;
+            activeVehicles.forEach(v => {
+                headHTML += `
+                    <th class="p-4 min-w-[200px] border-l border-slate-800" style="background-color: ${v.color}10">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full" style="background-color: ${v.color}"></span>
+                            <span style="color: ${v.color}" class="font-extrabold text-sm">${v.brand} ${v.model}</span>
+                        </div>
+                    </th>
+                `;
+            });
+            headHTML += `</tr>`;
+            head.innerHTML = headHTML;
+
+            // Define Spec Row Templates
+            const specDefinitions = [
+                // Category Motor
+                { cat: 'motor', key: 'engine', label: 'Motor & Inyección', isNumeric: false },
+                { cat: 'motor', key: 'powerHP', label: 'Potencia Máxima (HP)', isNumeric: true, unit: 'HP', higherIsBetter: true },
+                { cat: 'motor', key: 'torqueNm', label: 'Torque Máximo (Nm)', isNumeric: true, unit: 'Nm', higherIsBetter: true },
+                { cat: 'motor', key: 'emission', label: 'Norma de Emisión', isNumeric: false },
+                { cat: 'motor', key: 'transmission', label: 'Transmisión & Tracción', isNumeric: false },
+                
+                // Category Dimensiones
+                { cat: 'dimensiones', key: 'length', label: 'Largo Total (mm)', isNumeric: true, unit: 'mm', higherIsBetter: true },
+                { cat: 'dimensiones', key: 'width', label: 'Ancho Total (mm)', isNumeric: true, unit: 'mm', higherIsBetter: true },
+                { cat: 'dimensiones', key: 'height', label: 'Alto Total (mm)', isNumeric: true, unit: 'mm', higherIsBetter: true },
+                { cat: 'dimensiones', key: 'groundClearance', label: 'Altura Libre al Suelo (mm)', isNumeric: true, unit: 'mm', higherIsBetter: true },
+                { cat: 'dimensiones', key: 'tankLitres', label: 'Tanque Combustible (L)', isNumeric: true, unit: 'L', higherIsBetter: true },
+                { cat: 'dimensiones', key: 'payloadKg', label: 'Capacidad de Carga (Kg)', isNumeric: true, unit: 'Kg', higherIsBetter: true },
+
+                // Category Seguridad & Confort
+                { cat: 'seguridad', key: 'esp', label: 'Control Estabilidad (ESP)', isBool: true },
+                { cat: 'seguridad', key: 'tpms', label: 'Monitoreo Presión (TPMS)', isBool: true },
+                { cat: 'seguridad', key: 'keyless', label: 'Apertura/Encendido Keyless', isBool: true },
+                { cat: 'seguridad', key: 'warrantyKm', label: 'Garantía Fábrica (KM)', isNumeric: true, unit: 'KM', higherIsBetter: true }
+            ];
+
+            let bodyHTML = '';
+
+            const categoryTitles = {
+                motor: 'Motorización & Rendimiento',
+                dimensiones: 'Dimensiones & Capacidades',
+                seguridad: 'Seguridad & Equipamiento'
+            };
+
+            ['motor', 'dimensiones', 'seguridad'].forEach(category => {
+                if (activeMatrixCat !== 'all' && activeMatrixCat !== category) return;
+
+                // Category Header Row
+                bodyHTML += `
+                    <tr class="bg-slate-900/90 font-bold text-sky-400 uppercase tracking-wider text-[10px]">
+                        <td colspan="${activeVehicles.length + 1}" class="px-4 py-2 border-y border-slate-800">
+                            <i class="fa-solid fa-layer-group mr-1.5"></i> ${categoryTitles[category]}
+                        </td>
+                    </tr>
+                `;
+
+                const categorySpecs = specDefinitions.filter(s => s.cat === category);
+
+                categorySpecs.forEach(spec => {
+                    // Check search query
+                    if (searchQuery && !spec.label.toLowerCase().includes(searchQuery)) return;
+
+                    // Collect values across active vehicles
+                    const values = activeVehicles.map(v => v.specs[spec.key]);
+
+                    // Check differences
+                    const allEqual = values.every(val => val === values[0]);
+                    if (filterDiffOnly && allEqual && activeVehicles.length > 1) return;
+
+                    // Calculate best value for numeric specs
+                    let maxVal = null;
+                    if (spec.isNumeric && filterHighlightBest) {
+                        const numVals = values.map(v => Number(v) || 0);
+                        maxVal = Math.max(...numVals);
+                    }
+
+                    bodyHTML += `<tr class="hover:bg-slate-900/40 transition-colors">`;
+                    bodyHTML += `<td class="p-4 font-semibold text-slate-200">${spec.label}</td>`;
+
+                    activeVehicles.forEach(v => {
+                        const val = v.specs[spec.key];
+                        let renderedVal = '';
+                        let isBest = false;
+
+                        if (spec.isBool) {
+                            renderedVal = val 
+                                ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle mr-1"></i> Sí</span>` 
+                                : `<span class="text-slate-500"><i class="fa-solid fa-circle-xmark mr-1"></i> No</span>`;
+                        } else if (spec.isNumeric) {
+                            renderedVal = `${Number(val).toLocaleString()} ${spec.unit || ''}`;
+                            if (filterHighlightBest && maxVal !== null && Number(val) === maxVal && numValIsPositive(maxVal)) {
+                                isBest = true;
+                            }
+                        } else {
+                            renderedVal = val || 'N/A';
+                        }
+
+                        bodyHTML += `
+                            <td class="p-4 border-l border-slate-800/80 ${isBest ? 'badge-best font-bold' : ''}">
+                                ${renderedVal}
+                                ${isBest ? '<i class="fa-solid fa-trophy ml-1.5 text-amber-400 text-[10px]" title="Mejor en su categoría"></i>' : ''}
+                            </td>
+                        `;
+                    });
+
+                    bodyHTML += `</tr>`;
+                });
+            });
+
+            body.innerHTML = bodyHTML;
+        }
+
+        function numValIsPositive(val) {
+            return typeof val === 'number' && !isNaN(val) && val > 0;
+        }
+
+        function filterMatrixCat(cat) {
+            activeMatrixCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            event.target.classList.remove('bg-slate-800', 'text-slate-300');
+            event.target.classList.add('bg-sky-600', 'text-white');
+            renderMatrixTable();
+        }
+
+        function toggleDiffOnly() {
+            filterDiffOnly = !filterDiffOnly;
+            const btn = document.getElementById('diffToggleBtn');
+            if (filterDiffOnly) {
+                btn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold');
+            } else {
+                btn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold');
+            }
+            renderMatrixTable();
+        }
+
+        function toggleHighlightBest() {
+            filterHighlightBest = !filterHighlightBest;
+            const btn = document.getElementById('highlightToggleBtn');
+            if (filterHighlightBest) {
+                btn.classList.add('bg-emerald-500', 'text-slate-950', 'font-bold');
+            } else {
+                btn.classList.remove('bg-emerald-500', 'text-slate-950', 'font-bold');
+            }
+            renderMatrixTable();
+        }
+
+        function renderCharts() {
+            const activeVehicles = vehicles.filter(v => v.active);
+
+            if (activeVehicles.length === 0) return;
+
+            // 1. BAR CHART
+            const ctxBar = document.getElementById('barChartCanvas').getContext('2d');
+            if (barChartInstance) barChartInstance.destroy();
+
+            const labels = ['Potencia (HP)', 'Torque (Nm)', 'Tanque (L)', 'Carga (10kg)'];
+
+            const barDatasets = activeVehicles.map(v => ({
+                label: `${v.brand} ${v.model}`,
+                data: [
+                    v.specs.powerHP,
+                    v.specs.torqueNm,
+                    v.specs.tankLitres,
+                    Math.round(v.specs.payloadKg / 10) // scaled down by 10 for bar clarity
+                ],
+                backgroundColor: v.color + 'cc',
+                borderColor: v.color,
+                borderWidth: 1,
+                borderRadius: 6
+            }));
+
+            barChartInstance = new Chart(ctxBar, {
+                type: 'bar',
+                data: { labels, datasets: barDatasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#94a3b8', font: { size: 10 } } }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#64748b' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { ticks: { color: '#64748b' }, grid: { display: false } }
+                    }
+                }
+            });
+
+            // 2. RADAR CHART
+            const ctxRadar = document.getElementById('radarChartCanvas').getContext('2d');
+            if (radarChartInstance) radarChartInstance.destroy();
+
+            const radarLabels = ['Potencia', 'Seguridad', 'Facilidad Repuestos', 'Tolerancia Gasolina', 'Garantía', 'Carga Utilitaria'];
+
+            const radarDatasets = activeVehicles.map(v => ({
+                label: `${v.brand} ${v.model}`,
+                data: [
+                    v.radarScores.power || 50,
+                    v.radarScores.safety || 50,
+                    v.radarScores.spares || 50,
+                    v.radarScores.fuelTol || 50,
+                    v.radarScores.warranty || 50,
+                    v.radarScores.payload || 50
+                ],
+                backgroundColor: v.color + '20',
+                borderColor: v.color,
+                pointBackgroundColor: v.color,
+                borderWidth: 2
+            }));
+
+            radarChartInstance = new Chart(ctxRadar, {
+                type: 'radar',
+                data: { labels: radarLabels, datasets: radarDatasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#94a3b8', font: { size: 10 } } }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255,255,255,0.1)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            pointLabels: { color: '#94a3b8', font: { size: 10 } },
+                            ticks: { display: false, backdropColor: 'transparent' },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function editVehicle(id) {
+            const v = vehicles.find(item => item.id === id);
+            if (!v) return;
+
+            document.getElementById('modalTitle').innerText = 'Editar Ficha Técnica';
+            document.getElementById('v_id').value = v.id;
+            document.getElementById('v_brand').value = v.brand;
+            document.getElementById('v_model').value = v.model;
+            document.getElementById('v_color').value = v.color || '#0284c7';
+            document.getElementById('v_tag').value = v.tag || '';
+
+            document.getElementById('v_engine').value = v.specs.engine || '';
+            document.getElementById('v_powerHP').value = v.specs.powerHP || '';
+            document.getElementById('v_torqueNm').value = v.specs.torqueNm || '';
+            document.getElementById('v_emission').value = v.specs.emission || '';
+            document.getElementById('v_transmission').value = v.specs.transmission || '';
+            document.getElementById('v_warrantyKm').value = v.specs.warrantyKm || '';
+
+            document.getElementById('v_length').value = v.specs.length || '';
+            document.getElementById('v_width').value = v.specs.width || '';
+            document.getElementById('v_height').value = v.specs.height || '';
+            document.getElementById('v_tank').value = v.specs.tankLitres || '';
+            document.getElementById('v_payload').value = v.specs.payloadKg || '';
+            document.getElementById('v_ground').value = v.specs.groundClearance || '';
+
+            document.getElementById('v_esp').checked = !!v.specs.esp;
+            document.getElementById('v_tpms').checked = !!v.specs.tpms;
+            document.getElementById('v_keyless').checked = !!v.specs.keyless;
+
+            document.getElementById('v_scorePower').value = v.radarScores?.power || 70;
+            document.getElementById('v_scoreSafety').value = v.radarScores?.safety || 70;
+            document.getElementById('v_scoreSpares').value = v.radarScores?.spares || 70;
+            document.getElementById('v_scoreFuel').value = v.radarScores?.fuelTol || 70;
+
+            openModal('vehicleModal');
+        }
+
+        function duplicateVehicle(id) {
+            const original = vehicles.find(item => item.id === id);
+            if (!original) return;
+
+            const clone = JSON.parse(JSON.stringify(original));
+            clone.id = 'v_' + Date.now();
+            clone.model += ' (Copia)';
+            clone.active = true;
+
+            vehicles.push(clone);
+            renderVehicleManagerCards();
+            updateActiveCount();
+        }
+
+        function promptDeleteVehicle(id) {
+            const v = vehicles.find(item => item.id === id);
+            if (!v) return;
+
+            document.getElementById('confirmTitle').innerText = '¿Eliminar Ficha?';
+            document.getElementById('confirmMessage').innerText = `¿Estás seguro de eliminar el vehículo "${v.brand} ${v.model}" del catálogo?`;
+
+            const okBtn = document.getElementById('confirmOkBtn');
+            const cancelBtn = document.getElementById('confirmCancelBtn');
+
+            const handleOk = () => {
+                vehicles = vehicles.filter(item => item.id !== id);
+                renderVehicleManagerCards();
+                updateActiveCount();
+                closeModal('confirmModal');
+                cleanup();
+            };
+
+            const handleCancel = () => {
+                closeModal('confirmModal');
+                cleanup();
+            };
+
+            function cleanup() {
+                okBtn.removeEventListener('click', handleOk);
+                cancelBtn.removeEventListener('click', handleCancel);
+            }
+
+            okBtn.addEventListener('click', handleOk);
+            cancelBtn.addEventListener('click', handleCancel);
+
+            openModal('confirmModal');
+        }
+
+        function saveVehicleForm(event) {
+            event.preventDefault();
+
+            const existingId = document.getElementById('v_id').value;
+            const brand = document.getElementById('v_brand').value;
+            const model = document.getElementById('v_model').value;
+            const color = document.getElementById('v_color').value;
+            const tag = document.getElementById('v_tag').value;
+
+            const specs = {
+                engine: document.getElementById('v_engine').value || 'N/A',
+                powerHP: Number(document.getElementById('v_powerHP').value) || 0,
+                torqueNm: Number(document.getElementById('v_torqueNm').value) || 0,
+                emission: document.getElementById('v_emission').value || 'N/A',
+                transmission: document.getElementById('v_transmission').value || 'N/A',
+                warrantyKm: Number(document.getElementById('v_warrantyKm').value) || 0,
+
+                length: Number(document.getElementById('v_length').value) || 0,
+                width: Number(document.getElementById('v_width').value) || 0,
+                height: Number(document.getElementById('v_height').value) || 0,
+                tankLitres: Number(document.getElementById('v_tank').value) || 0,
+                payloadKg: Number(document.getElementById('v_payload').value) || 0,
+                groundClearance: Number(document.getElementById('v_ground').value) || 0,
+
+                esp: document.getElementById('v_esp').checked,
+                tpms: document.getElementById('v_tpms').checked,
+                keyless: document.getElementById('v_keyless').checked
+            };
+
+            const radarScores = {
+                power: Number(document.getElementById('v_scorePower').value) || 70,
+                safety: Number(document.getElementById('v_scoreSafety').value) || 70,
+                spares: Number(document.getElementById('v_scoreSpares').value) || 70,
+                fuelTol: Number(document.getElementById('v_scoreFuel').value) || 70,
+                warranty: Math.min(100, Math.round(specs.warrantyKm / 1000)),
+                payload: Math.min(100, Math.round(specs.payloadKg / 10))
+            };
+
+            if (existingId) {
+                // Edit existing
+                const v = vehicles.find(item => item.id === existingId);
+                if (v) {
+                    v.brand = brand;
+                    v.model = model;
+                    v.color = color;
+                    v.tag = tag;
+                    v.specs = specs;
+                    v.radarScores = radarScores;
+                }
+            } else {
+                // Add new
+                const newVehicle = {
+                    id: 'v_' + Date.now(),
+                    brand,
+                    model,
+                    color,
+                    tag,
+                    active: true,
+                    specs,
+                    radarScores
+                };
+                vehicles.push(newVehicle);
+            }
+
+            // Reset form
+            document.getElementById('v_id').value = '';
+            document.getElementById('vehicleForm').reset();
+            closeModal('vehicleModal');
+
+            renderVehicleManagerCards();
+            updateActiveCount();
+        }
+
+        function resetDefaultVehicles() {
+            vehicles = JSON.parse(JSON.stringify(defaultVehicles));
+            renderVehicleManagerCards();
+            updateActiveCount();
+        }
+
+        function runSmartAdvisor() {
+            const activeVehicles = vehicles.filter(v => v.active);
+            const resultBox = document.getElementById('advisorResult');
+
+            if (activeVehicles.length === 0) {
+                resultBox.classList.remove('hidden');
+                resultBox.innerHTML = `
+                    <div class="text-center text-amber-400 text-xs">
+                        <i class="fa-solid fa-triangle-exclamation text-lg mb-1 block"></i>
+                        No hay vehículos activos. Activa vehículos en el catálogo para poder evaluarlos.
+                    </div>
+                `;
+                return;
+            }
+
+            const priority = document.querySelector('input[name="adv_priority"]:checked').value;
+            const utility = document.querySelector('input[name="adv_utility"]:checked').value;
+
+            // Score calculation
+            const scores = activeVehicles.map(v => {
+                let points = 0;
+
+                // Priority Check
+                if (priority === 'fuel') {
+                    if (v.specs.emission.toLowerCase().includes('euro ii') || v.specs.emission.toLowerCase().includes('euro iii')) points += 40;
+                    else points += 10;
+                } else { // tech & power
+                    points += (v.specs.powerHP / 3);
+                    if (v.specs.esp) points += 20;
+                }
+
+                // Utility Check
+                if (utility === 'payload') {
+                    points += (v.specs.payloadKg / 20);
+                } else { // warranty
+                    points += (v.specs.warrantyKm / 2000);
+                }
+
+                return { vehicle: v, score: Math.round(points) };
+            });
+
+            // Sort descending
+            scores.sort((a, b) => b.score - a.score);
+
+            const winner = scores[0].vehicle;
+
+            let html = `
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+                        <div class="p-2.5 bg-emerald-500 text-slate-950 rounded-xl font-bold text-lg">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Opción Recomendada nº1</span>
+                            <h3 class="text-lg font-black text-white">${winner.brand} ${winner.model}</h3>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Basado en tu selección de preferencias, la <strong>${winner.brand} ${winner.model}</strong> destaca sobre los demás modelos activos por su equilibrio en ${priority === 'fuel' ? 'tolerancia a gasolina' : 'potencia y tecnología'} y ${utility === 'payload' ? 'capacidad de carga' : 'cobertura de garantía'}.
+                    </p>
+
+                    <div class="border-t border-slate-800 pt-3">
+                        <h4 class="text-xs font-bold text-slate-400 mb-2">Puntuación Relativa del Algoritmo:</h4>
+                        <div class="space-y-2">
+            `;
+
+            scores.forEach((s, idx) => {
+                html += `
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-300 font-medium">${idx + 1}. ${s.vehicle.brand} ${s.vehicle.model}</span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-32 h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-sky-500 rounded-full" style="width: ${Math.min(100, s.score)}%"></div>
+                            </div>
+                            <span class="font-bold text-sky-400 text-[11px]">${s.score} pts</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            resultBox.innerHTML = html;
+            resultBox.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

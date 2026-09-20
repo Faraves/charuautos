@@ -282,14 +282,22 @@ Como evolución natural del proyecto y para maximizar el alcance pedagógico ent
 
 ---
 
-## 8. Hoja de Ruta y Próximos Pasos (Roadmap)
+## 8. Hoja de Ruta y Plataforma SaaS Cloud-Native (`app/docs/`)
 
-1. **Configuración de Pasarela de Pagos:** Carga del PDF comercial V1 y/o acceso PWA V2 en Hotmart o Gumroad utilizando el copy oficial.
-2. **Lanzamiento de Redes Sociales:** Publicación de los primeros carruseles y guiones de video promocionando `@charuautopics`.
-3. **Desarrollo del Comparador Interactivo de Fichas Técnicas PDF:**
-   - Aplicación web para procesar fichas técnicas oficiales (Haval, Poer, Jetour, Chery, Toyota, etc.).
-   - Extracción de parámetros clave: potencia, torque, transmisión y asistencias de seguridad (ADAS).
-   - Motor de recomendación inteligente para compradores según presupuesto y uso previsto.
+El ecosistema evoluciona desde la base editorial hacia una **Plataforma SaaS Cloud-Native Comercial** de gran escala, detallada exhaustivamente en el directorio [`app/docs/`](app/docs/):
+1. **Pilar 1 — Matchmaker & Comparador RAG:** Asesor conversacional guiado e ingesta de fichas técnicas en PDF mediante embeddings vectoriales sin alucinaciones.
+2. **Pilar 2 — Diagnóstico OBD2 & Escudo Anti-Estafas:** Catálogo SAE J2012 / ISO con semáforo de severidad y causas 80/20.
+3. **Pilar 3 — Cuaderno de Mantenimiento & Dashboard Cloud:** Sincronización en la nube, métricas de $/km bimonetario, predicción de desgaste y pasaporte criptográfico SHA-256.
+4. **Modelo de Negocio SaaS & Marketplace:** Suscripción recurrente CharuPro, afiliados de repuestos, comisiones de talleres verificados y leads para concesionarios.
+5. **Suite Documental Especializada:**
+   - [`00_INDICE_Y_ARQUITECTURA_DOCUMENTAL.md`](app/docs/00_INDICE_Y_ARQUITECTURA_DOCUMENTAL.md)
+   - [`01_RESUMEN_EJECUTIVO_Y_MODELO_DE_NEGOCIO.md`](app/docs/01_RESUMEN_EJECUTIVO_Y_MODELO_DE_NEGOCIO.md)
+   - [`02_GESTION_Y_GOBERNANZA_DE_DATOS.md`](app/docs/02_GESTION_Y_GOBERNANZA_DE_DATOS.md)
+   - [`03_ESPECIFICACION_FUNCIONAL_DE_LOS_3_PILARES.md`](app/docs/03_ESPECIFICACION_FUNCIONAL_DE_LOS_3_PILARES.md)
+   - [`04_ARQUITECTURA_TECNICA_Y_STACK_DE_SOFTWARE.md`](app/docs/04_ARQUITECTURA_TECNICA_Y_STACK_DE_SOFTWARE.md)
+   - [`05_CIBERSEGURIDAD_IMPLEMENTACION_Y_MANTENIMIENTO.md`](app/docs/05_CIBERSEGURIDAD_IMPLEMENTACION_Y_MANTENIMIENTO.md)
+   - [`06_DISENO_UI_UX_Y_EXPERIENCIA_DEL_USUARIO.md`](app/docs/06_DISENO_UI_UX_Y_EXPERIENCIA_DEL_USUARIO.md)
+   - [`07_PLAN_DE_EJECUCION_ROADMAP_Y_GTM.md`](app/docs/07_PLAN_DE_EJECUCION_ROADMAP_Y_GTM.md)
 
 ---
 

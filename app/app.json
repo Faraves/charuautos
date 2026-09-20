@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "CharuAutos",
+    "slug": "charuautos-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/icon.png",
+    "scheme": "charuautos",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./public/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#070a0f"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.charuautos.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CharuAutos requiere acceso a la cámara para escanear códigos QR de verificación y fotografiar brochures de fichas técnicas.",
+        "UIStatusBarStyle": "UIStatusBarStyleLightContent"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./public/adaptive-icon.png",
+        "backgroundColor": "#070a0f"
+      },
+      "package": "com.charuautos.app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ]
+    },
+    "web": {
+      "favicon": "./public/favicon.png",
+      "bundler": "metro",
+      "output": "static",
+      "pwa": {
+        "name": "CharuAutos — Copiloto Digital Automotriz",
+        "shortName": "CharuAutos",
+        "description": "El Copiloto Digital del Conductor Inteligente en Venezuela",
+        "themeColor": "#070a0f",
+        "backgroundColor": "#070a0f",
+        "display": "standalone",
+        "orientation": "portrait",
+        "startUrl": "/",
+        "scope": "/"
+      }
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "charuautos-app-venezuela-mvp"
+      }
+    }
+  }
+}

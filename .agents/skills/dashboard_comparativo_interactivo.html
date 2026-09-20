@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador Interactivo: Dongfeng Rich 6 vs Foton Tunland E</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        df: {
+                            DEFAULT: '#2563eb',
+                            dark: '#1d4ed8',
+                            light: '#60a5fa',
+                            bg: 'rgba(37, 99, 235, 0.1)'
+                        },
+                        ft: {
+                            DEFAULT: '#10b981',
+                            dark: '#047857',
+                            light: '#34d399',
+                            bg: 'rgba(16, 185, 129, 0.1)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 custom-scrollbar">
+
+    <header class="sticky top-0 z-50 glass-card border-b border-gray-800 bg-gray-900/90 px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-blue-600/20 text-blue-400 rounded-xl border border-blue-500/30">
+                    <i class="fa-solid fa-truck-pickup text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                        Comparador Interactivo de Pick-ups
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/50">4x4 Gasolina</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">Dongfeng Rich 6 vs. Foton Tunland E (Fichas Técnicas & Análisis de Mercado)</p>
+                </div>
+            </div>
+
+            <!-- Quick Navigation Pills -->
+            <nav class="flex items-center gap-1 bg-gray-800/80 p-1 rounded-xl border border-gray-700/60 text-xs font-medium">
+                <button onclick="switchSection('specs')" id="nav-specs" class="px-3 py-1.5 rounded-lg transition-all bg-blue-600 text-white font-semibold">
+                    <i class="fa-solid fa-list-check mr-1.5"></i> Ficha Comparativa
+                </button>
+                <button onclick="switchSection('charts')" id="nav-charts" class="px-3 py-1.5 rounded-lg transition-all text-gray-400 hover:text-white hover:bg-gray-700/50">
+                    <i class="fa-solid fa-chart-radar mr-1.5"></i> Gráficos
+                </button>
+                <button onclick="switchSection('advisor')" id="nav-advisor" class="px-3 py-1.5 rounded-lg transition-all text-gray-400 hover:text-white hover:bg-gray-700/50">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> ¿Cuál elegir?
+                </button>
+                <button onclick="switchSection('insights')" id="nav-insights" class="px-3 py-1.5 rounded-lg transition-all text-gray-400 hover:text-white hover:bg-gray-700/50">
+                    <i class="fa-solid fa-globe mr-1.5"></i> Red & Pros/Contras
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 mt-6 space-y-8">
+
+        <!-- Hero Comparison Summary Header -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Dongfeng Rich 6 Summary Card -->
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-blue-500 relative overflow-hidden group hover:border-blue-400 transition-all">
+                <div class="absolute -right-6 -bottom-6 text-blue-500/5 text-9xl font-black pointer-events-none select-none">DF</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">Dongfeng Motor</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-1">Rich 6 4x4</h2>
+                        <p class="text-xs text-gray-400 mt-0.5"><i class="fa-solid fa-layer-group text-blue-400 mr-1"></i> Base Nissan Navara / Frontier NP300</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-blue-400">156 <span class="text-xs font-normal text-gray-400">HP</span></span>
+                        <p class="text-xs text-gray-400">235 Nm Torque</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 py-3 border-y border-gray-800 text-center my-4">
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Motor</span>
+                        <span class="text-xs font-bold text-gray-200">2.4L (16V)</span>
+                    </div>
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Emisión</span>
+                        <span class="text-xs font-bold text-blue-400">Euro V</span>
+                    </div>
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Garantía</span>
+                        <span class="text-xs font-bold text-gray-200">3 años / 60k km</span>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5 text-xs text-gray-300">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Control Estabilidad (ESP) + Tracción (TCS)</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Encendido Keyless / Botón Start-Stop</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Pantalla Táctil 9" + Cámara Retroceso</div>
+                </div>
+            </div>
+
+            <!-- Foton Tunland E Summary Card -->
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-emerald-500 relative overflow-hidden group hover:border-emerald-400 transition-all">
+                <div class="absolute -right-6 -bottom-6 text-emerald-500/5 text-9xl font-black pointer-events-none select-none">FT</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Foton Motors</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-1">Tunland E 4x4</h2>
+                        <p class="text-xs text-gray-400 mt-0.5"><i class="fa-solid fa-gears text-emerald-400 mr-1"></i> Motor Mitsubishi 4G69 Legendario</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-emerald-400">135 <span class="text-xs font-normal text-gray-400">HP</span></span>
+                        <p class="text-xs text-gray-400">200 Nm Torque</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 py-3 border-y border-gray-800 text-center my-4">
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Motor</span>
+                        <span class="text-xs font-bold text-gray-200">2.4L Mitsubishi</span>
+                    </div>
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Emisión</span>
+                        <span class="text-xs font-bold text-emerald-400">Euro II</span>
+                    </div>
+                    <div class="bg-gray-900/60 p-2 rounded-lg">
+                        <span class="block text-xs text-gray-400">Garantía</span>
+                        <span class="text-xs font-bold text-emerald-400">3 años / 100k km</span>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5 text-xs text-gray-300">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Alta tolerancia a combustible con variaciones (Euro II)</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Pantalla táctil multimedia de 10"</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Tanque de combustible más grande (76 L)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: INTERACTIVE SPECIFICATION TABLE -->
+        <section id="section-specs" class="space-y-4">
+            <!-- Controls Bar -->
+            <div class="glass-card p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4">
+                <!-- Search input -->
+                <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                    <input type="text" id="tableSearch" onkeyup="filterSpecs()" placeholder="Buscar especificación (ej. torque, ABS, tanque)..." 
+                        class="w-full pl-9 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+
+                <!-- Category Filters & Toggles -->
+                <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                    <button onclick="filterCategory('all')" class="cat-btn active px-3 py-1.5 text-xs rounded-lg border border-gray-700 bg-blue-600 text-white font-medium">Todas</button>
+                    <button onclick="filterCategory('motor')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700">Motor</button>
+                    <button onclick="filterCategory('dimensiones')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700">Dimensiones</button>
+                    <button onclick="filterCategory('seguridad')" class="cat-btn px-3 py-1.5 text-xs rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700">Seguridad & Confort</button>
+                    
+                    <button onclick="toggleDiffOnly()" id="diffToggle" class="px-3 py-1.5 text-xs rounded-lg border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 font-medium ml-auto sm:ml-2">
+                        <i class="fa-solid fa-code-compare mr-1"></i> Ver diferencias
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-gray-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-gray-300" id="specTable">
+                        <thead class="bg-gray-900/90 text-gray-400 uppercase tracking-wider font-semibold border-b border-gray-800">
+                            <tr>
+                                <th class="p-4 w-1/3">Especificación / Característica</th>
+                                <th class="p-4 w-1/3 text-blue-400 border-l border-gray-800 bg-blue-950/20">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-shield-halved"></i> Dongfeng Rich 6 4x4
+                                    </div>
+                                </th>
+                                <th class="p-4 w-1/3 text-emerald-400 border-l border-gray-800 bg-emerald-950/20">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-truck-monster"></i> Foton Tunland E 4x4
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800/60 font-medium" id="specTableBody">
+                            <!-- Category: Motor -->
+                            <tr class="cat-row bg-gray-900/40 font-bold text-gray-400 uppercase tracking-wider text-[10px]" data-cat="motor">
+                                <td colspan="3" class="px-4 py-2 bg-gray-900/80 text-blue-300"><i class="fa-solid fa-engine mr-1"></i> Motorización & Transmisión</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Cilindrada / Motor</td>
+                                <td class="p-4 border-l border-gray-800 text-white">2,438 cc (2.4L) - 4 Cil / 16V</td>
+                                <td class="p-4 border-l border-gray-800 text-white">2,378 cc (2.4L) - Mitsubishi 4G69</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Potencia Máxima</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">156 HP @ 4,600 - 5,000 RPM <span class="ml-1 text-[10px] bg-blue-500/20 px-1.5 py-0.5 rounded text-blue-300">+21 HP</span></td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">135 HP @ 5,250 RPM</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Torque Máximo</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">235 Nm @ 2,600 - 3,600 RPM <span class="ml-1 text-[10px] bg-blue-500/20 px-1.5 py-0.5 rounded text-blue-300">+35 Nm</span></td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">200 Nm @ 2,500 - 3,500 RPM</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Estándar de Emisiones</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">Euro V (Inyección Electrónica Multipunto)</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">Euro II <span class="text-[10px] bg-emerald-500/20 px-1.5 py-0.5 rounded text-emerald-300">Mayor tolerancia a gasolina local</span></td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="false">
+                                <td class="p-4 font-semibold text-gray-200">Transmisión</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">Manual 5 velocidades + Reversa</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">Manual 5 velocidades (Modelo 2M001)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="motor" data-diff="false">
+                                <td class="p-4 font-semibold text-gray-200">Sistema de Tracción</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">4WD (4x4 con selector electrónico)</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">4WD (4x4 con selector)</td>
+                            </tr>
+
+                            <!-- Category: Dimensiones -->
+                            <tr class="cat-row bg-gray-900/40 font-bold text-gray-400 uppercase tracking-wider text-[10px]" data-cat="dimensiones">
+                                <td colspan="3" class="px-4 py-2 bg-gray-900/80 text-blue-300"><i class="fa-solid fa-ruler-combined mr-1"></i> Dimensiones, Pesos & Capacidades</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Largo Total</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">5,290 mm</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">5,310 mm (+20 mm)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Ancho Total</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">1,850 mm</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">1,860 mm (+10 mm)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Alto Total</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">1,810 mm</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">1,860 mm (+50 mm)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Distancia entre Ejes</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">3,150 mm</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-400">No especificado en ficha</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Altura Libre al Suelo</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">207 mm</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">~ 200 mm</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Capacidad Tanque Combustible</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">73 Litros (19.28 gal)</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">76 Litros (+3 L)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Capacidad de Carga Utilitaria</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">800 kg - 1,000 kg</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">800 kg (declarada)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="dimensiones" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Cauchos / Neumáticos</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">255 / 70 R16 (Aluminio)</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">245 / 70 R16</td>
+                            </tr>
+
+                            <!-- Category: Seguridad y Confort -->
+                            <tr class="cat-row bg-gray-900/40 font-bold text-gray-400 uppercase tracking-wider text-[10px]" data-cat="seguridad">
+                                <td colspan="3" class="px-4 py-2 bg-gray-900/80 text-blue-300"><i class="fa-solid fa-shield-cat mr-1"></i> Seguridad & Equipamiento de Cabina</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="false">
+                                <td class="p-4 font-semibold text-gray-200">Airbags Frontales</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">2 (Conductor y Pasajero)</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">2 (Conductor y Pasajero)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Controles Electrónicos Chasis</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">ABS + EBD + ESP (Estabilidad) + TCS (Tracción) + HHC (Pendientes)</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">ABS + EBD + HAC (Asistencia en pendiente)</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Monitoreo de Presión Cauchos</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">Sí (TPMS integrado)</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-400">No especificado</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Encendido / Llave</td>
+                                <td class="p-4 border-l border-gray-800 text-blue-400 font-bold bg-blue-500/5">Keyless (Apertura sin llave) + Botón Start/Stop</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">Llave convencional + Cierre centralizado</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Pantalla Infoentretenimiento</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">9" Táctil HD LCD + Bluetooth + USB</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">10" Táctil Pantalla LCD / MP5 + USB</td>
+                            </tr>
+                            <tr class="spec-row hover:bg-gray-800/40 transition-colors" data-cat="seguridad" data-diff="true">
+                                <td class="p-4 font-semibold text-gray-200">Garantía de Fábrica</td>
+                                <td class="p-4 border-l border-gray-800 text-gray-300">3 Años o 60,000 KM</td>
+                                <td class="p-4 border-l border-gray-800 text-emerald-400 font-bold bg-emerald-500/5">3 Años o 100,000 KM (+40k km)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CHARTS DASHBOARD -->
+        <section id="section-charts" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Bar Chart Performance Comparison -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-blue-400"></i> Comparativa de Rendimiento Mecánico
+                    </h3>
+                    <div class="h-64 relative">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Radar Chart Features Comparison -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-emerald-400"></i> Balance General de Prestaciones (Escala 1-100)
+                    </h3>
+                    <div class="h-64 relative">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: DECISION ADVISOR QUIZ -->
+        <section id="section-advisor" class="hidden space-y-6">
+            <div class="glass-card p-6 md:p-8 rounded-2xl border border-blue-500/30 max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Asistente Inteligente</span>
+                    <h2 class="text-2xl font-extrabold text-white mt-2">¿Cuál Pick-up se adapta mejor a ti?</h2>
+                    <p class="text-xs text-gray-400 mt-1">Responde a estas 4 preguntas y calcularemos cuál es tu mejor opción según tus necesidades reales.</p>
+                </div>
+
+                <form id="advisorForm" class="space-y-6" onsubmit="event.preventDefault(); calculateRecommendation();">
+                    <!-- Q1: Fuel Quality -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-200 flex items-center gap-2">
+                            <span class="w-5 h-5 bg-blue-600 rounded-full text-white text-[10px] flex items-center justify-center">1</span>
+                            ¿Cómo es la calidad de la gasolina en tus rutas habituales?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-7">
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_fuel" value="bad" class="mt-0.5 text-blue-600" checked>
+                                <div>
+                                    <span class="font-bold text-white block">Incierta / Con variaciones</span>
+                                    <span class="text-[11px] text-gray-400">Viajo constantemente a zonas del interior con combustible de dudoso octanaje.</span>
+                                </div>
+                            </label>
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_fuel" value="good" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-white block">Buena / Ciudades principales</span>
+                                    <span class="text-[11px] text-gray-400">Uso estaciones confiables y realizo mantenimientos al día.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2: Power vs Utility -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-200 flex items-center gap-2">
+                            <span class="w-5 h-5 bg-blue-600 rounded-full text-white text-[10px] flex items-center justify-center">2</span>
+                            ¿Qué valoras más al conducir?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-7">
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_priority" value="power" class="mt-0.5 text-blue-600" checked>
+                                <div>
+                                    <span class="font-bold text-white block">Potencia y Tecnología</span>
+                                    <span class="text-[11px] text-gray-400">Prefiero mejor aceleración (156 HP), botón de encendido y control de estabilidad ESP.</span>
+                                </div>
+                            </label>
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_priority" value="maintenance" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-white block">Simplicidad Mecánica y Garantía</span>
+                                    <span class="text-[11px] text-gray-400">Prefiero un motor muy conocido (Mitsubishi) y garantía extendida de 100k km.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3: Nissan Parts compatibility -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-200 flex items-center gap-2">
+                            <span class="w-5 h-5 bg-blue-600 rounded-full text-white text-[10px] flex items-center justify-center">3</span>
+                            ¿Te interesa la compatibilidad de repuestos de carrocería/chasis con Nissan?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-7">
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_nissan" value="yes" class="mt-0.5 text-blue-600" checked>
+                                <div>
+                                    <span class="font-bold text-white block">Sí, es una gran ventaja</span>
+                                    <span class="text-[11px] text-gray-400">Quiero la seguridad de adaptar accesorios o piezas de la Nissan Frontier NP300.</span>
+                                </div>
+                            </label>
+                            <label class="p-3 bg-gray-900 border border-gray-800 rounded-xl cursor-pointer hover:border-blue-500 flex items-start gap-2 text-xs">
+                                <input type="radio" name="q_nissan" value="no" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-white block">Indiferente</span>
+                                    <span class="text-[11px] text-gray-400">Confío en el concesionario y repuestos genéricos.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold text-sm rounded-xl hover:opacity-90 transition-all shadow-lg">
+                        <i class="fa-solid fa-calculator mr-2"></i> Calcular Recomendación
+                    </button>
+                </form>
+
+                <!-- Recommendation Result Modal/Box -->
+                <div id="quizResult" class="hidden mt-6 p-6 rounded-2xl border transition-all animate-fadeIn">
+                    <h3 id="resultTitle" class="text-xl font-extrabold text-white mb-2"></h3>
+                    <p id="resultText" class="text-xs text-gray-300 leading-relaxed mb-4"></p>
+                    <div id="resultBadges" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: WEB INSIGHTS & PROS/CONS -->
+        <section id="section-insights" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dongfeng Rich 6 Insights -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 border-l-4 border-l-blue-500">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-blue-500/20 text-blue-400 rounded-lg">
+                            <i class="fa-solid fa-car-side text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">Dongfeng Rich 6</h3>
+                            <span class="text-[10px] text-gray-400">Hallazgos en la Red y Pruebas de Campo</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
+                            <h4 class="font-bold text-blue-400 mb-1"><i class="fa-solid fa-thumbs-up mr-1"></i> Ventajas Destacadas</h4>
+                            <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                                <li><strong>Plataforma Nissan:</strong> Comparte el 80% del chasis y la suspensión con la Nissan NP300 / Frontier, asegurando gran durabilidad.</li>
+                                <li><strong>Seguridad Completa:</strong> Cuenta con ESP (Estabilidad) e inspección de presión de cauchos (TPMS), clave para viajar seguro en carretera.</li>
+                                <li><strong>Respuesta de Manejo:</strong> Sus 156 HP y 235 Nm se sienten significativamente más ágiles en subidas e incorporaciones.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
+                            <h4 class="font-bold text-amber-400 mb-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> Puntos a Considerar</h4>
+                            <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                                <li><strong>Sensibilidad a Gasolina:</strong> La norma Euro V exige filtros limpios y combustible de buena calidad para evitar alertas en el tablero.</li>
+                                <li><strong>Garantía Menor:</strong> Cobertura de 60.000 km frente a los 100.000 km de Foton.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foton Tunland E Insights -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg">
+                            <i class="fa-solid fa-wrench text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">Foton Tunland E</h3>
+                            <span class="text-[10px] text-gray-400">Hallazgos en la Red y Pruebas de Campo</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
+                            <h4 class="font-bold text-emerald-400 mb-1"><i class="fa-solid fa-thumbs-up mr-1"></i> Ventajas Destacadas</h4>
+                            <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                                <li><strong>Motor Mitsubishi 4G69:</strong> Mecánica indestructible y super probada en Latinoamérica. Repuestos ultra económicos en cualquier venta de repuestos.</li>
+                                <li><strong>Resistencia a la Gasolina:</strong> Al ser Euro II, tolera combustibles con variaciones de calidad o bajo octanaje sin entrar en modo de fallo.</li>
+                                <li><strong>Mayor Garantía:</strong> 3 años o 100.000 km para mayor tranquilidad en flotillas comerciales.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
+                            <h4 class="font-bold text-amber-400 mb-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> Puntos a Considerar</h4>
+                            <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                                <li><strong>Menor Potencia Relativa:</strong> Sus 135 HP y 200 Nm se sienten algo más lentos en carretera pesada comparado con la Rich 6.</li>
+                                <li><strong>Equipamiento de Seguridad Básico:</strong> No cuenta con Control Electrónico de Estabilidad (ESP) ni TPMS.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Tab Navigation Function
+        function switchSection(sectionId) {
+            // Hide all sections
+            ['specs', 'charts', 'advisor', 'insights'].forEach(s => {
+                document.getElementById(`section-${s}`).classList.add('hidden');
+                const btn = document.getElementById(`nav-${s}`);
+                btn.className = "px-3 py-1.5 rounded-lg transition-all text-gray-400 hover:text-white hover:bg-gray-700/50";
+            });
+
+            // Show selected section
+            document.getElementById(`section-${sectionId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`nav-${sectionId}`);
+            activeBtn.className = "px-3 py-1.5 rounded-lg transition-all bg-blue-600 text-white font-semibold";
+
+            // Render charts if switching to chart section
+            if (sectionId === 'charts' && !window.chartsRendered) {
+                renderCharts();
+                window.chartsRendered = true;
+            }
+        }
+
+        // Filter Table by Search Query
+        function filterSpecs() {
+            const query = document.getElementById('tableSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('#specTableBody .spec-row');
+            const catRows = document.querySelectorAll('#specTableBody .cat-row');
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
+
+        // Filter Table by Category Buttons
+        function filterCategory(cat) {
+            // Update active button state
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-800', 'text-gray-300');
+            });
+            event.target.classList.remove('bg-gray-800', 'text-gray-300');
+            event.target.classList.add('bg-blue-600', 'text-white');
+
+            const specRows = document.querySelectorAll('#specTableBody .spec-row');
+            const catRows = document.querySelectorAll('#specTableBody .cat-row');
+
+            if (cat === 'all') {
+                specRows.forEach(r => r.style.display = '');
+                catRows.forEach(r => r.style.display = '');
+            } else {
+                specRows.forEach(r => {
+                    r.style.display = r.getAttribute('data-cat') === cat ? '' : 'none';
+                });
+                catRows.forEach(r => {
+                    r.style.display = r.getAttribute('data-cat') === cat ? '' : 'none';
+                });
+            }
+        }
+
+        // Toggle Only Differences
+        let showDiffOnly = false;
+        function toggleDiffOnly() {
+            showDiffOnly = !showDiffOnly;
+            const btn = document.getElementById('diffToggle');
+            const rows = document.querySelectorAll('#specTableBody .spec-row');
+
+            if (showDiffOnly) {
+                btn.classList.add('bg-amber-500', 'text-black', 'font-bold');
+                rows.forEach(r => {
+                    if (r.getAttribute('data-diff') !== 'true') {
+                        r.style.display = 'none';
+                    }
+                });
+            } else {
+                btn.classList.remove('bg-amber-500', 'text-black', 'font-bold');
+                rows.forEach(r => r.style.display = '');
+            }
+        }
+
+        // Render Chart.js Visuals
+        function renderCharts() {
+            // Performance Bar Chart
+            const ctx1 = document.getElementById('performanceChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Potencia (HP)', 'Torque (Nm)', 'Tanque (Liters)'],
+                    datasets: [
+                        {
+                            label: 'Dongfeng Rich 6',
+                            data: [156, 235, 73],
+                            backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                            borderColor: '#2563eb',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Foton Tunland E',
+                            data: [135, 200, 76],
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: '#10b981',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#9ca3af', font: { size: 11 } } }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#6b7280' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { ticks: { color: '#6b7280' }, grid: { display: false } }
+                    }
+                }
+            });
+
+            // Radar Chart Balance
+            const ctx2 = document.getElementById('radarChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'radar',
+                data: {
+                    labels: ['Potencia Motor', 'Seguridad (ESP/TPMS)', 'Facilidad Repuestos', 'Tolerancia Gasolina', 'Garantía'],
+                    datasets: [
+                        {
+                            label: 'Dongfeng Rich 6',
+                            data: [90, 95, 85, 60, 65],
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: '#2563eb',
+                            pointBackgroundColor: '#2563eb'
+                        },
+                        {
+                            label: 'Foton Tunland E',
+                            data: [70, 60, 95, 95, 95],
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            borderColor: '#10b981',
+                            pointBackgroundColor: '#10b981'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#9ca3af', font: { size: 11 } } }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255,255,255,0.1)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            pointLabels: { color: '#9ca3af', font: { size: 10 } },
+                            ticks: { display: false, backdropColor: 'transparent' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Advisor Recommendation Logic
+        function calculateRecommendation() {
+            const fuel = document.querySelector('input[name="q_fuel"]:checked').value;
+            const priority = document.querySelector('input[name="q_priority"]:checked').value;
+            const nissan = document.querySelector('input[name="q_nissan"]:checked').value;
+
+            let dfScore = 0;
+            let ftScore = 0;
+
+            if (fuel === 'bad') ftScore += 3;
+            else dfScore += 2;
+
+            if (priority === 'power') dfScore += 3;
+            else ftScore += 3;
+
+            if (nissan === 'yes') dfScore += 2;
+            else ftScore += 1;
+
+            const resultBox = document.getElementById('quizResult');
+            const title = document.getElementById('resultTitle');
+            const text = document.getElementById('resultText');
+            const badges = document.getElementById('resultBadges');
+
+            resultBox.classList.remove('hidden');
+
+            if (dfScore > ftScore) {
+                resultBox.className = "mt-6 p-6 rounded-2xl border bg-blue-950/40 border-blue-500/50 text-left animate-fadeIn";
+                title.innerHTML = "<i class='fa-solid fa-award text-blue-400 mr-2'></i> Tu opción ideal es la Dongfeng Rich 6 4x4";
+                text.innerText = "Basado en tus respuestas, buscas un vehículo con mayor respuesta de aceleración (156 HP), superior equipamiento de seguridad activa (Control de Estabilidad ESP, TPMS) y aprecias la compatibilidad directa con la plataforma de la Nissan Frontier NP300.";
+                badges.innerHTML = `
+                    <span class="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-1 rounded">156 HP Potencia</span>
+                    <span class="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-1 rounded">Control Estabilidad ESP</span>
+                    <span class="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-1 rounded">Chasis Nissan Navara</span>
+                `;
+            } else {
+                resultBox.className = "mt-6 p-6 rounded-2xl border bg-emerald-950/40 border-emerald-500/50 text-left animate-fadeIn";
+                title.innerHTML = "<i class='fa-solid fa-award text-emerald-400 mr-2'></i> Tu opción ideal es la Foton Tunland E 4x4";
+                text.innerText = "Tus prioridades apuntan hacia un vehículo utilitario de alta fiabilidad en combustible (Euro II), mecánica Mitsubishi 4G69 sumamente fácil de reparar en cualquier taller, mayor garantía de fábrica (100.000 km) y bajo costo operativo.";
+                badges.innerHTML = `
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-1 rounded">Motor Mitsubishi 4G69</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-1 rounded">Tolerancia Combustible Euro II</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-1 rounded">100.000 KM Garantía</span>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

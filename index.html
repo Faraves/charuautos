@@ -2,102 +2,609 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CharuAutos — Las Aventuras de Charu (Cómic PWA)</title>
-  <link rel="canonical" href="https://faraves.github.io/charuautos/dist_pwa_historieta/">
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="dist_pwa_historieta/assets/favicon-32x32.png">
-  <meta http-equiv="refresh" content="0; url=dist_pwa_historieta/?v=17">
-  <script>
-    // Redirección inmediata a la Historieta Ilustrada (Cómic PWA) por defecto
-    (function() {
-      var s = window.location.search.toLowerCase();
-      if (s.indexOf('v2') !== -1 || s.indexOf('manual') !== -1 || s.indexOf('ebook') !== -1) {
-        var query = window.location.search ? window.location.search + '&v=10' : '?v=10';
-        window.location.replace('dist_pwa_v2/' + query + window.location.hash);
-      } else {
-        window.location.replace('dist_pwa_historieta/?v=17' + window.location.hash);
-      }
-    })();
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CharuAutos — Ecosistema Digital Automotriz (Venezuela & LatAm)</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-dark: #0b0f17;
+      --bg-carbon: #101622;
+      --bg-card: #131926;
+      --bg-card-alt: #182030;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --border-medium: rgba(255, 255, 255, 0.14);
+      --border-accent: rgba(59, 130, 246, 0.45);
+
+      --accent: #3b82f6;          /* Cobalt Precision Blue */
+      --accent-hover: #2563eb;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --accent-dim: rgba(59, 130, 246, 0.12);
+
+      --cyan: #38bdf8;            /* Precision Ice Blue */
+      --cyan-dim: rgba(56, 189, 248, 0.10);
+
+      --amber: #f59e0b;           /* Amber Gold */
+      --amber-dim: rgba(245, 158, 11, 0.12);
+
+      --green: #10b981;           /* Emerald / Ok */
+      --green-dim: rgba(16, 185, 129, 0.12);
+
+      --text-main: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #8b9bb4;
+
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-elevation: 0 12px 40px rgba(0, 0, 0, 0.65), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background-color: #070a0f;
-      color: #00f2fe;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 100% 100%, rgba(56, 189, 248, 0.03) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text-main);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      text-align: center;
-      padding: 20px;
     }
-    .spinner {
-      width: 44px;
-      height: 44px;
-      border: 3px solid rgba(0, 242, 254, 0.2);
-      border-top-color: #00f2fe;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin: 0 0 8px 0;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-    p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin: 0 0 20px 0;
-      max-width: 480px;
-      line-height: 1.5;
-    }
-    .btn-group {
+
+    /* HEADER HUD */
+    header {
+      background: rgba(11, 15, 23, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 24px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
     }
-    a.btn-direct {
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      text-transform: uppercase;
+    }
+    .brand-logo span { color: var(--accent); }
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      margin-left: 8px;
+    }
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: #050811;
-      background: linear-gradient(135deg, #0088ff, #00f2fe);
-      text-decoration: none;
+      gap: 6px;
+      background: var(--green-dim);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+    }
+
+    /* MAIN CONTAINER */
+    .portal-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      flex: 1;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11.5px;
       font-weight: 700;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-size: 0.92rem;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: var(--font-mono);
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
     }
-    a.btn-comic {
-      background: linear-gradient(135deg, #f59e0b, #ffb703);
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.3);
+    .hero-title {
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
-    a.btn-direct:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+    .hero-title span {
+      background: linear-gradient(135deg, #3b82f6 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    a.btn-comic:hover {
-      box-shadow: 0 0 30px rgba(255, 183, 3, 0.5);
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* PRODUCTS GRID */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+      margin-bottom: 48px;
+    }
+
+    /* PRODUCT CARD */
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-elevation);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    }
+    .product-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+    }
+    .product-card.featured {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, var(--bg-card) 40%);
+    }
+    .product-card.featured::before {
+      background: linear-gradient(90deg, var(--accent) 0%, rgba(56, 189, 248, 0.5) 100%);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .card-top {
+      margin-bottom: 22px;
+    }
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .card-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+    }
+    .badge-type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 4px 9px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+    .badge-saas { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.35); }
+    .badge-ebook { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.35); }
+    .badge-comic { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .badge-classic { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(56, 189, 248, 0.35); }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .feature-item {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .feature-item svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* BUTTONS */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 800;
+      font-family: var(--font-main);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: -0.2px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 18px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--border-medium);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .direct-link-box {
+      margin-top: 10px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+    .direct-link-box span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* STRATEGY INFO BOX */
+    .strategy-card {
+      background: rgba(19, 25, 38, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 20px;
+    }
+    .strategy-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .strategy-text {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      background: rgba(11, 15, 23, 0.95);
     }
   </style>
 </head>
 <body>
-  <div class="spinner"></div>
-  <h2>CharuAutos — Ecosistema Automotriz</h2>
-  <p>Cargando el Manual del Conductor Inteligente. Selecciona la edición que deseas explorar si no redirige automáticamente:</p>
-  <div class="btn-group">
-    <a href="dist_pwa_historieta/?v=17" class="btn-direct btn-comic">🎨 Ver Historieta Ilustrada (Cómic)</a>
-    <a href="dist_pwa_v2/?v=10" class="btn-direct">🚀 Abrir Manual Técnico (Ebook V2)</a>
-  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-wrap">
+      <div class="brand-logo">
+        Charu<span>Autos</span>
+        <span class="brand-tag">AUTOMOTIVE</span>
+      </div>
+    </div>
+    <div>
+      <span class="status-badge">
+        <span class="status-dot"></span>
+        <span>Hub Maestro // GitHub Pages</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="portal-container">
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <span>Showroom & Ecosistema Digital</span>
+      </div>
+      <h1 class="hero-title">
+        El Copiloto Digital del <span>Conductor Inteligente</span>
+      </h1>
+      <p class="hero-subtitle">
+        Selecciona la plataforma o publicación que deseas explorar. Cada producto cuenta con tecnología independiente, soporte offline PWA y arquitectura optimizada para el mercado automotriz.
+      </p>
+    </section>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div class="products-grid">
+
+      <!-- PRODUCTO 1: CHARUAUTOS WEBAPP (SAAS / COMPARADOR) -->
+      <article class="product-card featured">
+        <div class="card-top">
+          <div class="card-header-flex">
+            <div class="card-icon-wrap" style="color:var(--accent);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
+            </div>
+            <span class="badge-type badge-saas">Plataforma SaaS</span>
+          </div>
+
+          <h2 class="card-title">CharuAutos WebApp & Comparador</h2>
+          <p class="card-desc">
+            Suite digital para conductores: Matchmaker de compra según presupuesto y vías de Venezuela, diagnóstico OBD2 anti-estafas, comparador multi-fichas con gráficos Chart.js y Mi Garage con odómetro criptográfico SHA-256.
+          </p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Matchmaker inteligente con precios de mercado VE</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Comparador hasta 5 vehículos con Barras & Radar Chart.js</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Escáner OBD2 con análisis 80/20 y escudo anti-engaños</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Suscripción CharuPro bimonetaria (USD & Pago Móvil)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <a href="app/public/index.html" class="btn-action btn-primary">
+            <span>Abrir Aplicación Web (PWA)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="direct-link-box">
+            <span>URL Directa: /app/public/</span>
+            <a href="app/public/index.html" style="color:var(--cyan); text-decoration:none; font-weight:700;">Acceder</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCTO 2: EBOOK V2 MANUAL TÉCNICO -->
+      <article class="product-card">
+        <div class="card-top">
+          <div class="card-header-flex">
+            <div class="card-icon-wrap" style="color:var(--green);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <span class="badge-type badge-ebook">Manual Técnico V2</span>
+          </div>
+
+          <h2 class="card-title">Manual del Conductor Inteligente</h2>
+          <p class="card-desc">
+            Edición enciclopédica interactiva. Protocolos mecánicos de precisión, tablas de viscosidad de lubricantes, inspección pre-compra 360°, diagnóstico de ruidos y guía de negociación para talleres.
+          </p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Diagramas técnicos interactivos en alta resolución</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Checklist de inspección descargable para talleres</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Modo lectura nocturna y búsqueda por temas</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <a href="ebook/pwa/pwa_v2/index.html" class="btn-action btn-secondary">
+            <span>Abrir Manual Técnico (V2)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="direct-link-box">
+            <span>URL Directa: /ebook/pwa/pwa_v2/</span>
+            <a href="ebook/pwa/pwa_v2/index.html" style="color:var(--cyan); text-decoration:none; font-weight:700;">Acceder</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCTO 3: HISTORIETA ILUSTRADA (CÓMIC) -->
+      <article class="product-card">
+        <div class="card-top">
+          <div class="card-header-flex">
+            <div class="card-icon-wrap" style="color:var(--amber);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <span class="badge-type badge-comic">Historieta Cómic</span>
+          </div>
+
+          <h2 class="card-title">Las Aventuras de Charu (Cómic)</h2>
+          <p class="card-desc">
+            Narrativa gráfica didáctica para toda la familia (adolescentes, jóvenes y adultos). Aprende a cuidar tu carro, detectar fallas y evitar sobrecostos mecánicos a través de viñetas ilustradas llenas de humor.
+          </p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>14 viñetas completas con narrativa visual dinámica</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Explicación sin jerga técnica para conductores nóveles</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Lectura fluida optimizada para teléfonos móviles</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <a href="ebook/pwa/pwa_historieta/index.html" class="btn-action btn-secondary">
+            <span>Ver Historieta Ilustrada</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="direct-link-box">
+            <span>URL Directa: /ebook/pwa/pwa_historieta/</span>
+            <a href="ebook/pwa/pwa_historieta/index.html" style="color:var(--cyan); text-decoration:none; font-weight:700;">Acceder</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCTO 4: EDICIÓN CLÁSICA V1 -->
+      <article class="product-card">
+        <div class="card-top">
+          <div class="card-header-flex">
+            <div class="card-icon-wrap" style="color:var(--cyan);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <span class="badge-type badge-classic">Edición Clásica V1</span>
+          </div>
+
+          <h2 class="card-title">Manual Original (Edición V1)</h2>
+          <p class="card-desc">
+            La versión fundacional del Manual del Conductor Inteligente. Contenido directo, ligero y estructurado para una consulta rápida de emergencias viales y mantenimiento básico.
+          </p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Guía rápida de mantenimiento y fluidos</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Formato ultraligero de carga instantánea</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <a href="ebook/pwa/pwa_v1/index.html" class="btn-action btn-secondary">
+            <span>Explorar Edición Clásica (V1)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="direct-link-box">
+            <span>URL Directa: /ebook/pwa/pwa_v1/</span>
+            <a href="ebook/pwa/pwa_v1/index.html" style="color:var(--cyan); text-decoration:none; font-weight:700;">Acceder</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ESTRATEGIA DE ARQUITECTURA INDEPENDIENTE -->
+    <div class="strategy-card">
+      <div class="strategy-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>Arquitectura de Enlaces Independientes en GitHub Pages</span>
+      </div>
+      <p class="strategy-text">
+        Aunque todos los activos residen en el mismo repositorio, <strong>cada producto cuenta con una URL directa e independiente</strong>. Cuando desees comercializar o compartir un producto en particular (por ejemplo, ofrecer únicamente la WebApp a conductores o la historieta a jóvenes), puedes enviar el enlace directo de su subcarpeta sin que el usuario pase por esta portada.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>CharuAutos © 2026 — Inteligencia Automotriz, Tecnología SaaS y Cultura Mecánica</div>
+    <div style="margin-top:4px; font-size:10px; color:#64748b;">Repositorio GitHub: Faraves/charuautos • Desplegado vía GitHub Pages</div>
+  </footer>
+
 </body>
 </html>

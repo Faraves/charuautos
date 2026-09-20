@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificado CharuPro - CHARUPRO-AB123CD-20260320</title>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 12mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #070a0f;
+      color: #f8fafc;
+      padding: 24px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .cert-card {
+      max-width: 820px;
+      margin: 0 auto;
+      border: 2px solid rgba(0, 242, 254, 0.4);
+      border-radius: 16px;
+      padding: 28px;
+      background: linear-gradient(180deg, #0c121d 0%, #06090e 100%);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid rgba(0, 242, 254, 0.25);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #00f2fe;
+      letter-spacing: -0.5px;
+    }
+    .brand-title span { color: #ffb703; }
+    .brand-sub {
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
+    .cert-badge {
+      text-align: right;
+    }
+    .cert-id-tag {
+      background: rgba(255, 183, 3, 0.15);
+      border: 1px solid #ffb703;
+      color: #ffb703;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .status-banner {
+      background: rgba(56, 239, 125, 0.12);
+      border: 1px solid #38ef7d;
+      color: #38ef7d;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: #38ef7d;
+      border-radius: 50%;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .box {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .veh-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .veh-sub {
+      color: #ffb703;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .m-lbl { font-size: 10px; color: #94a3b8; text-transform: uppercase; }
+    .m-val { font-size: 15px; font-weight: 800; color: #00f2fe; margin-top: 2px; }
+    .score-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56, 239, 125, 0.08);
+      border: 2px solid #38ef7d;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+    .score-num { font-size: 40px; font-weight: 900; color: #38ef7d; line-height: 1; }
+    .score-lbl { font-size: 11px; font-weight: 800; color: #38ef7d; margin-top: 6px; letter-spacing: 1px; }
+    .table-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 11px;
+    }
+    th {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .fin-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .fin-card {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 16px;
+      margin-top: 10px;
+    }
+    .qr-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px dashed #00f2fe;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .qr-text { font-size: 10px; color: #cbd5e1; line-height: 1.4; }
+    .qr-url { color: #00f2fe; font-weight: 700; word-break: break-all; }
+    .legal-box { text-align: right; font-size: 9px; color: #64748b; line-height: 1.4; }
+
+    @media print {
+      body { background-color: #fff !important; color: #111827 !important; padding: 0 !important; }
+      .cert-card { border: 2px solid #0284c7 !important; background: #fff !important; color: #111827 !important; box-shadow: none !important; }
+      .brand-title { color: #0284c7 !important; }
+      .brand-title span { color: #d97706 !important; }
+      .box, .fin-card { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+      .veh-title { color: #111827 !important; }
+      .m-val { color: #0284c7 !important; }
+      th { background: #e2e8f0 !important; color: #334155 !important; }
+      td { color: #1f2937 !important; border-bottom-color: #e5e7eb !important; }
+      .status-banner { background: #ecfdf5 !important; color: #047857 !important; border-color: #059669 !important; }
+      .status-dot { background: #047857 !important; }
+      .qr-badge { border-color: #0284c7 !important; background: #f0f9ff !important; }
+      .qr-text { color: #334155 !important; }
+      .qr-url { color: #0284c7 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cert-card">
+    <div class="header">
+      <div>
+        <div class="brand-title">Charu<span>Autos</span> Pro</div>
+        <div class="brand-sub">Pasaporte Digital Criptográfico de Inspección</div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-id-tag">CHARUPRO-AB123CD-20260320</div>
+        <div style="font-size: 10px; color: #64748b;">Emitido: 19/09/2026 15:05:52</div>
+      </div>
+    </div>
+
+    <div class="status-banner">
+      <div class="status-dot"></div>
+      <span>ODÓMETRO 100% AUDITADO • CADENA SHA-256 ÍNTEGRA (0 INTENTOS DE RETROCESO)</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="box">
+        <div class="veh-title">Toyota Corolla</div>
+        <div class="veh-sub">GLi 1.8L Automático ('Pantallita') • "El Gladiador"</div>
+        <div class="metric-grid">
+          <div>
+            <div class="m-lbl">Placa de Rodaje:</div>
+            <div class="m-val">AB123CD</div>
+          </div>
+          <div>
+            <div class="m-lbl">Odómetro Auditado:</div>
+            <div class="m-val">150,000 km</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-circle">
+        <div class="score-num">92</div>
+        <div class="score-lbl">SALUD TOTAL</div>
+        <div style="font-size: 9px; color: #94a3b8; margin-top: 4px;">Score Preventivo y Físico</div>
+      </div>
+    </div>
+
+    <div class="table-title">🛡️ Bloques de Trazabilidad Criptográfica de Kilometraje</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Bloque</th>
+          <th>Odómetro</th>
+          <th>Fecha Sellado</th>
+          <th>Hash Criptográfico SHA-256</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#0</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">148,500 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-01-10T10:00:00Z</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">2ae943154238d05060b047fd...</td>
+      </tr>
+    
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#1</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">149,200 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-02-15T14:30:00Z</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">038929bfa24c68bb620901b7...</td>
+      </tr>
+    
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#2</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">150,000 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-03-20T18:00:00Z</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">8f0463177d3053541bcd7de3...</td>
+      </tr>
+    
+      </tbody>
+    </table>
+
+    <div class="table-title">📊 Rendimiento Operativo y Financiero (Venezuela)</div>
+    <div class="fin-summary">
+      <div class="fin-card">
+        <div class="m-lbl">Costo por Kilómetro</div>
+        <div class="m-val">$0.040 USD</div>
+        <div style="font-size: 10px; color: #ffb703;">~1.46 Bs./km (BCV)</div>
+      </div>
+      <div class="fin-card">
+        <div class="m-lbl">Consumo Promedio</div>
+        <div class="m-val">12.4 km/L</div>
+        <div style="font-size: 10px; color: #38ef7d;">~597 km por tanque</div>
+      </div>
+      <div class="fin-card">
+        <div class="m-lbl">Inversión en Talleres</div>
+        <div class="m-val">$125.00 USD</div>
+        <div style="font-size: 10px; color: #94a3b8;">3 mantenimientos</div>
+      </div>
+    </div>
+
+    <div class="table-title">⏳ Historial Cronológico de Servicios Técnicos</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Mantenimiento</th>
+          <th>Kilometraje</th>
+          <th>Fecha</th>
+          <th>Taller Mecánico</th>
+          <th style="text-align: right;">Costo USD</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Pastillas de Freno Delanteras Cerámicas</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">145,200 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-01-15</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">Frenos Los Ruices</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$50.00 USD</td>
+      </tr>
+    
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Limpieza de Inyectores & Filtro Gasolina</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">140,000 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2025-11-20</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">AutoServicios Bello Monte</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$30.00 USD</td>
+      </tr>
+    
+      <tr>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Cambio de Aceite 5W-30 Sintético & Filtro</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">135,000 km</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2025-08-10</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">Taller Particular</td>
+        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$45.00 USD</td>
+      </tr>
+    
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div class="qr-badge">
+        <div style="font-size: 24px;">🛡️</div>
+        <div class="qr-text">
+          <strong>Validar Certificado en Línea:</strong><br>
+          <span class="qr-url">https://charuautos.com/verify/CHARUPRO-AB123CD-20260320</span>
+        </div>
+      </div>
+      <div class="legal-box">
+        <strong>Protocolo CharuPro Anti-Estafas</strong><br>
+        Sellado criptográficamente mediante cadena SHA-256.<br>
+        Garantiza la inmutabilidad del kilometraje e historial.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
