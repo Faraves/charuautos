@@ -1,4 +1,4 @@
-const CACHE_NAME = 'charuautos-comic-pwa-v17';
+const CACHE_NAME = 'charuautos-comic-pwa-v18';
 const ASSETS = [
   './',
   './index.html',
@@ -11,7 +11,18 @@ const ASSETS = [
   './assets/comic_panel_01_seguridad_v2.jpg',
   './assets/comic_panel_02_cuerpo_humano_v2.jpg',
   './assets/comic_panel_03_kit_cajuela_v2.jpg',
-  './assets/comic_panel_03b_caucho_repuesto.jpg'
+  './assets/comic_panel_03b_caucho_repuesto.jpg',
+  './assets/comic_panel_04_inspeccion_360.jpg',
+  './assets/comic_panel_05_charco_colores.jpg',
+  './assets/comic_panel_06_codigo_dot.jpg',
+  './assets/comic_panel_07_puente_bateria.jpg',
+  './assets/comic_panel_08_filtro_cabina.jpg',
+  './assets/comic_panel_09_turbo_60segundos.jpg',
+  './assets/comic_panel_10_tablero_obd2.jpg',
+  './assets/comic_panel_11_mapa_kilometraje.jpg',
+  './assets/comic_panel_12_cambio_llanta.jpg',
+  './assets/comic_panel_13_escudo_taller.jpg',
+  './assets/comic_panel_14_conductor_feliz.jpg'
 ];
 
 self.addEventListener('install', (event) => {
