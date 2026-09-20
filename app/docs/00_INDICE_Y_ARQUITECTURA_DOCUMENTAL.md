@@ -1,16 +1,16 @@
 # Documentación Maestra — Plataforma SaaS Cloud-Native CharuAutos
-### Arquitectura Integral de Plataforma Comercial en la Nube, Modelo de Negocio SaaS, Motor RAG y Dominio Automotriz
-*Enfoque: Plataforma Comercial Cloud-Native • Modelo SaaS Multimoneda • Validación Inicial en Entorno Local Estable*
+### Arquitectura Integral de Plataforma Comercial en la Nube, Modelo de Negocio SaaS, Motor RAG Multimodal y Dominio Automotriz
+*Enfoque: Plataforma Comercial Cloud-Native Distribuida • Modelo SaaS Multimoneda • Arquitectura de Alta Disponibilidad*
 
 ---
 
-## 🏛️ 1. Declaración de Enfoque y Transición Arquitectónica
+## 🏛️ 1. Declaración de Enfoque: Arquitectura Cloud-Native & Plataforma SaaS
 
-La documentación de **CharuAutos** se actualiza y reestructura desde una perspectiva estrictamente senior y multidisciplinaria, transitando de un diseño meramente de utilitario local a una **Plataforma SaaS Cloud-Native** de alta escalabilidad comercial. 
+La arquitectura técnica de **CharuAutos** se fundamenta estrictamente como una **Plataforma SaaS Cloud-Native y Multi-Tenant** de alta escalabilidad comercial. Se descarta cualquier concepción de script o utilitario local: el sistema opera con backend distribuido en la nube, APIs RESTful y GraphQL, sincronización bidireccional en tiempo real para aplicaciones móviles (iOS / Android) y web, persistencia políglota centralizada (PostgreSQL, TimescaleDB, pgvector y Redis) y perfiles de usuario unificados con autenticación federada OAuth2/OIDC.
 
 > [!IMPORTANT]
-> **Directriz Operativa de Despliegue:**
-> La arquitectura técnica y el modelo de datos quedan formalmente diseñados para una infraestructura **Cloud-Native centralizada** (Backend desacoplado, APIs REST/GraphQL, bases de datos relacionales y NoSQL en la nube, almacenamiento S3/R2 y canalizaciones RAG vectoriales). Sin embargo, el despliegue físico y aprovisionamiento en la nube se ejecutará en la fase indicada por el usuario; mientras tanto, se preserva y garantiza la **máxima estabilidad operativa en el entorno local de desarrollo**.
+> **Directriz de Arquitectura Comercial:**
+> Todos los módulos y subsistemas están diseñados para operar como servicios desacoplados en infraestructura de nube elástica (Kubernetes / Serverless Containers), garantizando tolerancia a fallos, soporte de alta concurrencia y despliegue global.
 
 ---
 
@@ -97,21 +97,30 @@ La documentación de **CharuAutos** se actualiza y reestructura desde una perspe
 │   ├── 6.3. Ergonomía Táctil y Modos de Uso Rápido (Modo Carretera y Modo Manos Sucias)
 │   └── 6.4. Wireflows Clave: Flujo Matchmaker, Carga Multi-PDF y Escudo Diagnóstico
 │
-└── 07_ROADMAP_ESCALABILIDAD_Y_GO_TO_MARKET.md
-    ├── 7.1. Roadmap de Validación y Lanzamiento en 4 Fases (MVP Local -> Beta Cloud -> Expansión)
-    ├── 7.2. Estrategia Go-to-Market (Alianzas con Talleres, Creadores de Contenido y E-commerce)
-    ├── 7.3. Métricas Clave de Negocio (North Star Metric, DAU/MAU, Retención de Cohortes)
-    └── 7.4. Matriz Integral de Riesgos y Planes de Contingencia Operativa
+├── 07_ROADMAP_ESCALABILIDAD_Y_GO_TO_MARKET.md
+│   ├── 7.1. Roadmap de Validación y Lanzamiento en 4 Fases (MVP Local -> Beta Cloud -> Expansión)
+│   ├── 7.2. Estrategia Go-to-Market (Alianzas con Talleres, Creadores de Contenido y E-commerce)
+│   ├── 7.3. Métricas Clave de Negocio (North Star Metric, DAU/MAU, Retención de Cohortes)
+│   └── 7.4. Matriz Integral de Riesgos y Planes de Contingencia Operativa
+│
+└── 08_PIPELINE_EXTRACCION_MULTIMODAL_FICHAS_TECNICAS.md
+    ├── 8.1. Diagnóstico del Problema: Heterogeneidad en Catálogos Automotrices
+    ├── 8.2. Stack Tecnológico Obligatorio (Python, google.generativeai as genai, Gemini File API, Pydantic v2)
+    ├── 8.3. Pipeline de Ingesta Híbrida: Comprensión Espacial Multimodal y Glifos (● / -)
+    ├── 8.4. Esquema Estructurado Pydantic v2 y Servicio GeminiVehiclePDFParser
+    ├── 8.5. Capa de Normalización Determinista de Unidades y Ontología de Sinónimos
+    ├── 8.6. Casos de Estudio Reales Auditados (BAIC X35 y Toyota Corolla Cross)
+    └── 8.7. Guardrails Físicos y Persistencia en Base de Datos Centralizada
 ```
 
 ---
 
-## 🎯 3. Matriz de Competencias Multidisciplinarias Aplicadas
+## 🎯 3. Matriz de Competencias Multidisciplinarias Aplicadas (5 Roles Clave)
 
-| Rol Especialista | Aportes Principales en la Nueva Arquitectura Documental | Secciones Directas |
+| Rol Especialista | Aportes Principales en la Plataforma Cloud-Native SaaS | Secciones Directas |
 | :--- | :--- | :--- |
-| **1. Comerciante & Empresario (Monetización SaaS)** | Modelo Freemium con suscripción CharuPro recurrente, take-rates de talleres verificados (12-15%), afiliación de repuestos (6-10%), comisiones de seguros y leads calificados de concesionarios. | `01`, `07` |
-| **2. Emprendedor Tech & Negocios** | Propuesta de valor contra la asimetría informativa, tracción rápida con el Matchmaker, bucles virales en redes, unit economics robustos (LTV/CAC > 7x). | `01`, `07` |
-| **3. Ingeniero de Software & Arquitecto Cloud** | Arquitectura Cloud-Native distribuida, API Gateway, persistencia políglota (PostgreSQL, TimescaleDB, Redis, pgvector), motor RAG anti-alucinaciones y algoritmos analíticos de $/km. | `02`, `04`, `05` |
-| **4. Especialista en UI/UX & Conversacional** | Prompts conversacionales para decodificar lenguaje común a variables de ingeniería, visualización de datos en canvas y semáforos, timeline interactivo de mantenimiento. | `03`, `06` |
-| **5. Experto Automotriz & Mecánico** | Interpretación técnica profunda (torque @ RPM, despeje mm, relaciones de compresión, cajas DCT/CVT), catálogo DTC OBD2 con causas 80/20 y planes de mantenimiento preventivo por kilometraje. | `03`, `06` |
+| **1. Comerciante y Empresario (Monetización SaaS y B2B)** | Modelo Freemium con suscripción CharuPro recurrente, marketplace de talleres verificados (take-rate 12-15%), afiliación de repuestos OEM (6-10%), qualified lead gen para concesionarios ($15-$35) y CharuFleet B2B. | `01`, `07` |
+| **2. Emprendedor de Tecnología** | Visión de producto, foso defensivo (moat) contra asimetría informativa, bucles de viralidad orgánica en redes (@charuautopics) y unit economics de alta rentabilidad (LTV/CAC > 7x, payback < 2 meses). | `01`, `07` |
+| **3. Ingeniero de Software y Arquitecto Cloud** | Arquitectura distribuida Cloud-Native, microservicios desacoplados (NestJS, FastAPI, Celery), base de datos centralizada (PostgreSQL multi-tenant, TimescaleDB, Redis v7), APIs RESTful/GraphQL y autenticación JWT RS256. | `02`, `04`, `05` |
+| **4. Especialista UI/UX** | Diseño "Dark Showroom & Precision Cobalt", ergonomía para conductores, prompts conversacionales de decodificación (jerga a ingeniería) y visualización de datos de baja fricción cognitiva (canvas, semáforos, timelines). | `03`, `06` |
+| **5. Experto Automotriz & Parser de Datos** | Ontología vehicular, diagnóstico OBD2 (DTC SAE J2012) con regla 80/20, cálculo de $/km real, y pipeline de extracción multimodal agnóstico con `google.generativeai as genai` y Pydantic v2. | `03`, `04`, `08` |

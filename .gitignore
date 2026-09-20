@@ -18,3 +18,7 @@ ebook/*screenshot*.png
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Variables de entorno y llaves secretas
+.env
+*.env

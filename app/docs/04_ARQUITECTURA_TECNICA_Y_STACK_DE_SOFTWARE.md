@@ -233,6 +233,11 @@ flowchart LR
 2. **Atribución de Fuente:** Cada dato comparativo incluye metadatos de verificación: `source_file: 'FICHA_TECNICA_GWM_HAVAL_JOLION.pdf'`, `page: 2`, `field: 'Torque Máximo'`.
 3. **Guardrails de Salida:** Un validador de tipos verifica que números de potencia, torque o dimensiones cumplan con rangos plausibles de la industria automotriz ($30 \le \text{HP} \le 1,200$; $50 \le \text{Nm} \le 1,500$; $100 \le \text{mm} \le 350$).
 
+> [!TIP]
+> **Especificación Técnica Completa del Pipeline Multimodal:**
+> Para el diseño a fondo del pipeline de visión por computadora, OCR híbrido, contratos Pydantic v2 y normalización de unidades sinónimas de fichas técnicas complejas, consultar el documento maestro:
+> 🔗 [`08_PIPELINE_EXTRACCION_MULTIMODAL_FICHAS_TECNICAS.md`](08_PIPELINE_EXTRACCION_MULTIMODAL_FICHAS_TECNICAS.md).
+
 ---
 
 ## 4.5. Lógica de Procesamiento Analítico Distribuido (Worker de Telemetría)

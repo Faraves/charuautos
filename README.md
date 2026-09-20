@@ -148,27 +148,33 @@ CharuAutos/
 - **Arquitectura PWA (Offline-First):** Service Worker moderno con estrategia mixta (Network-First para navegación HTML y Cache-First con actualización de fondo para recursos estáticos), Web App Manifest W3C para instalación nativa en Android, iOS y escritorio.
 - **Persistencia de Usuario:** LocalStorage para almacenamiento seguro en cliente de los estados de checklist y tareas de mantenimiento.
 - **Bases Técnicas Auditadas:** SAE International (J300), API SP, ASTM D3306, NHTSA (DOT HS 811 617), Car Care Council, Garrett Motion, BorgWarner y AAA.
+- **Motor de IA Multimodal:** Arquitectura híbrida con Google Gemini API (`gemini-3.1-flash-lite`, `gemini-3-flash-preview`) y fallback heurístico con PyMuPDF para parsing de fichas técnicas en PDF.
 
 ---
 
 ## 🚀 6. Instalación y Uso Local
 
-Para consultar o editar localmente la plataforma:
+Para ejecutar localmente la plataforma con todas sus funciones activas (incluyendo el motor de IA para fichas técnicas):
 
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/Faraves/charuautos.git
    cd charuautos
    ```
-2. Ejecuta un servidor local ligero:
+2. Ejecuta el servidor local de la WebApp (con soporte de IA y mutaciones):
+   ```bash
+   python app/serve_local_app.py
+   ```
+3. O si solo deseas consultar el Hub y los Ebooks estáticos:
    ```bash
    python -m http.server 8080
    ```
-3. Abre en tu navegador:
-   - Historieta Ilustrada (Cómic PWA): `http://localhost:8080/ebook/pwa/pwa_historieta/` (o directamente `http://localhost:8080/`)
-   - Versión 2.0 (Técnica): `http://localhost:8080/ebook/pwa/pwa_v2/`
-   - Versión 1.0 (Clásica): `http://localhost:8080/ebook/pwa/pwa_v1/`
-   - Manual de Marca Interactivo: `http://localhost:8080/marketing/branding/manual_identidad.html`
+4. Abre en tu navegador:
+   - 📱 **WebApp & Comparador:** `http://localhost:8080/` (con `serve_local_app.py`) o `http://localhost:8080/app/public/`
+   - 🎨 **Historieta Ilustrada (Cómic PWA):** `http://localhost:8080/ebook/pwa/pwa_historieta/`
+   - 🚀 **Manual Técnico (V2.0):** `http://localhost:8080/ebook/pwa/pwa_v2/`
+   - 🚗 **Manual Clásico (V1.0):** `http://localhost:8080/ebook/pwa/pwa_v1/`
+   - 🎨 **Manual de Marca Interactivo:** `http://localhost:8080/marketing/branding/manual_identidad.html`
 
 ---
 

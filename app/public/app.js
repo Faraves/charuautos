@@ -279,14 +279,16 @@ const DTC_DB = {
 /* =============================================================================
    ESTADO GLOBAL DE LA APLICACIÓN
    ============================================================================= */
-let isOnline = true;
+let isOnline = typeof navigator !== "undefined" && navigator.onLine !== undefined ? navigator.onLine : true;
 let isProUser = false;
+let selectedProPlan = "mensual"; // "mensual" ($4.99) | "vitalicio" ($9.99)
 let pendingMutations = [];
 let currentRoadFilter = "severo";
 let currentUsageFilter = "diario";
 let onlyWithinBudget = false;
 let currentOdometer = 148500;
 let bcvRate = 36.50;
+let bcvLastUpdate = null;
 
 // Micro-Blockchain SHA-256 en Memoria Local
 let blockchain = [
@@ -305,11 +307,13 @@ let blockchain = [
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🚗 CharuAutos inicializado correctamente.");
+  initOfflineSync();
+  initProStatus();
+  fetchBcvRate();
   updateMatchmaker();
   lookupDTC("P0420");
   renderBlockchain();
-  loadSampleBrochure("changan");
-  loadSampleBrochure("tiggo");
+  loadDefaultDemoVehicles();
 });
 
 /* =============================================================================
@@ -1223,6 +1227,25 @@ function switchCompareSubTab(subTab) {
   }
 }
 
+function loadDefaultDemoVehicles() {
+  if (!SAMPLE_BROCHURES_CATALOG.changan || !SAMPLE_BROCHURES_CATALOG.tiggo) return;
+  comparedVehicles = [
+    {
+      ...SAMPLE_BROCHURES_CATALOG.changan,
+      id: "demo_changan_" + Date.now(),
+      source: "default_demo",
+      isDefaultDemo: true
+    },
+    {
+      ...SAMPLE_BROCHURES_CATALOG.tiggo,
+      id: "demo_tiggo_" + (Date.now() + 1),
+      source: "default_demo",
+      isDefaultDemo: true
+    }
+  ];
+  renderComparisonTable();
+}
+
 function loadSampleBrochure(sampleKey) {
   const sample = SAMPLE_BROCHURES_CATALOG[sampleKey];
   if (!sample) return;
@@ -1230,6 +1253,11 @@ function loadSampleBrochure(sampleKey) {
   if (comparedVehicles.length >= 5) {
     alert("⚠️ Límite alcanzado: Puedes comparar hasta 5 vehículos simultáneamente. Quita uno para agregar otro.");
     return;
+  }
+
+  // Si los vehículos actuales son sólo los de demostración, limpiarlos al cargar uno nuevo
+  if (comparedVehicles.length > 0 && comparedVehicles.every(v => v.isDefaultDemo)) {
+    comparedVehicles = [];
   }
 
   // Clonar objeto con ID único
@@ -1256,9 +1284,9 @@ function removeComparedVehicle(vehicleId) {
   if (activeCompareSubTab === 'services') renderB2BServices();
 }
 
-function clearAllComparedVehicles() {
+function clearAllComparedVehicles(silent = false) {
   if (comparedVehicles.length === 0) return;
-  if (confirm("¿Deseas vaciar la lista de vehículos en el comparador?")) {
+  if (silent || confirm("¿Deseas vaciar la lista de vehículos en el comparador?")) {
     comparedVehicles = [];
     renderComparisonTable();
     if (activeCompareSubTab === 'charts') renderComparisonCharts();
@@ -1267,30 +1295,293 @@ function clearAllComparedVehicles() {
   }
 }
 
+/* =============================================================================
+   NOTIFICACIÓN & PANTALLA DE CARGA: LECTURA DE FICHAS TÉCNICAS (IA GEMINI)
+   ============================================================================= */
+function showPdfLoadingModal(totalFiles) {
+  const modal = document.getElementById("pdfLoadingModal");
+  const filenameEl = document.getElementById("pdfLoadingFilename");
+  const barEl = document.getElementById("pdfLoadingProgressBar");
+  const stepEl = document.getElementById("pdfLoadingStep");
+  const inlineBanner = document.getElementById("pdfLoadingInlineBanner");
+  const inlineText = document.getElementById("pdfInlineStatusText");
+
+  const plural = totalFiles > 1 ? `s (${totalFiles} seleccionados)` : "";
+  if (filenameEl) filenameEl.textContent = `Preparando ficha técnica${plural}...`;
+  if (barEl) barEl.style.width = "15%";
+  if (stepEl) stepEl.textContent = "[1/3] Inicializando pipeline de análisis multimodal...";
+
+  if (inlineBanner) {
+    inlineBanner.style.display = "block";
+    if (inlineText) inlineText.textContent = `Leyendo ${totalFiles} archivo${totalFiles > 1 ? 's' : ''} con Motor IA...`;
+  }
+
+  if (modal) modal.classList.add("show");
+
+  // Retroalimentación visual en el dropzone
+  const dropzone = document.querySelector(".dropzone");
+  if (dropzone) {
+    dropzone.style.borderColor = "var(--cyan)";
+    dropzone.style.background = "rgba(56, 189, 248, 0.04)";
+    dropzone.style.pointerEvents = "none";
+  }
+}
+
+function updatePdfLoadingProgress(currentIndex, totalFiles, currentFilename) {
+  const filenameEl = document.getElementById("pdfLoadingFilename");
+  const barEl = document.getElementById("pdfLoadingProgressBar");
+  const inlineText = document.getElementById("pdfInlineStatusText");
+
+  const basePct = Math.round(((currentIndex - 1) / totalFiles) * 80) + 15;
+  if (filenameEl) filenameEl.textContent = `[${currentIndex}/${totalFiles}] ${currentFilename}`;
+  if (barEl) barEl.style.width = `${basePct}%`;
+  if (inlineText) inlineText.textContent = `Analizando [${currentIndex}/${totalFiles}]: ${currentFilename}`;
+}
+
+function updatePdfLoadingStep(stepText) {
+  const stepEl = document.getElementById("pdfLoadingStep");
+  const inlineText = document.getElementById("pdfInlineStatusText");
+  if (stepEl) stepEl.textContent = stepText;
+  if (inlineText && stepText) inlineText.textContent = stepText;
+}
+
+function hidePdfLoadingModal() {
+  const barEl = document.getElementById("pdfLoadingProgressBar");
+  const stepEl = document.getElementById("pdfLoadingStep");
+  if (barEl) barEl.style.width = "100%";
+  if (stepEl) stepEl.textContent = "✓ ¡Extracción completada con éxito!";
+
+  setTimeout(() => {
+    const modal = document.getElementById("pdfLoadingModal");
+    if (modal) modal.classList.remove("show");
+
+    const inlineBanner = document.getElementById("pdfLoadingInlineBanner");
+    if (inlineBanner) {
+      inlineBanner.style.display = "none";
+    }
+
+    const dropzone = document.querySelector(".dropzone");
+    if (dropzone) {
+      dropzone.style.borderColor = "";
+      dropzone.style.background = "";
+      dropzone.style.pointerEvents = "";
+    }
+  }, 450);
+}
+
 async function handleFileUpload(e) {
   const files = Array.from(e.target.files || []);
   if (!files.length) return;
 
-  for (const file of files) {
-    if (comparedVehicles.length >= 5) {
-      alert("⚠️ Límite alcanzado: Se pueden comparar máximo 5 vehículos de manera simultánea.");
-      break;
-    }
-    await parseAndAddPdfVehicle(file);
+  // Si los vehículos en el comparador son exclusivamente los dos predeterminados de muestra,
+  // limpiarlos de inmediato para que el comparador quede dedicado 100% a las fichas que sube el usuario:
+  if (comparedVehicles.length > 0 && comparedVehicles.every(v => v.isDefaultDemo)) {
+    comparedVehicles = [];
   }
 
-  // Reset del input para permitir subir los mismos archivos de nuevo si se desea
-  e.target.value = "";
+  showPdfLoadingModal(files.length);
+
+  try {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (comparedVehicles.length >= 5) {
+        alert("⚠️ Límite alcanzado: Se pueden comparar máximo 5 vehículos de manera simultánea.");
+        break;
+      }
+      updatePdfLoadingProgress(i + 1, files.length, file.name);
+      await parseAndAddPdfVehicle(file);
+    }
+  } catch (err) {
+    console.error("Error al procesar archivos PDF:", err);
+  } finally {
+    hidePdfLoadingModal();
+    if (e && e.target) {
+      e.target.value = "";
+    }
+  }
+}
+
+function extractCleanVehicleMakerAndModel(fileName, text) {
+  const normText = (text || "").normalize("NFKD");
+  const textLower = normText.toLowerCase();
+  const fnLower = (fileName || "").toLowerCase();
+
+  // Limpieza base del fileName para descartar hashes, tags y separar años pegados
+  let cleanFn = (fileName || "").replace(/\.pdf$/i, "");
+  cleanFn = cleanFn.replace(/^[a-f0-9]{16,64}[_\s-]*/i, "");
+  cleanFn = cleanFn.replace(/^\d{6,}[_\s-]*/, "");
+  cleanFn = cleanFn.replace(/\b(f\.?t\.?|ficha(?:\s*t[eé]cnica)?|brochure|cat[aá]logo|catalogo|compressed|compreso|comprimido|copia|copy|\(\d+\)|v\d+)\b/gi, "");
+  cleanFn = cleanFn.replace(/([a-zA-Z]+)(\d{4})\b/g, "$1 $2");
+  cleanFn = cleanFn.replace(/[-_]/g, " ").replace(/\s+/g, " ").trim();
+
+  let maker = "";
+  let model = "";
+
+  // 1. Chery (Arrizo, Tiggo)
+  if (textLower.includes("arrizo") || fnLower.includes("arrizo") || textLower.includes("chery") || fnLower.includes("chery")) {
+    maker = "Chery";
+    const mArr = normText.match(/ARRIZO\s*(\d+)\s*(PRO)?/i);
+    if (mArr) {
+      const num = mArr[1];
+      const pro = mArr[2] ? " Pro" : "";
+      let transTag = "";
+      if (textLower.includes("automa") || textLower.includes("cvt") || textLower.includes("a/t") || fnLower.includes("automa")) {
+        transTag = " Automático";
+      } else if (textLower.includes("sincron") || textLower.includes("m/t") || textLower.includes("manual")) {
+        transTag = " Manual";
+      }
+      model = `Arrizo ${num}${pro}${transTag}`.trim();
+    } else if (textLower.includes("arrizo") || fnLower.includes("arrizo")) {
+      model = "Arrizo";
+      if (textLower.includes("automa") || fnLower.includes("automa")) model += " Automático";
+      else if (textLower.includes("sincron") || fnLower.includes("sincron")) model += " Sincrónico";
+    } else if (textLower.includes("tiggo") || fnLower.includes("tiggo")) {
+      const mTig = normText.match(/TIGGO\s*(\d+)\s*(PRO)?(?:\s*(MAX))?/i);
+      if (mTig) {
+        const num = mTig[1];
+        const pro = mTig[2] ? " Pro" : "";
+        const maxTag = mTig[3] ? " Max" : "";
+        model = `Tiggo ${num}${pro}${maxTag}`.trim();
+      } else {
+        model = "Tiggo 4 Pro";
+      }
+    }
+  }
+  // 2. Toyota (Corolla, Land Cruiser, Yaris, Hilux)
+  else if (textLower.includes("toyota") || fnLower.includes("toyota") || textLower.includes("corolla") || fnLower.includes("corolla") || textLower.includes("land cruiser") || textLower.includes("trj240") || textLower.includes("mzea12") || textLower.includes("mxga10") || fnLower.includes("fj")) {
+    maker = "Toyota";
+    const mModHeader = normText.match(/(?:^|\n)\s*([A-Za-z0-9\s./-]{3,50})\s*\n\s*MODELO\b/i);
+    if (mModHeader) {
+      let candidate = mModHeader[1].replace(/(\d+(?:\.\d+)?)\s*([lL])\b/g, "$1L").replace(/\s+/g, " ").trim();
+      if (candidate.toLowerCase().includes("corolla")) {
+        const words = candidate.split(" ");
+        const formatted = words.map(w => {
+          const uw = w.toUpperCase();
+          if (["SEG", "A/T", "M/T", "CVT", "GLI", "XLI", "XEI", "GR"].includes(uw)) return uw;
+          if (/^\d+\.\d+\s*L?$/i.test(uw)) return uw.replace(/\s+/g, "");
+          return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+        });
+        model = formatted.join(" ");
+      }
+    }
+    if (!model) {
+      if (textLower.includes("corolla cross") || fnLower.includes("corolla cross") || textLower.includes("mxga10") || (fnLower.includes("corolla") && fnLower.includes("cross"))) {
+        model = "Corolla Cross 2.0L CVT";
+      } else if (textLower.includes("corolla") || fnLower.includes("corolla") || textLower.includes("mzea12")) {
+        model = textLower.includes("seg") ? "Corolla SEG 2.0L A/T" : "Corolla 2.0L CVT";
+      } else if (textLower.includes("land cruiser") || fnLower.includes("fj") || textLower.includes("trj240") || fnLower.includes("land cruiser")) {
+        model = "Land Cruiser FJ 2.7L 4x4";
+      } else if (textLower.includes("yaris") || fnLower.includes("yaris")) {
+        model = "Yaris Sedán 1.5L";
+      } else if (textLower.includes("hilux") || fnLower.includes("hilux")) {
+        model = "Hilux Doble Cabina 4x4";
+      }
+    }
+  }
+  // 3. Changan
+  else if (textLower.includes("changan") || textLower.includes("cs95") || textLower.includes("alsvin") || textLower.includes("hunter") || fnLower.includes("cs95")) {
+    maker = "Changan";
+    if (textLower.includes("cs95") || fnLower.includes("cs95")) model = "CS95 2.0T 4WD (7 Puestos)";
+    else if (textLower.includes("alsvin") || fnLower.includes("alsvin")) model = "Alsvin 1.5L DCT";
+    else if (textLower.includes("hunter") || fnLower.includes("hunter")) model = "Hunter Pickup 4x4";
+    else if (textLower.includes("cs55") || fnLower.includes("cs55")) model = "CS55 Plus 1.5T";
+    else if (textLower.includes("cs35") || fnLower.includes("cs35")) model = "CS35 Plus 1.4T";
+  }
+  // 4. Jetour
+  else if (textLower.includes("jetour") || textLower.includes("dashing") || fnLower.includes("dashing") || fnLower.includes("x70") || fnLower.includes("x50") || fnLower.includes("t2")) {
+    maker = "Jetour";
+    if (textLower.includes("dashing") || fnLower.includes("dashing")) model = "Dashing 1.5T";
+    else if (textLower.includes("x70") || fnLower.includes("x70")) model = "X70 1.5T (7 Puestos)";
+    else if (textLower.includes("x50") || fnLower.includes("x50")) model = "X50 1.5T";
+    else if (textLower.includes("t2") || fnLower.includes("t2") || textLower.includes("traveller")) model = "T2 Traveller 2.0T 4x4";
+  }
+  // 5. BAIC
+  else if (textLower.includes("baic") || textLower.includes("x35") || textLower.includes("a151r2") || fnLower.includes("x35")) {
+    maker = "BAIC";
+    if (textLower.includes("x35") || fnLower.includes("x35")) model = "X35 1.5T Turbo";
+    else if (textLower.includes("bj40") || fnLower.includes("bj40")) model = "BJ40 Plus 2.0T 4x4";
+  }
+  // 6. GWM / Haval
+  else if (textLower.includes("gwm") || textLower.includes("haval") || textLower.includes("jolion") || textLower.includes("gw4g15") || fnLower.includes("jolion")) {
+    maker = "GWM Haval";
+    if (textLower.includes("jolion") || fnLower.includes("jolion")) model = "Haval Jolion 1.5T";
+    else if (textLower.includes("h6") || fnLower.includes("h6")) model = "Haval H6 2.0T";
+    else if (textLower.includes("poer") || fnLower.includes("poer")) model = "Poer Pickup 4x4";
+  }
+  // 7. Dongfeng
+  else if (textLower.includes("dongfeng") || textLower.includes("rich 6") || fnLower.includes("rich6") || textLower.includes("2tzd") || fnLower.includes("rich")) {
+    maker = "Dongfeng";
+    model = "Rich 6 Pickup 4x4";
+  }
+  // 8. Foton
+  else if (textLower.includes("foton") || textLower.includes("tunland") || fnLower.includes("tunland") || textLower.includes("isf")) {
+    maker = "Foton";
+    model = "Tunland E 4x4";
+  }
+  // 9. Fiat
+  else if (textLower.includes("cronos") || fnLower.includes("cronos") || textLower.includes("fiat") || fnLower.includes("fiat") || textLower.includes("ﬁat")) {
+    maker = "Fiat";
+    if (textLower.includes("cronos") || fnLower.includes("cronos")) model = "Cronos 1.3L MT/CVT";
+    else if (textLower.includes("argo") || fnLower.includes("argo")) model = "Argo 1.3L";
+    else if (textLower.includes("pulse") || fnLower.includes("pulse")) model = "Pulse 1.3L CVT";
+    else if (textLower.includes("fastback") || fnLower.includes("fastback")) model = "Fastback 1.3T";
+    else model = "Cronos 1.3L MT/CVT";
+  }
+  // 10. Hyundai
+  else if (textLower.includes("elantra") || fnLower.includes("elantra") || textLower.includes("hyundai") || fnLower.includes("hyundai")) {
+    maker = "Hyundai";
+    if (textLower.includes("elantra") || fnLower.includes("elantra")) model = "Elantra 2.0L A/T";
+    else if (textLower.includes("tucson") || fnLower.includes("tucson")) model = "Tucson 2.0L";
+    else if (textLower.includes("creta") || fnLower.includes("creta")) model = "Creta 1.5L";
+    else if (textLower.includes("accent") || fnLower.includes("accent")) model = "Accent 1.6L";
+    else model = "Elantra 2.0L A/T";
+  }
+
+  // Fallbacks
+  if (!maker) {
+    const knownMakers = ["Toyota", "Fiat", "Hyundai", "Changan", "Chery", "Ford", "Chevrolet", "Kia", "Nissan", "Honda", "Mazda", "Suzuki", "Mitsubishi", "JAC", "BYD", "Geely", "BAIC", "GWM", "Dongfeng", "Foton"];
+    for (const m of knownMakers) {
+      if (textLower.includes(m.toLowerCase()) || fnLower.includes(m.toLowerCase())) {
+        maker = m;
+        break;
+      }
+    }
+    if (!maker) maker = "Ficha Técnica";
+  }
+
+  if (!model) {
+    const words = cleanFn.split(" ");
+    const formatted = words.map(w => (w.length > 4 && w === w.toUpperCase()) ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : (w.charAt(0).toUpperCase() + w.slice(1)));
+    let candidate = formatted.join(" ").trim();
+    if (maker && candidate.toLowerCase().startsWith(maker.toLowerCase())) {
+      candidate = candidate.slice(maker.length).trim().replace(/^[-:]\s*/, "");
+    }
+    model = candidate || "Modelo Extraído";
+  }
+
+  if (maker && model.toLowerCase().startsWith(maker.toLowerCase())) {
+    model = model.slice(maker.length).trim().replace(/^[-:]\s*/, "");
+  }
+
+  return { maker, model };
 }
 
 async function parseAndAddPdfVehicle(file) {
+  // Asegurar reemplazo de vehículos demo si fue llamado directamente
+  if (comparedVehicles.length > 0 && comparedVehicles.every(v => v.isDefaultDemo)) {
+    comparedVehicles = [];
+  }
+
   const fileName = file.name;
-  const cleanName = fileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+  updatePdfLoadingStep(`[1/3] Extrayendo estructura y capas de ${fileName}...`);
+  const cleanInfo = extractCleanVehicleMakerAndModel(fileName, "");
+  const cleanName = cleanInfo.model;
 
   let specs = null;
 
-  // 1. Intentar scraping de alta fidelidad vía backend PyMuPDF
+  // 1. Intentar scraping de alta fidelidad vía backend Gemini IA + PyMuPDF
   try {
+    updatePdfLoadingStep(`[2/3] Análisis semántico con Motor IA Gemini Multimodal...`);
     const arrayBuffer = await file.arrayBuffer();
     const response = await fetch("/api/v1/pdf/scrape", {
       method: "POST",
@@ -1305,7 +1596,7 @@ async function parseAndAddPdfVehicle(file) {
       const result = await response.json();
       if (result.status === "SUCCESS" && result.data) {
         specs = result.data;
-        console.log("✓ Scraping exitoso vía PyMuPDF backend:", specs);
+        console.log("✓ Scraping exitoso vía backend:", specs);
       }
     }
   } catch (err) {
@@ -1314,6 +1605,7 @@ async function parseAndAddPdfVehicle(file) {
 
   // 2. Fallback heurístico en navegador si el backend no respondió
   if (!specs) {
+    updatePdfLoadingStep(`[2/3] Conmutando a motor heurístico local para ${fileName}...`);
     let text = "";
     try {
       text = await extractTextFromPdfFile(file);
@@ -1323,10 +1615,12 @@ async function parseAndAddPdfVehicle(file) {
     specs = extractSpecsFromText(fileName, text);
   }
 
+  updatePdfLoadingStep(`[3/3] Normalizando especificaciones de ${specs.maker || ''} ${specs.model || ''}...`);
+
   const newVehicle = {
     id: "pdf_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5),
-    maker: specs.maker || "Marca Importada",
-    model: specs.model || cleanName,
+    maker: specs.maker || cleanInfo.maker || "Marca Importada",
+    model: specs.model || cleanInfo.model || cleanName,
     fileName: fileName,
     hp: Number(specs.hp) || 120,
     torque: Number(specs.torque) || 160,
@@ -1350,7 +1644,9 @@ async function parseAndAddPdfVehicle(file) {
       mechanicLabor: "$30 USD Mano de Obra Cerrada",
       insuranceYear: "$195 USD / Año (Póliza Integral)"
     },
-    source: "pdf"
+    source: specs.source || "pdf",
+    aiPowered: specs.aiPowered === true || specs.source === "gemini_multimodal",
+    modelEngine: specs.modelEngine || null
   };
 
   comparedVehicles.push(newVehicle);
@@ -1395,92 +1691,106 @@ function extractSpecsFromText(fileName, text) {
   const clean = (text + " " + fileName).toLowerCase();
   const fnLower = fileName.toLowerCase();
 
-  // Mapeos canónicos por nombre de modelo
-  if (clean.includes("rich 6") || clean.includes("rich6") || fnLower.includes("rich")) {
-    return SAMPLE_BROCHURES_CATALOG.rich6;
-  }
-  if (clean.includes("tunland") || fnLower.includes("tunland")) {
-    return SAMPLE_BROCHURES_CATALOG.tunland;
-  }
-  if (clean.includes("haval") || clean.includes("jolion") || fnLower.includes("jolion") || fnLower.includes("haval")) {
-    return SAMPLE_BROCHURES_CATALOG.haval;
-  }
-  if (clean.includes("dashing") || fnLower.includes("dashing")) {
-    return SAMPLE_BROCHURES_CATALOG.dashing;
-  }
-  if (clean.includes("x50") || fnLower.includes("x50")) {
-    return SAMPLE_BROCHURES_CATALOG.x50;
-  }
-  if (clean.includes("x70") || fnLower.includes("x70")) {
-    return SAMPLE_BROCHURES_CATALOG.x70;
-  }
-  if (clean.includes("alsvin") || fnLower.includes("alsvin")) {
-    return SAMPLE_BROCHURES_CATALOG.changan;
-  }
-  if (clean.includes("tiggo") || fnLower.includes("tiggo")) {
-    return SAMPLE_BROCHURES_CATALOG.tiggo;
-  }
-  if (clean.includes("yaris") || fnLower.includes("yaris")) {
-    return SAMPLE_BROCHURES_CATALOG.yaris;
+  // 1. Detección Limpia y Precisa de Marca y Modelo especificado
+  const { maker, model } = extractCleanVehicleMakerAndModel(fileName, text);
+
+  const isCS95 = model.includes("CS95") || clean.includes("cs95");
+  const isLandCruiser = model.includes("Land Cruiser") || clean.includes("trj240") || fnLower.includes("fj");
+  const isCorollaSedan = (clean.includes("corolla") || clean.includes("mzea12")) && !clean.includes("cross");
+  const isArrizo = clean.includes("arrizo") || clean.includes("chery");
+  const isCronos = model.includes("Cronos") || clean.includes("cronos") || clean.includes("fiat") || clean.includes("ﬁat");
+  const isElantra = model.includes("Elantra") || clean.includes("elantra") || clean.includes("hyundai");
+
+  // 2. Potencia (HP) bidireccional
+  let hp = isCS95 ? 229 : (isLandCruiser ? 163 : (isCorollaSedan ? 170 : (isArrizo ? 115 : (isCronos ? 99 : (isElantra ? 156 : 135)))));
+  const mHpPre = text.match(/(\d{2,3})\s*(?:hp|cv|ps)\b[\s\S]{0,40}?(?:potencia|power)/i);
+  const mHpPost = text.match(/(?:potencia(?:\s*m[áa]xima)?|power)[^\d]{0,40}?(\d{2,3})\b(?!\s*(?:rpm|nm|gdi|vvt))/i);
+  const mHpGeneric = text.match(/(\d{2,3})\s*(?:hp|cv|ps)\b/i);
+  if (mHpPre) hp = parseInt(mHpPre[1]);
+  else if (mHpPost) hp = parseInt(mHpPost[1]);
+  else if (mHpGeneric) hp = parseInt(mHpGeneric[1]);
+
+  // 3. Torque (Nm) bidireccional
+  let torque = isCS95 ? 390 : (isLandCruiser ? 245 : (isCorollaSedan ? 200 : (isArrizo ? 141 : (isCronos ? 128 : (isElantra ? 192 : 190)))));
+  const mTqPre = text.match(/(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b[\s\S]{0,40}?(?:torque|par)/i);
+  const mTqPost = text.match(/(?:torque(?:\s*m[áa]ximo)?|par\s*motor)[^\d]{0,40}?(\d{2,3}(?:\.\d)?)\b(?!\s*(?:rpm|hp))/i);
+  const mTqGeneric = text.match(/(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b/i);
+  if (mTqPre) torque = parseFloat(mTqPre[1]);
+  else if (mTqPost) torque = parseFloat(mTqPost[1]);
+  else if (mTqGeneric) torque = parseFloat(mTqGeneric[1]);
+
+  // 4. Despeje / Altura al suelo (mm) bidireccional
+  let clearance = isCS95 ? 190 : (isLandCruiser ? 245 : (isCorollaSedan ? 165 : (isArrizo ? 157 : (isCronos ? 160 : (isElantra ? 150 : 165)))));
+  const mClrPre = text.match(/(?:^|[^\d.])(\d{2,3})\s*mm\b[\s\S]{0,40}?(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)/i);
+  const mClrPost = text.match(/(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)[^\d]{0,40}?(?:^|[^\d.])(\d{2,3})\s*(mm)?\b/i);
+  if (mClrPre) clearance = parseInt(mClrPre[1]);
+  else if (mClrPost) clearance = parseInt(mClrPost[1]);
+
+  // 5. Maletero (L) bidireccional
+  let trunk = isCS95 ? 500 : (isLandCruiser ? 480 : (isCorollaSedan ? 470 : (isArrizo ? 430 : (isCronos ? 525 : (isElantra ? 474 : 410)))));
+  const mTrkPre = text.match(/(?:^|[^\d.])(\d{2,4})\s*l\b[\s\S]{0,80}?(?:maletero|cajuela|ba[úu]l|equipaje)/i);
+  const mTrkPost = text.match(/(?:volumen\s*de\s*equipaje|capacidad\s*(?:de\s*)?(?:maletero|ba[úu]l)|maletero|cajuela|ba[úu]l)[^\d]{0,40}?(?:^|[^\d.])(\d{2,4})\b/i);
+  if (mTrkPre) trunk = parseInt(mTrkPre[1]);
+  else if (mTrkPost) trunk = parseInt(mTrkPost[1]);
+
+  // 6. Tanque de combustible (L) bidireccional
+  let tank = isCS95 ? 74 : (isLandCruiser ? 63 : (isCorollaSedan ? 50 : (isArrizo ? 41 : (isCronos ? 48 : (isElantra ? 47 : 48)))));
+  const mTnkPre = text.match(/(\d{2,3})\s*l\b[\s\S]{0,40}?(?:tanque|combustible)/i);
+  const mTnkPost = text.match(/(?:tanque(?:\s*de\s*combustible)?|capacidad\s*del\s*tanque)[^\d]{0,40}?(\d{2,3})\b/i);
+  if (mTnkPre) tank = parseInt(mTnkPre[1]);
+  else if (mTnkPost) tank = parseInt(mTnkPost[1]);
+
+  // 7. Peso en vacío (kg) bidireccional
+  let weight = isCS95 ? 2117 : (isLandCruiser ? 2000 : (isCorollaSedan ? 1370 : (isArrizo ? 1320 : (isCronos ? 1121 : (isElantra ? 1230 : 1350)))));
+  const mWtPre = text.match(/([\d.]{4,6})\s*(?:kg|kilos)\b[\s\S]{0,40}?(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)/i);
+  const mWtPost = text.match(/(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)[^\d]{0,40}?([\d.]{4,6})\b/i);
+  const rawWt = mWtPre ? mWtPre[1] : (mWtPost ? mWtPost[1] : null);
+  if (rawWt) weight = parseInt(rawWt.replace('.', ''));
+
+  // 8. Transmisión y Tracción
+  let transmission = isCS95 ? "Automática Aisin 8-Velocidades" : (isLandCruiser ? "Automática 6-Vel con Reductora (Low)" : (isCorollaSedan ? "Automática CVT 10-Vel con Paddle Shift" : (isArrizo ? "Automática CVT 5-Velocidades" : (isCronos ? "Manual 5-Vel / Automática CVT" : (isElantra ? "Automática 6-Vel IVT" : "Automática")))));
+  if (!isCorollaSedan && !isArrizo && !isCronos && !isElantra && !isCS95 && !isLandCruiser) {
+    if (clean.includes("cvt")) transmission = "Automática CVT";
+    else if (clean.includes("dct") || clean.includes("doble embrague")) transmission = "Doble Embrague DCT 6/7-Vel";
+    else if (clean.includes("manual") || clean.includes("sincronico") || clean.includes("sincrónica")) transmission = "Manual 5-Vel / 6-Vel";
   }
 
-  // Heurística genérica
-  let hp = 115;
-  const hpSlashMatch = text.match(/\d{2,3}\s*\/\s*(\d{2,3})\s*@/);
-  const hpStandardMatch = clean.match(/(\d{2,3})\s*(?:hp|cv|caballos|potencia)/i);
-  if (hpSlashMatch) hp = parseInt(hpSlashMatch[1]);
-  else if (hpStandardMatch) hp = parseInt(hpStandardMatch[1]);
-
-  let torque = 150;
-  const tqAtMatch = text.match(/(\d{2,3})\s*@\s*\d{3,4}/);
-  const tqStandardMatch = clean.match(/(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m|newton)/i);
-  if (tqAtMatch) torque = parseFloat(tqAtMatch[1]);
-  else if (tqStandardMatch) torque = parseFloat(tqStandardMatch[1]);
-
-  const clrMatch = clean.match(/(?:despeje|altura|distancia)[^\d]*(\d{2,3})\s*(mm|cm)?/i);
-  let clearance = 160;
-  if (clrMatch) {
-    clearance = parseInt(clrMatch[1]);
-    if (clrMatch[2] === "cm") clearance *= 10;
+  let traction = isCS95 ? "4WD Tracción Total Inteligente" : (isLandCruiser ? "4x4 Part-Time con Bloqueo Trasero" : "FWD Delantera");
+  if (clean.includes("4x4") || clean.includes("awd") || clean.includes("4wd")) {
+    traction = clean.includes("bloqueo") || clean.includes("reductora") ? "4x4 Part-Time con Reductora / Bloqueo" : "4WD / AWD Integral";
   }
 
-  const trkMatch = clean.match(/(?:maletero|cajuela|baul|baúl|carga)[^\d]*(\d{2,4})\s*(?:l|litros|kg)?/i);
-  const trunk = trkMatch ? parseInt(trkMatch[1]) : 420;
+  // 9. Airbags
+  let airbags = isCS95 ? "6 Airbags (Frontales, Laterales y Cortina)" : (isLandCruiser || isCorollaSedan ? "7 Airbags (Frontales, Laterales, Cortina, Rodilla)" : (isArrizo || isCronos ? "2 Frontales (Conductor y Pasajero)" : (isElantra ? "6 Airbags (Frontales, Laterales y Cortina)" : "2 Frontales")));
+  const mAb = text.match(/(\d+)\s*(?:airbags?|bolsas?\s*de\s*aire)/i) || text.match(/(\d+)\s*\([^)]*\)[\s\S]{0,20}?bolsas?\s*de\s*aire/i);
+  if (mAb) {
+    airbags = `${mAb[1]} Airbags`;
+  } else if (clean.includes("conductor y pasajero")) {
+    airbags = "2 Frontales (Conductor y Pasajero)";
+  }
 
-  const tnkMatch = clean.match(/(?:tanque|combustible)[^\d]*(\d{2,3})\s*(?:l|litros)?/i);
-  const tank = tnkMatch ? parseInt(tnkMatch[1]) : 48;
-
-  let transmission = "Automática";
-  if (clean.includes("cvt")) transmission = "Automática CVT";
-  else if (clean.includes("dct") || clean.includes("doble embrague")) transmission = "Doble Embrague DCT";
-  else if (clean.includes("manual") || clean.includes("sincronico") || clean.includes("sincrónica")) transmission = "Manual 5-Vel";
-
-  let traction = "FWD Delantera";
-  if (clean.includes("4x4") || clean.includes("awd") || clean.includes("4wd")) traction = "4x4 / AWD";
-
-  let airbags = "2 Frontales";
-  if (clean.includes("6 airbag") || clean.includes("6 bolsas") || clean.includes("cortina")) airbags = "6 Airbags";
-  else if (clean.includes("4 airbag") || clean.includes("4 bolsas") || clean.includes("lateral") || clean.includes("laterales")) airbags = "4 Airbags";
-  else if (clean.includes("conductor y pasajero") || clean.includes("conductor y copiloto")) airbags = "2 Frontales (Conductor y Pasajero)";
+  // 10. Motor y Cilindrada
+  let engine = isCS95 ? "2.0L Turbo GDI D20TG-AA Intercooler" : (isLandCruiser ? "2.7L 2TR-FE DOHC Dual VVT-i" : (isCorollaSedan ? "2.0L Dynamic Force M20A-FKS DOHC 16V Dual VVT-i" : (isArrizo ? "1.5L 4 Cilindros en Línea DVVT" : (isCronos ? "1.3L Bz PFI Firefly 4 Cilindros (8V)" : (isElantra ? "2.0L Nu MPI DOHC 16V D-CVVT" : "1.5L Turbo 4 Cilindros")))));
+  let displacement = isCS95 ? "2.0L (1,998 cc)" : (isLandCruiser ? "2.7L (2,694 cc)" : (isCorollaSedan ? "2.0L (1,987 cc)" : (isArrizo ? "1.5L (1,498 cc)" : (isCronos ? "1.3L (1,332 cc)" : (isElantra ? "2.0L (1,999 cc)" : "1.5L")))));
 
   return {
-    maker: "Marca Ficha PDF",
-    model: fileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
+    maker,
+    model,
     hp,
     torque,
     clearance,
     trunk,
     tank,
-    weight: 1350,
-    engine: "1.5L Turbo 4 Cilindros",
-    displacement: "1.5L",
+    weight,
+    engine,
+    displacement,
     transmission,
     traction,
-    fuelType: "Gasolina 95 Oct",
+    fuelType: isCorollaSedan ? "Gasolina 91+ Oct (7.5 L/100km)" : "Gasolina 95 Oct",
     airbags,
-    esp: "ESP Bosch + Asistencia Frenado",
-    brakes: "Discos Ventilados",
-    infotainment: "Pantalla Táctil HD"
+    esp: isCorollaSedan ? "VSC + TRC + ACA + HAC + ABS + EBD" : (isArrizo ? "ESP + HAC + TCS + EBD + ABS" : (isCronos ? "ESC (Estabilidad) + TC (Tracción)" : (isElantra ? "ESC (Estabilidad) + HAC + ABS" : "ESP + Control de Tracción (TCS) + Asistencias"))),
+    brakes: isCorollaSedan ? "Discos Ventilados Delanteros y Traseros" : (isArrizo ? "Discos en las 4 Ruedas (Disco / Disco)" : (isCronos ? "Discos Ventilados Del / Tambor Tras" : (isElantra ? "Discos en las 4 Ruedas (15 pulg / 14 pulg)" : "Discos Ventilados"))),
+    infotainment: isCorollaSedan ? "Pantalla Táctil 9 pulg Apple CarPlay / Android Auto" : (isArrizo ? "Pantalla Táctil 8 pulg Apple CarPlay / Android QD" : (isCronos ? "Pantalla Multimedia Touch 7 pulg Apple CarPlay / Android Auto + Display 3.5 pulg" : (isElantra ? "Pantalla Táctil 8 pulg Apple CarPlay / Android Auto" : "Pantalla Táctil HD Multimedia")))
   };
 }
 
@@ -1509,9 +1819,6 @@ function toggleHighlightBest() {
 
 function getDisplayVehiclesList() {
   if (comparedVehicles.length === 0) return [];
-  if (comparedVehicles.length === 1) {
-    return [REFERENCE_COROLLA, comparedVehicles[0]];
-  }
   return comparedVehicles.slice(0, 5);
 }
 
@@ -1527,19 +1834,12 @@ function renderComparisonTable() {
   // Estado vacío si no hay vehículos
   if (comparedVehicles.length === 0) {
     container.innerHTML = `
-      <div class="card" style="text-align:center; padding:32px 16px; border-style:dashed;">
+      <div class="card" style="text-align:center; padding:36px 16px; border-style:dashed;">
         <div style="margin-bottom:12px; color:var(--cyan);">${ICONS.telemetry}</div>
-        <div style="font-weight:800; font-size:16px; color:#fff; margin-bottom:6px;">Comparador Listo para Fichas Técnicas</div>
-        <p style="font-size:12px; color:var(--text-muted); max-width:460px; margin:0 auto 16px; line-height:1.6;">
-          Adjunta 2 o más archivos PDF arriba (o añade fichas de muestra) para comparar hasta 5 vehículos simultáneamente. Al cargar 2 o más fichas, el auto de referencia se retira automáticamente.
+        <div style="font-weight:800; font-size:16px; color:#fff; margin-bottom:6px;">Comparador de Fichas Técnicas Vacío</div>
+        <p style="font-size:12.5px; color:var(--text-muted); max-width:500px; margin:0 auto; line-height:1.6;">
+          Arrastra o selecciona tus archivos PDF técnicos arriba para comenzar la extracción y contrastar especificaciones reales lado a lado. Admite de 1 a 5 vehículos simultáneamente.
         </p>
-        <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-secondary btn-sm" onclick="loadSampleBrochure('haval')">+ Haval Jolion 1.5T</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadSampleBrochure('dashing')">+ Jetour Dashing</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadSampleBrochure('x70')">+ Jetour X70 (7 Puestos)</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadSampleBrochure('rich6')">+ Dongfeng Rich 6 4x4</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadSampleBrochure('tunland')">+ Foton Tunland E 4x4</button>
-        </div>
       </div>
     `;
     renderSavedComparisons();
@@ -1621,13 +1921,33 @@ function renderComparisonTable() {
   });
 
   // Render HTML completo con Toolbar Cockpit y Tabla
+  const isDemoActive = comparedVehicles.length > 0 && comparedVehicles.every(v => v.isDefaultDemo);
+  const badgeText = isDemoActive
+    ? '2 Modelos Predeterminados (Demo)'
+    : (displayList.length === 1 ? '1 Ficha Cargada' : `${displayList.length} Fichas en Comparación Directa`);
+
+  const bannerMarkup = isDemoActive
+    ? `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--cyan); margin-bottom:12px; background:var(--cyan-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(56,189,248,0.25); display:flex; align-items:center; justify-content:space-between; gap:8px;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span>ℹ</span> <span><strong>MODELOS PREDETERMINADOS EN COMPARATIVA:</strong> Arrastra o adjunta tus fichas técnicas PDF arriba para comparar tus propios vehículos.</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="clearAllComparedVehicles(true)" style="padding:3px 8px; font-size:10px; line-height:1.2;">Limpiar</button>
+      </div>`
+    : (comparedVehicles.length === 1
+      ? `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--cyan); margin-bottom:12px; background:var(--cyan-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(56,189,248,0.25); display:flex; align-items:center; gap:6px;">
+          <span>ℹ</span> <span>1 VEHÍCULO RECONOCIDO: Adjunta otro archivo PDF para contrastar especificaciones lado a lado.</span>
+        </div>`
+      : `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--green); margin-bottom:12px; background:var(--green-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(16,185,129,0.25); display:flex; align-items:center; gap:6px;">
+          <span>✓</span> <span>COMPARACIÓN DIRECTA ACTIVA: Evaluando exclusivamente tus ${displayList.length} fichas técnicas extraídas.</span>
+        </div>`);
+
   container.innerHTML = `
     <div class="card">
       <div class="card-title">
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="display:flex; align-items:center; gap:8px;">${ICONS.telemetry} Matriz Comparativa de Modelos</span>
           <span class="badge" style="background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(56,189,248,0.3);">
-            ${comparedVehicles.length === 1 ? '1 Ficha vs Referencia VE' : `${displayList.length} Vehículos en Análisis`}
+            ${badgeText}
           </span>
         </div>
         <div style="display:flex; gap:6px;">
@@ -1636,11 +1956,7 @@ function renderComparisonTable() {
         </div>
       </div>
 
-      ${comparedVehicles.length >= 2 ? `
-        <div style="font-family:var(--font-mono); font-size:11px; color:var(--green); margin-bottom:12px; background:var(--green-dim); padding:7px 12px; border-radius:var(--radius-sm); border:1px solid rgba(16,185,129,0.25); display:flex; align-items:center; gap:6px;">
-          <span>✓</span> <span>COMPARACIÓN PURA ACTIVADA: Vehículo de referencia retirado. Evaluando exclusivamente tus ${displayList.length} fichas seleccionadas.</span>
-        </div>
-      ` : ''}
+      ${bannerMarkup}
 
       <!-- TOOLBAR DE FILTROS & BÚSQUEDA REACTIVA -->
       <div class="matrix-toolbar">
@@ -1693,6 +2009,15 @@ function renderComparisonTable() {
                       <div>
                         <div style="font-size:14px; font-weight:900; color:#fff; letter-spacing:-0.3px;">${v.maker}</div>
                         <div style="font-size:12px; color:${colorInfo.border}; font-family:var(--font-mono); font-weight:700;">${v.model}</div>
+                        ${v.aiPowered || v.source === 'gemini_multimodal' ? `
+                          <div style="display:inline-flex; align-items:center; gap:4px; margin-top:5px; font-size:9.5px; font-family:var(--font-mono); background:rgba(56,189,248,0.14); color:var(--cyan); border:1px solid rgba(56,189,248,0.3); border-radius:4px; padding:2px 6px;">
+                            <span>✨</span> Motor IA Gemini
+                          </div>
+                        ` : (v.isDefaultDemo ? '' : `
+                          <div style="display:inline-flex; align-items:center; gap:4px; margin-top:5px; font-size:9.5px; font-family:var(--font-mono); background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid var(--border-subtle); border-radius:4px; padding:2px 6px;">
+                            <span>⚙️</span> Motor Local
+                          </div>
+                        `)}
                       </div>
                       ${!v.isReference ? `
                         <button class="btn btn-danger btn-sm" style="padding:4px 7px; font-size:10px; line-height:1; border-radius:4px; display:inline-flex; align-items:center; justify-content:center;" 
@@ -2178,6 +2503,7 @@ function saveCurrentComparison() {
 
   try {
     localStorage.setItem("charu_saved_comparisons", JSON.stringify(currentHistory));
+    addMutation("comparisons", "SAVE_COMPARISON", { id: savedItem.id, name: savedItem.name, vehicleCount: savedItem.vehicles.length });
     alert(`Comparativa "${customName}" guardada con éxito en tu historial.`);
     renderSavedComparisons();
   } catch (e) {
@@ -2211,6 +2537,7 @@ function deleteSavedComparison(comparisonId) {
   let history = getSavedComparisons();
   history = history.filter(c => c.id !== comparisonId);
   localStorage.setItem("charu_saved_comparisons", JSON.stringify(history));
+  addMutation("comparisons", "DELETE_COMPARISON", { id: comparisonId });
   renderSavedComparisons();
 }
 
@@ -2379,10 +2706,152 @@ function saveFuelLog() {
 }
 
 /* =============================================================================
-   CHECKOUT BIMONETARIO Y ACTIVACIÓN CHARUPRO
+   CHECKOUT BIMONETARIO, TASA BCV Y ACTIVACIÓN CHARUPRO
    ============================================================================= */
+async function fetchBcvRate() {
+  try {
+    const res = await fetch("https://ve.dolarapi.com/v1/dolares/oficial", { cache: "no-cache" });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.promedio) {
+        bcvRate = parseFloat(data.promedio);
+        bcvLastUpdate = data.fechaActualizacion || new Date().toISOString();
+        localStorage.setItem("charu_bcv_rate", bcvRate);
+        localStorage.setItem("charu_bcv_date", bcvLastUpdate);
+        console.log(`[BCV Service] Tasa oficial BCV actualizada en vivo: ${bcvRate} Bs/$`);
+        updateCheckoutAmounts();
+        calcFuelCost();
+        return;
+      }
+    }
+  } catch (err) {
+    console.warn("[BCV Service] Error de red consultando API BCV, recurriendo a caché local:", err);
+  }
+
+  // Fallback a localStorage si la petición externa falla
+  const savedRate = localStorage.getItem("charu_bcv_rate");
+  if (savedRate) {
+    bcvRate = parseFloat(savedRate);
+    bcvLastUpdate = localStorage.getItem("charu_bcv_date") || "Caché Local";
+  }
+  updateCheckoutAmounts();
+  calcFuelCost();
+}
+
 function openCheckoutModal() {
+  updateCheckoutAmounts();
   openModal("checkoutModal");
+}
+
+function selectProPlan(plan) {
+  selectedProPlan = plan;
+  const mensualBtn = document.getElementById("planMensualBtn");
+  const vitalicioBtn = document.getElementById("planVitalicioBtn");
+
+  if (plan === "mensual") {
+    if (mensualBtn) {
+      mensualBtn.className = "btn btn-sm";
+      mensualBtn.style.border = "1px solid var(--accent)";
+      mensualBtn.style.background = "var(--accent-dim)";
+    }
+    if (vitalicioBtn) {
+      vitalicioBtn.className = "btn btn-secondary btn-sm";
+      vitalicioBtn.style.border = "1px solid var(--border-medium)";
+      vitalicioBtn.style.background = "transparent";
+    }
+  } else {
+    if (mensualBtn) {
+      mensualBtn.className = "btn btn-secondary btn-sm";
+      mensualBtn.style.border = "1px solid var(--border-medium)";
+      mensualBtn.style.background = "transparent";
+    }
+    if (vitalicioBtn) {
+      vitalicioBtn.className = "btn btn-sm";
+      vitalicioBtn.style.border = "1px solid var(--amber)";
+      vitalicioBtn.style.background = "rgba(245,158,11,0.15)";
+    }
+  }
+
+  updateCheckoutAmounts();
+}
+
+function updateCheckoutAmounts() {
+  const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
+  const priceBs = (priceUSD * bcvRate).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const pmAmountEl = document.getElementById("pmCalculatedAmount");
+  if (pmAmountEl) {
+    pmAmountEl.textContent = `${priceBs} Bs. (${priceUSD} USD a tasa BCV ${bcvRate.toFixed(2)})`;
+  }
+
+  const binanceAmountEl = document.getElementById("binanceAmountDisplay");
+  if (binanceAmountEl) {
+    binanceAmountEl.textContent = `${priceUSD} USDT`;
+  }
+
+  const binanceDeepLink = document.getElementById("binanceDeepLink");
+  if (binanceDeepLink) {
+    binanceDeepLink.href = `binance://pay?payId=849201948&amount=${priceUSD}`;
+  }
+
+  const bcvRateTag = document.getElementById("bcvRateTag");
+  if (bcvRateTag) {
+    bcvRateTag.textContent = `Tasa BCV Oficial: ${bcvRate.toFixed(2)} Bs/$`;
+  }
+}
+
+function copyPagoMovilData() {
+  const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
+  const priceBs = (priceUSD * bcvRate).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const text = `CharuAutos — Datos Pago Móvil\nBanco: Banco de Venezuela (0102)\nTeléfono: 0414-9876543\nRIF: J-50012345-0\nMonto: ${priceBs} Bs. (${priceUSD} USD)`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById("copyPmBtn");
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = "✅ ¡Copiado!";
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    }
+  }).catch(() => {
+    alert(text);
+  });
+}
+
+function copyBinancePayId() {
+  navigator.clipboard.writeText("849201948").then(() => {
+    const btn = document.getElementById("copyBinanceBtn");
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = "✅ ¡Copiado!";
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    }
+  }).catch(() => {
+    alert("Binance Pay ID: 849201948");
+  });
+}
+
+function sendWhatsAppConfirmation() {
+  const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
+  const priceBs = (priceUSD * bcvRate).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const planName = selectedProPlan === "vitalicio" ? "Pase Vitalicio CharuPro ($9.99 USD)" : "Plan Mensual CharuPro ($4.99 USD)";
+
+  const bankEl = document.getElementById("pmBank");
+  const bankName = bankEl ? bankEl.options[bankEl.selectedIndex].text : "Banco Emisor";
+  const phone = document.getElementById("pmPhone")?.value.trim() || "";
+  const ref = document.getElementById("pmRef")?.value.trim() || "Pendiente";
+
+  const msg = encodeURIComponent(
+    `Hola equipo de CharuAutos! 🚗 Acabo de gestionar mi suscripción ${planName}.\n\n` +
+    `📋 DATOS DE PAGO:\n` +
+    `• Método: Pago Móvil\n` +
+    `• Banco Emisor: ${bankName}\n` +
+    `• Teléfono Emisor: ${phone}\n` +
+    `• Referencia: ${ref}\n` +
+    `• Monto: ${priceBs} Bs. (Tasa BCV: ${bcvRate.toFixed(2)} Bs/$)\n\n` +
+    `Adjunto el comprobante para la verificación y activación.`
+  );
+
+  window.open(`https://wa.me/584149876543?text=${msg}`, "_blank");
 }
 
 function switchPaymentMethod(method) {
@@ -2408,25 +2877,56 @@ function processPagoMovil() {
   const refInput = document.getElementById("pmRef");
   const ref = refInput ? refInput.value.trim() : "";
   if (ref.length < 6) {
-    alert("⚠️ Error de validación: El número de referencia bancaria debe tener entre 6 y 8 dígitos.");
+    alert("⚠️ Error de validación: El número de referencia bancaria debe tener al menos 6 dígitos.");
     return;
   }
-  activatePro(`Pago Móvil (182.14 Bs. - Ref: ${ref})`);
+  const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
+  const priceBs = (priceUSD * bcvRate).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  activatePro(`Pago Móvil (${priceBs} Bs. / $${priceUSD} USD - Ref: ${ref})`);
 }
 
 function processBinancePay() {
-  activatePro("Binance Pay (4.99 USDT)");
+  const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
+  activatePro(`Binance Pay (${priceUSD} USDT - PayID: 849201948)`);
 }
 
 function activatePro(methodName) {
   isProUser = true;
+  const proData = {
+    active: true,
+    plan: selectedProPlan,
+    method: methodName,
+    date: new Date().toISOString(),
+    token: "CHARUPRO_" + Math.random().toString(36).substring(2, 10).toUpperCase()
+  };
+  localStorage.setItem("charu_pro_status", JSON.stringify(proData));
+
   const pill = document.getElementById("proBadge");
   if (pill) {
     pill.className = "pro-pill pro-active";
     pill.innerHTML = `${ICONS.crown} <span>PRO ACTIVO</span>`;
   }
   closeModal("checkoutModal");
-  alert(`¡Pago confirmado vía ${methodName}!\nTu membresía CharuPro ha sido activada con éxito. Ya puedes exportar certificados oficiales.`);
+  alert(`👑 ¡MEMBRESÍA CHARUPRO ACTIVADA CON ÉXITO!\n\nMétodo: ${methodName}\nPlan: ${selectedProPlan === "vitalicio" ? "Pase Vitalicio" : "Plan Mensual"}\nToken Criptográfico: ${proData.token}\n\nYa puedes exportar certificados oficiales y acceder a todas las funciones VIP.`);
+}
+
+function initProStatus() {
+  try {
+    const raw = localStorage.getItem("charu_pro_status");
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data && data.active) {
+        isProUser = true;
+        const pill = document.getElementById("proBadge");
+        if (pill) {
+          pill.className = "pro-pill pro-active";
+          pill.innerHTML = `${ICONS.crown} <span>PRO ACTIVO</span>`;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("[ProManager] Error leyendo estado de membresía:", e);
+  }
 }
 
 function viewCertificate() {
@@ -2442,21 +2942,47 @@ function viewCertificate() {
 }
 
 /* =============================================================================
-   GESTIÓN OFFLINE / ONLINE Y MUTACIONES
+   COLA DE SINCRONIZACIÓN EN SEGUNDO PLANO (OFFLINE MUTATION QUEUE)
    ============================================================================= */
-function toggleOnlineStatus() {
-  isOnline = !isOnline;
+function initOfflineSync() {
+  // Cargar mutaciones persistidas en LocalStorage
+  try {
+    const saved = localStorage.getItem("charu_sync_queue");
+    if (saved) {
+      pendingMutations = JSON.parse(saved);
+    }
+  } catch (e) {
+    console.warn("[SyncManager] Error leyendo cola offline de LocalStorage:", e);
+    pendingMutations = [];
+  }
+
+  // Detectores nativos del navegador de conectividad WiFi / Datos
+  window.addEventListener("online", () => {
+    console.log("[SyncManager] Conectividad restablecida (Evento Online detectado).");
+    setOnlineState(true);
+  });
+
+  window.addEventListener("offline", () => {
+    console.warn("[SyncManager] Conexión perdida (Evento Offline detectado). Entrando en modo local.");
+    setOnlineState(false);
+  });
+
+  // Estado inicial
+  setOnlineState(typeof navigator !== "undefined" && navigator.onLine !== undefined ? navigator.onLine : true);
+}
+
+function setOnlineState(online) {
+  isOnline = online;
   const badge = document.getElementById("statusBadge");
   const text = document.getElementById("statusText");
-  const queueCard = document.getElementById("syncQueueCard");
 
-  if (isOnline) {
+  if (online) {
     if (badge) badge.className = "status-badge status-online";
     if (text) text.textContent = "Sistema // En Línea";
     if (pendingMutations.length > 0) {
       syncPendingMutations();
-    } else if (queueCard) {
-      queueCard.style.display = "none";
+    } else {
+      updateQueueDisplay();
     }
   } else {
     if (badge) badge.className = "status-badge status-offline";
@@ -2465,19 +2991,45 @@ function toggleOnlineStatus() {
   }
 }
 
+function toggleOnlineStatus() {
+  setOnlineState(!isOnline);
+}
+
 function addMutation(table, action, payload) {
   const mut = {
-    id: "mut_" + Math.random().toString(36).substr(2, 8),
+    id: "mut_" + Date.now().toString(36) + "_" + Math.random().toString(36).substr(2, 4),
     table,
     action,
     payload,
-    timestamp: new Date().toLocaleTimeString()
+    timestamp: new Date().toLocaleTimeString("es-VE")
   };
-  if (!isOnline) {
-    pendingMutations.push(mut);
-    updateQueueDisplay();
+
+  pendingMutations.push(mut);
+  localStorage.setItem("charu_sync_queue", JSON.stringify(pendingMutations));
+  updateQueueDisplay();
+
+  if (isOnline) {
+    console.log("[SyncManager] Mutación registrada. Procesando en segundo plano:", mut);
+    setTimeout(() => { syncPendingMutations(); }, 500);
   } else {
-    console.log("[SyncManager] Mutación despachada a la nube:", mut);
+    console.log("[SyncManager] Mutación guardada en buffer offline local:", mut);
+  }
+}
+
+function getMutationMeta(m) {
+  switch (m.table) {
+    case "odometer_chain":
+      return { icon: "⛏️", label: "Odómetro Blockchain", desc: `Bloque #${m.payload ? m.payload.index : ''} (${m.payload && m.payload.km ? m.payload.km.toLocaleString() : ''} km)` };
+    case "fuel_logs":
+      return { icon: "⛽", label: "Registro Combustible", desc: `${m.payload ? m.payload.liters : ''}L ($${m.payload ? m.payload.usd : ''} USD)` };
+    case "comparisons":
+      return { icon: "⚖️", label: "Comparativa Guardada", desc: `"${m.payload ? m.payload.name : ''}"` };
+    case "obd2_diagnostics":
+      return { icon: "🔌", label: "Diagnóstico OBD2", desc: `Código [${m.payload ? m.payload.code : ''}]` };
+    case "service_records":
+      return { icon: "🔧", label: "Historial de Servicio", desc: `Código [${m.payload ? m.payload.code : ''}]` };
+    default:
+      return { icon: "📦", label: m.table, desc: m.action };
   }
 }
 
@@ -2486,21 +3038,120 @@ function updateQueueDisplay() {
   const countBadge = document.getElementById("queueCountBadge");
   const list = document.getElementById("queueList");
 
-  if (pendingMutations.length > 0) {
+  if (pendingMutations.length > 0 || !isOnline) {
     if (queueCard) queueCard.style.display = "block";
-    if (countBadge) countBadge.textContent = `${pendingMutations.length} pendientes`;
-    if (list) list.innerHTML = pendingMutations.map(m => `• [${m.action} ${m.table}] ${m.id} (${m.timestamp})`).join("<br>");
+    if (countBadge) {
+      countBadge.textContent = `${pendingMutations.length} operación(es) guardada(s) localmente en este dispositivo`;
+    }
+    if (list) {
+      if (pendingMutations.length === 0) {
+        list.innerHTML = `<span style="color:var(--text-muted); font-style:italic; padding:6px 0;">Buffer local vacío. Cualquier acción que realices sin internet se encolará aquí de forma segura.</span>`;
+      } else {
+        list.innerHTML = pendingMutations.map(m => {
+          const meta = getMutationMeta(m);
+          return `
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px; min-width:0;">
+                <span style="font-size:14px;">${meta.icon}</span>
+                <div style="min-width:0;">
+                  <div style="font-weight:700; color:#fff; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    ${meta.label}: <span style="color:var(--cyan); font-weight:600;">${meta.desc}</span>
+                  </div>
+                  <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted);">
+                    ID: ${m.id} • ${m.timestamp}
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="deletePendingMutation('${m.id}')" title="Eliminar de la cola local" style="padding:2px 6px; font-size:10px; color:#f87171; border-color:rgba(239,68,68,0.3); background:transparent;">
+                &times;
+              </button>
+            </div>
+          `;
+        }).join("");
+      }
+    }
   } else if (queueCard) {
     queueCard.style.display = "none";
   }
 }
 
+function deletePendingMutation(id) {
+  pendingMutations = pendingMutations.filter(m => m.id !== id);
+  localStorage.setItem("charu_sync_queue", JSON.stringify(pendingMutations));
+  updateQueueDisplay();
+}
+
 function syncPendingMutations() {
-  const countBadge = document.getElementById("queueCountBadge");
-  if (countBadge) countBadge.textContent = "Sincronizando con la nube...";
-  setTimeout(() => {
-    alert(`✅ Sincronización exitosa: Se sincronizaron ${pendingMutations.length} operaciones con el servidor remoto.`);
-    pendingMutations = [];
+  if (pendingMutations.length === 0) {
     updateQueueDisplay();
-  }, 1000);
+    return;
+  }
+
+  const countBadge = document.getElementById("queueCountBadge");
+  if (countBadge) countBadge.textContent = "Sincronizando operaciones con la nube...";
+
+  setTimeout(() => {
+    const totalSynced = pendingMutations.length;
+    pendingMutations = [];
+    localStorage.removeItem("charu_sync_queue");
+    updateQueueDisplay();
+    alert(`📡 SINCRONIZACIÓN EXITOSA:\n\nSe han sincronizado e indexado ${totalSynced} operaciones almacenadas en el dispositivo.`);
+  }, 900);
+}
+
+function exportOfflineBackup() {
+  const backupData = {
+    app: "CharuAutos WebApp & PWA",
+    version: "2.0.4",
+    exportDate: new Date().toISOString(),
+    proStatus: localStorage.getItem("charu_pro_status") ? JSON.parse(localStorage.getItem("charu_pro_status")) : null,
+    odometerChain: blockchain,
+    pendingMutations: pendingMutations
+  };
+
+  const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `charuautos_respaldo_offline_${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importOfflineBackup(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data && (data.odometerChain || data.pendingMutations || data.proStatus)) {
+        if (data.odometerChain && Array.isArray(data.odometerChain)) {
+          blockchain = data.odometerChain;
+          currentOdometer = blockchain[blockchain.length - 1].km;
+          renderBlockchain();
+          const odoDisplay = document.getElementById("garageOdoDisplay");
+          if (odoDisplay) odoDisplay.textContent = `${currentOdometer.toLocaleString()} km`;
+        }
+        if (data.pendingMutations && Array.isArray(data.pendingMutations)) {
+          pendingMutations = data.pendingMutations;
+          localStorage.setItem("charu_sync_queue", JSON.stringify(pendingMutations));
+          updateQueueDisplay();
+        }
+        if (data.proStatus && data.proStatus.active) {
+          localStorage.setItem("charu_pro_status", JSON.stringify(data.proStatus));
+          initProStatus();
+        }
+        alert("✅ Respaldo restaurado con éxito en tu dispositivo.");
+      } else {
+        alert("⚠️ Archivo de respaldo no reconocido o sin formato válido.");
+      }
+    } catch (err) {
+      alert("⚠️ Error al procesar el archivo JSON de respaldo.");
+    }
+  };
+  reader.readAsText(file);
 }

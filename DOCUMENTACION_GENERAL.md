@@ -212,13 +212,14 @@ La **Versión 1.0** se mantiene intacta en el repositorio en las carpetas `ebook
 
 ## 6. Arquitectura de Software, Despliegue y PWA
 
-### 6.1. Configuración en GitHub Pages y Redirección Raíz
-- **URL Base:** `https://faraves.github.io/charuautos/`
-- **Acceso Directo a la Historieta (Cómic PWA):** `https://faraves.github.io/charuautos/dist_pwa_historieta/` (o con el atajo `https://faraves.github.io/charuautos/?historieta`).
-- **Acceso Directo al Ebook V2 (Manual Técnico):** `https://faraves.github.io/charuautos/dist_pwa_v2/`
-- **Acceso Directo V1:** `https://faraves.github.io/charuautos/dist_pwa/`
+### 6.1. Configuración en GitHub Pages y Arquitectura de Enlaces
+- **Hub Maestro / Portada Central:** `https://faraves.github.io/charuautos/`
+- **CharuAutos WebApp & Comparador Automotriz (PWA Oficial):** `https://faraves.github.io/charuautos/app/public/`
+- **Lector de la Historieta (Cómic PWA Educativo):** `https://faraves.github.io/charuautos/ebook/pwa/pwa_historieta/`
+- **Manual Técnico Ilustrado (Ebook V2):** `https://faraves.github.io/charuautos/ebook/pwa/pwa_v2/`
+- **Manual Clásico (V1):** `https://faraves.github.io/charuautos/ebook/pwa/pwa_v1/`
 - **Comportamiento Raíz (`index.html`):**  
-  El archivo raíz implementa una redirección inteligente: si detecta parámetros como `?historieta` o `?comic`, envía al visitante de inmediato al lector del cómic PWA; por defecto redirige al Ebook V2 (`dist_pwa_v2/?v=10`), ofreciendo en pantalla botones de acceso rápido a ambas ediciones.
+  El archivo raíz opera como el **Hub Maestro y Showroom Digital**, ofreciendo acceso directo y tarjetas interactivas hacia la WebApp SaaS, el lector de cómic y los manuales técnicos.
 - **Archivo `.nojekyll`:** Presente en la raíz para evitar que el motor Jekyll de GitHub omita carpetas con guiones bajos o archivos estáticos.
 
 ### 6.2. Estrategia del Service Worker (v10) y Modo Offline
