@@ -1,0 +1,67 @@
+/* ==========================================================================
+   CHARU MOTORHUB — URBAN VITALITY & THE MECHANICAL HUB
+   Official Frontend Design Tokens (Version 2.0 — Dual Light & Cockpit OLED)
+   Location: .agents/skills/charu-brand-identity/resources/urban-vitality-tokens.css
+   ========================================================================== */
+
+/* 1. MODO CLARO (Default / Urban Light) */
+:root {
+  /* Brand Colors */
+  --color-ground-navy: #13334C;
+  --color-ground-navy-dark: #071520;
+  --color-ground-navy-mid: #0F2A3F;
+  --color-accent-lime: #00E676;
+  --color-accent-lime-hover: #00FF83;
+  --color-accent-lime-dim: rgba(0, 230, 118, 0.14);
+  --color-pop-white: #FFFFFF;
+
+  /* Neutrals & Surfaces */
+  --color-text-primary: #1E293B;
+  --color-text-muted: #64748B;
+  --color-text-soft: #94A3B8;
+  --color-surface-light: #F4F6F9;
+  --color-surface-card: #FFFFFF;
+  --color-border-subtle: #E2E8F0;
+  --color-border-accent: rgba(0, 230, 118, 0.35);
+
+  /* Status / Diagnostics Semaphores */
+  --color-status-nominal: #00E676;
+  --color-status-warning: #F59E0B;
+  --color-status-critical: #DC2626;
+
+  /* Typography */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Geometry & Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-btn: 12px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --radius-pill: 999px;
+
+  /* Shadows & Elevation */
+  --shadow-diffuse: 0 10px 30px rgba(19, 51, 76, 0.08);
+  --shadow-hover: 0 18px 45px rgba(19, 51, 76, 0.14);
+  --shadow-neon-glow: 0 8px 25px rgba(0, 230, 118, 0.35);
+  --shadow-neon-hover: 0 12px 35px rgba(0, 230, 118, 0.55);
+
+  /* Animations */
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. MODO OSCURO (Cockpit OLED / Night Vitality) */
+[data-theme="dark"], body.dark-theme {
+  --color-surface-light: #071520;
+  --color-surface-card: #0F2A3F;
+  --color-surface-elevated: #13334C;
+  --color-text-primary: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-text-soft: #64748B;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-accent: rgba(0, 230, 118, 0.45);
+  --shadow-diffuse: 0 15px 45px rgba(0, 0, 0, 0.6);
+  --shadow-neon-glow: 0 0 25px rgba(0, 230, 118, 0.5);
+}

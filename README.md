@@ -72,18 +72,37 @@ El repositorio está estructurado bajo un modelo de empresa organizado en 4 depa
 
 ```text
 CharuAutos/
-├── index.html                                      # Enrutador inteligente PWA a ebook/pwa/pwa_historieta/ y pwa_v2/
+├── index.html                                      # Enrutador inteligente PWA
 ├── README.md                                       # Mapa general del proyecto y guía de navegación
 ├── DOCUMENTACION_GENERAL.md                        # Documentación maestra técnica, de arquitectura y negocio
-├── favicon.ico / .gitignore / .nojekyll       # Archivos de entorno y despliegue estático
+├── GEMINI.md                                       # Reglas de desarrollo canónicas y ciclo de vida local
+├── sync_obsidian_vault.py                          # Script de sincronización con la bóveda Obsidian
+├── favicon.ico / .gitignore / .nojekyll            # Archivos de entorno y despliegue estático
 │
-├── 📂 marketing/                                    # 📢 ÁREA DE MARKETING, BRANDING Y COMUNICACIÓN
-│   ├── branding/                                   # Brandbook, Manual de Marca, manual_identidad.html y assets
+├── 📂 marketing/                                   # 📢 ÁREA DE MARKETING, BRANDING Y COMUNICACIÓN
+│   ├── branding/                                   # Manual de Marca V2.0 Urban Vitality, Visor Web y Assets HD
+│   │   ├── BRANDBOOK.md                            # Brandbook maestro canónico (Urban Vitality)
+│   │   ├── MANUAL_DE_IDENTIDAD_OFICIAL_CHARU_MOTORHUB.md # Manual integral
+│   │   ├── manual_identidad_urban_vitality.html   # Visor interactivo web (Light & Dark)
+│   │   ├── manual_identidad.html                   # Visor interactivo oficial por defecto
+│   │   ├── assets/                                 # Activos oficiales HD (Huella Mecánica, logos, maquetas)
+│   │   └── legacy_v1_charuautos/                   # Archivo histórico preservado (Versión 1.0)
 │   ├── copy/                                       # Textos persuasivos y landing page (landing_page_copy.md)
-│   ├── diseno_y_prompts/                           # Prompts de generación artística (prompts_diseno_y_portada.md)
+│   ├── diseno_y_prompts/                           # Dirección de arte, prompts y maquetas
+│   │   ├── prompts_diseno_y_portada.md             # Prompts de generación artística
+│   │   ├── scripts/                                # Scripts de renderizado gráfico (render_all_apps.py)
+│   │   └── exploraciones_rebranding/               # Archivo de maquetas exploratorias
 │   └── README.md                                   # Guía estratégica del área de marketing
 │
-├── 📂 ebook/                                        # 📖 TODO LO RELACIONADO AL EBOOK (MANUSCRITOS + PWAS)
+├── 📂 app/                                         # 📱 PROYECTO DE LA APLICACIÓN CHARU MOTORHUB
+│   ├── README.md                                   # Visión, arquitectura técnica y roadmap de desarrollo
+│   ├── serve_local_app.py                          # Servidor local Python (puerto 8080)
+│   ├── docs/                                       # Especificaciones de producto y wireframes (Capítulos 00 a 08)
+│   │   └── compilados/                             # PDF maestro y Hub compilado oficial
+│   ├── src/                                        # Código fuente de la app
+│   └── public/                                     # Activos estáticos servidos (app.js, index.html, sw.js)
+│
+├── 📂 ebook/                                       # 📖 TODO LO RELACIONADO AL EBOOK (MANUSCRITOS + PWAS)
 │   ├── v2_tecnico/                                 # 🏆 Versión 2.0 Conductor Inteligente (14 módulos, lector, assets)
 │   ├── historieta/                                 # 🎨 Novela Gráfica Cómic Educativo (14 episodios, lector, assets)
 │   ├── v1_clasico/                                 # 🚗 Edición Clásica V1 (capítulos, PDF 33 pág, lector, assets)
@@ -95,27 +114,26 @@ CharuAutos/
 │   │   └── releases/                               # Paquetes .zip compilados listos para distribución
 │   └── README.md                                   # Índice maestro editorial comparativo
 │
-├── 📂 app/                                          # 📱 PROYECTO DE LA FUTURA APLICACIÓN CHARUAUTOS
-│   ├── README.md                                   # Visión, arquitectura técnica y roadmap de desarrollo
-│   ├── docs/                                       # Especificaciones de producto y wireframes
-│   ├── src/                                        # Código fuente de la app (a desarrollar juntos)
-│   └── public/                                     # Activos estáticos de la aplicación
+├── 📂 .agents/skills/                              # 🧠 SISTEMA CANÓNICO DE SKILLS PARA AGENTES IA
+│   ├── charu-brand-identity/                       # Identidad visual, Brand Guidelines y UI tokens de Charu motorhub
+│   ├── app-server-lifecycle/                       # Protocolo estricto del servidor local y despliegue
+│   ├── comparador-vehicular-avanzado/              # Matriz comparativa, Chart.js y recursos interactivos
+│   └── ...                                         # Habilidades de diseño, UX y auditoría
 │
-└── 📂 agente_ia/                                    # 🤖 CENTRO DE CONOCIMIENTOS Y SKILLS DEL AGENTE IA
-    ├── README.md                                   # Manifiesto y guía operativa para el Agente IA
-    ├── knowledge/                                  # Base de conocimientos estructurada
-    │   ├── contexto_negocio.md                     # Visión de mercado, buyer persona y UVP
-    │   ├── personajes_y_storytelling.md            # Biblia narrativa y voces de personajes
-    │   └── estandares_tecnicos.md                  # Normas SAE J300, ASTM, DOT, OBD-II y protocolos
-    ├── skills/                                     # Habilidades operativas del agente
-    │   ├── redaccion_editorial.md                  # Técnica pedagógica y redacción sin jerga
-    │   ├── auditoria_mecanica.md                   # Verificación técnica y checklist de seguridad
-    │   └── optimizacion_pwa.md                     # Directrices frontend y desarrollo PWA
-    └── scripts/                                    # Scripts de generación gráfica y automatización
-        ├── build_panel_03b_final.py
-        ├── build_panel_03b_master.py
-        ├── build_panel_03b_perfect.py
-        └── update_ebook_03b.py
+├── 📂 agente_ia/                                   # 🤖 CENTRO DE CONOCIMIENTOS Y AUTOMATIZACIONES
+│   ├── README.md                                   # Manifiesto y guía operativa para el Agente IA
+│   ├── knowledge/                                  # Base de conocimientos estructurada
+│   │   ├── contexto_negocio.md                     # Visión de mercado, buyer persona y UVP
+│   │   ├── personajes_y_storytelling.md            # Biblia narrativa y voces de personajes
+│   │   └── estandares_tecnicos.md                  # Normas SAE J300, ASTM, DOT, OBD-II y protocolos
+│   ├── skills/                                     # Habilidades de redacción y auditoría mecánica
+│   └── scripts/                                    # Scripts de generación gráfica de historietas
+│       ├── build_panel_03b_final.py                # Generador maestro de viñeta HD
+│       ├── update_ebook_03b.py                     # Script de actualización de ebook
+│       └── drafts_panel_03b/                       # Archivo histórico de borradores iterativos
+│
+└── 📂 obsidian_vault/                              # 📓 BÓVEDA DE CONOCIMIENTO OBSIDIAN
+    └── ...                                         # Hub central, arquitectura, finanzas y roadmap
 ```
 
 ---

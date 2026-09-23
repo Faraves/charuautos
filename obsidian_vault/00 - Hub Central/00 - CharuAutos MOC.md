@@ -40,6 +40,7 @@ graph TD
 ---
 
 ### 📂 1. Negocio, Monetización y Mercado
+- [[Ideas del Proyecto - Ideas de Monetizacion]]: Resumen ejecutivo, diagnóstico de factibilidad, matriz de monetización y tesis de inversor/emprendedor.
 - [[Modelo de Negocio Hibrido]]: Arquitectura de ingresos B2C Freemium y B2B Marketplace & Leads.
 - [[Mercado Automotriz Venezuela]]: Análisis del parque automotor dual, crisis de combustible y pagos multimoneda.
 - [[Unit Economics & Proyecciones]]: CAC ($0.80-$1.50), LTV ($14.50), ARPU y márgenes brutos.

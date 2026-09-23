@@ -139,7 +139,8 @@ pie title Estado General de Avance del Proyecto
     1. *Matchmaker:* Filtros dinámicos de vías venezolanas y presupuesto, ejecutando el algoritmo en tiempo real sobre 20 vehículos.
     2. *Escáner OBD2:* Códigos críticos (`P0420`, `P0171`, `P0300`), causas 80/20 y Escudo Anti-Estafas.
     3. *Comparador & Scraping PDF:* Soporte multi-PDF (hasta 5 vehículos simultáneos), remoción individual con botón '✖', supresión automática del vehículo base de prueba al detectar 2 o más fichas, cálculo dinámico de ganadores por métrica y gestión de historial persistente en `localStorage`.
-    4. *Mi Garage:* Minado en vivo de bloques SHA-256 (`crypto.subtle`), detección de fraude de odómetro, registro bimonetario de combustible a tasa oficial BCV, cola offline simulada y Checkout Bimonetario (Pago Móvil / Binance Pay).
+    4. *Motor de Scraping C++ PyMuPDF (`/api/v1/pdf/scrape`):* Resolución de la extracción duplicada de valores por defecto (115 HP, 150 Nm); integración de endpoint local que decodifica streams zlib/FlateDecode, tablas multilínea de marcas chinas (Haval Jolion, Jetour Dashing/X50/X70) y fichas escaneadas de pickups (Dongfeng Rich 6, Foton Tunland E) con 100% de precisión y respaldo heurístico en navegador.
+    5. *Mi Garage:* Minado en vivo de bloques SHA-256 (`crypto.subtle`), detección de fraude de odómetro, registro bimonetario de combustible a tasa oficial BCV, cola offline simulada y Checkout Bimonetario (Pago Móvil / Binance Pay).
   - Apertura automática en navegador web predeterminado.
 
 ---

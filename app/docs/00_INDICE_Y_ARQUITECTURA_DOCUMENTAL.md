@@ -103,14 +103,21 @@ La arquitectura técnica de **CharuAutos** se fundamenta estrictamente como una 
 │   ├── 7.3. Métricas Clave de Negocio (North Star Metric, DAU/MAU, Retención de Cohortes)
 │   └── 7.4. Matriz Integral de Riesgos y Planes de Contingencia Operativa
 │
-└── 08_PIPELINE_EXTRACCION_MULTIMODAL_FICHAS_TECNICAS.md
-    ├── 8.1. Diagnóstico del Problema: Heterogeneidad en Catálogos Automotrices
-    ├── 8.2. Stack Tecnológico Obligatorio (Python, google.generativeai as genai, Gemini File API, Pydantic v2)
-    ├── 8.3. Pipeline de Ingesta Híbrida: Comprensión Espacial Multimodal y Glifos (● / -)
-    ├── 8.4. Esquema Estructurado Pydantic v2 y Servicio GeminiVehiclePDFParser
-    ├── 8.5. Capa de Normalización Determinista de Unidades y Ontología de Sinónimos
-    ├── 8.6. Casos de Estudio Reales Auditados (BAIC X35 y Toyota Corolla Cross)
-    └── 8.7. Guardrails Físicos y Persistencia en Base de Datos Centralizada
+├── 08_PIPELINE_EXTRACCION_MULTIMODAL_FICHAS_TECNICAS.md
+│   ├── 8.1. Diagnóstico del Problema: Heterogeneidad en Catálogos Automotrices
+│   ├── 8.2. Stack Tecnológico Obligatorio (Python, google.generativeai as genai, Gemini File API, Pydantic v2)
+│   ├── 8.3. Pipeline de Ingesta Híbrida: Comprensión Espacial Multimodal y Glifos (● / -)
+│   ├── 8.4. Esquema Estructurado Pydantic v2 y Servicio GeminiVehiclePDFParser
+│   ├── 8.5. Capa de Normalización Determinista de Unidades y Ontología de Sinónimos
+│   ├── 8.6. Casos de Estudio Reales Auditados (BAIC X35 y Toyota Corolla Cross)
+│   └── 8.7. Guardrails Físicos y Persistencia en Base de Datos Centralizada
+│
+└── IDEAS_DEL_PROYECTO_MONETIZACION.md (Anexo Estratégico)
+    ├── Resumen Ejecutivo y Diagnóstico de Factibilidad Inversor/Emprendedor
+    ├── Evaluación de Mercado ($199M - $219M, 76% Región Capital)
+    ├── Modelo de Negocio Híbrido (Freemium, Marketplace, Lead Gen, SaaS)
+    ├── Matriz de 6 Fuentes de Ingreso (Prioridad, Potencial y Esfuerzo)
+    └── Hoja de Ruta de Validación (Alianzas Piloto Caracas y Ronda Ángel $20k-$50k)
 ```
 
 ---

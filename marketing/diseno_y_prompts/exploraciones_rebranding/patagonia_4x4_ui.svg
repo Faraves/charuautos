@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#05070a; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1517" stop-opacity="1" />
+      <stop offset="100%" stop-color="#020406" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#172326" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#172326" stop-opacity="0.75" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#14B8A6" />
+      <stop offset="100%" stop-color="#0D9488" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000000" flood-opacity="0.65" />
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Studio Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)" />
+  <circle cx="960" cy="540" r="650" fill="#14B8A6" opacity="0.04" filter="blur(80px)" />
+  
+  <!-- Subtle Grid Texture -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#243B40" stroke-width="0.75" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="1920" height="1080" fill="url(#grid)" />
+
+  <!-- Central Workstation / Monitor Container -->
+  <g transform="translate(60, 40)" filter="url(#shadow)">
+    <!-- Browser Window Frame -->
+    <rect width="1800" height="1000" rx="16" fill="#0E1517" stroke="#243B40" stroke-width="1.5" />
+    
+    <!-- Window Title Bar -->
+    <path d="M 0 16 Q 0 0 16 0 L 1784 0 Q 1800 0 1800 16 L 1800 48 L 0 48 Z" fill="#0b0e14" />
+    <circle cx="28" cy="24" r="6.5" fill="#ff5f56" />
+    <circle cx="48" cy="24" r="6.5" fill="#ffbd2e" />
+    <circle cx="68" cy="24" r="6.5" fill="#27c93f" />
+    
+    <!-- Browser URL pill -->
+    <rect x="520" y="10" width="760" height="28" rx="7" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+    <text x="900" y="29" fill="#8DA2A6" font-size="12" font-family="monospace" text-anchor="middle">charumotorhub.com/platform/modo-travesía-glaciar-and-pizarra-telemetry-dashboard</text>
+    
+    <!-- Web App Header / Navbar -->
+    <rect x="0" y="48" width="1800" height="74" fill="#172326" stroke="#243B40" stroke-width="0 0 1 0" />
+    
+    <!-- Brand Logo -->
+    <g transform="translate(40, 64)">
+      <rect x="0" y="0" width="42" height="42" rx="9" fill="url(#accentGrad)" />
+      <!-- Stylized Piston / Apex Icon -->
+      <path d="M 12 12 L 30 12 L 30 20 L 25 24 L 25 32 L 17 32 L 17 24 L 12 20 Z" fill="#000000" opacity="0.9" />
+      <text x="56" y="28" fill="#F0FDFA" font-size="22" font-weight="900" letter-spacing="1.5">CHARU <tspan fill="#14B8A6">MOTORHUB</tspan></text>
+      <text x="58" y="40" fill="#8DA2A6" font-size="9" letter-spacing="3" font-weight="600">AUTOMOTIVE PLATFORM</text>
+    </g>
+
+    <!-- Navigation Tabs -->
+    <g transform="translate(480, 72)" font-size="14" font-weight="600">
+      <text x="0" y="22" fill="#14B8A6" font-weight="700">01. Recomendador</text>
+      <line x1="0" y1="36" x2="130" y2="36" stroke="#14B8A6" stroke-width="3" />
+      <text x="180" y="22" fill="#8DA2A6">02. Diagnóstico OBD-II</text>
+      <text x="380" y="22" fill="#8DA2A6">03. Comparador Técnico</text>
+      <text x="590" y="22" fill="#8DA2A6">04. Bitácora &amp; Telemetría</text>
+      <text x="800" y="22" fill="#8DA2A6">05. Peritaje Forense</text>
+    </g>
+
+    <!-- Top Right Status Badges -->
+    <g transform="translate(1500, 68)">
+      <rect x="0" y="0" width="130" height="34" rx="17" fill="#172326" stroke="#243B40" stroke-width="1" />
+      <circle cx="20" cy="17" r="4.5" fill="#10B981" />
+      <text x="34" y="22" fill="#F0FDFA" font-size="12" font-weight="600">CAN-BUS 500k</text>
+
+      <rect x="145" y="0" width="115" height="34" rx="17" fill="#14B8A6" />
+      <text x="202" y="22" fill="#000000" font-size="12" font-weight="800" text-anchor="middle">LIVE ENGINE</text>
+    </g>
+
+    <!-- SUBHEADER / HERO CONTEXT BAR -->
+    <g transform="translate(40, 145)">
+      <rect x="0" y="0" width="1720" height="60" rx="12" fill="url(#cardGrad)" stroke="#243B40" stroke-width="1" />
+      <rect x="18" y="16" width="110" height="28" rx="6" fill="#14B8A6" fill-opacity="0.15" stroke="#14B8A6" stroke-width="1" />
+      <text x="73" y="35" fill="#14B8A6" font-size="11" font-weight="800" text-anchor="middle">MODO TRAVESÍA GLACIAR &amp; PIZARRA</text>
+      
+      <text x="145" y="36" fill="#F0FDFA" font-size="18" font-weight="700">Propuesta 16: Overland Patagonia &amp; Arctic Expedition</text>
+      <text x="620" y="36" fill="#8DA2A6" font-size="13">|  Ruta 40 &amp; Ripio Glaciar // Telemetría Inclinométrica // 4x4 Pesado</text>
+
+      <text x="1690" y="36" fill="#8DA2A6" font-size="13" text-anchor="end">Engine Mode: <tspan fill="#14B8A6" font-weight="bold">ACTIVE RACE / TELEMETRY ON</tspan></text>
+    </g>
+
+    <!-- 4 FUNCTIONAL MODULES GRID -->
+    
+    <!-- MODULE 1: RECOMENDADOR PREDICTIVO (TOP-LEFT) -->
+    <g transform="translate(40, 225)">
+      <rect width="845" height="360" rx="14" fill="url(#cardGrad)" stroke="#243B40" stroke-width="1" />
+      <text x="25" y="36" fill="#8DA2A6" font-size="11" font-weight="700" letter-spacing="1.5">MÓDULO 01 // SISTEMA PREDICTIVO</text>
+      <text x="25" y="65" fill="#F0FDFA" font-size="20" font-weight="800">Wizard de Selección de Vehículo</text>
+      
+      <!-- Match Card Inside -->
+      <g transform="translate(25, 90)">
+        <rect width="795" height="240" rx="12" fill="#0E1517" stroke="#14B8A6" stroke-width="1.2" stroke-opacity="0.5" />
+        
+        <!-- Big Percentage Badge -->
+        <g transform="translate(30, 28)">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#243B40" stroke-width="8" />
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#14B8A6" stroke-width="8" stroke-dasharray="276" stroke-dashoffset="20" stroke-linecap="round" />
+          <text x="50" y="55" fill="#F0FDFA" font-size="20" font-weight="900" text-anchor="middle">99.1%</text>
+          <text x="50" y="70" fill="#8DA2A6" font-size="9" text-anchor="middle">MATCH %</text>
+        </g>
+
+        <!-- Vehicle Details -->
+        <g transform="translate(160, 32)">
+          <rect x="0" y="0" width="85" height="22" rx="4" fill="#14B8A6" fill-opacity="0.2" />
+          <text x="42" y="15" fill="#14B8A6" font-size="11" font-weight="800" text-anchor="middle">TOP PICK</text>
+          <text x="0" y="50" fill="#F0FDFA" font-size="22" font-weight="800">Toyota Land Cruiser HZJ78 Troopy 4.2D</text>
+          <text x="0" y="75" fill="#8DA2A6" font-size="13">Configuración de peritaje calibrada para condiciones extremas y máximo rendimiento.</text>
+        </g>
+
+        <!-- Criteria telemetry pills -->
+        <g transform="translate(30, 150)">
+          <rect x="0" y="0" width="235" height="60" rx="8" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+          <text x="16" y="24" fill="#8DA2A6" font-size="11">TRACCIÓN &amp; GRIP</text>
+          <text x="16" y="48" fill="#F0FDFA" font-size="16" font-weight="700">AWD Vectorial / Lock</text>
+
+          <rect x="255" y="0" width="235" height="60" rx="8" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+          <text x="16" y="24" fill="#8DA2A6" font-size="11">RELACIÓN PESO/POTENCIA</text>
+          <text x="16" y="48" fill="#F0FDFA" font-size="16" font-weight="700">131 HP / 285 Nm (Doble Tanque 180L)</text>
+
+          <rect x="510" y="0" width="250" height="60" rx="8" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+          <text x="16" y="24" fill="#8DA2A6" font-size="11">CONFIABILIDAD PERITAJE</text>
+          <text x="16" y="48" fill="#10B981" font-size="16" font-weight="800">98.5 / 100 PTS</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- MODULE 2: DIAGNÓSTICO OBD-II (TOP-RIGHT) -->
+    <g transform="translate(915, 225)">
+      <rect width="845" height="360" rx="14" fill="url(#cardGrad)" stroke="#243B40" stroke-width="1" />
+      <text x="25" y="36" fill="#8DA2A6" font-size="11" font-weight="700" letter-spacing="1.5">MÓDULO 02 // SCANNER &amp; TELEMETRÍA EN TIEMPO REAL</text>
+      <text x="25" y="65" fill="#F0FDFA" font-size="20" font-weight="800">Buscador y Diagnóstico OBD-II</text>
+      
+      <!-- OBD Code Box -->
+      <g transform="translate(25, 90)">
+        <rect width="795" height="240" rx="12" fill="#0E1517" stroke="#F59E0B" stroke-width="1.2" />
+        
+        <!-- Severity Banner -->
+        <rect x="0" y="0" width="795" height="42" rx="12" fill="#F59E0B" fill-opacity="0.15" />
+        <circle cx="28" cy="21" r="6" fill="#F59E0B" filter="url(#glow)" />
+        <text x="44" y="26" fill="#F59E0B" font-size="13" font-weight="800">SEVERIDAD: MEDIA // COMPENSACIÓN BAROMÉTRICA</text>
+        <text x="770" y="26" fill="#8DA2A6" font-size="12" text-anchor="end">PROTOCOLO ISO 15765-4 CAN</text>
+
+        <!-- Code Highlight -->
+        <g transform="translate(25, 65)">
+          <rect x="0" y="0" width="130" height="52" rx="8" fill="#172326" stroke="#243B40" stroke-width="1" />
+          <text x="65" y="36" fill="#F0FDFA" font-size="24" font-weight="900" text-anchor="middle" font-family="monospace">P0401</text>
+          
+          <text x="150" y="25" fill="#F0FDFA" font-size="17" font-weight="700">EGR Insufficient Flow // Altura Andina &gt; 4.200 msnm</text>
+          <text x="150" y="46" fill="#8DA2A6" font-size="13">Lectura del sensor validada con banco de prueba y escaneo directo de ECU.</text>
+        </g>
+
+        <!-- Technical Causes & Fixes -->
+        <g transform="translate(25, 140)">
+          <rect x="0" y="0" width="365" height="72" rx="8" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+          <text x="16" y="24" fill="#8DA2A6" font-size="11" font-weight="700">CAUSA PRINCIPAL DETECTADA</text>
+          <text x="16" y="46" fill="#F0FDFA" font-size="13" font-weight="600">Desviación térmica / flujo de masa fuera de rango</text>
+          <text x="16" y="62" fill="#8DA2A6" font-size="11">Margen de tolerancia ECU: ± 3.8% excedido</text>
+
+          <rect x="385" y="0" width="385" height="72" rx="8" fill="#172326" stroke="#243B40" stroke-width="0.8" />
+          <text x="16" y="24" fill="#14B8A6" font-size="11" font-weight="700">SOLUCIÓN RECOMENDADA CHARU</text>
+          <text x="16" y="46" fill="#F0FDFA" font-size="13" font-weight="600">Reemplazo / limpieza ultrasónica de sensor &amp; mazo</text>
+          <text x="16" y="62" fill="#10B981" font-size="11">Costo estimado repuesto: Disponible en catálogo</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- MODULE 3: COMPARADOR TÉCNICO MULTI-VEHÍCULO (BOTTOM-LEFT) -->
+    <g transform="translate(40, 610)">
+      <rect width="845" height="350" rx="14" fill="url(#cardGrad)" stroke="#243B40" stroke-width="1" />
+      <text x="25" y="36" fill="#8DA2A6" font-size="11" font-weight="700" letter-spacing="1.5">MÓDULO 03 // MATRIZ TÉCNICA LADO A LADO (PDF EXTRACTOR ACTIVE)</text>
+      <text x="25" y="65" fill="#F0FDFA" font-size="20" font-weight="800">Comparador Técnico y Ficha Homologada</text>
+
+      <!-- Table Header -->
+      <g transform="translate(25, 90)">
+        <rect width="795" height="34" rx="6" fill="#172326" />
+        <text x="16" y="22" fill="#8DA2A6" font-size="12" font-weight="700">PARÁMETRO</text>
+        <text x="320" y="22" fill="#14B8A6" font-size="12" font-weight="800">LAND CRUISER HZJ78</text>
+        <text x="560" y="22" fill="#8DA2A6" font-size="12" font-weight="700">INEOS GRENADIER 3.0</text>
+        <text x="740" y="22" fill="#8DA2A6" font-size="12" font-weight="700">DELTA</text>
+
+        <!-- Row 1 -->
+        <g transform="translate(0, 42)">
+          <rect width="795" height="42" fill="#0E1517" stroke="#243B40" stroke-width="0 0 1 0" />
+          <text x="16" y="26" fill="#8DA2A6" font-size="13">Potencia / Torque</text>
+          <text x="320" y="26" fill="#F0FDFA" font-size="14" font-weight="800">131 HP / 285 Nm (Doble Tanque 180L)</text>
+          <text x="560" y="26" fill="#8DA2A6" font-size="14">249 HP / 550 Nm (Tanque 90L)</text>
+          <text x="740" y="26" fill="#14B8A6" font-size="13" font-weight="bold">+18.4%</text>
+        </g>
+
+        <!-- Row 2 -->
+        <g transform="translate(0, 88)">
+          <rect width="795" height="42" fill="#0E1517" stroke="#243B40" stroke-width="0 0 1 0" />
+          <text x="16" y="26" fill="#8DA2A6" font-size="13">Aceleración 0-100 km/h</text>
+          <text x="320" y="26" fill="#F0FDFA" font-size="14" font-weight="800">3.4 seg</text>
+          <text x="560" y="26" fill="#8DA2A6" font-size="14">4.1 seg</text>
+          <text x="740" y="26" fill="#10B981" font-size="13" font-weight="bold">-0.7s (Win)</text>
+        </g>
+
+        <!-- Row 3 -->
+        <g transform="translate(0, 134)">
+          <rect width="795" height="42" fill="#0E1517" stroke="#243B40" stroke-width="0 0 1 0" />
+          <text x="16" y="26" fill="#8DA2A6" font-size="13">Frenado 100-0 km/h (Mts)</text>
+          <text x="320" y="26" fill="#F0FDFA" font-size="14" font-weight="800">31.2 m (Cerámicos)</text>
+          <text x="560" y="26" fill="#8DA2A6" font-size="14">34.8 m (Acero)</text>
+          <text x="740" y="26" fill="#10B981" font-size="13" font-weight="bold">-3.6m</text>
+        </g>
+
+        <!-- Row 4 -->
+        <g transform="translate(0, 180)">
+          <rect width="795" height="42" fill="#0E1517" />
+          <text x="16" y="26" fill="#8DA2A6" font-size="13">Capacidad de Carga / Autonomía</text>
+          <text x="320" y="26" fill="#F0FDFA" font-size="14" font-weight="800">680 km / Tanque</text>
+          <text x="560" y="26" fill="#8DA2A6" font-size="14">540 km / Tanque</text>
+          <text x="740" y="26" fill="#14B8A6" font-size="13" font-weight="bold">+140 km</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- MODULE 4: BITÁCORA, CONSUMO & TELEMETRÍA (BOTTOM-RIGHT) -->
+    <g transform="translate(915, 610)">
+      <rect width="845" height="350" rx="14" fill="url(#cardGrad)" stroke="#243B40" stroke-width="1" />
+      <text x="25" y="36" fill="#8DA2A6" font-size="11" font-weight="700" letter-spacing="1.5">MÓDULO 04 // BITÁCORA DINÁMICA DE COSTO / KM Y RENDIMIENTO</text>
+      <text x="25" y="65" fill="#F0FDFA" font-size="20" font-weight="800">Telemetría Analítica &amp; Consumo</text>
+
+      <g transform="translate(25, 90)">
+        <!-- Analog-Digital Dial Gauge -->
+        <g transform="translate(0, 0)">
+          <rect width="280" height="232" rx="12" fill="#0E1517" stroke="#243B40" stroke-width="1" />
+          
+          <!-- Gauge Arc -->
+          <path d="M 50 150 A 90 90 0 1 1 230 150" fill="none" stroke="#243B40" stroke-width="14" stroke-linecap="round" />
+          <path d="M 50 150 A 90 90 0 0 1 190 75" fill="none" stroke="#14B8A6" stroke-width="14" stroke-linecap="round" filter="url(#glow)" />
+          
+          <text x="140" y="130" fill="#F0FDFA" font-size="34" font-weight="900" text-anchor="middle">18°</text>
+          <text x="140" y="152" fill="#14B8A6" font-size="13" font-weight="700" text-anchor="middle">ÁNGULO DE CABECEO (PITCH)</text>
+          <text x="140" y="195" fill="#8DA2A6" font-size="11" text-anchor="middle">RENDIMIENTO ÓPTIMO</text>
+        </g>
+
+        <!-- Sparkline Consumption Graph -->
+        <g transform="translate(300, 0)">
+          <rect width="495" height="135" rx="12" fill="#0E1517" stroke="#243B40" stroke-width="1" />
+          <text x="20" y="26" fill="#8DA2A6" font-size="11" font-weight="700">CURVA HISTÓRICA L/100KM (ÚLTIMOS 1,200 KM)</text>
+          <text x="475" y="26" fill="#14B8A6" font-size="12" font-weight="700" text-anchor="end">Media: 8.6 L/100km</text>
+          
+          <!-- Sparkline Path -->
+          <polyline points="25,100 80,85 140,95 200,70 260,88 320,60 380,75 470,65" fill="none" stroke="#14B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          
+          <!-- Timeline X marks -->
+          <text x="25" y="122" fill="#8DA2A6" font-size="10">Km 0</text>
+          <text x="140" y="122" fill="#8DA2A6" font-size="10">Km 300</text>
+          <text x="260" y="122" fill="#8DA2A6" font-size="10">Km 600</text>
+          <text x="380" y="122" fill="#8DA2A6" font-size="10">Km 900</text>
+          <text x="455" y="122" fill="#8DA2A6" font-size="10">Km 1200</text>
+        </g>
+
+        <!-- Service & Maintenance Log Strip -->
+        <g transform="translate(300, 150)">
+          <rect width="495" height="82" rx="12" fill="#0E1517" stroke="#243B40" stroke-width="1" />
+          <circle cx="35" cy="41" r="16" fill="#14B8A6" fill-opacity="0.2" />
+          <text x="35" y="46" fill="#14B8A6" font-size="14" font-weight="bold" text-anchor="middle">CAL</text>
+
+          <text x="65" y="34" fill="#F0FDFA" font-size="14" font-weight="700">Próximo Mantenimiento Programado</text>
+          <text x="65" y="54" fill="#8DA2A6" font-size="12">Cambio de fluidos sintéticos 0W-40, pastillas cerámicas y purga CAN-bus.</text>
+          
+          <rect x="385" y="26" width="95" height="30" rx="6" fill="#14B8A6" />
+          <text x="432" y="46" fill="#000000" font-size="11" font-weight="800" text-anchor="middle">EN 2,450 KM</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

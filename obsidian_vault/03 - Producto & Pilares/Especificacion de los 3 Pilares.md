@@ -1,236 +1,199 @@
-# Sección 03: Especificación Funcional Detallada de los 3 Pilares Core
-### Diseño de Producto, Algoritmos, Lógica de Negocio y Experiencia Funcional
-*Especialmente contextualizado para el mercado automotriz venezolano • Hook: Matchmaker-First*
+# Sección 03: Especificación Funcional de los 3 Pilares Core
+### Diseño de Producto, Ingeniería de Prompts, Motor RAG, Diagnóstico OBD2 y Analítica Cloud
+*Plataforma Comercial CharuAutos SaaS • Arquitectura Cloud-Native • Experiencia Libre de Fricción*
 
 ---
 
-## 3.1. Pilar 1 (Hook Principal): Matchmaker de Compra & Comparador Inteligente
+## 3.1. Pilar 1: Módulo de Búsqueda y Comparación (Matchmaker + RAG)
 
-El **Matchmaker de CharuAutos** no es un simple filtro de búsqueda por precio o año; es un **asesor virtual empático** que traduce las necesidades cotidianas del usuario en especificaciones de ingeniería automotriz adaptadas a las exigencias de Venezuela.
+El **Pilar 1** combina un flujo conversacional guiado con un **motor RAG (Retrieval-Augmented Generation)** de alta precisión para recuperar y comparar especificaciones técnicas de vehículos sin alucinaciones.
 
 ```mermaid
 flowchart TD
-    Start(["🚀 Inicio de la Entrevista"]) --> Q1["💰 1. Presupuesto Total y Liquidez<br>(Compra inicial + colchón de mantenimiento)"]
-    Q1 --> Q2["🛣️ 2. Rutas y Caminos Recorridos<br>(Autopistas, calles con baches, subidas, viajes al interior)"]
-    Q2 --> Q3["⛽ 3. Sensibilidad al Combustible<br>(Capacidad de surtir subsidiada/internacional, consumo km/L)"]
-    Q3 --> Q4["👨‍👩‍👧‍👦 4. Espacio y Capacidad de Carga<br>(Pasajeros, coche de bebé, maletas, trabajo de carga)"]
-    Q4 --> Q5["🔧 5. Tolerancia a la Disponibilidad de Repuestos<br>(¿Consigue en cualquier esquina o puede esperar importación?)"]
-    
-    Q5 --> Engine["🧠 Algoritmo de Ponderación & Scoring<br>(Compatibilidad de Fichas Técnicas)"]
-    
-    Engine --> Results["🏆 Top 3 Modelos Recomendados<br>(% Match + Pros y Contras en Venezuela)"]
-    Results --> Compare["⚖️ Comparador Lado a Lado Sin Jerga"]
-    Results --> LeadGen["🏢 CTA: Contactar Concesionario / Taller de Revisión Pre-Compra"]
+    subgraph Experiencia de Usuario ["👤 Interfaz Conversacional & Selección"]
+        PromptUser["🗣️ Entrada del Usuario en Lenguaje Cotidiano<br>('Busco carro familiar para subir a El Hatillo, que no se rompa en huecos')"]
+        PromptEngine["🧠 Ingeniería de Prompts del Matchmaker<br>(Traducción a Parámetros de Ingeniería)"]
+    end
+
+    subgraph Pipeline RAG ["⚡ Motor RAG de Fichas Técnicas (Zero-Hallucination)"]
+        IngestPDF["📄 Brochures Oficiales & Fichas PDF"]
+        Chunker["✂️ Chunking Semántico & Extracción Estructurada"]
+        VectorDB[("🗄️ Base Vectorial Cloud (pgvector / Qdrant)<br>Embeddings de Fichas Técnicas")]
+        HybridSearch["🔍 Búsqueda Híbrida (Dense Vector + BM25 Sparse)"]
+        Reranker["🎯 Reranker de Máxima Precisión (Cohere / Cross-Encoder)"]
+        Synthesizer["🛡️ Sintetizador con Grounding Estricto<br>(Cita exacta de página / Sin alucinaciones)"]
+    end
+
+    subgraph Salida Analítica ["📊 Comparador Dinámico Lado a Lado"]
+        Scoring["🏆 Scoring Multi-Criterio (% Match)"]
+        Grid["⚖️ Canvas Comparativo (Hasta 5 vehículos simultáneos)"]
+    end
+
+    PromptUser --> PromptEngine
+    PromptEngine --> Scoring
+    IngestPDF --> Chunker --> VectorDB
+    VectorDB <--> HybridSearch --> Reranker --> Synthesizer
+    Synthesizer --> Grid
+    Scoring --> Grid
 ```
 
-### 1. El Árbol Conversacional Guiado (Entrevista Sin Jerga)
+### 1. Ingeniería de Prompts Conversacionales (Traductor de Necesidades)
+El Matchmaker guía al usuario a través de un diálogo empático y desestructurado que un LLM (o un árbol de decisión determinista en modo offline) traduce a restricciones de ingeniería automotriz:
 
-Las preguntas evitan tecnicismos y se basan en escenarios del día a día en Venezuela:
-
-| Pregunta del Asistente | Opciones de Respuesta | Traducción a Variables de Ingeniería |
+#### Matriz de Traducción Semántica:
+| Expresión Coloquial del Usuario | Interpretación de Ingeniería Automotriz | Restricciones de Filtrado en Base de Datos |
 | :--- | :--- | :--- |
-| **1. "¿Cuánto dinero tienes disponible para el carro?"** | A) < $4,000 USD<br>B) $4,000 - $8,000 USD<br>C) $8,000 - $15,000 USD<br>D) > $15,000 USD (0km / Financiamiento) | Filtra segmentos: Usados de batalla, sedanes tradicionales, SUVs medianas o modelos 0km nuevos chinos/financiamientos. |
-| **2. "¿Por dónde vas a rodar la mayor parte del tiempo?"** | A) Pura ciudad plana (Caracas centro, Maracaibo)<br>B) Subidas fuertes y cerros (El Hatillo, Táchira, Mérida)<br>C) Vías con muchos huecos y baches pronunciados<br>D) Viajes largos interurbanos por autopistas | - Despeje al suelo mínimo (ej. > 170 mm para opción C).<br>- Curva de torque a bajas RPM (> 140 Nm para opción B).<br>- Rigidez estructural del tren delantero. |
-| **3. "¿Cuál es tu prioridad con la gasolina?"** | A) Máximo ahorro, que rinda bastante<br>B) No me importa tanto el consumo, prefiero fuerza<br>C) Que acepte gasolina regular sin pistoneo ni fallas | - Relación de compresión del motor (preferir motores < 10.5:1 atmosféricos para evitar detonación con octanaje irregular).<br>- Consumo mixto > 14 km/litro. |
-| **4. "¿Qué tan fácil quieres conseguir los repuestos?"** | A) "Que los vendan hasta en la panadería"<br>B) "Puedo esperar unos días si el carro es más moderno" | Ponderador de densidad de stock en repuesteras locales (ej. Toyota/Chevrolet vs. marcas asiáticas emergentes). |
+| *"Las calles por donde ando están llenas de baches y huecos profundos"* | Alta tolerancia a impacto, rigidez estructural y despeje vertical generoso. | `clearance_mm >= 160`, suspensión delantera MacPherson reforzada o multibrazo con perfil de neumático $\ge 60$ (evitar perfil bajo). |
+| *"Tengo que subir cerros y subidas empinadas a diario con la familia"* | Alta entrega de par motor a bajas revoluciones y adecuada relación peso-potencia. | `torque_nm >= 140` disponible a $\le 3,800\,\text{RPM}$, relación peso/potencia $\le 12.5\,\text{kg/HP}$, caja con relaciones cortas (evitar cajas CVT con sobrecalentamiento). |
+| *"No quiero dolores de cabeza con la gasolina regular"* | Motor de baja compresión y tolerancia a combustible de octanaje irregular o con sedimentos. | Relación de compresión $\le 10.5:1$, inyección indirecta multipunto (MPI/VVT) atmosférica preferida sobre inyección directa GDI con alta compresión. |
+| *"Quiero que los repuestos se consigan hasta en la farmacia"* | Alta densidad de inventario en el mercado de reposición local. | Índice de disponibilidad de repuestos `>= 85/100` (Chevrolet, Toyota, Ford tradicionales frente a importaciones boutique). |
 
----
-
-### 2. Algoritmo de Ponderación y Scoring (% de Compatibilidad)
-
-Para cada vehículo $i$ de la base de datos canónica, el Score de Compatibilidad ($S_i \in [0, 100]$) se calcula mediante una suma ponderada normalizada:
-
-$$S_i = \left( \sum_{j=1}^{6} w_j \cdot C_{ij} \right) \times P_{\text{penalización}}$$
-
-Donde:
-- $w_j$ = Peso relativo asignado a cada criterio según las respuestas del usuario ($\sum w_j = 1$).
-- $C_{ij} \in [0, 1]$ = Grado de cumplimiento del vehículo $i$ en el criterio $j$:
-  1. **$C_1$ (Ajuste a Presupuesto):** Penalización cuadrática si excede el presupuesto del usuario.
-  2. **$C_2$ (Costo Total de Mantenimiento TCO en Venezuela):** Basado en el precio de repuestos clave (amortiguadores, pastillas, kit de embrague, bujías).
-  3. **$C_3$ (Despeje del Suelo / Suspensión):** Distancia libre al suelo contra irregularidades viales.
-  4. **$C_4$ (Tolerancia al Combustible Local):** Sensibilidad del sistema de inyección y sensores de O2.
-  5. **$C_5$ (Habitabilidad & Espacio):** Volumen del maletero en litros y espacio entre ejes.
-  6. **$C_6$ (Liquidez de Reventa):** Tiempo promedio en días que tarda el modelo en venderse en portales de segunda mano.
-- $P_{\text{penalización}}$ = Factor de descuento (0.75) si el modelo posee un historial crítico de fallas endémicas (ej. rotura de correa de tiempo en modelos de interferencia sin mantenimiento estricto).
-
----
-
-### 3. Comparador Lado a Lado: Fichas Técnicas "Humanizadas"
-
-Cuando el usuario selecciona dos o tres modelos para contrastar (ej. *Toyota Corolla 2011* vs. *Changan Alsvin 2024* vs. *Ford Fiesta 2012*), la interfaz traduce las especificaciones crudas a lenguaje intuitivo:
-
+#### Prompt del Sistema para el Agente Matchmaker (System Prompt):
 ```text
-┌──────────────────────────────────────┬──────────────────────────────────────┬──────────────────────────────────────┐
-│ TOYOTA COROLLA 1.8 (2011)            │ CHANGAN ALSVIN 1.4 (2024)            │ FORD FIESTA TITANIUM (2012)          │
-├──────────────────────────────────────┼──────────────────────────────────────┼──────────────────────────────────────┤
-│ 🏆 Compatibilidad: 94%               │ 🏆 Compatibilidad: 88%               │ 🏆 Compatibilidad: 76%               │
-│                                      │                                      │                                      │
-│ 🛡️ Repuestos en Venezuela:          │ 🛡️ Repuestos en Venezuela:          │ 🛡️ Repuestos en Venezuela:          │
-│ Inmediatos en cualquier ciudad       │ En concesionarios y tiendas grandes  │ Frecuentes, pero ojo con imitaciones │
-│                                      │                                      │                                      │
-│ 🛑 Altura contra Huecos y Policías:  │ 🛑 Altura contra Huecos y Policías:  │ 🛑 Altura contra Huecos y Policías:  │
-│ Buena (160 mm de despeje)            │ Regular (145 mm, raspa si va cargado)│ Baja (135 mm, requiere cuidado)      │
-│                                      │                                      │                                      │
-│ ⛽ Comportamiento con la Gasolina:   │ ⛽ Comportamiento con la Gasolina:   │ ⛽ Comportamiento con la Gasolina:   │
-│ Excelente, motor rústico de cadena   │ Requiere mantenimiento de inyectores │ Sensible a suciedad en tanque        │
-│                                      │                                      │                                      │
-│ 💰 Costo de Mantenimiento Anual:     │ 💰 Costo de Mantenimiento Anual:     │ 💰 Costo de Mantenimiento Anual:     │
-│ ~$320 USD/año                        │ ~$260 USD/año (primeros años)        │ ~$410 USD/año (frecuente en tren del)│
-└──────────────────────────────────────┴──────────────────────────────────────┴──────────────────────────────────────┘
+Eres el Asistente Técnico Senior de CharuAutos. Tu objetivo es asesorar imparcialmente al usuario para seleccionar el vehículo ideal.
+REGLAS INVIOLABLES:
+1. Nunca uses jerga técnica sin explicarla de inmediato con una metáfora cotidiana.
+2. Si el presupuesto del usuario es inferior al precio de mercado, advierte con honestidad la necesidad de colchón para mantenimiento preventivo ($500 - $800 USD).
+3. Evalúa rigurosamente las condiciones locales: despeje de baches, calidad de gasolina y disponibilidad real de repuestos.
+4. Entrega siempre un Top 3 ordenado por % de compatibilidad, desglosando PROS, CONTRAS y un DICTAMEN TÉCNICO claro.
 ```
 
 ---
 
-### 4. Ingesta Inteligente de Fichas Técnicas por PDF Adjunto (Document Scraping & Parsing)
-
-Para responder a la necesidad de evaluar vehículos no listados o modelos recién importados por concesionarios en Venezuela:
-- **Flujo de Carga:** El usuario o vendedor puede adjuntar un archivo PDF oficial (brochure comercial o ficha técnica del fabricante) arrastrándolo a la app o seleccionándolo desde el celular.
-- **Motor de Extracción y Regex Heurístico:**
-  - Extrae cilindrada, potencia en HP, torque en Nm, despeje al suelo en mm, volumen de maletero y tipo de transmisión/distribución.
-- **Normalización Automática a la Interfaz Canónica:**
-  - El documento procesado se convierte automáticamente en una entidad `CanonicalVehicle` candidata.
-  - Se incorpora de inmediato al comparador lado a lado para contrastarlo contra cualquier auto del catálogo de CharuAutos.
-
-```mermaid
-flowchart LR
-    PDF["📄 Ficha Técnica en PDF<br>(Ej: Brochure Dongfeng / Changan)"] --> Parser["⚙️ Motor de Parsing & Scraping<br>(Extracción de Entidades Automotrices)"]
-    Parser --> Norm["🔄 Normalizador Canónico<br>(Potencia, Torque, Despeje mm, Maletero)"]
-    Norm --> Compare["⚖️ Comparación Lado a Lado Instantánea<br>(PDF vs. Autos de la Base de Datos)"]
-```
+### 2. Arquitectura RAG para Fichas Técnicas (Anti-Alucinaciones)
+Para evitar que la IA invente datos de potencia, consumo o medidas, se implementa una arquitectura **RAG con Grounding Estricto**:
+- **Ingesta de Fichas Técnicas (PDF / Brochures):** Se procesan mediante extracción híbrida (OCR + PyMuPDF) dividiendo los documentos en fragmentos semánticos (Motor, Transmisión, Chasis/Dimensiones, Seguridad).
+- **Almacenamiento Vectorial:** Cada fragmento se indexa en `pgvector` con metadatos estructurados (`maker`, `model`, `year`, `trim`, `source_file`, `page_number`).
+- **Recuperación Híbrida:** Combina búsqueda vectorial densa con búsqueda exacta por palabras clave (BM25) para códigos de motor específicos (ej. `1ZZ-FE`, `GW4G15K`, `E4T15C`).
+- **Regla de Cero Alucinación:** Si un dato (ej. capacidad exacta del maletero o torque) no está explícitamente contenido en el documento fuente, la respuesta declara: `"Dato no especificado en la ficha técnica oficial del fabricante"`.
 
 ---
 
-## 3.2. Pilar 2: Asistente Mecánico & Diagnóstico OBD2 Manual
+### 3. Comparador Dinámico Multi-Vehículo (Hasta 5 Simultáneos)
+- **Eliminación Automática de Referencia:** Si el usuario carga 2 o más vehículos (vía PDF o catálogo), el vehículo de prueba se retira automáticamente y la grilla compara exclusivamente los vehículos seleccionados.
+- **Detección Automática de Ganadores (`LÍDER`):** El sistema calcula dinámicamente los valores máximos para Potencia (HP), Torque (Nm), Despeje (mm), Maletero (L) y Tanque (L), asignando la insignia verde **`LÍDER`** a la mejor especificación.
+- **Acción de Limpieza y Guardado:** Permite guardar la sesión comparativa en la base de datos cloud y reabrirla o compartirla mediante enlace permanente.
 
-En la fase MVP, el usuario no necesita hardware Bluetooth. El diagnóstico se activa mediante un **buscador predictivo de códigos DTC** o un **selector visual de síntomas**.
+---
+
+## 3.2. Pilar 2: Asistente Mecánico y Diagnóstico OBD2
+
+El **Pilar 2** digitaliza el protocolo diagnóstico automotriz internacional (**SAE J2012 / ISO 15031**) para empoderar al usuario antes de pisar un taller mecánico.
 
 ```mermaid
 flowchart LR
-    User["👤 Usuario ingresa: 'P0420'"] --> Engine["🔍 Motor de Diagnóstico SAE/ISO"]
-    Engine --> Severity["🚦 Nivel de Severidad (Semáforo ISO)"]
-    Engine --> Causes["📊 Causas Raíz Ordenadas por Probabilidad (80/20)"]
-    Engine --> Shield["🛡️ Escudo Anti-Estafas en el Taller"]
+    Input["🔍 Ingreso de Código DTC<br>(Ej: P0300, P0420, P0171)"] --> Engine["⚙️ Motor de Diagnóstico SAE J2012"]
+    
+    Engine --> Semaforo["🚦 Semáforo de Severidad<br>(Nivel 1, Nivel 2, Nivel 3)"]
+    Engine --> Analisis["📊 Análisis Causa-Raíz 80/20<br>(Probabilidad vs. Costo Estimado)"]
+    Engine --> Escudo["🛡️ Checklist Técnico Anti-Estafas<br>(Preguntas clave para el taller)"]
 
-    Severity --> Display["Pantalla de Resultados Didáctica"]
-    Causes --> Display
-    Shield --> Display
+    Semaforo --> Card["📱 Tarjeta de Diagnóstico Dinámica"]
+    Analisis --> Card
+    Escudo --> Card
 ```
 
 ### 1. El Semáforo de Severidad ISO/SAE
-- **🟢 Código Nivel 1 (Leve / Conducción Segura):**
-  - *Ejemplos:* `P0442` (pequeña fuga EVAP / tapa de gasolina floja), `P0128` (termostato abre a destiempo).
-  - *Mensaje:* *"Puedes seguir manejando con tranquilidad. No daña el motor a corto plazo. Revísalo en tu próximo servicio rutinario."*
-- **🟡 Código Nivel 2 (Precaución / Atención Necesaria):**
-  - *Ejemplos:* `P0420` (eficiencia catalizador baja), `P0171` (mezcla pobre en banco 1).
-  - *Mensaje:* *"El auto rueda, pero consumirá más gasolina o perderá fuerza. Atiéndelo pronto para evitar averías mayores."*
-- **🔴 Código Nivel 3 (Crítico / Detener el Auto Inmediatamente):**
-  - *Ejemplos:* `P0300` parpadeando (misfire masivo dañando motor), `P0524` (presión de aceite insuficiente).
-  - *Mensaje:* *"¡ALERTA ROJA! Detén el vehículo en un lugar seguro y apaga el motor. Continuar la marcha puede fundir el motor o causar daños catastróficos."*
+- **🟢 Nivel 1 (Leve / Operación Segura):**
+  - *Definición:* Fallas no críticas que no comprometen la integridad del motor a corto plazo (ej. `P0442` fuga mínima EVAP, `P0128` termostato por debajo de temperatura de regulación).
+  - *Acción:* Monitoreo rutinario; no requiere asistencia de grúa ni detención del viaje.
+- **🟡 Nivel 2 (Advertencia Técnica / Precaución):**
+  - *Definición:* Desviaciones en mezcla o emisiones que provocan pérdida de potencia o sobreconsumo de combustible (ej. `P0171` mezcla pobre, `P0420` catalizador degradado por azufre).
+  - *Acción:* Agendar revisión en los próximos 7 a 15 días para evitar daños colaterales.
+- **🔴 Nivel 3 (Severidad Crítica / Detención Inmediata):**
+  - *Definición:* Riesgo inminente de destrucción mecánica o incendio (ej. `P0300` misfire aleatorio con luz parpadeante, `P0524` baja presión de aceite, `P0217` sobrecalentamiento del motor).
+  - *Acción:* Detener el vehículo inmediatamente en zona segura, apagar el motor y solicitar grúa.
 
 ---
 
-### 2. Árbol de Causas Raíz 80/20 y Desglose Económico
-
-Para evitar que el usuario gaste cientos de dólares innecesariamente, la app muestra las causas más probables ordenadas de menor a mayor costo:
-
-#### Caso de Estudio: Código `P0420` (Muy frecuente en Venezuela por combustible)
-1. **Causa más barata y probable (60% de los casos):** Sensor de oxígeno posterior defectuoso o sucio ($25 - $40 USD).
-2. **Segunda causa común (25% de los casos):** Fuga en el tubo de escape o junta suelta antes del catalizador ($15 USD de soldadura).
-3. **Causa más cara y menos común (15% de los casos):** Catalizador verdaderamente fundido o tapado ($200 - $600 USD).
-
----
-
-### 3. Generador del "Escudo Anti-Estafas" para el Taller
-
-La app genera una tarjeta exportable a WhatsApp o pantalla completa que el usuario muestra o utiliza como libreto al hablar con el mecánico:
+### 2. Matriz de Causa-Raíz 80/20 y Guía para el Mecánico ("Escudo Anti-Estafas")
+Desglosa las causas más probables ordenadas de menor a mayor costo para evitar que el taller intente reemplazar piezas costosas sin diagnóstico previo:
 
 ```text
-╔══════════════════════════════════════════════════════════════════════════╗
-║  🛡️ ESCUDO CHARUAUTOS — REGLAS PARA EL MECÁNICO                          ║
-╠══════════════════════════════════════════════════════════════════════════╣
-║  Vehículo: Chevrolet Aveo 1.6 • Código Detectado: P0171 (Mezcla Pobre)   ║
-║                                                                          ║
-║  1. PREGUNTA CLAVE DE CONFRONTACIÓN:                                     ║
-║     "Amigo, antes de cambiar la bomba de gasolina completa, ¿podemos      ║
-║     medir la presión en el riel de inyectores con el manómetro y         ║
-║     revisar si hay una toma de aire falsa en la manguera de vacío?"      ║
-║                                                                          ║
-║  2. CONDICIONES OBLIGATORIAS:                                            ║
-║     • Todo repuesto reemplazado debe entregarse en su caja original      ║
-║       con la pieza vieja retirada como evidencia.                        ║
-║     • No autorizo trabajos adicionales sin presupuesto escrito previo.   ║
-║     • Escaneo final para verificar que el código se borró y no volvió.   ║
-╚══════════════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║  🛡️ CHARUAUTOS — CHECKLIST TÉCNICO // ASESORÍA DE TALLER                                     ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════╣
+║  Código Detectado: P0420 (Eficiencia de Catalizador Baja) • Severidad: Nivel 2 (Moderada)    ║
+║                                                                                              ║
+║  DESGLOSE CAUSA-RAÍZ (PRINCIPIO DE PARETO 80/20):                                            ║
+║  1. [60% Probabilidad - $25-$45 USD]: Sensor de oxígeno secundario contaminado o carbonizado. ║
+║  2. [25% Probabilidad - $10-$20 USD]: Fisura o fuga de aire en la tubería antes del sensor.   ║
+║  3. [15% Probabilidad - $180-$450 USD]: Convertidor catalítico fundido o destruido.          ║
+║                                                                                              ║
+║  PREGUNTAS DE CONFRONTACIÓN PARA EL MECÁNICO:                                                ║
+║  [ ] "¿Graficó la forma de onda del sensor de oxígeno secundario en vivo con el escáner para ║
+║      confirmar si oscila erráticamente antes de condenar el catalizador?"                    ║
+║  [ ] "¿Verificó que no existan fugas de aire fresco en el tubo de escape o juntas?"          ║
+║  [ ] "Exijo ver la lectura de voltajes antes y después de cualquier intervención."           ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-## 3.3. Pilar 3: Cuaderno de Mantenimiento Dinámico & Dashboard Analítico
+## 3.3. Pilar 3: Cuaderno de Mantenimiento Dinámico & Dashboard Analítico Cloud
 
-El cuaderno de mantenimiento digital sustituye a la libreta física olvidada en la guantera, convirtiendo cada gasto en inteligencia preventiva.
+El **Pilar 3** convierte cada carga de combustible y servicio de taller en inteligencia analítica centralizada en la nube con sincronización bidireccional.
 
 ```mermaid
 graph LR
-    subgraph Registro Rápido
-        Input["➕ Nueva Carga / Mantenimiento<br>(Cámara / Manual en 10 seg)"]
+    subgraph Eventos Registrados
+        Combustible["⛽ Carga de Gasolina (USD / VES)"]
+        Odometro["🛣️ Odómetro Actualizado"]
+        Servicio["🔧 Mantenimiento Realizado"]
     end
 
-    subgraph Procesamiento
-        Calc1["Calculador de Rendimiento (km/L)"]
-        Calc2["Cálculo de Costo Real ($/km)"]
-        Calc3["Algoritmo Health Score (0-100%)"]
+    subgraph Motores Analíticos Cloud
+        CostoKM["Algoritmo de Costo/Km ($/km)"]
+        Eficiencia["Curva de Eficiencia (km/L)"]
+        HealthScore["Algoritmo Health Score (0-100%)"]
+        Predictivo["Modelo Predictivo de Desgaste"]
     end
 
-    subgraph Visualización en Canvas
-        Dash["📊 Dashboard Analítico Reactivo"]
-        Time["⏳ Timeline Cronológico de Vida Útil"]
-        Alert["🔔 Alerta Predictiva de Servicio Próximo"]
+    subgraph Visualización en Dashboard
+        Canvas["📊 Dashboard Web / App Móvil"]
+        Timeline["⏳ Timeline Interactivo de Vida Útil"]
+        Pasaporte["📑 Pasaporte Criptográfico (SHA-256)"]
     end
 
-    Input --> Calc1 & Calc2 & Calc3
-    Calc1 & Calc2 & Calc3 --> Dash & Time & Alert
+    Combustible & Odometro & Servicio --> CostoKM & Eficiencia & HealthScore & Predictivo
+    CostoKM & Eficiencia & HealthScore & Predictivo --> Canvas & Timeline & Pasaporte
 ```
 
-### 1. El Timeline Interactivo de Vida Útil
+### 1. Algoritmo de Costo Real por Kilómetro ($\$/\text{km}$ Bimonetario)
+Calcula el costo operativo total ponderado en función de la inflación local y la dualidad monetaria (USD / VES):
 
-Una línea de tiempo interactiva donde el usuario hace scroll horizontal o vertical por los hitos mecánicos de su auto:
-- **Nodos Verdes:** Mantenimientos preventivos realizados a tiempo (cambio de aceite 5W-30, filtro de cabina, rotación de llantas).
-- **Nodos Amarillos:** Servicios próximos a vencer (ej. *"Faltan 800 km para cambio de pastillas de freno"*).
-- **Nodos Rojos:** Servicios vencidos con alerta de riesgo (ej. *"Correa de distribución con 62,000 km sin cambiar: riesgo de rotura"*).
+$$\text{Costo}_{\$/\text{km}} = \frac{\sum_{t=1}^{N} \left( \text{Gasto Combustible}_{t} + \text{Gasto Mantenimiento}_{t} + \text{Seguro / Impuestos}_{t} \right)}{\Delta \text{Kilómetros Recorridos}}$$
+
+- Si el usuario paga en bolívares (VES), el sistema convierte automáticamente el monto a USD oficial usando la tasa oficial del Banco Central (BCV) del timestamp exacto del registro.
 
 ---
 
-### 2. Algoritmo del "Health Score" del Vehículo (0 a 100%)
+### 2. Algoritmo Dinámico de Salud Vehicular ("Health Score" 0 a 100%)
+El puntaje de salud del vehículo ($H \in [0, 100]$) se actualiza dinámicamente con cada reporte:
 
-El puntaje de salud del vehículo ($H \in [0, 100]$) se recalcula automáticamente con cada ingreso de kilometraje:
-
-$$H = 100 - \sum_{k=1}^{M} \left( \Delta_{\text{vencimiento}, k} \times \omega_k \right) - \text{Penalización}_{\text{DTC}}$$
+$$H = 100 - \sum_{k=1}^{M} \left( \Delta_{\text{vencimiento}, k} \times \omega_k \right) - \sum_{d \in \text{DTCs}} \Omega_d$$
 
 Donde:
-- $\omega_k$ es el peso del componente según su criticidad mecánica (ej. Aceite de motor: $\omega = 25$; Filtro de aire acondicionado: $\omega = 5$).
-- $\Delta_{\text{vencimiento}, k}$ es el porcentaje de sobre-kilometraje transcurrido desde la fecha límite.
-- $\text{Penalización}_{\text{DTC}}$ descuenta 15 puntos por cada código Nivel 2 activo y 35 puntos por cada código Nivel 3 sin resolver.
-
-*Impacto Comercial:* Un auto con **Health Score > 90%** durante más de 6 meses desbloquea el sello de **"Vehículo Certificado CharuAutos"**, aumentando su valor de reventa en el mercado local entre un **5% y un 12%**.
+- $\omega_k$: Factor de ponderación del componente según su criticidad mecánica (ej. Aceite de motor $\omega=25$, Correa de tiempo en motor de interferencia $\omega=35$, Pastillas de freno $\omega=20$, Filtro de habitáculo $\omega=5$).
+- $\Delta_{\text{vencimiento}, k}$: Porcentaje de exceso sobre el intervalo recomendado de recambio.
+- $\Omega_d$: Penalización por códigos DTC activos no resueltos (Nivel 1: $\Omega=5$, Nivel 2: $\Omega=15$, Nivel 3: $\Omega=35$).
 
 ---
 
-### 3. Dashboard Financiero Bimonetario ($/km)
+### 3. Planes de Mantenimiento Preventivo Estandarizados
+La plataforma almacena programas de mantenimiento preventivo parametrizados según marca, motorización y kilometraje:
 
-El dashboard resuelve la necesidad de los conductores venezolanos de entender cuánto les cuesta realmente mover el vehículo:
+| Intervalo de Kilometraje | Mantenimientos Obligatorios | Fluido / Componente Específico | Criticidad |
+| :--- | :--- | :--- | :---: |
+| **Cada 5,000 km** | Cambio de aceite mineral / semi-sintético y filtro | 10W-30 / 15W-40 API SP | Alta |
+| **Cada 10,000 km** | Cambio de aceite 100% sintético, filtro de aire y rotación de neumáticos | 0W-20 / 5W-30 Full Synthetic | Alta |
+| **Cada 40,000 km** | Sustitución de bujías, líquido de frenos (DOT 4) y refrigerante (OAT 50/50) | Bujías de Iridio / Cobre según catálogo | Muy Alta |
+| **Cada 60,000 - 80,000 km** | Kit de correa de distribución + tensor y bomba de agua | Correa reforzada (crítico en motores Aveo/Optra) | **Crítica** |
+| **Cada 80,000 - 100,000 km** | Mantenimiento de transmisión (CVT / Automática tradicional) y amortiguadores | Fluido homologado OEM (CVT Fluid / ATF WS) | Muy Alta |
 
-```text
-┌──────────────────────────────────────────────────────────────────────────┐
-│ 📊 RESUMEN DE SALUD Y COSTOS — TOYOTA COROLLA (2011)                      │
-├──────────────────────────────────────────────────────────────────────────┤
-│  ❤️ Salud Global: 92/100 (Excelente)     🛣️ Odómetro: 148,500 km         │
-├──────────────────────────────────────────────────────────────────────────┤
-│  ⛽ RENDIMIENTO DE COMBUSTIBLE:           💰 COSTO OPERATIVO:             │
-│  • 12.4 km / Litro (Promedio ciudad)     • $0.11 USD / km recorrido      │
-│  • Autonomía por tanque: ~580 km         • (Aprox. 4.18 Bs./km a tasa BCV)│
-├──────────────────────────────────────────────────────────────────────────┤
-│  🔔 PRÓXIMA ALERTA PREVENTIVA:                                           │
-│  ⚠️ Cambio de Aceite y Filtro en 1,200 km (Estimado: 22 días)             │
-│  Presupuesto estimado repuestos: $35 - $45 USD                            │
-└──────────────────────────────────────────────────────────────────────────┘
-```
+---
+
+### 4. Pasaporte Digital Criptográfico con Cadena Inmutable de Odómetro
+- Cada actualización de odómetro se enlaza al bloque previo mediante un hash **SHA-256 inmutable**:
+  $$\text{Hash}_n = \text{SHA-256}(n \parallel \text{vehicle\_id} \parallel \text{km}_n \parallel \text{timestamp} \parallel \text{Hash}_{n-1})$$
+- **Regla Estricta de Monotonicidad:** Si un usuario o actor intenta ingresar un kilometraje menor ($\text{km}_n < \text{km}_{n-1}$), el sistema bloquea la mutación y activa una **Alerta de Fraude**, protegiendo a los futuros compradores de vehículos usados.

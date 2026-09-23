@@ -70,6 +70,12 @@ def populate_vault():
         os.path.join(DOCS_DIR, "07_PLAN_DE_EJECUCION_ROADMAP_Y_GTM.md"),
         os.path.join(VAULT_DIR, "01 - Negocio & Finanzas", "Plan de Ejecucion Roadmap & GTM.md")
     )
+
+    # 10. Ideas del Proyecto y Monetización
+    shutil.copyfile(
+        os.path.join(DOCS_DIR, "IDEAS_DEL_PROYECTO_MONETIZACION.md"),
+        os.path.join(VAULT_DIR, "01 - Negocio & Finanzas", "Ideas del Proyecto - Ideas de Monetizacion.md")
+    )
     
     print("✅ Baúl de Obsidian poblado exitosamente con enlaces canónicos.")
 
