@@ -1402,167 +1402,25 @@ async function handleFileUpload(e) {
 }
 
 function extractCleanVehicleMakerAndModel(fileName, text) {
-  const normText = (text || "").normalize("NFKD");
-  const textLower = normText.toLowerCase();
-  const fnLower = (fileName || "").toLowerCase();
+  let cleanFn = (fileName || '').replace(/\.pdf$/i, '');
+  cleanFn = cleanFn.replace(/^[a-f0-9]{16,64}[_\s-]*/i, '');
+  cleanFn = cleanFn.replace(/^\d{6,}[_\s-]*/, '');
+  cleanFn = cleanFn.replace(/\b(f\.?t\.?|ficha(?:\s*t[eé]cnica)?|brochure|cat[aá]logo|catalogo|compressed|compreso|comprimido|copia|copy|\(\d+\)|v\d+)\b/gi, '');
+  cleanFn = cleanFn.replace(/([a-zA-Z]+)(\d{4})\b/g, ' ');
+  cleanFn = cleanFn.replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
 
-  // Limpieza base del fileName para descartar hashes, tags y separar años pegados
-  let cleanFn = (fileName || "").replace(/\.pdf$/i, "");
-  cleanFn = cleanFn.replace(/^[a-f0-9]{16,64}[_\s-]*/i, "");
-  cleanFn = cleanFn.replace(/^\d{6,}[_\s-]*/, "");
-  cleanFn = cleanFn.replace(/\b(f\.?t\.?|ficha(?:\s*t[eé]cnica)?|brochure|cat[aá]logo|catalogo|compressed|compreso|comprimido|copia|copy|\(\d+\)|v\d+)\b/gi, "");
-  cleanFn = cleanFn.replace(/([a-zA-Z]+)(\d{4})\b/g, "$1 $2");
-  cleanFn = cleanFn.replace(/[-_]/g, " ").replace(/\s+/g, " ").trim();
-
-  let maker = "";
-  let model = "";
-
-  // 1. Chery (Arrizo, Tiggo)
-  if (textLower.includes("arrizo") || fnLower.includes("arrizo") || textLower.includes("chery") || fnLower.includes("chery")) {
-    maker = "Chery";
-    const mArr = normText.match(/ARRIZO\s*(\d+)\s*(PRO)?/i);
-    if (mArr) {
-      const num = mArr[1];
-      const pro = mArr[2] ? " Pro" : "";
-      let transTag = "";
-      if (textLower.includes("automa") || textLower.includes("cvt") || textLower.includes("a/t") || fnLower.includes("automa")) {
-        transTag = " Automático";
-      } else if (textLower.includes("sincron") || textLower.includes("m/t") || textLower.includes("manual")) {
-        transTag = " Manual";
-      }
-      model = `Arrizo ${num}${pro}${transTag}`.trim();
-    } else if (textLower.includes("arrizo") || fnLower.includes("arrizo")) {
-      model = "Arrizo";
-      if (textLower.includes("automa") || fnLower.includes("automa")) model += " Automático";
-      else if (textLower.includes("sincron") || fnLower.includes("sincron")) model += " Sincrónico";
-    } else if (textLower.includes("tiggo") || fnLower.includes("tiggo")) {
-      const mTig = normText.match(/TIGGO\s*(\d+)\s*(PRO)?(?:\s*(MAX))?/i);
-      if (mTig) {
-        const num = mTig[1];
-        const pro = mTig[2] ? " Pro" : "";
-        const maxTag = mTig[3] ? " Max" : "";
-        model = `Tiggo ${num}${pro}${maxTag}`.trim();
-      } else {
-        model = "Tiggo 4 Pro";
-      }
-    }
-  }
-  // 2. Toyota (Corolla, Land Cruiser, Yaris, Hilux)
-  else if (textLower.includes("toyota") || fnLower.includes("toyota") || textLower.includes("corolla") || fnLower.includes("corolla") || textLower.includes("land cruiser") || textLower.includes("trj240") || textLower.includes("mzea12") || textLower.includes("mxga10") || fnLower.includes("fj")) {
-    maker = "Toyota";
-    const mModHeader = normText.match(/(?:^|\n)\s*([A-Za-z0-9\s./-]{3,50})\s*\n\s*MODELO\b/i);
-    if (mModHeader) {
-      let candidate = mModHeader[1].replace(/(\d+(?:\.\d+)?)\s*([lL])\b/g, "$1L").replace(/\s+/g, " ").trim();
-      if (candidate.toLowerCase().includes("corolla")) {
-        const words = candidate.split(" ");
-        const formatted = words.map(w => {
-          const uw = w.toUpperCase();
-          if (["SEG", "A/T", "M/T", "CVT", "GLI", "XLI", "XEI", "GR"].includes(uw)) return uw;
-          if (/^\d+\.\d+\s*L?$/i.test(uw)) return uw.replace(/\s+/g, "");
-          return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
-        });
-        model = formatted.join(" ");
-      }
-    }
-    if (!model) {
-      if (textLower.includes("corolla cross") || fnLower.includes("corolla cross") || textLower.includes("mxga10") || (fnLower.includes("corolla") && fnLower.includes("cross"))) {
-        model = "Corolla Cross 2.0L CVT";
-      } else if (textLower.includes("corolla") || fnLower.includes("corolla") || textLower.includes("mzea12")) {
-        model = textLower.includes("seg") ? "Corolla SEG 2.0L A/T" : "Corolla 2.0L CVT";
-      } else if (textLower.includes("land cruiser") || fnLower.includes("fj") || textLower.includes("trj240") || fnLower.includes("land cruiser")) {
-        model = "Land Cruiser FJ 2.7L 4x4";
-      } else if (textLower.includes("yaris") || fnLower.includes("yaris")) {
-        model = "Yaris Sedán 1.5L";
-      } else if (textLower.includes("hilux") || fnLower.includes("hilux")) {
-        model = "Hilux Doble Cabina 4x4";
-      }
-    }
-  }
-  // 3. Changan
-  else if (textLower.includes("changan") || textLower.includes("cs95") || textLower.includes("alsvin") || textLower.includes("hunter") || fnLower.includes("cs95")) {
-    maker = "Changan";
-    if (textLower.includes("cs95") || fnLower.includes("cs95")) model = "CS95 2.0T 4WD (7 Puestos)";
-    else if (textLower.includes("alsvin") || fnLower.includes("alsvin")) model = "Alsvin 1.5L DCT";
-    else if (textLower.includes("hunter") || fnLower.includes("hunter")) model = "Hunter Pickup 4x4";
-    else if (textLower.includes("cs55") || fnLower.includes("cs55")) model = "CS55 Plus 1.5T";
-    else if (textLower.includes("cs35") || fnLower.includes("cs35")) model = "CS35 Plus 1.4T";
-  }
-  // 4. Jetour
-  else if (textLower.includes("jetour") || textLower.includes("dashing") || fnLower.includes("dashing") || fnLower.includes("x70") || fnLower.includes("x50") || fnLower.includes("t2")) {
-    maker = "Jetour";
-    if (textLower.includes("dashing") || fnLower.includes("dashing")) model = "Dashing 1.5T";
-    else if (textLower.includes("x70") || fnLower.includes("x70")) model = "X70 1.5T (7 Puestos)";
-    else if (textLower.includes("x50") || fnLower.includes("x50")) model = "X50 1.5T";
-    else if (textLower.includes("t2") || fnLower.includes("t2") || textLower.includes("traveller")) model = "T2 Traveller 2.0T 4x4";
-  }
-  // 5. BAIC
-  else if (textLower.includes("baic") || textLower.includes("x35") || textLower.includes("a151r2") || fnLower.includes("x35")) {
-    maker = "BAIC";
-    if (textLower.includes("x35") || fnLower.includes("x35")) model = "X35 1.5T Turbo";
-    else if (textLower.includes("bj40") || fnLower.includes("bj40")) model = "BJ40 Plus 2.0T 4x4";
-  }
-  // 6. GWM / Haval
-  else if (textLower.includes("gwm") || textLower.includes("haval") || textLower.includes("jolion") || textLower.includes("gw4g15") || fnLower.includes("jolion")) {
-    maker = "GWM Haval";
-    if (textLower.includes("jolion") || fnLower.includes("jolion")) model = "Haval Jolion 1.5T";
-    else if (textLower.includes("h6") || fnLower.includes("h6")) model = "Haval H6 2.0T";
-    else if (textLower.includes("poer") || fnLower.includes("poer")) model = "Poer Pickup 4x4";
-  }
-  // 7. Dongfeng
-  else if (textLower.includes("dongfeng") || textLower.includes("rich 6") || fnLower.includes("rich6") || textLower.includes("2tzd") || fnLower.includes("rich")) {
-    maker = "Dongfeng";
-    model = "Rich 6 Pickup 4x4";
-  }
-  // 8. Foton
-  else if (textLower.includes("foton") || textLower.includes("tunland") || fnLower.includes("tunland") || textLower.includes("isf")) {
-    maker = "Foton";
-    model = "Tunland E 4x4";
-  }
-  // 9. Fiat
-  else if (textLower.includes("cronos") || fnLower.includes("cronos") || textLower.includes("fiat") || fnLower.includes("fiat") || textLower.includes("ﬁat")) {
-    maker = "Fiat";
-    if (textLower.includes("cronos") || fnLower.includes("cronos")) model = "Cronos 1.3L MT/CVT";
-    else if (textLower.includes("argo") || fnLower.includes("argo")) model = "Argo 1.3L";
-    else if (textLower.includes("pulse") || fnLower.includes("pulse")) model = "Pulse 1.3L CVT";
-    else if (textLower.includes("fastback") || fnLower.includes("fastback")) model = "Fastback 1.3T";
-    else model = "Cronos 1.3L MT/CVT";
-  }
-  // 10. Hyundai
-  else if (textLower.includes("elantra") || fnLower.includes("elantra") || textLower.includes("hyundai") || fnLower.includes("hyundai")) {
-    maker = "Hyundai";
-    if (textLower.includes("elantra") || fnLower.includes("elantra")) model = "Elantra 2.0L A/T";
-    else if (textLower.includes("tucson") || fnLower.includes("tucson")) model = "Tucson 2.0L";
-    else if (textLower.includes("creta") || fnLower.includes("creta")) model = "Creta 1.5L";
-    else if (textLower.includes("accent") || fnLower.includes("accent")) model = "Accent 1.6L";
-    else model = "Elantra 2.0L A/T";
-  }
-
-  // Fallbacks
-  if (!maker) {
-    const knownMakers = ["Toyota", "Fiat", "Hyundai", "Changan", "Chery", "Ford", "Chevrolet", "Kia", "Nissan", "Honda", "Mazda", "Suzuki", "Mitsubishi", "JAC", "BYD", "Geely", "BAIC", "GWM", "Dongfeng", "Foton"];
-    for (const m of knownMakers) {
-      if (textLower.includes(m.toLowerCase()) || fnLower.includes(m.toLowerCase())) {
-        maker = m;
-        break;
-      }
-    }
-    if (!maker) maker = "Ficha Técnica";
-  }
-
-  if (!model) {
-    const words = cleanFn.split(" ");
+  let maker = 'No Especificado';
+  let model = 'Modelo Extraído';
+  const words = cleanFn.split(' ').filter(Boolean);
+  if (words.length > 0) {
+    maker = words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
     const formatted = words.map(w => (w.length > 4 && w === w.toUpperCase()) ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : (w.charAt(0).toUpperCase() + w.slice(1)));
-    let candidate = formatted.join(" ").trim();
-    if (maker && candidate.toLowerCase().startsWith(maker.toLowerCase())) {
-      candidate = candidate.slice(maker.length).trim().replace(/^[-:]\s*/, "");
+    let candidate = formatted.join(' ').trim();
+    if (candidate.toLowerCase().startsWith(maker.toLowerCase())) {
+      candidate = candidate.slice(maker.length).trim().replace(/^[-:]\s*/, '');
     }
-    model = candidate || "Modelo Extraído";
+    model = candidate || 'Modelo Extraído';
   }
-
-  if (maker && model.toLowerCase().startsWith(maker.toLowerCase())) {
-    model = model.slice(maker.length).trim().replace(/^[-:]\s*/, "");
-  }
-
   return { maker, model };
 }
 
@@ -1688,21 +1546,10 @@ function extractTextFromPdfFile(file) {
 }
 
 function extractSpecsFromText(fileName, text) {
-  const clean = (text + " " + fileName).toLowerCase();
-  const fnLower = fileName.toLowerCase();
-
-  // 1. Detección Limpia y Precisa de Marca y Modelo especificado
+  const clean = (text + ' ' + fileName).toLowerCase();
   const { maker, model } = extractCleanVehicleMakerAndModel(fileName, text);
 
-  const isCS95 = model.includes("CS95") || clean.includes("cs95");
-  const isLandCruiser = model.includes("Land Cruiser") || clean.includes("trj240") || fnLower.includes("fj");
-  const isCorollaSedan = (clean.includes("corolla") || clean.includes("mzea12")) && !clean.includes("cross");
-  const isArrizo = clean.includes("arrizo") || clean.includes("chery");
-  const isCronos = model.includes("Cronos") || clean.includes("cronos") || clean.includes("fiat") || clean.includes("ﬁat");
-  const isElantra = model.includes("Elantra") || clean.includes("elantra") || clean.includes("hyundai");
-
-  // 2. Potencia (HP) bidireccional
-  let hp = isCS95 ? 229 : (isLandCruiser ? 163 : (isCorollaSedan ? 170 : (isArrizo ? 115 : (isCronos ? 99 : (isElantra ? 156 : 135)))));
+  let hp = null;
   const mHpPre = text.match(/(\d{2,3})\s*(?:hp|cv|ps)\b[\s\S]{0,40}?(?:potencia|power)/i);
   const mHpPost = text.match(/(?:potencia(?:\s*m[áa]xima)?|power)[^\d]{0,40}?(\d{2,3})\b(?!\s*(?:rpm|nm|gdi|vvt))/i);
   const mHpGeneric = text.match(/(\d{2,3})\s*(?:hp|cv|ps)\b/i);
@@ -1710,8 +1557,7 @@ function extractSpecsFromText(fileName, text) {
   else if (mHpPost) hp = parseInt(mHpPost[1]);
   else if (mHpGeneric) hp = parseInt(mHpGeneric[1]);
 
-  // 3. Torque (Nm) bidireccional
-  let torque = isCS95 ? 390 : (isLandCruiser ? 245 : (isCorollaSedan ? 200 : (isArrizo ? 141 : (isCronos ? 128 : (isElantra ? 192 : 190)))));
+  let torque = null;
   const mTqPre = text.match(/(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b[\s\S]{0,40}?(?:torque|par)/i);
   const mTqPost = text.match(/(?:torque(?:\s*m[áa]ximo)?|par\s*motor)[^\d]{0,40}?(\d{2,3}(?:\.\d)?)\b(?!\s*(?:rpm|hp))/i);
   const mTqGeneric = text.match(/(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b/i);
@@ -1719,78 +1565,67 @@ function extractSpecsFromText(fileName, text) {
   else if (mTqPost) torque = parseFloat(mTqPost[1]);
   else if (mTqGeneric) torque = parseFloat(mTqGeneric[1]);
 
-  // 4. Despeje / Altura al suelo (mm) bidireccional
-  let clearance = isCS95 ? 190 : (isLandCruiser ? 245 : (isCorollaSedan ? 165 : (isArrizo ? 157 : (isCronos ? 160 : (isElantra ? 150 : 165)))));
+  let clearance = null;
   const mClrPre = text.match(/(?:^|[^\d.])(\d{2,3})\s*mm\b[\s\S]{0,40}?(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)/i);
   const mClrPost = text.match(/(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)[^\d]{0,40}?(?:^|[^\d.])(\d{2,3})\s*(mm)?\b/i);
   if (mClrPre) clearance = parseInt(mClrPre[1]);
   else if (mClrPost) clearance = parseInt(mClrPost[1]);
 
-  // 5. Maletero (L) bidireccional
-  let trunk = isCS95 ? 500 : (isLandCruiser ? 480 : (isCorollaSedan ? 470 : (isArrizo ? 430 : (isCronos ? 525 : (isElantra ? 474 : 410)))));
+  let trunk = null;
   const mTrkPre = text.match(/(?:^|[^\d.])(\d{2,4})\s*l\b[\s\S]{0,80}?(?:maletero|cajuela|ba[úu]l|equipaje)/i);
   const mTrkPost = text.match(/(?:volumen\s*de\s*equipaje|capacidad\s*(?:de\s*)?(?:maletero|ba[úu]l)|maletero|cajuela|ba[úu]l)[^\d]{0,40}?(?:^|[^\d.])(\d{2,4})\b/i);
   if (mTrkPre) trunk = parseInt(mTrkPre[1]);
   else if (mTrkPost) trunk = parseInt(mTrkPost[1]);
 
-  // 6. Tanque de combustible (L) bidireccional
-  let tank = isCS95 ? 74 : (isLandCruiser ? 63 : (isCorollaSedan ? 50 : (isArrizo ? 41 : (isCronos ? 48 : (isElantra ? 47 : 48)))));
+  let tank = null;
   const mTnkPre = text.match(/(\d{2,3})\s*l\b[\s\S]{0,40}?(?:tanque|combustible)/i);
   const mTnkPost = text.match(/(?:tanque(?:\s*de\s*combustible)?|capacidad\s*del\s*tanque)[^\d]{0,40}?(\d{2,3})\b/i);
   if (mTnkPre) tank = parseInt(mTnkPre[1]);
   else if (mTnkPost) tank = parseInt(mTnkPost[1]);
 
-  // 7. Peso en vacío (kg) bidireccional
-  let weight = isCS95 ? 2117 : (isLandCruiser ? 2000 : (isCorollaSedan ? 1370 : (isArrizo ? 1320 : (isCronos ? 1121 : (isElantra ? 1230 : 1350)))));
+  let weight = null;
   const mWtPre = text.match(/([\d.]{4,6})\s*(?:kg|kilos)\b[\s\S]{0,40}?(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)/i);
   const mWtPost = text.match(/(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)[^\d]{0,40}?([\d.]{4,6})\b/i);
   const rawWt = mWtPre ? mWtPre[1] : (mWtPost ? mWtPost[1] : null);
   if (rawWt) weight = parseInt(rawWt.replace('.', ''));
 
-  // 8. Transmisión y Tracción
-  let transmission = isCS95 ? "Automática Aisin 8-Velocidades" : (isLandCruiser ? "Automática 6-Vel con Reductora (Low)" : (isCorollaSedan ? "Automática CVT 10-Vel con Paddle Shift" : (isArrizo ? "Automática CVT 5-Velocidades" : (isCronos ? "Manual 5-Vel / Automática CVT" : (isElantra ? "Automática 6-Vel IVT" : "Automática")))));
-  if (!isCorollaSedan && !isArrizo && !isCronos && !isElantra && !isCS95 && !isLandCruiser) {
-    if (clean.includes("cvt")) transmission = "Automática CVT";
-    else if (clean.includes("dct") || clean.includes("doble embrague")) transmission = "Doble Embrague DCT 6/7-Vel";
-    else if (clean.includes("manual") || clean.includes("sincronico") || clean.includes("sincrónica")) transmission = "Manual 5-Vel / 6-Vel";
+  let transmission = 'No Especificado';
+  if (clean.includes('cvt')) transmission = 'Automática CVT';
+  else if (clean.includes('dct') || clean.includes('doble embrague')) transmission = 'Doble Embrague DCT 6/7-Vel';
+  else if (clean.includes('manual') || clean.includes('sincronico') || clean.includes('sincrónica')) transmission = 'Manual';
+  else if (clean.includes('automática') || clean.includes('aut')) transmission = 'Automática';
+
+  let traction = 'FWD Delantera';
+  if (clean.includes('4x4') || clean.includes('awd') || clean.includes('4wd')) {
+    traction = clean.includes('bloqueo') || clean.includes('reductora') ? '4x4 Part-Time con Reductora' : '4WD / AWD Integral';
   }
 
-  let traction = isCS95 ? "4WD Tracción Total Inteligente" : (isLandCruiser ? "4x4 Part-Time con Bloqueo Trasero" : "FWD Delantera");
-  if (clean.includes("4x4") || clean.includes("awd") || clean.includes("4wd")) {
-    traction = clean.includes("bloqueo") || clean.includes("reductora") ? "4x4 Part-Time con Reductora / Bloqueo" : "4WD / AWD Integral";
-  }
-
-  // 9. Airbags
-  let airbags = isCS95 ? "6 Airbags (Frontales, Laterales y Cortina)" : (isLandCruiser || isCorollaSedan ? "7 Airbags (Frontales, Laterales, Cortina, Rodilla)" : (isArrizo || isCronos ? "2 Frontales (Conductor y Pasajero)" : (isElantra ? "6 Airbags (Frontales, Laterales y Cortina)" : "2 Frontales")));
+  let airbags = 'No Especificado';
   const mAb = text.match(/(\d+)\s*(?:airbags?|bolsas?\s*de\s*aire)/i) || text.match(/(\d+)\s*\([^)]*\)[\s\S]{0,20}?bolsas?\s*de\s*aire/i);
-  if (mAb) {
-    airbags = `${mAb[1]} Airbags`;
-  } else if (clean.includes("conductor y pasajero")) {
-    airbags = "2 Frontales (Conductor y Pasajero)";
-  }
+  if (mAb) airbags = ${mAb[1]} Airbags;
+  else if (clean.includes('conductor y pasajero')) airbags = '2 Frontales (Conductor y Pasajero)';
 
-  // 10. Motor y Cilindrada
-  let engine = isCS95 ? "2.0L Turbo GDI D20TG-AA Intercooler" : (isLandCruiser ? "2.7L 2TR-FE DOHC Dual VVT-i" : (isCorollaSedan ? "2.0L Dynamic Force M20A-FKS DOHC 16V Dual VVT-i" : (isArrizo ? "1.5L 4 Cilindros en Línea DVVT" : (isCronos ? "1.3L Bz PFI Firefly 4 Cilindros (8V)" : (isElantra ? "2.0L Nu MPI DOHC 16V D-CVVT" : "1.5L Turbo 4 Cilindros")))));
-  let displacement = isCS95 ? "2.0L (1,998 cc)" : (isLandCruiser ? "2.7L (2,694 cc)" : (isCorollaSedan ? "2.0L (1,987 cc)" : (isArrizo ? "1.5L (1,498 cc)" : (isCronos ? "1.3L (1,332 cc)" : (isElantra ? "2.0L (1,999 cc)" : "1.5L")))));
+  let engine = 'No Especificado';
+  const mEng = text.match(/(\d\.\d[L|l][\s\S]{0,30}?(?:turbo|dohc|sohc|mpi|gdi|vvt|cilindros))/i);
+  if (mEng) engine = mEng[1].trim();
+
+  let displacement = 'No Especificado';
+  const mDisp = text.match(/(\d\.\d[L|l])/i);
+  if (mDisp) displacement = mDisp[1].trim();
+
+  let esp = 'No Especificado';
+  if (clean.includes('esp') || clean.includes('esc') || clean.includes('vsc')) esp = 'Equipado con Control de Estabilidad';
+
+  let brakes = 'No Especificado';
+  if (clean.includes('disco')) brakes = 'Frenos de Disco';
+
+  let infotainment = 'No Especificado';
+  if (clean.includes('pantalla') || clean.includes('tactil') || clean.includes('touch')) infotainment = 'Pantalla Táctil';
 
   return {
-    maker,
-    model,
-    hp,
-    torque,
-    clearance,
-    trunk,
-    tank,
-    weight,
-    engine,
-    displacement,
-    transmission,
-    traction,
-    fuelType: isCorollaSedan ? "Gasolina 91+ Oct (7.5 L/100km)" : "Gasolina 95 Oct",
-    airbags,
-    esp: isCorollaSedan ? "VSC + TRC + ACA + HAC + ABS + EBD" : (isArrizo ? "ESP + HAC + TCS + EBD + ABS" : (isCronos ? "ESC (Estabilidad) + TC (Tracción)" : (isElantra ? "ESC (Estabilidad) + HAC + ABS" : "ESP + Control de Tracción (TCS) + Asistencias"))),
-    brakes: isCorollaSedan ? "Discos Ventilados Delanteros y Traseros" : (isArrizo ? "Discos en las 4 Ruedas (Disco / Disco)" : (isCronos ? "Discos Ventilados Del / Tambor Tras" : (isElantra ? "Discos en las 4 Ruedas (15 pulg / 14 pulg)" : "Discos Ventilados"))),
-    infotainment: isCorollaSedan ? "Pantalla Táctil 9 pulg Apple CarPlay / Android Auto" : (isArrizo ? "Pantalla Táctil 8 pulg Apple CarPlay / Android QD" : (isCronos ? "Pantalla Multimedia Touch 7 pulg Apple CarPlay / Android Auto + Display 3.5 pulg" : (isElantra ? "Pantalla Táctil 8 pulg Apple CarPlay / Android Auto" : "Pantalla Táctil HD Multimedia")))
+    maker, model, hp, torque, clearance, trunk, tank, weight, engine, displacement,
+    transmission, traction, fuelType: clean.includes('diesel') ? 'Diésel' : 'Gasolina',
+    airbags, esp, brakes, infotainment
   };
 }
 

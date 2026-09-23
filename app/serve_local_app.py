@@ -31,11 +31,7 @@ import pymupdf
 
 
 def extract_vehicle_maker_and_model(filename, full_text, pdf_bytes=b''):
-    norm_text = unicodedata.normalize('NFKD', full_text)
-    text_lower = norm_text.lower()
-    fn_lower = filename.lower()
-
-    # 1. Limpieza base del filename por si se requiere fallback
+    # Limpieza base del filename
     clean_fn = re.sub(r'\.pdf$', '', filename, flags=re.I)
     clean_fn = re.sub(r'^[a-f0-9]{16,64}[_\s-]*', '', clean_fn, flags=re.I)
     clean_fn = re.sub(r'^\d{6,}[_\s-]*', '', clean_fn)
@@ -44,177 +40,18 @@ def extract_vehicle_maker_and_model(filename, full_text, pdf_bytes=b''):
     clean_fn = re.sub(r'[-_]', ' ', clean_fn)
     clean_fn = re.sub(r'\s+', ' ', clean_fn).strip()
 
-    maker = ''
-    model = ''
-
-    # A. Detección de Chery / Arrizo / Tiggo
-    if 'arrizo' in text_lower or 'arrizo' in fn_lower or 'chery' in text_lower or 'chery' in fn_lower:
-        maker = 'Chery'
-        m_arr = re.search(r'ARRIZO\s*(\d+)\s*(PRO)?', norm_text, re.I)
-        if m_arr:
-            num = m_arr.group(1)
-            pro = ' Pro' if m_arr.group(2) else ''
-            trans_tag = ''
-            if 'automa' in text_lower or 'cvt' in text_lower or 'a/t' in text_lower or 'automa' in fn_lower:
-                trans_tag = ' Automático'
-            elif 'sincron' in text_lower or 'm/t' in text_lower or 'manual' in text_lower:
-                trans_tag = ' Manual'
-            model = f'Arrizo {num}{pro}{trans_tag}'.strip()
-        elif 'arrizo' in text_lower or 'arrizo' in fn_lower:
-            model = 'Arrizo'
-            if 'automa' in text_lower or 'automa' in fn_lower:
-                model += ' Automático'
-            elif 'sincron' in text_lower or 'sincron' in fn_lower:
-                model += ' Sincrónico'
-        elif 'tiggo' in text_lower or 'tiggo' in fn_lower:
-            m_tig = re.search(r'TIGGO\s*(\d+)\s*(PRO)?(?:\s*(MAX))?', norm_text, re.I)
-            if m_tig:
-                num = m_tig.group(1)
-                pro = ' Pro' if m_tig.group(2) else ''
-                max_tag = ' Max' if m_tig.group(3) else ''
-                model = f'Tiggo {num}{pro}{max_tag}'.strip()
-            else:
-                model = 'Tiggo 4 Pro'
-
-    # B. Detección de Toyota (Corolla, Land Cruiser, Yaris, Hilux)
-    elif 'toyota' in text_lower or 'toyota' in fn_lower or 'corolla' in text_lower or 'corolla' in fn_lower or 'land cruiser' in text_lower or 'trj240' in text_lower or 'mzea12' in text_lower or 'mxga10' in text_lower or 'fj' in fn_lower:
-        maker = 'Toyota'
-        # Buscar modelo exacto especificado en cabecera del documento (ej: COROLLA SEG 2.0 L  A/T \n MODELO)
-        m_mod_header = re.search(r'(?:^|\n)\s*([A-Za-z0-9\s./-]{3,50})\s*\n\s*MODELO\b', full_text)
-        if m_mod_header:
-            candidate = m_mod_header.group(1).strip()
-            candidate = re.sub(r'(\d+(?:\.\d+)?)\s*([lL])\b', r'\1L', candidate)
-            candidate = re.sub(r'\s+', ' ', candidate)
-            if 'corolla' in candidate.lower():
-                words = candidate.split()
-                formatted_words = []
-                for w in words:
-                    uw = w.upper()
-                    if uw in ['SEG', 'A/T', 'M/T', 'CVT', 'GLI', 'XLI', 'XEI', 'GR']:
-                        formatted_words.append(uw)
-                    elif re.match(r'^\d+\.\d+\s*L?$', uw):
-                        formatted_words.append(uw)
-                    else:
-                        formatted_words.append(w.capitalize())
-                model = ' '.join(formatted_words)
-
-        if not model:
-            if 'corolla cross' in text_lower or 'corolla cross' in fn_lower or 'mxga10' in text_lower or ('corolla' in fn_lower and 'cross' in fn_lower):
-                model = 'Corolla Cross 2.0L CVT'
-            elif 'corolla' in text_lower or 'corolla' in fn_lower or 'mzea12' in text_lower:
-                if 'seg' in text_lower:
-                    model = 'Corolla SEG 2.0L A/T'
-                else:
-                    model = 'Corolla 2.0L CVT'
-            elif 'land cruiser' in text_lower or 'fj' in fn_lower or 'trj240' in text_lower or 'land cruiser' in fn_lower:
-                model = 'Land Cruiser FJ 2.7L 4x4'
-            elif 'yaris' in text_lower or 'yaris' in fn_lower:
-                model = 'Yaris Sedán 1.5L'
-            elif 'hilux' in text_lower or 'hilux' in fn_lower:
-                model = 'Hilux Doble Cabina 4x4'
-
-    # C. Detección de Changan
-    elif 'changan' in text_lower or 'cs95' in text_lower or 'alsvin' in text_lower or 'hunter' in text_lower or 'cs95' in fn_lower or b'CS95' in pdf_bytes:
-        maker = 'Changan'
-        if 'cs95' in text_lower or 'cs95' in fn_lower or b'CS95' in pdf_bytes:
-            model = 'CS95 2.0T 4WD (7 Puestos)'
-        elif 'alsvin' in text_lower or 'alsvin' in fn_lower:
-            model = 'Alsvin 1.5L DCT'
-        elif 'hunter' in text_lower or 'hunter' in fn_lower:
-            model = 'Hunter Pickup 4x4'
-        elif 'cs55' in text_lower or 'cs55' in fn_lower:
-            model = 'CS55 Plus 1.5T'
-        elif 'cs35' in text_lower or 'cs35' in fn_lower:
-            model = 'CS35 Plus 1.4T'
-
-    # D. Detección de Jetour
-    elif 'jetour' in text_lower or 'dashing' in text_lower or 'dashing' in fn_lower or 'x70' in fn_lower or 'x50' in fn_lower or 't2' in fn_lower:
-        maker = 'Jetour'
-        if 'dashing' in text_lower or 'dashing' in fn_lower:
-            model = 'Dashing 1.5T'
-        elif 'x70' in text_lower or 'x70' in fn_lower:
-            model = 'X70 1.5T (7 Puestos)'
-        elif 'x50' in text_lower or 'x50' in fn_lower:
-            model = 'X50 1.5T'
-        elif 't2' in text_lower or 't2' in fn_lower or 'traveller' in text_lower:
-            model = 'T2 Traveller 2.0T 4x4'
-
-    # E. Detección de BAIC
-    elif 'baic' in text_lower or 'x35' in text_lower or 'a151r2' in text_lower or 'x35' in fn_lower:
-        maker = 'BAIC'
-        if 'x35' in text_lower or 'x35' in fn_lower:
-            model = 'X35 1.5T Turbo'
-        elif 'bj40' in text_lower or 'bj40' in fn_lower:
-            model = 'BJ40 Plus 2.0T 4x4'
-
-    # F. Detección de GWM / Haval
-    elif 'gwm' in text_lower or 'haval' in text_lower or 'jolion' in text_lower or 'gw4g15' in text_lower or 'jolion' in fn_lower:
-        maker = 'GWM Haval'
-        if 'jolion' in text_lower or 'jolion' in fn_lower:
-            model = 'Haval Jolion 1.5T'
-        elif 'h6' in text_lower or 'h6' in fn_lower:
-            model = 'Haval H6 2.0T'
-        elif 'poer' in text_lower or 'poer' in fn_lower:
-            model = 'Poer Pickup 4x4'
-
-    # G. Detección de Dongfeng
-    elif 'dongfeng' in text_lower or 'rich 6' in text_lower or 'rich6' in fn_lower or '2tzd' in text_lower or 'rich' in fn_lower:
-        maker = 'Dongfeng'
-        model = 'Rich 6 Pickup 4x4'
-
-    # H. Detección de Foton
-    elif 'foton' in text_lower or 'tunland' in text_lower or 'tunland' in fn_lower or 'isf' in text_lower:
-        maker = 'Foton'
-        model = 'Tunland E 4x4'
-
-    # I. Detección de Fiat (Cronos, Argo, Pulse, Fastback)
-    elif 'cronos' in text_lower or 'cronos' in fn_lower or 'fiat' in text_lower or 'fiat' in fn_lower or 'ﬁat' in text_lower:
-        maker = 'Fiat'
-        if 'cronos' in text_lower or 'cronos' in fn_lower:
-            model = 'Cronos 1.3L MT/CVT'
-        elif 'argo' in text_lower or 'argo' in fn_lower:
-            model = 'Argo 1.3L'
-        elif 'pulse' in text_lower or 'pulse' in fn_lower:
-            model = 'Pulse 1.3L CVT'
-        elif 'fastback' in text_lower or 'fastback' in fn_lower:
-            model = 'Fastback 1.3T'
-        else:
-            model = 'Cronos 1.3L MT/CVT'
-
-    # J. Detección de Hyundai (Elantra, Tucson, Creta, Accent)
-    elif 'elantra' in text_lower or 'elantra' in fn_lower or 'hyundai' in text_lower or 'hyundai' in fn_lower:
-        maker = 'Hyundai'
-        if 'elantra' in text_lower or 'elantra' in fn_lower:
-            model = 'Elantra 2.0L A/T'
-        elif 'tucson' in text_lower or 'tucson' in fn_lower:
-            model = 'Tucson 2.0L'
-        elif 'creta' in text_lower or 'creta' in fn_lower:
-            model = 'Creta 1.5L'
-        elif 'accent' in text_lower or 'accent' in fn_lower:
-            model = 'Accent 1.6L'
-        else:
-            model = 'Elantra 2.0L A/T'
-
-    # K. Fallbacks
-    if not maker:
-        known_makers = ['Toyota', 'Fiat', 'Hyundai', 'Changan', 'Chery', 'Ford', 'Chevrolet', 'Kia', 'Nissan', 'Honda', 'Mazda', 'Suzuki', 'Mitsubishi', 'JAC', 'BYD', 'Geely', 'BAIC', 'GWM', 'Dongfeng', 'Foton']
-        for m in known_makers:
-            if m.lower() in text_lower or m.lower() in fn_lower:
-                maker = m
-                break
-        if not maker:
-            maker = 'Ficha Técnica'
-
-    if not model:
-        words = clean_fn.split()
+    # Extraer el primer par de palabras del filename como Maker y el resto como Model de forma genérica
+    words = clean_fn.split()
+    maker = 'No Especificado'
+    model = 'Modelo Extraído'
+    
+    if len(words) > 0:
+        maker = words[0].capitalize()
         title_words = [w.capitalize() if not w.isupper() or len(w) > 4 else w for w in words]
         candidate_model = ' '.join(title_words)
-        if maker and candidate_model.lower().startswith(maker.lower()):
+        if candidate_model.lower().startswith(maker.lower()):
             candidate_model = candidate_model[len(maker):].strip(' -:')
         model = candidate_model if candidate_model else 'Modelo Extraído'
-
-    if maker and model.lower().startswith(maker.lower()):
-        model = model[len(maker):].strip(' -:')
 
     return maker, model
 
@@ -231,206 +68,88 @@ def parse_pdf_bytes_with_pymupdf(filename, pdf_bytes):
     fn_lower = filename.lower()
     maker, model = extract_vehicle_maker_and_model(filename, full_text, pdf_bytes)
 
-    # Banderas auxiliares para mapeo de tren motriz
-    is_cs95 = 'cs95' in fn_lower or 'cs95' in text_lower or b'CS95' in pdf_bytes or b'2025CS95' in pdf_bytes
-    is_lc_fj = 'trj240' in text_lower or 'land cruiser' in text_lower or 'fj' in fn_lower or 'land cruiser' in fn_lower
-    is_corolla_cross = 'mxga10' in text_lower or 'corolla cross' in text_lower or ('corolla' in text_lower and 'cross' in text_lower)
-    is_corolla_sedan = ('corolla' in text_lower or 'corolla' in fn_lower or 'mzea12' in text_lower) and not is_corolla_cross
-    is_arrizo = 'arrizo' in text_lower or 'arrizo' in fn_lower or 'chery' in text_lower
-    is_cronos = 'cronos' in fn_lower or 'cronos' in text_lower or 'fiat' in text_lower or 'fiat' in fn_lower or 'ﬁat' in text_lower
-    is_elantra = 'elantra' in fn_lower or 'elantra' in text_lower or 'hyundai' in text_lower
-    is_baic = 'a151r2' in text_lower or ('baic' in text_lower and 'x35' in text_lower) or 'x35' in fn_lower
-
     # 1. Potencia (HP) bidireccional
     m_hp_pre = re.search(r'(\d{2,3})\s*(?:hp|cv|ps)\b[\s\S]{0,40}?(?:potencia|power)', full_text, re.I)
     m_hp_post = re.search(r'(?:potencia(?:\s*m[áa]xima)?|power)[^\d]{0,40}?(\d{2,3})\b(?!\s*(?:rpm|nm|gdi|vvt))', full_text, re.I)
     m_hp_gen = re.search(r'(\d{2,3})\s*(?:hp|cv|ps)\b', full_text, re.I)
+    hp = None
     if m_hp_pre: hp = int(m_hp_pre.group(1))
     elif m_hp_post: hp = int(m_hp_post.group(1))
     elif m_hp_gen: hp = int(m_hp_gen.group(1))
-    elif is_cronos: hp = 99
-    elif is_elantra: hp = 156
-    elif is_cs95: hp = 229
-    elif is_lc_fj: hp = 163
-    else: hp = 135
 
     # 2. Torque (Nm) bidireccional
     m_tq_pre = re.search(r'(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b[\s\S]{0,40}?(?:torque|par)', full_text, re.I)
     m_tq_post = re.search(r'(?:torque(?:\s*m[áa]ximo)?|par\s*motor)[^\d]{0,40}?(\d{2,3}(?:\.\d)?)\b(?!\s*(?:rpm|hp))', full_text, re.I)
     m_tq_gen = re.search(r'(\d{2,3}(?:\.\d)?)\s*(?:nm|n\.m)\b', full_text, re.I)
+    torque = None
     if m_tq_pre: torque = int(float(m_tq_pre.group(1)))
     elif m_tq_post: torque = int(float(m_tq_post.group(1)))
     elif m_tq_gen: torque = int(float(m_tq_gen.group(1)))
-    elif is_cronos: torque = 128
-    elif is_elantra: torque = 192
-    elif is_cs95: torque = 390
-    elif is_lc_fj: torque = 245
-    else: torque = 190
 
     # 3. Despeje / Distancia al suelo (mm) bidireccional
     m_clr_pre = re.search(r'(?<![\d.])(\d{2,3})\s*mm\b[\s\S]{0,40}?(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)', full_text, re.I)
     m_clr_post = re.search(r'(?:despeje(?:\s*m[íi]nimo)?(?:\s*del\s*suelo)?|distancia\s*al\s*(?:suelo|piso)|altura\s*libre)[^\d]{0,40}?(?<![\d.])(\d{2,3})\s*(mm)?\b', full_text, re.I)
+    clearance = None
     if m_clr_pre: clearance = int(m_clr_pre.group(1))
     elif m_clr_post: clearance = int(m_clr_post.group(1))
-    elif is_cronos: clearance = 160
-    elif is_elantra: clearance = 150
-    elif is_cs95: clearance = 190
-    elif is_lc_fj: clearance = 245
-    elif is_corolla_sedan: clearance = 165
-    elif is_arrizo: clearance = 157
-    else: clearance = 165
 
     # 4. Maletero (L) bidireccional
     m_trk_pre = re.search(r'(?<![\d.])(\d{2,4})\s*l\b[\s\S]{0,80}?(?:maletero|cajuela|ba[úu]l|equipaje)', full_text, re.I)
     m_trk_post = re.search(r'(?:volumen\s*de\s*equipaje|capacidad\s*(?:de\s*)?(?:maletero|ba[úu]l)|maletero|cajuela|ba[úu]l)[^\d]{0,40}?(?<![\d.])(\d{2,4})\b', full_text, re.I)
+    trunk = None
     if m_trk_pre: trunk = int(m_trk_pre.group(1))
     elif m_trk_post: trunk = int(m_trk_post.group(1))
-    elif is_cronos: trunk = 525
-    elif is_elantra: trunk = 474
-    elif is_cs95: trunk = 500
-    elif is_lc_fj: trunk = 480
-    elif is_corolla_sedan: trunk = 470
-    elif is_arrizo: trunk = 430
-    else: trunk = 410
 
     # 5. Tanque de combustible (L) bidireccional
     m_tnk_pre = re.search(r'(\d{2,3})\s*l\b[\s\S]{0,40}?(?:tanque|combustible)', full_text, re.I)
     m_tnk_post = re.search(r'(?:tanque(?:\s*de\s*combustible)?|capacidad\s*del\s*tanque)[^\d]{0,40}?(\d{2,3})\b', full_text, re.I)
+    tank = None
     if m_tnk_pre: tank = int(m_tnk_pre.group(1))
     elif m_tnk_post: tank = int(m_tnk_post.group(1))
-    elif is_cronos: tank = 48
-    elif is_elantra: tank = 47
-    elif is_cs95: tank = 74
-    elif is_lc_fj: tank = 63
-    elif is_corolla_sedan: tank = 50
-    elif is_arrizo: tank = 41
-    else: tank = 48
 
     # 6. Peso (kg) bidireccional
     m_wt_pre = re.search(r'([\d.]{4,6})\s*(?:kg|kilos)\b[\s\S]{0,40}?(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)', full_text, re.I)
     m_wt_post = re.search(r'(?:peso\s*(?:neto|en\s*vac[íi]o|en\s*orden)|curb\s*weight)[^\d]{0,40}?([\d.]{4,6})\s*(?:kg)?\b', full_text, re.I)
     raw_wt = m_wt_pre.group(1) if m_wt_pre else (m_wt_post.group(1) if m_wt_post else None)
+    weight = None
     if raw_wt: weight = int(float(raw_wt.replace('.', '')))
-    elif is_cronos: weight = 1121
-    elif is_elantra: weight = 1230
-    elif is_cs95: weight = 2117
-    elif is_lc_fj: weight = 2000
-    elif is_corolla_sedan: weight = 1370
-    elif is_arrizo: weight = 1320
-    else: weight = 1350
 
     # 7. Airbags
     m_ab = re.search(r'(\d+)\s*(?:airbags?|bolsas?\s*de\s*aire)', full_text, re.I)
     if not m_ab: m_ab = re.search(r'(\d+)\s*\([^)]*\)[\s\S]{0,20}?bolsas?\s*de\s*aire', full_text, re.I)
+    airbags = 'No Especificado'
     if m_ab: airbags = f'{m_ab.group(1)} Airbags'
     elif 'conductor y pasajero' in text_lower: airbags = '2 Frontales (Conductor y Pasajero)'
-    elif is_cronos: airbags = '2 Frontales (Conductor y Pasajero)'
-    elif is_elantra: airbags = '6 Airbags (Frontales, Laterales y Cortina)'
-    elif is_cs95: airbags = '6 Airbags (Frontales, Laterales y Cortina)'
-    elif is_lc_fj or is_corolla_sedan: airbags = '7 Airbags (Frontal, Lateral, Cortina, Rodilla)'
-    elif is_arrizo: airbags = '2 Frontales (Doble Airbag)'
-    else: airbags = '2 Frontales'
 
-    # 8. Motor, Cilindrada, Transmisión, Frenos, etc.
-    if is_cs95:
-        engine = '2.0L Turbo D20TG-AA GDI Intercooler'
-        displacement = '2.0L (1,998 cc)'
-        transmission = 'Automática Aisin 8-Velocidades'
-        traction = '4WD Tracción Total Inteligente'
-        esp = 'ESP + TCS + Asistente de Pendientes'
-        brakes = 'Discos Ventilados Del / Sólidos Tras'
-        infotainment = 'Clima Trizona + Cámaras 360° + ADAS'
-        fuelType = 'Gasolina (12.5 L/100km)'
-    elif is_lc_fj:
-        engine = '2.7L 2TR-FE DOHC Dual VVT-i'
-        displacement = '2.7L (2,694 cc)'
-        transmission = 'Automática 6-Vel con Reductora (Low)'
-        traction = '4x4 Part-Time con Bloqueo Trasero'
-        esp = 'VSC + DAC (Descenso) + HAC (Pendientes)'
-        brakes = 'Discos Ventilados en las 4 Ruedas'
-        infotainment = 'Pantalla 8 pulg Apple CarPlay / Android Auto + Smart Entry'
-        fuelType = 'Gasolina (11.0 L/100km Combinado)'
-    elif is_corolla_cross:
-        engine = '2.0L M20A-FKS DOHC 16V Dual VVT-i'
-        displacement = '2.0L (1,987 cc)'
-        transmission = 'Automática Direct Shift CVT 10-Vel con Levas'
-        traction = 'FWD Delantera'
-        esp = 'VSC (Estabilidad) + HAC (Pendientes) + ABS+EBD'
-        brakes = 'Discos Ventilados Delanteros / Sólidos Traseros'
-        infotainment = 'Pantalla Táctil 10 pulg Apple CarPlay / Android Auto Inalámbrico'
-        fuelType = 'Gasolina 91+ Oct (Inyección Mixta D4-S)'
-    elif is_corolla_sedan:
-        engine = '2.0L Dynamic Force M20A-FKS DOHC 16V Dual VVT-i'
-        displacement = '2.0L (1,987 cc)'
-        transmission = 'Automática CVT 10-Vel con Paddle Shift'
-        traction = 'FWD Delantera'
-        esp = 'VSC + TRC + ACA + HAC + ABS + EBD'
-        brakes = 'Discos Ventilados Delanteros y Traseros'
-        infotainment = 'Pantalla Táctil 9 pulg Apple CarPlay / Android Auto + Panel 12.3 pulg'
-        fuelType = 'Gasolina 91+ Oct (7.5 L/100km Combinado)'
-    elif is_arrizo:
-        engine = '1.5L 4 Cilindros en Línea DVVT'
-        displacement = '1.5L (1,498 cc)'
-        transmission = 'Automática CVT 5-Velocidades'
-        traction = 'FWD Delantera'
-        esp = 'ESP + HAC + TCS + EBD + ABS'
-        brakes = 'Discos en las 4 Ruedas (Disco / Disco)'
-        infotainment = 'Pantalla Táctil 8 pulg Apple CarPlay / Android QD'
-        fuelType = 'Gasolina 95 Oct'
-    elif is_cronos:
-        engine = '1.3L Bz PFI Firefly 4 Cilindros (8V)'
-        displacement = '1.3L (1,332 cc)'
-        transmission = 'Manual 5-Velocidades / Automática CVT'
-        traction = 'FWD Delantera (4x2)'
-        esp = 'ESC (Estabilidad) + TC (Tracción)'
-        brakes = 'Discos Ventilados Del / Tambor Tras'
-        infotainment = 'Pantalla Multimedia Touch 7 pulg Apple CarPlay / Android Auto + Display 3.5 pulg'
-        fuelType = 'Gasolina 95 Oct'
-    elif is_elantra:
-        engine = '2.0L Nu MPI DOHC 16V D-CVVT'
-        displacement = '2.0L (1,999 cc)'
-        transmission = 'Automática de 6 velocidades IVT'
-        traction = 'FWD Delantera'
-        esp = 'ESC (Estabilidad) + HAC (Pendientes) + ABS'
-        brakes = 'Discos Delanteros y Traseros (15 pulg / 14 pulg)'
-        infotainment = 'Pantalla Táctil 8 pulg Apple CarPlay / Android Auto + BT/USB'
-        fuelType = 'Gasolina 95 Oct'
-    elif is_baic:
-        engine = '1.5L Turbo A151R2 4 Cilindros'
-        displacement = '1.5L (1,499 cc)'
-        transmission = 'Automática CVT / Manual 6-Vel'
-        traction = 'FWD Delantera'
-        esp = 'ESP + Control Tracción (TCS) + HHC'
-        brakes = 'Discos Ventilados Del / Sólidos Tras (ABS+EBD)'
-        infotainment = 'Pantalla Táctil 8 pulg + Conexión Móvil + BT'
-        fuelType = 'Gasolina 95 Oct (Euro VI)'
-    elif 'rich 6' in text_lower or 'rich6' in fn_lower:
-        engine = '2.4L Nafta 4 Cilindros (2TZD)'
-        displacement = '2.4L (2,438 cc)'
-        transmission = 'Manual 5-Velocidades'
-        traction = '4x4 Part-Time con Caja Reductora (Low)'
-        esp = 'ESP + Control de Tracción TCS'
-        brakes = 'Discos Ventilados Del / Tambor Tras'
-        infotainment = 'Pantalla Táctil 9 pulg MP5 con USB/BT'
-        fuelType = 'Gasolina 91 / 95 Oct'
-    elif 'tunland' in text_lower or 'tunland' in fn_lower:
-        engine = '2.8L Cummins ISF Turbo Diésel'
-        displacement = '2.8L (2,776 cc)'
-        transmission = 'Manual 5-Velocidades Getrag'
-        traction = '4x4 Electrónico BorgWarner con Reductora'
-        esp = 'ESP Bosch 9.1 + EBD + ABS'
-        brakes = 'Discos en las 4 Ruedas con ABS'
-        infotainment = 'Pantalla Multimedia 8 pulg'
-        fuelType = 'Diésel Automotriz'
-    else:
-        engine = '1.5L Turbo 4 Cilindros'
-        displacement = '1.5L'
-        transmission = 'Automática'
-        traction = 'FWD Delantera'
-        esp = 'ESP + Control Tracción'
-        brakes = 'Discos Ventilados'
-        infotainment = 'Pantalla Táctil HD'
-        fuelType = 'Gasolina 95 Oct'
+    # 8. Motor, Cilindrada, Transmisión, Frenos genéricos
+    engine = 'No Especificado'
+    m_eng = re.search(r'(\d\.\d[L|l][\s\S]{0,30}?(?:turbo|dohc|sohc|mpi|gdi|vvt|cilindros))', full_text, re.I)
+    if m_eng: engine = m_eng.group(1).strip()
+
+    displacement = 'No Especificado'
+    m_disp = re.search(r'(\d\.\d[L|l])', full_text, re.I)
+    if m_disp: displacement = m_disp.group(1).strip()
+
+    transmission = 'No Especificado'
+    if 'cvt' in text_lower: transmission = 'Automática CVT'
+    elif 'dct' in text_lower or 'doble embrague' in text_lower: transmission = 'Doble Embrague (DCT)'
+    elif 'automática' in text_lower or 'aut' in text_lower: transmission = 'Automática'
+    elif 'manual' in text_lower or 'mecánica' in text_lower or 'sincrónica' in text_lower: transmission = 'Manual'
+
+    traction = 'FWD Delantera'
+    if '4x4' in text_lower or '4wd' in text_lower or 'awd' in text_lower: traction = '4x4 / AWD'
+
+    esp = 'No Especificado'
+    if 'esp' in text_lower or 'esc' in text_lower or 'vsc' in text_lower: esp = 'Equipado con Control de Estabilidad'
+
+    brakes = 'No Especificado'
+    if 'disco' in text_lower: brakes = 'Frenos de Disco'
+    
+    infotainment = 'No Especificado'
+    if 'pantalla' in text_lower or 'tactil' in text_lower or 'touch' in text_lower: infotainment = 'Pantalla Táctil'
+    
+    fuelType = 'Gasolina'
+    if 'diesel' in text_lower or 'diésel' in text_lower: fuelType = 'Diésel'
 
     return {
         "maker": maker,
