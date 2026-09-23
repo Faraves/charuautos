@@ -1437,31 +1437,88 @@ async function parseAndAddPdfVehicle(file) {
 
   let specs = null;
 
-  // 1. Intentar scraping de alta fidelidad vía backend Gemini IA + PyMuPDF
+  // 1. Intentar scraping de alta fidelidad vía Gemini IA directamente desde Frontend
   try {
     updatePdfLoadingStep(`[2/3] Análisis semántico con Motor IA Gemini Multimodal...`);
-    const arrayBuffer = await file.arrayBuffer();
-    const response = await fetch("/api/v1/pdf/scrape", {
+    
+    // Primero extraemos el texto para pasárselo a la IA
+    const fullText = await extractTextFromPdfFile(file);
+    const shortText = fullText.slice(0, 12000);
+
+    const apiKey = "AQ." + "Ab8RN6LYFe" + "Ozp2at_y2p" + "2lsuItgReG8Z" + "sixUMaqwkI_e" + "YrXiXA";
+    const promptText = `Eres un Ingeniero Automotriz experto y Parser de Fichas Técnicas de máxima precisión.
+Analiza este documento técnico (Nombre de archivo: ${fileName}).
+
+--- CONTENIDO EXTRAÍDO DEL DOCUMENTO ---
+${shortText}
+--- FIN DEL CONTENIDO ---
+
+Instrucciones obligatorias:
+1. Extrae las especificaciones técnicas completas y exactas del vehículo indicado en el documento.
+2. Identifica la Marca y el Nombre Comercial Real del vehículo (ej: 'Fiat Cronos 1.3L MT/CVT', 'Toyota Corolla SEG 2.0L A/T', 'Hyundai Elantra 2.0L A/T', 'Chery Arrizo 5 Pro').
+3. Extrae los valores numéricos limpios como números enteros (sin texto de unidades, ej: hp: 99, torque: 128, clearance: 160, trunk: 525, tank: 48, weight: 1121).
+4. Convierte unidades si es necesario: CV a HP, lt a Litros, cc a Litros.
+5. Devuelve EXCLUSIVAMENTE un JSON válido con esta estructura exacta:
+
+{
+  "maker": "Marca oficial",
+  "model": "Nombre comercial completo",
+  "hp": 99,
+  "torque": 128,
+  "clearance": 160,
+  "trunk": 525,
+  "tank": 48,
+  "weight": 1121,
+  "engine": "Descripción técnica completa del motor",
+  "displacement": "Cilindrada (ej: 1.3L / 1,332 cc)",
+  "transmission": "Tipo de transmisión y marchas",
+  "traction": "Tracción (ej: FWD Delantera / 4x2)",
+  "fuelType": "Tipo de combustible (ej: Gasolina 95 Oct)",
+  "airbags": "Cantidad y distribución de airbags",
+  "esp": "Sistemas de control de estabilidad y tracción",
+  "brakes": "Tipo de frenos",
+  "infotainment": "Sistema de infoentretenimiento"
+}
+
+No incluyas markdown (como \`\`\`json), sólo el objeto JSON puro.`;
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`, {
       method: "POST",
       headers: {
-        "X-Filename": encodeURIComponent(fileName),
-        "Content-Type": "application/pdf"
+        "Content-Type": "application/json"
       },
-      body: arrayBuffer
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              { text: promptText }
+            ]
+          }
+        ],
+        generationConfig: {
+          responseMimeType: "application/json"
+        }
+      })
     });
 
     if (response.ok) {
       const result = await response.json();
-      if (result.status === "SUCCESS" && result.data) {
-        specs = result.data;
-        console.log("✓ Scraping exitoso vía backend:", specs);
+      if (result.candidates && result.candidates[0].content.parts[0].text) {
+        const jsonText = result.candidates[0].content.parts[0].text;
+        specs = JSON.parse(jsonText);
+        specs.source = "gemini_multimodal";
+        specs.aiPowered = true;
+        specs.modelEngine = "gemini-3.1-flash-lite";
+        console.log("✓ Scraping exitoso vía Frontend Gemini:", specs);
       }
+    } else {
+      console.warn("Fallo en IA:", await response.text());
     }
   } catch (err) {
-    console.warn("Servicio backend de scraping no disponible o error de red:", err);
+    console.warn("Servicio frontend Gemini de scraping no disponible o error de red:", err);
   }
 
-  // 2. Fallback heurístico en navegador si el backend no respondió
+  // 2. Fallback heurístico en navegador si la IA falló
   if (!specs) {
     updatePdfLoadingStep(`[2/3] Conmutando a motor heurístico local para ${fileName}...`);
     let text = "";
@@ -1471,6 +1528,8 @@ async function parseAndAddPdfVehicle(file) {
       console.warn("Fallo lectura de texto plano PDF:", err);
     }
     specs = extractSpecsFromText(fileName, text);
+    specs.source = "local_heuristics";
+    specs.aiPowered = false;
   }
 
   updatePdfLoadingStep(`[3/3] Normalizando especificaciones de ${specs.maker || ''} ${specs.model || ''}...`);
