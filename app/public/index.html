@@ -1662,7 +1662,54 @@ input:focus, select:focus, textarea:focus {
   <header>
     <div class="header-inner">
       <div class="brand-wrap">
-        <img src="paw_icon.png" alt="Charu motorhub Logo" style="width: 44px; height: 44px; filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2)); object-fit: contain;">
+        <svg class="dynamic-logo" viewBox="0 0 100 100" style="width: 44px; height: 44px; filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2)); flex-shrink: 0;" stroke="var(--text-main)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <!-- Paw pad -->
+          <path d="M 33 50 C 40 45, 60 45, 67 50 C 80 55, 85 72, 72 82 C 64 88, 55 83, 50 80 C 45 83, 36 88, 28 82 C 15 72, 20 55, 33 50 Z" />
+          
+          <!-- Inner gear -->
+          <circle cx="50" cy="67" r="10" stroke-dasharray="3 4" stroke-width="3" />
+          <circle cx="50" cy="67" r="5.5" stroke-width="2" />
+          
+          <!-- Pistons -->
+          <g stroke="var(--text-main)" fill="none">
+            <!-- Piston 1 -->
+            <g transform="translate(18, 48) rotate(-48)">
+              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
+              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
+            </g>
+            <!-- Piston 2 -->
+            <g transform="translate(36, 32) rotate(-16)">
+              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
+              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
+            </g>
+            <!-- Piston 3 -->
+            <g transform="translate(64, 32) rotate(16)">
+              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
+              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
+            </g>
+            <!-- Piston 4 -->
+            <g transform="translate(82, 48) rotate(48)">
+              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
+              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
+            </g>
+          </g>
+        </svg>
         <div class="brand-logo">
           CHARU<span> motorhub</span>
           <span class="brand-tag">AUTOMOTIVE</span>
@@ -2163,11 +2210,18 @@ input:focus, select:focus, textarea:focus {
       <div class="garage-split-layout">
         <!-- SIDEBAR DE VEHÍCULO & ODÓMETRO -->
         <aside class="garage-sidebar">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h2 style="font-size: 16px; margin: 0; color: var(--text-main);">Mi Vehículo</h2>
+            <button class="btn btn-primary" onclick="openAddVehicleModal()" style="padding: 6px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Agregar mi Vehículo
+            </button>
+          </div>
           <div class="card" style="margin-bottom: 18px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-              <div>
-                <div style="font-size: 18px; font-weight: 900; color: var(--text-main); letter-spacing:-0.4px;">Toyota Corolla GLi 2011</div>
-                <div style="font-size: 12px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:2px;">Apodo: "El Gladiador" • Placa: AB123CD</div>
+              <div id="garageVehicleInfo">
+                <div style="font-size: 18px; font-weight: 900; color: var(--text-main); letter-spacing:-0.4px;" id="garageVehicleName">Toyota Corolla GLi 2011 <span style="font-size: 10px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: var(--text-muted); margin-left: 6px; vertical-align: middle;">(Vehículo de Prueba)</span></div>
+                <div style="font-size: 12px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:2px;" id="garageVehicleDetails">Apodo: "El Gladiador" • Placa: AB123CD</div>
               </div>
               <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:5px 9px; border-radius:6px; font-size:10.5px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">
                 <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -2203,21 +2257,23 @@ input:focus, select:focus, textarea:focus {
             <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
               <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
               Ver / Imprimir Pasaporte Criptográfico
-            </button>
-          </div>
-
-          <!-- COLA DE MUTACIONES OFFLINE -->
-          <div class="card" id="syncQueueCard" style="display:none; border-color: var(--amber); margin-bottom: 0;">
-            <div class="card-title" style="color: var(--amber); font-size: 14px;">
-              <div style="display:flex; align-items:center; gap:6px;">
-                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                <span>Mutaciones en Cola (Modo Offline)</span>
-              </div>
-              <span id="queueCountBadge" class="badge" style="background:var(--amber); color:#070a0f;">2 pendientes</span>
+              </button>
             </div>
-            <div id="queueList" style="font-size: 11px; font-family: monospace; color: #cbd5e1;"></div>
-          </div>
-        </aside>
+
+            <!-- HISTORIAL DE TANQUEOS -->
+            <div class="card" style="margin-bottom: 18px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px;">
+                <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                  Historial de Tanqueos
+                </h3>
+                <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+              </div>
+              <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
+                <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
+              </div>
+            </div>
+          </aside>
 
         <!-- CADENA CRIPTOGRÁFICA SHA-256 PRINCIPAL -->
         <main class="garage-main">
@@ -2280,6 +2336,46 @@ input:focus, select:focus, textarea:focus {
     </div>
   </div>
 
+    <!-- MODAL: AGREGAR VEHÍCULO -->
+  <div id="addVehicleModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          <span>Agregar Nuevo Vehículo</span>
+        </div>
+        <button class="close-btn" onclick="closeModal('addVehicleModal')">&times;</button>
+      </div>
+      <div class="input-group">
+        <label class="input-label">Marca:</label>
+        <input type="text" id="newVehicleMaker" class="input-field" placeholder="Ej: Toyota">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Modelo:</label>
+        <input type="text" id="newVehicleModel" class="input-field" placeholder="Ej: Corolla GLi">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Año:</label>
+        <input type="number" id="newVehicleYear" class="input-field" placeholder="Ej: 2011">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Apodo:</label>
+        <input type="text" id="newVehicleNickname" class="input-field" placeholder="Ej: El Gladiador">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Placa:</label>
+        <input type="text" id="newVehiclePlate" class="input-field" placeholder="Ej: AB123CD">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Odómetro Inicial (km):</label>
+        <input type="number" id="newVehicleOdo" class="input-field" placeholder="Ej: 148500">
+      </div>
+      <button class="btn btn-green btn-block" onclick="saveNewVehicle()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
+        Guardar Vehículo
+      </button>
+    </div>
+  </div>
+
   <!-- MODAL: REGISTRAR GASOLINA -->
   <div id="fuelModal" class="modal-backdrop">
     <div class="modal-box">
@@ -2295,12 +2391,19 @@ input:focus, select:focus, textarea:focus {
         <input type="number" id="fuelLitersInput" class="input-field" value="40" oninput="calcFuelCost()">
       </div>
       <div class="input-group">
-        <label class="input-label">Precio Total en Dólares ($ USD):</label>
-        <input type="number" id="fuelUsdInput" class="input-field" value="20.00" oninput="calcFuelCost()">
+        <label class="input-label">Tipo de Gasolina:</label>
+        <select id="fuelTypeSelect" class="input-field" onchange="calcFuelCost()">
+          <option value="0.5">Gasolina Común ($0.5/L)</option>
+          <option value="1.0">Gasolina Premium ($1.0/L)</option>
+        </select>
       </div>
       <div class="input-group">
-        <label class="input-label">Equivalente Oficial BCV (36.50 Bs./USD):</label>
-        <input type="text" id="fuelBcvDisplay" class="input-field" value="730.00 Bs." readonly style="background:#131c31; color:var(--amber);">
+        <label class="input-label">Precio Total en Dólares ($ USD):</label>
+        <input type="number" id="fuelUsdInput" class="input-field" value="20.00" readonly style="background:#131c31; color:var(--cyan);">
+      </div>
+      <div class="input-group">
+        <label id="fuelBcvLabel" class="input-label">Equivalente Oficial BCV (Calculando...):</label>
+        <input type="text" id="fuelBcvDisplay" class="input-field" value="0.00 Bs." readonly style="background:#131c31; color:var(--amber);">
       </div>
       <button class="btn btn-green btn-block" onclick="saveFuelLog()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
         <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>

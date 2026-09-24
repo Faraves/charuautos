@@ -2579,6 +2579,41 @@ function auditChain() {
   }
 }
 
+
+/* =============================================================================
+   GESTIÓN DE NUEVO VEHÍCULO
+   ============================================================================= */
+function openAddVehicleModal() {
+  openModal("addVehicleModal");
+}
+
+function saveNewVehicle() {
+  const maker = document.getElementById("newVehicleMaker").value || "Marca";
+  const model = document.getElementById("newVehicleModel").value || "Modelo";
+  const year = document.getElementById("newVehicleYear").value || "2024";
+  const nickname = document.getElementById("newVehicleNickname").value || "Mi Auto";
+  const plate = document.getElementById("newVehiclePlate").value || "ABC12D";
+  const odo = document.getElementById("newVehicleOdo").value || "0";
+
+  const vehicleNameDisplay = document.getElementById("garageVehicleName");
+  const vehicleDetailsDisplay = document.getElementById("garageVehicleDetails");
+  const odoDisplay = document.getElementById("garageOdoDisplay");
+
+  if (vehicleNameDisplay) {
+    vehicleNameDisplay.innerHTML = `${maker} ${model} ${year}`;
+  }
+  if (vehicleDetailsDisplay) {
+    vehicleDetailsDisplay.innerHTML = `Apodo: "${nickname}" • Placa: ${plate}`;
+  }
+  if (odoDisplay) {
+    odoDisplay.textContent = `${parseFloat(odo).toLocaleString()} km`;
+    currentOdometer = parseFloat(odo);
+  }
+
+  closeModal("addVehicleModal");
+  addMutation("vehicle_registry", "ADD_VEHICLE", { maker, model, year, nickname, plate, odo });
+}
+
 /* =============================================================================
    REGISTRO DE GASOLINA BIMONETARIO
    ============================================================================= */
@@ -2588,29 +2623,90 @@ function openFuelModal() {
 }
 
 function calcFuelCost() {
+  const litersInput = document.getElementById("fuelLitersInput");
+  const typeSelect = document.getElementById("fuelTypeSelect");
   const usdInput = document.getElementById("fuelUsdInput");
   const bcvDisplay = document.getElementById("fuelBcvDisplay");
-  const usd = parseFloat(usdInput ? usdInput.value : 20) || 0;
-  const bcvTotal = (usd * bcvRate).toFixed(2);
+  const bcvLabel = document.getElementById("fuelBcvLabel");
+
+  const liters = parseFloat(litersInput ? litersInput.value : 0) || 0;
+  const pricePerLiter = parseFloat(typeSelect ? typeSelect.value : 0.5);
+
+  const usdTotal = liters * pricePerLiter;
+  if (usdInput) usdInput.value = usdTotal.toFixed(2);
+
+  const bcvTotal = (usdTotal * bcvRate).toFixed(2);
   if (bcvDisplay) bcvDisplay.value = `${bcvTotal} Bs.`;
+  if (bcvLabel) bcvLabel.textContent = `Equivalente Oficial BCV (${bcvRate.toFixed(2)} Bs./USD):`;
 }
 
 function saveFuelLog() {
   const litersInput = document.getElementById("fuelLitersInput");
+  const typeSelect = document.getElementById("fuelTypeSelect");
   const usdInput = document.getElementById("fuelUsdInput");
 
-  const liters = parseFloat(litersInput ? litersInput.value : 40);
-  const usd = parseFloat(usdInput ? usdInput.value : 20);
+  const liters = parseFloat(litersInput ? litersInput.value : 0);
+  const usd = parseFloat(usdInput ? usdInput.value : 0);
   const costPerKm = (usd / (liters * 12.44)).toFixed(3);
+  
+  const typeName = typeSelect && typeSelect.value === "1.0" ? "Premium" : "Común";
 
   const costDisplay = document.getElementById("garageCostDisplay");
   if (costDisplay) costDisplay.textContent = `$${costPerKm}`;
 
-  addMutation("fuel_logs", "INSERT_LOG", { liters, usd, date: new Date().toISOString() });
+  const logEntry = { liters, type: typeName, usd, bcvRate, date: new Date().toISOString() };
+  addMutation("fuel_logs", "INSERT_LOG", logEntry);
+  
+  // Guardar en localStorage
+  let history = JSON.parse(localStorage.getItem("charu_fuel_history") || "[]");
+  history.unshift(logEntry); // Agregar al inicio
+  localStorage.setItem("charu_fuel_history", JSON.stringify(history));
+  
+  renderFuelHistory();
 
   closeModal("fuelModal");
-  alert(`⛽ Tanqueo guardado:\n${liters}L por $${usd} USD (${(usd * bcvRate).toFixed(2)} Bs.). Costo recalculado: $${costPerKm}/km.`);
+  // alert(`⛽ Tanqueo guardado:\n${liters}L por $${usd} USD (${(usd * bcvRate).toFixed(2)} Bs.). Costo recalculado: $${costPerKm}/km.`);
 }
+
+function renderFuelHistory() {
+  const listContainer = document.getElementById("fuelHistoryList");
+  if (!listContainer) return;
+  
+  let history = JSON.parse(localStorage.getItem("charu_fuel_history") || "[]");
+  if (history.length === 0) {
+    listContainer.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>';
+    return;
+  }
+  
+  // Mostrar solo los últimos 5
+  history = history.slice(0, 5);
+  
+  listContainer.innerHTML = history.map(item => {
+    const d = new Date(item.date);
+    const dateStr = `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth()+1).toString().padStart(2, '0')} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
+    const bs = (item.usd * (item.bcvRate || bcvRate)).toFixed(2);
+    return `
+      <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); padding: 8px 10px; border-radius: 6px; border-left: 2px solid var(--green);">
+        <div>
+          <div style="font-weight:700; margin-bottom:2px;">${item.liters}L <span style="color:var(--cyan); font-weight:400; font-size:10px;">${item.type || 'Común'}</span></div>
+          <div style="font-size:10px; color:var(--text-muted);">${dateStr}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="color:var(--amber); font-weight:700;">$${item.usd.toFixed(2)}</div>
+          <div style="font-size:10px; color:var(--text-muted);">${bs} Bs.</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function clearFuelHistory() {
+  if(confirm("¿Estás seguro de borrar el historial de tanqueos?")) {
+    localStorage.removeItem("charu_fuel_history");
+    renderFuelHistory();
+  }
+}
+
 
 /* =============================================================================
    CHECKOUT BIMONETARIO, TASA BCV Y ACTIVACIÓN CHARUPRO
