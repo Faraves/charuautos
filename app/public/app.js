@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initOfflineSync();
   initProStatus();
   fetchBcvRate();
-  updateAsesor de Compra();
+  updateMatchmaker();
   lookupDTC("P0420");
   renderBlockchain();
   loadDefaultDemoVehicles();
@@ -365,7 +365,7 @@ function setBudgetPreset(amount) {
   const numberInput = document.getElementById("budgetNumber");
   if (slider) slider.value = amount;
   if (numberInput) numberInput.value = amount;
-  updateAsesor de Compra();
+  updateMatchmaker();
 }
 
 function syncBudgetInput(val) {
@@ -374,12 +374,12 @@ function syncBudgetInput(val) {
   const num = parseInt(val) || 1000;
   if (slider) slider.value = num;
   if (numberInput) numberInput.value = num;
-  updateAsesor de Compra();
+  updateMatchmaker();
 }
 
 function toggleStrictBudget(checkbox) {
   onlyWithinBudget = checkbox.checked;
-  updateAsesor de Compra();
+  updateMatchmaker();
 }
 
 function setRoadFilter(roadType, element) {
@@ -387,7 +387,7 @@ function setRoadFilter(roadType, element) {
   const pills = document.querySelectorAll("#roadFilterPills .filter-pill");
   pills.forEach(p => p.classList.remove("active"));
   if (element) element.classList.add("active");
-  updateAsesor de Compra();
+  updateMatchmaker();
 }
 
 function setUsageFilter(usageType, element) {
@@ -395,10 +395,10 @@ function setUsageFilter(usageType, element) {
   const pills = document.querySelectorAll("#usageFilterPills .filter-pill");
   pills.forEach(p => p.classList.remove("active"));
   if (element) element.classList.add("active");
-  updateAsesor de Compra();
+  updateMatchmaker();
 }
 
-function updateAsesor de Compra() {
+function updateMatchmaker() {
   const slider = document.getElementById("budgetRange");
   const maxBudget = parseInt(slider ? slider.value : 6000) || 6000;
 
