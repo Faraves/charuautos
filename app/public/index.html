@@ -1698,49 +1698,60 @@ input:focus, select:focus, textarea:focus {
   <nav class="sidebar-nav" aria-label="Menú Principal">
     <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="10" cy="10" r="7"/>
-          <line x1="21" y1="21" x2="15" y2="15"/>
-          <path d="M7 10l1-1.5h4l1 1.5M6 10h8v2H6z" stroke-width="1.5"/>
+        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.41 13.41 10.58 20.58a2 2 0 0 0 2.83 0L22 12V2H12L3.41 10.59a2 2 0 0 0 0 2.82z"/>
+          <circle cx="17" cy="7" r="1.5" />
+          <path d="M8 12 l3 3 l5 -5" />
         </svg>
       </span>
       <span class="label">Asesor de Compra</span>
     </button>
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 10h-1.5l-1-2h-7l-1 2H6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2l2-1v-1l-2-1v-1z"/>
           <path d="M4 12v2" />
           <path d="M20 13v1" />
           <path d="M10 8v2" />
           <path d="M14 8v2" />
+          <text x="12" y="15.5" font-family="Arial" font-size="4.5" font-weight="900" text-anchor="middle" fill="currentColor" stroke="none">CHECK</text>
         </svg>
       </span>
       <span class="label">Códigos de Fallas</span>
     </button>
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="2" x2="12" y2="22" stroke-dasharray="3 3"/>
-          <path d="M 11 8 L 6 8 L 4 11 L 2 11 L 2 16 L 11 16" />
-          <circle cx="5" cy="16" r="1.5" />
-          <line x1="11" y1="11" x2="4" y2="11" />
-          <path d="M 13 8 L 18 8 L 20 11 L 22 11 L 22 16 L 13 16 Z" fill="currentColor" stroke="none" />
-          <circle cx="19" cy="16" r="1.5" fill="var(--bg-card)" stroke="currentColor" stroke-width="1.5" />
+        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Left half SOLID -->
+          <path d="M11.5 5H7l-3 5H3v6h8.5z" fill="currentColor" stroke="currentColor"/>
+          <circle cx="6" cy="16" r="2" fill="var(--bg-card)" stroke="var(--bg-card)"/>
+          <path d="M10 6H7.5l-2 3.5H10z" fill="var(--bg-card)" stroke="none"/>
+          <rect x="4.5" y="11" width="3.5" height="2" rx="0.5" fill="var(--bg-card)" stroke="none"/>
+          
+          <!-- Right half OUTLINE -->
+          <path d="M12.5 5h4.5l3 5h1v6h-8.5" fill="none" stroke="currentColor"/>
+          <circle cx="18" cy="16" r="2" fill="none" stroke="currentColor"/>
+          <path d="M14 6h2.5l2 3.5H14z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="16" y="11" width="3.5" height="2" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          
+          <!-- Center divider -->
+          <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
         </svg>
       </span>
       <span class="label">Comparador</span>
     </button>
     <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 10L12 3l10 7" />
-          <path d="M5 10v10" />
-          <path d="M19 10v10" />
-          <path d="M8 15h8l-1.5-3h-5z" />
-          <path d="M6 15h12v3H6z" />
-          <circle cx="9" cy="18" r="1" />
-          <circle cx="15" cy="18" r="1" />
+        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- House Outline -->
+          <path d="M3 10L12 3l9 7" />
+          <path d="M5 10v11" />
+          <path d="M19 10v11" />
+          <!-- Solid Car -->
+          <path d="M8 13h8l-1.5-3h-5L8 13z" fill="currentColor" stroke="currentColor"/>
+          <path d="M6 13h12v4H6z" fill="currentColor" stroke="currentColor"/>
+          <circle cx="9" cy="17" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)" />
+          <circle cx="15" cy="17" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)" />
         </svg>
       </span>
       <span class="label">Mi Garage</span>
