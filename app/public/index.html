@@ -362,11 +362,11 @@ html, body {
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(14, 19, 31, 0.96);
-        border: 1.5px solid rgba(59, 130, 246, 0.38);
+        background: var(--bg-card);
+        border: 1px solid var(--border-medium);
         padding: 4px 6px;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(59, 130, 246, 0.16);
+        box-shadow: var(--shadow-md);
         flex-shrink: 0;
       }
       
@@ -751,7 +751,7 @@ html, body {
     }
     .input-field, select.input-field {
       width: 100%;
-      background: #080a10;
+      background: var(--bg-card-alt);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-sm);
       color: var(--text-main);
@@ -978,7 +978,7 @@ html, body {
       margin-bottom: 5px;
     }
     .progress-bg {
-      background: #090c13;
+      background: var(--bg-card-alt);
       height: 7px;
       border-radius: 3px;
       overflow: hidden;
@@ -1071,12 +1071,12 @@ html, body {
       position: sticky;
       left: 0;
       z-index: 6;
-      background: #0d131f;
+      background: var(--bg-card-alt);
       box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
     }
     .compare-table thead th:first-child {
       z-index: 16;
-      background: #080c14;
+      background: var(--bg-card-alt);
     }
     .matrix-category-header td {
       position: sticky;
@@ -1383,7 +1383,7 @@ input:focus, select:focus, textarea:focus {
       letter-spacing: -0.5px;
     }
     .chain-block {
-      background: #080a10;
+      background: var(--bg-card-alt);
       border-left: 3px solid var(--green);
       border-radius: var(--radius-sm);
       padding: 11px 15px;
@@ -1628,7 +1628,7 @@ input:focus, select:focus, textarea:focus {
             </p>
 
             <!-- CONTROL DE PRESUPUESTO AJUSTADO -->
-            <div class="input-group" style="background: #090e18; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px;">
+            <div class="input-group" style="background: var(--bg-card); padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-medium); margin-bottom: 10px;">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom: 8px;">
                 <span class="input-label" style="margin-bottom:0; font-size:10.5px;">Presupuesto Máximo:</span>
                 <div style="display:flex; align-items:center; gap:5px;">
@@ -2241,7 +2241,7 @@ input:focus, select:focus, textarea:focus {
 
       <!-- BINANCE PAY FORM -->
       <div id="binancePane" style="display:none; text-align:center;">
-        <div style="background:#090e18; padding:14px; border-radius:12px; margin-bottom:12px; border:1px solid rgba(255,183,3,0.3);">
+        <div style="background: var(--bg-card-alt); padding:14px; border-radius:12px; margin-bottom:12px; border:1px solid rgba(255,183,3,0.3);">
           <div style="color:var(--amber); font-weight:800; font-size:12px; margin-bottom:4px; text-transform:uppercase;">Binance Pay Instantáneo (Zero Fee)</div>
           <div id="binanceAmountDisplay" style="font-size:22px; font-weight:900; color: var(--text-main); margin-bottom:4px;">4.99 USDT</div>
           <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">Red Binance Pay (Cero comisión de gas)</div>
@@ -2336,7 +2336,7 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <!-- BARRA DE PROGRESO DINÁMICA CON GRADIENTE COCKPIT -->
-      <div style="background: var(--bg-card-alt); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
+      <div style="background: var(--bg-card-alt); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid var(--border-medium);">
         <div id="pdfLoadingProgressBar" style="width: 20%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 99px; transition: width 0.35s ease;"></div>
       </div>
 
