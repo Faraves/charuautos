@@ -1728,25 +1728,29 @@ input:focus, select:focus, textarea:focus {
       <span class="icon">
         <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <defs>
-            <clipPath id="left-half"><rect x="0" y="0" width="11" height="24" /></clipPath>
-            <clipPath id="right-half"><rect x="13" y="0" width="11" height="24" /></clipPath>
+            <clipPath id="left-diagonal">
+              <polygon points="0,0 14.5,0 6.5,24 0,24" />
+            </clipPath>
+            <clipPath id="right-diagonal">
+              <polygon points="17.5,0 24,0 24,24 9.5,24" />
+            </clipPath>
           </defs>
           <!-- Left Solid Car -->
-          <g clip-path="url(#left-half)" fill="currentColor" stroke="currentColor" stroke-width="0.5">
+          <g clip-path="url(#left-diagonal)" fill="currentColor" stroke="currentColor" stroke-width="0.5">
             <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
             <path d="M1 11.5 3 11h18l2 .5"/>
             <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
             <circle cx="6.5" cy="16.5" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)"/>
           </g>
           <!-- Right Outline Car -->
-          <g clip-path="url(#right-half)" fill="none" stroke-width="2">
+          <g clip-path="url(#right-diagonal)" fill="none" stroke-width="2">
             <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
             <path d="M1 11.5 3 11h18l2 .5"/>
             <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
             <circle cx="17.5" cy="16.5" r="1.5"/>
           </g>
-          <!-- Divider Line -->
-          <line x1="12" y1="2" x2="12" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <!-- Diagonal Divider Line -->
+          <line x1="16" y1="2" x2="8" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
         </svg>
       </span>
       <span class="label">Comparador</span>
