@@ -1718,7 +1718,8 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11v-1c0-1.1-.9-2-2-2h-3l-1.5-3h-7L7 8H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1v1.5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V16h1c1.1 0 2-.9 2-2v-1z" fill="currentColor" stroke="none"/>
+          <!-- Motor 100% vacio (solo contorno) -->
+          <path d="M22 11v-1c0-1.1-.9-2-2-2h-3l-1.5-3h-7L7 8H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1v1.5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V16h1c1.1 0 2-.9 2-2v-1z" fill="none" stroke-width="2"/>
         </svg>
       </span>
       <span class="label">Códigos de Fallas</span>
@@ -1726,14 +1727,25 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 5H8.4a2 2 0 0 0-1.9 1.3L5 10L1 11.5v6.5a2 2 0 0 0 2 2h9z" fill="currentColor" stroke="none"/>
-          <path d="M11 6H8l-1.5 3.5h4.5z" fill="var(--bg-card)" stroke="none"/>
-          <rect x="3" y="13" width="3" height="2" rx="0.5" fill="var(--bg-card)" stroke="none"/>
-          <circle cx="6" cy="18" r="2" fill="var(--bg-card)" stroke="none"/>
-          <path d="M12 5h3.6a2 2 0 0 1 1.9 1.3L19 10l4 1.5v6.5a2 2 0 0 1-2 2h-9" fill="none" stroke-width="2"/>
-          <path d="M13 6h3l1.5 3.5h-4.5z" fill="none" stroke-width="1.5"/>
-          <rect x="18" y="13" width="3" height="2" rx="0.5" fill="none" stroke-width="1.5"/>
-          <circle cx="18" cy="18" r="2" fill="none" stroke-width="2"/>
+          <defs>
+            <clipPath id="left-half"><rect x="0" y="0" width="11" height="24" /></clipPath>
+            <clipPath id="right-half"><rect x="13" y="0" width="11" height="24" /></clipPath>
+          </defs>
+          <!-- Left Solid Car -->
+          <g clip-path="url(#left-half)" fill="currentColor" stroke="currentColor" stroke-width="0.5">
+            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
+            <path d="M1 11.5 3 11h18l2 .5"/>
+            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
+            <circle cx="6.5" cy="16.5" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)"/>
+          </g>
+          <!-- Right Outline Car -->
+          <g clip-path="url(#right-half)" fill="none" stroke-width="2">
+            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
+            <path d="M1 11.5 3 11h18l2 .5"/>
+            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
+            <circle cx="17.5" cy="16.5" r="1.5"/>
+          </g>
+          <!-- Divider Line -->
           <line x1="12" y1="2" x2="12" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
         </svg>
       </span>
@@ -1742,13 +1754,18 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 10L12 2l10 8" fill="none" stroke-width="2"/>
-          <path d="M5 10v12" fill="none" stroke-width="2"/>
-          <path d="M19 10v12" fill="none" stroke-width="2"/>
-          <path d="M7 16l1-2h8l1 2v6H7z" fill="currentColor" stroke="none"/>
-          <path d="M8 15l0.5-1h7l0.5 1z" fill="var(--bg-card)" stroke="none"/>
-          <circle cx="9" cy="19" r="1.5" fill="var(--bg-card)" stroke="none"/>
-          <circle cx="15" cy="19" r="1.5" fill="var(--bg-card)" stroke="none"/>
+          <!-- House Outline -->
+          <path d="M3 10L12 3l9 7" fill="none" stroke-width="2"/>
+          <path d="M5 10v11" fill="none" stroke-width="2"/>
+          <path d="M19 10v11" fill="none" stroke-width="2"/>
+          <!-- Car Inside (Scaled down) -->
+          <g transform="translate(4, 9) scale(0.66)" stroke-width="3">
+            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8" fill="none"/>
+            <path d="M1 11.5 3 11h18l2 .5" fill="none"/>
+            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6" fill="none"/>
+            <circle cx="6.5" cy="16.5" r="1.5" fill="none"/>
+            <circle cx="17.5" cy="16.5" r="1.5" fill="none"/>
+          </g>
         </svg>
       </span>
       <span class="label">Mi Garage</span>
