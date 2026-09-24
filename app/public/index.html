@@ -116,6 +116,7 @@
   transition: background-color var(--transition-smooth), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-smooth), transform var(--transition-fast);
 }
 html, body {
+      padding-left: 60px;
 
       overflow-x: hidden;
       max-width: 100vw;
@@ -123,6 +124,7 @@ html, body {
     }
 
     body {
+      padding-left: 60px;
       background-color: var(--bg-dark);
       background-image: 
         radial-gradient(ellipse at 50% 0%, var(--bg-glow-blue) 0%, transparent 60%),
@@ -142,6 +144,7 @@ html, body {
 
     @media (min-width: 768px) {
       body {
+      padding-left: 60px;
         padding-bottom: 96px; /* Espacio para dock flotante en PC/Tablet */
       }
     }
@@ -1529,7 +1532,123 @@ input:focus, select:focus, textarea:focus {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-  </style>
+  
+    /* ================= SIDEBAR RETRÁCTIL ================= */
+    .sidebar-nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px; /* Debajo del header */
+      gap: 10px;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+    }
+
+    .sidebar-nav:hover {
+      width: 220px;
+    }
+
+    .sidebar-nav .nav-item {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      padding: 12px;
+      margin: 0 8px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      transition: all 0.2s;
+      white-space: nowrap;
+      outline: none;
+    }
+
+    .sidebar-nav .nav-item:hover {
+      background: var(--bg-card-alt);
+      color: var(--text-main);
+    }
+
+    .sidebar-nav .nav-item.active {
+      background: var(--accent-dim);
+      color: var(--text-main);
+      border: 1px solid var(--accent);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .sidebar-nav .icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-nav .nav-item:hover .icon {
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .sidebar-nav .nav-item.active .icon {
+      color: var(--accent);
+      filter: drop-shadow(0 0 6px var(--accent-glow));
+    }
+
+    .sidebar-nav .label {
+      margin-left: 14px;
+      font-family: var(--font-main);
+      font-size: 13px;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sidebar-nav:hover .label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-nav {
+        top: auto;
+        bottom: 20px;
+        left: 20px;
+        height: 55px;
+        width: 55px;
+        border-radius: 28px;
+        padding-top: 0;
+        justify-content: center;
+        border-right: none;
+        border: 1px solid var(--border-medium);
+      }
+      .sidebar-nav:hover {
+        width: 200px;
+        height: auto;
+        padding: 10px 0;
+        border-radius: 16px;
+      }
+      .sidebar-nav .nav-item {
+        margin: 5px 8px;
+      }
+    }
+
+
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+      }
+    }
+
+</style>
 </head>
 <body>
 
@@ -1554,24 +1673,7 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <!-- SELECTOR PRINCIPAL DE MÓDULOS / COCKPIT TABS (DESKTOP) -->
-      <nav class="desktop-nav" aria-label="Navegación de Secciones">
-        <button class="desktop-nav-btn active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
-          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
-          <span>Matchmaker</span>
-        </button>
-        <button class="desktop-nav-btn" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
-          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
-          <span>Escáner OBD2</span>
-        </button>
-        <button class="desktop-nav-btn" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
-          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
-          <span>Comparador</span>
-        </button>
-        <button class="desktop-nav-btn" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
-          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10l-2-4H7L5 10c0 0-2.7.6-4.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M9.5 17h5"/></svg>
-          <span>Mi Garage</span>
-        </button>
-      </nav>
+      
 
       <div class="header-actions">
       <button class="btn btn-outline" id="themeToggleBtn"  style="padding: 10px; width: 40px; margin-right: 8px;">
@@ -1591,7 +1693,37 @@ input:focus, select:focus, textarea:focus {
     </div>
   </header>
 
+  
+  <!-- SIDEBAR RETRÁCTIL (HOVER) -->
+  <nav class="sidebar-nav" aria-label="Menú Principal">
+    <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
+      <span class="icon">
+        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
+      </span>
+      <span class="label">Asesor de Compra</span>
+    </button>
+    <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
+      <span class="icon">
+        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
+      </span>
+      <span class="label">Códigos de Fallas</span>
+    </button>
+    <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
+      <span class="icon">
+        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
+      </span>
+      <span class="label">Comparador</span>
+    </button>
+    <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
+      <span class="icon">
+        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10l-2-4H7L5 10c0 0-2.7.6-4.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M9.5 17h5"/></svg>
+      </span>
+      <span class="label">Mi Garage</span>
+    </button>
+  </nav>
+
   <!-- APP CONTENT -->
+
   <div class="app-container">
 
     <!-- HUD COLA OFFLINE EN SEGUNDO PLANO -->
@@ -1632,7 +1764,7 @@ input:focus, select:focus, textarea:focus {
             <div class="card-title" style="margin-bottom:6px;">
               <div style="display:flex; align-items:center; gap:8px;">
                 <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
-                <span>Filtros Matchmaker</span>
+                <span>Filtros Asesor de Compra</span>
               </div>
               <span class="badge" style="background: rgba(0,242,254,0.15); color: var(--cyan); font-size:10px; padding:2px 7px;">IA Venezuela</span>
             </div>
@@ -1744,7 +1876,7 @@ input:focus, select:focus, textarea:focus {
             <div class="card-title">
               <div style="display:flex; align-items:center; gap:8px;">
                 <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
-                <span>Diagnóstico OBD2</span>
+                <span>Diagnóstico de Escáner</span>
               </div>
               <span class="badge" style="background: rgba(56,239,125,0.15); color: var(--green);">100% OFFLINE</span>
             </div>
@@ -2060,32 +2192,7 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <!-- NAVEGACIÓN INFERIOR (DRIVE-MODE SELECTOR COCKPIT - ALTA VISIBILIDAD) -->
-  <nav class="bottom-nav" aria-label="Selector de Módulos Cockpit">
-    <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
-      <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
-      </span>
-      <span>Matchmaker</span>
-    </button>
-    <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
-      <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
-      </span>
-      <span>OBD-II Scan</span>
-    </button>
-    <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
-      <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
-      </span>
-      <span>Comparador</span>
-    </button>
-    <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
-      <span class="icon">
-        <svg class="cockpit-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10l-2-4H7L5 10c0 0-2.7.6-4.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M9.5 17h5"/></svg>
-      </span>
-      <span>Mi Garage</span>
-    </button>
-  </nav>
+  
 
   <!-- MODAL: ACTUALIZAR ODÓMETRO (MINADO SHA-256) -->
   <div id="odometerModal" class="modal-backdrop">
