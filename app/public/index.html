@@ -1698,37 +1698,42 @@ input:focus, select:focus, textarea:focus {
   <nav class="sidebar-nav" aria-label="Menú Principal">
     <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 14.5L14.5 4h5.5v5.5L9.5 20l-5.5-5.5z"/>
-          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
-          <path d="M8 12l2 2 4-4"/>
+        <svg class="cockpit-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="rotate(45 12 12)">
+            <path d="M 8 18 v 3.5 a 4 4 0 0 0 8 0 V 18" fill="none" stroke-width="2"/>
+            <rect x="4" y="1" width="16" height="19" rx="5" fill="var(--bg-card)" stroke-width="2"/>
+            <rect x="6.5" y="3.5" width="11" height="14" rx="3" fill="none" stroke-width="1.5"/>
+            <line x1="6.5" y1="8" x2="17.5" y2="8" stroke-width="1.5"/>
+            <line x1="6.5" y1="13" x2="17.5" y2="13" stroke-width="1.5"/>
+            <rect x="10.5" y="5" width="3" height="2" rx="0.5" fill="currentColor" stroke="none"/>
+            <path d="M12.5 5v-1.5a1 1 0 0 0 -1 0" fill="none" stroke-width="1.5"/>
+            <path d="M8 11.5 h8 v-1 l-1.5 -1.5 h-5 l-1.5 1.5 z" fill="currentColor" stroke="none"/>
+            <rect x="10.5" y="14.5" width="3" height="2" rx="0.5" fill="currentColor" stroke="none"/>
+            <path d="M11 14.5v-1.5a1 1 0 0 1 2 0v1.5" fill="none" stroke-width="1.5"/>
+          </g>
         </svg>
       </span>
       <span class="label">Asesor de Compra</span>
     </button>
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 12v-2c0-1.1-.9-2-2-2h-3L13.5 5h-5L7 8H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h1v1c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1h1c1.1 0 2-.9 2-2v-2z"/>
-          <text x="12" y="15" font-family="Arial" font-size="4" font-weight="900" fill="currentColor" stroke="none" text-anchor="middle">CHECK</text>
+        <svg class="cockpit-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11v-1c0-1.1-.9-2-2-2h-3l-1.5-3h-7L7 8H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1v1.5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V16h1c1.1 0 2-.9 2-2v-1z" fill="currentColor" stroke="none"/>
         </svg>
       </span>
       <span class="label">Códigos de Fallas</span>
     </button>
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Left Solid -->
+        <svg class="cockpit-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 5H8.4a2 2 0 0 0-1.9 1.3L5 10L1 11.5v6.5a2 2 0 0 0 2 2h9z" fill="currentColor" stroke="none"/>
           <path d="M11 6H8l-1.5 3.5h4.5z" fill="var(--bg-card)" stroke="none"/>
           <rect x="3" y="13" width="3" height="2" rx="0.5" fill="var(--bg-card)" stroke="none"/>
           <circle cx="6" cy="18" r="2" fill="var(--bg-card)" stroke="none"/>
-          <!-- Right Outline -->
-          <path d="M12 5h3.6a2 2 0 0 1 1.9 1.3L19 10l4 1.5v6.5a2 2 0 0 1-2 2h-9" fill="none"/>
-          <path d="M13 6h3l1.5 3.5h-4.5z" fill="none"/>
-          <rect x="18" y="13" width="3" height="2" rx="0.5" fill="none"/>
-          <circle cx="18" cy="18" r="2" fill="none"/>
-          <!-- Divider -->
+          <path d="M12 5h3.6a2 2 0 0 1 1.9 1.3L19 10l4 1.5v6.5a2 2 0 0 1-2 2h-9" fill="none" stroke-width="2"/>
+          <path d="M13 6h3l1.5 3.5h-4.5z" fill="none" stroke-width="1.5"/>
+          <rect x="18" y="13" width="3" height="2" rx="0.5" fill="none" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="2" fill="none" stroke-width="2"/>
           <line x1="12" y1="2" x2="12" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
         </svg>
       </span>
@@ -1736,12 +1741,10 @@ input:focus, select:focus, textarea:focus {
     </button>
     <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- House Outline -->
-          <path d="M2 10L12 2l10 8"/>
-          <path d="M5 10v12"/>
-          <path d="M19 10v12"/>
-          <!-- Car Front Solid -->
+        <svg class="cockpit-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 10L12 2l10 8" fill="none" stroke-width="2"/>
+          <path d="M5 10v12" fill="none" stroke-width="2"/>
+          <path d="M19 10v12" fill="none" stroke-width="2"/>
           <path d="M7 16l1-2h8l1 2v6H7z" fill="currentColor" stroke="none"/>
           <path d="M8 15l0.5-1h7l0.5 1z" fill="var(--bg-card)" stroke="none"/>
           <circle cx="9" cy="19" r="1.5" fill="var(--bg-card)" stroke="none"/>
