@@ -1406,7 +1406,7 @@ function extractCleanVehicleMakerAndModel(fileName, text) {
   cleanFn = cleanFn.replace(/^[a-f0-9]{16,64}[_\s-]*/i, '');
   cleanFn = cleanFn.replace(/^\d{6,}[_\s-]*/, '');
   cleanFn = cleanFn.replace(/\b(f\.?t\.?|ficha(?:\s*t[eé]cnica)?|brochure|cat[aá]logo|catalogo|compressed|compreso|comprimido|copia|copy|\(\d+\)|v\d+)\b/gi, '');
-  cleanFn = cleanFn.replace(/([a-zA-Z]+)(\d{4})\b/g, ' ');
+  cleanFn = cleanFn.replace(/([a-zA-Z]+)(\d{4})\b/g, '$1 $2');
   cleanFn = cleanFn.replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
 
   let maker = 'No Especificado';
@@ -1661,7 +1661,7 @@ function extractSpecsFromText(fileName, text) {
 
   let airbags = 'No Especificado';
   const mAb = text.match(/(\d+)\s*(?:airbags?|bolsas?\s*de\s*aire)/i) || text.match(/(\d+)\s*\([^)]*\)[\s\S]{0,20}?bolsas?\s*de\s*aire/i);
-  if (mAb) airbags = ${mAb[1]} Airbags;
+  if (mAb) airbags = `${mAb[1]} Airbags`;
   else if (clean.includes('conductor y pasajero')) airbags = '2 Frontales (Conductor y Pasajero)';
 
   let engine = 'No Especificado';
