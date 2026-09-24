@@ -1699,30 +1699,9 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <g transform="rotate(45 12 12)">
-            <!-- Outer loop -->
-            <path d="M 8.5 17 v 3.5 a 3.5 3.5 0 0 0 7 0 V 17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <!-- Fob Body -->
-            <rect x="5" y="1" width="14" height="18" rx="5" fill="var(--bg-card)" stroke="currentColor" stroke-width="2"/>
-            <!-- Inner area -->
-            <rect x="7" y="3" width="10" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <!-- Dividers -->
-            <line x1="7" y1="7.6" x2="17" y2="7.6" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="7" y1="12.3" x2="17" y2="12.3" stroke="currentColor" stroke-width="1.5"/>
-            
-            <!-- Top Button (Unlock) -->
-            <rect x="10.5" y="5.5" width="3" height="1.5" rx="0.5" fill="currentColor" stroke="none"/>
-            <path d="M12.5 5.5v-1a1 1 0 0 0-1 0" fill="none" stroke="currentColor" stroke-width="1"/>
-            
-            <!-- Middle Button (Car) -->
-            <path d="M8.5 11 h7 v-1 l-1.5 -1.5 h-4 l-1.5 1.5 z" fill="currentColor" stroke="none"/>
-            <circle cx="10" cy="11" r="0.7" fill="var(--bg-card)" stroke="none"/>
-            <circle cx="14" cy="11" r="0.7" fill="var(--bg-card)" stroke="none"/>
-            
-            <!-- Bottom Button (Lock) -->
-            <rect x="10.5" y="14.5" width="3" height="1.5" rx="0.5" fill="currentColor" stroke="none"/>
-            <path d="M11 14.5v-1a1 1 0 0 1 2 0v1" fill="none" stroke="currentColor" stroke-width="1"/>
-          </g>
+          <path d="M4 14.5L14.5 4h5.5v5.5L9.5 20l-5.5-5.5z"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+          <path d="M8 12l2 2 4-4"/>
         </svg>
       </span>
       <span class="label">Asesor de Compra</span>
@@ -1730,12 +1709,8 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 10h-1.5l-1-2h-7l-1 2H6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2l2-1v-1l-2-1v-1z"/>
-          <path d="M4 12v2" />
-          <path d="M20 13v1" />
-          <path d="M10 8v2" />
-          <path d="M14 8v2" />
-          <text x="12" y="15.5" font-family="Arial" font-size="4.5" font-weight="900" text-anchor="middle" fill="currentColor" stroke="none">CHECK</text>
+          <path d="M20 12v-2c0-1.1-.9-2-2-2h-3L13.5 5h-5L7 8H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h1v1c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1h1c1.1 0 2-.9 2-2v-2z"/>
+          <text x="12" y="15" font-family="Arial" font-size="4" font-weight="900" fill="currentColor" stroke="none" text-anchor="middle">CHECK</text>
         </svg>
       </span>
       <span class="label">Códigos de Fallas</span>
@@ -1743,20 +1718,18 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Left half SOLID -->
-          <path d="M11.5 5H7l-3 5H3v6h8.5z" fill="currentColor" stroke="currentColor"/>
-          <circle cx="6" cy="16" r="2" fill="var(--bg-card)" stroke="var(--bg-card)"/>
-          <path d="M10 6H7.5l-2 3.5H10z" fill="var(--bg-card)" stroke="none"/>
-          <rect x="4.5" y="11" width="3.5" height="2" rx="0.5" fill="var(--bg-card)" stroke="none"/>
-          
-          <!-- Right half OUTLINE -->
-          <path d="M12.5 5h4.5l3 5h1v6h-8.5" fill="none" stroke="currentColor"/>
-          <circle cx="18" cy="16" r="2" fill="none" stroke="currentColor"/>
-          <path d="M14 6h2.5l2 3.5H14z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="16" y="11" width="3.5" height="2" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          
-          <!-- Center divider -->
-          <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+          <!-- Left Solid -->
+          <path d="M12 5H8.4a2 2 0 0 0-1.9 1.3L5 10L1 11.5v6.5a2 2 0 0 0 2 2h9z" fill="currentColor" stroke="none"/>
+          <path d="M11 6H8l-1.5 3.5h4.5z" fill="var(--bg-card)" stroke="none"/>
+          <rect x="3" y="13" width="3" height="2" rx="0.5" fill="var(--bg-card)" stroke="none"/>
+          <circle cx="6" cy="18" r="2" fill="var(--bg-card)" stroke="none"/>
+          <!-- Right Outline -->
+          <path d="M12 5h3.6a2 2 0 0 1 1.9 1.3L19 10l4 1.5v6.5a2 2 0 0 1-2 2h-9" fill="none"/>
+          <path d="M13 6h3l1.5 3.5h-4.5z" fill="none"/>
+          <rect x="18" y="13" width="3" height="2" rx="0.5" fill="none"/>
+          <circle cx="18" cy="18" r="2" fill="none"/>
+          <!-- Divider -->
+          <line x1="12" y1="2" x2="12" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
         </svg>
       </span>
       <span class="label">Comparador</span>
@@ -1765,14 +1738,14 @@ input:focus, select:focus, textarea:focus {
       <span class="icon">
         <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <!-- House Outline -->
-          <path d="M3 10L12 3l9 7" />
-          <path d="M5 10v11" />
-          <path d="M19 10v11" />
-          <!-- Solid Car -->
-          <path d="M8 13h8l-1.5-3h-5L8 13z" fill="currentColor" stroke="currentColor"/>
-          <path d="M6 13h12v4H6z" fill="currentColor" stroke="currentColor"/>
-          <circle cx="9" cy="17" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)" />
-          <circle cx="15" cy="17" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)" />
+          <path d="M2 10L12 2l10 8"/>
+          <path d="M5 10v12"/>
+          <path d="M19 10v12"/>
+          <!-- Car Front Solid -->
+          <path d="M7 16l1-2h8l1 2v6H7z" fill="currentColor" stroke="none"/>
+          <path d="M8 15l0.5-1h7l0.5 1z" fill="var(--bg-card)" stroke="none"/>
+          <circle cx="9" cy="19" r="1.5" fill="var(--bg-card)" stroke="none"/>
+          <circle cx="15" cy="19" r="1.5" fill="var(--bg-card)" stroke="none"/>
         </svg>
       </span>
       <span class="label">Mi Garage</span>
