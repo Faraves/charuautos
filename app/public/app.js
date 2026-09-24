@@ -201,33 +201,33 @@ const DTC_DB = {
     code: "P0420",
     title: "Eficiencia del Catalizador por Debajo del Umbral (Banco 1)",
     severity: 2,
-    desc: "El sensor de oxígeno detecta que los gases del escape no están siendo filtrados adecuadamente. El vehículo rueda normalmente pero contamina más.",
-    venezuela: "En Venezuela, los sedimentos y azufre de la gasolina ensucian el sensor antes de dañar el catalizador. ¡No permitas que te lo vacíen a la primera!",
+    desc: "Oye, el sensor que huele el escape está notando que el humo sale muy sucio. Tu carro va a rodar normal, no te va a dejar botado hoy, pero estás gastando más gasolina y contaminando.",
+    venezuela: "En Venezuela, la gasolina a veces trae suciedad y azufre que tapan este sensor. Muchos mecánicos te dirán de una vez 'hay que vaciar el catalizador'. ¡No dejes que lo hagan sin revisar bien el sensor primero!",
     causes: [
-      { name: "Sensor de oxígeno secundario sucio o carbonizado", pct: 60, cost: "$25 - $45 USD" },
-      { name: "Fuga o fisura en tubería de escape (entra aire)", pct: 25, cost: "$10 - $20 USD" },
-      { name: "Convertidor catalítico tapado o fundido", pct: 15, cost: "$180 - $450 USD" }
+      { name: "Sensor de oxígeno sucio (El que huele el escape)", pct: 60, cost: "$25 - $45 USD" },
+      { name: "Fuga o huequito en el tubo de escape", pct: 25, cost: "$10 - $20 USD" },
+      { name: "Catalizador dañado de verdad", pct: 15, cost: "$180 - $450 USD" }
     ],
     questions: [
-      "¿Ya verificaste el voltaje oscilante del sensor de oxígeno con el escáner antes de decirme que el catalizador no sirve?",
-      "¿Revisaste si la tubería de escape tiene alguna fisura o fuga que esté metiendo aire fresco?",
-      "Si vacías el catalizador, ¿sabes que el carro quedará oliendo a gasolina pura y la luz del tablero nunca se apagará?"
+      "¿Ya revisaste con el escáner si el sensor está marcando voltaje antes de condenar el catalizador?",
+      "¿Te fijaste si el tubo de escape no tiene ninguna fuga por donde esté entrando aire?",
+      "Si me vacías el catalizador, ¿sabes que el carro va a quedar oliendo a gasolina pura?"
     ]
   },
   "P0171": {
     code: "P0171",
     title: "Sistema de Combustible Demasiado Pobre (Banco 1)",
     severity: 2,
-    desc: "El motor recibe demasiado aire o muy poca gasolina (mezcla seca). Causa tirones en subidas y pérdida de potencia matutina.",
-    venezuela: "Causado con frecuencia por filtros de gasolina saturados de lodo de tanques de estaciones de servicio o pila de gasolina desinflada.",
+    desc: "El motor está respirando demasiado aire y recibiendo muy poquita gasolina. Por eso sientes que el carro da tirones en las subidas o le cuesta arrancar en las mañanas.",
+    venezuela: "En nuestro país, esto casi siempre pasa porque la pila (bomba) de la gasolina ya no manda presión, o el filtro está tapado por lodo de los tanques de las estaciones de servicio.",
     causes: [
-      { name: "Manguera de vacío rota o empacadura de admisión tostada", pct: 45, cost: "$5 - $15 USD" },
-      { name: "Filtro tapado o pila de bomba perdiendo presión", pct: 35, cost: "$20 - $40 USD" },
-      { name: "Sensor MAF o inyectores sucios", pct: 20, cost: "$15 - $30 USD" }
+      { name: "Pila de la gasolina perdiendo fuerza", pct: 50, cost: "$15 - $35 USD" },
+      { name: "Filtro de gasolina tapadísimo", pct: 30, cost: "$5 - $15 USD" },
+      { name: "Inyectores sucios o tapados", pct: 20, cost: "$20 - $40 USD" }
     ],
     questions: [
-      "¿Mediste la presión de la gasolina con manómetro en el riel de inyección? ¿Cuántos PSI marca?",
-      "¿Hiciste la prueba de humo o líquido para descartar chupadas de aire en el múltiple?"
+      "¿Mediste la presión de la bomba de gasolina antes de ponerme a comprar sensores?",
+      "¿Cuándo fue la última vez que cambiamos el microfiltro de los inyectores?"
     ]
   },
   "P0300": {
@@ -573,53 +573,66 @@ function lookupDTC(customCode) {
   if (!card) return;
 
   card.innerHTML = `
-    <div class="card" style="border-color: ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')};">
-      <div class="card-title">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-family:var(--font-mono); font-weight:900; color:var(--cyan); background:rgba(56,189,248,0.08); padding:3px 8px; border-radius:4px; border:1px solid rgba(56,189,248,0.25);">
-            [${dtc.code}]
-          </span>
-          <span style="font-size:16px; font-weight:800; color:#fff;">${dtc.title}</span>
+    <div class="card" style="border-color: ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')}; border-width: 2px;">
+      
+      <!-- HEADER SEMÁFORO -->
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="display:inline-block; padding: 12px; border-radius: 50%; background: ${dtc.severity === 3 ? 'rgba(239, 68, 68, 0.15)' : (dtc.severity === 2 ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)')}; margin-bottom: 10px;">
+           <div style="width: 24px; height: 24px; border-radius: 50%; background: ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')}; box-shadow: 0 0 15px ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')};"></div>
         </div>
-        <span class="severity-pill ${sevClass}">${sevLabel}</span>
+        <h2 style="font-size:18px; font-weight:800; color:var(--text-main); margin-bottom: 4px;">Código [${dtc.code}]</h2>
+        <span class="severity-pill ${sevClass}" style="font-size: 13px; padding: 6px 12px;">${dtc.severity === 3 ? "¡REVISIÓN URGENTE!" : (dtc.severity === 2 ? "PRECAUCIÓN" : "TODO BIEN")}</span>
       </div>
 
-      <p style="font-size:13px; line-height:1.6; color:#cbd5e1; margin-bottom:14px;">
+      <!-- EXPLICACIÓN AMIGABLE -->
+      <h3 style="font-size:15px; font-weight:700; color:var(--text-main); margin-bottom: 6px;">¿Qué le pasa a tu carro?</h3>
+      <p style="font-size:14px; line-height:1.6; color:var(--text-secondary); margin-bottom:14px;">
         ${dtc.desc}
       </p>
 
-      <div style="background:rgba(255,255,255,0.02); border-left:3px solid var(--cyan); padding:10px 14px; font-size:12px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin-bottom:16px;">
-        <span style="font-family:var(--font-mono); font-size:10px; color:var(--cyan); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:2px;">REALIDAD VENEZUELA // CONTEXTO OPERATIVO:</span>
-        <span style="color:var(--text-secondary);">${dtc.venezuela}</span>
+      <div style="background:var(--bg-card-alt); border-left:3px solid var(--cyan); padding:10px 14px; font-size:13px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin-bottom:20px;">
+        <span style="font-family:var(--font-mono); font-size:11px; color:var(--cyan); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:4px;">🇻🇪 Realidad en Venezuela:</span>
+        <span style="color:var(--text-main); font-weight:500;">${dtc.venezuela}</span>
       </div>
 
-      <div class="input-label" style="font-family:var(--font-mono); font-size:10px; letter-spacing:1px;">ANÁLISIS TÉCNICO 80/20 // PROBABILIDAD DE ORIGEN:</div>
-      ${dtc.causes.map(c => `
-        <div class="cause-bar">
-          <div class="cause-info">
-            <span style="color:#fff; font-size:12px;"><strong>${c.name}</strong></span>
-            <span style="color:var(--cyan); font-family:var(--font-mono); font-size:11.5px; font-weight:800;">${c.pct}% prob. • Est: ${c.cost}</span>
-          </div>
-          <div class="progress-bg">
-            <div class="progress-fill" style="width: ${c.pct}%;"></div>
-          </div>
-        </div>
-      `).join('')}
+      <!-- BOTÓN PARA MOSTRAR LO TÉCNICO -->
+      <button class="btn btn-outline btn-block" style="margin-bottom: 15px;" onclick="document.getElementById('dtcDetails_${dtc.code}').style.display = 'block'; this.style.display='none';">
+        🛠️ Ver detalles para mi mecánico
+      </button>
 
-      <div class="anti-scam-box">
-        <div style="font-family:var(--font-mono); font-weight:800; color:var(--amber); margin-bottom:10px; font-size:11.5px; letter-spacing:0.8px; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
-          ${ICONS.shield} CHECKLIST TÉCNICO // ASESORÍA DE TALLER (Preguntas clave para el mecánico):
-        </div>
-        ${dtc.questions.map(q => `
-          <div class="question-item">
-            <input type="checkbox" style="accent-color:var(--amber); margin-top:2px;">
-            <span style="font-style:italic;">"${q}"</span>
+      <!-- DETALLES TÉCNICOS OCULTOS -->
+      <div id="dtcDetails_${dtc.code}" style="display: none; border-top: 1px dashed var(--border-medium); padding-top: 15px; margin-top: 10px;">
+          <h3 style="font-size:13px; font-weight:700; color:var(--text-main); margin-bottom: 10px;">Diagnóstico del Escáner (Nombre original):</h3>
+          <p style="font-family:var(--font-mono); font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;">${dtc.title}</p>
+
+          <div class="input-label" style="font-family:var(--font-mono); font-size:11px; letter-spacing:1px;">PROBABILIDAD DE FALLAS (80/20):</div>
+          ${dtc.causes.map(c => `
+            <div class="cause-bar" style="margin-bottom: 10px;">
+              <div class="cause-info" style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+                <span style="color:var(--text-main); font-size:12px; font-weight:600;">${c.name}</span>
+                <span style="color:var(--cyan); font-family:var(--font-mono); font-size:11.5px; font-weight:800;">${c.pct}% prob. • Est: ${c.cost}</span>
+              </div>
+              <div class="progress-bg" style="background: var(--border-subtle);">
+                <div class="progress-fill" style="width: ${c.pct}%; background: var(--cyan); height: 100%; border-radius: 3px;"></div>
+              </div>
+            </div>
+          `).join('')}
+
+          <div class="anti-scam-box" style="background: rgba(245, 158, 11, 0.05); padding: 12px; border-radius: var(--radius-sm); border: 1px solid rgba(245, 158, 11, 0.2); margin-top: 16px;">
+            <div style="font-family:var(--font-mono); font-weight:800; color:var(--amber); margin-bottom:10px; font-size:11.5px; letter-spacing:0.8px; text-transform:uppercase;">
+              🛡️ Checklist Anti-Estafa para el taller:
+            </div>
+            ${dtc.questions.map(q => `
+              <div class="question-item" style="display: flex; gap: 8px; margin-bottom: 8px; color: var(--text-main);">
+                <input type="checkbox" style="accent-color:var(--amber); margin-top:3px;">
+                <span style="font-style:italic; font-size: 13px;">"${q}"</span>
+              </div>
+            `).join('')}
           </div>
-        `).join('')}
       </div>
 
       <button class="btn btn-secondary btn-block" style="margin-top:16px; display:inline-flex; align-items:center; justify-content:center; gap:6px;" onclick="saveDtcToCar('${dtc.code}')">
-        ${ICONS.save} Registrar Falla en el Historial del Vehículo
+        ${ICONS.save} Guardar en Historial
       </button>
     </div>
   `;
