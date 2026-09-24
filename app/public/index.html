@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>CharuAutos — El Copiloto Digital del Conductor Inteligente (Venezuela)</title>
+  <title>Charu motorhub — El Copiloto Digital del Conductor Inteligente (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#070a0f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="CharuAutos">
+  <meta name="apple-mobile-web-app-title" content="Charu motorhub">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono para precisión técnica -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- PDF.js para parsing heurístico de fichas técnicas en el navegador -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <!-- Chart.js para visualización de métricas vehiculares (Barras & Radar) -->
@@ -24,11 +24,11 @@
   <style>
     :root {
       /* PALETA BASE: REFINED AUTOMOTIVE SLATE & TITANIUM */
-      --bg-dark: #0b0f17;
-      --bg-carbon: #101622;
-      --bg-card: #131926;
-      --bg-card-alt: #182030;
-      --bg-card-elevated: #1f2a3e;
+      --bg-dark: #071520;
+      --bg-carbon: #0D2030;
+      --bg-card: #13334C;
+      --bg-card-alt: #183C59;
+      --bg-card-elevated: #1F4A6E;
       --bg-glass: rgba(19, 25, 38, 0.90);
       
       /* LÍNEAS & BORDES MILIMÉTRICOS DE PRECISIÓN */
@@ -38,12 +38,12 @@
       --border-accent: rgba(59, 130, 246, 0.45);
 
       /* IDENTIDAD AUTOMOTRIZ DE PRECISIÓN (PORSCHE / AUDI / BMW OEM TECH BLUE & TITANIUM) */
-      --accent: #3b82f6;          /* Cobalt Precision Blue */
-      --accent-hover: #2563eb;
+      --accent: #00E676;          /* Cobalt Precision Blue */
+      --accent-hover: #00C853;
       --accent-glow: rgba(59, 130, 246, 0.22);
       --accent-dim: rgba(59, 130, 246, 0.12);
 
-      --cyan: #38bdf8;            /* Precision Ice Blue */
+      --cyan: #00E676;            /* Precision Ice Blue */
       --cyan-glow: rgba(56, 189, 248, 0.25);
       --cyan-dim: rgba(56, 189, 248, 0.10);
 
@@ -61,8 +61,9 @@
       --text-secondary: #cbd5e1;
       --text-muted: #8b9bb4;
       --text-dim: #4b5a75;
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --font-display: 'Oswald', sans-serif;
+  --font-main: 'Poppins', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
 
       /* RADIOS & SOMBRAS */
       --radius-sm: 6px;
@@ -146,28 +147,31 @@
       align-items: center;
       gap: 10px;
     }
-    .brand-wrap {
+    .brand-wrap { display: flex; align-items: center; gap: 12px; 
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
     .brand-logo {
-      font-size: clamp(17px, 4vw, 21px);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #fff;
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
-      text-transform: uppercase;
-      font-style: normal;
-      white-space: nowrap;
-    }
-    .brand-logo span {
-      color: var(--accent);
-      font-weight: 900;
-    }
+  font-family: var(--font-display);
+  font-size: clamp(20px, 5vw, 24px);
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.brand-logo span {
+  font-family: var(--font-main);
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: -0.3px;
+}
     .brand-tag {
       font-family: var(--font-mono);
       font-size: 8.5px;
@@ -1373,8 +1377,9 @@
   <header>
     <div class="header-inner">
       <div class="brand-wrap">
+        <img src="paw_icon.png" alt="Charu motorhub Logo" style="width: 32px; height: 32px; object-fit: contain;">
         <div class="brand-logo">
-          Charu<span>Autos</span>
+          CHARU<span> motorhub</span>
           <span class="brand-tag">AUTOMOTIVE</span>
         </div>
         <div id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()">
@@ -2025,7 +2030,7 @@
       <div id="pagoMovilPane">
         <div style="background: rgba(0,242,254,0.06); padding:10px 12px; border-radius:8px; font-size:11px; margin-bottom:12px; border:1px solid rgba(0,242,254,0.2);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <strong>Datos Receptores CharuAutos:</strong>
+            <strong>Datos Receptores Charu motorhub:</strong>
             <button class="btn btn-secondary btn-sm" onclick="copyPagoMovilData()" id="copyPmBtn" style="padding:2px 7px; font-size:10px;">
               📋 Copiar Datos
             </button>
@@ -2132,7 +2137,7 @@
               📋 Copiar ID
             </button>
           </div>
-          <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted);">Alias: charuautos@binance</div>
+          <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted);">Alias: charumotorhub@binance</div>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:6px;">

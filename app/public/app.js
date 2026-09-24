@@ -1,6 +1,6 @@
 /**
  * =============================================================================
- * CHARUAUTOS — APLICACIÓN CLIENTE (LOCAL-FIRST)
+ * CHARU motorhub — APLICACIÓN CLIENTE (LOCAL-FIRST)
  * Lógica pura, interactiva y robusta para la WebApp / PWA
  * =============================================================================
  */
@@ -306,7 +306,7 @@ let blockchain = [
    INICIALIZACIÓN AL CARGAR LA PÁGINA
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚗 CharuAutos inicializado correctamente.");
+  console.log("🚗 Charu motorhub inicializado correctamente.");
   initOfflineSync();
   initProStatus();
   fetchBcvRate();
@@ -2369,7 +2369,7 @@ function renderB2BServices() {
 }
 
 function requestB2BQuote(carName, serviceType) {
-  alert(`📋 Solicitud de Servicio Registrada:\n\nVehículo: ${carName}\nServicio Solicitado: ${serviceType}\n\nUn asesor de la Red Oficial CharuAutos se comunicará contigo con las tarifas cerradas garantizadas.`);
+  alert(`📋 Solicitud de Servicio Registrada:\n\nVehículo: ${carName}\nServicio Solicitado: ${serviceType}\n\nUn asesor de la Red Oficial Charu motorhub se comunicará contigo con las tarifas cerradas garantizadas.`);
 }
 
 /* =============================================================================
@@ -2697,7 +2697,7 @@ function updateCheckoutAmounts() {
 function copyPagoMovilData() {
   const priceUSD = selectedProPlan === "vitalicio" ? 9.99 : 4.99;
   const priceBs = (priceUSD * bcvRate).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const text = `CharuAutos — Datos Pago Móvil\nBanco: Banco de Venezuela (0102)\nTeléfono: 0414-9876543\nRIF: J-50012345-0\nMonto: ${priceBs} Bs. (${priceUSD} USD)`;
+  const text = `Charu motorhub — Datos Pago Móvil\nBanco: Banco de Venezuela (0102)\nTeléfono: 0414-9876543\nRIF: J-50012345-0\nMonto: ${priceBs} Bs. (${priceUSD} USD)`;
 
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById("copyPmBtn");
@@ -2735,7 +2735,7 @@ function sendWhatsAppConfirmation() {
   const ref = document.getElementById("pmRef")?.value.trim() || "Pendiente";
 
   const msg = encodeURIComponent(
-    `Hola equipo de CharuAutos! 🚗 Acabo de gestionar mi suscripción ${planName}.\n\n` +
+    `Hola equipo de Charu motorhub! 🚗 Acabo de gestionar mi suscripción ${planName}.\n\n` +
     `📋 DATOS DE PAGO:\n` +
     `• Método: Pago Móvil\n` +
     `• Banco Emisor: ${bankName}\n` +
@@ -2995,7 +2995,7 @@ function syncPendingMutations() {
 
 function exportOfflineBackup() {
   const backupData = {
-    app: "CharuAutos WebApp & PWA",
+    app: "Charu motorhub WebApp & PWA",
     version: "2.0.4",
     exportDate: new Date().toISOString(),
     proStatus: localStorage.getItem("charu_pro_status") ? JSON.parse(localStorage.getItem("charu_pro_status")) : null,
