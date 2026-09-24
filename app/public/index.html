@@ -1699,9 +1699,30 @@ input:focus, select:focus, textarea:focus {
     <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
         <svg class="cockpit-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3.41 13.41 10.58 20.58a2 2 0 0 0 2.83 0L22 12V2H12L3.41 10.59a2 2 0 0 0 0 2.82z"/>
-          <circle cx="17" cy="7" r="1.5" />
-          <path d="M8 12 l3 3 l5 -5" />
+          <g transform="rotate(45 12 12)">
+            <!-- Outer loop -->
+            <path d="M 8.5 17 v 3.5 a 3.5 3.5 0 0 0 7 0 V 17" fill="none" stroke="currentColor" stroke-width="2"/>
+            <!-- Fob Body -->
+            <rect x="5" y="1" width="14" height="18" rx="5" fill="var(--bg-card)" stroke="currentColor" stroke-width="2"/>
+            <!-- Inner area -->
+            <rect x="7" y="3" width="10" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <!-- Dividers -->
+            <line x1="7" y1="7.6" x2="17" y2="7.6" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="7" y1="12.3" x2="17" y2="12.3" stroke="currentColor" stroke-width="1.5"/>
+            
+            <!-- Top Button (Unlock) -->
+            <rect x="10.5" y="5.5" width="3" height="1.5" rx="0.5" fill="currentColor" stroke="none"/>
+            <path d="M12.5 5.5v-1a1 1 0 0 0-1 0" fill="none" stroke="currentColor" stroke-width="1"/>
+            
+            <!-- Middle Button (Car) -->
+            <path d="M8.5 11 h7 v-1 l-1.5 -1.5 h-4 l-1.5 1.5 z" fill="currentColor" stroke="none"/>
+            <circle cx="10" cy="11" r="0.7" fill="var(--bg-card)" stroke="none"/>
+            <circle cx="14" cy="11" r="0.7" fill="var(--bg-card)" stroke="none"/>
+            
+            <!-- Bottom Button (Lock) -->
+            <rect x="10.5" y="14.5" width="3" height="1.5" rx="0.5" fill="currentColor" stroke="none"/>
+            <path d="M11 14.5v-1a1 1 0 0 1 2 0v1" fill="none" stroke="currentColor" stroke-width="1"/>
+          </g>
         </svg>
       </span>
       <span class="label">Asesor de Compra</span>
