@@ -3073,6 +3073,13 @@ function toggleTheme() {
   applyTheme(newTheme);
 }
 
+// Expose to global scope explicitly
+window.toggleTheme = toggleTheme;
+
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
+  const themeBtn = document.getElementById('themeToggleBtn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', toggleTheme);
+  }
 });
