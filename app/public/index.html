@@ -428,7 +428,7 @@ html, body {
         font-family: var(--font-main);
         font-size: 12px;
         font-weight: 700;
-        color: #94a3b8;
+        color: var(--text-muted);
         background: transparent;
         border: 1px solid transparent;
         cursor: pointer;
@@ -438,11 +438,11 @@ html, body {
       }
       .desktop-nav-btn:hover {
         color: var(--text-main);
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.14);
+        background: var(--bg-card-alt);
+        border-color: var(--border-medium);
       }
       .desktop-nav-btn .cockpit-svg {
-        color: #94a3b8;
+        color: var(--text-muted);
         transition: all 0.2s ease;
       }
       .desktop-nav-btn:hover .cockpit-svg {
@@ -450,13 +450,13 @@ html, body {
       }
       .desktop-nav-btn.active {
         color: var(--text-main);
-        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        box-shadow: 0 0 18px rgba(37, 99, 235, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+        background: var(--accent-dim);
+        border: 1px solid var(--accent);
+        box-shadow: var(--shadow-neon);
       }
       .desktop-nav-btn.active .cockpit-svg {
         color: var(--text-main);
-        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+        filter: drop-shadow(0 0 6px var(--accent-glow));
       }
     }
     @media (min-width: 1100px) {
@@ -473,8 +473,8 @@ html, body {
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(10, 14, 23, 0.98);
-      border-top: 1.5px solid rgba(59, 130, 246, 0.45);
+      background: var(--bg-glass);
+      border-top: 1px solid var(--border-medium);
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -483,7 +483,7 @@ html, body {
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       gap: 6px;
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.85), 0 0 22px rgba(59, 130, 246, 0.22);
+      box-shadow: var(--shadow-elevation);
     }
     .nav-item {
       position: relative;
@@ -495,7 +495,7 @@ html, body {
       gap: 4px;
       background: transparent;
       border: 1px solid transparent;
-      color: #94a3b8;
+      color: var(--text-muted);
       font-size: 11px;
       font-weight: 700;
       font-family: var(--font-main);
@@ -520,28 +520,28 @@ html, body {
       justify-content: center;
       width: 22px;
       height: 22px;
-      color: #94a3b8;
+      color: var(--text-muted);
       transition: all 0.2s ease;
     }
     .nav-item:hover {
       color: var(--text-main);
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.12);
+      background: var(--bg-card-alt);
+      border-color: var(--border-medium);
     }
     .nav-item:hover .icon {
       color: var(--cyan);
     }
     .nav-item.active {
       color: var(--text-main);
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.32) 0%, rgba(29, 78, 216, 0.45) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.6);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
       border-radius: 8px;
-      box-shadow: 0 0 16px rgba(59, 130, 246, 0.38);
+      box-shadow: var(--shadow-neon);
     }
     .nav-item.active .icon {
       color: var(--text-main);
       transform: translateY(-1px);
-      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+      filter: drop-shadow(0 0 8px var(--accent-glow));
     }
     .nav-item.active::after {
       content: '';
@@ -564,10 +564,10 @@ html, body {
         bottom: 20px;
         width: min(640px, calc(100vw - 36px));
         border-radius: 16px;
-        border: 1.5px solid rgba(59, 130, 246, 0.45);
-        box-shadow: 0 20px 50px -4px rgba(0, 0, 0, 0.95), 0 0 26px rgba(59, 130, 246, 0.28);
+        border: 1px solid var(--border-medium);
+        box-shadow: var(--shadow-elevation);
         padding: 6px 12px;
-        background: rgba(12, 17, 28, 0.97);
+        background: var(--bg-glass);
       }
       .nav-item {
         padding: 8px 16px;
@@ -575,7 +575,7 @@ html, body {
         border-radius: 10px;
       }
       .nav-item:hover {
-        background: rgba(255, 255, 255, 0.08);
+        background: var(--bg-card-alt);
       }
       .nav-item.active::after {
         top: -4px;
@@ -1952,7 +1952,7 @@ input:focus, select:focus, textarea:focus {
             <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
             <span>Historial de Comparativas Guardadas</span>
           </div>
-          <span class="badge" style="background:rgba(255,255,255,0.08); color:#94a3b8;">Persistencia Local</span>
+          <span class="badge" style="background: var(--bg-card-alt); color: var(--text-muted);">Persistencia Local</span>
         </div>
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
           Tus comparativas guardadas se almacenan localmente en tu navegador. Puedes volver a cargarlas en la tabla cuando lo desees o eliminarlas.
@@ -2336,7 +2336,7 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <!-- BARRA DE PROGRESO DINÁMICA CON GRADIENTE COCKPIT -->
-      <div style="background: rgba(255,255,255,0.06); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
+      <div style="background: var(--bg-card-alt); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
         <div id="pdfLoadingProgressBar" style="width: 20%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 99px; transition: width 0.35s ease;"></div>
       </div>
 
