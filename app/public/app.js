@@ -3070,6 +3070,7 @@ function applyTheme(theme) {
 
 function toggleTheme() {
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  console.log("Alternando tema a:", newTheme);
   applyTheme(newTheme);
 }
 

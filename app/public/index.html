@@ -32,6 +32,18 @@
       --bg-glass: rgba(19, 25, 38, 0.90);
       
       
+
+:root[data-theme="light"] {
+  --bg-grid-color: rgba(19, 51, 76, 0.05);
+  --bg-glow-blue: rgba(59, 130, 246, 0.03);
+  --bg-glow-cyan: rgba(0, 230, 118, 0.03);
+}
+:root {
+  --bg-grid-color: rgba(255, 255, 255, 0.02);
+  --bg-glow-blue: rgba(59, 130, 246, 0.06);
+  --bg-glow-cyan: rgba(56, 189, 248, 0.03);
+}
+
 :root[data-theme="light"] {
   --bg-dark: #F8FAFC;
   --bg-carbon: #FFFFFF;
@@ -124,9 +136,9 @@ html, body {
     body {
       background-color: var(--bg-dark);
       background-image: 
-        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 100% 100%, rgba(56, 189, 248, 0.03) 0%, transparent 40%),
-        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        radial-gradient(ellipse at 50% 0%, var(--bg-glow-blue) 0%, transparent 60%),
+        radial-gradient(ellipse at 100% 100%, var(--bg-glow-cyan) 0%, transparent 40%),
+        linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
       color: var(--text-main);
@@ -1519,6 +1531,12 @@ input:focus, select:focus, textarea:focus {
 </head>
 <body>
 
+<div id="versionBanner" style="background: var(--accent); color: var(--bg-dark); text-align: center; font-size: 11px; padding: 4px; font-family: var(--font-main); font-weight: 700; z-index: 9999; position: relative;">
+  VERSIÓN V3 (CACHE LÍMPIO) - UX Premium Activado
+  <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: var(--bg-dark); cursor: pointer; float: right; font-weight: bold;">X</button>
+</div>
+
+
   <!-- HEADER // AUTOMOTIVE BRAND HUD -->
   <header>
     <div class="header-inner">
@@ -2360,6 +2378,6 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20260920_hybrid_gemini_loading_screen_v25"></script>
+  <script src="app.js?v=20260923_premium_ux"></script>
 </body>
 </html>
