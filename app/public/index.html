@@ -116,7 +116,6 @@
   transition: background-color var(--transition-smooth), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-smooth), transform var(--transition-fast);
 }
 html, body {
-      padding-left: 60px;
 
       overflow-x: hidden;
       max-width: 100vw;
@@ -124,7 +123,6 @@ html, body {
     }
 
     body {
-      padding-left: 60px;
       background-color: var(--bg-dark);
       background-image: 
         radial-gradient(ellipse at 50% 0%, var(--bg-glow-blue) 0%, transparent 60%),
@@ -144,7 +142,6 @@ html, body {
 
     @media (min-width: 768px) {
       body {
-      padding-left: 60px;
         padding-bottom: 96px; /* Espacio para dock flotante en PC/Tablet */
       }
     }
@@ -1704,6 +1701,34 @@ input:focus, select:focus, textarea:focus {
           padding: 6px 8px !important;
         }
       }
+
+      /* EMERGENCIA UX FIXES */
+      @media (max-width: 480px) {
+        .brand-logo span {
+          display: none; /* Oculta "motorhub" en móviles para que no choque */
+        }
+        .header-actions .status-badge {
+          display: none !important; /* Ocultar badge ON/OFF en móvil */
+        }
+        .pro-pill {
+          padding: 4px 6px !important;
+          font-size: 9px !important;
+        }
+        .pro-pill span {
+          display: none; /* Oculta texto CharuPro, deja solo icono */
+        }
+        .sidebar-nav .nav-item {
+          min-width: 0 !important; /* PREVIENE DESBORDAMIENTO FLEXBOX */
+        }
+        .sidebar-nav .label {
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          font-size: 8.5px !important;
+        }
+      }
 </style>
 </head>
 <body>
@@ -1770,9 +1795,7 @@ input:focus, select:focus, textarea:focus {
           CHARU<span> motorhub</span>
           <span class="brand-tag">AUTOMOTIVE</span>
         </div>
-        <div id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()">
-          <span class="status-indicator"></span> <span id="statusText">Sistema // En Línea</span>
-        </div>
+        
       </div>
 
       <!-- SELECTOR PRINCIPAL DE MÓDULOS / COCKPIT TABS (DESKTOP) -->
