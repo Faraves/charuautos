@@ -306,6 +306,7 @@ let blockchain = [
    INICIALIZACIÓN AL CARGAR LA PÁGINA
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
+  if(typeof loadActiveVehicle === 'function') loadActiveVehicle();
   console.log("🚗 Charu motorhub inicializado correctamente.");
   initOfflineSync();
   initProStatus();
@@ -2601,6 +2602,48 @@ function saveNewVehicle() {
 
   if (vehicleNameDisplay) {
     vehicleNameDisplay.innerHTML = `${maker} ${model} ${year}`;
+  }
+  if (vehicleDetailsDisplay) {
+    vehicleDetailsDisplay.innerHTML = `Apodo: "${nickname}" • Placa: ${plate}`;
+  }
+  if (odoDisplay) {
+    odoDisplay.textContent = `${parseFloat(odo).toLocaleString()} km`;
+    currentOdometer = parseFloat(odo);
+  }
+
+  // PERSISTENCIA LOCAL
+  const vehicleData = { maker, model, year, nickname, plate, odo };
+  localStorage.setItem("charu_active_vehicle", JSON.stringify(vehicleData));
+
+  closeModal("addVehicleModal");
+  addMutation("vehicle_registry", "ADD_VEHICLE", vehicleData);
+}
+
+function loadActiveVehicle() {
+  try {
+    const saved = localStorage.getItem("charu_active_vehicle");
+    if (saved) {
+      const vehicle = JSON.parse(saved);
+      const vehicleNameDisplay = document.getElementById("garageVehicleName");
+      const vehicleDetailsDisplay = document.getElementById("garageVehicleDetails");
+      const odoDisplay = document.getElementById("garageOdoDisplay");
+      
+      if (vehicleNameDisplay) {
+        vehicleNameDisplay.innerHTML = `${vehicle.maker} ${vehicle.model} ${vehicle.year}`;
+      }
+      if (vehicleDetailsDisplay) {
+        vehicleDetailsDisplay.innerHTML = `Apodo: "${vehicle.nickname}" • Placa: ${vehicle.plate}`;
+      }
+      if (odoDisplay) {
+        odoDisplay.textContent = `${parseFloat(vehicle.odo).toLocaleString()} km`;
+        currentOdometer = parseFloat(vehicle.odo);
+      }
+    }
+  } catch (e) {
+    console.error("Error cargando el vehículo guardado:", e);
+  }
+}
+ ${model} ${year}`;
   }
   if (vehicleDetailsDisplay) {
     vehicleDetailsDisplay.innerHTML = `Apodo: "${nickname}" • Placa: ${plate}`;
