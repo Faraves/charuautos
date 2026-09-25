@@ -1729,6 +1729,28 @@ input:focus, select:focus, textarea:focus {
           font-size: 8.5px !important;
         }
       }
+
+      /* FIX DEFINITIVO: BLOQUEO DE DOBLE-TAP EN IOS Y CLICK EN HIJOS */
+      .sidebar-nav .nav-item * {
+        pointer-events: none !important; /* Fuerza a que el click SIEMPRE sea en el boton, no en el icono/texto */
+      }
+      
+      @media (max-width: 768px) {
+        .sidebar-nav .nav-item:hover {
+          background: transparent !important;
+          color: var(--text-muted) !important;
+          transform: none !important;
+        }
+        .sidebar-nav .nav-item.active:hover {
+          background: var(--accent-dim) !important;
+          color: var(--text-main) !important;
+        }
+        /* Efecto de toque nativo real (solo mientras se presiona) */
+        .sidebar-nav .nav-item:active {
+          background: rgba(255,255,255,0.05) !important;
+          transform: scale(0.95) !important;
+        }
+      }
 </style>
 </head>
 <body>
