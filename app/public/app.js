@@ -2643,19 +2643,6 @@ function loadActiveVehicle() {
     console.error("Error cargando el vehículo guardado:", e);
   }
 }
- ${model} ${year}`;
-  }
-  if (vehicleDetailsDisplay) {
-    vehicleDetailsDisplay.innerHTML = `Apodo: "${nickname}" • Placa: ${plate}`;
-  }
-  if (odoDisplay) {
-    odoDisplay.textContent = `${parseFloat(odo).toLocaleString()} km`;
-    currentOdometer = parseFloat(odo);
-  }
-
-  closeModal("addVehicleModal");
-  addMutation("vehicle_registry", "ADD_VEHICLE", { maker, model, year, nickname, plate, odo });
-}
 
 /* =============================================================================
    REGISTRO DE GASOLINA BIMONETARIO
