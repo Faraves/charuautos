@@ -1752,6 +1752,18 @@ input:focus, select:focus, textarea:focus {
           transform: scale(0.95) !important;
         }
       }
+
+    /* DYNAMIC HEADER RESPONSIVE TO SIDEBAR */
+    @media (min-width: 769px) {
+      header {
+        padding-left: 70px;
+        transition: padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      body:has(.sidebar-nav:hover) header {
+        padding-left: 230px;
+      }
+    }
+
 </style>
 
   <!-- CharuAutos PWA & Favicon Assets -->
@@ -2953,5 +2965,18 @@ input:focus, select:focus, textarea:focus {
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
   <script src="app.js?v=20260923_premium_ux"></script>
+
+  <!-- HIDE BANNER AFTER 1 SEC -->
+  <script>
+    setTimeout(() => {
+      const banner = document.getElementById('versionBanner');
+      if (banner) {
+        banner.style.transition = 'opacity 0.6s ease';
+        banner.style.opacity = '0';
+        setTimeout(() => banner.style.display = 'none', 600);
+      }
+    }, 1000);
+  </script>
+
 </body>
 </html>
