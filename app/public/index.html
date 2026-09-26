@@ -1764,6 +1764,20 @@ input:focus, select:focus, textarea:focus {
       }
     }
 
+
+    /* DYNAMIC LOGO IMAGE SWAPPING */
+    .dynamic-logo {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      object-fit: contain;
+      content: url('/assets/icons/logo-header-dark.webp');
+      filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2));
+    }
+    :root[data-theme="light"] .dynamic-logo {
+      content: url('/assets/icons/logo-header-light.webp');
+    }
+
 </style>
 
   <!-- CharuAutos PWA & Favicon Assets -->
@@ -1786,54 +1800,7 @@ input:focus, select:focus, textarea:focus {
   <header>
     <div class="header-inner">
       <div class="brand-wrap">
-        <svg class="dynamic-logo" viewBox="0 0 100 100" style="width: 44px; height: 44px; filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2)); flex-shrink: 0;" stroke="var(--text-main)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
-          <!-- Paw pad -->
-          <path d="M 33 50 C 40 45, 60 45, 67 50 C 80 55, 85 72, 72 82 C 64 88, 55 83, 50 80 C 45 83, 36 88, 28 82 C 15 72, 20 55, 33 50 Z" />
-          
-          <!-- Inner gear -->
-          <circle cx="50" cy="67" r="10" stroke-dasharray="3 4" stroke-width="3" />
-          <circle cx="50" cy="67" r="5.5" stroke-width="2" />
-          
-          <!-- Pistons -->
-          <g stroke="var(--text-main)" fill="none">
-            <!-- Piston 1 -->
-            <g transform="translate(18, 48) rotate(-48)">
-              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
-              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
-              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
-            </g>
-            <!-- Piston 2 -->
-            <g transform="translate(36, 32) rotate(-16)">
-              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
-              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
-              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
-            </g>
-            <!-- Piston 3 -->
-            <g transform="translate(64, 32) rotate(16)">
-              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
-              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
-              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
-            </g>
-            <!-- Piston 4 -->
-            <g transform="translate(82, 48) rotate(48)">
-              <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
-              <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
-              <line x1="2.5" y1="-2" x2="2.5" y2="8" />
-            </g>
-          </g>
-        </svg>
+        <img class="dynamic-logo" alt="CharuAutos Logo" />
         <div class="brand-logo">
           CHARU<span> motorhub</span>
           <span class="brand-tag">AUTOMOTIVE</span>
