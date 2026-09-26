@@ -1,42 +1,23 @@
-﻿{
-  "name": "CharuAutos — Copiloto Digital Automotriz",
+{
+  "name": "CharuAutos Motorhub",
   "short_name": "CharuAutos",
-  "description": "El Copiloto Digital del Conductor Inteligente en Venezuela: Matchmaker, Diagnóstico OBD2 y Pasaporte Criptográfico Anti-Fraude.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "description": "Tu cockpit personal para gestión y diagnóstico automotriz.",
+  "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#070a0f",
-  "theme_color": "#070a0f",
+  "background_color": "#071520",
+  "theme_color": "#071520",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Mi Carro (Garage)",
-      "short_name": "Garage",
-      "description": "Pasaporte de vida útil y cálculo de $/km",
-      "url": "./index.html#garage",
-      "icons": [{ "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml" }]
     },
     {
-      "name": "Diagnóstico OBD2",
-      "short_name": "Escáner",
-      "description": "Decodificador de fallas y Escudo Anti-Estafas",
-      "url": "./index.html#scanner",
-      "icons": [{ "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml" }]
-    },
-    {
-      "name": "Matchmaker de Autos",
-      "short_name": "Matchmaker",
-      "description": "Recomendaciones para el parque automotor venezolano",
-      "url": "./index.html",
-      "icons": [{ "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml" }]
+      "src": "/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
