@@ -1847,77 +1847,277 @@ input:focus, select:focus, textarea:focus {
   <nav class="sidebar-nav" aria-label="Menú Principal">
     <button class="nav-item active" data-tab="tab-matchmaker" onclick="switchTab('tab-matchmaker', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <g transform="rotate(45 12 12)">
-            <path d="M 8 18 v 3.5 a 4 4 0 0 0 8 0 V 18" fill="none" stroke-width="2"/>
-            <rect x="4" y="1" width="16" height="19" rx="5" fill="var(--bg-card)" stroke-width="2"/>
-            <rect x="6.5" y="3.5" width="11" height="14" rx="3" fill="none" stroke-width="1.5"/>
-            <line x1="6.5" y1="8" x2="17.5" y2="8" stroke-width="1.5"/>
-            <line x1="6.5" y1="13" x2="17.5" y2="13" stroke-width="1.5"/>
-            <rect x="10.5" y="5" width="3" height="2" rx="0.5" fill="currentColor" stroke="none"/>
-            <path d="M12.5 5v-1.5a1 1 0 0 0 -1 0" fill="none" stroke-width="1.5"/>
-            <path d="M8 11.5 h8 v-1 l-1.5 -1.5 h-5 l-1.5 1.5 z" fill="currentColor" stroke="none"/>
-            <rect x="10.5" y="14.5" width="3" height="2" rx="0.5" fill="currentColor" stroke="none"/>
-            <path d="M11 14.5v-1.5a1 1 0 0 1 2 0v1.5" fill="none" stroke-width="1.5"/>
-          </g>
-        </svg>
+        <svg class="cockpit-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g transform="translate(256, 256) rotate(45)">
+    <!-- Carcasa exterior principal -->
+    <rect x="-96" y="-168" rx="54" fill="none" stroke="currentColor" stroke-width="16" stroke-linejoin="round"/>
+
+    <!-- Anilla de sujeción inferior -->
+    <path d="M -34,126 L -34,148 C -34,172 34,172 34,148 L 34,126" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Marco interior de la botonera -->
+    <rect x="-64" y="-124" rx="38" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
+
+    <!-- Líneas divisorias de secciones -->
+    <line x1="-63" y1="-50" x2="63" y2="-50" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+    <line x1="-63" y1="22" x2="63" y2="22" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- Botón Superior: Candado Cerrado -->
+    <g id="candado-cerrado">
+      <path d="M -13,-85 L -13,-98 C -13,-108 13,-108 13,-98 L 13,-85" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <rect x="-20" y="-85" rx="6" fill="currentColor"/>
+      <circle cx="0" cy="-71" r="3.5" fill="var(--bg-card)"/>
+    </g>
+
+    <!-- Botón Central: Silueta de Auto con Maletero Abierto -->
+    <g id="auto-maletero">
+      <path d="M -32,-6 
+               C -33,-7 -32,-10 -27,-11 
+               L -18,-13 
+               L -7,-23 
+               C -5,-25 2,-25 7,-24 
+               L 14,-16 
+               L 24,-24 
+               C 25,-25 27,-24 27,-22 
+               L 24,-15 
+               L 31,-13 
+               C 33,-12 33,-9 32,-6 
+               L 31,-4 
+               C 30,-2 28,-2 26,-4 
+               C 24,-7 20,-7 18,-4 
+               L 16,-3 
+               L -13,-3 
+               L -15,-4 
+               C -17,-7 -21,-7 -23,-4 
+               C -25,-2 -27,-2 -29,-4 
+               Z" fill="currentColor"/>
+    </g>
+
+    <!-- Botón Inferior: Candado Abierto -->
+    <g id="candado-abierto">
+      <path d="M 13,63 L 13,44 C 13,34 -13,34 -13,44 L -13,50" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <rect x="-20" y="61" rx="6" fill="currentColor"/>
+      <circle cx="0" cy="75" r="3.5" fill="var(--bg-card)"/>
+    </g>
+  </g>
+</svg>
       </span>
       <span class="label">Asesor de Compra</span>
     </button>
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Motor 100% vacio (solo contorno) -->
-          <path d="M22 11v-1c0-1.1-.9-2-2-2h-3l-1.5-3h-7L7 8H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1v1.5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V16h1c1.1 0 2-.9 2-2v-1z" fill="none" stroke-width="2"/>
-        </svg>
+        <svg class="cockpit-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M 268,144 
+    H 296 
+    C 303.7,144 310,137.7 310,130 
+    C 310,122.3 303.7,116 296,116 
+    H 192 
+    C 184.3,116 178,122.3 178,130 
+    C 178,137.7 184.3,144 192,144 
+    H 220 
+    V 160 
+    C 220,166.6 214.6,172 208,172 
+    H 178 
+    C 160.8,172 145.2,183.4 139.6,199.6 
+    L 134.5,214.5 
+    C 130.8,225.2 120.7,232.4 109.4,232.4 
+    H 104 
+    V 246 
+    H 85 
+    V 214 
+    C 85,200.7 64,200.7 64,214 
+    V 254 
+    L 54.8,258.6 
+    C 53.1,259.4 52,261.2 52,263.1 
+    V 318 
+    C 52,333 74,333 74,318 
+    V 282 
+    H 104 
+    V 324 
+    C 104,335 113,344 124,344 
+    H 162 
+    C 171.5,344 180.5,348.2 186.6,355.5 
+    L 208.5,381.8 
+    C 215.1,389.7 224.8,394.2 235.1,394.2 
+    H 356 
+    C 368.2,394.2 378,384.4 378,372.2 
+    V 338 
+    H 398 
+    V 354 
+    C 398,364 407.5,371.6 417.3,369.8 
+    C 437.5,366.1 458,345.5 458,312 
+    V 266 
+    C 458,232.5 437.5,211.9 417.3,208.2 
+    C 407.5,206.4 398,214 398,224 
+    V 240 
+    H 378 
+    V 218 
+    C 378,210.3 371.7,204 364,204 
+    H 352 
+    C 344.6,204 337.8,199.9 334.3,193.3 
+    L 325.2,176.2 
+    C 318.5,163.6 305.4,155.6 291.1,155.6 
+    H 276 
+    C 271.6,155.6 268,152 268,147.6 
+    Z" />
+</svg>
       </span>
       <span class="label">Códigos de Fallas</span>
     </button>
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <defs>
-            <clipPath id="left-diagonal">
-              <polygon points="0,0 14.5,0 6.5,24 0,24" />
-            </clipPath>
-            <clipPath id="right-diagonal">
-              <polygon points="17.5,0 24,0 24,24 9.5,24" />
-            </clipPath>
-          </defs>
-          <!-- Left Solid Car -->
-          <g clip-path="url(#left-diagonal)" fill="currentColor" stroke="currentColor" stroke-width="0.5">
-            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
-            <path d="M1 11.5 3 11h18l2 .5"/>
-            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
-            <circle cx="6.5" cy="16.5" r="1.5" fill="var(--bg-card)" stroke="var(--bg-card)"/>
-          </g>
-          <!-- Right Outline Car -->
-          <g clip-path="url(#right-diagonal)" fill="none" stroke-width="2">
-            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/>
-            <path d="M1 11.5 3 11h18l2 .5"/>
-            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/>
-            <circle cx="17.5" cy="16.5" r="1.5"/>
-          </g>
-          <!-- Diagonal Divider Line -->
-          <line x1="16" y1="2" x2="8" y2="22" stroke-width="1.5" stroke-dasharray="3 3"/>
-        </svg>
+        <svg class="cockpit-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Eje Central Divisorio -->
+  <line x1="256" y1="108" x2="256" y2="428" stroke="currentColor" stroke-width="12" stroke-linecap="round" />
+
+  <!-- Mitad Izquierda (Sólida con espacios negativos calados) -->
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M 250,138 
+    H 168 
+    C 160,138 156,142 154,148 
+    L 126,214 
+    C 120,208 95,200 78,206 
+    C 68,212 68,226 78,232 
+    C 92,238 114,236 122,230 
+    C 122,240 100,260 84,290 
+    L 84,340 
+    L 84,392 
+    C 84,400 90,406 98,406 
+    H 132 
+    C 140,406 146,400 146,392 
+    V 372 
+    L 250,372 
+    Z 
+    M 250,154 
+    H 170 
+    C 165,154 161,158 159,163 
+    L 136,218 
+    H 250 
+    Z 
+    M 108,276 
+    C 114,272 136,268 168,290 
+    C 172,293 172,301 166,304 
+    C 144,308 120,304 108,296 
+    C 104,293 104,280 108,276 
+    Z" />
+
+  <!-- Mitad Derecha (Wireframe / Lineal) -->
+  <g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Techo y Pilar A Exterior -->
+    <path d="M 270,138 H 344 C 352,138 356,142 358,148 L 386,218" />
+    
+    <!-- Marco de Parabrisas Interior -->
+    <path d="M 270,154 H 342 C 347,154 351,158 353,163 L 376,218" />
+    
+    <!-- Línea Inferior de Parabrisas (Cowl) -->
+    <line x1="270" y1="218" x2="376" y2="218" />
+
+    <!-- Espejo Retrovisor Derecho -->
+    <path d="M 386,218 C 392,208 417,200 434,206 C 444,212 444,226 434,232 C 420,238 398,236 390,230" />
+
+    <!-- Contorno Lateral y Guardabarro -->
+    <path d="M 390,230 C 400,240 422,260 428,290 L 428,335 C 428,355 424,365 418,372" />
+
+    <!-- Trazo Diagonal del Capó -->
+    <line x1="372" y1="232" x2="340" y2="266" />
+
+    <!-- Parrilla Superior -->
+    <path d="M 270,274 H 314 C 324,274 330,280 328,290 L 324,302 C 322,308 316,312 308,312 H 270" />
+
+    <!-- Faro Derecho -->
+    <path d="M 404,276 C 398,272 376,268 344,290 C 340,293 340,301 346,304 C 368,308 392,304 404,296 C 408,293 408,280 404,276 Z" />
+
+    <!-- Toma de Aire Inferior -->
+    <path d="M 270,332 H 322 C 332,332 334,350 322,350 H 270" />
+
+    <!-- Faro Antiniebla -->
+    <circle cx="382" cy="342" r="14" />
+
+    <!-- Rueda / Neumático Derecho -->
+    <path d="M 424,362 V 392 C 424,400 418,406 410,406 H 380 C 372,406 366,400 366,392 V 372" />
+
+    <!-- Borde Inferior del Parachoques -->
+    <path d="M 270,372 H 350 C 358,372 364,368 366,362" />
+  </g>
+</svg>
       </span>
       <span class="label">Comparador</span>
     </button>
     <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
-        <svg class="cockpit-svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <!-- House Roof Only -->
-          <path d="M2 11L12 3l10 8" fill="none" stroke-width="2.5"/>
-          <!-- Car Inside (Scaled down) -->
-          <g transform="translate(4, 9) scale(0.66)" stroke-width="3">
-            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.64 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8" fill="none"/>
-            <path d="M1 11.5 3 11h18l2 .5" fill="none"/>
-            <path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6" fill="none"/>
-            <circle cx="6.5" cy="16.5" r="1.5" fill="none"/>
-            <circle cx="17.5" cy="16.5" r="1.5" fill="none"/>
-          </g>
-        </svg>
+        <svg class="cockpit-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Estructura del Garaje -->
+  <g fill="none" stroke="currentColor" stroke-width="20">
+    <!-- Techo a dos aguas con aleros y extremos redondeados -->
+    <path d="M 82,232 L 256,92 L 430,232" stroke-linecap="round" stroke-linejoin="round" />
+    
+    <!-- Columnas verticales simétricas con base plana -->
+    <path d="M 120,205 V 396 M 392,205 V 396" stroke-linecap="butt" />
+  </g>
+
+  <!-- Vehículo Interior con Parabrisas y Faros Calados en Espacio Negativo -->
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M 256,377 
+    L 200,377 
+    C 196,377 195,381 195,386 
+    L 195,392 
+    C 195,395 193,396 189,396 
+    L 165,396 
+    C 160,396 158,394 158,389 
+    L 158,350 
+    C 158,333 162,318 166,306 
+    C 168,299 171,294 174,292 
+    C 162,292 148,290 148,284 
+    C 148,278 160,276 173,276 
+    L 177,276 
+    C 186,252 195,244 212,244 
+    C 226,244 242,242 256,242 
+    C 270,242 286,244 300,244 
+    C 317,244 326,252 335,276 
+    L 339,276 
+    C 352,276 364,278 364,284 
+    C 364,290 350,292 338,292 
+    C 341,294 344,299 346,306 
+    C 350,318 354,333 354,350 
+    L 354,389 
+    C 354,394 352,396 347,396 
+    L 323,396 
+    C 319,396 317,395 317,392 
+    L 317,386 
+    C 317,381 316,377 312,377 
+    Z 
+    M 216,253 
+    C 210,253 207,258 206,260 
+    L 189,282 
+    C 187,285 188,287 192,287 
+    C 214,288 238,289 256,289 
+    C 274,289 298,288 320,287 
+    C 324,287 325,285 323,282 
+    L 306,260 
+    C 305,258 302,253 296,253 
+    C 282,251 268,250 256,250 
+    C 244,250 230,251 216,253 
+    Z 
+    M 172,326 
+    C 170,327 170,331 170,333 
+    C 171,336 174,338 177,340 
+    C 186,344 196,345 204,345 
+    C 208,345 209,343 209,341 
+    C 209,339 207,337 205,336 
+    C 195,329 184,325 174,326 
+    C 173,326 172,326 172,326 
+    Z 
+    M 340,326 
+    C 340,326 339,326 338,326 
+    C 328,325 317,329 307,336 
+    C 305,337 303,339 303,341 
+    C 303,343 304,345 308,345 
+    C 316,345 326,344 335,340 
+    C 338,338 341,336 342,333 
+    C 342,331 342,327 340,326 
+    Z" />
+</svg>
       </span>
       <span class="label">Mi Garage</span>
     </button>
