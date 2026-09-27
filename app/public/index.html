@@ -1780,6 +1780,13 @@ input:focus, select:focus, textarea:focus {
       background-image: url('assets/icons/logo-header-light.webp');
     }
 
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
 </style>
 
   <!-- CharuAutos PWA & Favicon Assets -->
@@ -1814,23 +1821,26 @@ input:focus, select:focus, textarea:focus {
       
 
       <div class="header-actions">
-            <button class="btn btn-outline" id="authBtn" onclick="openAuthModal()" style="padding: 8px 14px; margin-right: 8px; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px;">
-        <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span>Entrar</span>
-      </button>
-      <button class="btn btn-outline" id="themeToggleBtn"  style="padding: 10px; width: 40px; margin-right: 8px;">
-        <svg id="themeIcon" class="cockpit-svg" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-        <span id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()" title="Clic para alternar simulación online/offline" style="cursor:pointer;">
-          <span class="status-indicator"></span>
-          <span id="statusText">Sistema // En Línea</span>
-        </span>
         <span id="proBadge" class="pro-pill pro-free" onclick="openCheckoutModal()">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
           <span>CharuPro</span>
         </span>
+        
+        <span id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()" title="Clic para alternar simulación online/offline" style="cursor:pointer;">
+          <span class="status-indicator"></span>
+          <span id="statusText">Sistema // En Línea</span>
+        </span>
+
+        <button class="btn btn-outline" id="themeToggleBtn" style="padding: 10px; width: 40px;">
+          <svg id="themeIcon" class="cockpit-svg" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="btn btn-outline" id="authBtn" onclick="if(typeof openAuthModal === 'function') openAuthModal()" style="padding: 8px 14px; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px;">
+          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Entrar</span>
+        </button>
       </div>
     </div>
   </header>
