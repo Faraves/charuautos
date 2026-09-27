@@ -13,12 +13,12 @@ import {
 // Reemplaza estos valores con los de tu proyecto de Firebase
 // =======================================================
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  apiKey: "AIzaSyAJCR0QD6ifBVg6VcMN7ok9hJAQ5gkaxKQ",
+  authDomain: "charuautos.firebaseapp.com",
+  projectId: "charuautos",
+  storageBucket: "charuautos.firebasestorage.app",
+  messagingSenderId: "293629761836",
+  appId: "1:293629761836:web:a122f3ef8218e567b53489"
 };
 
 // Inicializar Firebase
