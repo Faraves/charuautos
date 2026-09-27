@@ -3217,6 +3217,7 @@ function toggleTheme() {
 window.toggleTheme = toggleTheme;
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderFuelHistory === 'function') renderFuelHistory();
   applyTheme(currentTheme);
   const themeBtn = document.getElementById('themeToggleBtn');
   if (themeBtn) {
