@@ -6,13 +6,13 @@
   <title>Charu motorhub — El Copiloto Digital del Conductor Inteligente (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#070a0f">
+  
+  
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Charu motorhub">
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
-    <link rel="apple-touch-icon" href="icon.svg">
+  
+    
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono para precisión técnica -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1770,21 +1770,23 @@ input:focus, select:focus, textarea:focus {
       width: 44px;
       height: 44px;
       flex-shrink: 0;
-      object-fit: contain;
-      content: url('/assets/icons/logo-header-dark.webp');
+      background-image: url('assets/icons/logo-header-dark.webp');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
       filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2));
     }
     :root[data-theme="light"] .dynamic-logo {
-      content: url('/assets/icons/logo-header-light.webp');
+      background-image: url('assets/icons/logo-header-light.webp');
     }
 
 </style>
 
   <!-- CharuAutos PWA & Favicon Assets -->
-  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192x192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#071520">
 
 </head>
@@ -1800,7 +1802,7 @@ input:focus, select:focus, textarea:focus {
   <header>
     <div class="header-inner">
       <div class="brand-wrap">
-        <img class="dynamic-logo" alt="CharuAutos Logo" />
+        <div class="dynamic-logo" aria-label="CharuAutos Logo"></div>
         <div class="brand-logo">
           CHARU<span> motorhub</span>
           <span class="brand-tag">AUTOMOTIVE</span>

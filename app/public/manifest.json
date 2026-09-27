@@ -1,20 +1,20 @@
 {
   "name": "CharuAutos Motorhub",
   "short_name": "CharuAutos",
-  "description": "Tu cockpit personal para gestión y diagnóstico automotriz.",
-  "start_url": "/",
+  "description": "Tu cockpit personal para gesti\u00f3n y diagn\u00f3stico automotriz.",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#071520",
   "theme_color": "#071520",
   "icons": [
     {
-      "src": "/assets/icons/icon-192x192.png",
+      "src": "assets/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/icons/icon-512x512.png",
+      "src": "assets/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
