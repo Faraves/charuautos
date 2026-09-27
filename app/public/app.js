@@ -1,3 +1,16 @@
+
+/* AUTHENTICATION MODAL LOGIC */
+function openAuthModal() {
+  const modal = document.getElementById('loginModal');
+  if(modal) modal.style.display = 'flex';
+}
+function closeAuthModal() {
+  const modal = document.getElementById('loginModal');
+  if(modal) modal.style.display = 'none';
+}
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+
 /**
  * =============================================================================
  * CHARU motorhub — APLICACIÓN CLIENTE (LOCAL-FIRST)
