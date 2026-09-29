@@ -2771,6 +2771,7 @@ function clearFuelHistory() {
   if(confirm("¿Estás seguro de borrar el historial de tanqueos?")) {
     localStorage.removeItem("charu_fuel_history");
     renderFuelHistory();
+    if(window.syncUserDataToCloud) window.syncUserDataToCloud();
   }
 }
 

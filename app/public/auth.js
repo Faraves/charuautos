@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // =======================================================
 // ⚠️ ATENCIÓN: CONFIGURACIÓN DE FIREBASE
@@ -25,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 // =======================================================
 // FUNCIONES DE AUTENTICACIÓN (Expuestas globalmente)
@@ -71,6 +73,48 @@ window.logoutUser = async () => {
   }
 };
 
+
+// =======================================================
+// SINCRONIZACIÓN EN LA NUBE (FIRESTORE)
+// =======================================================
+
+window.syncUserDataToCloud = async () => {
+  const user = auth.currentUser;
+  if (!user) return; // Solo sincroniza si hay cuenta activa
+
+  const dataToSync = {
+    fuelHistory: JSON.parse(localStorage.getItem("charu_fuel_history") || "[]"),
+    savedComparisons: JSON.parse(localStorage.getItem("charu_saved_comparisons") || "[]"),
+    activeVehicle: JSON.parse(localStorage.getItem("charu_active_vehicle") || "null"),
+    lastSync: new Date().toISOString()
+  };
+
+  try {
+    await setDoc(doc(db, "users", user.uid), dataToSync, { merge: true });
+    console.log("☁️ Respaldado en la nube de CharuAutos.");
+  } catch (e) {
+    console.error("Error sincronizando a la nube:", e);
+  }
+};
+
+window.downloadUserDataFromCloud = async (user) => {
+  try {
+    const docSnap = await getDoc(doc(db, "users", user.uid));
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      if(data.fuelHistory) localStorage.setItem("charu_fuel_history", JSON.stringify(data.fuelHistory));
+      if(data.savedComparisons) localStorage.setItem("charu_saved_comparisons", JSON.stringify(data.savedComparisons));
+      if(data.activeVehicle) localStorage.setItem("charu_active_vehicle", JSON.stringify(data.activeVehicle));
+      
+      // Refrescar la UI
+      if(typeof renderFuelHistory === "function") renderFuelHistory();
+      console.log("⬇️ Historial descargado de la nube.");
+    }
+  } catch (e) {
+    console.error("Error descargando de la nube:", e);
+  }
+};
+
 // =======================================================
 // OBSERVADOR DE ESTADO (Se ejecuta al cargar y al loguearse)
 // =======================================================
@@ -92,6 +136,9 @@ onAuthStateChanged(auth, (user) => {
     authBtn.onclick = logoutUser;
     authBtn.title = "Cerrar sesión";
     authBtn.classList.add('logged-in');
+    
+    // ☁️ Descargar e hidratar UI al iniciar sesión
+    window.downloadUserDataFromCloud(user);
   } else {
     // ESTADO: DESLOGUEADO
     authBtn.innerHTML = `
