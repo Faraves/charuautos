@@ -1509,7 +1509,13 @@ Instrucciones obligatorias:
 
 No incluyas markdown (como \`\`\`json), sólo el objeto JSON puro.`;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`, {
+    // Detección de Entorno: Si estamos en Vercel/Nube usamos el Backend seguro, si estamos en local usamos la llave de prueba
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:";
+    const fetchUrl = isLocal 
+      ? `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`
+      : '/api/gemini';
+
+    const response = await fetch(fetchUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
