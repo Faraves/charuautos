@@ -1484,7 +1484,7 @@ Instrucciones obligatorias:
 1. Extrae las especificaciones técnicas completas y exactas del vehículo indicado en el documento.
 2. Identifica la Marca y el Nombre Comercial Real del vehículo (ej: 'Fiat Cronos 1.3L MT/CVT', 'Toyota Corolla SEG 2.0L A/T', 'Hyundai Elantra 2.0L A/T', 'Chery Arrizo 5 Pro').
 3. Extrae los valores numéricos limpios como números enteros (sin texto de unidades, ej: hp: 99, torque: 128, clearance: 160, trunk: 525, tank: 48, weight: 1121).
-4. Convierte unidades si es necesario: CV a HP, lt a Litros, cc a Litros.
+4. Convierte unidades si es necesario: CV a HP, lt a Litros, cc a Litros.\n4.5. Si un valor numerico no se menciona en absoluto en el documento, devuelve el valor entero 0.
 5. Devuelve EXCLUSIVAMENTE un JSON válido con esta estructura exacta:
 
 {
@@ -1523,7 +1523,31 @@ No incluyas markdown (como \`\`\`json), sólo el objeto JSON puro.`;
           }
         ],
         generationConfig: {
-          responseMimeType: "application/json"
+          temperature: 0.0,
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: "OBJECT",
+            properties: {
+              maker: { type: "STRING" },
+              model: { type: "STRING" },
+              hp: { type: "INTEGER" },
+              torque: { type: "INTEGER" },
+              clearance: { type: "INTEGER" },
+              trunk: { type: "INTEGER" },
+              tank: { type: "INTEGER" },
+              weight: { type: "INTEGER" },
+              engine: { type: "STRING" },
+              displacement: { type: "STRING" },
+              transmission: { type: "STRING" },
+              traction: { type: "STRING" },
+              fuelType: { type: "STRING" },
+              airbags: { type: "STRING" },
+              esp: { type: "STRING" },
+              brakes: { type: "STRING" },
+              infotainment: { type: "STRING" }
+            },
+            required: ["maker", "model", "hp", "torque", "clearance", "trunk", "tank", "weight"]
+          }
         }
       })
     });
