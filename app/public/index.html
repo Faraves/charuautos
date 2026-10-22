@@ -1426,6 +1426,124 @@ input:focus, select:focus, textarea:focus {
       display: none;
     }
 
+    /* MI GARAGE 2.0: MANTENIMIENTO PREVENTIVO, CORRECTIVO & SEGURIDAD */
+    .breakin-card {
+      background: linear-gradient(145deg, rgba(0, 230, 118, 0.08) 0%, var(--bg-card) 65%);
+      border: 1px solid rgba(0, 230, 118, 0.35);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-elevation);
+    }
+    .spec-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .spec-pill-item {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .safety-semaphore-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .sem-pill {
+      padding: 8px 6px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .sem-pill:hover {
+      transform: translateY(-1px);
+    }
+    .sem-green {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--green);
+    }
+    .sem-amber {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: var(--amber);
+    }
+    .sem-red {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+    .regime-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .maint-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: 14px;
+    }
+    .maint-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .maint-item-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .maint-item-card.status-critico {
+      border-color: rgba(239, 68, 68, 0.55);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.07) 0%, var(--bg-card) 45%);
+    }
+    .maint-item-card.status-proximo {
+      border-color: rgba(245, 158, 11, 0.5);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, var(--bg-card) 45%);
+    }
+    .maint-item-card.status-breakin {
+      border-color: rgba(0, 230, 118, 0.5);
+      background: linear-gradient(180deg, rgba(0, 230, 118, 0.07) 0%, var(--bg-card) 45%);
+    }
+    .maint-progress-track {
+      background: var(--bg-card-alt);
+      height: 7px;
+      border-radius: 99px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      margin: 6px 0;
+    }
+    .maint-progress-bar {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.35s ease;
+    }
+
     /* MODAL COCKPIT DIALOGS */
     .modal-backdrop {
       display: none;
@@ -2546,93 +2664,273 @@ input:focus, select:focus, textarea:focus {
       </div>
     </div>
 
-    <!-- TAB 4: GARAGE & BLOCKCHAIN -->
+    <!-- TAB 4: GARAGE, MANTENIMIENTO INTELIGENTE & BLOCKCHAIN -->
     <div id="tab-garage" class="tab-pane">
       <div class="garage-split-layout">
-        <!-- SIDEBAR DE VEHÍCULO & ODÓMETRO -->
+        <!-- SIDEBAR DE VEHÍCULO, ASENTAMIENTO TURBO & ODÓMETRO -->
         <aside class="garage-sidebar">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <h2 style="font-size: 16px; margin: 0; color: var(--text-main);">Mi Vehículo</h2>
-            <button class="btn btn-primary" onclick="openAddVehicleModal()" style="padding: 6px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 5px;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span class="hide-mobile">Agregar mi Vehículo</span><span style="display:none;" class="show-mobile-inline">Agregar</span>
-            </button>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
+            <h2 style="font-size: 16px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
+              <span>Mi Garage 2.0</span>
+              <span class="badge" style="background:var(--accent-dim); color:var(--accent); font-size:9.5px; padding:2px 6px;">OEM + SHA-256</span>
+            </h2>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-secondary btn-sm" onclick="loadHavalJolionPreset()" title="Cargar perfil base GWM Haval Jolion Classic 1.5T 6MT (100 km)" style="padding: 5px 8px; font-size: 11px;">
+                🚗 Haval 1.5T
+              </button>
+              <button class="btn btn-primary" onclick="openAddVehicleModal()" style="padding: 6px 10px; font-size: 11.5px; display: inline-flex; align-items: center; gap: 5px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span class="hide-mobile">Configurar Auto</span><span style="display:none;" class="show-mobile-inline">Auto</span>
+              </button>
+            </div>
           </div>
-          <div class="card" style="margin-bottom: 18px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+
+          <!-- FICHA DE TELEMETRÍA VEHICULAR Y SEGURIDAD VIAL -->
+          <div class="card" style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
               <div id="garageVehicleInfo">
-                <div style="font-size: 18px; font-weight: 900; color: var(--text-main); letter-spacing:-0.4px;" id="garageVehicleName">Toyota Corolla GLi 2011 <span style="font-size: 10px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: var(--text-muted); margin-left: 6px; vertical-align: middle;">(Vehículo de Prueba)</span></div>
-                <div style="font-size: 12px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:2px;" id="garageVehicleDetails">Apodo: "El Gladiador" • Placa: AB123CD</div>
+                <div style="font-size: 18px; font-weight: 900; color: var(--text-main); letter-spacing:-0.4px;" id="garageVehicleName">
+                  GWM Haval Jolion Classic <span style="font-size: 10px; background: var(--accent-dim); border: 1px solid rgba(0,230,118,0.4); padding: 2px 6px; border-radius: 4px; color: var(--accent); margin-left: 4px; vertical-align: middle;">1.5T 6MT • EN RODAJE</span>
+                </div>
+                <div style="font-size: 11.5px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:3px;" id="garageVehicleDetails">
+                  Motor 1.5L Turbo (GW4G15K) • Cadena • 5W-30 • Uso Mixto
+                </div>
               </div>
-              <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:5px 9px; border-radius:6px; font-size:10.5px; font-weight:800; display:inline-flex; align-items:center; gap:5px;">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:4px 8px; border-radius:6px; font-size:10px; font-weight:800; display:inline-flex; align-items:center; gap:4px;">
+                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 ODÓMETRO INMUTABLE
               </span>
             </div>
 
-            <div class="metric-grid">
+            <!-- PILLS DE ESPECIFICACIÓN TÉCNICA OEM -->
+            <div id="garageSpecPills" class="spec-pills-wrap">
+              <span class="spec-pill-item">⛓️ Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
+              <span class="spec-pill-item">🛢️ Lubricante: <strong style="color:var(--accent);">5W-30 API SP (4.2L)</strong></span>
+              <span class="spec-pill-item">🕹️ Caja: <strong style="color:var(--text-main);">Sincrónica 6MT (GL-4)</strong></span>
+              <span class="spec-pill-item">🛑 Frenos/Croche: <strong style="color:var(--amber);">DOT 4</strong></span>
+            </div>
+
+            <div class="metric-grid" style="margin-bottom: 12px;">
               <div class="metric-box">
                 <div class="metric-label">Odómetro</div>
-                <div class="metric-val" id="garageOdoDisplay">148,500 km</div>
+                <div class="metric-val" id="garageOdoDisplay">100 km</div>
+                <div style="font-size:9px; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px;" id="garagePhaseSub">Fase Break-In</div>
               </div>
               <div class="metric-box">
                 <div class="metric-label">Health Score</div>
-                <div class="metric-val" style="color: var(--green);">92/100</div>
+                <div class="metric-val" id="garageHealthDisplay" style="color: var(--green);">100/100</div>
+                <div style="font-size:9px; color:var(--green); font-family:var(--font-mono); margin-top:2px;" id="garageHealthSub">Seguridad 100%</div>
               </div>
               <div class="metric-box">
                 <div class="metric-label">Costo por km</div>
-                <div class="metric-val" id="garageCostDisplay" style="color: var(--amber);">$0.040</div>
+                <div class="metric-val" id="garageCostDisplay" style="color: var(--amber);">$0.042</div>
+                <div style="font-size:9px; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px;" id="garageTcoSub">TCO Real</div>
               </div>
             </div>
 
-            <div class="garage-btn-grid">
-              <button class="btn btn-secondary" onclick="openFuelModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-                Registrar Gasolina
+            <!-- SEMÁFORO DE SEGURIDAD VIAL ACTIVA -->
+            <div id="garageSafetySemaphore" class="safety-semaphore-strip">
+              <div class="sem-pill sem-green" onclick="filterMaintenanceByStatus('ALL')" title="Ver todos los sistemas óptimos">
+                🟢 <span id="semCountGreen">15</span> Nominales
+              </div>
+              <div class="sem-pill sem-amber" onclick="filterMaintenanceByStatus('PROXIMO')" title="Filtrar mantenimientos próximos">
+                🟡 <span id="semCountAmber">1</span> Próximos
+              </div>
+              <div class="sem-pill sem-red" onclick="filterMaintenanceByStatus('CRITICO')" title="Filtrar mantenimientos críticos vencidos">
+                🔴 <span id="semCountRed">0</span> Críticos
+              </div>
+            </div>
+
+            <!-- ACCIONES PRINCIPALES DEL GARAJE -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+              <button class="btn btn-primary" onclick="openMaintenanceModal('preventivo')" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px;">
+                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                <span>Registrar Servicio</span>
               </button>
-              <button class="btn btn-secondary" onclick="openOdometerModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+              <button class="btn btn-secondary" onclick="openOdometerModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px;">
                 <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
-                Actualizar Odómetro
+                <span>Actualizar Km</span>
               </button>
             </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:10px;">
+              <button class="btn btn-secondary" onclick="openFuelModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px;">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                <span>Cargar Gasolina</span>
+              </button>
+              <button class="btn btn-secondary" onclick="openWorkshopChecklistModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px; border-color:rgba(245,158,11,0.35); color:var(--amber);">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Escudo de Taller</span>
+              </button>
+            </div>
+
             <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
               <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
               Ver / Imprimir Pasaporte Criptográfico
-              </button>
-            </div>
+            </button>
+          </div>
 
-            <!-- HISTORIAL DE TANQUEOS -->
-            <div class="card" style="margin-bottom: 18px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px;">
-                <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-                  Historial de Tanqueos
-                </h3>
-                <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
-              </div>
-              <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
-                <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
-              </div>
-            </div>
-          </aside>
+          <!-- PROTOCOLO ACTIVO DE ASENTAMIENTO (BREAK-IN 0 - 1,500 KM) & REGLA DEL TURBO -->
+          <div id="breakInAdvisorCard" class="breakin-card"></div>
 
-        <!-- CADENA CRIPTOGRÁFICA SHA-256 PRINCIPAL -->
+          <!-- HISTORIAL DE TANQUEOS -->
+          <div class="card" style="margin-bottom: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px;">
+              <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                Historial de Tanqueos
+              </h3>
+              <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+            </div>
+            <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
+              <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- PANEL PRINCIPAL DE MANTENIMIENTO PREVENTIVO, CORRECTIVO, COPILOTO IA & BLOCKCHAIN -->
         <main class="garage-main">
-          <div class="card" style="margin-bottom:0;">
-            <div class="card-title">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4M6 15v2a2 2 0 0 0 2 2h2"/></svg>
-                <span>Micro-Blockchain de Kilometraje</span>
+          <!-- BARRA DE CONTROL DE DOBLE RÉGIMEN (NORMAL OEM VS. SEVERO / TROPICALIZADO) -->
+          <div class="regime-bar">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <div>
+                <div style="font-size:13.5px; font-weight:800; color:var(--text-main); display:flex; align-items:center; gap:6px;">
+                  <span>⚙️ Régimen de Cálculo de Mantenimiento (Doble Gatillo: Km o Tiempo)</span>
+                </div>
+                <div id="regimeExplanationText" style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+                  Ajusta los intervalos de fluidos, filtros y tren motriz por calor tropical, colas urbanas, baches y micro-sedimentos en gasolina.
+                </div>
               </div>
-              <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                Auditar Cadena
-              </button>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:6px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
+                  🛡️ Severo / Tropicalizado (Uso Mixto VE)
+                </button>
+                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:6px 10px; font-size:11px;">
+                  📖 Estándar Manual OEM
+                </button>
+              </div>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-              Cada actualización crea un bloque criptográfico SHA-256 encadenado matemáticamente al anterior. Si alguien intenta retroceder el odómetro, la cadena activa una alerta de fraude.
+
+            <!-- SIMULADOR DE PROYECCIÓN DE KILOMETRAJE EN UN CLIC -->
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid var(--border-subtle); font-size:11px;">
+              <span style="color:var(--text-muted); font-family:var(--font-mono);">🔬 Probar Proyección de Desgaste en Vivo:</span>
+              <div style="display:flex; gap:5px; flex-wrap:wrap;">
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 8px; font-size:10.5px;">Actual (100 km)</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 8px; font-size:10.5px; color:var(--amber);">4,500 km (Próximo 1er Serv.)</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(5300)" style="padding:3px 8px; font-size:10.5px; color:#f87171;">5,300 km (1er Serv. Vencido)</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(29500)" style="padding:3px 8px; font-size:10.5px;">29,500 km (Servicio Mayor)</button>
+              </div>
             </div>
-            <div id="blockchainFeed"></div>
+          </div>
+
+          <!-- SUB-NAVEGACIÓN INTERNA MI GARAGE 2.0 -->
+          <nav class="compare-subnav" style="margin-top:0; margin-bottom:14px;">
+            <button id="garageSubTabBtn-preventive" class="compare-subnav-btn active" onclick="switchGarageSubTab('preventive')">
+              <span>🛡️ 1. Plan Preventivo OEM</span>
+            </button>
+            <button id="garageSubTabBtn-corrective" class="compare-subnav-btn" onclick="switchGarageSubTab('corrective')">
+              <span>🔧 2. Correctivos & Fallas</span>
+            </button>
+            <button id="garageSubTabBtn-copilot" class="compare-subnav-btn" onclick="switchGarageSubTab('copilot')">
+              <span>🐾 3. Copiloto Mecánico IA</span>
+            </button>
+            <button id="garageSubTabBtn-blockchain" class="compare-subnav-btn" onclick="switchGarageSubTab('blockchain')">
+              <span>⛓️ 4. Blockchain SHA-256 & TCO</span>
+            </button>
+          </nav>
+
+          <!-- SUBPANE 1: PLAN DE MANTENIMIENTO PREVENTIVO OEM -->
+          <div id="garageSubPane-preventive" class="garage-subpane">
+            <div class="matrix-toolbar" style="margin-bottom:12px;">
+              <div style="display:flex; gap:6px; flex-wrap:wrap;" id="maintCategoryPills">
+                <button class="btn btn-sm toggle-pill-active" onclick="setMaintCategoryFilter('ALL', this)" style="padding:5px 10px; font-size:11px;">Todos (16)</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('SAFETY', this)" style="padding:5px 10px; font-size:11px;">🚨 Seguridad Vial Crítica</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('ENGINE', this)" style="padding:5px 10px; font-size:11px;">🔥 Motor 1.5T & Cadena</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('TRANSMISSION', this)" style="padding:5px 10px; font-size:11px;">🕹️ Caja Sincrónica 6MT</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('CHASSIS', this)" style="padding:5px 10px; font-size:11px;">🛞 Frenos, Tren & Cauchos</button>
+              </div>
+              <div style="min-width:190px; flex:1; max-width:260px;">
+                <input type="text" id="maintSearchInput" class="input-field" placeholder="Buscar: 5W-30, bujías, caja, DOT 4..." oninput="renderPreventiveMaintenanceGrid()" style="padding:6px 10px; font-size:11.5px;">
+              </div>
+            </div>
+            <div id="preventiveMaintenanceGrid" class="maint-grid"></div>
+          </div>
+
+          <!-- SUBPANE 2: MANTENIMIENTOS CORRECTIVOS E IMPREVISTOS -->
+          <div id="garageSubPane-corrective" class="garage-subpane" style="display:none;">
+            <div class="card" style="margin-bottom:14px;">
+              <div class="card-title">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span>🔧 Matriz de Mantenimiento Correctivo y Reparaciones por Síntoma</span>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openMaintenanceModal('correctivo')" style="padding:6px 12px; font-size:11.5px;">
+                  + Registrar Reparación Correctiva
+                </button>
+              </div>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
+                Selecciona cualquier sistema afectado por desgaste prematuro, baches severos o fallas imprevistas para registrar el repuesto sustituido, la garantía del taller y sellar la intervención en tu cadena SHA-256.
+              </p>
+              <div id="correctiveCatalogGrid" class="maint-grid"></div>
+            </div>
+
+            <div class="card" style="margin-bottom:0;">
+              <div class="card-title">
+                <span>📋 Historial de Servicios Preventivos y Correctivos Realizados</span>
+                <span id="serviceLogsCountBadge" class="badge" style="background:var(--accent-dim); color:var(--accent);">0 servicios</span>
+              </div>
+              <div id="completedMaintenanceLogsList"></div>
+            </div>
+          </div>
+
+          <!-- SUBPANE 3: COPILOTO MECÁNICO IA & ESCUDO ANTI-ESTAFAS -->
+          <div id="garageSubPane-copilot" class="garage-subpane" style="display:none;">
+            <div class="card" style="margin-bottom:14px;">
+              <div class="card-title">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span>🐾 Charulo — Copiloto Ingeniero Jefe de Mantenimiento OEM</span>
+                </div>
+                <span class="badge" style="background:var(--accent-dim); color:var(--accent);">System Prompt Maestro Activo</span>
+              </div>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+                Realiza cualquier consulta sobre tu <strong>GWM Haval Jolion Classic 1.5L Turbo Sincrónico (6MT)</strong> o cualquier síntoma mecánico. El Copiloto cruza tu kilometraje actual, régimen de uso y manual OEM para darte una respuesta clínica y protegerte frente al taller.
+              </p>
+
+              <!-- PREGUNTAS RÁPIDAS ESPECIALIZADAS -->
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi Haval Jolion 1.5T Sincrónico?')">🌱 Cuidados 100 km a 5.000 km</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Por qué es obligatorio el aceite 5W-30 API SP y cómo protejo el turbo al apagar el motor?')">🛢️ Aceite 5W-30 API SP & Turbo</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cuándo debo cambiar la valvulina de la caja sincrónica 6MT y cómo cuidar el embrague hidráulico?')">🕹️ Caja Sincrónica 6MT & Embrague</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué debo revisar en el primer servicio de 5,000 km en el concesionario para que no me cobren de más?')">🛡️ Escudo 1er Servicio 5.000 km</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cómo afecta la gasolina de Venezuela al motor 1.5L Turbo y qué mantenimiento preventivo requiere?')">⛽ Gasolina VE & Inyección Turbo</span>
+              </div>
+
+              <div style="display:flex; gap:8px; margin-bottom:14px;">
+                <input type="text" id="copilotQueryInput" class="input-field" placeholder="Pregunta sobre ruidos, fluidos, intervalos OEM, garantía o cotizaciones..." value="¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi Haval Jolion 1.5T Sincrónico?">
+                <button class="btn btn-primary" onclick="runCopilotMaintenanceAdvisor()" style="white-space:nowrap;">Consultar a Charulo</button>
+              </div>
+
+              <div id="copilotResponseContainer"></div>
+            </div>
+          </div>
+
+          <!-- SUBPANE 4: MICRO-BLOCKCHAIN SHA-256 & AUDITORÍA TCO -->
+          <div id="garageSubPane-blockchain" class="garage-subpane" style="display:none;">
+            <div class="card" style="margin-bottom:0;">
+              <div class="card-title">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4M6 15v2a2 2 0 0 0 2 2h2"/></svg>
+                  <span>Micro-Blockchain Criptográfica de Kilometraje y Mantenimiento (SHA-256)</span>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
+                  <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Auditar Cadena
+                </button>
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+                Cada actualización de odómetro o servicio preventivo/correctivo sella un bloque criptográfico SHA-256 encadenado matemáticamente al anterior. Respalda la garantía de fábrica y certifica el historial real de tu vehículo.
+              </div>
+              <div id="blockchainFeed"></div>
+            </div>
           </div>
         </main>
       </div>
@@ -2709,15 +3007,15 @@ input:focus, select:focus, textarea:focus {
         </div>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
-        Kilometraje actual registrado: <strong id="modalCurrentKm" style="color:var(--cyan);">148,500 km</strong>.
+        Kilometraje actual registrado: <strong id="modalCurrentKm" style="color:var(--cyan);">100 km</strong>.
       </p>
       <div class="input-group">
         <label class="input-label">Nuevo Kilometraje del Tablero:</label>
-        <input type="number" id="newOdoInput" class="input-field" placeholder="Ej: 149200">
+        <input type="number" id="newOdoInput" class="input-field" placeholder="Ej: 500">
       </div>
       <div class="input-group">
         <label class="input-label">Motivo / Notas del Registro:</label>
-        <input type="text" id="odoReasonInput" class="input-field" value="Inspección preventiva y cambio de aceite">
+        <input type="text" id="odoReasonInput" class="input-field" value="Control de rodaje y asentamiento inicial">
       </div>
       <button class="btn btn-block" onclick="mineOdometerBlock()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
         <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4"/></svg>
@@ -2726,42 +3024,163 @@ input:focus, select:focus, textarea:focus {
     </div>
   </div>
 
-    <!-- MODAL: AGREGAR VEHÍCULO -->
+  <!-- MODAL: REGISTRAR MANTENIMIENTO PREVENTIVO O CORRECTIVO (SELLADO SHA-256) -->
+  <div id="maintenanceModal" class="modal-backdrop">
+    <div class="modal-box" style="max-width: 540px;">
+      <div class="modal-header">
+        <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
+          <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span>Registrar Mantenimiento y Sellar SHA-256</span>
+        </div>
+        <button class="close-btn" onclick="closeModal('maintenanceModal')">&times;</button>
+      </div>
+
+      <div id="maintModalFraudAlert" class="alert-fraud">
+        <strong>ALERTA ANTI-FRAUDE:</strong> El kilometraje del servicio no puede ser menor al odómetro actual registrado en la cadena SHA-256.
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+        <button id="maintTypeBtnPrev" class="btn btn-sm" onclick="setModalMaintenanceType('preventivo')" style="border:1px solid var(--accent); background:var(--accent-dim);">
+          🛡️ Preventivo (Manual OEM)
+        </button>
+        <button id="maintTypeBtnCorr" class="btn btn-secondary btn-sm" onclick="setModalMaintenanceType('correctivo')">
+          🔧 Correctivo / Imprevisto
+        </button>
+      </div>
+
+      <div class="input-group" style="margin-bottom:10px;">
+        <label class="input-label">Sistema / Operación Realizada:</label>
+        <select id="maintTaskSelect" class="input-field" onchange="onMaintTaskSelectChange()"></select>
+      </div>
+
+      <div id="maintOemWarningBox" style="background:rgba(0, 230, 118, 0.08); border:1px solid rgba(0, 230, 118, 0.3); border-radius:8px; padding:10px 12px; font-size:11.5px; color:var(--text-secondary); margin-bottom:12px; line-height:1.45;"></div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Kilometraje al Servicio:</label>
+          <input type="number" id="maintKmInput" class="input-field" placeholder="Ej: 5000">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Costo Total ($ USD):</label>
+          <input type="number" id="maintCostUsdInput" class="input-field" step="0.5" value="65" oninput="calcMaintBcvCost()">
+        </div>
+      </div>
+
+      <div class="input-group" style="margin-bottom:10px;">
+        <label class="input-label">Insumo / Marca / Especificación Instalada:</label>
+        <input type="text" id="maintPartsInput" class="input-field" placeholder="Ej: Aceite 5W-30 100% Sintético API SP + Filtro OEM">
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Taller / Concesionario:</label>
+          <input type="text" id="maintWorkshopInput" class="input-field" value="Concesionario Oficial GWM / Taller Verificado">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label" id="maintBcvEquivalentLabel">Equivalente BCV:</label>
+          <input type="text" id="maintBcvEquivalentDisplay" class="input-field" readonly style="color:var(--amber); font-family:var(--font-mono);">
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="saveMaintenanceRecord()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px;">
+        <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Guardar Servicio y Minar Bloque SHA-256
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: CHECKLIST ESCUDO DE TALLER Y RECEPCIÓN -->
+  <div id="workshopChecklistModal" class="modal-backdrop">
+    <div class="modal-box" style="max-width: 540px;">
+      <div class="modal-header">
+        <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
+          <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Escudo Anti-Estafas y Checklist de Recepción en Taller</span>
+        </div>
+        <button class="close-btn" onclick="closeModal('workshopChecklistModal')">&times;</button>
+      </div>
+      <div id="workshopChecklistContent" style="font-size:12px; color:var(--text-secondary); line-height:1.55; margin-bottom:14px;"></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <button class="btn btn-secondary" onclick="copyWorkshopChecklist()">📋 Copiar para WhatsApp</button>
+        <button class="btn btn-primary" onclick="closeModal('workshopChecklistModal')">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURAR / AGREGAR VEHÍCULO -->
   <div id="addVehicleModal" class="modal-backdrop">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width: 520px;">
       <div class="modal-header">
         <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-          <span>Agregar Nuevo Vehículo</span>
+          <span>Configurar Ficha Mecánica de Mi Vehículo</span>
         </div>
         <button class="close-btn" onclick="closeModal('addVehicleModal')">&times;</button>
       </div>
-      <div class="input-group">
-        <label class="input-label">Marca:</label>
-        <input type="text" id="newVehicleMaker" class="input-field" placeholder="Ej: Toyota">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Marca:</label>
+          <input type="text" id="newVehicleMaker" class="input-field" value="GWM Haval" placeholder="Ej: GWM Haval">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Modelo y Versión:</label>
+          <input type="text" id="newVehicleModel" class="input-field" value="Jolion Classic" placeholder="Ej: Jolion Classic">
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-label">Modelo:</label>
-        <input type="text" id="newVehicleModel" class="input-field" placeholder="Ej: Corolla GLi">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Año:</label>
+          <input type="number" id="newVehicleYear" class="input-field" value="2026" placeholder="2026">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Odómetro (km):</label>
+          <input type="number" id="newVehicleOdo" class="input-field" value="100" placeholder="100">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Placa / ID:</label>
+          <input type="text" id="newVehiclePlate" class="input-field" value="EN-RODAJE" placeholder="AB123CD">
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-label">Año:</label>
-        <input type="number" id="newVehicleYear" class="input-field" placeholder="Ej: 2011">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Motor / Cilindrada:</label>
+          <input type="text" id="newVehicleEngine" class="input-field" value="1.5L Turbo (4 Cilindros)" placeholder="Ej: 1.5L Turbo">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Distribución:</label>
+          <select id="newVehicleTiming" class="input-field">
+            <option value="Cadena Metálica" selected>Cadena Metálica + Tensor Hidráulico</option>
+            <option value="Correa Dentada">Correa Dentada de Caucho (Kit de Tiempo)</option>
+          </select>
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-label">Apodo:</label>
-        <input type="text" id="newVehicleNickname" class="input-field" placeholder="Ej: El Gladiador">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Viscosidad Aceite OEM:</label>
+          <input type="text" id="newVehicleOil" class="input-field" value="SAE 5W-30 Sintético API SP" placeholder="Ej: 5W-30 API SP">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Transmisión:</label>
+          <select id="newVehicleTransmission" class="input-field">
+            <option value="Sincrónica 6MT" selected>Sincrónica / Manual (6MT / 5MT)</option>
+            <option value="Automática DCT 7 Vel.">Doble Embrague (7DCT)</option>
+            <option value="Automática Convencional">Automática Convencional (AT)</option>
+            <option value="Transmisión CVT">Continua Variable (CVT)</option>
+          </select>
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-label">Placa:</label>
-        <input type="text" id="newVehiclePlate" class="input-field" placeholder="Ej: AB123CD">
+
+      <div class="input-group" style="margin-bottom:14px;">
+        <label class="input-label">Apodo del Vehículo:</label>
+        <input type="text" id="newVehicleNickname" class="input-field" value="Jolion Turbo" placeholder="Ej: Jolion Turbo">
       </div>
-      <div class="input-group">
-        <label class="input-label">Odómetro Inicial (km):</label>
-        <input type="number" id="newVehicleOdo" class="input-field" placeholder="Ej: 148500">
-      </div>
+
       <button class="btn btn-green btn-block" onclick="saveNewVehicle()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
-        Guardar Vehículo
+        Guardar Configuración y Recalcular Plan OEM
       </button>
     </div>
   </div>
@@ -3074,7 +3493,7 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20260923_premium_ux"></script>
+  <script src="app.js?v=20261021_garage_v2"></script>
   <script type="module" src="auth.js"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
