@@ -7767,10 +7767,23 @@ function updateGarageTelemetryHUD() {
   if (elAmber) elAmber.textContent = amberCount;
   if (elRed) elRed.textContent = redCount;
 
-  const healthColor = healthScore >= 85 ? "var(--green)" : (healthScore >= 65 ? "var(--amber)" : "var(--danger)");
+  const dotAmber = document.getElementById("semDotAmber");
+  const dotRed = document.getElementById("semDotRed");
+  if (elAmber && elAmber.parentElement) {
+    elAmber.parentElement.style.opacity = amberCount > 0 ? "1" : "0.6";
+    elAmber.parentElement.style.borderColor = amberCount > 0 ? "rgba(245, 158, 11, 0.35)" : "var(--border-subtle)";
+  }
+  if (dotAmber) dotAmber.style.display = amberCount > 0 ? "inline-block" : "none";
+  if (elRed && elRed.parentElement) {
+    elRed.parentElement.style.opacity = redCount > 0 ? "1" : "0.6";
+    elRed.parentElement.style.borderColor = redCount > 0 ? "rgba(239, 68, 68, 0.35)" : "var(--border-subtle)";
+  }
+  if (dotRed) dotRed.style.display = redCount > 0 ? "inline-block" : "none";
+
+  const healthColor = healthScore >= 85 ? "var(--text-secondary)" : (healthScore >= 65 ? "var(--amber)" : "var(--danger)");
   if (elHealth) {
     elHealth.textContent = `${healthScore}/100`;
-    elHealth.style.color = healthScore >= 85 ? "var(--green)" : (healthScore >= 65 ? "var(--amber)" : "#f87171");
+    elHealth.style.color = healthScore >= 85 ? "var(--text-main)" : (healthScore >= 65 ? "var(--amber)" : "var(--danger)");
   }
   const elHealthGauge = document.getElementById("garageHealthGauge");
   if (elHealthGauge && typeof renderRadialGaugeSvg === "function") {
@@ -9963,6 +9976,11 @@ function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('charu_theme', theme);
 
+  const metaTheme = document.getElementById('metaThemeColor');
+  if (metaTheme) {
+    metaTheme.setAttribute('content', theme === 'light' ? '#F8F9FA' : '#0B0D10');
+  }
+
   const wordmarkImg = document.getElementById('headerWordmarkImg');
   if (wordmarkImg) {
     wordmarkImg.src = theme === 'light' ? 'bajokapot-wordmark-light.png' : 'bajokapot-wordmark-dark.png';
@@ -9990,11 +10008,73 @@ function toggleTheme() {
 // Expose to global scope explicitly
 window.toggleTheme = toggleTheme;
 
+function toggleUserProfilePopover(evOrState) {
+  if (evOrState && typeof evOrState.stopPropagation === 'function') {
+    evOrState.stopPropagation();
+  }
+  const pop = document.getElementById('userProfilePopover');
+  const btn = document.getElementById('authBtn');
+  if (!pop) return;
+  const shouldOpen = typeof evOrState === 'boolean' ? evOrState : pop.hasAttribute('hidden');
+  if (shouldOpen) {
+    pop.removeAttribute('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+  } else {
+    pop.setAttribute('hidden', '');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+}
+window.toggleUserProfilePopover = toggleUserProfilePopover;
+
+document.addEventListener('click', (e) => {
+  const pop = document.getElementById('userProfilePopover');
+  const btn = document.getElementById('authBtn');
+  if (pop && !pop.hasAttribute('hidden') && !pop.contains(e.target) && (!btn || !btn.contains(e.target))) {
+    toggleUserProfilePopover(false);
+  }
+});
+
+function reloadBajoKapotApp() {
+  const btn = document.getElementById('brandReloadBtn');
+  const splash = document.getElementById('bajoKapotSplashOverlay');
+  if (btn) btn.classList.add('reloading');
+  if (splash) {
+    splash.classList.remove('splash-hidden');
+    const logo = splash.querySelector('.bk-splash-logo');
+    const fill = splash.querySelector('.bk-splash-fill');
+    if (logo) {
+      logo.style.animation = 'none';
+      void logo.offsetWidth;
+      logo.style.animation = '';
+    }
+    if (fill) {
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+    }
+  }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((r) => {
+        if (typeof r.update === 'function') r.update();
+      });
+    }).catch(() => {});
+  }
+  setTimeout(() => {
+    window.location.reload();
+  }, 550);
+}
+window.reloadBajoKapotApp = reloadBajoKapotApp;
+
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof renderFuelHistory === 'function') renderFuelHistory();
   applyTheme(currentTheme);
   const themeBtn = document.getElementById('themeToggleBtn');
   if (themeBtn) {
     themeBtn.addEventListener('click', toggleTheme);
+  }
+  const splash = document.getElementById('bajoKapotSplashOverlay');
+  if (splash) {
+    setTimeout(() => splash.classList.add('splash-hidden'), 580);
   }
 });

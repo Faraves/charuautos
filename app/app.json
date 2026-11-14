@@ -1,29 +1,29 @@
 {
   "expo": {
-    "name": "CharuAutos",
-    "slug": "charuautos-app",
+    "name": "BAJOKAPOT — Revisión & Fallas",
+    "slug": "bajokapot-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./public/icon.png",
-    "scheme": "charuautos",
+    "scheme": "bajokapot",
     "userInterfaceStyle": "dark",
     "splash": {
       "image": "./public/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#070a0f"
+      "backgroundColor": "#0B0D10"
     },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.charuautos.app",
       "infoPlist": {
-        "NSCameraUsageDescription": "CharuAutos requiere acceso a la cámara para escanear códigos QR de verificación y fotografiar brochures de fichas técnicas.",
+        "NSCameraUsageDescription": "BAJOKAPOT requiere acceso a la cámara para escanear códigos QR de verificación y fotografiar brochures de fichas técnicas.",
         "UIStatusBarStyle": "UIStatusBarStyleLightContent"
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./public/adaptive-icon.png",
-        "backgroundColor": "#070a0f"
+        "backgroundColor": "#0B0D10"
       },
       "package": "com.charuautos.app",
       "versionCode": 1,
@@ -38,11 +38,11 @@
       "bundler": "metro",
       "output": "static",
       "pwa": {
-        "name": "CharuAutos — Copiloto Digital Automotriz",
-        "shortName": "CharuAutos",
-        "description": "El Copiloto Digital del Conductor Inteligente en Venezuela",
-        "themeColor": "#070a0f",
-        "backgroundColor": "#070a0f",
+        "name": "BAJOKAPOT — Revisión & Fallas",
+        "shortName": "BajoKapot",
+        "description": "Plataforma automotriz integral: Revisión & Fallas, Asesor de Compra, Comparador, Diagnóstico IA y Control de Garage.",
+        "themeColor": "#0B0D10",
+        "backgroundColor": "#0B0D10",
         "display": "standalone",
         "orientation": "portrait",
         "startUrl": "/",

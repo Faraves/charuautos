@@ -4,8 +4,8 @@
   "description": "Plataforma automotriz integral: Revisión & Fallas, Asesor de Compra, Comparador, Diagnóstico Charulo IA y Control Financiero de Garage.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#14171A",
-  "theme_color": "#14171A",
+  "background_color": "#0B0D10",
+  "theme_color": "#0B0D10",
   "orientation": "portrait-primary",
   "icons": [
     {

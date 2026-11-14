@@ -151,37 +151,80 @@ window.downloadUserDataFromCloud = async (user) => {
 // =======================================================
 // OBSERVADOR DE ESTADO (Se ejecuta al cargar y al loguearse)
 // =======================================================
+function escapeAuthHtml(val) {
+  return String(val || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 onAuthStateChanged(auth, (user) => {
   const authBtn = document.getElementById('authBtn');
+  const popover = document.getElementById('userProfilePopover');
   if (!authBtn) return;
 
   if (user) {
-    // ESTADO: LOGUEADO
-    const displayName = user.displayName || user.email.split('@')[0];
-    const photo = user.photoURL || '/assets/icons/favicon.ico';
-    
+    // ESTADO: LOGUEADO (Solo avatar circular en barra; detalles en popover)
+    const rawName = user.displayName || (user.email ? user.email.split('@')[0] : 'Piloto');
+    const safeName = escapeAuthHtml(rawName);
+    const safeEmail = escapeAuthHtml(user.email || 'Cuenta vinculada');
+    const safePhoto = escapeAuthHtml(user.photoURL || 'bajokapot-icon.png');
+
     authBtn.innerHTML = `
-      <img src="${photo}" style="width:16px; height:16px; border-radius:50%; object-fit:cover;">
-      <span style="max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${displayName}</span>
+      <img src="${safePhoto}" alt="${safeName}" onerror="this.onerror=null;this.src='bajokapot-icon.png';" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">
     `;
-    
-    // Cambiar la acción del botón a cerrar sesión
-    authBtn.onclick = logoutUser;
-    authBtn.title = "Cerrar sesión";
+    authBtn.onclick = (e) => { if (typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(e); };
+    authBtn.title = rawName;
     authBtn.classList.add('logged-in');
-    
+
+    if (popover) {
+      popover.innerHTML = `
+        <div class="user-popover-head">
+          <img src="${safePhoto}" alt="${safeName}" onerror="this.onerror=null;this.src='bajokapot-icon.png';" class="user-popover-avatar">
+          <div class="user-popover-meta">
+            <div class="user-popover-name">${safeName}</div>
+            <div class="user-popover-email">${safeEmail}</div>
+          </div>
+        </div>
+        <div class="user-popover-cloud">
+          <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span>Sincronizado en BajoKapot Cloud</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
+          Cerrar sesión
+        </button>
+      `;
+    }
+
     // ☁️ Descargar e hidratar UI al iniciar sesión
     window.downloadUserDataFromCloud(user);
   } else {
-    // ESTADO: DESLOGUEADO
+    // ESTADO: DESLOGUEADO (Solo icono de usuario en barra; acceso dentro del popover)
     authBtn.innerHTML = `
-      <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span>Entrar</span>
+      <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     `;
-    
-    // Cambiar la acción del botón a abrir el modal
-    authBtn.onclick = () => { if(typeof openAuthModal === 'function') openAuthModal(); };
-    authBtn.title = "Iniciar sesión";
+    authBtn.onclick = (e) => { if (typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(e); };
+    authBtn.title = "Cuenta de usuario";
     authBtn.classList.remove('logged-in');
+
+    if (popover) {
+      popover.innerHTML = `
+        <div class="user-popover-head">
+          <span class="user-popover-avatar">
+            <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <div class="user-popover-meta">
+            <div class="user-popover-name">Modo Local</div>
+            <div class="user-popover-email">Sesión local (Sin sincronizar)</div>
+          </div>
+        </div>
+        <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
+        <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
+          Iniciar sesión / Registrarse
+        </button>
+      `;
+    }
   }
 });

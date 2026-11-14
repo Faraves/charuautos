@@ -6,8 +6,11 @@
   <title>BAJOKAPOT — Revisión &amp; Fallas | Copiloto Automotriz (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
-  
-  
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" id="metaThemeColor" content="#0B0D10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="BAJOKAPOT">
@@ -1461,22 +1464,25 @@ input:focus, select:focus, textarea:focus {
       margin-bottom: 16px;
     }
     .spec-pills-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 12px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 380px) {
+      .spec-pills-wrap {
+        grid-template-columns: 1fr;
+      }
     }
     .spec-pill-item {
-      background: var(--bg-card-alt);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 11px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-size: 11.5px;
       font-family: var(--font-main);
-      color: var(--text-secondary);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
+      color: var(--text-muted);
+      display: block;
+      line-height: 1.4;
     }
     .safety-semaphore-strip {
       display: grid;
@@ -2095,7 +2101,7 @@ input:focus, select:focus, textarea:focus {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      filter: drop-shadow(0 2px 8px rgba(0,230,118,0.2));
+      filter: drop-shadow(0 2px 8px var(--accent-glow));
     }
     :root[data-theme="light"] .dynamic-logo {
       background-image: url('assets/icons/logo-header-light.webp');
@@ -2108,6 +2114,7 @@ input:focus, select:focus, textarea:focus {
       gap: 8px;
       min-width: 0;
       flex-shrink: 0;
+      position: relative;
     }
     .maint-item-card .badge {
       white-space: nowrap;
@@ -2118,12 +2125,12 @@ input:focus, select:focus, textarea:focus {
     }
 
 
-    /* ANIMACIÓN SVG DEL MOTOR CHARUAUTOS */
+    /* ANIMACIÓN SVG DEL MOTOR BAJOKAPOT */
     .charu-engine-loader {
       overflow: visible;
       width: 90px;
       height: 90px;
-      filter: drop-shadow(0 0 12px rgba(0, 230, 118, 0.4));
+      filter: drop-shadow(0 0 12px var(--accent-glow));
       margin: 0 auto 20px;
       display: block;
     }
@@ -2767,17 +2774,211 @@ input:focus, select:focus, textarea:focus {
       color: var(--accent);
     }
 
-</style>
+    /* PWA MOBILE HEADER, POPOVER DE USUARIO, SPLASH DE ARRANQUE Y SILENCIO EN NAVEGACIÓN */
+    .quick-fab-wrap {
+      display: none !important;
+    }
+    .nav-label-short { display: none; }
+    .nav-label-full { display: inline; }
 
-  <!-- BAJOKAPOT PWA & Favicon Assets -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#14171A">
+    #brandReloadBtn {
+      background: transparent;
+      border: none;
+      padding: 4px;
+      margin: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      transition: opacity 0.15s ease, transform 0.2s ease;
+    }
+    #brandReloadBtn:active .header-brand-icon,
+    #brandReloadBtn.reloading .header-brand-icon {
+      transform: scale(0.92) rotate(-8deg);
+    }
+
+    #authBtn {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-editorial);
+      color: var(--text-main);
+    }
+    #authBtn:hover {
+      border-color: var(--text-muted);
+      background: var(--bg-card-hover);
+    }
+    #authBtn.logged-in {
+      border-color: var(--border-medium);
+      padding: 2px !important;
+    }
+
+    #userProfilePopover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: min(260px, calc(100vw - 24px));
+      background: var(--bg-card);
+      border: 1px solid var(--border-editorial);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #userProfilePopover[hidden] {
+      display: none !important;
+    }
+    .user-popover-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .user-popover-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-card-alt);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+    .user-popover-meta {
+      min-width: 0;
+      flex: 1;
+    }
+    .user-popover-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-popover-email {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-popover-cloud {
+      font-size: 11px;
+      color: var(--text-secondary);
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #bajoKapotSplashOverlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-void);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+      pointer-events: all;
+    }
+    #bajoKapotSplashOverlay.splash-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .bk-splash-logo {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+      animation: bkSplashPulse 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .bk-splash-track {
+      width: 52px;
+      height: 2px;
+      border-radius: 99px;
+      background: var(--border-glass);
+      overflow: hidden;
+    }
+    .bk-splash-fill {
+      width: 100%;
+      height: 100%;
+      background: var(--text-secondary);
+      transform-origin: left;
+      animation: bkSplashBar 0.56s ease-out forwards;
+    }
+    @keyframes bkSplashPulse {
+      0% { opacity: 0; transform: scale(0.88) translateY(4px); }
+      50% { opacity: 1; transform: scale(1.02) translateY(0); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes bkSplashBar {
+      0% { transform: scaleX(0.15); opacity: 0.4; }
+      100% { transform: scaleX(1); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .header-brand-wordmark {
+        display: none !important;
+      }
+      .header-brand-icon {
+        width: 34px;
+        height: 34px;
+      }
+      .nav-label-full {
+        display: none !important;
+      }
+      .nav-label-short {
+        display: inline !important;
+      }
+      .sidebar-nav .nav-item.active {
+        background: var(--bg-card-alt) !important;
+        border: 1px solid var(--border-editorial) !important;
+        box-shadow: none !important;
+        color: var(--text-main) !important;
+      }
+      .sidebar-nav .nav-item.active .icon {
+        color: var(--accent) !important;
+        filter: none !important;
+      }
+      .sidebar-nav .label {
+        font-size: 10px !important;
+        text-overflow: clip !important;
+      }
+    }
+
+</style>
 
 </head>
 <body>
+
+  <!-- SPLASH DE ARRANQUE Y RECARGA BAJOKAPOT (0.6s) -->
+  <div id="bajoKapotSplashOverlay" aria-hidden="true">
+    <img src="bajokapot-icon.png" alt="BAJOKAPOT" class="bk-splash-logo">
+    <div class="bk-splash-track"><div class="bk-splash-fill"></div></div>
+  </div>
 
 <div id="versionBanner" style="background: linear-gradient(90deg, var(--accent), var(--amber)); color: #14171A; display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 12px; font-family: var(--font-main); font-weight: 800; z-index: 9999; position: relative;">
     <span style="flex-grow: 1; text-align: center;">BAJOKAPOT v4.0 — Revisión &amp; Fallas · Catálogo Multiversiones VE &amp; Gráficas TCO</span>
@@ -2788,10 +2989,10 @@ input:focus, select:focus, textarea:focus {
   <!-- HEADER // AUTOMOTIVE BRAND HUD -->
   <header>
     <div class="header-inner">
-      <div class="brand-wrap">
+      <button type="button" id="brandReloadBtn" class="brand-wrap" onclick="reloadBajoKapotApp()" title="Recargar BAJOKAPOT" aria-label="Recargar aplicación">
         <img id="headerLogoIcon" src="bajokapot-icon.png" alt="BAJOKAPOT" class="header-brand-icon">
         <img id="headerWordmarkImg" src="bajokapot-wordmark-dark.png" alt="BAJOKAPOT — Revisión & Fallas" class="header-brand-wordmark">
-      </div>
+      </button>
 
       <!-- SELECTOR PRINCIPAL DE MÓDULOS / COCKPIT TABS (DESKTOP) -->
       
@@ -2807,16 +3008,31 @@ input:focus, select:focus, textarea:focus {
           <span id="statusText">En línea</span>
         </span>
 
-        <button class="btn btn-outline" id="themeToggleBtn" style="padding: 10px; width: 40px;">
+        <button class="btn btn-outline" id="themeToggleBtn" style="padding: 10px; width: 40px;" aria-label="Cambiar tema">
           <svg id="themeIcon" class="cockpit-svg" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
 
-        <button class="btn btn-outline" id="authBtn" onclick="if(typeof openAuthModal === 'function') openAuthModal()" style="padding: 8px 14px; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px;">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Entrar</span>
+        <button type="button" class="btn btn-outline" id="authBtn" onclick="toggleUserProfilePopover(event)" title="Cuenta de usuario" aria-label="Cuenta de usuario" aria-expanded="false">
+          <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </button>
+
+        <div id="userProfilePopover" hidden>
+          <div class="user-popover-head">
+            <span class="user-popover-avatar">
+              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <div class="user-popover-meta">
+              <div class="user-popover-name">Modo Local</div>
+              <div class="user-popover-email">Sin cuenta vinculada</div>
+            </div>
+          </div>
+          <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
+          <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
+            Iniciar sesión / Registrarse
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -2881,7 +3097,7 @@ input:focus, select:focus, textarea:focus {
   </g>
 </svg>
       </span>
-      <span class="label">Asesor de Compra</span>
+      <span class="label"><span class="nav-label-full">Asesor de Compra</span><span class="nav-label-short">Asesor</span></span>
     </button>
     <button class="nav-item" data-tab="tab-scanner" onclick="switchTab('tab-scanner', this)">
       <span class="icon">
@@ -2942,7 +3158,7 @@ input:focus, select:focus, textarea:focus {
     Z" />
 </svg>
       </span>
-      <span class="label">Códigos de Fallas</span>
+      <span class="label"><span class="nav-label-full">Códigos de Fallas</span><span class="nav-label-short">Fallas</span></span>
     </button>
     <button class="nav-item" data-tab="tab-compare" onclick="switchTab('tab-compare', this)">
       <span class="icon">
@@ -3021,7 +3237,7 @@ input:focus, select:focus, textarea:focus {
   </g>
 </svg>
       </span>
-      <span class="label">Comparador</span>
+      <span class="label"><span class="nav-label-full">Comparador</span><span class="nav-label-short">Comparar</span></span>
     </button>
     <button class="nav-item" data-tab="tab-garage" onclick="switchTab('tab-garage', this)">
       <span class="icon">
@@ -3561,7 +3777,7 @@ input:focus, select:focus, textarea:focus {
               <button class="btn btn-secondary btn-sm" onclick="loadHavalJolionPreset()" title="Cargar perfil base GWM Haval Jolion Classic 1.5T 6MT (100 km)" style="padding: 5px 8px; font-size: 11px;">
                 Haval 1.5T
               </button>
-              <button class="btn btn-primary" onclick="openAddVehicleModal()" style="padding: 6px 10px; font-size: 11.5px; display: inline-flex; align-items: center; gap: 5px;">
+              <button class="btn btn-secondary btn-sm" onclick="openAddVehicleModal()" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <span class="hide-mobile">Configurar Auto</span><span style="display:none;" class="show-mobile-inline">Auto</span>
               </button>
@@ -3575,7 +3791,6 @@ input:focus, select:focus, textarea:focus {
                 <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;">
                   <span class="vin-plate-badge" id="garagePlateBadge">VE · Garage</span>
                   <span style="font-size:11px; color:var(--text-muted); display:inline-flex; align-items:center; gap:5px;">
-                    <span class="status-dot dot-green"></span>
                     Odómetro al día
                   </span>
                 </div>
@@ -3589,7 +3804,7 @@ input:focus, select:focus, textarea:focus {
               <div id="garageHealthGauge" class="radial-gauge-wrap"></div>
             </div>
 
-            <!-- PILLS DE ESPECIFICACIÓN TÉCNICA OEM -->
+            <!-- ESPECIFICACIONES TÉCNICAS OEM (FICHA LIMPIA SIN CAJAS) -->
             <div id="garageSpecPills" class="spec-pills-wrap">
               <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
               <span class="spec-pill-item">Lubricante: <strong style="color:var(--text-main);">5W-30 API SP (4.2L)</strong></span>
@@ -3606,7 +3821,7 @@ input:focus, select:focus, textarea:focus {
               <div class="metric-box">
                 <div class="metric-label">Salud General</div>
                 <div class="metric-val" id="garageHealthDisplay" style="color: var(--text-main);">100/100</div>
-                <div style="font-size:10.5px; color:var(--green); margin-top:2px;" id="garageHealthSub">Óptimo</div>
+                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageHealthSub">Sin alertas</div>
               </div>
               <div class="metric-box">
                 <div class="metric-label">Costo / km</div>
@@ -3618,19 +3833,19 @@ input:focus, select:focus, textarea:focus {
             <!-- SEMÁFORO DE SEGURIDAD VIAL ACTIVA -->
             <div id="garageSafetySemaphore" class="safety-semaphore-strip">
               <div class="sem-pill sem-green" onclick="filterMaintenanceByStatus('ALL')" title="Ver todos los sistemas óptimos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                <span class="status-dot dot-green"></span> <span id="semCountGreen">15</span> Al día
+                <span id="semCountGreen">15</span> Al día
               </div>
               <div class="sem-pill sem-amber" onclick="filterMaintenanceByStatus('PROXIMO')" title="Filtrar mantenimientos próximos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                <span class="status-dot dot-amber"></span> <span id="semCountAmber">1</span> Próximos
+                <span class="status-dot dot-amber" id="semDotAmber"></span> <span id="semCountAmber">1</span> Próximos
               </div>
               <div class="sem-pill sem-red" onclick="filterMaintenanceByStatus('CRITICO')" title="Filtrar mantenimientos críticos vencidos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                <span class="status-dot dot-red"></span> <span id="semCountRed">0</span> Críticos
+                <span class="status-dot dot-red" id="semDotRed"></span> <span id="semCountRed">0</span> Críticos
               </div>
             </div>
 
             <!-- ACCIONES PRINCIPALES DEL GARAJE -->
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
-              <button class="btn btn-primary" onclick="openMaintenanceModal('preventivo')" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px;">
+              <button class="btn btn-secondary" onclick="openMaintenanceModal('preventivo')" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px; border-color:var(--border-editorial); color:var(--text-main);">
                 <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                 <span>Registrar Servicio</span>
               </button>
@@ -3645,13 +3860,13 @@ input:focus, select:focus, textarea:focus {
                 <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
                 <span>Cargar Gasolina</span>
               </button>
-              <button class="btn btn-secondary" onclick="openWorkshopChecklistModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px; border-color:rgba(245,158,11,0.35); color:var(--amber);">
+              <button class="btn btn-secondary" onclick="openWorkshopChecklistModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px;">
                 <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 <span>Escudo de Taller</span>
               </button>
             </div>
 
-            <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+            <button class="btn btn-secondary btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; border-color:var(--border-editorial); color:var(--text-main);">
               <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
               Ver / Imprimir Certificado de Mantenimiento
             </button>
@@ -4509,17 +4724,20 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Limpieza automática de Service Workers y cachés obsoletas en desarrollo local
+    // Registro y actualización del Service Worker PWA (BAJOKAPOT v5)
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for (let registration of registrations) {
-          registration.unregister();
-        }
-      });
+      const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+      if (!isLocalDev) {
+        navigator.serviceWorker.register('sw.js?v=5', { updateViaCache: 'none' }).then(function(reg) {
+          if (typeof reg.update === 'function') reg.update();
+        }).catch(function(err) {
+          console.warn('SW register notice:', err);
+        });
+      }
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261113_bajokapot_v5"></script>
+  <script src="app.js?v=20261114_bajokapot_v6"></script>
   <script type="module" src="auth.js"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
@@ -4533,27 +4751,6 @@ input:focus, select:focus, textarea:focus {
       }
     }, 1000);
   </script>
-
-  <!-- BOTÓN FLOTANTE DE ACCIÓN RÁPIDA (QUICK-ACTION FAB) -->
-  <div id="quickFabWrap" class="quick-fab-wrap">
-    <div id="quickFabMenu" class="quick-fab-menu">
-      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openFuelModal();">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-        <span>Cargar Gasolina</span>
-      </button>
-      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openMaintenanceModal('preventivo');">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        <span>Registrar Servicio</span>
-      </button>
-      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openOdometerModal();">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
-        <span>Actualizar Odómetro</span>
-      </button>
-    </div>
-    <button type="button" class="quick-fab-trigger" onclick="toggleQuickFab()" aria-label="Accesos rápidos de vehículo" title="Acciones rápidas">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </button>
-  </div>
 
 </body>
 </html>
