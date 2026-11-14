@@ -3,24 +3,28 @@
  * Cache-first para recursos estáticos y fallback offline para navegación.
  */
 
-const CACHE_NAME = 'bajokapot-pwa-v6';
+const CACHE_NAME = 'bajokapot-pwa-v7';
 const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/certificado_charupro_muestra.html',
-  '/bajokapot-logo-dark.png',
-  '/bajokapot-logo-light.png',
-  '/bajokapot-wordmark-dark.png',
-  '/bajokapot-wordmark-light.png',
-  '/bajokapot-icon.png',
-  '/icon.png',
-  '/favicon.png'
+  './',
+  './index.html',
+  './manifest.json?v=7',
+  './certificado_charupro_muestra.html',
+  './bajokapot-logo-dark.png',
+  './bajokapot-logo-light.png',
+  './bajokapot-wordmark-dark.png',
+  './bajokapot-wordmark-light.png',
+  './bajokapot-icon.png',
+  './assets/icons/bajokapot-icon-192.png?v=7',
+  './assets/icons/bajokapot-icon-512.png?v=7',
+  './assets/icons/bajokapot-apple-touch-icon.png?v=7',
+  './icon.png',
+  './favicon.png?v=7'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+      return Promise.allSettled(STATIC_ASSETS.map((url) => cache.add(url)));
     })
   );
   self.skipWaiting();
@@ -42,6 +46,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
   // Estrategia Network-first con fallback a cache local
   event.respondWith(
     fetch(event.request)
@@ -59,9 +64,9 @@ self.addEventListener('fetch', (event) => {
           if (cachedResponse) {
             return cachedResponse;
           }
-          // Fallback a raíz si es navegación
+          // Fallback relativo para GitHub Pages y Vercel
           if (event.request.mode === 'navigate') {
-            return caches.match('/');
+            return caches.match('./index.html').then((idx) => idx || caches.match('./'));
           }
         });
       })

@@ -10053,6 +10053,11 @@ function reloadBajoKapotApp() {
       fill.style.animation = '';
     }
   }
+  if ('caches' in window) {
+    caches.keys().then((keys) => {
+      keys.forEach((k) => caches.delete(k));
+    }).catch(() => {});
+  }
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then((regs) => {
       regs.forEach((r) => {

@@ -6,14 +6,16 @@
   <title>BAJOKAPOT — Revisión &amp; Fallas | Copiloto Automotriz (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=7">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico?v=7">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/bajokapot-apple-touch-icon.png?v=7">
+  <link rel="manifest" href="manifest.json?v=7">
+  <meta name="application-name" content="BajoKapot">
   <meta name="theme-color" id="metaThemeColor" content="#0B0D10">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="BAJOKAPOT">
+  <meta name="apple-mobile-web-app-title" content="BajoKapot">
   
     
   <!-- Google Fonts: Plus Jakarta Sans (UI & Tabular Nums) + JetBrains Mono (Solo códigos) -->
@@ -4737,11 +4739,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro y actualización del Service Worker PWA (BAJOKAPOT v6)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v7)
+    if ('caches' in window) {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(k) {
+          if (k !== 'bajokapot-pwa-v7') caches.delete(k);
+        });
+      }).catch(function() {});
+    }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('sw.js?v=6', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=7', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4750,7 +4759,7 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261114_bajokapot_v6"></script>
+  <script src="app.js?v=20261114_bajokapot_v7"></script>
   <script type="module" src="auth.js"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
