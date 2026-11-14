@@ -3,7 +3,7 @@
  * Cache-first para recursos estáticos y fallback offline para navegación.
  */
 
-const CACHE_NAME = 'bajokapot-pwa-v5';
+const CACHE_NAME = 'bajokapot-pwa-v6';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
