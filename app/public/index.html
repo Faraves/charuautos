@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Charu motorhub — El Copiloto Digital del Conductor Inteligente (Venezuela)</title>
+  <title>BAJOKAPOT — Revisión &amp; Fallas | Copiloto Automotriz (Venezuela)</title>
   
   <!-- METADATOS PWA & MÓVIL -->
   
   
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Charu motorhub">
+  <meta name="apple-mobile-web-app-title" content="BAJOKAPOT">
   
     
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono para precisión técnica -->
+  <!-- Google Fonts: Plus Jakarta Sans (UI & Tabular Nums) + JetBrains Mono (Solo códigos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- PDF.js para parsing heurístico de fichas técnicas en el navegador -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <!-- Chart.js para visualización de métricas vehiculares (Barras & Radar) -->
@@ -25,49 +25,51 @@
   <style>
     :root {
       /* =========================================================================
-         URBAN VITALITY - CHARU MOTORHUB (DARK THEME DEFAULT)
+         BAJOKAPOT - REVISIÓN & FALLAS (DARK THEME DEFAULT)
       ========================================================================= */
-      --bg-dark: #071520;
-      --bg-carbon: #0D2030;
-      --bg-card: #13334C;
-      --bg-card-alt: #183C59;
-      --bg-card-elevated: #1F4A6E;
-      --bg-glass: rgba(19, 25, 38, 0.90);
+      --bg-dark: #14171A;
+      --bg-carbon: #1A1E22;
+      --bg-card: #1F2429;
+      --bg-card-alt: #181C20;
+      --bg-card-elevated: #262C33;
+      --bg-glass: rgba(20, 23, 26, 0.92);
 
       --bg-grid-color: rgba(255, 255, 255, 0.02);
-      --bg-glow-blue: rgba(59, 130, 246, 0.06);
-      --bg-glow-cyan: rgba(56, 189, 248, 0.03);
+      --bg-glow-blue: rgba(255, 107, 0, 0.08);
+      --bg-glow-cyan: rgba(255, 184, 0, 0.05);
 
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-secondary: #cbd5e1;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-secondary: #CBD5E1;
 
-      --accent: #00E676;
-      --accent-hover: #00C853;
-      --accent-glow: rgba(0, 230, 118, 0.22);
-      --accent-dim: rgba(0, 230, 118, 0.12);
+      --accent: #FF6B00;
+      --accent-hover: #FF8533;
+      --accent-glow: rgba(255, 107, 0, 0.28);
+      --accent-dim: rgba(255, 107, 0, 0.14);
 
-      --cyan: #00E676;
-      --cyan-glow: rgba(0, 230, 118, 0.25);
-      --cyan-dim: rgba(0, 230, 118, 0.10);
+      --cyan: #FFB800;
+      --cyan-glow: rgba(255, 184, 0, 0.25);
+      --cyan-dim: rgba(255, 184, 0, 0.12);
 
-      --amber: #f59e0b;
-      --green: #10b981;
-      --red: #ef4444;
-      --primary: #3b82f6;
+      --amber: #FFB800;
+      --green: #10B981;
+      --green-dim: rgba(16, 185, 129, 0.14);
+      --red: #EF4444;
+      --danger: #EF4444;
+      --primary: #FF6B00;
 
-      --border-color: rgba(255, 255, 255, 0.08);
+      --border-color: rgba(255, 255, 255, 0.09);
       --border-subtle: rgba(255, 255, 255, 0.05);
-      --border-medium: rgba(255, 255, 255, 0.14);
+      --border-medium: rgba(255, 255, 255, 0.16);
 
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
-      --shadow-neon: 0 4px 20px rgba(0, 230, 118, 0.3);
-      --shadow-elevation: 0 8px 32px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.28);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.38);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.48);
+      --shadow-neon: 0 4px 20px rgba(255, 107, 0, 0.30);
+      --shadow-elevation: 0 8px 32px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
 
-      --font-main: 'Poppins', system-ui, -apple-system, sans-serif;
-      --font-header: 'Oswald', system-ui, -apple-system, sans-serif;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-header: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
 
       --radius-sm: 8px;
@@ -80,29 +82,45 @@
     }
 
     :root[data-theme="light"] {
-      --bg-dark: #F8FAFC;
+      --bg-dark: #F1F5F9;
       --bg-carbon: #FFFFFF;
       --bg-card: #FFFFFF;
-      --bg-card-alt: #F1F5F9;
+      --bg-card-alt: #F8FAFC;
       --bg-card-elevated: #FFFFFF;
-      --bg-glass: rgba(255, 255, 255, 0.85);
+      --bg-glass: rgba(255, 255, 255, 0.94);
 
-      --bg-grid-color: rgba(19, 51, 76, 0.05);
-      --bg-glow-blue: rgba(59, 130, 246, 0.03);
-      --bg-glow-cyan: rgba(0, 230, 118, 0.03);
+      --bg-grid-color: rgba(15, 23, 42, 0.04);
+      --bg-glow-blue: rgba(234, 88, 12, 0.06);
+      --bg-glow-cyan: rgba(217, 119, 6, 0.04);
 
-      --text-main: #13334C;
-      --text-muted: #64748B;
-      --text-secondary: #475569;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-secondary: #334155;
 
-      --border-color: rgba(19, 51, 76, 0.08);
-      --border-subtle: rgba(19, 51, 76, 0.04);
-      --border-medium: rgba(19, 51, 76, 0.15);
+      --accent: #EA580C;
+      --accent-hover: #C2410C;
+      --accent-glow: rgba(234, 88, 12, 0.20);
+      --accent-dim: rgba(234, 88, 12, 0.10);
 
-      --shadow-sm: 0 2px 8px rgba(19, 51, 76, 0.04);
-      --shadow-md: 0 8px 24px rgba(19, 51, 76, 0.08);
-      --shadow-lg: 0 16px 40px rgba(19, 51, 76, 0.12);
-      --shadow-elevation: 0 8px 30px rgba(19, 51, 76, 0.1);
+      --cyan: #D97706;
+      --cyan-glow: rgba(217, 119, 6, 0.20);
+      --cyan-dim: rgba(217, 119, 6, 0.11);
+
+      --amber: #D97706;
+      --green: #059669;
+      --green-dim: rgba(5, 150, 105, 0.10);
+      --red: #DC2626;
+      --danger: #DC2626;
+
+      --border-color: rgba(15, 23, 42, 0.11);
+      --border-subtle: rgba(15, 23, 42, 0.06);
+      --border-medium: rgba(15, 23, 42, 0.19);
+
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+      --shadow-neon: 0 4px 16px rgba(234, 88, 12, 0.22);
+      --shadow-elevation: 0 8px 30px rgba(15, 23, 42, 0.10);
     }
 
     * {
@@ -125,14 +143,9 @@ html, body {
 
     body {
       background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(ellipse at 50% 0%, var(--bg-glow-blue) 0%, transparent 60%),
-        radial-gradient(ellipse at 100% 100%, var(--bg-glow-cyan) 0%, transparent 40%),
-        linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
       color: var(--text-main);
       font-family: var(--font-main);
+      font-variant-numeric: tabular-nums;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
@@ -150,7 +163,7 @@ html, body {
     /* CUSTOM SCROLLBAR (SOBER AUTOMOTIVE) */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: #1f2739; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
     /* HEADER AUTOMOTIVE BRAND // COCKPIT HUD */
@@ -171,14 +184,14 @@ html, body {
       position: absolute;
       bottom: -1px;
       left: 0;
-      width: 180px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent) 0%, rgba(59, 130, 246, 0.3) 80%, transparent 100%);
-      box-shadow: 0 0 10px var(--accent-glow);
+      width: 140px;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+      opacity: 0.7;
     }
     .header-inner {
       width: 100%;
-      max-width: min(1820px, 97vw);
+      max-width: min(1820px, 100%);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -191,9 +204,34 @@ html, body {
       flex-wrap: nowrap;
       overflow: hidden;
     }
+    .header-brand-icon {
+      width: clamp(32px, 5vw, 40px);
+      height: clamp(32px, 5vw, 40px);
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 6px var(--accent-glow));
+    }
+    .header-brand-wordmark {
+      height: clamp(24px, 4vw, 32px);
+      width: auto;
+      max-width: 195px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 1;
+    }
+    @media (max-width: 480px) {
+      .header-brand-wordmark {
+        height: 22px;
+        max-width: 138px;
+      }
+      .header-brand-icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
     .brand-logo {
   font-family: var(--font-display);
-  font-size: clamp(24px, 6vw, 28px);
+  font-size: clamp(20px, 5vw, 25px);
   font-weight: 900;
   letter-spacing: -0.5px;
   color: var(--text-main);
@@ -205,18 +243,17 @@ html, body {
 }
 .brand-logo span {
   font-family: var(--font-main);
-  color: var(--green);
+  color: var(--accent);
   font-weight: 800;
-  text-transform: lowercase;
+  text-transform: uppercase;
   letter-spacing: -0.3px;
-  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.2));
 }
     .brand-tag {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
       letter-spacing: 1px;
-      color: var(--green);
+      color: var(--accent);
       text-transform: uppercase;
       font-style: normal;
       background: var(--accent-dim);
@@ -224,22 +261,6 @@ html, body {
       border-radius: 4px;
       border: 1px solid var(--border-subtle);
       margin-left: 2px;
-    }
-    @media (max-width: 360px) {
-      .brand-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--green);
-      text-transform: uppercase;
-      font-style: normal;
-      background: var(--accent-dim);
-      padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid var(--border-subtle);
-      margin-left: 2px;
-    }
     }
     .status-badge {
       font-family: var(--font-mono);
@@ -349,7 +370,7 @@ html, body {
 
     /* CONTAINER PRINCIPAL RESPONSIVO FLUIDO */
     .app-container {
-      max-width: min(1820px, 97vw);
+      max-width: min(1820px, 100%);
       width: 100%;
       margin: 0 auto;
       padding: clamp(12px, 2vw, 26px);
@@ -465,13 +486,15 @@ html, body {
       }
       .desktop-nav-btn.active {
         color: var(--text-main);
-        background: var(--accent-dim);
-        border: 1px solid var(--accent);
-        box-shadow: var(--shadow-neon);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      :root[data-theme="light"] .desktop-nav-btn.active {
+        background: rgba(15, 23, 42, 0.06);
+        border: 1px solid rgba(15, 23, 42, 0.14);
       }
       .desktop-nav-btn.active .cockpit-svg {
-        color: var(--text-main);
-        filter: drop-shadow(0 0 6px var(--accent-glow));
+        color: var(--accent);
       }
     }
     @media (min-width: 1100px) {
@@ -548,26 +571,27 @@ html, body {
     }
     .nav-item.active {
       color: var(--text-main);
-      background: var(--accent-dim);
-      border: 1px solid var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 8px;
-      box-shadow: var(--shadow-neon);
+    }
+    :root[data-theme="light"] .nav-item.active {
+      background: rgba(15, 23, 42, 0.06);
+      border-color: rgba(15, 23, 42, 0.14);
     }
     .nav-item.active .icon {
-      color: var(--text-main);
+      color: var(--accent);
       transform: translateY(-1px);
-      filter: drop-shadow(0 0 8px var(--accent-glow));
     }
     .nav-item.active::after {
       content: '';
       position: absolute;
-      top: -3px;
-      left: 20%;
-      right: 20%;
-      height: 2.5px;
-      background: var(--cyan);
+      top: -2px;
+      left: 28%;
+      right: 28%;
+      height: 2px;
+      background: var(--accent);
       border-radius: 2px;
-      box-shadow: 0 0 10px var(--cyan);
     }
 
     /* DESKTOP & TABLET: DOCK FLOTANTE CENTRADO DE ALTA VISIBILIDAD */
@@ -632,13 +656,12 @@ html, body {
       margin-bottom: 14px;
     }
     .card-title span.badge {
-      font-family: var(--font-mono);
+      font-family: var(--font-main);
       font-size: 10.5px;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.01em;
       padding: 3px 9px;
       border-radius: var(--radius-sm);
-      font-weight: 700;
-      text-transform: uppercase;
+      font-weight: 600;
     }
 
     /* BOTONES DE INGENIERÍA & ACCIÓN RÁPIDA */
@@ -647,12 +670,12 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--accent);
-  color: var(--bg-dark); /* Texto oscuro/claro inverso al fondo principal para legibilidad */
-  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--amber));
+  color: #14171A;
+  font-weight: 700;
   font-size: 13px;
   font-family: var(--font-main);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   padding: 12px 20px;
   border-radius: var(--radius-md);
   border: none;
@@ -664,10 +687,14 @@ html, body {
   position: relative;
   overflow: hidden;
 }
+:root[data-theme="light"] .btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #FFFFFF;
+}
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-neon);
-  filter: brightness(1.1);
+  filter: brightness(1.06);
 }
 .btn:active {
   transform: translateY(0);
@@ -685,60 +712,51 @@ html, body {
   color: var(--accent);
   filter: none;
 }
-.btn-secondary {
-  background: var(--bg-card-elevated);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-}
-.btn-secondary:hover {
-  background: var(--bg-card-alt);
-  box-shadow: var(--shadow-md);
-  filter: brightness(1.05);
-}
-    .btn:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 0 16px var(--accent-glow);
-      transform: translateY(-1px);
-    }
-    .btn:active {
-      transform: translateY(0);
-    }
     .btn-secondary {
       background: var(--bg-card-alt);
       color: var(--text-secondary);
       border: 1px solid var(--border-medium);
       box-shadow: none;
     }
+    :root[data-theme="light"] .btn-secondary {
+      background: #FFFFFF;
+      color: var(--text-main);
+      border-color: var(--border-medium);
+    }
     .btn-secondary:hover {
       background: var(--bg-card-elevated);
       color: var(--text-main);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
     }
     .btn-amber {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #06070a;
-      border: 1px solid #fbbf24;
+      background: linear-gradient(135deg, #FFB800, #FF6B00);
+      color: #14171A;
+      border: 1px solid rgba(255, 184, 0, 0.7);
+      font-weight: 800;
     }
     .btn-amber:hover {
-      box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 0 16px rgba(255, 107, 0, 0.35);
     }
     .btn-green {
       background: linear-gradient(135deg, #10b981, #059669);
-      color: #06070a;
+      color: #FFFFFF;
       border: 1px solid #34d399;
     }
     .btn-green:hover {
       box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
     }
     .btn-danger {
-      background: rgba(239, 68, 68, 0.15);
+      background: rgba(239, 68, 68, 0.14);
       color: #fca5a5;
       border: 1px solid rgba(239, 68, 68, 0.35);
     }
+    :root[data-theme="light"] .btn-danger {
+      color: #B91C1C;
+    }
     .btn-danger:hover {
       background: var(--danger);
-      color: var(--text-main);
+      color: #FFFFFF;
       box-shadow: 0 0 14px rgba(239, 68, 68, 0.3);
     }
     .btn-sm {
@@ -757,12 +775,11 @@ html, body {
     .input-label {
       display: block;
       font-size: 11px;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      letter-spacing: 1px;
+      font-weight: 600;
+      font-family: var(--font-main);
+      letter-spacing: 0.01em;
       color: var(--text-muted);
-      margin-bottom: 7px;
-      text-transform: uppercase;
+      margin-bottom: 6px;
     }
     .input-field, select.input-field {
       width: 100%;
@@ -803,15 +820,18 @@ html, body {
     }
     .filter-pill:hover {
       color: var(--text-main);
-      border-color: rgba(255, 255, 255, 0.25);
+      border-color: var(--accent);
       background: var(--bg-card-elevated);
     }
     .filter-pill.active {
-      background: var(--accent-dim);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text-main);
-      border-color: var(--accent);
-      font-weight: 700;
-      box-shadow: 0 0 12px var(--accent-glow);
+      border-color: var(--border-editorial);
+      font-weight: 600;
+    }
+    :root[data-theme="light"] .filter-pill.active {
+      background: rgba(15, 23, 42, 0.07);
+      border-color: rgba(15, 23, 42, 0.22);
     }
 
     .filter-pills-grid {
@@ -1056,6 +1076,9 @@ html, body {
     }
     .table-responsive-wrapper {
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      display: block;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       border-radius: var(--radius-sm);
@@ -1107,6 +1130,9 @@ html, body {
     .compare-subnav {
       display: flex;
       gap: 6px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
       background: var(--bg-card-alt); box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
       padding: 6px;
       border-radius: var(--radius-md);
@@ -1120,9 +1146,9 @@ html, body {
       display: none;
     }
     .compare-subnav-btn {
-      flex: 1 1 auto;
-      min-width: 135px;
-      padding: 8px 12px;
+      flex: 0 0 auto;
+      min-width: max-content;
+      padding: 8px 13px;
       border-radius: var(--radius-sm);
       background: transparent;
       border: 1px solid transparent;
@@ -1143,10 +1169,9 @@ html, body {
       background: var(--border-medium);
     }
     .compare-subnav-btn.active {
-      background: var(--accent);
+      background: var(--bg-card);
       color: var(--text-main);
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 16px var(--accent-glow);
+      border-color: var(--border-editorial);
     }
 
     /* TOOLBAR DE FILTROS Y BÚSQUEDA DE MATRIZ */
@@ -1167,7 +1192,17 @@ html, body {
       min-width: min(100%, 200px);
       position: relative;
     }
-    .matrix-search-
+    .matrix-search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px 8px 34px;
+      color: var(--text-main);
+      font-size: 13px;
+      font-family: var(--font-main);
+      outline: none;
+    }
 input, select, textarea {
   width: 100%;
   background: var(--bg-card-alt);
@@ -1206,9 +1241,9 @@ input:focus, select:focus, textarea:focus {
 
     /* FILAS CATEGORIZADAS */
     .matrix-category-header {
-      background: linear-gradient(90deg, rgba(59, 130, 246, 0.16) 0%, rgba(19, 25, 38, 0.4) 100%);
-      border-top: 1px solid rgba(59, 130, 246, 0.35);
-      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      background: linear-gradient(90deg, var(--accent-dim) 0%, var(--bg-card-alt) 100%);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-subtle);
     }
     .matrix-category-title {
       font-family: var(--font-mono);
@@ -1238,16 +1273,25 @@ input:focus, select:focus, textarea:focus {
 
     /* TOGGLE ACTIVO EN TOOLBAR */
     .toggle-pill-active {
-      background: var(--accent-dim) !important;
-      color: #fff !important;
+      background: var(--accent) !important;
+      color: #14171A !important;
       border-color: var(--accent) !important;
       box-shadow: 0 0 10px var(--accent-glow) !important;
+      font-weight: 800 !important;
+    }
+    :root[data-theme="light"] .toggle-pill-active {
+      color: #FFFFFF !important;
+    }
+    @media (max-width: 640px) {
+      .catalog-picker-filters {
+        grid-template-columns: 1fr !important;
+      }
     }
 
     /* GRÁFICOS VISUALES */
     .charts-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 16px;
     }
     @media (min-width: 860px) {
@@ -1334,7 +1378,7 @@ input:focus, select:focus, textarea:focus {
       transition: all 0.2s ease;
     }
     .b2b-service-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--accent);
       transform: translateY(-2px);
     }
 
@@ -1345,57 +1389,39 @@ input:focus, select:focus, textarea:focus {
       gap: 10px;
       margin-bottom: 18px;
     }
-    @media (max-width: 480px) {
-      .metric-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 320px) {
-      .metric-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
     .garage-btn-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-bottom: 10px;
     }
-    @media (max-width: 440px) {
+    @media (max-width: 360px) {
       .garage-btn-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
       }
     }
     .metric-box {
       background: var(--bg-card-alt);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
-      padding: 14px 10px;
+      padding: 12px 10px;
       text-align: center;
       position: relative;
     }
-    .metric-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 20%; right: 20%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    }
     .metric-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 500;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
     .metric-val {
-      font-family: var(--font-mono);
-      font-size: clamp(17px, 2.5vw, 20px);
-      font-weight: 900;
+      font-family: var(--font-main);
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(16px, 2.5vw, 19px);
+      font-weight: 700;
       color: var(--text-main);
-      margin-top: 5px;
-      letter-spacing: -0.5px;
+      margin-top: 3px;
+      letter-spacing: -0.02em;
     }
     .chain-block {
       background: var(--bg-card-alt);
@@ -1417,7 +1443,7 @@ input:focus, select:focus, textarea:focus {
     .alert-fraud {
       background: rgba(239, 68, 68, 0.12);
       border: 1.5px solid var(--danger);
-      color: #fca5a5;
+      color: var(--text-main);
       padding: 14px;
       border-radius: var(--radius-sm);
       font-size: 12px;
@@ -1428,26 +1454,25 @@ input:focus, select:focus, textarea:focus {
 
     /* MI GARAGE 2.0: MANTENIMIENTO PREVENTIVO, CORRECTIVO & SEGURIDAD */
     .breakin-card {
-      background: linear-gradient(145deg, rgba(0, 230, 118, 0.08) 0%, var(--bg-card) 65%);
-      border: 1px solid rgba(0, 230, 118, 0.35);
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
       border-radius: var(--radius-md);
-      padding: 16px;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow-elevation);
+      padding: 14px 16px;
+      margin-bottom: 16px;
     }
     .spec-pills-wrap {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .spec-pill-item {
       background: var(--bg-card-alt);
       border: 1px solid var(--border-subtle);
       border-radius: 6px;
       padding: 4px 8px;
-      font-size: 10.5px;
-      font-family: var(--font-mono);
+      font-size: 11px;
+      font-family: var(--font-main);
       color: var(--text-secondary);
       display: inline-flex;
       align-items: center;
@@ -1460,33 +1485,30 @@ input:focus, select:focus, textarea:focus {
       margin-bottom: 14px;
     }
     .sem-pill {
-      padding: 8px 6px;
+      padding: 7px 6px;
       border-radius: var(--radius-sm);
       text-align: center;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 700;
-      border: 1px solid transparent;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-alt);
+      color: var(--text-secondary);
       cursor: pointer;
-      transition: transform 0.15s ease;
+      transition: border-color 0.15s ease, color 0.15s ease;
     }
     .sem-pill:hover {
-      transform: translateY(-1px);
+      border-color: var(--border-medium);
+      color: var(--text-main);
     }
     .sem-green {
-      background: rgba(16, 185, 129, 0.1);
-      border-color: rgba(16, 185, 129, 0.35);
-      color: var(--green);
+      border-color: var(--border-subtle);
     }
     .sem-amber {
-      background: rgba(245, 158, 11, 0.1);
-      border-color: rgba(245, 158, 11, 0.35);
-      color: var(--amber);
+      border-color: rgba(245, 158, 11, 0.25);
     }
     .sem-red {
-      background: rgba(239, 68, 68, 0.12);
-      border-color: rgba(239, 68, 68, 0.4);
-      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.28);
     }
     .regime-bar {
       background: var(--bg-card);
@@ -1499,44 +1521,41 @@ input:focus, select:focus, textarea:focus {
     .maint-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-      gap: 14px;
+      gap: 16px;
     }
     .maint-item-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 16px;
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.2s ease;
+      transition: border-color 0.18s ease;
       position: relative;
       overflow: hidden;
     }
     .maint-item-card:hover {
-      border-color: rgba(255, 255, 255, 0.22);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      border-color: var(--border-medium);
     }
     .maint-item-card.status-critico {
-      border-color: rgba(239, 68, 68, 0.55);
-      background: linear-gradient(180deg, rgba(239, 68, 68, 0.07) 0%, var(--bg-card) 45%);
+      border-color: rgba(239, 68, 68, 0.36);
     }
     .maint-item-card.status-proximo {
-      border-color: rgba(245, 158, 11, 0.5);
-      background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, var(--bg-card) 45%);
+      border-color: rgba(245, 158, 11, 0.34);
     }
     .maint-item-card.status-breakin {
-      border-color: rgba(0, 230, 118, 0.5);
-      background: linear-gradient(180deg, rgba(0, 230, 118, 0.07) 0%, var(--bg-card) 45%);
+      border-color: var(--border-glass);
     }
     .maint-progress-track {
-      background: var(--bg-card-alt);
-      height: 7px;
-      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.07);
+      height: 6px;
+      border-radius: 999px;
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      margin: 6px 0;
+      margin: 6px 0 0;
+    }
+    :root[data-theme="light"] .maint-progress-track {
+      background: rgba(15, 23, 42, 0.08);
     }
     .maint-progress-bar {
       height: 100%;
@@ -1673,9 +1692,23 @@ input:focus, select:focus, textarea:focus {
       width: 220px;
     }
 
+    .app-container, .tab-pane, .card, .chart-box, .charts-grid, .analytics-charts-grid, .analytics-kpi-grid,
+    .matchmaker-split-layout, .scanner-split-layout, .garage-split-layout,
+    .matchmaker-sidebar, .scanner-sidebar, .garage-sidebar,
+    .matchmaker-main, .scanner-main, .garage-main,
+    .compare-subpane, .garage-subpane, #compareResultCard, #analyticsPeriodTableWrap,
+    .regime-bar, .breakin-card, .maint-grid, .maint-item-card, .car-card, .advisor-card-rank {
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .sidebar-nav .nav-item {
+      flex: 0 0 auto;
       display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
       align-items: center;
+      width: calc(100% - 16px);
       background: transparent;
       border: 1px solid transparent;
       cursor: pointer;
@@ -1734,11 +1767,141 @@ input:focus, select:focus, textarea:focus {
       transform: translateX(0);
     }
 
+    /* =========================================================================
+       BAJOKAPOT UI COMPONENTS: ACORDEÓN REVISIÓN & FALLAS, CATÁLOGO, ANALÍTICA
+       ========================================================================= */
+    .bk-review-details {
+      margin-top: 10px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .bk-review-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 9px 12px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      user-select: none;
+    }
+    .bk-review-summary::-webkit-details-marker { display: none; }
+    .bk-review-summary::after {
+      content: '▾';
+      font-size: 12px;
+      transition: transform 0.2s ease;
+    }
+    .bk-review-details[open] .bk-review-summary::after {
+      transform: rotate(180deg);
+    }
+    .bk-review-body {
+      padding: 10px 12px 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .catalog-quick-picker {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .catalog-picker-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-height: 370px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    @media (max-width: 980px) {
+      .catalog-picker-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .catalog-picker-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.16s ease, background 0.16s ease;
+      color: var(--text-main);
+    }
+    .catalog-picker-chip:hover {
+      border-color: var(--text-muted);
+      background: var(--bg-card-alt);
+    }
+    .catalog-picker-chip.in-compare {
+      border-color: rgba(245, 158, 11, 0.42);
+      background: var(--bg-card);
+    }
+    .catalog-chip-stencil {
+      width: 144px;
+      height: 48px;
+      color: var(--text-main);
+      display: block;
+    }
+
+    .analytics-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 720px) {
+      .analytics-kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .analytics-kpi-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+    .analytics-charts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 900px) {
+      .analytics-charts-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .garage-backup-bar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
     @media (max-width: 768px) {
       .sidebar-nav {
         top: auto;
         bottom: 0;
         left: 0;
+        right: 0;
         height: 65px;
         width: 100%;
         border-radius: 0;
@@ -1748,10 +1911,10 @@ input:focus, select:focus, textarea:focus {
         align-items: center;
         border-right: none;
         border: none;
-        border-top: 1px solid var(--border-subtle);
-        background: rgba(13, 32, 48, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border-color);
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         z-index: 9999;
       }
       .sidebar-nav:hover {
@@ -1763,10 +1926,11 @@ input:focus, select:focus, textarea:focus {
       .sidebar-nav .nav-item {
         margin: 0;
         padding: 6px;
+        flex: 1 1 0;
+        width: auto;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex: 1;
         border-radius: 12px;
       }
       .sidebar-nav .nav-item .icon {
@@ -1790,6 +1954,41 @@ input:focus, select:focus, textarea:focus {
     @media (max-width: 768px) {
       body {
         padding-left: 0;
+      }
+      .maint-grid,
+      #matchmakerResults,
+      .advisor-cards-grid,
+      .catalog-picker-grid,
+      .b2b-services-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+      .header-brand-wordmark {
+        max-width: clamp(104px, 32vw, 155px);
+        height: auto;
+        max-height: 26px;
+      }
+      .header-actions {
+        gap: 5px;
+        flex-shrink: 0;
+      }
+      .header-actions .status-badge {
+        display: none !important;
+      }
+      .pro-pill {
+        padding: 5px 8px !important;
+        font-size: 9.5px !important;
+      }
+      .pro-pill span {
+        display: none;
+      }
+      #themeToggleBtn {
+        width: 34px !important;
+        height: 34px !important;
+        padding: 7px !important;
+      }
+      #authBtn {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
       }
     }
 
@@ -1871,14 +2070,18 @@ input:focus, select:focus, textarea:focus {
         }
       }
 
-    /* DYNAMIC HEADER RESPONSIVE TO SIDEBAR */
+    /* DYNAMIC HEADER & BODY RESPONSIVE TO SIDEBAR */
     @media (min-width: 769px) {
-      header {
-        padding-left: 70px;
+      body {
+        padding-left: 60px;
+        padding-bottom: 32px;
         transition: padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      body:has(.sidebar-nav:hover) header {
-        padding-left: 230px;
+      body:has(.sidebar-nav:hover) {
+        padding-left: 220px;
+      }
+      .sidebar-nav .nav-item.active::after {
+        display: none;
       }
     }
 
@@ -1903,6 +2106,15 @@ input:focus, select:focus, textarea:focus {
       display: flex;
       align-items: center;
       gap: 8px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+    .maint-item-card .badge {
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
 
@@ -1941,21 +2153,635 @@ input:focus, select:focus, textarea:focus {
       100% { transform: translateY(-5px); } /* Expansión del pistón */
     }
 
+    /* =========================================================================
+       SISTEMA MINIMALISTA & FUNCIONAL (BAJOKAPOT v5)
+       ========================================================================= */
+    :root {
+      --bg-void: #0B0D10;
+      --bg-dark: #0B0D10;
+      --bg-body: #0B0D10;
+      --bg-surface: #111318;
+      --bg-card: #15181E;
+      --bg-card-hover: #1A1E26;
+      --bg-card-alt: #181B22;
+      --bg-carbon: #111318;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.12);
+      --border-editorial: rgba(255, 255, 255, 0.14);
+      --text-main: #F3F4F6;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --primary-orange: #FF5500;
+      --accent: #FF5500;
+      --accent-dim: rgba(255, 85, 0, 0.10);
+      --accent-glow: rgba(255, 85, 0, 0.18);
+      --amber: #F59E0B;
+      --amber-dim: rgba(245, 158, 11, 0.10);
+      --green: #10B981;
+      --green-dim: rgba(16, 185, 129, 0.10);
+      --cyan: #94A3B8;
+      --cyan-dim: rgba(148, 163, 184, 0.12);
+      --danger: #EF4444;
+      --danger-dim: rgba(239, 68, 68, 0.12);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-header: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+    }
+
+    :root[data-theme="light"] {
+      --bg-void: #F8F9FA;
+      --bg-dark: #F8F9FA;
+      --bg-body: #F8F9FA;
+      --bg-surface: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #F3F4F6;
+      --bg-card-alt: #F3F4F6;
+      --bg-carbon: #F9FAFB;
+      --border-subtle: rgba(15, 23, 42, 0.06);
+      --border-glass: rgba(15, 23, 42, 0.08);
+      --border-medium: rgba(15, 23, 42, 0.12);
+      --border-editorial: rgba(15, 23, 42, 0.14);
+      --text-main: #111827;
+      --text-secondary: #4B5563;
+      --text-muted: #6B7280;
+      --accent: #E04A00;
+      --primary-orange: #E04A00;
+      --accent-dim: rgba(224, 74, 0, 0.08);
+      --accent-glow: rgba(224, 74, 0, 0.14);
+      --amber: #B45309;
+      --amber-dim: rgba(180, 83, 9, 0.09);
+      --green: #047857;
+      --green-dim: rgba(4, 120, 87, 0.09);
+      --cyan: #475569;
+      --cyan-dim: rgba(71, 85, 105, 0.10);
+      --danger: #B91C1C;
+      --danger-dim: rgba(185, 28, 28, 0.10);
+    }
+
+    body {
+      font-family: var(--font-main);
+      font-variant-numeric: tabular-nums;
+      background-color: var(--bg-dark);
+      letter-spacing: -0.005em;
+    }
+
+    .glass-panel, .card, .chart-box, .modal-box {
+      border-radius: 10px !important;
+      border: 1px solid var(--border-glass) !important;
+      backdrop-filter: none !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+    }
+    :root[data-theme="light"] .glass-panel,
+    :root[data-theme="light"] .card,
+    :root[data-theme="light"] .chart-box,
+    :root[data-theme="light"] .modal-box {
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .editorial-h1, .editorial-h2, .card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .btn {
+      border-radius: 7px !important;
+      font-family: var(--font-main);
+      letter-spacing: 0;
+    }
+    .btn-minimal-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-glass);
+      font-family: var(--font-main);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .btn-minimal-action:hover {
+      background: var(--bg-card-alt);
+      border-color: var(--border-medium);
+      color: var(--text-main);
+    }
+    .btn-minimal-action.is-alert {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    .btn-minimal-action.is-critical {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    :root[data-theme="light"] .btn-minimal-action {
+      background: transparent;
+      border-color: var(--border-glass);
+      color: var(--text-muted);
+    }
+    :root[data-theme="light"] .btn-minimal-action:hover {
+      background: var(--bg-card-alt);
+      border-color: var(--border-medium);
+      color: var(--text-main);
+    }
+
+    .filter-pill, .badge {
+      border-radius: 6px !important;
+      font-family: var(--font-main);
+    }
+
+    /* Indicadores LED Geométricos (Sin Emojis) */
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-dot.dot-green { background: var(--green); }
+    .status-dot.dot-amber { background: var(--amber); }
+    .status-dot.dot-red { background: var(--danger); }
+    .status-dot.dot-muted { background: var(--text-muted); }
+
+    /* Tarjeta Minimalista — Catálogo & Asesor (Paso 1 Op.5 + Paso 2 Op.1 + Paso 3 Op.3) */
+    #matchmakerResults {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      #matchmakerResults { grid-template-columns: 1fr; }
+    }
+    .car-card.car-card-editorial {
+      border-radius: 12px !important;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-card);
+      padding: 20px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 0.18s ease;
+    }
+    .car-card.car-card-editorial:hover {
+      border-color: var(--border-medium);
+    }
+    .editorial-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .editorial-car-identity {
+      min-width: 0;
+      flex: 1;
+    }
+    .editorial-kicker {
+      font-family: var(--font-main);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 3px;
+    }
+    .editorial-car-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+    .editorial-silhouette-box,
+    .car-silhouette-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      min-height: 60px;
+      padding: 2px 0;
+    }
+    :root[data-theme="light"] .editorial-silhouette-box,
+    :root[data-theme="light"] .car-silhouette-header {
+      background: transparent;
+    }
+    .segment-silhouette-svg,
+    .car-silhouette-svg {
+      width: 176px;
+      height: 58px;
+      color: var(--text-main);
+      flex-shrink: 0;
+      display: block;
+    }
+    .editorial-spec-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 10px 0;
+    }
+    @media (max-width: 420px) {
+      .editorial-spec-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .editorial-spec-cell {
+      min-width: 0;
+    }
+    .editorial-spec-label {
+      font-family: var(--font-main);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .editorial-spec-val {
+      font-family: var(--font-main);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Barras Minimalistas de Telemetría */
+    .seg-bars-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .seg-bar-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 44px;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .seg-bar-label {
+      color: var(--text-muted);
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .seg-bar-track {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 3px;
+      height: 4px;
+    }
+    .seg-bar-unit {
+      background: var(--border-glass);
+      border-radius: 2px;
+      height: 100%;
+    }
+    .seg-bar-unit.active {
+      background: var(--seg-color, var(--text-secondary));
+    }
+    .seg-bar-num {
+      font-family: var(--font-main);
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: right;
+      color: var(--text-secondary);
+    }
+
+    /* Medidor Radial SVG */
+    .radial-gauge-wrap {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Cabecera Sobria de Identificación en Mi Garage */
+    .editorial-vin-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .vin-plate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 5px;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-card-alt);
+      font-family: var(--font-main);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .garage-hud-card {
+      border-radius: 10px !important;
+    }
+
+    /* Esquema Técnico 2D del Vehículo (Mi Garage) */
+    .chassis-schematic-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .chassis-schematic-layout {
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .chassis-schematic-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .chassis-svg-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+    }
+    :root[data-theme="light"] .chassis-svg-box {
+      background: rgba(15, 23, 42, 0.02);
+    }
+    .schematic-nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+    @media (max-width: 440px) {
+      .schematic-nodes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .schematic-node-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: 7px;
+      color: var(--text-secondary);
+      font-family: var(--font-main);
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+    .schematic-node-btn:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+    }
+    .schematic-node-btn.active {
+      border-color: var(--border-editorial);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    :root[data-theme="light"] .schematic-node-btn.active {
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* Tarjetas Minimalistas de Mantenimiento Preventivo & Correctivo (Paso 2 Op.1 + Paso 3 Op.3) */
+    .maint-item-card.compact-editorial {
+      padding: 20px !important;
+      border-radius: 12px !important;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-card);
+      gap: 16px;
+    }
+    .maint-extra-drawer {
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .maint-extra-drawer[hidden] {
+      display: none !important;
+    }
+    .btn-quiet-link {
+      background: transparent;
+      border: none;
+      padding: 4px 2px;
+      font-family: var(--font-main);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+    .btn-quiet-link:hover {
+      color: var(--text-main);
+    }
+    .maint-details-accordion {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+      margin-top: 2px;
+    }
+    .maint-details-accordion > summary {
+      list-style: none;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-family: var(--font-main);
+      font-weight: 500;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .maint-details-accordion > summary::-webkit-details-marker { display: none; }
+    .maint-details-accordion > summary:hover { color: var(--text-main); }
+    .maint-details-body {
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bk-review-details {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-alt);
+      border-radius: 8px;
+      padding: 8px 11px;
+    }
+    .bk-review-details > summary {
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .bk-review-details > summary::-webkit-details-marker { display: none; }
+    .bk-review-details[open] > summary { color: var(--text-main); margin-bottom: 6px; }
+
+    /* Vista Previa en Vivo de Eficiencia en Modal de Gasolina */
+    .fuel-live-preview {
+      background: var(--green-dim);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 8px;
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      font-size: 11.5px;
+      font-family: var(--font-main);
+      color: var(--text-main);
+    }
+
+    /* Botón Flotante de Acción Rápida (Quick-Action FAB) */
+    .quick-fab-wrap {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    @media (max-width: 768px) {
+      .quick-fab-wrap {
+        bottom: 78px;
+        right: 14px;
+      }
+    }
+    .compare-subnav {
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+    }
+    .compare-subnav-btn {
+      padding: 7px 12px !important;
+      font-size: 11.5px !important;
+      font-family: var(--font-main) !important;
+      font-weight: 600 !important;
+    }
+    .editorial-vin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+    @media (max-width: 440px) {
+      .editorial-vin-header {
+        flex-wrap: wrap;
+      }
+    }
+    #garageVehicleInfo {
+      flex: 1;
+      min-width: 0;
+    }
+    .schematic-node-status {
+      font-family: var(--font-main);
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .quick-fab-trigger {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: var(--accent);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .quick-fab-trigger:hover { transform: scale(1.05); }
+    .quick-fab-wrap.open .quick-fab-trigger { transform: rotate(45deg); }
+    .quick-fab-menu {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-editorial);
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+      min-width: 196px;
+    }
+    .quick-fab-wrap.open .quick-fab-menu { display: flex; }
+    .quick-fab-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: var(--bg-card-alt);
+      color: var(--text-main);
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+    .quick-fab-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
 </style>
 
-  <!-- CharuAutos PWA & Favicon Assets -->
+  <!-- BAJOKAPOT PWA & Favicon Assets -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192x192.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#071520">
+  <meta name="theme-color" content="#14171A">
 
 </head>
 <body>
 
-<div id="versionBanner" style="background: var(--accent); color: var(--bg-dark); display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 12px; font-family: var(--font-main); font-weight: 700; z-index: 9999; position: relative;">
-    <span style="flex-grow: 1; text-align: center;">VERSIÓN V3 (CACHE LÍMPIO) - UX Premium Activado</span>
-    <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: var(--bg-dark); cursor: pointer; font-weight: bold; padding: 0 4px; font-size: 14px;">&times;</button>
+<div id="versionBanner" style="background: linear-gradient(90deg, var(--accent), var(--amber)); color: #14171A; display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 12px; font-family: var(--font-main); font-weight: 800; z-index: 9999; position: relative;">
+    <span style="flex-grow: 1; text-align: center;">BAJOKAPOT v4.0 — Revisión &amp; Fallas · Catálogo Multiversiones VE &amp; Gráficas TCO</span>
+    <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: #14171A; cursor: pointer; font-weight: bold; padding: 0 4px; font-size: 14px;">&times;</button>
   </div>
 
 
@@ -1963,12 +2789,8 @@ input:focus, select:focus, textarea:focus {
   <header>
     <div class="header-inner">
       <div class="brand-wrap">
-        <div class="dynamic-logo" aria-label="CharuAutos Logo"></div>
-        <div class="brand-logo">
-          CHARU<span> motorhub</span>
-          <span class="brand-tag">AUTOMOTIVE</span>
-        </div>
-        
+        <img id="headerLogoIcon" src="bajokapot-icon.png" alt="BAJOKAPOT" class="header-brand-icon">
+        <img id="headerWordmarkImg" src="bajokapot-wordmark-dark.png" alt="BAJOKAPOT — Revisión & Fallas" class="header-brand-wordmark">
       </div>
 
       <!-- SELECTOR PRINCIPAL DE MÓDULOS / COCKPIT TABS (DESKTOP) -->
@@ -1977,12 +2799,12 @@ input:focus, select:focus, textarea:focus {
       <div class="header-actions">
         <span id="proBadge" class="pro-pill pro-free" onclick="openCheckoutModal()">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
-          <span>CharuPro</span>
+          <span>BajoKapot PRO</span>
         </span>
         
         <span id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()" title="Clic para alternar simulación online/offline" style="cursor:pointer;">
           <span class="status-indicator"></span>
-          <span id="statusText">Sistema // En Línea</span>
+          <span id="statusText">En línea</span>
         </span>
 
         <button class="btn btn-outline" id="themeToggleBtn" style="padding: 10px; width: 40px;">
@@ -2324,57 +3146,91 @@ input:focus, select:focus, textarea:focus {
                 <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
                 <span>Filtros Asesor de Compra</span>
               </div>
-              <span class="badge" style="background: rgba(0,242,254,0.15); color: var(--cyan); font-size:10px; padding:2px 7px;">IA Venezuela</span>
+              <span class="badge" style="background: var(--cyan-dim); color: var(--cyan); font-size:10px; padding:2px 7px;">Catálogo VE</span>
             </div>
             <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.3;">
               Calcula la compatibilidad según presupuesto en USD, baches severos y repuestos en el país.
             </p>
 
-            <!-- CONTROL DE PRESUPUESTO AJUSTADO -->
+            <!-- BUSCADOR POR MODELO O MARCA -->
+            <div style="margin-bottom:10px;">
+              <input type="text" id="advisorSearchInput" class="input-field" placeholder="Buscar marca, modelo o versión (ej: Corolla, Jolion, CVT, 4x4...)" oninput="updateMatchmaker()" style="padding:8px 12px; font-size:12px;">
+            </div>
+
+            <!-- CONTROL DE PRESUPUESTO AJUSTADO (USADOS Y 0 KM EN VENEZUELA) -->
             <div class="input-group" style="background: var(--bg-card); padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-medium); margin-bottom: 10px;">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom: 8px;">
                 <span class="input-label" style="margin-bottom:0; font-size:10.5px;">Presupuesto Máximo:</span>
                 <div style="display:flex; align-items:center; gap:5px;">
                   <span style="color:var(--cyan); font-weight:900; font-size:14px;">$</span>
-                  <input type="number" id="budgetNumber" min="1000" max="25000" step="250" value="6000" 
+                  <input type="number" id="budgetNumber" min="1500" max="75000" step="500" value="25000" 
                          class="input-field" style="width: 95px; padding: 4px 6px; text-align:right; font-weight:800; color:var(--cyan); font-size:14px;"
                          oninput="syncBudgetInput(this.value)">
                   <span style="font-size:10.5px; color:var(--text-muted); font-weight:700;">USD</span>
                 </div>
               </div>
 
-              <input type="range" id="budgetRange" min="1000" max="22000" step="250" value="6000" 
-                     style="width:100%; accent-color: var(--cyan); margin-bottom: 8px;" 
+              <input type="range" id="budgetRange" min="1500" max="75000" step="500" value="25000" 
+                     style="width:100%; accent-color: var(--accent); margin-bottom: 8px;" 
                      oninput="syncBudgetInput(this.value)">
 
               <!-- BOTONES DE ACCESO RÁPIDO DE PRESUPUESTO -->
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-bottom: 8px;">
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(3500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(6500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
                   <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $3,500 (Econ.)
+                  ≤ $6,500 (Usado)
                 </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(5500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(18000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
                   <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $5,500 (Aveo)
+                  ≤ $18,000 (0 km)
                 </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(8500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(28000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
                   <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $8,500 (Yaris)
+                  ≤ $28,000 (Sedán/SUV)
                 </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(15000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
+                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(75000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
                   <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $15,000 (0 km)
+                  Todos ($75K)
                 </button>
               </div>
 
               <!-- CHECKBOX DE FILTRO ESTRICTO -->
               <label style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--cyan); cursor:pointer; margin-bottom:0;">
-                <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--cyan); width:14px; height:14px;">
+                <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--accent); width:14px; height:14px;">
                 <span style="display:inline-flex; align-items:center; gap:4px;">
                   <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                   <strong>Filtro estricto:</strong> Ocultar fuera de presupuesto
                 </span>
               </label>
+            </div>
+
+            <!-- CONDICIÓN, SEGMENTO Y TRANSMISIÓN -->
+            <div class="input-label" style="margin-top:8px; margin-bottom:5px; font-size:10.5px;">Condición del Vehículo:</div>
+            <div class="filter-pills" id="conditionFilterPills" style="gap:5px; margin-bottom:8px;">
+              <div class="filter-pill active" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('ALL', this)">Todos</div>
+              <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('0km', this)">0 km Nuevos</div>
+              <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('usado', this)">Usados VE</div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
+              <div>
+                <div class="input-label" style="margin-bottom:4px; font-size:10px;">Segmento:</div>
+                <select id="segmentFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
+                  <option value="ALL">Todos</option>
+                  <option value="Citycar & Hatch">Citycar / Hatch</option>
+                  <option value="Sedán">Sedán</option>
+                  <option value="SUV & Crossover">SUV / Crossover</option>
+                  <option value="Pickup & 4x4">Pickup / 4x4</option>
+                </select>
+              </div>
+              <div>
+                <div class="input-label" style="margin-bottom:4px; font-size:10px;">Transmisión:</div>
+                <select id="transFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
+                  <option value="ALL">Todas (MT/AT)</option>
+                  <option value="MT">Sincrónica (MT)</option>
+                  <option value="AUTO">Automática / CVT / DCT</option>
+                </select>
+              </div>
             </div>
 
             <div class="input-label" style="margin-top:10px; margin-bottom:6px; font-size:10.5px;">Condición Vial Predominante:</div>
@@ -2467,17 +3323,44 @@ input:focus, select:focus, textarea:focus {
 
     <!-- TAB 3: COMPARADOR & PDF SCRAPER -->
     <div id="tab-compare" class="tab-pane">
+      <!-- SELECTOR RÁPIDO DE CATÁLOGO PRECARGADO BAJOKAPOT -->
+      <div class="catalog-quick-picker">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+          <div style="font-size:14px; font-weight:600; color:var(--text-main); display:flex; align-items:center; gap:8px;">
+            <span>Catálogo Precargado BAJOKAPOT</span>
+            <span id="preloadedCatalogCountBadge" class="badge" style="background:var(--bg-card-alt); color:var(--text-muted); border:1px solid var(--border-glass); font-weight:500;">Cargando...</span>
+          </div>
+          <div style="font-size:12px; color:var(--text-muted);">Haz clic en cualquier versión para agregarla o quitarla (máx. 5)</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:8px; margin-bottom:10px;" class="catalog-picker-filters">
+          <input type="text" id="preloadedCatalogSearch" class="input-field" placeholder="Buscar marca, modelo o caja (ej: Jolion, Corolla, CVT, 6MT...)" oninput="renderPreloadedCatalogPicker()" style="padding:7px 11px; font-size:12px;">
+          <select id="preloadedSegmentFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
+            <option value="ALL">Todos los Segmentos</option>
+            <option value="Citycar & Hatch">Citycar &amp; Hatch</option>
+            <option value="Sedán">Sedán</option>
+            <option value="SUV & Crossover">SUV &amp; Crossover</option>
+            <option value="Pickup & 4x4">Pickup &amp; 4x4</option>
+          </select>
+          <select id="preloadedTransFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
+            <option value="ALL">Todas las Cajas</option>
+            <option value="MT">Sincrónica (MT)</option>
+            <option value="AUTO">Automática / CVT / DCT</option>
+          </select>
+        </div>
+        <div id="preloadedCatalogGrid" class="catalog-picker-grid"></div>
+      </div>
+
       <div class="card">
         <div class="card-title">
           <div style="display:flex; align-items:center; gap:8px;">
             <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
             <span>Comparador & Extractor de Fichas Técnicas PDF</span>
-            <span id="compareCountBadge" class="badge" style="background: rgba(0,242,254,0.15); color: var(--cyan);">0 / 5 vehículos</span>
+            <span id="compareCountBadge" class="badge" style="background: var(--accent-dim); color: var(--accent);">0 / 5 vehículos</span>
           </div>
-          <span class="badge" style="background: rgba(255,183,3,0.15); color: var(--amber);">Scraping Heurístico IA</span>
+          <span class="badge" style="background: var(--cyan-dim); color: var(--cyan);">Lectura Automática de Ficha</span>
         </div>
         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
-          Adjunta <strong>más de 2 archivos PDF</strong> (hasta 5 simultáneos). Al detectar 2 o más fichas, el auto de prueba se elimina automáticamente y solo se comparan tus vehículos. Puedes quitar cualquier auto en cualquier momento.
+          Selecciona versiones del catálogo arriba o adjunta <strong>tus propios archivos PDF</strong> (hasta 5 vehículos simultáneos). Puedes quitar o reemplazar cualquier modelo en cualquier momento.
         </p>
 
         <!-- DROPZONE CON SOPORTE MULTI-ARCHIVO -->
@@ -2503,7 +3386,7 @@ input:focus, select:focus, textarea:focus {
               <div class="ai-inline-spinner"></div>
               <div>
                 <div style="font-weight: 800; font-size: 13px; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <span>✨ Extrayendo Ficha Técnica con IA Multimodal...</span>
+                  <span>Procesando Ficha Técnica...</span>
                 </div>
                 <div id="pdfInlineStatusText" style="font-size: 11.5px; font-family: var(--font-mono); color: var(--cyan); margin-top: 2px;">
                   Analizando parámetros técnicos del vehículo...
@@ -2511,7 +3394,7 @@ input:focus, select:focus, textarea:focus {
               </div>
             </div>
             <span class="badge" style="background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(56,189,248,0.3);">
-              PROCESANDO IA
+              PROCESANDO FICHA
             </span>
           </div>
         </div>
@@ -2521,19 +3404,19 @@ input:focus, select:focus, textarea:focus {
       <nav class="compare-subnav">
         <button id="compareSubTabBtn-specs" class="compare-subnav-btn active" onclick="switchCompareSubTab('specs')">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/></svg>
-          <span>1. Ficha Técnica</span>
+          <span>Ficha Técnica</span>
         </button>
         <button id="compareSubTabBtn-charts" class="compare-subnav-btn" onclick="switchCompareSubTab('charts')">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>
-          <span>2. Gráficos Visuales (Chart.js)</span>
+          <span>Gráficos Comparativos</span>
         </button>
         <button id="compareSubTabBtn-advisor" class="compare-subnav-btn" onclick="switchCompareSubTab('advisor')">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <span>3. ¿Cuál Elegir? (Advisor)</span>
+          <span>Cuál Elegir</span>
         </button>
         <button id="compareSubTabBtn-services" class="compare-subnav-btn" onclick="switchCompareSubTab('services')">
           <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          <span>4. Servicios & Ecosistema B2B</span>
+          <span>Servicios y Red</span>
         </button>
       </nav>
 
@@ -2639,7 +3522,7 @@ input:focus, select:focus, textarea:focus {
               <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <span>Ecosistema de Servicios & Mantenimiento B2B/B2C</span>
             </div>
-            <span class="badge" style="background:var(--green-dim); color:var(--green);">Red Oficial Charu</span>
+            <span class="badge" style="background:var(--accent-dim); color:var(--accent);">Red Oficial BajoKapot</span>
           </div>
           <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
             Conectamos las especificaciones mecánicas de tus vehículos comparados con cotizaciones exactas de repuestos homologados, citas garantizadas con talleres mecánicos verificados y pólizas de seguro adaptadas a Venezuela.
@@ -2670,13 +3553,13 @@ input:focus, select:focus, textarea:focus {
         <!-- SIDEBAR DE VEHÍCULO, ASENTAMIENTO TURBO & ODÓMETRO -->
         <aside class="garage-sidebar">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
-            <h2 style="font-size: 16px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-              <span>Mi Garage 2.0</span>
-              <span class="badge" style="background:var(--accent-dim); color:var(--accent); font-size:9.5px; padding:2px 6px;">OEM + SHA-256</span>
+            <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:8px;">
+              <span>Mi Garage</span>
+              <span class="badge" style="background:rgba(255,255,255,0.04); border:1px solid var(--border-subtle); color:var(--text-muted); font-size:10px; padding:2px 7px; font-weight:500;">OEM</span>
             </h2>
             <div style="display:flex; gap:6px;">
               <button class="btn btn-secondary btn-sm" onclick="loadHavalJolionPreset()" title="Cargar perfil base GWM Haval Jolion Classic 1.5T 6MT (100 km)" style="padding: 5px 8px; font-size: 11px;">
-                🚗 Haval 1.5T
+                Haval 1.5T
               </button>
               <button class="btn btn-primary" onclick="openAddVehicleModal()" style="padding: 6px 10px; font-size: 11.5px; display: inline-flex; align-items: center; gap: 5px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -2685,59 +3568,63 @@ input:focus, select:focus, textarea:focus {
             </div>
           </div>
 
-          <!-- FICHA DE TELEMETRÍA VEHICULAR Y SEGURIDAD VIAL -->
-          <div class="card" style="margin-bottom: 16px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+          <!-- FICHA EDITORIAL DE IDENTIFICACIÓN & TELEMETRÍA -->
+          <div class="card garage-hud-card" style="margin-bottom: 16px;">
+            <div class="editorial-vin-header">
               <div id="garageVehicleInfo">
-                <div style="font-size: 18px; font-weight: 900; color: var(--text-main); letter-spacing:-0.4px;" id="garageVehicleName">
-                  GWM Haval Jolion Classic <span style="font-size: 10px; background: var(--accent-dim); border: 1px solid rgba(0,230,118,0.4); padding: 2px 6px; border-radius: 4px; color: var(--accent); margin-left: 4px; vertical-align: middle;">1.5T 6MT • EN RODAJE</span>
+                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;">
+                  <span class="vin-plate-badge" id="garagePlateBadge">VE · Garage</span>
+                  <span style="font-size:11px; color:var(--text-muted); display:inline-flex; align-items:center; gap:5px;">
+                    <span class="status-dot dot-green"></span>
+                    Odómetro al día
+                  </span>
                 </div>
-                <div style="font-size: 11.5px; color: var(--cyan); font-weight: 700; font-family:var(--font-mono); margin-top:3px;" id="garageVehicleDetails">
+                <div style="font-family:var(--font-display); font-size: 19px; font-weight: 700; color: var(--text-main); letter-spacing:-0.02em; line-height:1.2;" id="garageVehicleName">
+                  GWM Haval Jolion Classic <span style="font-size: 11px; font-weight:600; background: var(--bg-card-alt); border: 1px solid var(--border-subtle); padding: 2px 6px; border-radius: 4px; color: var(--text-secondary); margin-left: 4px; vertical-align: middle;">1.5T 6MT</span>
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top:4px;" id="garageVehicleDetails">
                   Motor 1.5L Turbo (GW4G15K) • Cadena • 5W-30 • Uso Mixto
                 </div>
               </div>
-              <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); border:1px solid var(--green); padding:4px 8px; border-radius:6px; font-size:10px; font-weight:800; display:inline-flex; align-items:center; gap:4px;">
-                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                ODÓMETRO INMUTABLE
-              </span>
+              <div id="garageHealthGauge" class="radial-gauge-wrap"></div>
             </div>
 
             <!-- PILLS DE ESPECIFICACIÓN TÉCNICA OEM -->
             <div id="garageSpecPills" class="spec-pills-wrap">
-              <span class="spec-pill-item">⛓️ Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
-              <span class="spec-pill-item">🛢️ Lubricante: <strong style="color:var(--accent);">5W-30 API SP (4.2L)</strong></span>
-              <span class="spec-pill-item">🕹️ Caja: <strong style="color:var(--text-main);">Sincrónica 6MT (GL-4)</strong></span>
-              <span class="spec-pill-item">🛑 Frenos/Croche: <strong style="color:var(--amber);">DOT 4</strong></span>
+              <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
+              <span class="spec-pill-item">Lubricante: <strong style="color:var(--text-main);">5W-30 API SP (4.2L)</strong></span>
+              <span class="spec-pill-item">Caja: <strong style="color:var(--text-main);">Sincrónica 6MT</strong></span>
+              <span class="spec-pill-item">Frenos: <strong style="color:var(--text-main);">DOT 4</strong></span>
             </div>
 
             <div class="metric-grid" style="margin-bottom: 12px;">
               <div class="metric-box">
                 <div class="metric-label">Odómetro</div>
                 <div class="metric-val" id="garageOdoDisplay">100 km</div>
-                <div style="font-size:9px; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px;" id="garagePhaseSub">Fase Break-In</div>
+                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garagePhaseSub">En rodaje</div>
               </div>
               <div class="metric-box">
-                <div class="metric-label">Health Score</div>
-                <div class="metric-val" id="garageHealthDisplay" style="color: var(--green);">100/100</div>
-                <div style="font-size:9px; color:var(--green); font-family:var(--font-mono); margin-top:2px;" id="garageHealthSub">Seguridad 100%</div>
+                <div class="metric-label">Salud General</div>
+                <div class="metric-val" id="garageHealthDisplay" style="color: var(--text-main);">100/100</div>
+                <div style="font-size:10.5px; color:var(--green); margin-top:2px;" id="garageHealthSub">Óptimo</div>
               </div>
               <div class="metric-box">
-                <div class="metric-label">Costo por km</div>
-                <div class="metric-val" id="garageCostDisplay" style="color: var(--amber);">$0.042</div>
-                <div style="font-size:9px; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px;" id="garageTcoSub">TCO Real</div>
+                <div class="metric-label">Costo / km</div>
+                <div class="metric-val" id="garageCostDisplay" style="color: var(--text-main);">$0.042</div>
+                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageTcoSub">Estimado</div>
               </div>
             </div>
 
             <!-- SEMÁFORO DE SEGURIDAD VIAL ACTIVA -->
             <div id="garageSafetySemaphore" class="safety-semaphore-strip">
-              <div class="sem-pill sem-green" onclick="filterMaintenanceByStatus('ALL')" title="Ver todos los sistemas óptimos">
-                🟢 <span id="semCountGreen">15</span> Nominales
+              <div class="sem-pill sem-green" onclick="filterMaintenanceByStatus('ALL')" title="Ver todos los sistemas óptimos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                <span class="status-dot dot-green"></span> <span id="semCountGreen">15</span> Al día
               </div>
-              <div class="sem-pill sem-amber" onclick="filterMaintenanceByStatus('PROXIMO')" title="Filtrar mantenimientos próximos">
-                🟡 <span id="semCountAmber">1</span> Próximos
+              <div class="sem-pill sem-amber" onclick="filterMaintenanceByStatus('PROXIMO')" title="Filtrar mantenimientos próximos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                <span class="status-dot dot-amber"></span> <span id="semCountAmber">1</span> Próximos
               </div>
-              <div class="sem-pill sem-red" onclick="filterMaintenanceByStatus('CRITICO')" title="Filtrar mantenimientos críticos vencidos">
-                🔴 <span id="semCountRed">0</span> Críticos
+              <div class="sem-pill sem-red" onclick="filterMaintenanceByStatus('CRITICO')" title="Filtrar mantenimientos críticos vencidos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                <span class="status-dot dot-red"></span> <span id="semCountRed">0</span> Críticos
               </div>
             </div>
 
@@ -2766,8 +3653,19 @@ input:focus, select:focus, textarea:focus {
 
             <button class="btn btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
               <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
-              Ver / Imprimir Pasaporte Criptográfico
+              Ver / Imprimir Certificado de Mantenimiento
             </button>
+
+            <div class="garage-backup-bar">
+              <button class="btn btn-secondary btn-sm" onclick="exportOfflineBackup()" style="flex:1; padding:6px 8px; font-size:11px; gap:5px;">
+                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Respaldar JSON
+              </button>
+              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('backupFileInput').click()" style="flex:1; padding:6px 8px; font-size:11px; gap:5px;">
+                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Importar JSON
+              </button>
+            </div>
           </div>
 
           <!-- PROTOCOLO ACTIVO DE ASENTAMIENTO (BREAK-IN 0 - 1,500 KM) & REGLA DEL TURBO -->
@@ -2775,13 +3673,17 @@ input:focus, select:focus, textarea:focus {
 
           <!-- HISTORIAL DE TANQUEOS -->
           <div class="card" style="margin-bottom: 18px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
                 Historial de Tanqueos
               </h3>
-              <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <button onclick="switchGarageSubTab('analytics')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:11px; font-weight:700;">Ver Gráficas ▸</button>
+                <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+              </div>
             </div>
+            <div id="fuelGlobalSummaryBar" style="margin-bottom:10px;"></div>
             <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
               <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
             </div>
@@ -2794,63 +3696,67 @@ input:focus, select:focus, textarea:focus {
           <div class="regime-bar">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
               <div>
-                <div style="font-size:13.5px; font-weight:800; color:var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <span>⚙️ Régimen de Cálculo de Mantenimiento (Doble Gatillo: Km o Tiempo)</span>
+                <div style="font-size:13.5px; font-weight:700; color:var(--text-main); display:flex; align-items:center; gap:6px;">
+                  <span>Régimen de Mantenimiento</span>
                 </div>
-                <div id="regimeExplanationText" style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">
-                  Ajusta los intervalos de fluidos, filtros y tren motriz por calor tropical, colas urbanas, baches y micro-sedimentos en gasolina.
+                <div id="regimeExplanationText" style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                  Intervalos ajustados por calor, tráfico urbano, vías irregulares y calidad de combustible.
                 </div>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:6px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
-                  🛡️ Severo / Tropicalizado (Uso Mixto VE)
+                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:6px 10px; font-size:11.5px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
+                  Uso Severo (Venezuela)
                 </button>
-                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:6px 10px; font-size:11px;">
-                  📖 Estándar Manual OEM
+                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:6px 10px; font-size:11.5px;">
+                  Estándar OEM
                 </button>
               </div>
             </div>
 
             <!-- SIMULADOR DE PROYECCIÓN DE KILOMETRAJE EN UN CLIC -->
-            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid var(--border-subtle); font-size:11px;">
-              <span style="color:var(--text-muted); font-family:var(--font-mono);">🔬 Probar Proyección de Desgaste en Vivo:</span>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid var(--border-subtle); font-size:11.5px;">
+              <span style="color:var(--text-muted);">Simular kilometraje:</span>
               <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 8px; font-size:10.5px;">Actual (100 km)</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 8px; font-size:10.5px; color:var(--amber);">4,500 km (Próximo 1er Serv.)</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(5300)" style="padding:3px 8px; font-size:10.5px; color:#f87171;">5,300 km (1er Serv. Vencido)</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(29500)" style="padding:3px 8px; font-size:10.5px;">29,500 km (Servicio Mayor)</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 9px; font-size:11px;">Actual (100 km)</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 9px; font-size:11px;">4.500 km</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(5300)" style="padding:3px 9px; font-size:11px;">5.300 km</button>
+                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(29500)" style="padding:3px 9px; font-size:11px;">29.500 km</button>
               </div>
             </div>
           </div>
 
-          <!-- SUB-NAVEGACIÓN INTERNA MI GARAGE 2.0 -->
+          <!-- SUB-NAVEGACIÓN INTERNA MI GARAGE -->
           <nav class="compare-subnav" style="margin-top:0; margin-bottom:14px;">
             <button id="garageSubTabBtn-preventive" class="compare-subnav-btn active" onclick="switchGarageSubTab('preventive')">
-              <span>🛡️ 1. Plan Preventivo OEM</span>
+              <span>Plan Preventivo</span>
             </button>
             <button id="garageSubTabBtn-corrective" class="compare-subnav-btn" onclick="switchGarageSubTab('corrective')">
-              <span>🔧 2. Correctivos & Fallas</span>
+              <span>Correctivos y Fallas</span>
             </button>
             <button id="garageSubTabBtn-copilot" class="compare-subnav-btn" onclick="switchGarageSubTab('copilot')">
-              <span>🐾 3. Copiloto Mecánico IA</span>
+              <span>Asistente Técnico</span>
             </button>
             <button id="garageSubTabBtn-blockchain" class="compare-subnav-btn" onclick="switchGarageSubTab('blockchain')">
-              <span>⛓️ 4. Blockchain SHA-256 & TCO</span>
+              <span>Historial Certificado</span>
+            </button>
+            <button id="garageSubTabBtn-analytics" class="compare-subnav-btn" onclick="switchGarageSubTab('analytics')">
+              <span>Gastos y Gráficas</span>
             </button>
           </nav>
 
           <!-- SUBPANE 1: PLAN DE MANTENIMIENTO PREVENTIVO OEM -->
           <div id="garageSubPane-preventive" class="garage-subpane">
+            <div id="garageChassisSchematic" class="chassis-schematic-card"></div>
             <div class="matrix-toolbar" style="margin-bottom:12px;">
               <div style="display:flex; gap:6px; flex-wrap:wrap;" id="maintCategoryPills">
-                <button class="btn btn-sm toggle-pill-active" onclick="setMaintCategoryFilter('ALL', this)" style="padding:5px 10px; font-size:11px;">Todos (16)</button>
-                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('SAFETY', this)" style="padding:5px 10px; font-size:11px;">🚨 Seguridad Vial Crítica</button>
-                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('ENGINE', this)" style="padding:5px 10px; font-size:11px;">🔥 Motor 1.5T & Cadena</button>
-                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('TRANSMISSION', this)" style="padding:5px 10px; font-size:11px;">🕹️ Caja Sincrónica 6MT</button>
-                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('CHASSIS', this)" style="padding:5px 10px; font-size:11px;">🛞 Frenos, Tren & Cauchos</button>
+                <button class="btn btn-sm toggle-pill-active" onclick="setMaintCategoryFilter('ALL', this)" style="padding:5px 10px; font-size:11px;">Todos</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('SAFETY', this)" style="padding:5px 10px; font-size:11px;">Seguridad Vial</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('ENGINE', this)" style="padding:5px 10px; font-size:11px;">Motor</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('TRANSMISSION', this)" style="padding:5px 10px; font-size:11px;">Transmisión</button>
+                <button class="btn btn-secondary btn-sm" onclick="setMaintCategoryFilter('CHASSIS', this)" style="padding:5px 10px; font-size:11px;">Frenos y Chasis</button>
               </div>
               <div style="min-width:190px; flex:1; max-width:260px;">
-                <input type="text" id="maintSearchInput" class="input-field" placeholder="Buscar: 5W-30, bujías, caja, DOT 4..." oninput="renderPreventiveMaintenanceGrid()" style="padding:6px 10px; font-size:11.5px;">
+                <input type="text" id="maintSearchInput" class="input-field" placeholder="Buscar: 5W-30, bujías, frenos..." oninput="renderPreventiveMaintenanceGrid()" style="padding:6px 10px; font-size:12px;">
               </div>
             </div>
             <div id="preventiveMaintenanceGrid" class="maint-grid"></div>
@@ -2861,75 +3767,167 @@ input:focus, select:focus, textarea:focus {
             <div class="card" style="margin-bottom:14px;">
               <div class="card-title">
                 <div style="display:flex; align-items:center; gap:8px;">
-                  <span>🔧 Matriz de Mantenimiento Correctivo y Reparaciones por Síntoma</span>
+                  <span>Mantenimiento Correctivo e Imprevistos</span>
                 </div>
-                <button class="btn btn-primary btn-sm" onclick="openMaintenanceModal('correctivo')" style="padding:6px 12px; font-size:11.5px;">
-                  + Registrar Reparación Correctiva
+                <button class="btn-minimal-action" onclick="openMaintenanceModal('correctivo')">
+                  + Registrar Reparación
                 </button>
               </div>
               <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
-                Selecciona cualquier sistema afectado por desgaste prematuro, baches severos o fallas imprevistas para registrar el repuesto sustituido, la garantía del taller y sellar la intervención en tu cadena SHA-256.
+                Selecciona un sistema afectado para registrar el repuesto sustituido, taller y certificarlo en tu historial.
               </p>
               <div id="correctiveCatalogGrid" class="maint-grid"></div>
             </div>
 
             <div class="card" style="margin-bottom:0;">
               <div class="card-title">
-                <span>📋 Historial de Servicios Preventivos y Correctivos Realizados</span>
-                <span id="serviceLogsCountBadge" class="badge" style="background:var(--accent-dim); color:var(--accent);">0 servicios</span>
+                <span>Historial de Servicios</span>
+                <span id="serviceLogsCountBadge" class="badge" style="background:var(--bg-card-alt); color:var(--text-secondary);">0 servicios</span>
               </div>
               <div id="completedMaintenanceLogsList"></div>
             </div>
           </div>
 
-          <!-- SUBPANE 3: COPILOTO MECÁNICO IA & ESCUDO ANTI-ESTAFAS -->
+          <!-- SUBPANE 3: ASISTENTE TÉCNICO OEM & PROTOCOLO DE TALLER -->
           <div id="garageSubPane-copilot" class="garage-subpane" style="display:none;">
             <div class="card" style="margin-bottom:14px;">
               <div class="card-title">
                 <div style="display:flex; align-items:center; gap:8px;">
-                  <span>🐾 Charulo — Copiloto Ingeniero Jefe de Mantenimiento OEM</span>
+                  <span>Charulo — Asistente Técnico</span>
                 </div>
-                <span class="badge" style="background:var(--accent-dim); color:var(--accent);">System Prompt Maestro Activo</span>
+                <span class="badge" style="background:var(--bg-card-alt); color:var(--text-secondary);">Base OEM</span>
               </div>
               <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
-                Realiza cualquier consulta sobre tu <strong>GWM Haval Jolion Classic 1.5L Turbo Sincrónico (6MT)</strong> o cualquier síntoma mecánico. El Copiloto cruza tu kilometraje actual, régimen de uso y manual OEM para darte una respuesta clínica y protegerte frente al taller.
+                Realiza cualquier consulta sobre tu vehículo activo o síntoma mecánico. El asistente <strong>Charulo</strong> cruza tu kilometraje actual, régimen de uso y manual OEM para ofrecerte diagnóstico preventivo y respaldo frente al taller.
               </p>
 
               <!-- PREGUNTAS RÁPIDAS ESPECIALIZADAS -->
               <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi Haval Jolion 1.5T Sincrónico?')">🌱 Cuidados 100 km a 5.000 km</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Por qué es obligatorio el aceite 5W-30 API SP y cómo protejo el turbo al apagar el motor?')">🛢️ Aceite 5W-30 API SP & Turbo</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cuándo debo cambiar la valvulina de la caja sincrónica 6MT y cómo cuidar el embrague hidráulico?')">🕹️ Caja Sincrónica 6MT & Embrague</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué debo revisar en el primer servicio de 5,000 km en el concesionario para que no me cobren de más?')">🛡️ Escudo 1er Servicio 5.000 km</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cómo afecta la gasolina de Venezuela al motor 1.5L Turbo y qué mantenimiento preventivo requiere?')">⛽ Gasolina VE & Inyección Turbo</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi vehículo nuevo o recién ajustado?')">Rodaje y 1,000 a 5.000 km</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué aceite OEM exacto usa mi motor y cómo cuido distribución o turbo en clima cálido?')">Aceite OEM &amp; Distribución</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cuándo debo cambiar el fluido de mi transmisión (Sincrónica, AT, CVT o DCT)?')">Caja (MT/AT/CVT/DCT)</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué debo revisar al llevar mi vehículo al concesionario o taller para que no me cobren de más?')">Protocolo Taller 5.000 km</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cómo afecta la gasolina de Venezuela a la inyección, bujías y catalizador y qué mantenimiento requiere?')">Gasolina VE &amp; Inyección</span>
               </div>
 
               <div style="display:flex; gap:8px; margin-bottom:14px;">
-                <input type="text" id="copilotQueryInput" class="input-field" placeholder="Pregunta sobre ruidos, fluidos, intervalos OEM, garantía o cotizaciones..." value="¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi Haval Jolion 1.5T Sincrónico?">
-                <button class="btn btn-primary" onclick="runCopilotMaintenanceAdvisor()" style="white-space:nowrap;">Consultar a Charulo</button>
+                <input type="text" id="copilotQueryInput" class="input-field" placeholder="Pregunta sobre ruidos, fluidos, intervalos OEM, garantía o cotizaciones..." value="¿Qué cuidados exactos debo tener con la gasolina y aceite de mi vehículo en Venezuela?">
+                <button class="btn btn-primary" onclick="runCopilotMaintenanceAdvisor()" style="white-space:nowrap;">Consultar Asistente</button>
               </div>
 
               <div id="copilotResponseContainer"></div>
             </div>
           </div>
 
-          <!-- SUBPANE 4: MICRO-BLOCKCHAIN SHA-256 & AUDITORÍA TCO -->
+          <!-- SUBPANE 4: HISTORIAL CERTIFICADO & AUDITORÍA TCO -->
           <div id="garageSubPane-blockchain" class="garage-subpane" style="display:none;">
             <div class="card" style="margin-bottom:0;">
               <div class="card-title">
                 <div style="display:flex; align-items:center; gap:8px;">
-                  <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4M6 15v2a2 2 0 0 0 2 2h2"/></svg>
-                  <span>Micro-Blockchain Criptográfica de Kilometraje y Mantenimiento (SHA-256)</span>
+                  <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  <span>Historial Certificado de Kilometraje y Mantenimiento</span>
                 </div>
                 <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
                   <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                  Auditar Cadena
+                  Auditar Registro
                 </button>
               </div>
               <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-                Cada actualización de odómetro o servicio preventivo/correctivo sella un bloque criptográfico SHA-256 encadenado matemáticamente al anterior. Respalda la garantía de fábrica y certifica el historial real de tu vehículo.
+                Cada actualización de odómetro o servicio preventivo/correctivo queda sellada cronológicamente con un código de verificación único. Respalda la garantía de fábrica y certifica el historial real de tu vehículo.
               </div>
               <div id="blockchainFeed"></div>
+            </div>
+          </div>
+
+          <!-- SUBPANE 5: CONTROL DE GASTOS, GASOLINA & GRÁFICAS FINANCIERAS -->
+          <div id="garageSubPane-analytics" class="garage-subpane" style="display:none;">
+            <div class="card" style="margin-bottom:14px;">
+              <div class="card-title">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  <span>Control Financiero, Consumo de Gasolina & Mantenimientos</span>
+                </div>
+                <span id="analyticsVehicleLabel" class="badge" style="background:var(--accent-dim); color:var(--accent);">Vehículo Activo</span>
+              </div>
+
+              <!-- FILTROS DE PERÍODO -->
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                <div id="analyticsGranularityPills" style="display:flex; gap:6px; flex-wrap:wrap;">
+                  <button class="btn btn-secondary btn-sm toggle-pill-active" data-granularity="global" onclick="setAnalyticsGranularity('global', this)">Global</button>
+                  <button class="btn btn-secondary btn-sm" data-granularity="year" onclick="setAnalyticsGranularity('year', this)">Por Año</button>
+                  <button class="btn btn-secondary btn-sm" data-granularity="semester" onclick="setAnalyticsGranularity('semester', this)">Por Semestre</button>
+                  <button class="btn btn-secondary btn-sm" data-granularity="quarter" onclick="setAnalyticsGranularity('quarter', this)">Por Trimestre</button>
+                  <button class="btn btn-secondary btn-sm" data-granularity="month" onclick="setAnalyticsGranularity('month', this)">Por Mes</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <label class="input-label" style="margin-bottom:0; font-size:10px;">Período:</label>
+                  <select id="analyticsPeriodSelect" class="input-field" style="width:auto; min-width:165px; padding:6px 10px; font-size:12px;" onchange="renderGarageAnalytics()">
+                    <option value="ALL">Todo el Histórico</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- 4 KPI CARDS -->
+              <div class="analytics-kpi-grid">
+                <div class="analytics-kpi-card">
+                  <div class="metric-label">Total Invertido</div>
+                  <div id="analyticsKpiTotalUsd" style="font-size:19px; font-weight:900; font-family:var(--font-mono); color:var(--accent); margin-top:4px;">$0.00</div>
+                  <div id="analyticsKpiTotalBs" style="font-size:10.5px; color:var(--text-muted); font-family:var(--font-mono);">0 Bs. BCV</div>
+                </div>
+                <div class="analytics-kpi-card">
+                  <div class="metric-label">Gasolina Cargada</div>
+                  <div id="analyticsKpiFuelUsd" style="font-size:19px; font-weight:900; font-family:var(--font-mono); color:var(--amber); margin-top:4px;">$0.00</div>
+                  <div id="analyticsKpiFuelLiters" style="font-size:10.5px; color:var(--text-muted); font-family:var(--font-mono);">0.0 L (0 cargas)</div>
+                </div>
+                <div class="analytics-kpi-card">
+                  <div class="metric-label">Prev. + Correctivo</div>
+                  <div id="analyticsKpiMaintUsd" style="font-size:19px; font-weight:900; font-family:var(--font-mono); color:var(--green); margin-top:4px;">$0.00</div>
+                  <div id="analyticsKpiMaintCount" style="font-size:10.5px; color:var(--text-muted); font-family:var(--font-mono);">0 servicios</div>
+                </div>
+                <div class="analytics-kpi-card">
+                  <div class="metric-label">Rendimiento Global</div>
+                  <div id="analyticsKpiEfficiency" style="font-size:19px; font-weight:900; font-family:var(--font-mono); color:var(--text-main); margin-top:4px;">-- km/L</div>
+                  <div id="analyticsKpiCostPerKm" style="font-size:10.5px; color:var(--text-muted); font-family:var(--font-mono);">Agrega km en cargas</div>
+                </div>
+              </div>
+
+              <!-- 3 GRÁFICAS CHART.JS -->
+              <div class="analytics-charts-grid">
+                <div class="chart-box" style="margin-bottom:0;">
+                  <div class="chart-box-title">
+                    <span>Histórico de Gasolina y Rendimiento</span>
+                    <span class="badge" style="background:var(--accent-dim); color:var(--accent);">Litros vs km/L</span>
+                  </div>
+                  <div class="chart-canvas-wrap" style="height:240px;">
+                    <canvas id="analyticsGasChart"></canvas>
+                  </div>
+                </div>
+                <div class="chart-box" style="margin-bottom:0;">
+                  <div class="chart-box-title">
+                    <span>Evolución de Gastos por Período</span>
+                    <span class="badge" style="background:var(--cyan-dim); color:var(--cyan);">USD Apilado</span>
+                  </div>
+                  <div class="chart-canvas-wrap" style="height:240px;">
+                    <canvas id="analyticsExpenseTimeChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chart-box" style="margin-bottom:14px;">
+                <div class="chart-box-title">
+                  <span>Distribución del Gasto Vehicular (Gasolina / Preventivo / Correctivo)</span>
+                  <span class="badge" style="background:var(--green-dim); color:var(--green);">Mix TCO</span>
+                </div>
+                <div class="chart-canvas-wrap" style="height:220px;">
+                  <canvas id="analyticsBreakdownChart"></canvas>
+                </div>
+              </div>
+
+              <!-- TABLA HISTÓRICA POR PERÍODO -->
+              <div style="font-size:12.5px; font-weight:800; color:var(--text-main); margin-bottom:8px;">
+                Resumen Histórico Agrupado por Período
+              </div>
+              <div id="analyticsPeriodTableWrap" style="overflow-x:auto;"></div>
             </div>
           </div>
         </main>
@@ -2971,7 +3969,7 @@ input:focus, select:focus, textarea:focus {
 
       <div class="input-group" style="margin-bottom: 12px;">
         <label class="input-label">Correo Electrónico</label>
-        <input type="email" id="authEmail" class="input-field" placeholder="piloto@charuautos.com">
+        <input type="email" id="authEmail" class="input-field" placeholder="piloto@bajokapot.com">
       </div>
       
       <div class="input-group" style="margin-bottom: 20px;">
@@ -2990,20 +3988,20 @@ input:focus, select:focus, textarea:focus {
     </div>
   </div>
 
-  <!-- MODAL: ACTUALIZAR ODÓMETRO (MINADO SHA-256) -->
+  <!-- MODAL: ACTUALIZAR ODÓMETRO (HISTORIAL CERTIFICADO) -->
   <div id="odometerModal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
         <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
           <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
-          <span>Actualizar Odómetro (Minado SHA-256)</span>
+          <span>Actualizar Odómetro Verificado</span>
         </div>
         <button class="close-btn" onclick="closeModal('odometerModal')">&times;</button>
       </div>
       <div id="fraudAlert" class="alert-fraud">
         <div style="display:flex; align-items:flex-start; gap:8px;">
           <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <div><strong>ALERTA DE SEGURIDAD CRÍTICA:</strong> El nuevo kilometraje no puede ser inferior al registrado en el último bloque. La regla estricta de monotonicidad bloquea este intento de fraude de odómetro.</div>
+          <div><strong>VALIDACIÓN DE LECTURA:</strong> El nuevo kilometraje no puede ser inferior al registrado en el último comprobante. El Historial Certificado mantiene secuencia progresiva.</div>
         </div>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
@@ -3018,33 +4016,33 @@ input:focus, select:focus, textarea:focus {
         <input type="text" id="odoReasonInput" class="input-field" value="Control de rodaje y asentamiento inicial">
       </div>
       <button class="btn btn-block" onclick="mineOdometerBlock()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
-        <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="8" height="8" rx="1"/><rect x="14" y="9" width="8" height="8" rx="1"/><path d="M10 11h4"/></svg>
-        Minar Bloque Criptográfico
+        <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Guardar en Historial Certificado
       </button>
     </div>
   </div>
 
-  <!-- MODAL: REGISTRAR MANTENIMIENTO PREVENTIVO O CORRECTIVO (SELLADO SHA-256) -->
+  <!-- MODAL: REGISTRAR MANTENIMIENTO PREVENTIVO O CORRECTIVO -->
   <div id="maintenanceModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 540px;">
       <div class="modal-header">
         <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
           <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          <span>Registrar Mantenimiento y Sellar SHA-256</span>
+          <span>Registrar Mantenimiento y Certificar</span>
         </div>
         <button class="close-btn" onclick="closeModal('maintenanceModal')">&times;</button>
       </div>
 
       <div id="maintModalFraudAlert" class="alert-fraud">
-        <strong>ALERTA ANTI-FRAUDE:</strong> El kilometraje del servicio no puede ser menor al odómetro actual registrado en la cadena SHA-256.
+        <strong>VALIDACIÓN DE ODÓMETRO:</strong> El kilometraje del servicio no puede ser menor al odómetro actual registrado en tu Historial Certificado.
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
         <button id="maintTypeBtnPrev" class="btn btn-sm" onclick="setModalMaintenanceType('preventivo')" style="border:1px solid var(--accent); background:var(--accent-dim);">
-          🛡️ Preventivo (Manual OEM)
+          Preventivo (Manual OEM)
         </button>
         <button id="maintTypeBtnCorr" class="btn btn-secondary btn-sm" onclick="setModalMaintenanceType('correctivo')">
-          🔧 Correctivo / Imprevisto
+          Correctivo / Imprevisto
         </button>
       </div>
 
@@ -3053,16 +4051,20 @@ input:focus, select:focus, textarea:focus {
         <select id="maintTaskSelect" class="input-field" onchange="onMaintTaskSelectChange()"></select>
       </div>
 
-      <div id="maintOemWarningBox" style="background:rgba(0, 230, 118, 0.08); border:1px solid rgba(0, 230, 118, 0.3); border-radius:8px; padding:10px 12px; font-size:11.5px; color:var(--text-secondary); margin-bottom:12px; line-height:1.45;"></div>
+      <div id="maintOemWarningBox" style="background:var(--accent-dim); border:1px solid rgba(255, 107, 0, 0.35); border-radius:8px; padding:10px 12px; font-size:11.5px; color:var(--text-secondary); margin-bottom:12px; line-height:1.45;"></div>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:10px;">
         <div class="input-group" style="margin-bottom:0;">
-          <label class="input-label">Kilometraje al Servicio:</label>
+          <label class="input-label">Km al Servicio:</label>
           <input type="number" id="maintKmInput" class="input-field" placeholder="Ej: 5000">
         </div>
         <div class="input-group" style="margin-bottom:0;">
-          <label class="input-label">Costo Total ($ USD):</label>
+          <label class="input-label">Costo ($ USD):</label>
           <input type="number" id="maintCostUsdInput" class="input-field" step="0.5" value="65" oninput="calcMaintBcvCost()">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Fecha:</label>
+          <input type="date" id="maintDateInput" class="input-field">
         </div>
       </div>
 
@@ -3084,7 +4086,7 @@ input:focus, select:focus, textarea:focus {
 
       <button class="btn btn-primary btn-block" onclick="saveMaintenanceRecord()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px;">
         <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        Guardar Servicio y Minar Bloque SHA-256
+        Guardar Servicio en Historial Certificado
       </button>
     </div>
   </div>
@@ -3101,7 +4103,7 @@ input:focus, select:focus, textarea:focus {
       </div>
       <div id="workshopChecklistContent" style="font-size:12px; color:var(--text-secondary); line-height:1.55; margin-bottom:14px;"></div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-        <button class="btn btn-secondary" onclick="copyWorkshopChecklist()">📋 Copiar para WhatsApp</button>
+        <button class="btn btn-secondary" onclick="copyWorkshopChecklist()">Copiar para WhatsApp</button>
         <button class="btn btn-primary" onclick="closeModal('workshopChecklistModal')">Entendido</button>
       </div>
     </div>
@@ -3116,6 +4118,16 @@ input:focus, select:focus, textarea:focus {
           <span>Configurar Ficha Mecánica de Mi Vehículo</span>
         </div>
         <button class="close-btn" onclick="closeModal('addVehicleModal')">&times;</button>
+      </div>
+
+      <div style="background:var(--accent-dim); border:1px solid rgba(255, 107, 0, 0.35); border-radius:8px; padding:10px 12px; margin-bottom:12px;">
+        <label class="input-label" style="color:var(--accent); margin-bottom:5px;">Autocompletar desde Catálogo BajoKapot (Opcional):</label>
+        <select id="garagePreloadSelect" class="input-field" onchange="onGaragePreloadSelectChange()">
+          <option value="">-- Ingreso Manual Personalizado (Escribir Marca/Modelo abajo) --</option>
+        </select>
+        <div style="font-size:10.5px; color:var(--text-muted); margin-top:4px;">
+          Elige un vehículo precargado para llenar motor, aceite y distribución automáticamente, o edita los campos libremente con tu Alias/Apodo.
+        </div>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
@@ -3195,24 +4207,37 @@ input:focus, select:focus, textarea:focus {
         </div>
         <button class="close-btn" onclick="closeModal('fuelModal')">&times;</button>
       </div>
-      <div class="input-group">
-        <label class="input-label">Litros Cargados:</label>
-        <input type="number" id="fuelLitersInput" class="input-field" value="40" oninput="calcFuelCost()">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Litros Cargados:</label>
+          <input type="number" id="fuelLitersInput" class="input-field" value="40" step="0.1" oninput="calcFuelCost()">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Tipo de Gasolina:</label>
+          <select id="fuelTypeSelect" class="input-field" onchange="calcFuelCost()">
+            <option value="0.5">Común ($0.5/L)</option>
+            <option value="1.0">Premium ($1.0/L)</option>
+          </select>
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-label">Tipo de Gasolina:</label>
-        <select id="fuelTypeSelect" class="input-field" onchange="calcFuelCost()">
-          <option value="0.5">Gasolina Común ($0.5/L)</option>
-          <option value="1.0">Gasolina Premium ($1.0/L)</option>
-        </select>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Odómetro Km (Opcional):</label>
+          <input type="number" id="fuelKmInput" class="input-field" placeholder="Ej: 15420 (para km/L)" oninput="calcFuelCost()">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Fecha de Carga:</label>
+          <input type="date" id="fuelDateInput" class="input-field">
+        </div>
       </div>
+      <div id="fuelLiveEfficiencyPreview" class="fuel-live-preview" style="display:none;"></div>
       <div class="input-group">
         <label class="input-label">Precio Total en Dólares ($ USD):</label>
-        <input type="number" id="fuelUsdInput" class="input-field" value="20.00" readonly style="background:#131c31; color:var(--cyan);">
+        <input type="number" id="fuelUsdInput" class="input-field" value="20.00" readonly style="background:var(--bg-card-alt); color:var(--cyan); font-weight:700;">
       </div>
       <div class="input-group">
         <label id="fuelBcvLabel" class="input-label">Equivalente Oficial BCV (Calculando...):</label>
-        <input type="text" id="fuelBcvDisplay" class="input-field" value="0.00 Bs." readonly style="background:#131c31; color:var(--amber);">
+        <input type="text" id="fuelBcvDisplay" class="input-field" value="0.00 Bs." readonly style="background:var(--bg-card-alt); color:var(--amber); font-weight:700;">
       </div>
       <button class="btn btn-green btn-block" onclick="saveFuelLog()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
         <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
@@ -3227,15 +4252,15 @@ input:focus, select:focus, textarea:focus {
       <div class="modal-header">
         <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
           <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
-          <span>Suscripción CharuPro (Bimonetaria)</span>
+          <span>Suscripción BajoKapot PRO (Bimonetaria)</span>
         </div>
         <button class="close-btn" onclick="closeModal('checkoutModal')">&times;</button>
       </div>
       <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
-        Desbloquea exportación ilimitada de Certificados Criptográficos oficiales, alertas de fallas preventivas y comparador avanzado.
+        Desbloquea exportación ilimitada de Certificados de Mantenimiento oficiales, alertas preventivas y comparador avanzado.
       </p>
 
-      <!-- SELECTOR DE PLANES CHARUPRO -->
+      <!-- SELECTOR DE PLANES BAJOKAPOT PRO -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
         <button id="planMensualBtn" class="btn btn-sm" onclick="selectProPlan('mensual')" style="padding:8px 6px; display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; border:1px solid var(--accent); background:var(--accent-dim);">
           <span style="font-size:10px; color:var(--cyan); text-transform:uppercase; font-weight:800;">Plan Mensual</span>
@@ -3270,11 +4295,11 @@ input:focus, select:focus, textarea:focus {
 
       <!-- PAGO MÓVIL FORM -->
       <div id="pagoMovilPane">
-        <div style="background: rgba(0,242,254,0.06); padding:10px 12px; border-radius:8px; font-size:11px; margin-bottom:12px; border:1px solid rgba(0,242,254,0.2);">
+        <div style="background: var(--accent-dim); padding:10px 12px; border-radius:8px; font-size:11px; margin-bottom:12px; border:1px solid rgba(255, 107, 0, 0.25);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <strong>Datos Receptores Charu motorhub:</strong>
+            <strong>Datos Receptores BAJOKAPOT:</strong>
             <button class="btn btn-secondary btn-sm" onclick="copyPagoMovilData()" id="copyPmBtn" style="padding:2px 7px; font-size:10px;">
-              📋 Copiar Datos
+              Copiar Datos
             </button>
           </div>
           • Banco: <strong>Banco de Venezuela (0102)</strong><br>
@@ -3314,7 +4339,7 @@ input:focus, select:focus, textarea:focus {
         <div style="display:flex; flex-direction:column; gap:6px;">
           <button class="btn btn-green btn-block" onclick="processPagoMovil()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:10px;">
             <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Validar y Activar CharuPro
+            Validar y Activar BajoKapot PRO
           </button>
           <button class="btn btn-secondary btn-block" onclick="sendWhatsAppConfirmation()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:8px; font-size:11.5px;">
             <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
@@ -3325,7 +4350,7 @@ input:focus, select:focus, textarea:focus {
 
       <!-- BINANCE PAY FORM -->
       <div id="binancePane" style="display:none; text-align:center;">
-        <div style="background: var(--bg-card-alt); padding:14px; border-radius:12px; margin-bottom:12px; border:1px solid rgba(255,183,3,0.3);">
+        <div style="background: var(--bg-card-alt); padding:14px; border-radius:12px; margin-bottom:12px; border:1px solid rgba(255,184,0,0.3);">
           <div style="color:var(--amber); font-weight:800; font-size:12px; margin-bottom:4px; text-transform:uppercase;">Binance Pay Instantáneo (Zero Fee)</div>
           <div id="binanceAmountDisplay" style="font-size:22px; font-weight:900; color: var(--text-main); margin-bottom:4px;">4.99 USDT</div>
           <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">Red Binance Pay (Cero comisión de gas)</div>
@@ -3376,10 +4401,10 @@ input:focus, select:focus, textarea:focus {
           <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:6px;">
             <span style="font-size:11px; font-family:var(--font-mono); color:var(--cyan);">Pay ID: <strong>849201948</strong></span>
             <button class="btn btn-secondary btn-sm" onclick="copyBinancePayId()" id="copyBinanceBtn" style="padding:2px 7px; font-size:10px;">
-              📋 Copiar ID
+              Copiar ID
             </button>
           </div>
-          <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted);">Alias: charumotorhub@binance</div>
+          <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted);">Alias: bajokapot@binance</div>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -3389,7 +4414,7 @@ input:focus, select:focus, textarea:focus {
           </a>
           <button class="btn btn-amber btn-block" onclick="processBinancePay()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:10px;">
             <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Confirmar y Activar CharuPro
+            Confirmar y Activar BajoKapot PRO
           </button>
         </div>
       </div>
@@ -3398,25 +4423,26 @@ input:focus, select:focus, textarea:focus {
 
   <!-- PANTALLA Y MODAL DE CARGA: LECTURA DE FICHAS TÉCNICAS (IA GEMINI MULTIMODAL) -->
   <div id="pdfLoadingModal" class="modal-backdrop" style="z-index: 99999;">
-    <div class="modal-box" style="text-align: center; max-width: 440px; padding: 32px 24px; border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);">
-      <!-- ANIMACIÓN RADAR AUTOMOTRIZ DE IA -->
-      
-      <!-- MOTOR CHARUAUTOS ANIMADO -->
+    <div class="modal-box" style="text-align: center; max-width: 440px; padding: 32px 24px; border-color: rgba(255, 107, 0, 0.45); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);">
+      <div style="display:flex; justify-content:center; margin-bottom:10px;">
+        <img src="bajokapot-icon.png" alt="BAJOKAPOT" style="width:42px; height:42px; object-fit:contain; filter:drop-shadow(0 0 10px var(--accent-glow));">
+      </div>
+      <!-- MOTOR BAJOKAPOT ANIMADO -->
       <svg class="charu-engine-loader" viewBox="0 0 100 100" stroke="var(--text-main)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
         <path d="M 33 50 C 40 45, 60 45, 67 50 C 80 55, 85 72, 72 82 C 64 88, 55 83, 50 80 C 45 83, 36 88, 28 82 C 15 72, 20 55, 33 50 Z" />
         
         <g class="engine-gear">
-          <circle cx="50" cy="67" r="10" stroke-dasharray="3 4" stroke-width="3" stroke="var(--green)" />
-          <circle cx="50" cy="67" r="5.5" stroke-width="2" stroke="var(--green)" />
+          <circle cx="50" cy="67" r="10" stroke-dasharray="3 4" stroke-width="3" stroke="var(--accent)" />
+          <circle cx="50" cy="67" r="5.5" stroke-width="2" stroke="var(--amber)" />
         </g>
         
         <g fill="none">
           <g transform="translate(18, 48) rotate(-48)">
             <g class="engine-piston piston-1">
               <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--accent)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--amber)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--accent)"/>
               <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
               <line x1="2.5" y1="-2" x2="2.5" y2="8" />
             </g>
@@ -3424,9 +4450,9 @@ input:focus, select:focus, textarea:focus {
           <g transform="translate(36, 32) rotate(-16)">
             <g class="engine-piston piston-2">
               <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--accent)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--amber)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--accent)"/>
               <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
               <line x1="2.5" y1="-2" x2="2.5" y2="8" />
             </g>
@@ -3434,9 +4460,9 @@ input:focus, select:focus, textarea:focus {
           <g transform="translate(64, 32) rotate(16)">
             <g class="engine-piston piston-3">
               <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--accent)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--amber)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--accent)"/>
               <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
               <line x1="2.5" y1="-2" x2="2.5" y2="8" />
             </g>
@@ -3444,9 +4470,9 @@ input:focus, select:focus, textarea:focus {
           <g transform="translate(82, 48) rotate(48)">
             <g class="engine-piston piston-4">
               <rect x="-7" y="-20" width="14" height="18" rx="2"/>
-              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--green)" stroke-width="2"/>
-              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--green)" stroke-width="2"/>
-              <circle cx="0" cy="-4" r="1" stroke="var(--green)"/>
+              <line x1="-7" y1="-15" x2="7" y2="-15" stroke="var(--accent)" stroke-width="2"/>
+              <line x1="-7" y1="-10" x2="7" y2="-10" stroke="var(--amber)" stroke-width="2"/>
+              <circle cx="0" cy="-4" r="1" stroke="var(--accent)"/>
               <line x1="-2.5" y1="-2" x2="-2.5" y2="8" />
               <line x1="2.5" y1="-2" x2="2.5" y2="8" />
             </g>
@@ -3455,15 +4481,15 @@ input:focus, select:focus, textarea:focus {
       </svg>
 
       <div style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; letter-spacing: -0.3px; display:flex; align-items:center; justify-content:center; gap:8px;">
-        <span>✨ Procesando Fichas Técnicas</span>
+        <span>Escáner BajoKapot · Fichas Técnicas</span>
       </div>
-      <div id="pdfLoadingFilename" style="font-size: 12px; font-family: var(--font-mono); color: var(--cyan); margin-bottom: 16px; word-break: break-all; min-height: 20px;">
+      <div id="pdfLoadingFilename" style="font-size: 12px; font-family: var(--font-mono); color: var(--amber); margin-bottom: 16px; word-break: break-all; min-height: 20px;">
         Iniciando motor de lectura...
       </div>
 
-      <!-- BARRA DE PROGRESO DINÁMICA CON GRADIENTE COCKPIT -->
+      <!-- BARRA DE PROGRESO DINÁMICA CON GRADIENTE BAJOKAPOT -->
       <div style="background: var(--bg-card-alt); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid var(--border-medium);">
-        <div id="pdfLoadingProgressBar" style="width: 20%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 99px; transition: width 0.35s ease;"></div>
+        <div id="pdfLoadingProgressBar" style="width: 20%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--amber)); border-radius: 99px; transition: width 0.35s ease;"></div>
       </div>
 
       <!-- DETALLE DE ESTADO TÉCNICO EN VIVO -->
@@ -3471,13 +4497,13 @@ input:focus, select:focus, textarea:focus {
         [1/3] Extrayendo estructura y capas del documento...
       </div>
 
-      <!-- TARJETA INFORMATIVA DE LA ARQUITECTURA HÍBRIDA -->
-      <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 11px; color: var(--text-muted); text-align: left; line-height: 1.5;">
-        <div style="display: flex; align-items: center; gap: 6px; color: var(--cyan); font-weight: 700; margin-bottom: 4px;">
-          <span>⚡ Motor IA Gemini Multimodal</span>
-          <span style="font-size:9.5px; font-family:var(--font-mono); background:rgba(56,189,248,0.15); padding:1px 5px; border-radius:3px;">Activo</span>
+      <!-- TARJETA INFORMATIVA DE LA ARQUITECTURA DE LECTURA -->
+      <div style="background: var(--accent-dim); border: 1px solid rgba(255, 107, 0, 0.25); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 11px; color: var(--text-muted); text-align: left; line-height: 1.5;">
+        <div style="display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">
+          <span>Lectura Automática de Ficha Técnica</span>
+          <span style="font-size:9.5px; font-family:var(--font-mono); background:var(--accent-dim); padding:1px 5px; border-radius:3px;">Activo</span>
         </div>
-        El copiloto lee semánticamente potencia (HP), torque (Nm), despeje al suelo, maleta y tren motriz para garantizar que no existan discrepancias en tu comparativa.
+        El analizador interpreta potencia (HP), torque (Nm), despeje al suelo, maleta y tren motriz para garantizar comparativas sin discrepancias.
       </div>
     </div>
   </div>
@@ -3493,7 +4519,7 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261021_garage_v2"></script>
+  <script src="app.js?v=20261113_bajokapot_v5"></script>
   <script type="module" src="auth.js"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
@@ -3507,6 +4533,27 @@ input:focus, select:focus, textarea:focus {
       }
     }, 1000);
   </script>
+
+  <!-- BOTÓN FLOTANTE DE ACCIÓN RÁPIDA (QUICK-ACTION FAB) -->
+  <div id="quickFabWrap" class="quick-fab-wrap">
+    <div id="quickFabMenu" class="quick-fab-menu">
+      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openFuelModal();">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+        <span>Cargar Gasolina</span>
+      </button>
+      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openMaintenanceModal('preventivo');">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>Registrar Servicio</span>
+      </button>
+      <button type="button" class="quick-fab-item" onclick="toggleQuickFab(false); openOdometerModal();">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
+        <span>Actualizar Odómetro</span>
+      </button>
+    </div>
+    <button type="button" class="quick-fab-trigger" onclick="toggleQuickFab()" aria-label="Accesos rápidos de vehículo" title="Acciones rápidas">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </div>
 
 </body>
 </html>

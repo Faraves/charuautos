@@ -84,6 +84,8 @@ window.syncUserDataToCloud = async () => {
 
   const dataToSync = {
     fuelHistory: JSON.parse(localStorage.getItem("charu_fuel_history") || "[]"),
+    maintenanceLogs: JSON.parse(localStorage.getItem("charu_maintenance_logs") || "[]"),
+    maintRegime: localStorage.getItem("charu_maint_regime") || "severe",
     savedComparisons: JSON.parse(localStorage.getItem("charu_saved_comparisons") || "[]"),
     activeVehicle: JSON.parse(localStorage.getItem("charu_active_vehicle") || "null"),
     lastSync: new Date().toISOString()
@@ -91,24 +93,55 @@ window.syncUserDataToCloud = async () => {
 
   try {
     await setDoc(doc(db, "users", user.uid), dataToSync, { merge: true });
-    console.log("☁️ Respaldado en la nube de CharuAutos.");
+    console.log("☁️ Respaldado en la nube de BajoKapot.");
   } catch (e) {
     console.error("Error sincronizando a la nube:", e);
   }
 };
+
+function mergeUniqueArrays(localArr, cloudArr) {
+  const map = new Map();
+  [...cloudArr, ...localArr].forEach(item => {
+    const sig = item && typeof item === "object"
+      ? (item.id ? String(item.id) + "|" + (item.date || "") + "|" + (item.cost || item.usd || "") : JSON.stringify(item))
+      : String(item);
+    map.set(sig, item);
+  });
+  return Array.from(map.values());
+}
 
 window.downloadUserDataFromCloud = async (user) => {
   try {
     const docSnap = await getDoc(doc(db, "users", user.uid));
     if (docSnap.exists()) {
       const data = docSnap.data();
-      if(data.fuelHistory) localStorage.setItem("charu_fuel_history", JSON.stringify(data.fuelHistory));
-      if(data.savedComparisons) localStorage.setItem("charu_saved_comparisons", JSON.stringify(data.savedComparisons));
-      if(data.activeVehicle) localStorage.setItem("charu_active_vehicle", JSON.stringify(data.activeVehicle));
-      
-      // Refrescar la UI
-      if(typeof renderFuelHistory === "function") renderFuelHistory();
-      console.log("⬇️ Historial descargado de la nube.");
+
+      if (Array.isArray(data.fuelHistory) && data.fuelHistory.length > 0) {
+        const localFuel = JSON.parse(localStorage.getItem("charu_fuel_history") || "[]");
+        localStorage.setItem("charu_fuel_history", JSON.stringify(localFuel.length ? mergeUniqueArrays(localFuel, data.fuelHistory) : data.fuelHistory));
+      }
+      if (Array.isArray(data.maintenanceLogs) && data.maintenanceLogs.length > 0) {
+        const localMaint = JSON.parse(localStorage.getItem("charu_maintenance_logs") || "[]");
+        localStorage.setItem("charu_maintenance_logs", JSON.stringify(localMaint.length ? mergeUniqueArrays(localMaint, data.maintenanceLogs) : data.maintenanceLogs));
+      }
+      if (data.maintRegime && !localStorage.getItem("charu_maint_regime")) {
+        localStorage.setItem("charu_maint_regime", data.maintRegime);
+      }
+      if (Array.isArray(data.savedComparisons) && data.savedComparisons.length > 0) {
+        const localComp = JSON.parse(localStorage.getItem("charu_saved_comparisons") || "[]");
+        localStorage.setItem("charu_saved_comparisons", JSON.stringify(localComp.length ? mergeUniqueArrays(localComp, data.savedComparisons) : data.savedComparisons));
+      }
+      if (data.activeVehicle && !localStorage.getItem("charu_active_vehicle")) {
+        localStorage.setItem("charu_active_vehicle", JSON.stringify(data.activeVehicle));
+      }
+
+      // Refrescar la UI sin destruir el estado actual
+      if (typeof renderGarageVehicleHeader === "function") renderGarageVehicleHeader();
+      if (typeof renderPreventiveMatrix === "function") renderPreventiveMatrix();
+      if (typeof renderFuelHistory === "function") renderFuelHistory();
+      if (typeof renderGarageAnalytics === "function") renderGarageAnalytics();
+      if (typeof renderSavedComparisons === "function") renderSavedComparisons();
+      console.log("⬇️ Historial sincronizado desde la nube de BajoKapot.");
     }
   } catch (e) {
     console.error("Error descargando de la nube:", e);

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Certificado CharuPro - CHARUPRO-AB123CD-20260320</title>
+  <title>Certificado BajoKapot PRO - BKPRO-AB123CD-20260320</title>
   <style>
     @page {
       size: letter portrait;
@@ -17,8 +17,8 @@
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #070a0f;
-      color: #f8fafc;
+      background-color: #14171A;
+      color: #F8FAFC;
       padding: 24px;
       font-size: 12px;
       line-height: 1.5;
@@ -26,42 +26,63 @@
     .cert-card {
       max-width: 820px;
       margin: 0 auto;
-      border: 2px solid rgba(0, 242, 254, 0.4);
+      border: 2px solid rgba(255, 107, 0, 0.45);
       border-radius: 16px;
       padding: 28px;
-      background: linear-gradient(180deg, #0c121d 0%, #06090e 100%);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      background: linear-gradient(180deg, #1E2229 0%, #14171A 100%);
+      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.75);
     }
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 2px solid rgba(0, 242, 254, 0.25);
+      align-items: center;
+      border-bottom: 2px solid rgba(255, 184, 0, 0.28);
       padding-bottom: 18px;
       margin-bottom: 20px;
+      gap: 16px;
     }
-    .brand-title {
-      font-size: 26px;
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-lockup img.logo-dark {
+      height: 54px;
+      width: auto;
+      display: block;
+    }
+    .brand-lockup img.logo-light {
+      height: 54px;
+      width: auto;
+      display: none;
+    }
+    .brand-title-badge {
+      background: linear-gradient(135deg, #FF6B00, #FFB800);
+      color: #14171A;
       font-weight: 900;
-      color: #00f2fe;
-      letter-spacing: -0.5px;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-top: 4px;
     }
-    .brand-title span { color: #ffb703; }
     .brand-sub {
-      color: #94a3b8;
+      color: #9CA3AF;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-top: 3px;
+      margin-top: 4px;
     }
     .cert-badge {
       text-align: right;
     }
     .cert-id-tag {
-      background: rgba(255, 183, 3, 0.15);
-      border: 1px solid #ffb703;
-      color: #ffb703;
+      background: rgba(255, 107, 0, 0.16);
+      border: 1px solid #FF6B00;
+      color: #FFB800;
       padding: 4px 10px;
       border-radius: 6px;
       font-family: monospace;
@@ -70,9 +91,9 @@
       margin-bottom: 4px;
     }
     .status-banner {
-      background: rgba(56, 239, 125, 0.12);
-      border: 1px solid #38ef7d;
-      color: #38ef7d;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid #22C55E;
+      color: #4ADE80;
       padding: 10px 16px;
       border-radius: 10px;
       font-weight: 800;
@@ -84,7 +105,7 @@
     .status-dot {
       width: 10px;
       height: 10px;
-      background: #38ef7d;
+      background: #22C55E;
       border-radius: 50%;
     }
     .grid-2 {
@@ -94,7 +115,7 @@
       margin-bottom: 22px;
     }
     .box {
-      background: #111827;
+      background: #212529;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 16px;
@@ -102,10 +123,10 @@
     .veh-title {
       font-size: 20px;
       font-weight: 800;
-      color: #f8fafc;
+      color: #F8FAFC;
     }
     .veh-sub {
-      color: #ffb703;
+      color: #FFB800;
       font-size: 12px;
       font-weight: 600;
       margin-top: 2px;
@@ -116,27 +137,27 @@
       gap: 12px;
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
-    .m-lbl { font-size: 10px; color: #94a3b8; text-transform: uppercase; }
-    .m-val { font-size: 15px; font-weight: 800; color: #00f2fe; margin-top: 2px; }
+    .m-lbl { font-size: 10px; color: #9CA3AF; text-transform: uppercase; }
+    .m-val { font-size: 15px; font-weight: 800; color: #FF8A00; margin-top: 2px; }
     .score-circle {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(56, 239, 125, 0.08);
-      border: 2px solid #38ef7d;
+      background: rgba(255, 107, 0, 0.1);
+      border: 2px solid #FF6B00;
       border-radius: 12px;
       padding: 14px;
       text-align: center;
     }
-    .score-num { font-size: 40px; font-weight: 900; color: #38ef7d; line-height: 1; }
-    .score-lbl { font-size: 11px; font-weight: 800; color: #38ef7d; margin-top: 6px; letter-spacing: 1px; }
+    .score-num { font-size: 40px; font-weight: 900; color: #FFB800; line-height: 1; }
+    .score-lbl { font-size: 11px; font-weight: 800; color: #FF8A00; margin-top: 6px; letter-spacing: 1px; }
     .table-title {
       font-size: 13px;
       font-weight: 800;
-      color: #e2e8f0;
+      color: #E2E8F0;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -149,12 +170,12 @@
       font-size: 11px;
     }
     th {
-      background: #1e293b;
-      color: #94a3b8;
+      background: #272B33;
+      color: #CBD5E1;
       text-align: left;
       padding: 8px 12px;
       font-weight: 700;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
     .fin-summary {
       display: grid;
@@ -163,7 +184,7 @@
       margin-bottom: 20px;
     }
     .fin-card {
-      background: #111827;
+      background: #212529;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 10px;
       padding: 12px;
@@ -180,43 +201,49 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(0, 242, 254, 0.06);
-      border: 1px dashed #00f2fe;
+      background: rgba(255, 107, 0, 0.08);
+      border: 1px dashed #FF6B00;
       border-radius: 8px;
       padding: 10px 14px;
     }
-    .qr-text { font-size: 10px; color: #cbd5e1; line-height: 1.4; }
-    .qr-url { color: #00f2fe; font-weight: 700; word-break: break-all; }
-    .legal-box { text-align: right; font-size: 9px; color: #64748b; line-height: 1.4; }
+    .qr-text { font-size: 10px; color: #CBD5E1; line-height: 1.4; }
+    .qr-url { color: #FFB800; font-weight: 700; word-break: break-all; }
+    .legal-box { text-align: right; font-size: 9px; color: #9CA3AF; line-height: 1.4; }
 
     @media print {
       body { background-color: #fff !important; color: #111827 !important; padding: 0 !important; }
-      .cert-card { border: 2px solid #0284c7 !important; background: #fff !important; color: #111827 !important; box-shadow: none !important; }
-      .brand-title { color: #0284c7 !important; }
-      .brand-title span { color: #d97706 !important; }
-      .box, .fin-card { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+      .cert-card { border: 2px solid #EA580C !important; background: #fff !important; color: #111827 !important; box-shadow: none !important; }
+      .brand-lockup img.logo-dark { display: none !important; }
+      .brand-lockup img.logo-light { display: block !important; }
+      .box, .fin-card { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
       .veh-title { color: #111827 !important; }
-      .m-val { color: #0284c7 !important; }
-      th { background: #e2e8f0 !important; color: #334155 !important; }
-      td { color: #1f2937 !important; border-bottom-color: #e5e7eb !important; }
-      .status-banner { background: #ecfdf5 !important; color: #047857 !important; border-color: #059669 !important; }
+      .m-val { color: #EA580C !important; }
+      .score-circle { background: #FFF7ED !important; border-color: #EA580C !important; }
+      .score-num, .score-lbl { color: #EA580C !important; }
+      th { background: #E2E8F0 !important; color: #1E293B !important; }
+      td { color: #1F2937 !important; border-bottom-color: #E5E7EB !important; }
+      .status-banner { background: #ECFDF5 !important; color: #047857 !important; border-color: #059669 !important; }
       .status-dot { background: #047857 !important; }
-      .qr-badge { border-color: #0284c7 !important; background: #f0f9ff !important; }
+      .qr-badge { border-color: #EA580C !important; background: #FFF7ED !important; }
       .qr-text { color: #334155 !important; }
-      .qr-url { color: #0284c7 !important; }
+      .qr-url { color: #EA580C !important; }
     }
   </style>
 </head>
 <body>
   <div class="cert-card">
     <div class="header">
-      <div>
-        <div class="brand-title">Charu<span>Autos</span> Pro</div>
-        <div class="brand-sub">Pasaporte Digital Criptográfico de Inspección</div>
+      <div class="brand-lockup">
+        <img src="bajokapot-logo-dark.png" alt="BAJOKAPOT Revisión & Fallas" class="logo-dark">
+        <img src="bajokapot-logo-light.png" alt="BAJOKAPOT Revisión & Fallas" class="logo-light">
+        <div>
+          <span class="brand-title-badge">BajoKapot PRO</span>
+          <div class="brand-sub">Pasaporte Digital Criptográfico de Inspección</div>
+        </div>
       </div>
       <div class="cert-badge">
-        <div class="cert-id-tag">CHARUPRO-AB123CD-20260320</div>
-        <div style="font-size: 10px; color: #64748b;">Emitido: 19/09/2026 15:05:52</div>
+        <div class="cert-id-tag">BKPRO-AB123CD-20260320</div>
+        <div style="font-size: 10px; color: #9CA3AF;">Emitido: 19/09/2026 15:05:52</div>
       </div>
     </div>
 
@@ -244,7 +271,7 @@
       <div class="score-circle">
         <div class="score-num">92</div>
         <div class="score-lbl">SALUD TOTAL</div>
-        <div style="font-size: 9px; color: #94a3b8; margin-top: 4px;">Score Preventivo y Físico</div>
+        <div style="font-size: 9px; color: #9CA3AF; margin-top: 4px;">Score Preventivo y Físico</div>
       </div>
     </div>
 
@@ -259,28 +286,24 @@
         </tr>
       </thead>
       <tbody>
-        
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#0</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">148,500 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-01-10T10:00:00Z</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">2ae943154238d05060b047fd...</td>
-      </tr>
-    
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#1</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">149,200 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-02-15T14:30:00Z</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">038929bfa24c68bb620901b7...</td>
-      </tr>
-    
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#2</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">150,000 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-03-20T18:00:00Z</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #00f2fe; font-size: 11px;">8f0463177d3053541bcd7de3...</td>
-      </tr>
-    
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#0</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">148,500 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2026-01-10T10:00:00Z</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #FFB800; font-size: 11px;">2ae943154238d05060b047fd...</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#1</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">149,200 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2026-02-15T14:30:00Z</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #FFB800; font-size: 11px;">038929bfa24c68bb620901b7...</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">#2</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">150,000 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2026-03-20T18:00:00Z</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: monospace; color: #FFB800; font-size: 11px;">8f0463177d3053541bcd7de3...</td>
+        </tr>
       </tbody>
     </table>
 
@@ -289,17 +312,17 @@
       <div class="fin-card">
         <div class="m-lbl">Costo por Kilómetro</div>
         <div class="m-val">$0.040 USD</div>
-        <div style="font-size: 10px; color: #ffb703;">~1.46 Bs./km (BCV)</div>
+        <div style="font-size: 10px; color: #FFB800;">~1.46 Bs./km (BCV)</div>
       </div>
       <div class="fin-card">
         <div class="m-lbl">Consumo Promedio</div>
         <div class="m-val">12.4 km/L</div>
-        <div style="font-size: 10px; color: #38ef7d;">~597 km por tanque</div>
+        <div style="font-size: 10px; color: #4ADE80;">~597 km por tanque</div>
       </div>
       <div class="fin-card">
         <div class="m-lbl">Inversión en Talleres</div>
         <div class="m-val">$125.00 USD</div>
-        <div style="font-size: 10px; color: #94a3b8;">3 mantenimientos</div>
+        <div style="font-size: 10px; color: #9CA3AF;">3 mantenimientos</div>
       </div>
     </div>
 
@@ -315,44 +338,40 @@
         </tr>
       </thead>
       <tbody>
-        
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Pastillas de Freno Delanteras Cerámicas</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">145,200 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2026-01-15</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">Frenos Los Ruices</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$50.00 USD</td>
-      </tr>
-    
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Limpieza de Inyectores & Filtro Gasolina</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">140,000 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2025-11-20</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">AutoServicios Bello Monte</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$30.00 USD</td>
-      </tr>
-    
-      <tr>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #f8fafc;">Cambio de Aceite 5W-30 Sintético & Filtro</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1;">135,000 km</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">2025-08-10</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #94a3b8;">Taller Particular</td>
-        <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #38ef7d; font-weight: 700;">$45.00 USD</td>
-      </tr>
-    
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">Pastillas de Freno Delanteras Cerámicas</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #CBD5E1;">145,200 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2026-01-15</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">Frenos Los Ruices</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #4ADE80; font-weight: 700;">$50.00 USD</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">Limpieza de Inyectores &amp; Filtro Gasolina</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #CBD5E1;">140,000 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2025-11-20</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">AutoServicios Bello Monte</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #4ADE80; font-weight: 700;">$30.00 USD</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; color: #F8FAFC;">Cambio de Aceite 5W-30 Sintético &amp; Filtro</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #CBD5E1;">135,000 km</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">2025-08-10</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #9CA3AF;">Taller Particular</td>
+          <td style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: right; color: #4ADE80; font-weight: 700;">$45.00 USD</td>
+        </tr>
       </tbody>
     </table>
 
     <div class="footer">
       <div class="qr-badge">
-        <div style="font-size: 24px;">🛡️</div>
+        <img src="bajokapot-icon.png" alt="BajoKapot" style="width:28px;height:28px;object-fit:contain;">
         <div class="qr-text">
           <strong>Validar Certificado en Línea:</strong><br>
-          <span class="qr-url">https://charuautos.com/verify/CHARUPRO-AB123CD-20260320</span>
+          <span class="qr-url">https://bajokapot.com/verify/BKPRO-AB123CD-20260320</span>
         </div>
       </div>
       <div class="legal-box">
-        <strong>Protocolo CharuPro Anti-Estafas</strong><br>
+        <strong>Protocolo BajoKapot PRO Anti-Estafas</strong><br>
         Sellado criptográficamente mediante cadena SHA-256.<br>
         Garantiza la inmutabilidad del kilometraje e historial.
       </div>

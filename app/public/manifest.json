@@ -1,11 +1,12 @@
 {
-  "name": "CharuAutos Motorhub",
-  "short_name": "CharuAutos",
-  "description": "Tu cockpit personal para gesti\u00f3n y diagn\u00f3stico automotriz.",
+  "name": "BAJOKAPOT — Revisión & Fallas",
+  "short_name": "BajoKapot",
+  "description": "Plataforma automotriz integral: Revisión & Fallas, Asesor de Compra, Comparador, Diagnóstico Charulo IA y Control Financiero de Garage.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#071520",
-  "theme_color": "#071520",
+  "background_color": "#14171A",
+  "theme_color": "#14171A",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "assets/icons/icon-192x192.png",

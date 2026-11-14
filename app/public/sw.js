@@ -1,13 +1,18 @@
 /**
- * CharuAutos Service Worker (PWA Offline First)
+ * BAJOKAPOT Service Worker (PWA Offline First)
  * Cache-first para recursos estáticos y fallback offline para navegación.
  */
 
-const CACHE_NAME = 'charuautos-pwa-v3';
+const CACHE_NAME = 'bajokapot-pwa-v4';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
   '/certificado_charupro_muestra.html',
+  '/bajokapot-logo-dark.png',
+  '/bajokapot-logo-light.png',
+  '/bajokapot-wordmark-dark.png',
+  '/bajokapot-wordmark-light.png',
+  '/bajokapot-icon.png',
   '/icon.png',
   '/favicon.png'
 ];
