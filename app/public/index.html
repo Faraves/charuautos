@@ -11,6 +11,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/bajokapot-apple-touch-icon.png?v=7">
   <link rel="manifest" href="manifest.json?v=7">
   <meta name="application-name" content="BajoKapot">
+  <meta name="color-scheme" id="metaColorScheme" content="dark light">
   <meta name="theme-color" id="metaThemeColor" content="#0B0D10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -29,6 +30,7 @@
 
   <style>
     :root {
+      color-scheme: dark;
       /* =========================================================================
          BAJOKAPOT - REVISIÓN & FALLAS (DARK THEME DEFAULT)
       ========================================================================= */
@@ -87,6 +89,7 @@
     }
 
     :root[data-theme="light"] {
+      color-scheme: light;
       --bg-dark: #F1F5F9;
       --bg-carbon: #FFFFFF;
       --bg-card: #FFFFFF;
@@ -2166,6 +2169,7 @@ input:focus, select:focus, textarea:focus {
        SISTEMA MINIMALISTA & FUNCIONAL (BAJOKAPOT v5)
        ========================================================================= */
     :root {
+      color-scheme: dark;
       --bg-void: #0B0D10;
       --bg-dark: #0B0D10;
       --bg-body: #0B0D10;
@@ -2203,6 +2207,7 @@ input:focus, select:focus, textarea:focus {
     }
 
     :root[data-theme="light"] {
+      color-scheme: light;
       --bg-void: #F8F9FA;
       --bg-dark: #F8F9FA;
       --bg-body: #F8F9FA;
@@ -2890,6 +2895,131 @@ input:focus, select:focus, textarea:focus {
       align-items: center;
       gap: 6px;
     }
+    .user-popover-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding-top: 9px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    #userProfilePopover .popover-control-btn {
+      width: 100% !important;
+      height: auto !important;
+      padding: 8px 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 8px !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      border-radius: 7px !important;
+    }
+    #userProfilePopover .pro-pill span,
+    #userProfilePopover #statusText {
+      display: inline !important;
+    }
+    #userProfilePopover .status-badge {
+      display: flex !important;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    #userProfilePopover .status-badge::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* ESTILOS COMPACTOS v8 (TODOS LOS MÓDULOS) */
+    .obd-chips-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .obd-chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .obd-chips-scroll .filter-pill {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+    .compare-slots-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .compare-slot-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+      font-size: 11.5px;
+      font-weight: 600;
+      max-width: 100%;
+    }
+    .compare-slot-remove {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0 2px;
+    }
+    .compare-slot-remove:hover {
+      color: var(--danger);
+    }
+    .compare-drawer {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .compare-drawer[hidden] {
+      display: none !important;
+    }
+    .garage-daily-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      margin: 12px 0 10px;
+    }
+    .garage-daily-actions .btn {
+      padding: 9px 6px !important;
+      font-size: 11.5px !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .garage-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .budget-presets-4col {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+    @media (max-width: 400px) {
+      .budget-presets-4col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .garage-daily-actions .btn {
+        font-size: 10.5px !important;
+        padding: 8px 4px !important;
+      }
+    }
 
     #bajoKapotSplashOverlay {
       position: fixed;
@@ -2953,7 +3083,7 @@ input:focus, select:focus, textarea:focus {
         height: auto !important;
         max-height: 24px !important;
         width: auto !important;
-        max-width: calc(100vw - 185px) !important;
+        max-width: calc(100vw - 110px) !important;
         object-fit: contain !important;
         flex-shrink: 1 !important;
         min-width: 0 !important;
@@ -2995,7 +3125,7 @@ input:focus, select:focus, textarea:focus {
     <div class="bk-splash-track"><div class="bk-splash-fill"></div></div>
   </div>
 
-<div id="versionBanner" style="background: linear-gradient(90deg, var(--accent), var(--amber)); color: #14171A; display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 12px; font-family: var(--font-main); font-weight: 800; z-index: 9999; position: relative;">
+<div id="versionBanner" style="display: none; background: linear-gradient(90deg, var(--accent), var(--amber)); color: #14171A; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 12px; font-family: var(--font-main); font-weight: 800; z-index: 9999; position: relative;">
     <span style="flex-grow: 1; text-align: center;">BAJOKAPOT v4.0 — Revisión &amp; Fallas · Catálogo Multiversiones VE &amp; Gráficas TCO</span>
     <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: #14171A; cursor: pointer; font-weight: bold; padding: 0 4px; font-size: 14px;">&times;</button>
   </div>
@@ -3013,40 +3143,45 @@ input:focus, select:focus, textarea:focus {
       
 
       <div class="header-actions">
-        <span id="proBadge" class="pro-pill pro-free" onclick="openCheckoutModal()">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
-          <span>BajoKapot PRO</span>
-        </span>
-        
-        <span id="statusBadge" class="status-badge status-online" onclick="toggleOnlineStatus()" title="Clic para alternar simulación online/offline" style="cursor:pointer;">
-          <span class="status-indicator"></span>
-          <span id="statusText">En línea</span>
-        </span>
-
-        <button class="btn btn-outline" id="themeToggleBtn" style="padding: 10px; width: 40px;" aria-label="Cambiar tema">
-          <svg id="themeIcon" class="cockpit-svg" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-
-        <button type="button" class="btn btn-outline" id="authBtn" onclick="toggleUserProfilePopover(event)" title="Cuenta de usuario" aria-label="Cuenta de usuario" aria-expanded="false">
+        <button type="button" class="btn btn-outline" id="authBtn" onclick="toggleUserProfilePopover(event)" title="Cuenta y ajustes" aria-label="Cuenta y ajustes" aria-expanded="false">
           <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </button>
 
         <div id="userProfilePopover" hidden>
-          <div class="user-popover-head">
-            <span class="user-popover-avatar">
-              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </span>
-            <div class="user-popover-meta">
-              <div class="user-popover-name">Modo Local</div>
-              <div class="user-popover-email">Sin cuenta vinculada</div>
+          <div id="userPopoverAuthSection">
+            <div class="user-popover-head">
+              <span class="user-popover-avatar">
+                <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <div class="user-popover-meta">
+                <div class="user-popover-name">Modo Local</div>
+                <div class="user-popover-email">Sin cuenta vinculada</div>
+              </div>
             </div>
+            <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
+            <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
+              Iniciar sesión / Registrarse
+            </button>
           </div>
-          <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
-          <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
-            Iniciar sesión / Registrarse
-          </button>
+
+          <div class="user-popover-controls">
+            <button type="button" class="btn btn-outline popover-control-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar tema">
+              <svg id="themeIcon" class="cockpit-svg" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <span id="themeLabelText">Modo Oscuro</span>
+            </button>
+
+            <span id="proBadge" class="pro-pill pro-free popover-control-btn" onclick="toggleUserProfilePopover(false); openCheckoutModal()">
+              <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20v2H2zM3 15l4-8 5 6 5-6 4 8H3z"/></svg>
+              <span>BajoKapot PRO</span>
+            </span>
+
+            <span id="statusBadge" class="status-badge status-online popover-control-btn" onclick="toggleOnlineStatus()" title="Clic para alternar simulación online/offline">
+              <span class="status-indicator"></span>
+              <span id="statusText">En línea</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -3369,140 +3504,128 @@ input:focus, select:focus, textarea:focus {
     <!-- TAB 1: MATCHMAKER -->
     <div id="tab-matchmaker" class="tab-pane active">
       <div class="matchmaker-split-layout">
-        <!-- SIDEBAR DE FILTROS & CONTROL TELEMÉTRICO (STICKY EN PC) -->
+        <!-- SIDEBAR DE FILTROS COMPACTOS -->
         <aside class="matchmaker-sidebar">
-          <div class="card" style="margin-bottom:0; padding:16px 18px;">
-            <div class="card-title" style="margin-bottom:6px;">
+          <div class="card" style="margin-bottom:0; padding:14px 16px;">
+            <div class="card-title" style="margin-bottom:8px;">
               <div style="display:flex; align-items:center; gap:8px;">
-                <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
-                <span>Filtros Asesor de Compra</span>
+                <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/></svg>
+                <span>Asesor de Compra</span>
               </div>
               <span class="badge" style="background: var(--cyan-dim); color: var(--cyan); font-size:10px; padding:2px 7px;">Catálogo VE</span>
             </div>
-            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.3;">
-              Calcula la compatibilidad según presupuesto en USD, baches severos y repuestos en el país.
-            </p>
 
             <!-- BUSCADOR POR MODELO O MARCA -->
             <div style="margin-bottom:10px;">
-              <input type="text" id="advisorSearchInput" class="input-field" placeholder="Buscar marca, modelo o versión (ej: Corolla, Jolion, CVT, 4x4...)" oninput="updateMatchmaker()" style="padding:8px 12px; font-size:12px;">
+              <input type="text" id="advisorSearchInput" class="input-field" placeholder="Buscar marca, modelo o versión (ej: Corolla, Jolion, 4x4...)" oninput="updateMatchmaker()" style="padding:8px 12px; font-size:12.5px;">
             </div>
 
-            <!-- CONTROL DE PRESUPUESTO AJUSTADO (USADOS Y 0 KM EN VENEZUELA) -->
-            <div class="input-group" style="background: var(--bg-card); padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-medium); margin-bottom: 10px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom: 8px;">
-                <span class="input-label" style="margin-bottom:0; font-size:10.5px;">Presupuesto Máximo:</span>
-                <div style="display:flex; align-items:center; gap:5px;">
-                  <span style="color:var(--cyan); font-weight:900; font-size:14px;">$</span>
+            <!-- PRESUPUESTO COMPACTO -->
+            <div style="background: var(--bg-card-alt); padding: 9px 11px; border-radius: 9px; border: 1px solid var(--border-subtle); margin-bottom: 8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom: 6px;">
+                <span class="input-label" style="margin-bottom:0; font-size:11px;">Presupuesto máx:</span>
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <span style="color:var(--text-main); font-weight:700; font-size:13px;">$</span>
                   <input type="number" id="budgetNumber" min="1500" max="75000" step="500" value="25000" 
-                         class="input-field" style="width: 95px; padding: 4px 6px; text-align:right; font-weight:800; color:var(--cyan); font-size:14px;"
+                         class="input-field" style="width: 84px; padding: 3px 6px; text-align:right; font-weight:700; color:var(--text-main); font-size:13px;"
                          oninput="syncBudgetInput(this.value)">
-                  <span style="font-size:10.5px; color:var(--text-muted); font-weight:700;">USD</span>
+                  <span style="font-size:10.5px; color:var(--text-muted); font-weight:600;">USD</span>
                 </div>
               </div>
 
               <input type="range" id="budgetRange" min="1500" max="75000" step="500" value="25000" 
-                     style="width:100%; accent-color: var(--accent); margin-bottom: 8px;" 
+                     style="width:100%; accent-color: var(--accent); margin-bottom: 7px;" 
                      oninput="syncBudgetInput(this.value)">
 
-              <!-- BOTONES DE ACCESO RÁPIDO DE PRESUPUESTO -->
-              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-bottom: 8px;">
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(6500)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
-                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $6,500 (Usado)
-                </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(18000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
-                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $18,000 (0 km)
-                </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(28000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
-                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  ≤ $28,000 (Sedán/SUV)
-                </button>
-                <button class="btn btn-secondary btn-sm" onclick="setBudgetPreset(75000)" style="display:inline-flex; align-items:center; justify-content:flex-start; gap:4px; padding: 4px 6px; font-size: 10.5px;">
-                  <svg class="cockpit-svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  Todos ($75K)
-                </button>
-              </div>
-
-              <!-- CHECKBOX DE FILTRO ESTRICTO -->
-              <label style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--cyan); cursor:pointer; margin-bottom:0;">
-                <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--accent); width:14px; height:14px;">
-                <span style="display:inline-flex; align-items:center; gap:4px;">
-                  <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  <strong>Filtro estricto:</strong> Ocultar fuera de presupuesto
-                </span>
-              </label>
-            </div>
-
-            <!-- CONDICIÓN, SEGMENTO Y TRANSMISIÓN -->
-            <div class="input-label" style="margin-top:8px; margin-bottom:5px; font-size:10.5px;">Condición del Vehículo:</div>
-            <div class="filter-pills" id="conditionFilterPills" style="gap:5px; margin-bottom:8px;">
-              <div class="filter-pill active" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('ALL', this)">Todos</div>
-              <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('0km', this)">0 km Nuevos</div>
-              <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('usado', this)">Usados VE</div>
-            </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
-              <div>
-                <div class="input-label" style="margin-bottom:4px; font-size:10px;">Segmento:</div>
-                <select id="segmentFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
-                  <option value="ALL">Todos</option>
-                  <option value="Citycar & Hatch">Citycar / Hatch</option>
-                  <option value="Sedán">Sedán</option>
-                  <option value="SUV & Crossover">SUV / Crossover</option>
-                  <option value="Pickup & 4x4">Pickup / 4x4</option>
-                </select>
-              </div>
-              <div>
-                <div class="input-label" style="margin-bottom:4px; font-size:10px;">Transmisión:</div>
-                <select id="transFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
-                  <option value="ALL">Todas (MT/AT)</option>
-                  <option value="MT">Sincrónica (MT)</option>
-                  <option value="AUTO">Automática / CVT / DCT</option>
-                </select>
+              <div class="budget-presets-4col">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setBudgetPreset(6500)" style="padding: 4px; font-size: 10.5px; justify-content:center;">≤ $6.5K</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setBudgetPreset(18000)" style="padding: 4px; font-size: 10.5px; justify-content:center;">≤ $18K</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setBudgetPreset(28000)" style="padding: 4px; font-size: 10.5px; justify-content:center;">≤ $28K</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setBudgetPreset(75000)" style="padding: 4px; font-size: 10.5px; justify-content:center;">Todos</button>
               </div>
             </div>
 
-            <div class="input-label" style="margin-top:10px; margin-bottom:6px; font-size:10.5px;">Condición Vial Predominante:</div>
-            <div class="filter-pills filter-pills-grid" id="roadFilterPills" style="margin-bottom:10px;">
-              <div class="filter-pill active" onclick="setRoadFilter('severo', this)" title="Baches Severos / Huecos">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 18h4l3-6 4 9 4-6 5 3"/></svg>
-                <span>Baches Severos</span>
-              </div>
-              <div class="filter-pill" onclick="setRoadFilter('moderado', this)" title="Caracas Urbana / Tráfico">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 21h18M6 21V9a2 2 0 0 1 2-2h2v14M14 21V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v17"/></svg>
-                <span>Caracas Urbana</span>
-              </div>
-              <div class="filter-pill" onclick="setRoadFilter('autopista', this)" title="Autopista Plana">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M4 21l4-18M20 21l-4-18M12 5v3M12 11v3M12 17v3"/></svg>
-                <span>Autopista Plana</span>
-              </div>
-              <div class="filter-pill" onclick="setRoadFilter('montana', this)" title="Subidas / Los Teques">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 20l9-15 4 7 2-3 5 11H2z"/></svg>
-                <span>Subidas / Teques</span>
-              </div>
-            </div>
+            <!-- ACORDEÓN DE FILTROS AVANZADOS -->
+            <details id="advisorFiltersAccordion" class="maint-details-accordion" style="border-top:none; padding-top:2px; margin-top:0;">
+              <summary style="padding:4px 2px;">
+                <span>Filtros (Condición, Caja, Vía y Uso)</span>
+                <span id="advisorActiveFiltersSummary" style="font-size:11px; color:var(--text-muted); font-weight:600;">Todos · Baches · Diario ▾</span>
+              </summary>
+              <div class="maint-details-body" style="padding-top:6px;">
+                <label style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-secondary); cursor:pointer; margin-bottom:4px;">
+                  <input type="checkbox" id="strictBudgetCheck" onchange="toggleStrictBudget(this)" style="accent-color:var(--accent); width:14px; height:14px;">
+                  <span>Ocultar vehículos fuera de presupuesto</span>
+                </label>
 
-            <div class="input-label" style="margin-top:6px; margin-bottom:6px; font-size:10.5px;">Uso Principal Planeado:</div>
-            <div class="filter-pills filter-pills-grid" id="usageFilterPills" style="margin-bottom:0;">
-              <div class="filter-pill active" onclick="setUsageFilter('diario', this)" title="Uso Diario / Económico">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
-                <span>Uso Diario / Econ.</span>
+                <div class="input-label" style="margin-top:2px; margin-bottom:3px; font-size:10.5px;">Condición del Vehículo:</div>
+                <div class="filter-pills" id="conditionFilterPills" style="gap:5px; margin-bottom:4px;">
+                  <div class="filter-pill active" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('ALL', this)">Todos</div>
+                  <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('0km', this)">0 km Nuevos</div>
+                  <div class="filter-pill" style="padding:5px 10px; font-size:11px;" onclick="setConditionFilter('usado', this)">Usados VE</div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:4px;">
+                  <div>
+                    <div class="input-label" style="margin-bottom:3px; font-size:10px;">Segmento:</div>
+                    <select id="segmentFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
+                      <option value="ALL">Todos</option>
+                      <option value="Citycar & Hatch">Citycar / Hatch</option>
+                      <option value="Sedán">Sedán</option>
+                      <option value="SUV & Crossover">SUV / Crossover</option>
+                      <option value="Pickup & 4x4">Pickup / 4x4</option>
+                    </select>
+                  </div>
+                  <div>
+                    <div class="input-label" style="margin-bottom:3px; font-size:10px;">Transmisión:</div>
+                    <select id="transFilterSelect" class="input-field" style="padding:6px 8px; font-size:11.5px;" onchange="updateMatchmaker()">
+                      <option value="ALL">Todas (MT/AT)</option>
+                      <option value="MT">Sincrónica (MT)</option>
+                      <option value="AUTO">Automática / CVT / DCT</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="input-label" style="margin-top:2px; margin-bottom:3px; font-size:10.5px;">Condición Vial Predominante:</div>
+                <div class="filter-pills filter-pills-grid" id="roadFilterPills" style="margin-bottom:4px;">
+                  <div class="filter-pill active" onclick="setRoadFilter('severo', this)" title="Baches Severos / Huecos">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 18h4l3-6 4 9 4-6 5 3"/></svg>
+                    <span>Baches Severos</span>
+                  </div>
+                  <div class="filter-pill" onclick="setRoadFilter('moderado', this)" title="Caracas Urbana / Tráfico">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 21h18M6 21V9a2 2 0 0 1 2-2h2v14M14 21V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v17"/></svg>
+                    <span>Caracas Urbana</span>
+                  </div>
+                  <div class="filter-pill" onclick="setRoadFilter('autopista', this)" title="Autopista Plana">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M4 21l4-18M20 21l-4-18M12 5v3M12 11v3M12 17v3"/></svg>
+                    <span>Autopista Plana</span>
+                  </div>
+                  <div class="filter-pill" onclick="setRoadFilter('montana', this)" title="Subidas / Los Teques">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 20l9-15 4 7 2-3 5 11H2z"/></svg>
+                    <span>Subidas / Teques</span>
+                  </div>
+                </div>
+
+                <div class="input-label" style="margin-top:2px; margin-bottom:3px; font-size:10.5px;">Uso Principal Planeado:</div>
+                <div class="filter-pills filter-pills-grid" id="usageFilterPills" style="margin-bottom:0;">
+                  <div class="filter-pill active" onclick="setUsageFilter('diario', this)" title="Uso Diario / Económico">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
+                    <span>Uso Diario / Econ.</span>
+                  </div>
+                  <div class="filter-pill" onclick="setUsageFilter('taxi', this)" title="Yummy / Ridery / Taxi">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="10" width="18" height="9" rx="2"/><path d="M7 10l2-5h6l2 5M5 19v2M19 19v2"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
+                    <span>Taxi / Ridery</span>
+                  </div>
+                  <div class="filter-pill" onclick="setUsageFilter('familia', this)" title="Familiar / Espacio">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                    <span>Familiar / Espacio</span>
+                  </div>
+                  <div class="filter-pill" onclick="setUsageFilter('rustico', this)" title="Rústico / Carga">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 13h18l-2-6H5L3 13zM2 17h20"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M10 17h4"/></svg>
+                    <span>Rústico / Carga</span>
+                  </div>
+                </div>
               </div>
-              <div class="filter-pill" onclick="setUsageFilter('taxi', this)" title="Yummy / Ridery / Taxi">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="10" width="18" height="9" rx="2"/><path d="M7 10l2-5h6l2 5M5 19v2M19 19v2"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
-                <span>Taxi / Ridery</span>
-              </div>
-              <div class="filter-pill" onclick="setUsageFilter('familia', this)" title="Familiar / Espacio">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-                <span>Familiar / Espacio</span>
-              </div>
-              <div class="filter-pill" onclick="setUsageFilter('rustico', this)" title="Rústico / Carga">
-                <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 13h18l-2-6H5L3 13zM2 17h20"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M10 17h4"/></svg>
-                <span>Rústico / Carga</span>
-              </div>
-            </div>
+            </details>
           </div>
         </aside>
 
@@ -3517,30 +3640,26 @@ input:focus, select:focus, textarea:focus {
     <div id="tab-scanner" class="tab-pane">
       <div class="scanner-split-layout">
         <aside class="scanner-sidebar">
-          <div class="card" style="margin-bottom:0;">
-            <div class="card-title">
+          <div class="card" style="margin-bottom:0; padding:14px 16px;">
+            <div class="card-title" style="margin-bottom:10px;">
               <div style="display:flex; align-items:center; gap:8px;">
-                <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
-                <span>Diagnóstico de Escáner</span>
+                <svg class="cockpit-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3M8 12h2l1.5-2.5L13 14.5l1.5-2.5H16"/></svg>
+                <span>Diagnóstico OBD2</span>
               </div>
-              <span class="badge" style="background: rgba(56,239,125,0.15); color: var(--green);">100% OFFLINE</span>
+              <span class="badge" style="background: rgba(56,239,125,0.12); color: var(--green); font-size:10px;">100% OFFLINE</span>
             </div>
-            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">
-              Ingresa el código arrojado por tu escáner. Desglosamos probabilidades 80/20 y preguntas anti-estafa.
-            </p>
 
-            <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-              <input type="text" id="dtcInput" class="input-field" placeholder="Ej: P0420, P0171..." style="text-transform:uppercase;" value="P0420">
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+              <input type="text" id="dtcInput" class="input-field" placeholder="Código (ej: P0420, P0171...)" style="text-transform:uppercase;" value="P0420">
               <button class="btn" onclick="lookupDTC()">Diagnosticar</button>
             </div>
 
-            <div class="input-label" style="margin-bottom:8px;">Fallas Típicas en Venezuela:</div>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-              <span class="filter-pill" onclick="quickDTC('P0420')">P0420 (Catalizador)</span>
-              <span class="filter-pill" onclick="quickDTC('P0171')">P0171 (Mezcla Pobre)</span>
-              <span class="filter-pill" onclick="quickDTC('P0300')">P0300 (Misfire)</span>
-              <span class="filter-pill" onclick="quickDTC('P0442')">P0442 (EVAP Fuga)</span>
-              <span class="filter-pill" onclick="quickDTC('P0128')">P0128 (Termostato)</span>
+            <div class="obd-chips-scroll">
+              <span class="filter-pill" onclick="quickDTC('P0420')">P0420 · Catalizador</span>
+              <span class="filter-pill" onclick="quickDTC('P0171')">P0171 · Mezcla</span>
+              <span class="filter-pill" onclick="quickDTC('P0300')">P0300 · Misfire</span>
+              <span class="filter-pill" onclick="quickDTC('P0442')">P0442 · EVAP</span>
+              <span class="filter-pill" onclick="quickDTC('P0128')">P0128 · Termostato</span>
             </div>
           </div>
         </aside>
@@ -3554,100 +3673,92 @@ input:focus, select:focus, textarea:focus {
 
     <!-- TAB 3: COMPARADOR & PDF SCRAPER -->
     <div id="tab-compare" class="tab-pane">
-      <!-- SELECTOR RÁPIDO DE CATÁLOGO PRECARGADO BAJOKAPOT -->
-      <div class="catalog-quick-picker">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-          <div style="font-size:14px; font-weight:600; color:var(--text-main); display:flex; align-items:center; gap:8px;">
-            <span>Catálogo Precargado BAJOKAPOT</span>
-            <span id="preloadedCatalogCountBadge" class="badge" style="background:var(--bg-card-alt); color:var(--text-muted); border:1px solid var(--border-glass); font-weight:500;">Cargando...</span>
-          </div>
-          <div style="font-size:12px; color:var(--text-muted);">Haz clic en cualquier versión para agregarla o quitarla (máx. 5)</div>
-        </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:8px; margin-bottom:10px;" class="catalog-picker-filters">
-          <input type="text" id="preloadedCatalogSearch" class="input-field" placeholder="Buscar marca, modelo o caja (ej: Jolion, Corolla, CVT, 6MT...)" oninput="renderPreloadedCatalogPicker()" style="padding:7px 11px; font-size:12px;">
-          <select id="preloadedSegmentFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
-            <option value="ALL">Todos los Segmentos</option>
-            <option value="Citycar & Hatch">Citycar &amp; Hatch</option>
-            <option value="Sedán">Sedán</option>
-            <option value="SUV & Crossover">SUV &amp; Crossover</option>
-            <option value="Pickup & 4x4">Pickup &amp; 4x4</option>
-          </select>
-          <select id="preloadedTransFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
-            <option value="ALL">Todas las Cajas</option>
-            <option value="MT">Sincrónica (MT)</option>
-            <option value="AUTO">Automática / CVT / DCT</option>
-          </select>
-        </div>
-        <div id="preloadedCatalogGrid" class="catalog-picker-grid"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
+      <!-- BARRA COMPACTA DE SELECCIÓN -->
+      <div class="card" style="padding:14px 16px; margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <svg class="cockpit-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/><circle cx="19" cy="7" r="1.5" fill="currentColor"/><path d="M19 13l-4 3-5-5-5 5" stroke-dasharray="2 2"/></svg>
-            <span>Comparador & Extractor de Fichas Técnicas PDF</span>
-            <span id="compareCountBadge" class="badge" style="background: var(--accent-dim); color: var(--accent);">0 / 5 vehículos</span>
+            <span style="font-size:14px; font-weight:700; color:var(--text-main);">Mesa Comparativa</span>
+            <span id="compareCountBadge" class="badge" style="background: var(--accent-dim); color: var(--accent);">0 / 5</span>
           </div>
-          <span class="badge" style="background: var(--cyan-dim); color: var(--cyan);">Lectura Automática de Ficha</span>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleCardDrawer('compareCatalogDrawer', this, 'Cerrar ▲', '+ Catálogo ▼')">+ Catálogo ▼</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('pdfInput').click()">+ PDF</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleCardDrawer('compareSavedDrawer', null)">Guardadas</button>
+          </div>
         </div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
-          Selecciona versiones del catálogo arriba o adjunta <strong>tus propios archivos PDF</strong> (hasta 5 vehículos simultáneos). Puedes quitar o reemplazar cualquier modelo en cualquier momento.
-        </p>
 
-        <!-- DROPZONE CON SOPORTE MULTI-ARCHIVO -->
-        <div class="dropzone" onclick="document.getElementById('pdfInput').click()" 
-             ondragover="event.preventDefault()" 
-             ondrop="event.preventDefault(); handleFileUpload({target:{files:event.dataTransfer.files}})">
-          <div style="margin-bottom: 10px; color: var(--cyan);">
-            <svg class="cockpit-svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
-          </div>
-          <div style="font-weight: 800; font-size: 14px; color: var(--text-main); margin-bottom: 4px; letter-spacing:-0.2px;">
-            Arrastra o toca para adjuntar Fichas Técnicas PDF (Soporta selección múltiple)
-          </div>
-          <div style="font-size: 11.5px; color: var(--text-muted);">
-            Puedes seleccionar varios PDFs a la vez o agregarlos uno a uno hasta un máximo de 5
-          </div>
-          <input type="file" id="pdfInput" style="display:none;" accept=".pdf,.txt" multiple onchange="handleFileUpload(event)">
-        </div>
+        <div id="compareActiveSlotsBar" class="compare-slots-bar"></div>
 
         <!-- AVISO DE CARGA Y PROCESAMIENTO EN VIVO (ACTIVO DURANTE LA LECTURA) -->
-        <div id="pdfLoadingInlineBanner" style="display:none; margin-top: 14px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: var(--radius-sm); padding: 12px 16px; animation: cockpitFade 0.3s ease-out;">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div id="pdfLoadingInlineBanner" style="display:none; margin-top: 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: var(--radius-sm); padding: 12px 14px; animation: cockpitFade 0.3s ease-out;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
             <div style="display:flex; align-items:center; gap:10px;">
               <div class="ai-inline-spinner"></div>
               <div>
-                <div style="font-weight: 800; font-size: 13px; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <span>Procesando Ficha Técnica...</span>
-                </div>
-                <div id="pdfInlineStatusText" style="font-size: 11.5px; font-family: var(--font-mono); color: var(--cyan); margin-top: 2px;">
-                  Analizando parámetros técnicos del vehículo...
-                </div>
+                <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">Procesando Ficha Técnica...</div>
+                <div id="pdfInlineStatusText" style="font-size: 11.5px; font-family: var(--font-mono); color: var(--cyan); margin-top: 2px;">Analizando parámetros...</div>
               </div>
             </div>
-            <span class="badge" style="background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(56,189,248,0.3);">
-              PROCESANDO FICHA
-            </span>
+            <span class="badge" style="background: var(--cyan-dim); color: var(--cyan);">LECTURA PDF</span>
           </div>
+        </div>
+
+        <!-- GAVETA: CATÁLOGO Y DROPZONE PDF -->
+        <div id="compareCatalogDrawer" class="compare-drawer" hidden>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:12.5px; font-weight:600; color:var(--text-main);">Catálogo Precargado BAJOKAPOT</span>
+            <span id="preloadedCatalogCountBadge" class="badge" style="background:var(--bg-card-alt); color:var(--text-muted); border:1px solid var(--border-glass); font-weight:500;">Cargando...</span>
+          </div>
+          <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:8px; margin-bottom:10px;" class="catalog-picker-filters">
+            <input type="text" id="preloadedCatalogSearch" class="input-field" placeholder="Buscar marca, modelo o caja..." oninput="renderPreloadedCatalogPicker()" style="padding:7px 11px; font-size:12px;">
+            <select id="preloadedSegmentFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
+              <option value="ALL">Todos los Segmentos</option>
+              <option value="Citycar & Hatch">Citycar &amp; Hatch</option>
+              <option value="Sedán">Sedán</option>
+              <option value="SUV & Crossover">SUV &amp; Crossover</option>
+              <option value="Pickup & 4x4">Pickup &amp; 4x4</option>
+            </select>
+            <select id="preloadedTransFilter" class="input-field" onchange="renderPreloadedCatalogPicker()" style="padding:7px 8px; font-size:12px;">
+              <option value="ALL">Todas las Cajas</option>
+              <option value="MT">Sincrónica (MT)</option>
+              <option value="AUTO">Automática / CVT / DCT</option>
+            </select>
+          </div>
+          <div id="preloadedCatalogGrid" class="catalog-picker-grid"></div>
+
+          <div class="dropzone" style="padding:20px 14px; margin-top:12px;" onclick="document.getElementById('pdfInput').click()" 
+               ondragover="event.preventDefault()" 
+               ondrop="event.preventDefault(); handleFileUpload({target:{files:event.dataTransfer.files}})">
+            <div style="font-weight: 700; font-size: 13px; color: var(--text-main); margin-bottom: 2px;">
+              Adjuntar Ficha Técnica PDF (máx. 5)
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted);">
+              Arrastra o toca para leer especificaciones automáticamente
+            </div>
+            <input type="file" id="pdfInput" style="display:none;" accept=".pdf,.txt" multiple onchange="handleFileUpload(event)">
+          </div>
+        </div>
+
+        <!-- GAVETA: COMPARATIVAS GUARDADAS -->
+        <div id="compareSavedDrawer" class="compare-drawer" hidden>
+          <div style="font-size:12.5px; font-weight:600; color:var(--text-main); margin-bottom:8px;">Historial de Comparativas Guardadas</div>
+          <div id="savedComparisonsCard"></div>
         </div>
       </div>
 
       <!-- SUB-NAVEGACIÓN INTERNA COMPARADOR -->
-      <nav class="compare-subnav">
+      <nav class="compare-subnav" style="margin-top:0; margin-bottom:14px;">
         <button id="compareSubTabBtn-specs" class="compare-subnav-btn active" onclick="switchCompareSubTab('specs')">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M19 7l-5 5-4-4-5 5"/></svg>
           <span>Ficha Técnica</span>
         </button>
         <button id="compareSubTabBtn-charts" class="compare-subnav-btn" onclick="switchCompareSubTab('charts')">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>
-          <span>Gráficos Comparativos</span>
+          <span>Gráficos</span>
         </button>
         <button id="compareSubTabBtn-advisor" class="compare-subnav-btn" onclick="switchCompareSubTab('advisor')">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <span>Cuál Elegir</span>
+          <span>¿Cuál Elegir?</span>
         </button>
         <button id="compareSubTabBtn-services" class="compare-subnav-btn" onclick="switchCompareSubTab('services')">
-          <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          <span>Servicios y Red</span>
+          <span>Talleres y Red</span>
         </button>
       </nav>
 
@@ -3661,15 +3772,9 @@ input:focus, select:focus, textarea:focus {
         <div class="charts-grid">
           <div class="chart-box">
             <div class="chart-box-title">
-              <span style="display:flex; align-items:center; gap:7px;">
-                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
-                Rendimiento & Capacidades Mecánicas
-              </span>
-              <span class="badge" style="background:var(--cyan-dim); color:var(--cyan);">Barras Directas</span>
+              <span>Rendimiento &amp; Capacidades</span>
+              <span class="badge" style="background:var(--cyan-dim); color:var(--cyan);">Barras</span>
             </div>
-            <p style="font-size:11.5px; color:var(--text-muted); margin-bottom:12px;">
-              Comparativa frontal de Potencia (HP), Torque (Nm), Despeje libre (mm), Tanque (L) y Maletero escalado (L / 10).
-            </p>
             <div class="chart-canvas-wrap">
               <canvas id="compareBarChart"></canvas>
             </div>
@@ -3677,15 +3782,9 @@ input:focus, select:focus, textarea:focus {
 
           <div class="chart-box">
             <div class="chart-box-title">
-              <span style="display:flex; align-items:center; gap:7px;">
-                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                Radar de Balance Integral (0 - 100)
-              </span>
-              <span class="badge" style="background:var(--accent-dim); color:var(--accent);">5 Ejes Clave</span>
+              <span>Balance Integral (0 - 100)</span>
+              <span class="badge" style="background:var(--accent-dim); color:var(--accent);">5 Ejes</span>
             </div>
-            <p style="font-size:11.5px; color:var(--text-muted); margin-bottom:12px;">
-              Evaluación multidimensional: Potencia, Eficiencia, Aptitud Baches, Capacidad Carga y Seguridad.
-            </p>
             <div class="chart-canvas-wrap">
               <canvas id="compareRadarChart"></canvas>
             </div>
@@ -3697,15 +3796,9 @@ input:focus, select:focus, textarea:focus {
       <div id="compareSubPane-advisor" class="compare-subpane" style="display:none;">
         <div class="card" style="margin-bottom:14px;">
           <div class="card-title">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              <span>Configura tus Prioridades de Conducción</span>
-            </div>
+            <span>Prioridades de Conducción</span>
             <button class="btn btn-secondary btn-sm" onclick="resetAdvisorPriorities()">Restablecer</button>
           </div>
-          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
-            Ajusta los ponderadores según tus necesidades reales de vía y uso en Venezuela. El algoritmo computará dinámicamente el puntaje de compatibilidad para cada vehículo comparado.
-          </p>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
             <div class="advisor-priority-item">
@@ -3747,43 +3840,22 @@ input:focus, select:focus, textarea:focus {
 
       <!-- SUBTAB 4: SERVICIOS & ECOSISTEMA B2B -->
       <div id="compareSubPane-services" class="compare-subpane" style="display:none;">
-        <div class="card" style="margin-bottom:14px;">
+        <div class="card" style="margin-bottom:0;">
           <div class="card-title">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>Ecosistema de Servicios & Mantenimiento B2B/B2C</span>
-            </div>
-            <span class="badge" style="background:var(--accent-dim); color:var(--accent);">Red Oficial BajoKapot</span>
+            <span>Talleres, Repuestos y Pólizas</span>
+            <span class="badge" style="background:var(--accent-dim); color:var(--accent);">Red BajoKapot</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
-            Conectamos las especificaciones mecánicas de tus vehículos comparados con cotizaciones exactas de repuestos homologados, citas garantizadas con talleres mecánicos verificados y pólizas de seguro adaptadas a Venezuela.
-          </p>
           <div id="b2bServicesContainer"></div>
         </div>
-      </div>
-
-      <!-- HISTORIAL DE COMPARATIVAS GUARDADAS (LOCALSTORAGE) -->
-      <div class="card" style="margin-top: 16px;">
-        <div class="card-title">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <span>Historial de Comparativas Guardadas</span>
-          </div>
-          <span class="badge" style="background: var(--bg-card-alt); color: var(--text-muted);">Persistencia Local</span>
-        </div>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-          Tus comparativas guardadas se almacenan localmente en tu navegador. Puedes volver a cargarlas en la tabla cuando lo desees o eliminarlas.
-        </p>
-        <div id="savedComparisonsCard"></div>
       </div>
     </div>
 
     <!-- TAB 4: GARAGE, MANTENIMIENTO INTELIGENTE & BLOCKCHAIN -->
     <div id="tab-garage" class="tab-pane">
       <div class="garage-split-layout">
-        <!-- SIDEBAR DE VEHÍCULO, ASENTAMIENTO TURBO & ODÓMETRO -->
+        <!-- SIDEBAR COMPACTA DE VEHÍCULO ACTIVO -->
         <aside class="garage-sidebar">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;">
             <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:8px;">
               <span>Mi Garage</span>
               <span class="badge" style="background:rgba(255,255,255,0.04); border:1px solid var(--border-subtle); color:var(--text-muted); font-size:10px; padding:2px 7px; font-weight:500;">OEM</span>
@@ -3799,18 +3871,17 @@ input:focus, select:focus, textarea:focus {
             </div>
           </div>
 
-          <!-- FICHA EDITORIAL DE IDENTIFICACIÓN & TELEMETRÍA -->
-          <div class="card garage-hud-card" style="margin-bottom: 16px;">
-            <div class="editorial-vin-header">
+          <!-- TARJETA MINIMALISTA DEL VEHÍCULO -->
+          <div class="card garage-hud-card" style="margin-bottom: 0; padding:14px 16px;">
+            <div class="editorial-vin-header" style="margin-bottom:8px; padding-bottom:10px;">
               <div id="garageVehicleInfo">
                 <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;">
                   <span class="vin-plate-badge" id="garagePlateBadge">VE · Garage</span>
-                  <span style="font-size:11px; color:var(--text-muted); display:inline-flex; align-items:center; gap:5px;">
-                    Odómetro al día
-                  </span>
+                  <span style="font-size:11.5px; font-weight:700; color:var(--text-main); font-variant-numeric:tabular-nums;" id="garageOdoDisplay">100 km</span>
+                  <span style="font-size:11px; color:var(--text-muted);" id="garagePhaseSub">En rodaje</span>
                 </div>
-                <div style="font-family:var(--font-display); font-size: 19px; font-weight: 700; color: var(--text-main); letter-spacing:-0.02em; line-height:1.2;" id="garageVehicleName">
-                  GWM Haval Jolion Classic <span style="font-size: 11px; font-weight:600; background: var(--bg-card-alt); border: 1px solid var(--border-subtle); padding: 2px 6px; border-radius: 4px; color: var(--text-secondary); margin-left: 4px; vertical-align: middle;">1.5T 6MT</span>
+                <div style="font-family:var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-main); letter-spacing:-0.02em; line-height:1.2;" id="garageVehicleName">
+                  GWM Haval Jolion Classic
                 </div>
                 <div style="font-size: 12px; color: var(--text-secondary); margin-top:4px;" id="garageVehicleDetails">
                   Motor 1.5L Turbo (GW4G15K) • Cadena • 5W-30 • Uso Mixto
@@ -3819,34 +3890,24 @@ input:focus, select:focus, textarea:focus {
               <div id="garageHealthGauge" class="radial-gauge-wrap"></div>
             </div>
 
-            <!-- ESPECIFICACIONES TÉCNICAS OEM (FICHA LIMPIA SIN CAJAS) -->
-            <div id="garageSpecPills" class="spec-pills-wrap">
-              <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
-              <span class="spec-pill-item">Lubricante: <strong style="color:var(--text-main);">5W-30 API SP (4.2L)</strong></span>
-              <span class="spec-pill-item">Caja: <strong style="color:var(--text-main);">Sincrónica 6MT</strong></span>
-              <span class="spec-pill-item">Frenos: <strong style="color:var(--text-main);">DOT 4</strong></span>
+            <!-- 3 ACCIONES DIARIAS EN UNA SOLA FILA -->
+            <div class="garage-daily-actions">
+              <button type="button" class="btn btn-secondary" onclick="openMaintenanceModal('preventivo')" style="border-color:var(--border-editorial); color:var(--text-main);">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                <span>+ Servicio</span>
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="openFuelModal()">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                <span>+ Gasolina</span>
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="openOdometerModal()">
+                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
+                <span>Odómetro</span>
+              </button>
             </div>
 
-            <div class="metric-grid" style="margin-bottom: 12px;">
-              <div class="metric-box">
-                <div class="metric-label">Odómetro</div>
-                <div class="metric-val" id="garageOdoDisplay">100 km</div>
-                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garagePhaseSub">En rodaje</div>
-              </div>
-              <div class="metric-box">
-                <div class="metric-label">Salud General</div>
-                <div class="metric-val" id="garageHealthDisplay" style="color: var(--text-main);">100/100</div>
-                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageHealthSub">Sin alertas</div>
-              </div>
-              <div class="metric-box">
-                <div class="metric-label">Costo / km</div>
-                <div class="metric-val" id="garageCostDisplay" style="color: var(--text-main);">$0.042</div>
-                <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageTcoSub">Estimado</div>
-              </div>
-            </div>
-
-            <!-- SEMÁFORO DE SEGURIDAD VIAL ACTIVA -->
-            <div id="garageSafetySemaphore" class="safety-semaphore-strip">
+            <!-- SEMÁFORO DE ESTADO -->
+            <div id="garageSafetySemaphore" class="safety-semaphore-strip" style="margin-bottom:0;">
               <div class="sem-pill sem-green" onclick="filterMaintenanceByStatus('ALL')" title="Ver todos los sistemas óptimos" style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
                 <span id="semCountGreen">15</span> Al día
               </div>
@@ -3858,101 +3919,91 @@ input:focus, select:focus, textarea:focus {
               </div>
             </div>
 
-            <!-- ACCIONES PRINCIPALES DEL GARAJE -->
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
-              <button class="btn btn-secondary" onclick="openMaintenanceModal('preventivo')" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px; border-color:var(--border-editorial); color:var(--text-main);">
-                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                <span>Registrar Servicio</span>
-              </button>
-              <button class="btn btn-secondary" onclick="openOdometerModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; font-size:12px;">
-                <svg class="cockpit-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4-4"/><circle cx="12" cy="12" r="2"/></svg>
-                <span>Actualizar Km</span>
-              </button>
-            </div>
+            <!-- GAVETA: FLUIDOS, RODAJE, CERTIFICADO Y RESPALDO -->
+            <details class="maint-details-accordion" style="margin-top:10px;">
+              <summary>
+                <span>Ficha de fluidos, rodaje, certificado y respaldo</span>
+                <span>▾</span>
+              </summary>
+              <div class="maint-details-body" style="gap:10px;">
+                <div id="garageSpecPills" class="spec-pills-wrap" style="margin-bottom:0;">
+                  <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">Cadena Metálica</strong></span>
+                  <span class="spec-pill-item">Lubricante: <strong style="color:var(--text-main);">5W-30 API SP (4.2L)</strong></span>
+                  <span class="spec-pill-item">Caja: <strong style="color:var(--text-main);">Sincrónica 6MT</strong></span>
+                  <span class="spec-pill-item">Frenos: <strong style="color:var(--text-main);">DOT 4</strong></span>
+                </div>
 
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:10px;">
-              <button class="btn btn-secondary" onclick="openFuelModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px;">
-                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-                <span>Cargar Gasolina</span>
-              </button>
-              <button class="btn btn-secondary" onclick="openWorkshopChecklistModal()" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 8px; font-size:11.5px;">
-                <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                <span>Escudo de Taller</span>
-              </button>
-            </div>
+                <div class="metric-grid" style="grid-template-columns:1fr 1fr; margin-bottom:0;">
+                  <div class="metric-box">
+                    <div class="metric-label">Salud General</div>
+                    <div class="metric-val" id="garageHealthDisplay" style="color: var(--text-main);">100/100</div>
+                    <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageHealthSub">Sin alertas</div>
+                  </div>
+                  <div class="metric-box">
+                    <div class="metric-label">Costo / km</div>
+                    <div class="metric-val" id="garageCostDisplay" style="color: var(--text-main);">$0.042</div>
+                    <div style="font-size:10.5px; color:var(--text-muted); margin-top:2px;" id="garageTcoSub">Estimado</div>
+                  </div>
+                </div>
 
-            <button class="btn btn-secondary btn-block" onclick="viewCertificate()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; border-color:var(--border-editorial); color:var(--text-main);">
-              <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="3"/></svg>
-              Ver / Imprimir Certificado de Mantenimiento
-            </button>
+                <div id="breakInAdvisorCard" class="breakin-card" style="margin-bottom:0;"></div>
 
-            <div class="garage-backup-bar">
-              <button class="btn btn-secondary btn-sm" onclick="exportOfflineBackup()" style="flex:1; padding:6px 8px; font-size:11px; gap:5px;">
-                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Respaldar JSON
-              </button>
-              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('backupFileInput').click()" style="flex:1; padding:6px 8px; font-size:11px; gap:5px;">
-                <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                Importar JSON
-              </button>
-            </div>
-          </div>
-
-          <!-- PROTOCOLO ACTIVO DE ASENTAMIENTO (BREAK-IN 0 - 1,500 KM) & REGLA DEL TURBO -->
-          <div id="breakInAdvisorCard" class="breakin-card"></div>
-
-          <!-- HISTORIAL DE TANQUEOS -->
-          <div class="card" style="margin-bottom: 18px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
-              <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
-                Historial de Tanqueos
-              </h3>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <button onclick="switchGarageSubTab('analytics')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:11px; font-weight:700;">Ver Gráficas ▸</button>
-                <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+                <div class="garage-tools-grid" style="margin-top:0;">
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="viewCertificate()" style="justify-content:center; gap:5px; padding:7px 8px;">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Certificado PDF
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="openWorkshopChecklistModal()" style="justify-content:center; gap:5px; padding:7px 8px;">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Escudo Taller
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="exportOfflineBackup()" style="justify-content:center; gap:5px; padding:7px 8px;">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Respaldar JSON
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('backupFileInput').click()" style="justify-content:center; gap:5px; padding:7px 8px;">
+                    <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Importar JSON
+                  </button>
+                </div>
               </div>
-            </div>
-            <div id="fuelGlobalSummaryBar" style="margin-bottom:10px;"></div>
-            <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
-              <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
-            </div>
+            </details>
           </div>
         </aside>
 
-        <!-- PANEL PRINCIPAL DE MANTENIMIENTO PREVENTIVO, CORRECTIVO, COPILOTO IA & BLOCKCHAIN -->
+        <!-- PANEL PRINCIPAL DE MANTENIMIENTO -->
         <main class="garage-main">
-          <!-- BARRA DE CONTROL DE DOBLE RÉGIMEN (NORMAL OEM VS. SEVERO / TROPICALIZADO) -->
-          <div class="regime-bar">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
-              <div>
-                <div style="font-size:13.5px; font-weight:700; color:var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <span>Régimen de Mantenimiento</span>
-                </div>
-                <div id="regimeExplanationText" style="font-size:12px; color:var(--text-muted); margin-top:2px;">
-                  Intervalos ajustados por calor, tráfico urbano, vías irregulares y calidad de combustible.
-                </div>
-              </div>
+          <!-- BARRA COMPACTA DE RÉGIMEN -->
+          <div class="regime-bar" style="padding:10px 14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <span style="font-size:12.5px; font-weight:700; color:var(--text-main);">Régimen</span>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:6px 10px; font-size:11.5px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
-                  Uso Severo (Venezuela)
+                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:5px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
+                  Uso Severo (VE)
                 </button>
-                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:6px 10px; font-size:11.5px;">
+                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:5px 10px; font-size:11px;">
                   Estándar OEM
                 </button>
               </div>
             </div>
 
-            <!-- SIMULADOR DE PROYECCIÓN DE KILOMETRAJE EN UN CLIC -->
-            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid var(--border-subtle); font-size:11.5px;">
-              <span style="color:var(--text-muted);">Simular kilometraje:</span>
-              <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 9px; font-size:11px;">Actual (100 km)</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 9px; font-size:11px;">4.500 km</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(5300)" style="padding:3px 9px; font-size:11px;">5.300 km</button>
-                <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(29500)" style="padding:3px 9px; font-size:11px;">29.500 km</button>
+            <details class="maint-details-accordion" style="margin-top:8px;">
+              <summary>
+                <span>Simulador de kilometraje y detalles</span>
+                <span>▾</span>
+              </summary>
+              <div class="maint-details-body" style="padding-top:6px;">
+                <div id="regimeExplanationText" style="font-size:11.5px; color:var(--text-muted);">
+                  Intervalos ajustados por calor, tráfico urbano, vías irregulares y calidad de combustible.
+                </div>
+                <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
+                  <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 9px; font-size:11px;">Actual (100 km)</button>
+                  <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 9px; font-size:11px;">4.500 km</button>
+                  <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(5300)" style="padding:3px 9px; font-size:11px;">5.300 km</button>
+                  <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(29500)" style="padding:3px 9px; font-size:11px;">29.500 km</button>
+                </div>
               </div>
-            </div>
+            </details>
           </div>
 
           <!-- SUB-NAVEGACIÓN INTERNA MI GARAGE -->
@@ -3961,16 +4012,16 @@ input:focus, select:focus, textarea:focus {
               <span>Plan Preventivo</span>
             </button>
             <button id="garageSubTabBtn-corrective" class="compare-subnav-btn" onclick="switchGarageSubTab('corrective')">
-              <span>Correctivos y Fallas</span>
+              <span>Correctivos</span>
             </button>
             <button id="garageSubTabBtn-copilot" class="compare-subnav-btn" onclick="switchGarageSubTab('copilot')">
-              <span>Asistente Técnico</span>
+              <span>Asistente</span>
             </button>
             <button id="garageSubTabBtn-blockchain" class="compare-subnav-btn" onclick="switchGarageSubTab('blockchain')">
-              <span>Historial Certificado</span>
+              <span>Certificados</span>
             </button>
             <button id="garageSubTabBtn-analytics" class="compare-subnav-btn" onclick="switchGarageSubTab('analytics')">
-              <span>Gastos y Gráficas</span>
+              <span>Gastos</span>
             </button>
           </nav>
 
@@ -3996,16 +4047,11 @@ input:focus, select:focus, textarea:focus {
           <div id="garageSubPane-corrective" class="garage-subpane" style="display:none;">
             <div class="card" style="margin-bottom:14px;">
               <div class="card-title">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span>Mantenimiento Correctivo e Imprevistos</span>
-                </div>
+                <span>Mantenimiento Correctivo</span>
                 <button class="btn-minimal-action" onclick="openMaintenanceModal('correctivo')">
                   + Registrar Reparación
                 </button>
               </div>
-              <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
-                Selecciona un sistema afectado para registrar el repuesto sustituido, taller y certificarlo en tu historial.
-              </p>
               <div id="correctiveCatalogGrid" class="maint-grid"></div>
             </div>
 
@@ -4018,52 +4064,40 @@ input:focus, select:focus, textarea:focus {
             </div>
           </div>
 
-          <!-- SUBPANE 3: ASISTENTE TÉCNICO OEM & PROTOCOLO DE TALLER -->
+          <!-- SUBPANE 3: ASISTENTE TÉCNICO OEM -->
           <div id="garageSubPane-copilot" class="garage-subpane" style="display:none;">
             <div class="card" style="margin-bottom:14px;">
               <div class="card-title">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span>Charulo — Asistente Técnico</span>
-                </div>
+                <span>Charulo — Asistente Técnico</span>
                 <span class="badge" style="background:var(--bg-card-alt); color:var(--text-secondary);">Base OEM</span>
               </div>
-              <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
-                Realiza cualquier consulta sobre tu vehículo activo o síntoma mecánico. El asistente <strong>Charulo</strong> cruza tu kilometraje actual, régimen de uso y manual OEM para ofrecerte diagnóstico preventivo y respaldo frente al taller.
-              </p>
 
-              <!-- PREGUNTAS RÁPIDAS ESPECIALIZADAS -->
-              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi vehículo nuevo o recién ajustado?')">Rodaje y 1,000 a 5.000 km</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué aceite OEM exacto usa mi motor y cómo cuido distribución o turbo en clima cálido?')">Aceite OEM &amp; Distribución</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cuándo debo cambiar el fluido de mi transmisión (Sincrónica, AT, CVT o DCT)?')">Caja (MT/AT/CVT/DCT)</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué debo revisar al llevar mi vehículo al concesionario o taller para que no me cobren de más?')">Protocolo Taller 5.000 km</span>
-                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cómo afecta la gasolina de Venezuela a la inyección, bujías y catalizador y qué mantenimiento requiere?')">Gasolina VE &amp; Inyección</span>
+              <div class="obd-chips-scroll" style="margin-bottom:10px;">
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué cuidados exactos debo tener en los primeros 1,000 a 5,000 km de mi vehículo nuevo o recién ajustado?')">Rodaje 1-5K km</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué aceite OEM exacto usa mi motor y cómo cuido distribución o turbo en clima cálido?')">Aceite &amp; Turbo</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cuándo debo cambiar el fluido de mi transmisión (Sincrónica, AT, CVT o DCT)?')">Transmisión</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Qué debo revisar al llevar mi vehículo al concesionario o taller para que no me cobren de más?')">Protocolo Taller</span>
+                <span class="filter-pill" onclick="askCharuloMaintenance('¿Cómo afecta la gasolina de Venezuela a la inyección, bujías y catalizador y qué mantenimiento requiere?')">Gasolina VE</span>
               </div>
 
               <div style="display:flex; gap:8px; margin-bottom:14px;">
-                <input type="text" id="copilotQueryInput" class="input-field" placeholder="Pregunta sobre ruidos, fluidos, intervalos OEM, garantía o cotizaciones..." value="¿Qué cuidados exactos debo tener con la gasolina y aceite de mi vehículo en Venezuela?">
-                <button class="btn btn-primary" onclick="runCopilotMaintenanceAdvisor()" style="white-space:nowrap;">Consultar Asistente</button>
+                <input type="text" id="copilotQueryInput" class="input-field" placeholder="Pregunta sobre ruidos, fluidos, intervalos OEM..." value="¿Qué cuidados exactos debo tener con la gasolina y aceite de mi vehículo en Venezuela?">
+                <button class="btn btn-primary" onclick="runCopilotMaintenanceAdvisor()" style="white-space:nowrap;">Consultar</button>
               </div>
 
               <div id="copilotResponseContainer"></div>
             </div>
           </div>
 
-          <!-- SUBPANE 4: HISTORIAL CERTIFICADO & AUDITORÍA TCO -->
+          <!-- SUBPANE 4: HISTORIAL CERTIFICADO -->
           <div id="garageSubPane-blockchain" class="garage-subpane" style="display:none;">
             <div class="card" style="margin-bottom:0;">
               <div class="card-title">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                  <span>Historial Certificado de Kilometraje y Mantenimiento</span>
-                </div>
+                <span>Historial Certificado</span>
                 <button class="btn btn-secondary btn-sm" onclick="auditChain()" style="display:inline-flex; align-items:center; gap:5px;">
                   <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                   Auditar Registro
                 </button>
-              </div>
-              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-                Cada actualización de odómetro o servicio preventivo/correctivo queda sellada cronológicamente con un código de verificación único. Respalda la garantía de fábrica y certifica el historial real de tu vehículo.
               </div>
               <div id="blockchainFeed"></div>
             </div>
@@ -4158,6 +4192,24 @@ input:focus, select:focus, textarea:focus {
                 Resumen Histórico Agrupado por Período
               </div>
               <div id="analyticsPeriodTableWrap" style="overflow-x:auto;"></div>
+            </div>
+          </div>
+
+          <!-- HISTORIAL DE TANQUEOS (DEBAJO DEL PANEL PRINCIPAL EN MÓVIL Y PC) -->
+          <div class="card" style="margin-top: 14px; margin-bottom: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+              <h3 style="font-size: 14px; margin: 0; color: var(--text-main); display:flex; align-items:center; gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17M3 22h12M7 7h4M15 9h2a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-2-2"/></svg>
+                Historial de Tanqueos
+              </h3>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <button onclick="switchGarageSubTab('analytics')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:11px; font-weight:700;">Ver Gráficas ▸</button>
+                <button onclick="clearFuelHistory()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px; text-decoration:underline;">Borrar</button>
+              </div>
+            </div>
+            <div id="fuelGlobalSummaryBar" style="margin-bottom:10px;"></div>
+            <div id="fuelHistoryList" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-main);">
+              <div style="text-align:center; color:var(--text-muted); padding: 10px;">No hay tanqueos recientes.</div>
             </div>
           </div>
         </main>
@@ -4739,18 +4791,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v7)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v8)
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v7') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v8') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=7', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=8', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4759,8 +4811,8 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261114_bajokapot_v7"></script>
-  <script type="module" src="auth.js"></script>
+  <script src="app.js?v=20261115_bajokapot_v8"></script>
+  <script type="module" src="auth.js?v=20261115_bajokapot_v8"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>

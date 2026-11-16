@@ -180,7 +180,8 @@ onAuthStateChanged(auth, (user) => {
     authBtn.classList.add('logged-in');
 
     if (popover) {
-      popover.innerHTML = `
+      const authSec = document.getElementById('userPopoverAuthSection') || popover;
+      authSec.innerHTML = `
         <div class="user-popover-head">
           <img src="${safePhoto}" alt="${safeName}" onerror="this.onerror=null;this.src='bajokapot-icon.png';" class="user-popover-avatar">
           <div class="user-popover-meta">
@@ -192,7 +193,7 @@ onAuthStateChanged(auth, (user) => {
           <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
           <span>Sincronizado en BajoKapot Cloud</span>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
+        <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
           Cerrar sesión
         </button>
       `;
@@ -210,7 +211,8 @@ onAuthStateChanged(auth, (user) => {
     authBtn.classList.remove('logged-in');
 
     if (popover) {
-      popover.innerHTML = `
+      const authSec = document.getElementById('userPopoverAuthSection') || popover;
+      authSec.innerHTML = `
         <div class="user-popover-head">
           <span class="user-popover-avatar">
             <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -221,7 +223,7 @@ onAuthStateChanged(auth, (user) => {
           </div>
         </div>
         <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
-        <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
+        <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
           Iniciar sesión / Registrarse
         </button>
       `;

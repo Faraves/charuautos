@@ -5145,6 +5145,16 @@ function updateMatchmaker() {
   const transSelect = document.getElementById("transFilterSelect");
   const transFilter = transSelect ? transSelect.value : "ALL";
 
+  const filtersSummaryEl = document.getElementById("advisorActiveFiltersSummary");
+  if (filtersSummaryEl) {
+    const condMap = { ALL: "Todos", "0km": "0 km", usado: "Usados" };
+    const roadMap = { severo: "Baches", moderado: "Ciudad", autopista: "Autopista", montana: "Montaña" };
+    const usageMap = { diario: "Diario", taxi: "Taxi", familia: "Familia", rustico: "4x4" };
+    const segShort = segFilter === "ALL" ? "" : ` · ${segFilter.split(" ")[0]}`;
+    const transShort = transFilter === "ALL" ? "" : ` · ${transFilter}`;
+    filtersSummaryEl.textContent = `${condMap[currentConditionFilter] || "Todos"}${segShort}${transShort} · ${roadMap[currentRoadFilter] || "Baches"} · ${usageMap[currentUsageFilter] || "Diario"} ▾`;
+  }
+
   // Pre-filtrar por condición, segmento, transmisión y búsqueda de texto
   const baseList = VEHICLES_DB.filter(car => {
     if (currentConditionFilter !== "ALL" && car.condition !== currentConditionFilter) return false;
@@ -5341,81 +5351,83 @@ function lookupDTC(customCode) {
     ]
   };
 
-  const sevClass = dtc.severity === 3 ? "sev-3" : (dtc.severity === 2 ? "sev-2" : "sev-1");
-  const sevLabel = dtc.severity === 3 ? "SEVERIDAD CRÍTICA" : (dtc.severity === 2 ? "ADVERTENCIA TÉCNICA" : "ESTADO OPERATIVO");
+  const sevColor = dtc.severity === 3 ? "var(--danger)" : (dtc.severity === 2 ? "var(--amber)" : "var(--green)");
+  const sevActionText = dtc.severity === 3
+    ? "Detén el vehículo · Revisión urgente"
+    : (dtc.severity === 2 ? "Puedes rodar con precaución · Visita taller" : "Operativo · Revisión preventiva");
 
   const card = document.getElementById("dtcResultCard");
   if (!card) return;
 
   card.innerHTML = `
-    <div class="card" style="border-color: ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')}; border-width: 2px;">
-      
-      <!-- HEADER SEMÁFORO -->
-      <div style="text-align: center; margin-bottom: 20px;">
-        <div style="display:inline-block; padding: 12px; border-radius: 50%; background: ${dtc.severity === 3 ? 'rgba(239, 68, 68, 0.15)' : (dtc.severity === 2 ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)')}; margin-bottom: 10px;">
-           <div style="width: 24px; height: 24px; border-radius: 50%; background: ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')}; box-shadow: 0 0 15px ${dtc.severity === 3 ? 'var(--danger)' : (dtc.severity === 2 ? 'var(--amber)' : 'var(--green)')};"></div>
+    <div class="card" style="padding:16px; border-color: ${dtc.severity === 3 ? 'rgba(239, 68, 68, 0.45)' : (dtc.severity === 2 ? 'rgba(245, 158, 11, 0.35)' : 'var(--border-glass)')};">
+      <!-- BLOQUE 1: SEMÁFORO DE DECISIÓN RÁPIDA -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--border-subtle);">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${sevColor}; flex-shrink:0;"></span>
+          <span style="font-size:16px; font-weight:800; color:var(--text-main); font-family:var(--font-mono);">${dtc.code}</span>
         </div>
-        <h2 style="font-size:18px; font-weight:800; color:var(--text-main); margin-bottom: 4px;">Código [${dtc.code}]</h2>
-        <span class="severity-pill ${sevClass}" style="font-size: 13px; padding: 6px 12px;">${dtc.severity === 3 ? "¡REVISIÓN URGENTE!" : (dtc.severity === 2 ? "PRECAUCIÓN" : "TODO BIEN")}</span>
+        <span style="font-size:12px; font-weight:700; color:${sevColor};">${sevActionText}</span>
       </div>
 
-      <!-- EXPLICACIÓN AMIGABLE -->
-      <h3 style="font-size:15px; font-weight:700; color:var(--text-main); margin-bottom: 6px;">¿Qué le pasa a tu carro?</h3>
-      <p style="font-size:14px; line-height:1.6; color:var(--text-secondary); margin-bottom:14px;">
+      <p style="font-size:13.5px; line-height:1.5; color:var(--text-main); margin-bottom:8px;">
         ${dtc.desc}
       </p>
-
-      <div style="background:var(--bg-card-alt); border-left:3px solid var(--cyan); padding:10px 14px; font-size:13px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin-bottom:20px;">
-        <span style="font-family:var(--font-mono); font-size:11px; color:var(--cyan); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:4px;">Contexto Venezuela:</span>
-        <span style="color:var(--text-main); font-weight:500;">${dtc.venezuela}</span>
+      <div style="font-size:12px; color:var(--text-secondary); background:var(--bg-card-alt); border-left:2.5px solid ${sevColor}; padding:8px 11px; border-radius:0 6px 6px 0; margin-bottom:14px;">
+        <strong style="color:var(--text-main);">En Venezuela:</strong> ${dtc.venezuela}
       </div>
 
-      <!-- BOTÓN PARA MOSTRAR LO TÉCNICO -->
-      <button class="btn btn-outline btn-block" style="margin-bottom: 15px;" onclick="document.getElementById('dtcDetails_${dtc.code}').style.display = 'block'; this.style.display='none';">
-        Ver detalles para mi mecánico
-      </button>
-
-      <!-- DETALLES TÉCNICOS OCULTOS -->
-      <div id="dtcDetails_${dtc.code}" style="display: none; border-top: 1px dashed var(--border-medium); padding-top: 15px; margin-top: 10px;">
-          <h3 style="font-size:13px; font-weight:700; color:var(--text-main); margin-bottom: 10px;">Diagnóstico del Escáner (Nombre original):</h3>
-          <p style="font-family:var(--font-mono); font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;">${dtc.title}</p>
-
-          <div class="input-label" style="font-family:var(--font-mono); font-size:11px; letter-spacing:1px;">PROBABILIDAD DE FALLAS (80/20):</div>
-          ${dtc.causes.map(c => `
-            <div class="cause-bar" style="margin-bottom: 10px;">
-              <div class="cause-info" style="display:flex; justify-content:space-between; margin-bottom: 4px;">
-                <span style="color:var(--text-main); font-size:12px; font-weight:600;">${c.name}</span>
-                <span style="color:var(--cyan); font-family:var(--font-mono); font-size:11.5px; font-weight:800;">${c.pct}% prob. • Est: ${c.cost}</span>
-              </div>
-              <div class="progress-bg" style="background: var(--border-subtle);">
-                <div class="progress-fill" style="width: ${c.pct}%; background: var(--cyan); height: 100%; border-radius: 3px;"></div>
-              </div>
+      <!-- BLOQUE 2: CAUSAS MÁS PROBABLES 80/20 -->
+      <div style="font-size:11.5px; font-weight:700; color:var(--text-muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.4px;">
+        Causas más probables (80/20)
+      </div>
+      <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;">
+        ${dtc.causes.map(c => `
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:4px;">
+              <span style="color:var(--text-main); font-size:12.5px; font-weight:600;">${c.name}</span>
+              <span style="color:var(--text-secondary); font-family:var(--font-mono); font-size:11px; font-weight:700; white-space:nowrap;">${c.pct}% · ${c.cost}</span>
             </div>
-          `).join('')}
-
-          <div class="anti-scam-box" style="background: rgba(245, 158, 11, 0.05); padding: 12px; border-radius: var(--radius-sm); border: 1px solid rgba(245, 158, 11, 0.2); margin-top: 16px;">
-            <div style="font-family:var(--font-mono); font-weight:800; color:var(--amber); margin-bottom:10px; font-size:11.5px; letter-spacing:0.8px; text-transform:uppercase;">
-              Protocolo de Verificación en Taller:
+            <div style="height:4px; border-radius:99px; background:var(--border-subtle); overflow:hidden;">
+              <div style="width:${c.pct}%; height:100%; background:${sevColor}; border-radius:99px;"></div>
             </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- BLOQUE 3: DESPLEGABLE PARA EL MECÁNICO -->
+      <details class="maint-details-accordion">
+        <summary>
+          <span>Preguntas para el mecánico y detalle técnico</span>
+          <span>▾</span>
+        </summary>
+        <div class="maint-details-body" style="gap:10px;">
+          <div style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-secondary);">
+            ${dtc.title}
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
             ${dtc.questions.map(q => `
-              <div class="question-item" style="display: flex; gap: 8px; margin-bottom: 8px; color: var(--text-main);">
-                <input type="checkbox" style="accent-color:var(--amber); margin-top:3px;">
-                <span style="font-style:italic; font-size: 13px;">"${q}"</span>
-              </div>
+              <label style="display:flex; gap:8px; align-items:flex-start; color:var(--text-main); font-size:12.5px; cursor:pointer;">
+                <input type="checkbox" style="accent-color:var(--accent); margin-top:3px; flex-shrink:0;">
+                <span>"${q}"</span>
+              </label>
             `).join('')}
           </div>
-      </div>
-
-      <button class="btn btn-secondary btn-block" style="margin-top:16px; display:inline-flex; align-items:center; justify-content:center; gap:6px;" onclick="saveDtcToCar('${dtc.code}')">
-        ${ICONS.save} Guardar en Historial
-      </button>
+          <button type="button" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center; gap:6px;" onclick="saveDtcToCar('${dtc.code}')">
+            ${ICONS.save} Guardar en Historial
+          </button>
+        </div>
+      </details>
     </div>
   `;
 }
 
 function saveDtcToCar(code) {
   addMutation("service_records", "INSERT_DTC", { code, date: new Date().toISOString() });
-  alert(`Código [${code}] registrado en el historial de servicio de tu Corolla GLi.`);
+  const carName = (typeof activeGarageVehicle !== 'undefined' && activeGarageVehicle)
+    ? `${activeGarageVehicle.maker || ''} ${activeGarageVehicle.model || ''}`.trim() || 'tu vehículo'
+    : 'tu vehículo';
+  alert(`Código [${code}] registrado en el historial de servicio de ${carName}.`);
 }
 
 /* =============================================================================
@@ -6426,10 +6438,26 @@ function getDisplayVehiclesList() {
 function renderComparisonTable() {
   const container = document.getElementById("compareResultCard");
   const countBadge = document.getElementById("compareCountBadge");
+  const slotsBar = document.getElementById("compareActiveSlotsBar");
   if (!container) return;
 
   if (countBadge) {
-    countBadge.textContent = `${comparedVehicles.length} / 5 vehículos`;
+    countBadge.textContent = `${comparedVehicles.length} / 5`;
+  }
+
+  if (slotsBar) {
+    if (comparedVehicles.length === 0) {
+      slotsBar.innerHTML = `<span style="font-size:11.5px; color:var(--text-muted);">Elige versiones del catálogo o sube fichas PDF.</span>`;
+    } else {
+      slotsBar.innerHTML = comparedVehicles.map(v => `
+        <span class="compare-slot-pill">
+          <span>${v.maker} ${v.model}</span>
+          <button type="button" class="compare-slot-remove" onclick="removeComparedVehicle('${v.id}')" aria-label="Quitar ${v.maker} ${v.model}">&times;</button>
+        </span>
+      `).join("") + (comparedVehicles.length > 1
+        ? `<button type="button" class="btn-quiet-link" onclick="clearAllComparedVehicles()" style="font-size:11px; padding:2px 6px;">Limpiar</button>`
+        : "");
+    }
   }
 
   // Estado vacío si no hay vehículos
@@ -9974,11 +10002,22 @@ let currentTheme = localStorage.getItem('charu_theme') || 'dark';
 function applyTheme(theme) {
   currentTheme = theme;
   document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.style.colorScheme = theme === 'light' ? 'light' : 'dark';
   localStorage.setItem('charu_theme', theme);
 
   const metaTheme = document.getElementById('metaThemeColor');
   if (metaTheme) {
     metaTheme.setAttribute('content', theme === 'light' ? '#F8F9FA' : '#0B0D10');
+  }
+
+  const metaColorScheme = document.getElementById('metaColorScheme');
+  if (metaColorScheme) {
+    metaColorScheme.setAttribute('content', theme === 'light' ? 'light' : 'dark');
+  }
+
+  const themeLbl = document.getElementById('themeLabelText');
+  if (themeLbl) {
+    themeLbl.textContent = theme === 'light' ? 'Modo Claro' : 'Modo Oscuro';
   }
 
   const wordmarkImg = document.getElementById('headerWordmarkImg');
@@ -10074,10 +10113,6 @@ window.reloadBajoKapotApp = reloadBajoKapotApp;
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof renderFuelHistory === 'function') renderFuelHistory();
   applyTheme(currentTheme);
-  const themeBtn = document.getElementById('themeToggleBtn');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', toggleTheme);
-  }
   const splash = document.getElementById('bajoKapotSplashOverlay');
   if (splash) {
     setTimeout(() => splash.classList.add('splash-hidden'), 580);
