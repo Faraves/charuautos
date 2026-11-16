@@ -3071,6 +3071,10 @@ input:focus, select:focus, textarea:focus {
       100% { transform: scaleX(1); opacity: 1; }
     }
 
+    .compare-mobile-stack {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       #brandReloadBtn {
         min-width: 0;
@@ -3111,6 +3115,109 @@ input:focus, select:focus, textarea:focus {
       .sidebar-nav .label {
         font-size: 10px !important;
         text-overflow: clip !important;
+      }
+      .compare-subnav {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      .table-responsive-wrapper {
+        display: none !important;
+      }
+      .compare-mobile-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--border-subtle);
+        border-radius: 10px;
+        margin-top: 10px;
+        background: var(--bg-card);
+      }
+      .compare-mobile-sticky-head {
+        position: sticky;
+        top: 54px;
+        z-index: 15;
+        background: var(--bg-card-alt);
+        border-bottom: 1px solid var(--border-editorial);
+        border-radius: 10px 10px 0 0;
+        padding: 9px 8px;
+        display: grid;
+        grid-template-columns: repeat(var(--comp-cols, 2), minmax(0, 1fr));
+        gap: 8px;
+      }
+      .compare-mobile-sticky-car {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        padding: 4px 6px;
+        border-radius: 7px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+      }
+      .compare-mobile-sticky-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
+      }
+      .compare-mobile-cat {
+        background: rgba(255, 85, 0, 0.08);
+        color: var(--accent);
+        font-size: 10.5px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        padding: 7px 12px;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .compare-mobile-row {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border-subtle);
+        background: var(--bg-card);
+      }
+      .compare-mobile-row:last-child {
+        border-bottom: none;
+        border-radius: 0 0 10px 10px;
+      }
+      .compare-mobile-param {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        margin-bottom: 6px;
+      }
+      .compare-mobile-vals {
+        display: grid;
+        grid-template-columns: repeat(var(--comp-cols, 2), minmax(0, 1fr));
+        gap: 8px;
+      }
+      .compare-mobile-cell {
+        font-size: 12.5px;
+        color: var(--text-main);
+        line-height: 1.35;
+        padding: 6px 8px;
+        border-radius: 6px;
+        background: var(--bg-card-alt);
+        border: 1px solid var(--border-subtle);
+        word-break: break-word;
+        min-width: 0;
+      }
+      .compare-mobile-cell.is-leader {
+        border-color: rgba(245, 158, 11, 0.4);
+        background: rgba(245, 158, 11, 0.08);
+        font-weight: 600;
+      }
+      .compare-mobile-car-tag {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
@@ -3973,29 +4080,65 @@ input:focus, select:focus, textarea:focus {
 
         <!-- PANEL PRINCIPAL DE MANTENIMIENTO -->
         <main class="garage-main">
-          <!-- BARRA COMPACTA DE RÉGIMEN -->
+          <!-- BARRA DE RÉGIMEN SEVERO Y PERSONALIZADO -->
           <div class="regime-bar" style="padding:10px 14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-              <span style="font-size:12.5px; font-weight:700; color:var(--text-main);">Régimen</span>
+              <div>
+                <div style="font-size:12.5px; font-weight:700; color:var(--text-main);">Régimen de Mantenimiento</div>
+                <div id="regimeExplanationText" style="font-size:11px; color:var(--text-muted); margin-top:2px;">
+                  Uso Severo · Aceite cada 5.000 km y derivados
+                </div>
+              </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:5px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
-                  Uso Severo (VE)
+                <button type="button" id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:5px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
+                  Severo (5.000 km)
                 </button>
-                <button id="regimeBtnNormal" class="btn btn-secondary btn-sm" onclick="setMaintenanceRegime('normal')" style="padding:5px 10px; font-size:11px;">
-                  Estándar OEM
+                <button type="button" id="regimeBtnCustom" class="btn btn-secondary btn-sm" onclick="toggleCustomRegimeDrawer()" style="padding:5px 10px; font-size:11px;">
+                  Personalizar
+                </button>
+                <span id="regimeBtnNormal" style="display:none;"></span>
+              </div>
+            </div>
+
+            <div id="customRegimeDrawer" class="compare-drawer" hidden>
+              <div style="font-size:11.5px; font-weight:600; color:var(--text-main); margin-bottom:6px;">
+                Cambio de aceite base (escala todos los derivados):
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:10px;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setCustomBaseOilPreset(4000)" style="padding:4px 8px; font-size:11px;">4.000 km</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setCustomBaseOilPreset(5000)" style="padding:4px 8px; font-size:11px;">5.000 km</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setCustomBaseOilPreset(6000)" style="padding:4px 8px; font-size:11px;">6.000 km</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="setCustomBaseOilPreset(7500)" style="padding:4px 8px; font-size:11px;">7.500 km</button>
+                <div style="display:flex; align-items:center; gap:4px; margin-left:auto;">
+                  <input type="number" id="customBaseOilKmInput" class="input-field" value="5000" min="2000" max="15000" step="500" oninput="onCustomBaseOilInput(this.value)" style="width:82px; padding:4px 7px; font-size:12px; text-align:right; font-weight:700;">
+                  <span style="font-size:11px; color:var(--text-muted);">km</span>
+                </div>
+              </div>
+
+              <details class="maint-details-accordion" style="margin-bottom:10px;">
+                <summary>
+                  <span>Ajustar cada servicio individualmente (16 puntos)</span>
+                  <span>▾</span>
+                </summary>
+                <div id="customRegimeItemsGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:8px; margin-top:8px;"></div>
+              </details>
+
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="saveCustomRegimeFromUI()" style="flex:1; justify-content:center;">
+                  Guardar Régimen Personalizado
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="resetCustomRegimeToSevero()">
+                  Restablecer Severo (5.000 km)
                 </button>
               </div>
             </div>
 
             <details class="maint-details-accordion" style="margin-top:8px;">
               <summary>
-                <span>Simulador de kilometraje y detalles</span>
+                <span>Simulador de kilometraje</span>
                 <span>▾</span>
               </summary>
               <div class="maint-details-body" style="padding-top:6px;">
-                <div id="regimeExplanationText" style="font-size:11.5px; color:var(--text-muted);">
-                  Intervalos ajustados por calor, tráfico urbano, vías irregulares y calidad de combustible.
-                </div>
                 <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
                   <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(100)" style="padding:3px 9px; font-size:11px;">Actual (100 km)</button>
                   <button class="btn btn-secondary btn-sm" onclick="simulateOdometerPreview(4500)" style="padding:3px 9px; font-size:11px;">4.500 km</button>
@@ -4791,18 +4934,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v8)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v9)
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v8') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v9') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=8', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=9', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4811,8 +4954,8 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261115_bajokapot_v8"></script>
-  <script type="module" src="auth.js?v=20261115_bajokapot_v8"></script>
+  <script src="app.js?v=20261115_bajokapot_v9"></script>
+  <script type="module" src="auth.js?v=20261115_bajokapot_v9"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>

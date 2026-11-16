@@ -6550,84 +6550,123 @@ function renderComparisonTable() {
     categoriesPresent[spec.category].specs.push(spec);
   });
 
-  // Render HTML completo con Toolbar Cockpit y Tabla
+  // Render HTML completo con Toolbar Cockpit, Matriz Escritorio y Comparador Móvil (Opción 1)
   const isDemoActive = comparedVehicles.length > 0 && comparedVehicles.every(v => v.isDefaultDemo);
   const badgeText = isDemoActive
-    ? '2 Modelos Predeterminados (Demo)'
-    : (displayList.length === 1 ? '1 Ficha Cargada' : `${displayList.length} Fichas en Comparación Directa`);
+    ? 'Demo (2)'
+    : `${displayList.length} en mesa`;
 
-  const infoSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
-  const checkSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  const mobileCols = displayList.length <= 2 ? displayList.length : 2;
+  const showCarTagInCell = displayList.length > 2;
 
   const bannerMarkup = isDemoActive
-    ? `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--cyan); margin-bottom:12px; background:var(--cyan-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(56,189,248,0.25); display:flex; align-items:center; justify-content:space-between; gap:8px;">
-        <div style="display:flex; align-items:center; gap:6px;">
-          ${infoSvg} <span><strong>MODELOS PREDETERMINADOS EN COMPARATIVA:</strong> Arrastra o adjunta tus fichas técnicas PDF arriba para comparar tus propios vehículos.</span>
-        </div>
+    ? `<div style="font-size:11.5px; color:var(--text-secondary); margin-bottom:10px; background:var(--bg-card-alt); padding:7px 10px; border-radius:7px; border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:8px;">
+        <span>Vehículos de ejemplo · Sube tu PDF o elige del catálogo arriba.</span>
         <button class="btn btn-secondary btn-sm" onclick="clearAllComparedVehicles(true)" style="padding:3px 8px; font-size:10px; line-height:1.2;">Limpiar</button>
       </div>`
     : (comparedVehicles.length === 1
-      ? `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--cyan); margin-bottom:12px; background:var(--cyan-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(56,189,248,0.25); display:flex; align-items:center; gap:6px;">
-          ${infoSvg} <span>1 VEHÍCULO RECONOCIDO: Adjunta otro archivo PDF para contrastar especificaciones lado a lado.</span>
+      ? `<div style="font-size:11.5px; color:var(--text-secondary); margin-bottom:10px; background:var(--bg-card-alt); padding:7px 10px; border-radius:7px; border:1px solid var(--border-subtle);">
+          Agrega otro modelo desde "+ Catálogo" o "+ PDF" para comparar cara a cara.
         </div>`
-      : `<div style="font-family:var(--font-mono); font-size:11.5px; color:var(--green); margin-bottom:12px; background:var(--green-dim); padding:8px 14px; border-radius:var(--radius-sm); border:1px solid rgba(16,185,129,0.25); display:flex; align-items:center; gap:6px;">
-          ${checkSvg} <span>COMPARACIÓN DIRECTA ACTIVA: Evaluando exclusivamente tus ${displayList.length} fichas técnicas extraídas.</span>
-        </div>`);
+      : '');
+
+  const mobileCompareMarkup = `
+    <div class="compare-mobile-stack" style="--comp-cols: ${mobileCols};">
+      <div class="compare-mobile-sticky-head">
+        ${displayList.map(v => `
+          <div class="compare-mobile-sticky-car">
+            <div class="compare-mobile-sticky-top">
+              <span style="font-size:12.5px; font-weight:700; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${v.maker}</span>
+              ${!v.isReference ? `
+                <button type="button" class="compare-slot-remove" onclick="removeComparedVehicle('${v.id}')" title="Quitar ${v.maker} ${v.model}" aria-label="Quitar ${v.maker} ${v.model}">&times;</button>
+              ` : `<span style="font-size:10px; color:var(--text-muted);">Base</span>`}
+            </div>
+            <div style="font-size:11px; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${v.model}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      ${Object.keys(categoriesPresent).length === 0 ? `
+        <div style="text-align:center; padding:20px 12px; color:var(--text-muted); font-size:12px;">
+          No hay parámetros que coincidan con el filtro actual.
+        </div>
+      ` : Object.keys(categoriesPresent).map(catKey => {
+        const catObj = categoriesPresent[catKey];
+        return `
+          <div class="compare-mobile-cat">${catObj.name}</div>
+          ${catObj.specs.map(spec => `
+            <div class="compare-mobile-row">
+              <div class="compare-mobile-param">${spec.label}</div>
+              <div class="compare-mobile-vals">
+                ${displayList.map(v => {
+                  const isLeader = highlightBestMode && displayList.length > 1 && Boolean(specLeadersMap[spec.key]?.has(v.id));
+                  return `
+                    <div class="compare-mobile-cell ${isLeader ? 'is-leader' : ''}">
+                      ${showCarTagInCell ? `<div class="compare-mobile-car-tag">${v.maker} ${v.model}</div>` : ''}
+                      <span style="display:inline-flex; align-items:center; gap:5px;">
+                        ${isLeader ? `<span class="status-dot dot-amber"></span>` : ''}<span>${spec.format(v, isLeader)}</span>
+                      </span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `).join('')}
+        `;
+      }).join('')}
+    </div>
+  `;
 
   container.innerHTML = `
-    <div class="card">
-      <div class="card-title">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="display:flex; align-items:center; gap:8px;">${ICONS.telemetry} Matriz Comparativa de Modelos</span>
-          <span class="badge" style="background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(56,189,248,0.3);">
+    <div class="card" style="padding:14px;">
+      <div class="card-title" style="margin-bottom:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>Comparativa</span>
+          <span class="badge" style="background:var(--bg-card-alt); color:var(--text-secondary); border:1px solid var(--border-glass);">
             ${badgeText}
           </span>
         </div>
         <div style="display:flex; gap:6px;">
-          <button class="btn btn-secondary btn-sm" onclick="saveCurrentComparison()" style="display:inline-flex; align-items:center; gap:5px;">${ICONS.save} Guardar Sesión</button>
-          <button class="btn btn-danger btn-sm" onclick="clearAllComparedVehicles()" style="display:inline-flex; align-items:center; gap:5px;">${ICONS.trash} Limpiar Todo</button>
+          <button class="btn btn-secondary btn-sm" onclick="saveCurrentComparison()" style="display:inline-flex; align-items:center; gap:4px; padding:5px 9px;">${ICONS.save} Guardar</button>
+          <button class="btn btn-danger btn-sm" onclick="clearAllComparedVehicles()" style="display:inline-flex; align-items:center; gap:4px; padding:5px 9px;">${ICONS.trash} Vaciar</button>
         </div>
       </div>
 
       ${bannerMarkup}
 
       <!-- TOOLBAR DE FILTROS & BÚSQUEDA REACTIVA -->
-      <div class="matrix-toolbar">
+      <div class="matrix-toolbar" style="padding:10px; gap:8px; margin-bottom:8px;">
         <div class="matrix-search-wrap">
           <span class="matrix-search-icon">
             <svg class="cockpit-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </span>
-          <input type="text" class="matrix-search-input" placeholder="Buscar especificación (ej: Potencia, Torque, ABS, Despeje...)" 
+          <input type="text" class="matrix-search-input" placeholder="Buscar parámetro (Potencia, ABS, Despeje...)" 
                  value="${matrixSearchQuery}" oninput="onMatrixSearch(this.value)">
         </div>
 
         <!-- Categorías -->
         <div style="display:flex; gap:5px; flex-wrap:wrap;">
           <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'all' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('all')">Todas</button>
-          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'motor' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('motor')">Motor & Tracción</button>
-          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'dimensions' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('dimensions')">Dimensiones & Carga</button>
-          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'safety' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('safety')">Seguridad & Confort</button>
+          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'motor' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('motor')">Motor</button>
+          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'dimensions' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('dimensions')">Dimensiones</button>
+          <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'safety' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('safety')">Seguridad</button>
           <button class="btn btn-secondary btn-sm ${matrixActiveCategory === 'bajokapot' ? 'toggle-pill-active' : ''}" onclick="setMatrixCategory('bajokapot')">Bajo el Kapot</button>
         </div>
 
         <!-- Filtros Inteligentes -->
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn btn-secondary btn-sm ${diffOnlyMode ? 'toggle-pill-active' : ''}" onclick="toggleDiffOnly()" title="Ocultar especificaciones con valores idénticos">
-            <span style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-              Solo Diferencias ${diffOnlyMode ? '(Activo)' : ''}
-            </span>
+            Solo Diferencias
           </button>
-          <button class="btn btn-secondary btn-sm ${highlightBestMode ? 'toggle-pill-active' : ''}" onclick="toggleHighlightBest()" title="Resaltar con verde la mejor métrica cuantitativa">
-            <span style="display:inline-flex; align-items:center; gap:5px;">
-              <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>
-              Resaltar Mejores ${highlightBestMode ? '(Activo)' : ''}
-            </span>
+          <button class="btn btn-secondary btn-sm ${highlightBestMode ? 'toggle-pill-active' : ''}" onclick="toggleHighlightBest()" title="Resaltar la mejor métrica">
+            Destacar Líder
           </button>
         </div>
       </div>
 
-      <!-- TABLA HORIZONTAL RESPONSIVA CON COLUMNA STICKY -->
+      ${mobileCompareMarkup}
+
+      <!-- TABLA HORIZONTAL RESPONSIVA CON COLUMNA STICKY (ESCRITORIO) -->
       <div class="table-responsive-wrapper">
         <table class="compare-table" style="min-width:${Math.max(480, displayList.length * 165 + 160)}px;">
           <thead>
@@ -7241,19 +7280,24 @@ const DEFAULT_GARAGE_VEHICLE = {
   odo: 100
 };
 
+function normalizeMaintenanceRegime(val) {
+  return val === "personalizado" ? "personalizado" : "severo";
+}
+
 let activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE };
-let currentMaintenanceRegime = localStorage.getItem("charu_maint_regime") || "severo"; // 'severo' | 'normal'
+let currentMaintenanceRegime = normalizeMaintenanceRegime(localStorage.getItem("charu_maint_regime")); // 'severo' | 'personalizado'
 let currentMaintCategoryFilter = "ALL"; // 'ALL' | 'SAFETY' | 'ENGINE' | 'TRANSMISSION' | 'CHASSIS'
 let currentMaintStatusFilter = "ALL"; // 'ALL' | 'PROXIMO' | 'CRITICO'
 let modalMaintenanceType = "preventivo"; // 'preventivo' | 'correctivo'
 
-// Matriz Maestra de 16 Puntos Preventivos según Manual de Usuario (OEM Normal vs. Severo)
+// Matriz Maestra de 16 Puntos Preventivos (Régimen Severo Base 5.000 km + Derivados y Personalizado)
 const OEM_PREVENTIVE_MATRIX = [
   {
     id: "breakin_5k",
     category: "ENGINE",
     isSafetyCritical: true,
     isBreakInItem: true,
+    multiplier: 1,
     systemName: "Motor · Rodaje",
     title: "Primer Servicio de Asentamiento (5.000 km)",
     oemSpec: "Aceite 5W-30 Sintético API SP (4.2 L) y filtro original",
@@ -7271,12 +7315,13 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "engine_oil",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 1,
     systemName: "Motor",
     title: "Aceite de Motor y Filtro",
     oemSpec: "SAE 5W-30 Sintético API SP (4.2 L)",
     normalKm: 10000,
     normalMonths: 12,
-    severeKm: 6000,
+    severeKm: 5000,
     severeMonths: 6,
     defaultLastKm: 0,
     estimatedUsd: 68,
@@ -7288,6 +7333,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "air_filter",
     category: "ENGINE",
     isSafetyCritical: false,
+    multiplier: 2,
     systemName: "Admisión",
     title: "Filtro de Aire del Motor",
     oemSpec: "Elemento filtrante seco de alta densidad",
@@ -7305,6 +7351,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "fuel_filter",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 2,
     systemName: "Combustible",
     title: "Filtro de Combustible",
     oemSpec: "Filtro de gasolina de alta retención",
@@ -7322,6 +7369,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "cabin_filter",
     category: "CHASSIS",
     isSafetyCritical: false,
+    multiplier: 2,
     systemName: "Climatización",
     title: "Filtro de Cabina (A/C)",
     oemSpec: "Filtro antipolen de carbón activado",
@@ -7339,6 +7387,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "spark_plugs",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 6,
     systemName: "Encendido",
     title: "Bujías de Encendido",
     oemSpec: "Juego de 4 bujías de Iridio OEM",
@@ -7356,6 +7405,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "injectors_throttle",
     category: "ENGINE",
     isSafetyCritical: false,
+    multiplier: 5,
     systemName: "Inyección",
     title: "Limpieza de Inyectores y Mariposa",
     oemSpec: "Ultrasonido y calibración electrónica",
@@ -7373,6 +7423,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "timing_chain",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 16,
     systemName: "Distribución",
     title: "Inspección de Cadena de Tiempo",
     oemSpec: "Cadena metálica interna y tensor hidráulico",
@@ -7390,6 +7441,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "drive_belt",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 9,
     systemName: "Accesorios",
     title: "Correa Única y Polea Tensora",
     oemSpec: "Correa serpentina EPDM de accesorios",
@@ -7407,6 +7459,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "manual_gearbox_oil",
     category: "TRANSMISSION",
     isSafetyCritical: false,
+    multiplier: 7,
     systemName: "Transmisión",
     title: "Aceite de Transmisión (6MT)",
     oemSpec: "SAE 75W-80 Sintético API GL-4 (2.2 L)",
@@ -7424,6 +7477,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "clutch_system",
     category: "TRANSMISSION",
     isSafetyCritical: true,
+    multiplier: 3,
     systemName: "Transmisión",
     title: "Inspección de Embrague y Bombín",
     oemSpec: "Recorrido de pedal y estanqueidad hidráulica",
@@ -7441,6 +7495,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "brake_clutch_fluid",
     category: "SAFETY",
     isSafetyCritical: true,
+    multiplier: 6,
     systemName: "Frenos",
     title: "Líquido de Frenos y Embrague",
     oemSpec: "Fluido sintético DOT 4",
@@ -7458,6 +7513,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "brake_pads_rotors",
     category: "SAFETY",
     isSafetyCritical: true,
+    multiplier: 2,
     systemName: "Frenos",
     title: "Pastillas y Discos de Freno",
     oemSpec: "Compuesto cerámico OEM (mínimo 3 mm)",
@@ -7475,6 +7531,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "coolant_system",
     category: "ENGINE",
     isSafetyCritical: true,
+    multiplier: 8,
     systemName: "Enfriamiento",
     title: "Refrigerante de Motor",
     oemSpec: "Orgánico OAT 50/50 anticorrosivo (7.5 L)",
@@ -7492,12 +7549,13 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "tires_alignment",
     category: "SAFETY",
     isSafetyCritical: true,
+    multiplier: 2,
     systemName: "Neumáticos",
     title: "Rotación, Balanceo y Alineación",
     oemSpec: "Presión 34 PSI en frío y geometría 3D",
     normalKm: 10000,
     normalMonths: 6,
-    severeKm: 7500,
+    severeKm: 10000,
     severeMonths: 6,
     defaultLastKm: 0,
     estimatedUsd: 40,
@@ -7509,6 +7567,7 @@ const OEM_PREVENTIVE_MATRIX = [
     id: "suspension_battery",
     category: "CHASSIS",
     isSafetyCritical: true,
+    multiplier: 2,
     systemName: "Chasis y Eléctrico",
     title: "Tren Delantero y Batería 12V",
     oemSpec: "Bujes, guardapolvos y prueba de carga CCA",
@@ -7599,9 +7658,7 @@ function renderPreventiveMatrix() {
 function initGarageMaintenanceModule() {
   loadActiveVehicle();
   populateGaragePreloadSelect();
-  renderBreakInAdvisorCard();
-  updateGarageTelemetryHUD();
-  renderPreventiveMaintenanceGrid();
+  setMaintenanceRegime(currentMaintenanceRegime);
   renderCorrectiveCatalogAndLogs();
   renderFuelHistory();
   renderGarageAnalytics();
@@ -7707,13 +7764,51 @@ function getLastServiceForTask(taskId) {
   return found || null;
 }
 
+function getDefaultCustomRegimeConfig(baseKm = 5000) {
+  const safeBase = Math.max(1000, Number(baseKm) || 5000);
+  const itemsKm = {};
+  OEM_PREVENTIVE_MATRIX.forEach(item => {
+    itemsKm[item.id] = Math.max(1000, Math.round(safeBase * (item.multiplier || 1)));
+  });
+  return { baseOilKm: safeBase, itemsKm };
+}
+
+function getCustomRegimeConfig() {
+  try {
+    const raw = localStorage.getItem("charu_custom_regime_config");
+    if (!raw) return getDefaultCustomRegimeConfig(5000);
+    const parsed = JSON.parse(raw);
+    const baseOilKm = Math.max(1000, Number(parsed && parsed.baseOilKm) || 5000);
+    const defaults = getDefaultCustomRegimeConfig(baseOilKm);
+    const itemsKm = { ...defaults.itemsKm };
+    if (parsed && parsed.itemsKm && typeof parsed.itemsKm === "object") {
+      OEM_PREVENTIVE_MATRIX.forEach(item => {
+        const val = Number(parsed.itemsKm[item.id]);
+        if (Number.isFinite(val) && val >= 1000) {
+          itemsKm[item.id] = Math.round(val);
+        }
+      });
+    }
+    return { baseOilKm, itemsKm };
+  } catch (e) {
+    return getDefaultCustomRegimeConfig(5000);
+  }
+}
+
+function saveCustomRegimeConfig(cfg) {
+  localStorage.setItem("charu_custom_regime_config", JSON.stringify(cfg));
+}
+
 function computeMaintenanceItemsStatus() {
-  const isSevere = currentMaintenanceRegime === "severo";
+  const isCustom = currentMaintenanceRegime === "personalizado";
+  const customCfg = isCustom ? getCustomRegimeConfig() : null;
   return OEM_PREVENTIVE_MATRIX.map(item => {
     const lastLog = getLastServiceForTask(item.id);
     const lastKm = lastLog ? Number(lastLog.km) : item.defaultLastKm;
-    const intervalKm = isSevere ? item.severeKm : item.normalKm;
-    const intervalMonths = isSevere ? item.severeMonths : item.normalMonths;
+    const intervalKm = isCustom
+      ? (Number(customCfg.itemsKm[item.id]) || Math.max(1000, Math.round(customCfg.baseOilKm * (item.multiplier || 1))))
+      : item.severeKm;
+    const intervalMonths = item.severeMonths;
 
     // Si es el 1er servicio de asentamiento (5.000 km) y ya fue realizado o el auto superó 6.500 km con cambio de aceite registrado
     if (item.isBreakInItem && (lastLog || getLastServiceForTask("engine_oil"))) {
@@ -7859,8 +7954,11 @@ function renderBreakInAdvisorCard() {
   const isTurbo = /turbo|t-gdi|tsi|ecoboost/i.test(v.engine || '');
   const oilSpec = v.oil || 'SAE 5W-30 API SP';
   const transSpec = v.transmission || 'Sincrónica / Automática';
+  const activeBaseOilKm = currentMaintenanceRegime === "personalizado"
+    ? getCustomRegimeConfig().baseOilKm
+    : 5000;
   const breakInProgress = Math.min(100, Math.round((currentOdometer / 1500) * 100));
-  const firstServiceProgress = Math.min(100, Math.round((currentOdometer / 5000) * 100));
+  const firstServiceProgress = Math.min(100, Math.round((currentOdometer / activeBaseOilKm) * 100));
   const isBreakInActive = currentOdometer < 1500;
 
   container.innerHTML = `
@@ -7880,11 +7978,11 @@ function renderBreakInAdvisorCard() {
 
     <div style="margin-bottom:10px;">
       <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:4px;">
-        <span>${currentOdometer < 5000 ? 'Meta 1er servicio (5.000 km)' : 'Ciclo cada 5.000 km'}</span>
-        <span style="color:var(--text-main); font-weight:600;">${currentOdometer < 5000 ? `${firstServiceProgress}%` : `${currentOdometer.toLocaleString()} km`}</span>
+        <span>${currentOdometer < activeBaseOilKm ? `Meta 1er servicio (${activeBaseOilKm.toLocaleString()} km)` : `Ciclo cada ${activeBaseOilKm.toLocaleString()} km`}</span>
+        <span style="color:var(--text-main); font-weight:600;">${currentOdometer < activeBaseOilKm ? `${firstServiceProgress}%` : `${currentOdometer.toLocaleString()} km`}</span>
       </div>
       <div class="maint-progress-track">
-        <div class="maint-progress-bar" style="width:${Math.max(4, currentOdometer < 5000 ? firstServiceProgress : ((currentOdometer % 5000) / 5000) * 100)}%; background:var(--text-secondary);"></div>
+        <div class="maint-progress-bar" style="width:${Math.max(4, currentOdometer < activeBaseOilKm ? firstServiceProgress : ((currentOdometer % activeBaseOilKm) / activeBaseOilKm) * 100)}%; background:var(--text-secondary);"></div>
       </div>
     </div>
 
@@ -7906,47 +8004,131 @@ function renderBreakInAdvisorCard() {
 }
 
 function setMaintenanceRegime(regime) {
-  currentMaintenanceRegime = regime;
-  localStorage.setItem("charu_maint_regime", regime);
+  currentMaintenanceRegime = normalizeMaintenanceRegime(regime);
+  localStorage.setItem("charu_maint_regime", currentMaintenanceRegime);
 
   const btnSevero = document.getElementById("regimeBtnSevero");
-  const btnNormal = document.getElementById("regimeBtnNormal");
+  const btnCustom = document.getElementById("regimeBtnCustom");
   const expText = document.getElementById("regimeExplanationText");
 
-  if (regime === "severo") {
+  if (currentMaintenanceRegime === "personalizado") {
+    const cfg = getCustomRegimeConfig();
+    if (btnCustom) {
+      btnCustom.className = "btn btn-sm";
+      btnCustom.style.border = "1px solid var(--accent)";
+      btnCustom.style.background = "var(--accent-dim)";
+      btnCustom.style.color = "var(--text-main)";
+    }
+    if (btnSevero) {
+      btnSevero.className = "btn btn-secondary btn-sm";
+      btnSevero.style.border = "";
+      btnSevero.style.background = "";
+      btnSevero.style.color = "";
+    }
+    if (expText) {
+      expText.textContent = `Personalizado · Aceite cada ${cfg.baseOilKm.toLocaleString()} km y derivados`;
+    }
+  } else {
     if (btnSevero) {
       btnSevero.className = "btn btn-sm";
       btnSevero.style.border = "1px solid var(--accent)";
       btnSevero.style.background = "var(--accent-dim)";
       btnSevero.style.color = "var(--text-main)";
     }
-    if (btnNormal) {
-      btnNormal.className = "btn btn-secondary btn-sm";
-      btnNormal.style.border = "";
-      btnNormal.style.background = "";
+    if (btnCustom) {
+      btnCustom.className = "btn btn-secondary btn-sm";
+      btnCustom.style.border = "";
+      btnCustom.style.background = "";
+      btnCustom.style.color = "";
     }
     if (expText) {
-      expText.innerHTML = `Intervalos ajustados para Venezuela: aceite cada 6.000 km, filtros cada 10.000 km y alineación cada 7.500 km.`;
-    }
-  } else {
-    if (btnNormal) {
-      btnNormal.className = "btn btn-sm";
-      btnNormal.style.border = "1px solid var(--accent)";
-      btnNormal.style.background = "var(--accent-dim)";
-      btnNormal.style.color = "var(--text-main)";
-    }
-    if (btnSevero) {
-      btnSevero.className = "btn btn-secondary btn-sm";
-      btnSevero.style.border = "";
-      btnSevero.style.background = "";
-    }
-    if (expText) {
-      expText.innerHTML = `Intervalos estándar de manual de fábrica (condiciones ideales de autopista).`;
+      expText.textContent = "Uso Severo · Aceite cada 5.000 km y derivados";
     }
   }
 
+  renderBreakInAdvisorCard();
   updateGarageTelemetryHUD();
   renderPreventiveMaintenanceGrid();
+}
+
+function renderCustomRegimeEditor() {
+  const cfg = getCustomRegimeConfig();
+  const baseInput = document.getElementById("customBaseOilKmInput");
+  if (baseInput) baseInput.value = cfg.baseOilKm;
+
+  const grid = document.getElementById("customRegimeItemsGrid");
+  if (!grid) return;
+
+  grid.innerHTML = OEM_PREVENTIVE_MATRIX.map(item => {
+    const val = Number(cfg.itemsKm[item.id]) || Math.round(cfg.baseOilKm * (item.multiplier || 1));
+    return `
+      <div style="background:var(--bg-card-alt); border:1px solid var(--border-subtle); border-radius:7px; padding:7px 9px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+        <div style="min-width:0;">
+          <div style="font-size:11.5px; font-weight:600; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.title}</div>
+          <div style="font-size:10px; color:var(--text-muted);">${item.multiplier || 1}× base</div>
+        </div>
+        <input type="number" class="input-field" data-maint-id="${item.id}" value="${val}" min="1000" max="200000" step="500" style="width:76px; padding:4px 6px; font-size:11.5px; text-align:right; flex-shrink:0;">
+      </div>
+    `;
+  }).join("");
+}
+
+function toggleCustomRegimeDrawer(forceOpen) {
+  const drawer = document.getElementById("customRegimeDrawer");
+  if (!drawer) return;
+  const open = typeof forceOpen === "boolean" ? forceOpen : drawer.hasAttribute("hidden");
+  if (open) {
+    renderCustomRegimeEditor();
+    drawer.removeAttribute("hidden");
+  } else {
+    drawer.setAttribute("hidden", "");
+  }
+}
+
+function applyScaledBaseOilToEditor(baseKm) {
+  const safeBase = Math.max(1000, Number(baseKm) || 5000);
+  const grid = document.getElementById("customRegimeItemsGrid");
+  if (!grid) return;
+  grid.querySelectorAll("input[data-maint-id]").forEach(inp => {
+    const id = inp.getAttribute("data-maint-id");
+    const item = OEM_PREVENTIVE_MATRIX.find(it => it.id === id);
+    if (item) {
+      inp.value = Math.max(1000, Math.round(safeBase * (item.multiplier || 1)));
+    }
+  });
+}
+
+function setCustomBaseOilPreset(km) {
+  const baseInput = document.getElementById("customBaseOilKmInput");
+  if (baseInput) baseInput.value = km;
+  applyScaledBaseOilToEditor(km);
+}
+
+function onCustomBaseOilInput(km) {
+  applyScaledBaseOilToEditor(km);
+}
+
+function saveCustomRegimeFromUI() {
+  const baseInput = document.getElementById("customBaseOilKmInput");
+  const baseOilKm = Math.max(1000, Math.round(Number(baseInput ? baseInput.value : 5000) || 5000));
+  const itemsKm = {};
+  const grid = document.getElementById("customRegimeItemsGrid");
+  OEM_PREVENTIVE_MATRIX.forEach(item => {
+    const inp = grid ? grid.querySelector(`input[data-maint-id="${item.id}"]`) : null;
+    const rawVal = inp ? Number(inp.value) : Math.round(baseOilKm * (item.multiplier || 1));
+    itemsKm[item.id] = Number.isFinite(rawVal) && rawVal >= 1000 ? Math.round(rawVal) : Math.round(baseOilKm * (item.multiplier || 1));
+  });
+  saveCustomRegimeConfig({ baseOilKm, itemsKm });
+  setMaintenanceRegime("personalizado");
+  toggleCustomRegimeDrawer(false);
+}
+
+function resetCustomRegimeToSevero() {
+  localStorage.removeItem("charu_custom_regime_config");
+  const baseInput = document.getElementById("customBaseOilKmInput");
+  if (baseInput) baseInput.value = 5000;
+  setMaintenanceRegime("severo");
+  toggleCustomRegimeDrawer(false);
 }
 
 function simulateOdometerPreview(targetKm) {
@@ -9910,6 +10092,7 @@ function exportOfflineBackup() {
     fuelHistory: safeParse("charu_fuel_history", []),
     maintenanceLogs: safeParse("charu_maintenance_logs", []),
     maintRegime: localStorage.getItem("charu_maint_regime") || currentMaintenanceRegime,
+    customRegimeConfig: getCustomRegimeConfig(),
     savedComparisons: safeParse("charu_saved_comparisons", []),
     bcvRate,
     bcvDate: localStorage.getItem("charu_bcv_date") || bcvLastUpdate || null,
@@ -9952,9 +10135,12 @@ function importOfflineBackup(event) {
         if (Array.isArray(data.maintenanceLogs)) {
           localStorage.setItem("charu_maintenance_logs", JSON.stringify(data.maintenanceLogs));
         }
+        if (data.customRegimeConfig && typeof data.customRegimeConfig === "object") {
+          saveCustomRegimeConfig(data.customRegimeConfig);
+        }
         if (data.maintRegime) {
-          currentMaintenanceRegime = data.maintRegime;
-          localStorage.setItem("charu_maint_regime", data.maintRegime);
+          currentMaintenanceRegime = normalizeMaintenanceRegime(data.maintRegime);
+          localStorage.setItem("charu_maint_regime", currentMaintenanceRegime);
         }
         if (Array.isArray(data.savedComparisons)) {
           localStorage.setItem("charu_saved_comparisons", JSON.stringify(data.savedComparisons));
@@ -9978,8 +10164,7 @@ function importOfflineBackup(event) {
           initProStatus();
         }
         syncGarageVehicleDOM();
-        renderBreakInAdvisorCard();
-        renderPreventiveMaintenanceGrid();
+        setMaintenanceRegime(currentMaintenanceRegime);
         renderCorrectiveCatalogAndLogs();
         renderFuelHistory();
         updateGarageTelemetryHUD();
