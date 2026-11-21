@@ -7699,14 +7699,6 @@ function refreshAllGarageUI() {
 }
 window.refreshAllGarageUI = refreshAllGarageUI;
 
-function triggerCloudSync() {
-  if (typeof window.manualCloudSync === "function") {
-    window.manualCloudSync();
-  } else if (typeof openAuthModal === "function") {
-    openAuthModal();
-  }
-}
-
 function renderGarageVehicleHeader() {
   loadActiveVehicle();
 }
@@ -10136,7 +10128,7 @@ function updateQueueDisplay() {
   const countBadge = document.getElementById("queueCountBadge");
   const list = document.getElementById("queueList");
 
-  if (pendingMutations.length > 0 || !isOnline) {
+  if (!isOnline) {
     if (queueCard) queueCard.style.display = "block";
     if (countBadge) {
       countBadge.textContent = `${pendingMutations.length} operación(es) guardada(s) localmente en este dispositivo`;
@@ -10186,15 +10178,19 @@ function syncPendingMutations() {
   }
 
   const countBadge = document.getElementById("queueCountBadge");
-  if (countBadge) countBadge.textContent = "Sincronizando operaciones con la nube...";
+  if (countBadge) countBadge.textContent = "Respaldando automáticamente...";
 
-  setTimeout(() => {
-    const totalSynced = pendingMutations.length;
+  const finalize = () => {
     pendingMutations = [];
     localStorage.removeItem("charu_sync_queue");
     updateQueueDisplay();
-    alert(`SINCRONIZACIÓN EXITOSA:\n\nSe han sincronizado e indexado ${totalSynced} operaciones almacenadas en el dispositivo.`);
-  }, 900);
+  };
+
+  if (typeof window.syncUserDataToCloud === "function") {
+    Promise.resolve(window.syncUserDataToCloud()).finally(finalize);
+  } else {
+    finalize();
+  }
 }
 
 function exportOfflineBackup() {

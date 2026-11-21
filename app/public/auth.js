@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { initializeFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { initializeFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // =======================================================
 // ⚠️ ATENCIÓN: CONFIGURACIÓN DE FIREBASE
@@ -77,10 +77,18 @@ window.logoutUser = async () => {
 
 
 // =======================================================
-// SINCRONIZACIÓN SEGURA EN LA NUBE (FIRESTORE READ-MERGE-WRITE)
+// SINCRONIZACIÓN AUTOMÁTICA EN TIEMPO REAL (FIRESTORE)
 // =======================================================
 
+const CLOUD_DIRTY_KEY = "charu_cloud_dirty";
+const CLOUD_DIRTY_OPTS_KEY = "charu_cloud_dirty_opts";
+
 let cloudHydratedUid = null;
+let unsubscribeUserSnapshot = null;
+let syncInFlight = false;
+let pendingSyncAfterFlight = false;
+let pendingSyncOptions = {};
+let lastAppliedCloudSync = null;
 
 function safeParseLocal(key, fallback) {
   try {
@@ -145,13 +153,13 @@ function mergeOdometerChains(localChain, cloudChain) {
   return safeCloud.length >= safeLocal.length ? safeCloud : safeLocal;
 }
 
-function resolveBestActiveVehicle(localVeh, cloudVeh) {
+function resolveBestActiveVehicle(localVeh, cloudVeh, { preferCloud = false } = {}) {
   const validLocal = isValidUserVehicle(localVeh) ? { ...localVeh, userConfigured: true } : null;
   const validCloud = isValidUserVehicle(cloudVeh) ? { ...cloudVeh, userConfigured: true } : null;
   if (!validLocal && !validCloud) return null;
   if (!validLocal) return validCloud;
   if (!validCloud) return validLocal;
-  // Si ambos son válidos, preferimos local si ya sincronizamos o tiene mayor odómetro; si es el mismo vehículo y nube tiene mayor odómetro, conservamos el mayor
+  if (preferCloud) return validCloud;
   if (validLocal.id === validCloud.id && Number(validCloud.odo || 0) > Number(validLocal.odo || 0)) {
     return { ...validLocal, odo: Number(validCloud.odo) };
   }
@@ -170,11 +178,116 @@ function refreshUiAfterCloudSync() {
   if (typeof renderSavedComparisons === "function") renderSavedComparisons();
 }
 
+function markCloudDirty(options = {}) {
+  try {
+    localStorage.setItem(CLOUD_DIRTY_KEY, "1");
+    const prevOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
+    const mergedOpts = { ...prevOpts, ...options };
+    localStorage.setItem(CLOUD_DIRTY_OPTS_KEY, JSON.stringify(mergedOpts));
+  } catch (e) {}
+}
+
+function clearCloudDirty() {
+  try {
+    localStorage.removeItem(CLOUD_DIRTY_KEY);
+    localStorage.removeItem(CLOUD_DIRTY_OPTS_KEY);
+  } catch (e) {}
+}
+
+function applyCloudDataToLocal(data, { isRealtimeUpdate = false } = {}) {
+  const hasPendingLocal = localStorage.getItem(CLOUD_DIRTY_KEY) === "1";
+  const authoritativeRemote = isRealtimeUpdate && !hasPendingLocal;
+
+  const localFuel = safeParseLocal("charu_fuel_history", []);
+  const cloudFuel = Array.isArray(data.fuelHistory) ? data.fuelHistory : [];
+  const nextFuel = authoritativeRemote
+    ? sortRecordsByDateDesc(cloudFuel)
+    : sortRecordsByDateDesc(mergeUniqueArrays(localFuel, cloudFuel));
+  if (authoritativeRemote || nextFuel.length > 0) {
+    localStorage.setItem("charu_fuel_history", JSON.stringify(nextFuel));
+  }
+
+  const localMaint = safeParseLocal("charu_maintenance_logs", []);
+  const cloudMaint = Array.isArray(data.maintenanceLogs) ? data.maintenanceLogs : [];
+  const nextMaint = authoritativeRemote
+    ? sortRecordsByDateDesc(cloudMaint)
+    : sortRecordsByDateDesc(mergeUniqueArrays(localMaint, cloudMaint));
+  if (authoritativeRemote || nextMaint.length > 0) {
+    localStorage.setItem("charu_maintenance_logs", JSON.stringify(nextMaint));
+  }
+
+  if (data.customRegimeConfig && typeof data.customRegimeConfig === "object") {
+    localStorage.setItem("charu_custom_regime_config", JSON.stringify(data.customRegimeConfig));
+  }
+  if (data.maintRegime) {
+    const normRegime = data.maintRegime === "personalizado" ? "personalizado" : "severo";
+    localStorage.setItem("charu_maint_regime", normRegime);
+  }
+
+  const localComp = safeParseLocal("charu_saved_comparisons", []);
+  const cloudComp = Array.isArray(data.savedComparisons) ? data.savedComparisons : [];
+  const nextComp = authoritativeRemote ? cloudComp : mergeUniqueArrays(localComp, cloudComp);
+  if (authoritativeRemote || nextComp.length > 0) {
+    localStorage.setItem("charu_saved_comparisons", JSON.stringify(nextComp));
+  }
+
+  const localChain = safeParseLocal("charu_odometer_chain", []);
+  const cloudChain = Array.isArray(data.odometerChain) ? data.odometerChain : [];
+  const nextChain = authoritativeRemote ? cloudChain : mergeOdometerChains(localChain, cloudChain);
+  if (nextChain.length > 0) {
+    localStorage.setItem("charu_odometer_chain", JSON.stringify(nextChain));
+  }
+
+  const localVeh = safeParseLocal("charu_active_vehicle", null);
+  const bestVeh = resolveBestActiveVehicle(localVeh, data.activeVehicle, { preferCloud: authoritativeRemote });
+  if (bestVeh) {
+    localStorage.setItem("charu_active_vehicle", JSON.stringify(bestVeh));
+  }
+
+  if (data.lastSync) {
+    lastAppliedCloudSync = data.lastSync;
+  }
+
+  refreshUiAfterCloudSync();
+
+  const needsPushBack = !authoritativeRemote && (
+    hasPendingLocal ||
+    nextFuel.length > cloudFuel.length ||
+    nextMaint.length > cloudMaint.length ||
+    nextComp.length > cloudComp.length ||
+    (bestVeh && !isValidUserVehicle(data.activeVehicle))
+  );
+
+  return {
+    fuelCount: nextFuel.length,
+    maintCount: nextMaint.length,
+    hasVehicle: Boolean(bestVeh),
+    needsPushBack
+  };
+}
+
 window.syncUserDataToCloud = async (options = {}) => {
   const user = auth.currentUser;
   if (!user) return { ok: false, reason: "no-auth" };
 
-  updateCloudStatusUI("Sincronizando con BajoKapot Cloud...");
+  markCloudDirty(options);
+
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
+    return { ok: false, reason: "offline" };
+  }
+
+  if (syncInFlight) {
+    pendingSyncAfterFlight = true;
+    pendingSyncOptions = { ...pendingSyncOptions, ...options };
+    return { ok: true, queued: true };
+  }
+
+  syncInFlight = true;
+  const savedDirtyOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
+  const effectiveOpts = { ...savedDirtyOpts, ...options };
+
+  updateCloudStatusUI("Guardando respaldo automático...");
 
   try {
     const userRef = doc(db, "users", user.uid);
@@ -190,25 +303,24 @@ window.syncUserDataToCloud = async (options = {}) => {
     const rawRegime = localStorage.getItem("charu_maint_regime");
     const maintRegime = rawRegime === "personalizado" ? "personalizado" : "severo";
 
-    const mergedFuel = options.allowEmptyFuel
+    const mergedFuel = effectiveOpts.allowEmptyFuel
       ? localFuel
       : sortRecordsByDateDesc(mergeUniqueArrays(localFuel, cloudData.fuelHistory));
     const mergedMaint = sortRecordsByDateDesc(mergeUniqueArrays(localMaint, cloudData.maintenanceLogs));
-    const mergedComp = options.allowReplaceComparisons
+    const mergedComp = effectiveOpts.allowReplaceComparisons
       ? localComp
       : mergeUniqueArrays(localComp, cloudData.savedComparisons);
     const mergedChain = mergeOdometerChains(localChain, cloudData.odometerChain);
 
     const bestVehicle = resolveBestActiveVehicle(localVeh, cloudData.activeVehicle);
 
-    // Reflejar cualquier registro fusionado desde la nube en localStorage para no perder nada
-    if (!options.allowEmptyFuel && mergedFuel.length > localFuel.length) {
+    if (!effectiveOpts.allowEmptyFuel && mergedFuel.length > localFuel.length) {
       localStorage.setItem("charu_fuel_history", JSON.stringify(mergedFuel));
     }
     if (mergedMaint.length > localMaint.length) {
       localStorage.setItem("charu_maintenance_logs", JSON.stringify(mergedMaint));
     }
-    if (!options.allowReplaceComparisons && mergedComp.length > localComp.length) {
+    if (!effectiveOpts.allowReplaceComparisons && mergedComp.length > localComp.length) {
       localStorage.setItem("charu_saved_comparisons", JSON.stringify(mergedComp));
     }
     if (mergedChain.length > localChain.length) {
@@ -218,13 +330,14 @@ window.syncUserDataToCloud = async (options = {}) => {
       localStorage.setItem("charu_active_vehicle", JSON.stringify(bestVehicle));
     }
 
+    const syncIso = new Date().toISOString();
     const dataToSync = {
       fuelHistory: mergedFuel,
       maintenanceLogs: mergedMaint,
       maintRegime,
       savedComparisons: mergedComp,
       odometerChain: mergedChain,
-      lastSync: new Date().toISOString()
+      lastSync: syncIso
     };
     if (bestVehicle) {
       dataToSync.activeVehicle = bestVehicle;
@@ -235,124 +348,98 @@ window.syncUserDataToCloud = async (options = {}) => {
       dataToSync.customRegimeConfig = cloudData.customRegimeConfig;
     }
 
+    lastAppliedCloudSync = syncIso;
     await setDoc(userRef, dataToSync, { merge: true });
+    clearCloudDirty();
     cloudHydratedUid = user.uid;
 
     const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-    updateCloudStatusUI(`Nube OK (${hhmm}) · ${mergedFuel.length} tanq. · ${mergedMaint.length} serv.`);
-    console.log("☁️ Respaldado de forma segura en BajoKapot Cloud.");
+    updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
     return { ok: true, fuelCount: mergedFuel.length, maintCount: mergedMaint.length, hasVehicle: Boolean(bestVehicle) };
   } catch (e) {
     console.error("Error sincronizando a la nube:", e);
-    updateCloudStatusUI(`Error al respaldar (${e.code || "sin red"})`, true);
+    updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
     return { ok: false, error: e };
+  } finally {
+    syncInFlight = false;
+    if (pendingSyncAfterFlight) {
+      const nextOpts = { ...pendingSyncOptions };
+      pendingSyncAfterFlight = false;
+      pendingSyncOptions = {};
+      window.syncUserDataToCloud(nextOpts);
+    }
   }
 };
 
-window.downloadUserDataFromCloud = async (user, { showSummaryAlert = false } = {}) => {
-  if (!user) return { ok: false, reason: "no-auth" };
-  updateCloudStatusUI("Consultando respaldo en la nube...");
-
-  try {
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-
-      // 1. Fusionar historial de tanqueos
-      const localFuel = safeParseLocal("charu_fuel_history", []);
-      const cloudFuel = Array.isArray(data.fuelHistory) ? data.fuelHistory : [];
-      const mergedFuel = sortRecordsByDateDesc(mergeUniqueArrays(localFuel, cloudFuel));
-      if (mergedFuel.length > 0) {
-        localStorage.setItem("charu_fuel_history", JSON.stringify(mergedFuel));
-      }
-
-      // 2. Fusionar historial de mantenimientos
-      const localMaint = safeParseLocal("charu_maintenance_logs", []);
-      const cloudMaint = Array.isArray(data.maintenanceLogs) ? data.maintenanceLogs : [];
-      const mergedMaint = sortRecordsByDateDesc(mergeUniqueArrays(localMaint, cloudMaint));
-      if (mergedMaint.length > 0) {
-        localStorage.setItem("charu_maintenance_logs", JSON.stringify(mergedMaint));
-      }
-
-      // 3. Restaurar régimen y configuración personalizada
-      if (data.customRegimeConfig && typeof data.customRegimeConfig === "object") {
-        localStorage.setItem("charu_custom_regime_config", JSON.stringify(data.customRegimeConfig));
-      }
-      if (data.maintRegime) {
-        const normRegime = data.maintRegime === "personalizado" ? "personalizado" : "severo";
-        localStorage.setItem("charu_maint_regime", normRegime);
-      }
-
-      // 4. Fusionar comparativas guardadas
-      const localComp = safeParseLocal("charu_saved_comparisons", []);
-      const cloudComp = Array.isArray(data.savedComparisons) ? data.savedComparisons : [];
-      const mergedComp = mergeUniqueArrays(localComp, cloudComp);
-      if (mergedComp.length > 0) {
-        localStorage.setItem("charu_saved_comparisons", JSON.stringify(mergedComp));
-      }
-
-      // 5. Fusionar cadena de odómetro
-      const localChain = safeParseLocal("charu_odometer_chain", []);
-      const cloudChain = Array.isArray(data.odometerChain) ? data.odometerChain : [];
-      const mergedChain = mergeOdometerChains(localChain, cloudChain);
-      if (mergedChain.length > 0) {
-        localStorage.setItem("charu_odometer_chain", JSON.stringify(mergedChain));
-      }
-
-      // 6. Restaurar vehículo real (reemplazando vacío o cualquier demo heredado)
-      const localVeh = safeParseLocal("charu_active_vehicle", null);
-      const bestVeh = resolveBestActiveVehicle(localVeh, data.activeVehicle);
-      if (bestVeh) {
-        localStorage.setItem("charu_active_vehicle", JSON.stringify(bestVeh));
-      }
-
-      cloudHydratedUid = user.uid;
-      refreshUiAfterCloudSync();
-
-      const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-      updateCloudStatusUI(`Nube OK (${hhmm}) · ${mergedFuel.length} tanq. · ${mergedMaint.length} serv.`);
-      console.log("⬇️ Historial restaurado y fusionado desde BajoKapot Cloud.");
-
-      if (showSummaryAlert) {
-        const vehText = bestVeh ? `${bestVeh.maker || ""} ${bestVeh.model || ""}`.trim() : "Sin vehículo aún";
-        alert(`Sincronización completada con BajoKapot Cloud:\n\n• Vehículo: ${vehText}\n• Tanqueos recuperados: ${mergedFuel.length}\n• Mantenimientos recuperados: ${mergedMaint.length}`);
-      }
-      return { ok: true, fuelCount: mergedFuel.length, maintCount: mergedMaint.length, hasVehicle: Boolean(bestVeh) };
-    } else {
-      cloudHydratedUid = user.uid;
-      updateCloudStatusUI("Conectado · Sin respaldo previo en nube");
-      if (showSummaryAlert) {
-        alert("Tu cuenta está conectada, pero aún no existe un respaldo guardado en BajoKapot Cloud. Registra tu vehículo para empezar a respaldar.");
-      }
-      return { ok: true, empty: true };
-    }
-  } catch (e) {
-    console.error("Error descargando de la nube:", e);
-    updateCloudStatusUI(`Error al leer nube (${e.code || "sin red"})`, true);
-    if (showSummaryAlert) {
-      alert(`No se pudo consultar BajoKapot Cloud (${e.code || e.message}). Verifica tu conexión a internet.`);
-    }
-    return { ok: false, error: e };
+function startRealtimeCloudSync(user) {
+  if (unsubscribeUserSnapshot) {
+    unsubscribeUserSnapshot();
+    unsubscribeUserSnapshot = null;
   }
-};
+  if (!user) return;
 
-window.manualCloudSync = async () => {
+  updateCloudStatusUI("Sincronizando automáticamente...");
+  const userRef = doc(db, "users", user.uid);
+
+  unsubscribeUserSnapshot = onSnapshot(
+    userRef,
+    (docSnap) => {
+      const isInitial = cloudHydratedUid !== user.uid;
+      cloudHydratedUid = user.uid;
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        // Evitar eco cuando acaba de llegar nuestra propia escritura local
+        if (!isInitial && data.lastSync && data.lastSync === lastAppliedCloudSync && localStorage.getItem(CLOUD_DIRTY_KEY) !== "1") {
+          const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
+          updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
+          return;
+        }
+
+        const res = applyCloudDataToLocal(data, { isRealtimeUpdate: !isInitial });
+        const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
+        updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
+
+        if (res.needsPushBack) {
+          window.syncUserDataToCloud();
+        }
+      } else {
+        // Cuenta nueva en Firestore: si ya había datos locales previos al login, respaldarlos automáticamente
+        const localVeh = safeParseLocal("charu_active_vehicle", null);
+        const localFuel = safeParseLocal("charu_fuel_history", []);
+        const localMaint = safeParseLocal("charu_maintenance_logs", []);
+        if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
+          window.syncUserDataToCloud();
+        } else {
+          updateCloudStatusUI("Respaldo automático activo");
+        }
+      }
+    },
+    (error) => {
+      console.error("Error en listener tiempo real de BajoKapot Cloud:", error);
+      updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
+    }
+  );
+}
+
+function flushPendingCloudSync() {
   const user = auth.currentUser;
-  if (!user) {
-    if (typeof toggleUserProfilePopover === "function") toggleUserProfilePopover(false);
-    if (typeof openAuthModal === "function") openAuthModal();
-    return;
+  if (!user) return;
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return;
+
+  if (localStorage.getItem(CLOUD_DIRTY_KEY) === "1") {
+    const savedOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
+    window.syncUserDataToCloud(savedOpts);
+  } else if (!unsubscribeUserSnapshot) {
+    startRealtimeCloudSync(user);
   }
-  const res = await window.downloadUserDataFromCloud(user, { showSummaryAlert: true });
-  if (res && res.ok) {
-    const localVeh = safeParseLocal("charu_active_vehicle", null);
-    const localFuel = safeParseLocal("charu_fuel_history", []);
-    const localMaint = safeParseLocal("charu_maintenance_logs", []);
-    if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
-      await window.syncUserDataToCloud();
-    }
-  }
-};
+}
+
+window.addEventListener("online", flushPendingCloudSync);
+window.addEventListener("focus", flushPendingCloudSync);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") flushPendingCloudSync();
+});
 
 // =======================================================
 // OBSERVADOR DE ESTADO (Se ejecuta al cargar y al loguearse)
@@ -369,10 +456,12 @@ function escapeAuthHtml(val) {
 onAuthStateChanged(auth, (user) => {
   const authBtn = document.getElementById('authBtn');
   const popover = document.getElementById('userProfilePopover');
+  const emptyAuthHint = document.getElementById('garageEmptyAuthHint');
   if (!authBtn) return;
 
   if (user) {
-    // ESTADO: LOGUEADO (Solo avatar circular en barra; detalles en popover)
+    if (emptyAuthHint) emptyAuthHint.style.display = 'none';
+
     const rawName = user.displayName || (user.email ? user.email.split('@')[0] : 'Piloto');
     const safeName = escapeAuthHtml(rawName);
     const safeEmail = escapeAuthHtml(user.email || 'Cuenta vinculada');
@@ -397,22 +486,24 @@ onAuthStateChanged(auth, (user) => {
         </div>
         <div class="user-popover-cloud">
           <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          <span id="cloudSyncStatusText">Conectando con BajoKapot Cloud...</span>
+          <span id="cloudSyncStatusText">Respaldo automático activo</span>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof window.manualCloudSync === 'function') window.manualCloudSync();">
-          Sincronizar ahora
-        </button>
-        <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:6px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
+        <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
           Cerrar sesión
         </button>
       `;
     }
 
-    // ☁️ Descargar e hidratar UI al iniciar sesión
-    window.downloadUserDataFromCloud(user);
+    startRealtimeCloudSync(user);
   } else {
     cloudHydratedUid = null;
-    // ESTADO: DESLOGUEADO (Solo icono de usuario en barra; acceso dentro del popover)
+    lastAppliedCloudSync = null;
+    if (unsubscribeUserSnapshot) {
+      unsubscribeUserSnapshot();
+      unsubscribeUserSnapshot = null;
+    }
+    if (emptyAuthHint) emptyAuthHint.style.display = '';
+
     authBtn.innerHTML = `
       <svg class="cockpit-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     `;
@@ -429,10 +520,10 @@ onAuthStateChanged(auth, (user) => {
           </span>
           <div class="user-popover-meta">
             <div class="user-popover-name">Modo Local</div>
-            <div class="user-popover-email">Sesión local (Sin sincronizar)</div>
+            <div class="user-popover-email">Sesión local (Sin respaldo en nube)</div>
           </div>
         </div>
-        <div class="user-popover-cloud">Guardado localmente en este dispositivo</div>
+        <div class="user-popover-cloud">Inicia sesión para respaldo automático</div>
         <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); if(typeof openAuthModal === 'function') openAuthModal();">
           Iniciar sesión / Registrarse
         </button>
