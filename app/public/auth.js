@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { initializeFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-lite.js";
 
 // =======================================================
 // ⚠️ ATENCIÓN: CONFIGURACIÓN DE FIREBASE
@@ -26,9 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-const db = initializeFirestore(app, {
-  experimentalAutoDetectLongPolling: true
-});
+const db = getFirestore(app);
 
 // =======================================================
 // FUNCIONES DE AUTENTICACIÓN (Expuestas globalmente)
@@ -77,18 +75,19 @@ window.logoutUser = async () => {
 
 
 // =======================================================
-// SINCRONIZACIÓN AUTOMÁTICA EN TIEMPO REAL (FIRESTORE)
+// SINCRONIZACIÓN AUTOMÁTICA POR EVENTO (FIRESTORE LITE REST)
+// Solo opera al iniciar sesión (1 lectura) y al guardar un registro (1 escritura).
+// Sin conexiones persistentes, sin onSnapshot y sin barridos periódicos.
 // =======================================================
 
 const CLOUD_DIRTY_KEY = "charu_cloud_dirty";
 const CLOUD_DIRTY_OPTS_KEY = "charu_cloud_dirty_opts";
 
 let cloudHydratedUid = null;
-let unsubscribeUserSnapshot = null;
+let hydrationInFlight = false;
 let syncInFlight = false;
 let pendingSyncAfterFlight = false;
 let pendingSyncOptions = {};
-let lastAppliedCloudSync = null;
 
 function safeParseLocal(key, fallback) {
   try {
@@ -194,25 +193,20 @@ function clearCloudDirty() {
   } catch (e) {}
 }
 
-function applyCloudDataToLocal(data, { isRealtimeUpdate = false } = {}) {
+function applyCloudDataToLocal(data) {
   const hasPendingLocal = localStorage.getItem(CLOUD_DIRTY_KEY) === "1";
-  const authoritativeRemote = isRealtimeUpdate && !hasPendingLocal;
 
   const localFuel = safeParseLocal("charu_fuel_history", []);
   const cloudFuel = Array.isArray(data.fuelHistory) ? data.fuelHistory : [];
-  const nextFuel = authoritativeRemote
-    ? sortRecordsByDateDesc(cloudFuel)
-    : sortRecordsByDateDesc(mergeUniqueArrays(localFuel, cloudFuel));
-  if (authoritativeRemote || nextFuel.length > 0) {
+  const nextFuel = sortRecordsByDateDesc(mergeUniqueArrays(localFuel, cloudFuel));
+  if (nextFuel.length > 0) {
     localStorage.setItem("charu_fuel_history", JSON.stringify(nextFuel));
   }
 
   const localMaint = safeParseLocal("charu_maintenance_logs", []);
   const cloudMaint = Array.isArray(data.maintenanceLogs) ? data.maintenanceLogs : [];
-  const nextMaint = authoritativeRemote
-    ? sortRecordsByDateDesc(cloudMaint)
-    : sortRecordsByDateDesc(mergeUniqueArrays(localMaint, cloudMaint));
-  if (authoritativeRemote || nextMaint.length > 0) {
+  const nextMaint = sortRecordsByDateDesc(mergeUniqueArrays(localMaint, cloudMaint));
+  if (nextMaint.length > 0) {
     localStorage.setItem("charu_maintenance_logs", JSON.stringify(nextMaint));
   }
 
@@ -226,31 +220,27 @@ function applyCloudDataToLocal(data, { isRealtimeUpdate = false } = {}) {
 
   const localComp = safeParseLocal("charu_saved_comparisons", []);
   const cloudComp = Array.isArray(data.savedComparisons) ? data.savedComparisons : [];
-  const nextComp = authoritativeRemote ? cloudComp : mergeUniqueArrays(localComp, cloudComp);
-  if (authoritativeRemote || nextComp.length > 0) {
+  const nextComp = mergeUniqueArrays(localComp, cloudComp);
+  if (nextComp.length > 0) {
     localStorage.setItem("charu_saved_comparisons", JSON.stringify(nextComp));
   }
 
   const localChain = safeParseLocal("charu_odometer_chain", []);
   const cloudChain = Array.isArray(data.odometerChain) ? data.odometerChain : [];
-  const nextChain = authoritativeRemote ? cloudChain : mergeOdometerChains(localChain, cloudChain);
+  const nextChain = mergeOdometerChains(localChain, cloudChain);
   if (nextChain.length > 0) {
     localStorage.setItem("charu_odometer_chain", JSON.stringify(nextChain));
   }
 
   const localVeh = safeParseLocal("charu_active_vehicle", null);
-  const bestVeh = resolveBestActiveVehicle(localVeh, data.activeVehicle, { preferCloud: authoritativeRemote });
+  const bestVeh = resolveBestActiveVehicle(localVeh, data.activeVehicle);
   if (bestVeh) {
     localStorage.setItem("charu_active_vehicle", JSON.stringify(bestVeh));
   }
 
-  if (data.lastSync) {
-    lastAppliedCloudSync = data.lastSync;
-  }
-
   refreshUiAfterCloudSync();
 
-  const needsPushBack = !authoritativeRemote && (
+  const needsPushBack = (
     hasPendingLocal ||
     nextFuel.length > cloudFuel.length ||
     nextMaint.length > cloudMaint.length ||
@@ -273,7 +263,7 @@ window.syncUserDataToCloud = async (options = {}) => {
   markCloudDirty(options);
 
   if (typeof navigator !== "undefined" && navigator.onLine === false) {
-    updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
+    updateCloudStatusUI("Sin conexión · pendiente de respaldo", true);
     return { ok: false, reason: "offline" };
   }
 
@@ -287,7 +277,7 @@ window.syncUserDataToCloud = async (options = {}) => {
   const savedDirtyOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
   const effectiveOpts = { ...savedDirtyOpts, ...options };
 
-  updateCloudStatusUI("Guardando respaldo automático...");
+  updateCloudStatusUI("Guardando respaldo...");
 
   try {
     const userRef = doc(db, "users", user.uid);
@@ -348,17 +338,16 @@ window.syncUserDataToCloud = async (options = {}) => {
       dataToSync.customRegimeConfig = cloudData.customRegimeConfig;
     }
 
-    lastAppliedCloudSync = syncIso;
     await setDoc(userRef, dataToSync, { merge: true });
     clearCloudDirty();
     cloudHydratedUid = user.uid;
 
     const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-    updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
+    updateCloudStatusUI(`Respaldado · ${hhmm}`);
     return { ok: true, fuelCount: mergedFuel.length, maintCount: mergedMaint.length, hasVehicle: Boolean(bestVehicle) };
   } catch (e) {
     console.error("Error sincronizando a la nube:", e);
-    updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
+    updateCloudStatusUI("Sin conexión · pendiente de respaldo", true);
     return { ok: false, error: e };
   } finally {
     syncInFlight = false;
@@ -371,74 +360,57 @@ window.syncUserDataToCloud = async (options = {}) => {
   }
 };
 
-function startRealtimeCloudSync(user) {
-  if (unsubscribeUserSnapshot) {
-    unsubscribeUserSnapshot();
-    unsubscribeUserSnapshot = null;
-  }
+async function hydrateUserDataOnce(user) {
   if (!user) return;
+  if (cloudHydratedUid === user.uid || hydrationInFlight) return;
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    updateCloudStatusUI("Sin conexión · respaldo al reconectar", true);
+    return;
+  }
 
-  updateCloudStatusUI("Sincronizando automáticamente...");
-  const userRef = doc(db, "users", user.uid);
+  hydrationInFlight = true;
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+    cloudHydratedUid = user.uid;
 
-  unsubscribeUserSnapshot = onSnapshot(
-    userRef,
-    (docSnap) => {
-      const isInitial = cloudHydratedUid !== user.uid;
-      cloudHydratedUid = user.uid;
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        // Evitar eco cuando acaba de llegar nuestra propia escritura local
-        if (!isInitial && data.lastSync && data.lastSync === lastAppliedCloudSync && localStorage.getItem(CLOUD_DIRTY_KEY) !== "1") {
-          const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-          updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
-          return;
-        }
-
-        const res = applyCloudDataToLocal(data, { isRealtimeUpdate: !isInitial });
-        const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-        updateCloudStatusUI(`Respaldo automático activo · ${hhmm}`);
-
-        if (res.needsPushBack) {
-          window.syncUserDataToCloud();
-        }
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const res = applyCloudDataToLocal(data);
+      if (res.needsPushBack) {
+        await window.syncUserDataToCloud();
       } else {
-        // Cuenta nueva en Firestore: si ya había datos locales previos al login, respaldarlos automáticamente
-        const localVeh = safeParseLocal("charu_active_vehicle", null);
-        const localFuel = safeParseLocal("charu_fuel_history", []);
-        const localMaint = safeParseLocal("charu_maintenance_logs", []);
-        if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
-          window.syncUserDataToCloud();
-        } else {
-          updateCloudStatusUI("Respaldo automático activo");
-        }
+        updateCloudStatusUI("Respaldo automático al guardar");
       }
-    },
-    (error) => {
-      console.error("Error en listener tiempo real de BajoKapot Cloud:", error);
-      updateCloudStatusUI("Sin conexión · se respaldará al reconectar", true);
+    } else {
+      // Cuenta nueva en Firestore: solo sube si ya había registros locales previos al login
+      const localVeh = safeParseLocal("charu_active_vehicle", null);
+      const localFuel = safeParseLocal("charu_fuel_history", []);
+      const localMaint = safeParseLocal("charu_maintenance_logs", []);
+      if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
+        await window.syncUserDataToCloud();
+      } else {
+        updateCloudStatusUI("Respaldo automático al guardar");
+      }
     }
-  );
+  } catch (error) {
+    console.error("Error consultando respaldo inicial en BajoKapot Cloud:", error);
+    updateCloudStatusUI("Respaldo pendiente de conexión", true);
+  } finally {
+    hydrationInFlight = false;
+  }
 }
 
-function flushPendingCloudSync() {
+// Solo reintenta al recuperar internet si efectivamente hubo un registro guardado sin conexión
+window.addEventListener("online", () => {
   const user = auth.currentUser;
   if (!user) return;
-  if (typeof navigator !== "undefined" && navigator.onLine === false) return;
-
   if (localStorage.getItem(CLOUD_DIRTY_KEY) === "1") {
     const savedOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
     window.syncUserDataToCloud(savedOpts);
-  } else if (!unsubscribeUserSnapshot) {
-    startRealtimeCloudSync(user);
+  } else if (cloudHydratedUid !== user.uid) {
+    hydrateUserDataOnce(user);
   }
-}
-
-window.addEventListener("online", flushPendingCloudSync);
-window.addEventListener("focus", flushPendingCloudSync);
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") flushPendingCloudSync();
 });
 
 // =======================================================
@@ -486,7 +458,7 @@ onAuthStateChanged(auth, (user) => {
         </div>
         <div class="user-popover-cloud">
           <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          <span id="cloudSyncStatusText">Respaldo automático activo</span>
+          <span id="cloudSyncStatusText">Respaldo automático al guardar</span>
         </div>
         <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
           Cerrar sesión
@@ -494,14 +466,10 @@ onAuthStateChanged(auth, (user) => {
       `;
     }
 
-    startRealtimeCloudSync(user);
+    hydrateUserDataOnce(user);
   } else {
     cloudHydratedUid = null;
-    lastAppliedCloudSync = null;
-    if (unsubscribeUserSnapshot) {
-      unsubscribeUserSnapshot();
-      unsubscribeUserSnapshot = null;
-    }
+    hydrationInFlight = false;
     if (emptyAuthHint) emptyAuthHint.style.display = '';
 
     authBtn.innerHTML = `

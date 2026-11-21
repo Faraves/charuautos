@@ -8052,7 +8052,8 @@ function renderBreakInAdvisorCard() {
   `;
 }
 
-function setMaintenanceRegime(regime) {
+function setMaintenanceRegime(regime, syncToCloud = false) {
+  const prevRegime = currentMaintenanceRegime;
   currentMaintenanceRegime = normalizeMaintenanceRegime(regime);
   localStorage.setItem("charu_maint_regime", currentMaintenanceRegime);
 
@@ -8098,6 +8099,10 @@ function setMaintenanceRegime(regime) {
   renderBreakInAdvisorCard();
   updateGarageTelemetryHUD();
   renderPreventiveMaintenanceGrid();
+
+  if (syncToCloud && currentMaintenanceRegime !== prevRegime && typeof window.syncUserDataToCloud === "function") {
+    window.syncUserDataToCloud();
+  }
 }
 
 function renderCustomRegimeEditor() {
@@ -10086,6 +10091,10 @@ function toggleOnlineStatus() {
 }
 
 function addMutation(table, action, payload) {
+  // Cuando hay internet, cada acción de guardado ya invoca syncUserDataToCloud() una sola vez.
+  // Solo encolamos aquí operaciones realizadas sin conexión para el buffer offline.
+  if (isOnline) return;
+
   const mut = {
     id: "mut_" + Date.now().toString(36) + "_" + Math.random().toString(36).substr(2, 4),
     table,
@@ -10097,13 +10106,7 @@ function addMutation(table, action, payload) {
   pendingMutations.push(mut);
   localStorage.setItem("charu_sync_queue", JSON.stringify(pendingMutations));
   updateQueueDisplay();
-
-  if (isOnline) {
-    console.log("[SyncManager] Mutación registrada. Procesando en segundo plano:", mut);
-    setTimeout(() => { syncPendingMutations(); }, 500);
-  } else {
-    console.log("[SyncManager] Mutación guardada en buffer offline local:", mut);
-  }
+  console.log("[SyncManager] Mutación guardada en buffer offline local:", mut);
 }
 
 function getMutationMeta(m) {
@@ -10177,20 +10180,9 @@ function syncPendingMutations() {
     return;
   }
 
-  const countBadge = document.getElementById("queueCountBadge");
-  if (countBadge) countBadge.textContent = "Respaldando automáticamente...";
-
-  const finalize = () => {
-    pendingMutations = [];
-    localStorage.removeItem("charu_sync_queue");
-    updateQueueDisplay();
-  };
-
-  if (typeof window.syncUserDataToCloud === "function") {
-    Promise.resolve(window.syncUserDataToCloud()).finally(finalize);
-  } else {
-    finalize();
-  }
+  pendingMutations = [];
+  localStorage.removeItem("charu_sync_queue");
+  updateQueueDisplay();
 }
 
 function exportOfflineBackup() {

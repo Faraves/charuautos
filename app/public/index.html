@@ -3590,10 +3590,6 @@ input:focus, select:focus, textarea:focus {
           </div>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button class="btn btn-sm btn-amber" onclick="syncPendingMutations()" style="padding:4px 10px; font-size:11px; gap:4px;">
-            <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            Sincronizar
-          </button>
           <button class="btn btn-sm btn-secondary" onclick="exportOfflineBackup()" style="padding:4px 10px; font-size:11px; gap:4px;">
             <svg class="cockpit-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Exportar .JSON
@@ -4111,7 +4107,7 @@ input:focus, select:focus, textarea:focus {
                 </div>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button type="button" id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo')" style="padding:5px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
+                <button type="button" id="regimeBtnSevero" class="btn btn-sm" onclick="setMaintenanceRegime('severo', true)" style="padding:5px 10px; font-size:11px; border:1px solid var(--accent); background:var(--accent-dim); color:var(--text-main);">
                   Severo (5.000 km)
                 </button>
                 <button type="button" id="regimeBtnCustom" class="btn btn-secondary btn-sm" onclick="toggleCustomRegimeDrawer()" style="padding:5px 10px; font-size:11px;">
@@ -4955,18 +4951,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v12)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v13)
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v12') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v13') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=12', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=13', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4975,8 +4971,8 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261121_bajokapot_v12"></script>
-  <script type="module" src="auth.js?v=20261121_bajokapot_v12"></script>
+  <script src="app.js?v=20261121_bajokapot_v13"></script>
+  <script type="module" src="auth.js?v=20261121_bajokapot_v13"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>
