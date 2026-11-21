@@ -10379,21 +10379,24 @@ function reloadBajoKapotApp() {
       fill.style.animation = '';
     }
   }
+  const cleanupTasks = [];
   if ('caches' in window) {
-    caches.keys().then((keys) => {
-      keys.forEach((k) => caches.delete(k));
-    }).catch(() => {});
+    cleanupTasks.push(
+      caches.keys().then((keys) => Promise.allSettled(keys.map((k) => caches.delete(k)))).catch(() => {})
+    );
   }
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then((regs) => {
-      regs.forEach((r) => {
-        if (typeof r.update === 'function') r.update();
-      });
-    }).catch(() => {});
+    cleanupTasks.push(
+      navigator.serviceWorker.getRegistrations().then((regs) =>
+        Promise.allSettled(regs.map((r) => r.unregister()))
+      ).catch(() => {})
+    );
   }
-  setTimeout(() => {
-    window.location.reload();
-  }, 550);
+  Promise.allSettled(cleanupTasks).finally(() => {
+    setTimeout(() => {
+      window.location.replace(window.location.pathname + '?bk=' + Date.now());
+    }, 350);
+  });
 }
 window.reloadBajoKapotApp = reloadBajoKapotApp;
 

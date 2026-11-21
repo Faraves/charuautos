@@ -3,12 +3,12 @@
  * Cache-first para recursos estáticos y fallback offline para navegación.
  */
 
-const CACHE_NAME = 'bajokapot-pwa-v13';
+const CACHE_NAME = 'bajokapot-pwa-v14';
 const STATIC_ASSETS = [
   './',
   './index.html',
-  './app.js?v=20261121_bajokapot_v13',
-  './auth.js?v=20261121_bajokapot_v13',
+  './app.js?v=20261121_bajokapot_v14',
+  './auth.js?v=20261121_bajokapot_v14',
   './manifest.json?v=7',
   './certificado_charupro_muestra.html',
   './bajokapot-logo-dark.png',
@@ -24,12 +24,18 @@ const STATIC_ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return Promise.allSettled(STATIC_ASSETS.map((url) => cache.add(url)));
+      return Promise.allSettled(
+        STATIC_ASSETS.map((url) =>
+          fetch(url, { cache: 'no-store' }).then((res) => {
+            if (res && res.ok) return cache.put(url, res);
+          })
+        )
+      );
     })
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -42,9 +48,8 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -52,9 +57,21 @@ self.addEventListener('fetch', (event) => {
   const reqUrl = new URL(event.request.url);
   // Nunca interceptar peticiones externas (Firebase Auth/Firestore, CDN, APIs)
   if (reqUrl.origin !== self.location.origin) return;
-  // Estrategia Network-first con fallback a cache local
+
+  const isCoreCode =
+    event.request.mode === 'navigate' ||
+    reqUrl.pathname.endsWith('/') ||
+    reqUrl.pathname.endsWith('/index.html') ||
+    reqUrl.pathname.endsWith('/app.js') ||
+    reqUrl.pathname.endsWith('/auth.js');
+
+  const networkPromise = isCoreCode
+    ? fetch(reqUrl.origin + reqUrl.pathname, { cache: 'no-store' })
+    : fetch(event.request);
+
+  // Estrategia Network-first (no-store para código principal) con fallback a cache local
   event.respondWith(
-    fetch(event.request)
+    networkPromise
       .then((response) => {
         if (response && response.status === 200 && response.type === 'basic') {
           const responseToCache = response.clone();

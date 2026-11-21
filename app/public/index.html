@@ -4951,28 +4951,37 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v13)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v14)
+    if (location.search.indexOf('bk=') !== -1 && window.history && typeof window.history.replaceState === 'function') {
+      window.history.replaceState(null, '', location.pathname + location.hash);
+    }
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v13') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v14') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=13', { updateViaCache: 'none' }).then(function(reg) {
-          if (typeof reg.update === 'function') reg.update();
-        }).catch(function(err) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) {
+            const url = (r.active && r.active.scriptURL) || (r.waiting && r.waiting.scriptURL) || (r.installing && r.installing.scriptURL) || '';
+            if (url && url.indexOf('sw.js?v=14') === -1) {
+              r.unregister();
+            }
+          });
+        }).catch(function() {});
+        navigator.serviceWorker.register('./sw.js?v=14', { updateViaCache: 'none' }).catch(function(err) {
           console.warn('SW register notice:', err);
         });
       }
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261121_bajokapot_v13"></script>
-  <script type="module" src="auth.js?v=20261121_bajokapot_v13"></script>
+  <script src="app.js?v=20261121_bajokapot_v14"></script>
+  <script type="module" src="auth.js?v=20261121_bajokapot_v14"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>

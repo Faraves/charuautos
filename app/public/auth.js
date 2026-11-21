@@ -83,6 +83,16 @@ window.logoutUser = async () => {
 const CLOUD_DIRTY_KEY = "charu_cloud_dirty";
 const CLOUD_DIRTY_OPTS_KEY = "charu_cloud_dirty_opts";
 
+// Purgar una sola vez cualquier bandera o cola residual de v12 para evitar reintentos heredados
+try {
+  if (!localStorage.getItem("charu_v14_clean")) {
+    localStorage.removeItem(CLOUD_DIRTY_KEY);
+    localStorage.removeItem(CLOUD_DIRTY_OPTS_KEY);
+    localStorage.removeItem("charu_sync_queue");
+    localStorage.setItem("charu_v14_clean", "1");
+  }
+} catch (e) {}
+
 let cloudHydratedUid = null;
 let hydrationInFlight = false;
 let syncInFlight = false;
@@ -343,7 +353,7 @@ window.syncUserDataToCloud = async (options = {}) => {
     cloudHydratedUid = user.uid;
 
     const hhmm = new Date().toLocaleTimeString("es-VE", { hour: "2-digit", minute: "2-digit" });
-    updateCloudStatusUI(`Respaldado · ${hhmm}`);
+    updateCloudStatusUI(`Respaldado · ${hhmm} (v14)`);
     return { ok: true, fuelCount: mergedFuel.length, maintCount: mergedMaint.length, hasVehicle: Boolean(bestVehicle) };
   } catch (e) {
     console.error("Error sincronizando a la nube:", e);
@@ -363,11 +373,25 @@ window.syncUserDataToCloud = async (options = {}) => {
 async function hydrateUserDataOnce(user) {
   if (!user) return;
   if (cloudHydratedUid === user.uid || hydrationInFlight) return;
-  if (typeof navigator !== "undefined" && navigator.onLine === false) {
-    updateCloudStatusUI("Sin conexión · respaldo al reconectar", true);
+
+  // Si el dispositivo ya tiene datos locales, NO hacemos ninguna petición de red al abrir la app.
+  // La sincronización ocurrirá únicamente cuando el usuario guarde un nuevo registro.
+  const localVeh = safeParseLocal("charu_active_vehicle", null);
+  const localFuel = safeParseLocal("charu_fuel_history", []);
+  const localMaint = safeParseLocal("charu_maintenance_logs", []);
+  if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
+    cloudHydratedUid = user.uid;
+    updateCloudStatusUI("Respaldo al guardar (v14)");
     return;
   }
 
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    updateCloudStatusUI("Sin conexión · respaldo al guardar", true);
+    return;
+  }
+
+  // Solo si el dispositivo está completamente vacío (ej. instalación limpia / teléfono nuevo),
+  // hacemos 1 única lectura para restaurar los datos del usuario desde la nube y nada más.
   hydrationInFlight = true;
   try {
     const userRef = doc(db, "users", user.uid);
@@ -375,27 +399,12 @@ async function hydrateUserDataOnce(user) {
     cloudHydratedUid = user.uid;
 
     if (docSnap.exists()) {
-      const data = docSnap.data();
-      const res = applyCloudDataToLocal(data);
-      if (res.needsPushBack) {
-        await window.syncUserDataToCloud();
-      } else {
-        updateCloudStatusUI("Respaldo automático al guardar");
-      }
-    } else {
-      // Cuenta nueva en Firestore: solo sube si ya había registros locales previos al login
-      const localVeh = safeParseLocal("charu_active_vehicle", null);
-      const localFuel = safeParseLocal("charu_fuel_history", []);
-      const localMaint = safeParseLocal("charu_maintenance_logs", []);
-      if (isValidUserVehicle(localVeh) || localFuel.length > 0 || localMaint.length > 0) {
-        await window.syncUserDataToCloud();
-      } else {
-        updateCloudStatusUI("Respaldo automático al guardar");
-      }
+      applyCloudDataToLocal(docSnap.data());
     }
+    updateCloudStatusUI("Respaldo al guardar (v14)");
   } catch (error) {
     console.error("Error consultando respaldo inicial en BajoKapot Cloud:", error);
-    updateCloudStatusUI("Respaldo pendiente de conexión", true);
+    updateCloudStatusUI("Respaldo al guardar (v14)");
   } finally {
     hydrationInFlight = false;
   }
@@ -408,8 +417,6 @@ window.addEventListener("online", () => {
   if (localStorage.getItem(CLOUD_DIRTY_KEY) === "1") {
     const savedOpts = safeParseLocal(CLOUD_DIRTY_OPTS_KEY, {});
     window.syncUserDataToCloud(savedOpts);
-  } else if (cloudHydratedUid !== user.uid) {
-    hydrateUserDataOnce(user);
   }
 });
 
@@ -458,7 +465,7 @@ onAuthStateChanged(auth, (user) => {
         </div>
         <div class="user-popover-cloud">
           <svg class="cockpit-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          <span id="cloudSyncStatusText">Respaldo automático al guardar</span>
+          <span id="cloudSyncStatusText">Respaldo al guardar (v14)</span>
         </div>
         <button type="button" class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="if(typeof toggleUserProfilePopover === 'function') toggleUserProfilePopover(false); logoutUser();">
           Cerrar sesión
