@@ -4955,18 +4955,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v10)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v11)
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v10') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v11') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=10', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=11', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4975,8 +4975,8 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261120_bajokapot_v10"></script>
-  <script type="module" src="auth.js?v=20261120_bajokapot_v10"></script>
+  <script src="app.js?v=20261120_bajokapot_v11"></script>
+  <script type="module" src="auth.js?v=20261120_bajokapot_v11"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>
