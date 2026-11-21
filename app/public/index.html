@@ -3959,7 +3959,31 @@ input:focus, select:focus, textarea:focus {
 
     <!-- TAB 4: GARAGE, MANTENIMIENTO INTELIGENTE & BLOCKCHAIN -->
     <div id="tab-garage" class="tab-pane">
-      <div class="garage-split-layout">
+      <!-- ESTADO VACÍO: REGISTRO INICIAL DE VEHÍCULO (SIN VEHÍCULO DEMO) -->
+      <div id="garageEmptyState" class="card" style="display:none; max-width:520px; margin:20px auto; text-align:center; padding:28px 20px;">
+        <div style="width:54px; height:54px; border-radius:14px; background:var(--accent-dim); color:var(--accent); display:inline-flex; align-items:center; justify-content:center; margin:0 auto 14px;">
+          <svg class="cockpit-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10L12 3l9 7v10a1 1 0 0 1-1 1h-2v-6H6v6H4a1 1 0 0 1-1-1V10z"/><path d="M9 17h6"/></svg>
+        </div>
+        <h2 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:6px;">
+          Registra tu vehículo en Mi Garage
+        </h2>
+        <p style="font-size:12.5px; color:var(--text-muted); line-height:1.5; max-width:380px; margin:0 auto 18px;">
+          Agrega los datos de tu carro para llevar el control de mantenimientos, tanqueos, rendimiento y respaldo en la nube.
+        </p>
+        <button type="button" class="btn btn-primary" onclick="openAddVehicleModal()" style="width:100%; max-width:280px; justify-content:center; margin:0 auto 12px;">
+          + Registrar Mi Vehículo
+        </button>
+        <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="triggerCloudSync()">
+            Sincronizar desde la nube
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('backupFileInput').click();">
+            Importar respaldo JSON
+          </button>
+        </div>
+      </div>
+
+      <div id="garageActiveWorkspace" class="garage-split-layout">
         <!-- SIDEBAR COMPACTA DE VEHÍCULO ACTIVO -->
         <aside class="garage-sidebar">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;">
@@ -3968,12 +3992,9 @@ input:focus, select:focus, textarea:focus {
               <span class="badge" style="background:rgba(255,255,255,0.04); border:1px solid var(--border-subtle); color:var(--text-muted); font-size:10px; padding:2px 7px; font-weight:500;">OEM</span>
             </h2>
             <div style="display:flex; gap:6px;">
-              <button class="btn btn-secondary btn-sm" onclick="loadHavalJolionPreset()" title="Cargar perfil base GWM Haval Jolion Classic 1.5T 6MT (100 km)" style="padding: 5px 8px; font-size: 11px;">
-                Haval 1.5T
-              </button>
-              <button class="btn btn-secondary btn-sm" onclick="openAddVehicleModal()" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                <span class="hide-mobile">Configurar Auto</span><span style="display:none;" class="show-mobile-inline">Auto</span>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="openAddVehicleModal()" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span>Editar Auto</span>
               </button>
             </div>
           </div>
@@ -3984,14 +4005,14 @@ input:focus, select:focus, textarea:focus {
               <div id="garageVehicleInfo">
                 <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;">
                   <span class="vin-plate-badge" id="garagePlateBadge">VE · Garage</span>
-                  <span style="font-size:11.5px; font-weight:700; color:var(--text-main); font-variant-numeric:tabular-nums;" id="garageOdoDisplay">100 km</span>
-                  <span style="font-size:11px; color:var(--text-muted);" id="garagePhaseSub">En rodaje</span>
+                  <span style="font-size:11.5px; font-weight:700; color:var(--text-main); font-variant-numeric:tabular-nums;" id="garageOdoDisplay">0 km</span>
+                  <span style="font-size:11px; color:var(--text-muted);" id="garagePhaseSub">--</span>
                 </div>
                 <div style="font-family:var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-main); letter-spacing:-0.02em; line-height:1.2;" id="garageVehicleName">
-                  GWM Haval Jolion Classic
+                  Sin vehículo registrado
                 </div>
                 <div style="font-size: 12px; color: var(--text-secondary); margin-top:4px;" id="garageVehicleDetails">
-                  Motor 1.5L Turbo (GW4G15K) • Cadena • 5W-30 • Uso Mixto
+                  Registra tu vehículo para ver las especificaciones
                 </div>
               </div>
               <div id="garageHealthGauge" class="radial-gauge-wrap"></div>
@@ -4558,33 +4579,33 @@ input:focus, select:focus, textarea:focus {
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Marca:</label>
-          <input type="text" id="newVehicleMaker" class="input-field" value="GWM Haval" placeholder="Ej: GWM Haval">
+          <input type="text" id="newVehicleMaker" class="input-field" value="" placeholder="Ej: Toyota, GWM, Chery">
         </div>
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Modelo y Versión:</label>
-          <input type="text" id="newVehicleModel" class="input-field" value="Jolion Classic" placeholder="Ej: Jolion Classic">
+          <input type="text" id="newVehicleModel" class="input-field" value="" placeholder="Ej: Corolla, Jolion, Tiggo">
         </div>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Año:</label>
-          <input type="number" id="newVehicleYear" class="input-field" value="2026" placeholder="2026">
+          <input type="number" id="newVehicleYear" class="input-field" value="" placeholder="Ej: 2026">
         </div>
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Odómetro (km):</label>
-          <input type="number" id="newVehicleOdo" class="input-field" value="100" placeholder="100">
+          <input type="number" id="newVehicleOdo" class="input-field" value="" placeholder="Ej: 1500">
         </div>
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Placa / ID:</label>
-          <input type="text" id="newVehiclePlate" class="input-field" value="EN-RODAJE" placeholder="AB123CD">
+          <input type="text" id="newVehiclePlate" class="input-field" value="" placeholder="Ej: AB123CD">
         </div>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Motor / Cilindrada:</label>
-          <input type="text" id="newVehicleEngine" class="input-field" value="1.5L Turbo (4 Cilindros)" placeholder="Ej: 1.5L Turbo">
+          <input type="text" id="newVehicleEngine" class="input-field" value="" placeholder="Ej: 1.5L Turbo / 1.8L">
         </div>
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Distribución:</label>
@@ -4598,7 +4619,7 @@ input:focus, select:focus, textarea:focus {
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Viscosidad Aceite OEM:</label>
-          <input type="text" id="newVehicleOil" class="input-field" value="SAE 5W-30 Sintético API SP" placeholder="Ej: 5W-30 API SP">
+          <input type="text" id="newVehicleOil" class="input-field" value="" placeholder="Ej: SAE 5W-30 Sintético API SP">
         </div>
         <div class="input-group" style="margin-bottom:0;">
           <label class="input-label">Transmisión:</label>
@@ -4612,12 +4633,12 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="input-group" style="margin-bottom:14px;">
-        <label class="input-label">Apodo del Vehículo:</label>
-        <input type="text" id="newVehicleNickname" class="input-field" value="Jolion Turbo" placeholder="Ej: Jolion Turbo">
+        <label class="input-label">Apodo del Vehículo (Opcional):</label>
+        <input type="text" id="newVehicleNickname" class="input-field" value="" placeholder="Ej: Mi Carro">
       </div>
 
       <button class="btn btn-green btn-block" onclick="saveNewVehicle()" style="display:inline-flex; align-items:center; justify-content:center; gap:7px;">
-        Guardar Configuración y Recalcular Plan OEM
+        Guardar Mi Vehículo
       </button>
     </div>
   </div>
@@ -4934,18 +4955,18 @@ input:focus, select:focus, textarea:focus {
   </div>
 
   <script>
-    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v9)
+    // Registro, purga de cachés legadas y actualización del Service Worker PWA (BAJOKAPOT v10)
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'bajokapot-pwa-v9') caches.delete(k);
+          if (k !== 'bajokapot-pwa-v10') caches.delete(k);
         });
       }).catch(function() {});
     }
     if ('serviceWorker' in navigator) {
       const isLocalDev = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if (!isLocalDev) {
-        navigator.serviceWorker.register('./sw.js?v=9', { updateViaCache: 'none' }).then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=10', { updateViaCache: 'none' }).then(function(reg) {
           if (typeof reg.update === 'function') reg.update();
         }).catch(function(err) {
           console.warn('SW register notice:', err);
@@ -4954,8 +4975,8 @@ input:focus, select:focus, textarea:focus {
     }
   </script>
   <!-- SCRIPT MODULAR CARGADO CON CACHE-BUSTING -->
-  <script src="app.js?v=20261115_bajokapot_v9"></script>
-  <script type="module" src="auth.js?v=20261115_bajokapot_v9"></script>
+  <script src="app.js?v=20261120_bajokapot_v10"></script>
+  <script type="module" src="auth.js?v=20261120_bajokapot_v10"></script>
 
   <!-- HIDE BANNER AFTER 1 SEC -->
   <script>

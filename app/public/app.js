@@ -4849,7 +4849,7 @@ let currentRoadFilter = "severo";
 let currentUsageFilter = "diario";
 let currentConditionFilter = "ALL";
 let onlyWithinBudget = false;
-let currentOdometer = 100;
+let currentOdometer = 0;
 let bcvRate = 36.50;
 let bcvLastUpdate = null;
 let currentAnalyticsGranularity = "global";
@@ -4857,17 +4857,8 @@ let analyticsGasChartInstance = null;
 let analyticsExpenseTimeChartInstance = null;
 let analyticsBreakdownChartInstance = null;
 
-// Micro-Blockchain SHA-256 en Memoria Local (Semilla: GWM Haval Jolion Classic 1.5T 6MT)
-let blockchain = [
-  {
-    index: 0,
-    timestamp: "2026-10-21 09:00:00",
-    km: 100,
-    reason: "[GÉNESIS OEM] Recepción GWM Haval Jolion Classic 1.5L Turbo Sincrónico (6MT) — Inicio de Asentamiento",
-    prevHash: "0000000000000000000000000000000000000000000000000000000000000000",
-    hash: "a94f8dd0ef2fe72d988891238914619726354182910293847561829304958c41"
-  }
-];
+// Micro-Blockchain SHA-256 persistida en LocalStorage y BajoKapot Cloud
+let blockchain = [];
 
 /* =============================================================================
    INICIALIZACIÓN AL CARGAR LA PÁGINA
@@ -7190,6 +7181,7 @@ function saveCurrentComparison() {
     addMutation("comparisons", "SAVE_COMPARISON", { id: savedItem.id, name: savedItem.name, vehicleCount: savedItem.vehicles.length });
     alert(`Comparativa "${customName}" guardada con éxito en tu historial.`);
     renderSavedComparisons();
+    if (window.syncUserDataToCloud) window.syncUserDataToCloud();
   } catch (e) {
     alert("Error al guardar en almacenamiento local.");
   }
@@ -7224,6 +7216,7 @@ function deleteSavedComparison(comparisonId) {
   addMutation("comparisons", "DELETE_COMPARISON", { id: comparisonId });
   if (typeof renderPreloadedCatalogPicker === 'function') renderPreloadedCatalogPicker();
   renderSavedComparisons();
+  if (window.syncUserDataToCloud) window.syncUserDataToCloud({ allowReplaceComparisons: true });
 }
 
 function renderSavedComparisons() {
@@ -7265,26 +7258,27 @@ function renderSavedComparisons() {
    TAB 4: MI GARAGE 2.0 — MANTENIMIENTO PREVENTIVO/CORRECTIVO, SEGURIDAD & SHA-256
    ============================================================================= */
 
-// Perfil Base Semilla: GWM Haval Jolion Classic 1.5L Turbo Sincrónico (6MT - 100 km)
-const DEFAULT_GARAGE_VEHICLE = {
-  id: "gwm-haval-jolion-classic-6mt",
-  maker: "GWM Haval",
-  model: "Jolion Classic",
-  year: 2026,
-  engine: "1.5L Turbo (GW4G15K) • 4 Cil.",
-  timing: "Cadena Metálica",
-  oil: "SAE 5W-30 Sintético API SP (4.2L)",
-  transmission: "Sincrónica 6MT (GL-4 75W-80)",
-  nickname: "Jolion Turbo",
-  plate: "EN-RODAJE",
-  odo: 100
-};
+function isLegacyDemoVehicle(v) {
+  if (!v || typeof v !== "object") return false;
+  if (v.userConfigured === true) return false;
+  if (v.model && String(v.model).includes("Corolla") && Number(v.odo) === 148500) return true;
+  if (
+    v.id === "gwm-haval-jolion-classic-6mt" &&
+    v.plate === "EN-RODAJE" &&
+    v.nickname === "Jolion Turbo" &&
+    Number(v.odo) === 100
+  ) {
+    return true;
+  }
+  return false;
+}
+window.isLegacyDemoVehicle = isLegacyDemoVehicle;
 
 function normalizeMaintenanceRegime(val) {
   return val === "personalizado" ? "personalizado" : "severo";
 }
 
-let activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE };
+let activeGarageVehicle = null;
 let currentMaintenanceRegime = normalizeMaintenanceRegime(localStorage.getItem("charu_maint_regime")); // 'severo' | 'personalizado'
 let currentMaintCategoryFilter = "ALL"; // 'ALL' | 'SAFETY' | 'ENGINE' | 'TRANSMISSION' | 'CHASSIS'
 let currentMaintStatusFilter = "ALL"; // 'ALL' | 'PROXIMO' | 'CRITICO'
@@ -7647,6 +7641,72 @@ async function sha256(str) {
   return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
+function loadOdometerChain() {
+  try {
+    const raw = localStorage.getItem("charu_odometer_chain");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        blockchain = parsed;
+        return;
+      }
+    }
+  } catch (e) {}
+  blockchain = [];
+}
+
+function saveOdometerChain() {
+  try {
+    localStorage.setItem("charu_odometer_chain", JSON.stringify(blockchain));
+  } catch (e) {}
+}
+
+function ensureBlockchainGenesis(vehicle) {
+  if (blockchain.length > 0 || !vehicle) return;
+  const kmVal = Number(vehicle.odo) || 0;
+  const label = `${vehicle.maker || ""} ${vehicle.model || ""} ${vehicle.year || ""}`.trim() || "Mi Vehículo";
+  blockchain = [
+    {
+      index: 0,
+      timestamp: new Date().toISOString().replace("T", " ").substr(0, 19),
+      km: kmVal,
+      reason: `[REGISTRO INICIAL] Alta de ${label} en BajoKapot`,
+      prevHash: "0000000000000000000000000000000000000000000000000000000000000000",
+      hash: "0000" + Date.now().toString(16) + "bk0genesis"
+    }
+  ];
+  saveOdometerChain();
+}
+
+function updateGarageEmptyStateVisibility() {
+  const emptyEl = document.getElementById("garageEmptyState");
+  const activeEl = document.getElementById("garageActiveWorkspace");
+  const hasVehicle = Boolean(activeGarageVehicle && (activeGarageVehicle.maker || activeGarageVehicle.model));
+  if (emptyEl) emptyEl.style.display = hasVehicle ? "none" : "block";
+  if (activeEl) activeEl.style.display = hasVehicle ? "" : "none";
+}
+
+function refreshAllGarageUI() {
+  loadActiveVehicle();
+  currentMaintenanceRegime = normalizeMaintenanceRegime(localStorage.getItem("charu_maint_regime"));
+  setMaintenanceRegime(currentMaintenanceRegime);
+  renderCorrectiveCatalogAndLogs();
+  renderFuelHistory();
+  renderBlockchain();
+  renderGarageAnalytics();
+  renderSavedComparisons();
+  runCopilotMaintenanceAdvisor(true);
+}
+window.refreshAllGarageUI = refreshAllGarageUI;
+
+function triggerCloudSync() {
+  if (typeof window.manualCloudSync === "function") {
+    window.manualCloudSync();
+  } else if (typeof openAuthModal === "function") {
+    openAuthModal();
+  }
+}
+
 function renderGarageVehicleHeader() {
   loadActiveVehicle();
 }
@@ -7656,36 +7716,39 @@ function renderPreventiveMatrix() {
 }
 
 function initGarageMaintenanceModule() {
-  loadActiveVehicle();
   populateGaragePreloadSelect();
-  setMaintenanceRegime(currentMaintenanceRegime);
-  renderCorrectiveCatalogAndLogs();
-  renderFuelHistory();
-  renderGarageAnalytics();
-  runCopilotMaintenanceAdvisor(true);
+  refreshAllGarageUI();
 }
 
 function loadActiveVehicle() {
+  loadOdometerChain();
   try {
     const saved = localStorage.getItem("charu_active_vehicle");
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Si era el vehículo demo antiguo de prueba (Corolla 148500), migramos al perfil real del usuario (GWM Haval Jolion Classic 1.5T)
-      if (parsed && parsed.model && parsed.model.includes("Corolla") && Number(parsed.odo) === 148500) {
-        activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE };
-        localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
+      if (parsed && !isLegacyDemoVehicle(parsed) && (parsed.maker || parsed.model)) {
+        activeGarageVehicle = parsed;
       } else {
-        activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE, ...parsed };
+        // Eliminar semilla demo heredada para que nunca interfiera con la nube ni confunda al usuario
+        if (parsed && isLegacyDemoVehicle(parsed)) {
+          localStorage.removeItem("charu_active_vehicle");
+        }
+        activeGarageVehicle = null;
       }
     } else {
-      activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE };
-      localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
+      activeGarageVehicle = null;
     }
   } catch (e) {
-    activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE };
+    activeGarageVehicle = null;
   }
 
-  currentOdometer = Number(activeGarageVehicle.odo) || 100;
+  if (activeGarageVehicle) {
+    currentOdometer = Number(activeGarageVehicle.odo) || 0;
+    ensureBlockchainGenesis(activeGarageVehicle);
+  } else {
+    currentOdometer = 0;
+  }
+  updateGarageEmptyStateVisibility();
   syncGarageVehicleDOM();
 }
 
@@ -7698,20 +7761,31 @@ function syncGarageVehicleDOM() {
   const phaseSub = document.getElementById("garagePhaseSub");
   const specPills = document.getElementById("garageSpecPills");
 
+  if (!v) {
+    if (plateBadge) plateBadge.textContent = "Mi Garage";
+    if (vehicleNameDisplay) vehicleNameDisplay.textContent = "Sin vehículo registrado";
+    if (vehicleDetailsDisplay) vehicleDetailsDisplay.textContent = "Registra tu vehículo para activar el plan OEM";
+    if (odoDisplay) odoDisplay.textContent = "0 km";
+    if (phaseSub) phaseSub.textContent = "--";
+    if (specPills) specPills.innerHTML = "";
+    return;
+  }
+
   const isBreakIn = currentOdometer < 1500;
   const statusTag = isBreakIn
-    ? `${v.transmission || 'Sincrónica 6MT'} · En rodaje`
-    : `${v.transmission || 'Sincrónica 6MT'}`;
+    ? `${v.transmission || 'Transmisión OEM'} · En rodaje`
+    : `${v.transmission || 'Transmisión OEM'}`;
 
   if (plateBadge) {
     const rawPlate = (v.plate && v.plate !== "EN-RODAJE") ? v.plate : (v.nickname || "Garage");
-    plateBadge.textContent = `${rawPlate} · ${v.year || 2026}`;
+    plateBadge.textContent = v.year ? `${rawPlate} · ${v.year}` : rawPlate;
   }
   if (vehicleNameDisplay) {
-    vehicleNameDisplay.innerHTML = `${v.maker} ${v.model} ${v.year}<div style="margin-top:5px;"><span style="display:inline-block; font-size: 11px; font-weight:600; background: var(--bg-card-alt); border: 1px solid var(--border-subtle); padding: 2px 8px; border-radius: 5px; color: var(--text-secondary);">${statusTag}</span></div>`;
+    vehicleNameDisplay.innerHTML = `${v.maker || ''} ${v.model || ''} ${v.year || ''}<div style="margin-top:5px;"><span style="display:inline-block; font-size: 11px; font-weight:600; background: var(--bg-card-alt); border: 1px solid var(--border-subtle); padding: 2px 8px; border-radius: 5px; color: var(--text-secondary);">${statusTag}</span></div>`;
   }
   if (vehicleDetailsDisplay) {
-    vehicleDetailsDisplay.innerHTML = `${v.engine || '1.5L Turbo'} · ${v.timing || 'Cadena'} · Alias: ${v.nickname || 'Vehículo Activo'}`;
+    const parts = [v.engine || null, v.timing || null, v.nickname ? `Alias: ${v.nickname}` : null].filter(Boolean);
+    vehicleDetailsDisplay.textContent = parts.join(" · ") || "Ficha técnica registrada";
   }
   if (odoDisplay) {
     odoDisplay.textContent = `${currentOdometer.toLocaleString()} km`;
@@ -7721,33 +7795,12 @@ function syncGarageVehicleDOM() {
   }
   if (specPills) {
     specPills.innerHTML = `
-      <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">${v.timing || 'Cadena Metálica'}</strong></span>
-      <span class="spec-pill-item">Aceite: <strong style="color:var(--text-main);">${v.oil || 'SAE 5W-30 API SP'}</strong></span>
-      <span class="spec-pill-item">Caja: <strong style="color:var(--text-main);">${v.transmission || 'Sincrónica 6MT'}</strong></span>
+      <span class="spec-pill-item">Distribución: <strong style="color:var(--text-main);">${v.timing || 'OEM'}</strong></span>
+      <span class="spec-pill-item">Aceite: <strong style="color:var(--text-main);">${v.oil || 'Según manual'}</strong></span>
+      <span class="spec-pill-item">Caja: <strong style="color:var(--text-main);">${v.transmission || 'OEM'}</strong></span>
       <span class="spec-pill-item">Frenos: <strong style="color:var(--text-main);">DOT 4</strong></span>
     `;
   }
-}
-
-function loadHavalJolionPreset() {
-  activeGarageVehicle = { ...DEFAULT_GARAGE_VEHICLE, odo: 100 };
-  currentOdometer = 100;
-  localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
-  blockchain = [
-    {
-      index: 0,
-      timestamp: new Date().toISOString().replace("T", " ").substr(0, 19),
-      km: 100,
-      reason: "[GÉNESIS OEM] Recepción GWM Haval Jolion Classic 1.5L Turbo Sincrónico (6MT) — Inicio de Asentamiento",
-      prevHash: "0000000000000000000000000000000000000000000000000000000000000000",
-      hash: "a94f8dd0ef2fe72d988891238914619726354182910293847561829304958c41"
-    }
-  ];
-  syncGarageVehicleDOM();
-  renderBreakInAdvisorCard();
-  updateGarageTelemetryHUD();
-  renderPreventiveMaintenanceGrid();
-  renderBlockchain();
 }
 
 function getMaintenanceLogs() {
@@ -7950,6 +8003,10 @@ function renderBreakInAdvisorCard() {
   if (!container) return;
 
   const v = activeGarageVehicle;
+  if (!v) {
+    container.innerHTML = "";
+    return;
+  }
   const vehicleName = `${v.maker || 'Vehículo'} ${v.model || ''}`.trim();
   const isTurbo = /turbo|t-gdi|tsi|ecoboost/i.test(v.engine || '');
   const oilSpec = v.oil || 'SAE 5W-30 API SP';
@@ -8121,6 +8178,7 @@ function saveCustomRegimeFromUI() {
   saveCustomRegimeConfig({ baseOilKm, itemsKm });
   setMaintenanceRegime("personalizado");
   toggleCustomRegimeDrawer(false);
+  if (window.syncUserDataToCloud) window.syncUserDataToCloud();
 }
 
 function resetCustomRegimeToSevero() {
@@ -8129,9 +8187,11 @@ function resetCustomRegimeToSevero() {
   if (baseInput) baseInput.value = 5000;
   setMaintenanceRegime("severo");
   toggleCustomRegimeDrawer(false);
+  if (window.syncUserDataToCloud) window.syncUserDataToCloud();
 }
 
 function simulateOdometerPreview(targetKm) {
+  if (!activeGarageVehicle) return;
   currentOdometer = Number(targetKm);
   activeGarageVehicle.odo = currentOdometer;
   syncGarageVehicleDOM();
@@ -8609,6 +8669,11 @@ function calcMaintBcvCost() {
 }
 
 async function saveMaintenanceRecord() {
+  if (!activeGarageVehicle) {
+    alert("Primero registra tu vehículo en Mi Garage.");
+    openAddVehicleModal();
+    return;
+  }
   const selectEl = document.getElementById("maintTaskSelect");
   const kmInput = document.getElementById("maintKmInput");
   const costInput = document.getElementById("maintCostUsdInput");
@@ -8640,10 +8705,11 @@ async function saveMaintenanceRecord() {
   const timePart = new Date().toISOString().substr(11, 8);
   const timestamp = `${pickedDate} ${timePart}`;
 
+  ensureBlockchainGenesis(activeGarageVehicle);
   const prevBlock = blockchain[blockchain.length - 1];
   const newIndex = blockchain.length;
   const reasonText = `[${modalMaintenanceType.toUpperCase()}] ${taskTitle} | Insumo: ${parts} | Taller: ${workshop} | Costo: $${costUsd.toFixed(2)} USD`;
-  const payloadString = `${newIndex}|${activeGarageVehicle.id || 'haval-jolion-1.5t'}|${serviceKm}|${timestamp}|${reasonText}|${prevBlock.hash}`;
+  const payloadString = `${newIndex}|${activeGarageVehicle.id || 'vehiculo-activo'}|${serviceKm}|${timestamp}|${reasonText}|${prevBlock.hash}`;
   const newHash = await sha256(payloadString);
 
   const newBlock = {
@@ -8656,6 +8722,7 @@ async function saveMaintenanceRecord() {
   };
 
   blockchain.push(newBlock);
+  saveOdometerChain();
   currentOdometer = serviceKm;
   activeGarageVehicle.odo = serviceKm;
   localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
@@ -8694,14 +8761,18 @@ async function saveMaintenanceRecord() {
 }
 
 function openWorkshopChecklistModal() {
+  if (!activeGarageVehicle) {
+    openAddVehicleModal();
+    return;
+  }
   const content = document.getElementById("workshopChecklistContent");
   if (content) {
     content.innerHTML = `
       <div style="background:var(--accent-dim); border:1px solid rgba(255,107,0,0.3); border-radius:8px; padding:10px 12px; margin-bottom:10px;">
-        <strong style="color:var(--accent);">Vehículo Activo:</strong> ${activeGarageVehicle.maker} ${activeGarageVehicle.model} (${activeGarageVehicle.engine}) • Odómetro: <strong>${currentOdometer.toLocaleString()} km</strong>
+        <strong style="color:var(--accent);">Vehículo Activo:</strong> ${activeGarageVehicle.maker || ''} ${activeGarageVehicle.model || ''} (${activeGarageVehicle.engine || 'Motor OEM'}) • Odómetro: <strong>${currentOdometer.toLocaleString()} km</strong>
       </div>
       <ul style="padding-left:18px; display:flex; flex-direction:column; gap:7px;">
-        <li><strong>1. Verificación de Lubricante:</strong> Exigir estrictamente <code>${activeGarageVehicle.oil || 'SAE 5W-30 100% Sintético API SP'}</code>. Rechazar aceites de mayor viscosidad no especificados por el fabricante.</li>
+        <li><strong>1. Verificación de Lubricante:</strong> Exigir estrictamente <code>${activeGarageVehicle.oil || 'Aceite OEM según manual'}</code>. Rechazar aceites de mayor viscosidad no especificados por el fabricante.</li>
         <li><strong>2. Devolución de Repuestos Sustituidos:</strong> Solicitar en recepción que guarden en bolsa las piezas/filtros reemplazados y el sobrante de lubricante.</li>
         <li><strong>3. Prohibición de Aditivos No Homologados:</strong> No autorizar cobros por "lavados internos de motor (Engine Flush)" ni aditivos espesantes no solicitados.</li>
         <li><strong>4. Especificación de Transmisión (${activeGarageVehicle.transmission || 'OEM'}):</strong> Verificar norma exacta del fluido antes de drenar o completar nivel.</li>
@@ -8713,10 +8784,11 @@ function openWorkshopChecklistModal() {
 }
 
 function copyWorkshopChecklist() {
+  if (!activeGarageVehicle) return;
   const text = `CHECKLIST TÉCNICO DE RECEPCIÓN EN TALLER — BAJOKAPOT\n` +
-    `Vehículo: ${activeGarageVehicle.maker} ${activeGarageVehicle.model} (${activeGarageVehicle.engine})\n` +
+    `Vehículo: ${activeGarageVehicle.maker || ''} ${activeGarageVehicle.model || ''} (${activeGarageVehicle.engine || 'Motor OEM'})\n` +
     `Odómetro Actual: ${currentOdometer.toLocaleString()} km\n\n` +
-    `1. Instalar únicamente aceite ${activeGarageVehicle.oil || 'SAE 5W-30 100% Sintético API SP / ILSAC GF-6A'}.\n` +
+    `1. Instalar únicamente aceite ${activeGarageVehicle.oil || 'especificado en el manual OEM'}.\n` +
     `2. Reemplazar filtro de aceite OEM y arandela de tapón de cárter con torque especificado.\n` +
     `3. No aplicar aditivos ni limpiadores internos no solicitados.\n` +
     `4. Conservar filtros/repuestos reemplazados para verificación al retirar el vehículo.`;
@@ -8739,58 +8811,67 @@ function runCopilotMaintenanceAdvisor(silentInit = false) {
   const container = document.getElementById("copilotResponseContainer");
   if (!container) return;
 
+  if (!activeGarageVehicle) {
+    container.innerHTML = `<div style="font-size:12px; color:var(--text-muted); padding:10px;">Registra tu vehículo en Mi Garage para recibir recomendaciones personalizadas.</div>`;
+    return;
+  }
+
+  const vName = `${activeGarageVehicle.maker || ''} ${activeGarageVehicle.model || ''}`.trim() || "tu vehículo";
+  const vEngine = activeGarageVehicle.engine || "Motor OEM";
+  const vOil = activeGarageVehicle.oil || "Aceite sintético según manual OEM";
+  const vTrans = activeGarageVehicle.transmission || "Transmisión OEM";
   const q = (input ? input.value : "").trim().toLowerCase();
-  let title = "Diagnóstico Preventivo & Recomendación OEM — GWM Haval Jolion 1.5T 6MT";
+  let title = `Diagnóstico Preventivo & Recomendación OEM — ${vName}`;
   let analysis = "";
   let actions = [];
   let shieldTip = "";
 
   if (q.includes("5w-30") || q.includes("aceite") || q.includes("turbo") || q.includes("apagar")) {
-    title = "Ingeniería de Lubricación Turbo (GW4G15K) y Regla de los 60 Segundos";
-    analysis = `Tu motor <strong>1.5L Turbo (${activeGarageVehicle.engine})</strong> somete el aceite a temperaturas superiores a <strong>250 °C</strong> en el eje del turbocompresor. Además, los motores turbo de baja cilindrada requieren protección contra <strong>LSPI (Pre-ignición a Baja Velocidad)</strong> y mantienen tensada la <strong>cadena metálica de tiempo</strong> mediante un tensor hidráulico alimentado por el mismo aceite.`;
+    title = `Lubricación y Protección del Motor — ${vName}`;
+    analysis = `Tu motor <strong>${vEngine}</strong> requiere mantener la viscosidad exacta <strong>${vOil}</strong> para proteger cojinetes, distribución (${activeGarageVehicle.timing || 'OEM'}) y temperatura interna bajo el clima y tráfico de Venezuela.`;
     actions = [
-      "Exige siempre SAE 5W-30 100% Sintético con certificación API SP o ILSAC GF-6A (Capacidad ~4.2 L con filtro).",
-      "En uso mixto en Venezuela (tráfico + calor), realiza los cambios cada 5.000 a 6.500 km o 6 meses (después del primer servicio de 5.000 km).",
-      "Protocolo Cool-Down: Al estacionar tras rodar en autopista o subidas, deja el motor en ralentí durante 45 a 60 segundos antes de apagarlo para que el aceite circule y enfríe el turbo."
+      `Exige siempre ${vOil} sellado de origen.`,
+      "En régimen severo en Venezuela (tráfico + calor), realiza cambios cada 5.000 km o 6 meses (o según tu régimen personalizado).",
+      "Si tu motor es turbo, deja el motor en ralentí 45 a 60 segundos antes de apagarlo tras exigirlo."
     ];
-    shieldTip = "Nunca aceptes el mito de 'subir a 15W-40 o 20W-50 por el calor de Venezuela'. Un aceite más grueso tarda más en llegar al turbo en frío y obstruye el tensor hidráulico de la cadena.";
+    shieldTip = "Nunca aceptes el mito de subir a aceites minerales más gruesos (15W-40 o 20W-50) si tu manual exige sintético liviano.";
   } else if (q.includes("caja") || q.includes("sincronica") || q.includes("6mt") || q.includes("embrague") || q.includes("croche") || q.includes("valvulina")) {
-    title = "Especialista en Transmisión Sincrónica (6MT) y Embrague Hidráulico";
-    analysis = `La transmisión manual de <strong>6 velocidades (6MT)</strong> del Haval Jolion ofrece gran control del torque (220 Nm entre 2.000 y 4.400 RPM) y menor complejidad electrónica que una caja automática, pero requiere dos cuidados críticos en su fluido de engranajes y su circuito hidráulico.`;
+    title = `Cuidados de Transmisión (${vTrans}) — ${vName}`;
+    analysis = `La transmisión <strong>${vTrans}</strong> de tu <strong>${vName}</strong> requiere respetar estrictamente la norma del fluido OEM y los intervalos preventivos bajo uso urbano intenso.`;
     actions = [
-      "Fluido de Caja 6MT: Utiliza valvulina sintética SAE 75W-80 o 75W-90 estrictamente norma API GL-4 (~2.2 L). Reemplázala cada 35.000 - 40.000 km en régimen severo.",
-      "Circuito Hidráulico de Croche: El collarín/bombín de embrague usa líquido de frenos DOT 4. Púrgalo cada 30.000 km o 18-24 meses junto con los frenos.",
-      "Hábito de Conducción: Retira por completo el pie izquierdo del pedal del embrague una vez engranada la marcha y usa punto muerto en semáforos largos para duplicar la vida del collarín."
+      "Verifica el fluido exacto especificado por el fabricante (GL-4 para sincrónicas, ATF/CVT/DCT específico para automáticas).",
+      "En régimen severo, planifica el servicio de fluido de caja cada 35.000 km.",
+      "Evita cambios bruscos en frío y revisa fugas en estoperas durante cada servicio de aceite."
     ];
-    shieldTip = "Jamás permitas que pongan valvulina API GL-5 en tu caja sincrónica: los aditivos de extrema presión (azufre/fósforo) del GL-5 atacan químicamente los anillos sincronizadores de bronce.";
+    shieldTip = "Nunca mezcles fluidos de transmisión universales genéricos ni uses GL-5 donde el manual exige GL-4.";
   } else if (q.includes("gasolina") || q.includes("inyeccion") || q.includes("octanaje") || q.includes("combustible")) {
-    title = "Blindaje del Sistema de Combustible y Turbo en Venezuela";
-    analysis = `En motores sobrealimentados (1.5L Turbo), una caída de presión de gasolina o inyectores parcialmente obstruidos empobrecen la mezcla aire/combustible, elevando peligrosamente la temperatura en la cámara de combustión y provocando detonación (pistoneo).`;
+    title = `Sistema de Combustible e Inyección en Venezuela — ${vName}`;
+    analysis = `En Venezuela los sedimentos en la gasolina aceleran la saturación del filtro de combustible y afectan la pulverización de inyectores y bujías en tu <strong>${vName}</strong>.`;
     actions = [
-      "Reemplaza el filtro de gasolina cada 10.000 km en régimen severo (la mitad del intervalo normal) debido a micro-sedimentos.",
-      "Evita rodar el vehículo con menos de 1/4 de tanque: la propia gasolina sumerge y refrigera la bomba eléctrica del tanque.",
-      "Revisa y reemplaza las bujías de Iridio cada 30.000 km para garantizar una chispa limpia bajo presión de turbo."
+      "Reemplaza el filtro de gasolina cada 10.000 km en régimen severo.",
+      "Evita circular con menos de 1/4 de tanque para proteger la bomba eléctrica.",
+      "Revisa y reemplaza las bujías cada 30.000 km (o según tu régimen personalizado)."
     ];
-    shieldTip = "Si sientes tirones al acelerar el turbo, pide medir la presión de la bomba y revisar el filtro de gasolina antes de que un taller intente desmontar el turbocompresor.";
+    shieldTip = "Si sientes pérdida de fuerza o tirones, pide medir presión de bomba y revisar filtro de gasolina antes de cambiar piezas costosas.";
   } else if (q.includes("concesionario") || q.includes("5,000") || q.includes("5.000") || q.includes("primer servicio")) {
-    title = "Guía para tu 1er Servicio Oficial de 5.000 km / 6 Meses";
-    analysis = `Con <strong>${currentOdometer.toLocaleString()} km</strong> actuales, te faltan <strong>${Math.max(0, 5000 - currentOdometer).toLocaleString()} km</strong> para el servicio más importante de la vida del motor. En este mantenimiento se retira el aceite inicial de fábrica junto con las partículas microscópicas del asentamiento.`;
+    title = `Protocolo de Servicio Preventivo — ${vName}`;
+    analysis = `Con <strong>${currentOdometer.toLocaleString()} km</strong> actuales, mantén el control de tu próximo servicio preventivo exigiendo solo lo correspondiente a tu kilometraje.`;
     actions = [
-      "Lo que SÍ corresponde a los 5.000 km: Cambio de aceite 5W-30 API SP + Filtro de aceite OEM + Inspección visual de fugas + Reapriete de suspensión + Escaneo preventivo OBD2.",
-      "Lo que NO corresponde aún a los 5.000 km: Limpieza de inyectores por ultrasonido, cambio de bujías, cambio de refrigerante ni aditivos químicos de motor.",
-      "Al salir del servicio, registra el comprobante en este módulo para sellarlo en tu Historial Certificado."
+      `Cambio de aceite (${vOil}) + filtro de aceite OEM + inspección de fugas y niveles.`,
+      "Revisión de filtros de aire y gasolina cada 10.000 km en uso severo.",
+      "Al salir del servicio, registra el comprobante en Mi Garage para guardarlo en tu historial y en la nube."
     ];
-    shieldTip = "Verifica con la varilla de medición antes de salir del concesionario que el aceite nuevo se vea totalmente transparente/ámbar claro y esté en la marca FULL.";
+    shieldTip = "Revisa la varilla de medición y pide los filtros usados antes de retirar tu vehículo del taller.";
   } else {
-    title = "Protocolo Maestro de Rodaje Inicial (100 km a 5.000 km) — GWM Haval Jolion 1.5T 6MT";
-    analysis = `Tu <strong>GWM Haval Jolion Classic Sincrónico</strong> está prácticamente recién salido de agencia (<strong>${currentOdometer.toLocaleString()} km</strong>). Durante los primeros <strong>1.000 a 1.500 km</strong> ocurre el asentamiento metalúrgico entre los anillos de los 4 cilindros, las paredes del bloque 1.5T y los engranajes de tu caja 6MT.`;
+    title = `Guía Preventiva Activa (${currentOdometer.toLocaleString()} km) — ${vName}`;
+    analysis = `Tu <strong>${vName}</strong> (${vEngine} · ${vTrans}) registra actualmente <strong>${currentOdometer.toLocaleString()} km</strong>. Sigue tu plan preventivo activo en Mi Garage para proteger motor, frenos y transmisión.`;
     actions = [
-      "1. Régimen de RPM (0 a 1.500 km): Conduce suavemente entre 2.000 y 3.500 RPM. Evita pisar el acelerador al 100% y evita subir pendientes forzando el motor en marchas altas a bajas RPM.",
-      "2. Variación de Marchas en Caja 6MT: No mantengas una misma velocidad fija por largos períodos en autopista; alterna marchas para asentar todos los sincronizadores.",
-      "3. Asentamiento de Frenos (0 a 500 km): Realiza frenadas progresivas y anticipadas para que las pastillas se acoplen térmicamente a los 4 discos sin cristalizarse.",
-      "4. Cuidado del Turbo (Siempre): Espera 30-45 seg al arrancar en la mañana antes de rodar, y 45-60 seg en ralentí antes de apagar el motor."
+      `1. Lubricación: Mantén cambios puntuales con ${vOil}.`,
+      "2. Seguridad Vial: Verifica espesor de pastillas de freno, presión de neumáticos y líquido DOT 4.",
+      "3. Combustible y Filtros: Cambia filtros de aire y gasolina según el ciclo severo de 10.000 km.",
+      "4. Registro: Actualiza tu odómetro y tanqueos para calcular tu rendimiento real (km/L)."
     ];
-    shieldTip = "Agenda tu Primer Servicio de Asentamiento exactamente a los 5.000 km o 6 meses (lo que ocurra primero) exigiendo aceite SAE 5W-30 100% Sintético API SP.";
+    shieldTip = "Usa el botón Escudo de Taller dentro de Mi Garage antes de entregar el vehículo a cualquier servicio.";
   }
 
   container.innerHTML = `
@@ -8827,6 +8908,11 @@ function openOdometerModal() {
 }
 
 async function mineOdometerBlock() {
+  if (!activeGarageVehicle) {
+    alert("Primero registra tu vehículo en Mi Garage.");
+    openAddVehicleModal();
+    return;
+  }
   const input = document.getElementById("newOdoInput");
   const reasonInput = document.getElementById("odoReasonInput");
   const fraudAlert = document.getElementById("fraudAlert");
@@ -8840,11 +8926,12 @@ async function mineOdometerBlock() {
     return;
   }
 
+  ensureBlockchainGenesis(activeGarageVehicle);
   const prevBlock = blockchain[blockchain.length - 1];
   const newIndex = blockchain.length;
   const timestamp = new Date().toISOString().replace("T", " ").substr(0, 19);
 
-  const payloadString = `${newIndex}|${activeGarageVehicle.id || 'gwm-haval-jolion-1.5t'}|${newKm}|${timestamp}|${prevBlock.hash}`;
+  const payloadString = `${newIndex}|${activeGarageVehicle.id || 'vehiculo-activo'}|${newKm}|${timestamp}|${prevBlock.hash}`;
   const newHash = await sha256(payloadString);
 
   const newBlock = {
@@ -8857,6 +8944,7 @@ async function mineOdometerBlock() {
   };
 
   blockchain.push(newBlock);
+  saveOdometerChain();
   currentOdometer = newKm;
   activeGarageVehicle.odo = newKm;
   localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
@@ -8865,17 +8953,24 @@ async function mineOdometerBlock() {
   renderBreakInAdvisorCard();
   updateGarageTelemetryHUD();
   renderPreventiveMaintenanceGrid();
+  if (typeof renderGarageAnalytics === "function") renderGarageAnalytics();
 
   addMutation("odometer_chain", "INSERT_BLOCK", newBlock);
 
   closeModal("odometerModal");
   renderBlockchain();
+  if (window.syncUserDataToCloud) window.syncUserDataToCloud();
   alert(`Registro #${newIndex} guardado en Historial Certificado.\nOdómetro actualizado a ${newKm.toLocaleString()} km y alertas de mantenimiento recalculadas.`);
 }
 
 function renderBlockchain() {
   const feed = document.getElementById("blockchainFeed");
   if (!feed) return;
+
+  if (!blockchain.length) {
+    feed.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:14px; font-size:12px;">Aún no hay registros certificados en el historial.</div>`;
+    return;
+  }
 
   feed.innerHTML = blockchain.slice().reverse().map(b => `
     <div class="chain-block">
@@ -8891,6 +8986,10 @@ function renderBlockchain() {
 }
 
 function auditChain() {
+  if (!activeGarageVehicle || !blockchain.length) {
+    alert("Registra tu vehículo y al menos un servicio u odómetro para auditar tu historial.");
+    return;
+  }
   let valid = true;
   for (let i = 1; i < blockchain.length; i++) {
     if (blockchain[i].prevHash !== blockchain[i - 1].hash || blockchain[i].km < blockchain[i - 1].km) {
@@ -8899,7 +8998,7 @@ function auditChain() {
     }
   }
   if (valid) {
-    alert(`AUDITORÍA DE HISTORIAL CERTIFICADO EXITOSA:\nVehículo: ${activeGarageVehicle.maker} ${activeGarageVehicle.model}\nRegistros Verificados: ${blockchain.length}\nTodos los registros mantienen secuencia progresiva y código de verificación íntegro.`);
+    alert(`AUDITORÍA DE HISTORIAL CERTIFICADO EXITOSA:\nVehículo: ${activeGarageVehicle.maker || ''} ${activeGarageVehicle.model || ''}\nRegistros Verificados: ${blockchain.length}\nTodos los registros mantienen secuencia progresiva y código de verificación íntegro.`);
   } else {
     alert("ALERTA DE INTEGRIDAD: El historial contiene inconsistencias en la secuencia.");
   }
@@ -9002,38 +9101,56 @@ function openAddVehicleModal() {
   const mTrans = document.getElementById("newVehicleTransmission");
   const mNick = document.getElementById("newVehicleNickname");
 
-  if (sel) sel.value = v.catalogId || "";
-  if (mMaker) mMaker.value = v.maker || "GWM Haval";
-  if (mModel) mModel.value = v.model || "Jolion Classic";
-  if (mYear) mYear.value = v.year || 2026;
-  if (mOdo) mOdo.value = currentOdometer;
-  if (mPlate) mPlate.value = v.plate || "EN-RODAJE";
-  if (mEngine) mEngine.value = v.engine || "1.5L Turbo (GW4G15K) • 4 Cil.";
-  if (mOil) mOil.value = v.oil || "SAE 5W-30 Sintético API SP (4.2L)";
-  if (mTiming) mTiming.value = v.timing && /correa/i.test(v.timing) ? "Correa Dentada" : "Cadena Metálica";
-  if (mTrans) {
-    const tVal = v.transmission || "Sincrónica 6MT";
-    if (/dct/i.test(tVal)) mTrans.value = "Automática DCT 7 Vel.";
-    else if (/cvt/i.test(tVal)) mTrans.value = "Transmisión CVT";
-    else if (/automát|at\b/i.test(tVal)) mTrans.value = "Automática Convencional";
-    else mTrans.value = "Sincrónica 6MT";
+  if (!v) {
+    if (sel) sel.value = "";
+    if (mMaker) mMaker.value = "";
+    if (mModel) mModel.value = "";
+    if (mYear) mYear.value = new Date().getFullYear();
+    if (mOdo) mOdo.value = "";
+    if (mPlate) mPlate.value = "";
+    if (mEngine) mEngine.value = "";
+    if (mOil) mOil.value = "";
+    if (mTiming) mTiming.value = "Cadena Metálica";
+    if (mTrans) mTrans.value = "Sincrónica 6MT";
+    if (mNick) mNick.value = "";
+  } else {
+    if (sel) sel.value = v.catalogId || "";
+    if (mMaker) mMaker.value = v.maker || "";
+    if (mModel) mModel.value = v.model || "";
+    if (mYear) mYear.value = v.year || new Date().getFullYear();
+    if (mOdo) mOdo.value = currentOdometer;
+    if (mPlate) mPlate.value = v.plate || "";
+    if (mEngine) mEngine.value = v.engine || "";
+    if (mOil) mOil.value = v.oil || "";
+    if (mTiming) mTiming.value = v.timing && /correa/i.test(v.timing) ? "Correa Dentada" : "Cadena Metálica";
+    if (mTrans) {
+      const tVal = v.transmission || "Sincrónica 6MT";
+      if (/dct/i.test(tVal)) mTrans.value = "Automática DCT 7 Vel.";
+      else if (/cvt/i.test(tVal)) mTrans.value = "Transmisión CVT";
+      else if (/automát|at\b/i.test(tVal)) mTrans.value = "Automática Convencional";
+      else mTrans.value = "Sincrónica 6MT";
+    }
+    if (mNick) mNick.value = v.nickname || "";
   }
-  if (mNick) mNick.value = v.nickname || "Jolion Turbo";
 
   openModal("addVehicleModal");
 }
 
 function saveNewVehicle() {
   const catalogId = document.getElementById("garagePreloadSelect")?.value || "";
-  const maker = (document.getElementById("newVehicleMaker")?.value || "GWM Haval").trim();
-  const model = (document.getElementById("newVehicleModel")?.value || "Jolion Classic").trim();
-  const year = document.getElementById("newVehicleYear")?.value || "2026";
-  const nickname = (document.getElementById("newVehicleNickname")?.value || model || "Mi Vehículo").trim();
-  const plate = (document.getElementById("newVehiclePlate")?.value || "EN-RODAJE").trim();
-  const odo = parseFloat(document.getElementById("newVehicleOdo")?.value || "100") || 0;
-  const engine = document.getElementById("newVehicleEngine")?.value || "1.5L Turbo (4 Cilindros)";
+  const maker = (document.getElementById("newVehicleMaker")?.value || "").trim();
+  const model = (document.getElementById("newVehicleModel")?.value || "").trim();
+  if (!maker || !model) {
+    alert("Ingresa al menos la marca y el modelo de tu vehículo (o selecciona uno del catálogo arriba).");
+    return;
+  }
+  const year = (document.getElementById("newVehicleYear")?.value || String(new Date().getFullYear())).trim();
+  const nickname = (document.getElementById("newVehicleNickname")?.value || model).trim();
+  const plate = (document.getElementById("newVehiclePlate")?.value || "").trim();
+  const odo = Math.max(0, parseFloat(document.getElementById("newVehicleOdo")?.value || "0") || 0);
+  const engine = (document.getElementById("newVehicleEngine")?.value || "Motor OEM").trim();
   const timing = document.getElementById("newVehicleTiming")?.value || "Cadena Metálica";
-  const oil = document.getElementById("newVehicleOil")?.value || "SAE 5W-30 Sintético API SP";
+  const oil = (document.getElementById("newVehicleOil")?.value || "SAE 5W-30 Sintético API SP").trim();
   const transmission = document.getElementById("newVehicleTransmission")?.value || "Sincrónica 6MT";
 
   activeGarageVehicle = {
@@ -9048,19 +9165,16 @@ function saveNewVehicle() {
     engine,
     timing,
     oil,
-    transmission
+    transmission,
+    userConfigured: true
   };
   currentOdometer = odo;
 
   localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
-
-  syncGarageVehicleDOM();
-  renderBreakInAdvisorCard();
-  updateGarageTelemetryHUD();
-  renderPreventiveMaintenanceGrid();
-  if (typeof renderGarageAnalytics === "function") renderGarageAnalytics();
+  ensureBlockchainGenesis(activeGarageVehicle);
 
   closeModal("addVehicleModal");
+  refreshAllGarageUI();
   addMutation("vehicle_registry", "ADD_VEHICLE", activeGarageVehicle);
   if (window.syncUserDataToCloud) window.syncUserDataToCloud();
 }
@@ -9281,8 +9395,10 @@ function saveFuelLog() {
 
   if (kmVal !== null && kmVal > currentOdometer) {
     currentOdometer = kmVal;
-    activeGarageVehicle.odo = kmVal;
-    localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
+    if (activeGarageVehicle) {
+      activeGarageVehicle.odo = kmVal;
+      localStorage.setItem("charu_active_vehicle", JSON.stringify(activeGarageVehicle));
+    }
     syncGarageVehicleDOM();
     renderBreakInAdvisorCard();
     renderPreventiveMaintenanceGrid();
@@ -9363,7 +9479,7 @@ function clearFuelHistory() {
     renderFuelHistory();
     updateGarageTelemetryHUD();
     renderGarageAnalytics();
-    if (window.syncUserDataToCloud) window.syncUserDataToCloud();
+    if (window.syncUserDataToCloud) window.syncUserDataToCloud({ allowEmptyFuel: true });
   }
 }
 
@@ -9390,7 +9506,9 @@ function destroyAnalyticsCharts() {
 function renderGarageAnalytics() {
   const labelEl = document.getElementById("analyticsVehicleLabel");
   if (labelEl) {
-    labelEl.textContent = `${activeGarageVehicle.nickname || activeGarageVehicle.model} • ${currentOdometer.toLocaleString()} km`;
+    labelEl.textContent = activeGarageVehicle
+      ? `${activeGarageVehicle.nickname || activeGarageVehicle.model || 'Vehículo'} • ${currentOdometer.toLocaleString()} km`
+      : `Sin vehículo registrado`;
   }
 
   const fuelHistory = JSON.parse(localStorage.getItem("charu_fuel_history") || "[]");
@@ -10147,6 +10265,7 @@ function importOfflineBackup(event) {
         }
         if (data.odometerChain && Array.isArray(data.odometerChain)) {
           blockchain = data.odometerChain;
+          saveOdometerChain();
           if (blockchain.length > 0) {
             currentOdometer = blockchain[blockchain.length - 1].km;
           }
@@ -10163,13 +10282,8 @@ function importOfflineBackup(event) {
           localStorage.setItem("charu_pro_status", JSON.stringify(data.proStatus));
           initProStatus();
         }
-        syncGarageVehicleDOM();
-        setMaintenanceRegime(currentMaintenanceRegime);
-        renderCorrectiveCatalogAndLogs();
-        renderFuelHistory();
-        updateGarageTelemetryHUD();
-        renderGarageAnalytics();
-        renderSavedComparisons();
+        refreshAllGarageUI();
+        if (window.syncUserDataToCloud) window.syncUserDataToCloud();
         alert("Respaldo completo restaurado con éxito en tu dispositivo.");
       } else {
         alert("Archivo de respaldo no reconocido o sin formato válido.");

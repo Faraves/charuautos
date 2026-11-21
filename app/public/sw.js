@@ -3,12 +3,12 @@
  * Cache-first para recursos estáticos y fallback offline para navegación.
  */
 
-const CACHE_NAME = 'bajokapot-pwa-v9';
+const CACHE_NAME = 'bajokapot-pwa-v10';
 const STATIC_ASSETS = [
   './',
   './index.html',
-  './app.js?v=20261115_bajokapot_v9',
-  './auth.js?v=20261115_bajokapot_v9',
+  './app.js?v=20261120_bajokapot_v10',
+  './auth.js?v=20261120_bajokapot_v10',
   './manifest.json?v=7',
   './certificado_charupro_muestra.html',
   './bajokapot-logo-dark.png',
